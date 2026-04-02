@@ -1,0 +1,494 @@
+"""
+Enhanced Quantum-Enhanced Sepsis Detection Simulation
+Using REAL CLINICAL DATA from Kaggle
+------------------------------------------------------
+This version uses actual patient biomarker data to make the simulation more accurate.
+
+INSTRUCTIONS TO RUN:
+1. Install kagglehub: pip install kagglehub pandas numpy matplotlib scipy
+2. Run this script: python enhanced_sepsis_simulation_with_data.py
+3. The script will download the dataset and generate improved simulation
+
+Dataset: olagokeblissman/sepsis-dataset from Kaggle
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from pathlib import Path
+from scipy.stats import norm
+from scipy.signal import savgol_filter
+
+# Try to import kagglehub
+try:
+    import kagglehub
+    from kagglehub import KaggleDatasetAdapter
+    KAGGLE_AVAILABLE = True
+    print("✓ kagglehub available - will use real clinical data")
+except ImportError:
+    KAGGLE_AVAILABLE = False
+    print("⚠ kagglehub not available - install with: pip install kagglehub")
+    print("⚠ Falling back to theoretical model")
+
+# -----------------------------------------------------------------------------
+# STEP 1: LOAD REAL SEPSIS DATA
+# -----------------------------------------------------------------------------
+
+def load_sepsis_dataset():
+    """Load the Kaggle sepsis dataset and extract biomarker information"""
+    
+    if not KAGGLE_AVAILABLE:
+        print("\n⚠ Running in THEORETICAL MODE (no real data)")
+        return None
+    
+    try:
+        print("\nLoading sepsis dataset from Kaggle...")
+        
+        # Load the dataset
+        df = kagglehub.load_dataset(
+            KaggleDatasetAdapter.PANDAS,
+            "olagokeblissman/sepsis-dataset",
+            "",  # Will load all files
+        )
+        
+        print(f"✓ Dataset loaded: {len(df)} records")
+        print(f"✓ Columns: {list(df.columns)}")
+        print("\nFirst 5 records:")
+        print(df.head())
+        
+        return df
+        
+    except Exception as e:
+        print(f"\n⚠ Error loading dataset: {e}")
+        print("⚠ Falling back to theoretical model")
+        return None
+
+# -----------------------------------------------------------------------------
+# STEP 2: EXTRACT BIOMARKER STATISTICS FROM REAL DATA
+# -----------------------------------------------------------------------------
+
+def extract_biomarker_stats(df):
+    """
+    Extract realistic biomarker statistics from the dataset.
+    
+    Returns dictionary with:
+    - baseline values (normal patients)
+    - sepsis values (septic patients)
+    - standard deviations
+    """
+    
+    if df is None:
+        # Use theoretical values if no data
+        return {
+            'il6_baseline': 10,
+            'il6_sepsis': 200,
+            'il6_std': 50,
+            'lactate_baseline': 1.0,
+            'lactate_sepsis': 5.0,
+            'lactate_std': 1.5,
+            'has_real_data': False
+        }
+    
+    stats = {'has_real_data': True}
+    
+    # Look for sepsis indicator column
+    # Common names: 'sepsis', 'SepsisLabel', 'outcome', 'target'
+    sepsis_col = None
+    for col in ['sepsis', 'SepsisLabel', 'outcome', 'target', 'Sepsis']:
+        if col in df.columns:
+            sepsis_col = col
+            break
+    
+    if sepsis_col is None:
+        print("⚠ Could not find sepsis label column")
+        stats['has_real_data'] = False
+        return stats
+    
+    # Split into normal and sepsis patients
+    normal_patients = df[df[sepsis_col] == 0]
+    sepsis_patients = df[df[sepsis_col] == 1]
+    
+    print(f"\n✓ Found {len(normal_patients)} normal and {len(sepsis_patients)} sepsis records")
+    
+    # Extract IL-6 if available (might be named differently)
+    il6_cols = [c for c in df.columns if 'il6' in c.lower() or 'interleukin' in c.lower()]
+    if il6_cols:
+        il6_col = il6_cols[0]
+        stats['il6_baseline'] = normal_patients[il6_col].mean()
+        stats['il6_sepsis'] = sepsis_patients[il6_col].mean()
+        stats['il6_std'] = sepsis_patients[il6_col].std()
+        print(f"✓ IL-6: baseline={stats['il6_baseline']:.1f}, sepsis={stats['il6_sepsis']:.1f}")
+    
+    # Extract lactate
+    lactate_cols = [c for c in df.columns if 'lactate' in c.lower() or 'lac' in c.lower()]
+    if lactate_cols:
+        lac_col = lactate_cols[0]
+        stats['lactate_baseline'] = normal_patients[lac_col].mean()
+        stats['lactate_sepsis'] = sepsis_patients[lac_col].mean()
+        stats['lactate_std'] = sepsis_patients[lac_col].std()
+        print(f"✓ Lactate: baseline={stats['lactate_baseline']:.2f}, sepsis={stats['lactate_sepsis']:.2f}")
+    
+    # Extract pH if available
+    ph_cols = [c for c in df.columns if 'ph' in c.lower()]
+    if ph_cols:
+        ph_col = ph_cols[0]
+        stats['ph_baseline'] = normal_patients[ph_col].mean()
+        stats['ph_sepsis'] = sepsis_patients[ph_col].mean()
+        print(f"✓ pH: baseline={stats['ph_baseline']:.2f}, sepsis={stats['ph_sepsis']:.2f}")
+    
+    # Extract temperature
+    temp_cols = [c for c in df.columns if 'temp' in c.lower() or 'temperature' in c.lower()]
+    if temp_cols:
+        temp_col = temp_cols[0]
+        stats['temp_baseline'] = normal_patients[temp_col].mean()
+        stats['temp_sepsis'] = sepsis_patients[temp_col].mean()
+        print(f"✓ Temp: baseline={stats['temp_baseline']:.2f}, sepsis={stats['temp_sepsis']:.2f}")
+    
+    return stats
+
+# -----------------------------------------------------------------------------
+# STEP 3: BUILD SIMULATION WITH REAL DATA PARAMETERS
+# -----------------------------------------------------------------------------
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Time parameters (hours post-surgery)
+time_hours = np.linspace(0, 24, 1000)
+
+# Quantum squeezing parameter
+CLASSICAL_SQUEEZING = 0.0
+QUANTUM_SQUEEZING = 0.8
+
+# Detection thresholds (clinical significance)
+IL6_THRESHOLD = 40  # pg/mL
+LACTATE_THRESHOLD = 2.5  # mmol/L
+PH_THRESHOLD = 7.3
+TEMP_THRESHOLD = 0.5  # °C above baseline
+
+# Clinical symptom appearance
+CLINICAL_SYMPTOM_TIME = 18.0  # hours
+
+def build_biomarker_evolution(stats):
+    """
+    Build biomarker time evolution using real data statistics
+    """
+    
+    # IL-6 evolution
+    il6_baseline = stats.get('il6_baseline', 10)
+    il6_peak = stats.get('il6_sepsis', 200)
+    il6_onset = 12
+    il6_rise_rate = 3
+    
+    il6 = il6_baseline + (il6_peak - il6_baseline) / (1 + np.exp(-(time_hours - il6_onset) / il6_rise_rate))
+    
+    # Lactate evolution
+    lactate_baseline = stats.get('lactate_baseline', 1.0)
+    lactate_peak = stats.get('lactate_sepsis', 5.0)
+    lactate_onset = 14
+    lactate_rise_rate = 2
+    
+    lactate = lactate_baseline + (lactate_peak - lactate_baseline) / (1 + np.exp(-(time_hours - lactate_onset) / lactate_rise_rate))
+    
+    # pH evolution
+    ph_baseline = stats.get('ph_baseline', 7.40)
+    ph_minimum = stats.get('ph_sepsis', 7.15)
+    ph_onset = 15
+    ph_drop_rate = 2.5
+    
+    ph = ph_baseline - (ph_baseline - ph_minimum) / (1 + np.exp(-(time_hours - ph_onset) / ph_drop_rate))
+    
+    # Temperature evolution
+    temp_baseline = 0.0
+    temp_peak = stats.get('temp_sepsis', 1.5) - stats.get('temp_baseline', 36.5)
+    if temp_peak < 0:
+        temp_peak = 1.5  # Fallback
+    temp_onset = 13
+    temp_rise_rate = 2
+    
+    temp = temp_baseline + temp_peak / (1 + np.exp(-(time_hours - temp_onset) / temp_rise_rate))
+    
+    return il6, lactate, ph, temp
+
+# -----------------------------------------------------------------------------
+# OPTICAL DETECTION MODELS
+# -----------------------------------------------------------------------------
+
+def raman_detection(concentration, squeezing_param, integration_time=1.0):
+    """Raman spectroscopy detection with shot noise"""
+    photon_count_rate = 100
+    expected_photons = concentration * photon_count_rate * integration_time
+    shot_noise_std = np.sqrt(expected_photons)
+    quantum_noise_factor = np.exp(-squeezing_param)
+    noise_std = shot_noise_std * quantum_noise_factor
+    noise = np.random.normal(0, noise_std, size=len(concentration))
+    measured_photons = expected_photons + noise
+    measured_concentration = measured_photons / (photon_count_rate * integration_time)
+    return measured_concentration
+
+def nirs_detection(concentration, squeezing_param):
+    """Near-infrared spectroscopy detection"""
+    photon_count_rate = 500
+    integration_time = 1.0
+    expected_photons = concentration * photon_count_rate * integration_time
+    shot_noise_std = np.sqrt(expected_photons)
+    quantum_noise_factor = np.exp(-squeezing_param)
+    noise_std = shot_noise_std * quantum_noise_factor
+    noise = np.random.normal(0, noise_std, size=len(concentration))
+    measured_photons = expected_photons + noise
+    measured_concentration = measured_photons / (photon_count_rate * integration_time)
+    return measured_concentration
+
+def thermal_detection(temperature, squeezing_param):
+    """Thermal infrared detection"""
+    classical_noise_std = 0.1
+    quantum_noise_factor = np.exp(-squeezing_param)
+    noise_std = classical_noise_std * quantum_noise_factor
+    noise = np.random.normal(0, noise_std, size=len(temperature))
+    measured_temp = temperature + noise
+    return measured_temp
+
+def find_detection_time(measured_values, threshold, time_hours):
+    """Find first time point where measured value exceeds threshold"""
+    window = 20
+    smoothed = np.convolve(measured_values, np.ones(window)/window, mode='same')
+    crossings = np.where(smoothed > threshold)[0]
+    if len(crossings) > 0:
+        return time_hours[crossings[0]]
+    return None
+
+# -----------------------------------------------------------------------------
+# MAIN SIMULATION
+# -----------------------------------------------------------------------------
+
+def run_enhanced_simulation():
+    """Run the complete enhanced simulation"""
+    
+    print("\n" + "="*70)
+    print("ENHANCED QUANTUM-ENHANCED SEPSIS DETECTION SIMULATION")
+    print("Using Real Clinical Data from Kaggle")
+    print("="*70)
+    
+    # Load dataset
+    df = load_sepsis_dataset()
+    
+    # Extract biomarker statistics
+    stats = extract_biomarker_stats(df)
+    
+    if stats['has_real_data']:
+        print("\n✓ Using REAL CLINICAL DATA parameters")
+    else:
+        print("\n⚠ Using THEORETICAL parameters (no dataset available)")
+    
+    # Build biomarker evolution with real statistics
+    il6_true, lactate_true, ph_true, temp_true = build_biomarker_evolution(stats)
+    
+    print("\nRunning quantum vs classical detection simulation...")
+    
+    # Classical detection
+    il6_classical = raman_detection(il6_true, CLASSICAL_SQUEEZING)
+    lactate_classical = nirs_detection(lactate_true, CLASSICAL_SQUEEZING)
+    ph_classical = nirs_detection(ph_true, CLASSICAL_SQUEEZING)
+    temp_classical = thermal_detection(temp_true, CLASSICAL_SQUEEZING)
+    
+    # Quantum-enhanced detection
+    il6_quantum = raman_detection(il6_true, QUANTUM_SQUEEZING)
+    lactate_quantum = nirs_detection(lactate_true, QUANTUM_SQUEEZING)
+    ph_quantum = nirs_detection(ph_true, QUANTUM_SQUEEZING)
+    temp_quantum = thermal_detection(temp_true, QUANTUM_SQUEEZING)
+    
+    # Find detection times
+    biomarkers = ['IL-6', 'Lactate', 'pH', 'Temperature']
+    
+    classical_detection_times = {
+        'IL-6': find_detection_time(il6_classical, IL6_THRESHOLD, time_hours),
+        'Lactate': find_detection_time(lactate_classical, LACTATE_THRESHOLD, time_hours),
+        'pH': find_detection_time(ph_classical, PH_THRESHOLD, time_hours),
+        'Temperature': find_detection_time(temp_classical, TEMP_THRESHOLD, time_hours)
+    }
+    
+    quantum_detection_times = {
+        'IL-6': find_detection_time(il6_quantum, IL6_THRESHOLD, time_hours),
+        'Lactate': find_detection_time(lactate_quantum, LACTATE_THRESHOLD, time_hours),
+        'pH': find_detection_time(ph_quantum, PH_THRESHOLD, time_hours),
+        'Temperature': find_detection_time(temp_quantum, TEMP_THRESHOLD, time_hours)
+    }
+    
+    # -----------------------------------------------------------------------------
+    # VISUALIZATION
+    # -----------------------------------------------------------------------------
+    
+    fig = plt.figure(figsize=(16, 12))
+    
+    # Plot 1: IL-6
+    ax1 = plt.subplot(2, 3, 1)
+    ax1.plot(time_hours, il6_true, 'k--', linewidth=2, label='True IL-6', alpha=0.7)
+    ax1.plot(time_hours, il6_classical, 'b-', alpha=0.5, linewidth=1, label='Classical')
+    ax1.plot(time_hours, il6_quantum, 'r-', alpha=0.7, linewidth=1.5, label='Quantum')
+    ax1.axhline(IL6_THRESHOLD, color='orange', linestyle='--', label=f'Threshold ({IL6_THRESHOLD} pg/mL)')
+    ax1.axvline(CLINICAL_SYMPTOM_TIME, color='gray', linestyle=':', linewidth=2, label='Clinical symptoms')
+    if classical_detection_times['IL-6']:
+        ax1.axvline(classical_detection_times['IL-6'], color='blue', linestyle='--', alpha=0.5)
+    if quantum_detection_times['IL-6']:
+        ax1.axvline(quantum_detection_times['IL-6'], color='red', linestyle='--', alpha=0.7)
+    ax1.set_xlabel('Hours Post-Surgery')
+    ax1.set_ylabel('IL-6 (pg/mL)')
+    ax1.set_title('IL-6 Detection (Inflammatory Marker)')
+    ax1.legend(fontsize=8)
+    ax1.grid(True, alpha=0.3)
+    
+    # Plot 2: Lactate
+    ax2 = plt.subplot(2, 3, 2)
+    ax2.plot(time_hours, lactate_true, 'k--', linewidth=2, label='True lactate', alpha=0.7)
+    ax2.plot(time_hours, lactate_classical, 'b-', alpha=0.5, linewidth=1, label='Classical')
+    ax2.plot(time_hours, lactate_quantum, 'r-', alpha=0.7, linewidth=1.5, label='Quantum')
+    ax2.axhline(LACTATE_THRESHOLD, color='orange', linestyle='--', label=f'Threshold ({LACTATE_THRESHOLD} mmol/L)')
+    ax2.axvline(CLINICAL_SYMPTOM_TIME, color='gray', linestyle=':', linewidth=2)
+    ax2.set_xlabel('Hours Post-Surgery')
+    ax2.set_ylabel('Lactate (mmol/L)')
+    ax2.set_title('Lactate Detection (Metabolic Marker)')
+    ax2.legend(fontsize=8)
+    ax2.grid(True, alpha=0.3)
+    
+    # Plot 3: pH
+    ax3 = plt.subplot(2, 3, 3)
+    ax3.plot(time_hours, ph_true, 'k--', linewidth=2, label='True pH', alpha=0.7)
+    ax3.plot(time_hours, ph_classical, 'b-', alpha=0.5, linewidth=1, label='Classical')
+    ax3.plot(time_hours, ph_quantum, 'r-', alpha=0.7, linewidth=1.5, label='Quantum')
+    ax3.axhline(PH_THRESHOLD, color='orange', linestyle='--', label=f'Threshold (pH {PH_THRESHOLD})')
+    ax3.axvline(CLINICAL_SYMPTOM_TIME, color='gray', linestyle=':', linewidth=2)
+    ax3.set_xlabel('Hours Post-Surgery')
+    ax3.set_ylabel('pH')
+    ax3.set_title('pH Detection (Acidosis Marker)')
+    ax3.legend(fontsize=8)
+    ax3.grid(True, alpha=0.3)
+    ax3.invert_yaxis()
+    
+    # Plot 4: Temperature
+    ax4 = plt.subplot(2, 3, 4)
+    ax4.plot(time_hours, temp_true, 'k--', linewidth=2, label='True temperature', alpha=0.7)
+    ax4.plot(time_hours, temp_classical, 'b-', alpha=0.5, linewidth=1, label='Classical')
+    ax4.plot(time_hours, temp_quantum, 'r-', alpha=0.7, linewidth=1.5, label='Quantum')
+    ax4.axhline(TEMP_THRESHOLD, color='orange', linestyle='--', label=f'Threshold (+{TEMP_THRESHOLD}°C)')
+    ax4.axvline(CLINICAL_SYMPTOM_TIME, color='gray', linestyle=':', linewidth=2)
+    ax4.set_xlabel('Hours Post-Surgery')
+    ax4.set_ylabel('Temperature Change (°C)')
+    ax4.set_title('Temperature Detection')
+    ax4.legend(fontsize=8)
+    ax4.grid(True, alpha=0.3)
+    
+    # Plot 5: Detection Time Comparison
+    ax5 = plt.subplot(2, 3, 5)
+    classical_times = [classical_detection_times[b] if classical_detection_times[b] else 24 for b in biomarkers]
+    quantum_times = [quantum_detection_times[b] if quantum_detection_times[b] else 24 for b in biomarkers]
+    time_advantage = [c - q if (c and q) else 0 for c, q in zip(classical_times, quantum_times)]
+    
+    x = np.arange(len(biomarkers))
+    width = 0.35
+    
+    ax5.barh(x - width/2, classical_times, width, label='Classical', color='blue', alpha=0.6)
+    ax5.barh(x + width/2, quantum_times, width, label='Quantum', color='red', alpha=0.6)
+    ax5.axvline(CLINICAL_SYMPTOM_TIME, color='gray', linestyle=':', linewidth=2, label='Clinical symptoms')
+    ax5.set_yticks(x)
+    ax5.set_yticklabels(biomarkers)
+    ax5.set_xlabel('Detection Time (hours)')
+    ax5.set_title('Detection Time Comparison')
+    ax5.legend()
+    ax5.grid(True, alpha=0.3, axis='x')
+    
+    for i, adv in enumerate(time_advantage):
+        if adv > 0:
+            ax5.text(max(classical_times[i], quantum_times[i]) + 0.5, i, 
+                    f'+{adv:.1f}h', fontsize=9, color='darkgreen', fontweight='bold')
+    
+    # Plot 6: Summary
+    ax6 = plt.subplot(2, 3, 6)
+    ax6.axis('off')
+    
+    data_source = "REAL CLINICAL DATA" if stats['has_real_data'] else "THEORETICAL MODEL"
+    
+    summary_text = f"""
+QUANTUM ADVANTAGE SUMMARY
+{'='*50}
+Data Source: {data_source}
+
+Detection Time Improvements:
+"""
+    
+    for biomarker in biomarkers:
+        ct = classical_detection_times[biomarker]
+        qt = quantum_detection_times[biomarker]
+        if ct and qt:
+            advantage = ct - qt
+            summary_text += f"\n{biomarker:12s}: {advantage:+.2f} hours earlier"
+        elif qt:
+            summary_text += f"\n{biomarker:12s}: Detected (classical failed)"
+        else:
+            summary_text += f"\n{biomarker:12s}: Not detected"
+    
+    valid_advantages = [classical_detection_times[b] - quantum_detection_times[b] 
+                       for b in biomarkers 
+                       if classical_detection_times[b] and quantum_detection_times[b]]
+    
+    if valid_advantages:
+        avg_advantage = np.mean(valid_advantages)
+        earliest_quantum = min([t for t in quantum_detection_times.values() if t])
+        time_before_clinical = CLINICAL_SYMPTOM_TIME - earliest_quantum
+        
+        summary_text += f"\n\nAverage advantage: {avg_advantage:.2f} hours"
+        summary_text += f"\n\nEarliest detection: {earliest_quantum:.1f} hours"
+        summary_text += f"\nClinical symptoms: {CLINICAL_SYMPTOM_TIME:.1f} hours"
+        summary_text += f"\nWarning time: {time_before_clinical:.1f} hours before symptoms"
+        
+        if stats['has_real_data']:
+            summary_text += f"\n\n{'='*50}"
+            summary_text += f"\nREAL DATA PARAMETERS:"
+            summary_text += f"\nIL-6: {stats.get('il6_baseline',0):.1f} → {stats.get('il6_sepsis',0):.1f} pg/mL"
+            summary_text += f"\nLactate: {stats.get('lactate_baseline',0):.2f} → {stats.get('lactate_sepsis',0):.2f} mmol/L"
+    
+    ax6.text(0.1, 0.95, summary_text, transform=ax6.transAxes,
+             fontsize=10, verticalalignment='top', fontfamily='monospace',
+             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.3))
+    
+    title = 'Quantum-Enhanced Sepsis Detection (WITH REAL CLINICAL DATA)' if stats['has_real_data'] else 'Quantum-Enhanced Sepsis Detection (Theoretical Model)'
+    plt.suptitle(title, fontsize=16, fontweight='bold', y=0.98)
+    
+    plt.tight_layout()
+    
+    # Save
+    output_path = Path(__file__).with_name('enhanced_sepsis_simulation_with_data.png')
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    print(f"\n✓ Simulation saved to: {output_path}")
+    
+    # Print results
+    print("\n" + "="*70)
+    print("RESULTS")
+    print("="*70)
+    
+    for biomarker in biomarkers:
+        ct = classical_detection_times[biomarker]
+        qt = quantum_detection_times[biomarker]
+        print(f"\n{biomarker}:")
+        print(f"  Classical: {ct:.2f}h" if ct else "  Classical: FAILED")
+        print(f"  Quantum:   {qt:.2f}h" if qt else "  Quantum: FAILED")
+        if ct and qt:
+            print(f"  Advantage: {ct - qt:+.2f} hours")
+    
+    if valid_advantages:
+        print(f"\nAverage detection advantage: {avg_advantage:.2f} hours")
+        print(f"Warning time before symptoms: {time_before_clinical:.1f} hours")
+    
+    print("\n" + "="*70 + "\n")
+    
+    return df, stats
+
+# -----------------------------------------------------------------------------
+# RUN
+# -----------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    df, stats = run_enhanced_simulation()
+    
+    print("\n✓ Enhanced simulation complete!")
+    print("\nTo rerun with different parameters, modify the values in this script.")
+    print("To use your own dataset, replace the kagglehub.load_dataset() call.")
