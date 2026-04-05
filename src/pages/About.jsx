@@ -177,65 +177,28 @@ export default function About() {
         </div>
       </section>
 
-      {/* Join Us & Contact Section */}
+      {/* Join Us Section */}
       <section className="py-24 bg-zinc-900 border-t border-gray-800">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-white mb-6">Join Us</h2>
+            <p className="text-gray-300 mb-8 text-lg">We're at the beginning of something transformative. If you're passionate about using quantum technology to save lives, we want to hear from you.</p>
+            
+            <div className="space-y-6">
                 <div>
-                    <h2 className="text-3xl font-bold text-white mb-6">Join Us</h2>
-                    <p className="text-gray-300 mb-8 text-lg">We're at the beginning of something transformative. If you're passionate about using quantum technology to save lives, we want to hear from you.</p>
-                    
-                    <div className="space-y-6">
-                        <div>
-                            <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Investors</h4>
-                            <p className="text-gray-400 text-sm mt-1">We're raising our seed round to accelerate prototype development and secure key partnerships. Contact us to learn more.</p>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Clinical Partners</h4>
-                            <p className="text-gray-400 text-sm mt-1">We're seeking hospital partners for future clinical validation. If you're interested in early sepsis detection technology, let's talk.</p>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Talent</h4>
-                            <p className="text-gray-400 text-sm mt-1">We're building our founding team. If you're an expert in quantum optics, biomedical engineering, clinical medicine, or medical device development, explore opportunities with us.</p>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Collaborators</h4>
-                            <p className="text-gray-400 text-sm mt-1">We welcome partnerships with quantum photonics research groups, medical device manufacturers, and healthcare innovators.</p>
-                        </div>
-                    </div>
+                    <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Investors</h4>
+                    <p className="text-gray-400 text-sm mt-1">We're raising our seed round to accelerate prototype development and secure key partnerships. Contact us to learn more.</p>
                 </div>
-                
-                <div className="bg-caladan-dark p-8 md:p-10 rounded-3xl border border-gray-800">
-                    <h2 className="text-3xl font-bold text-white mb-8">Contact</h2>
-                    <div className="space-y-6 text-gray-300">
-                        <div className="flex items-start gap-4">
-                            <div className="mt-1 w-10 h-10 rounded-full bg-zinc-900 border border-gray-700 flex items-center justify-center shrink-0">
-                                ✉️
-                            </div>
-                            <div>
-                                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider mb-1">Email</p>
-                                <a href="mailto:contact@vitalq.com" className="text-white hover:text-caladan-green transition-colors text-lg">contact@vitalq.com</a>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <div className="mt-1 w-10 h-10 rounded-full bg-zinc-900 border border-gray-700 flex items-center justify-center shrink-0">
-                                🔗
-                            </div>
-                            <div>
-                                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider mb-1">LinkedIn</p>
-                                <a href="#" className="text-white hover:text-caladan-green transition-colors text-lg">VitalQ Company Page</a>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <div className="mt-1 w-10 h-10 rounded-full bg-zinc-900 border border-gray-700 flex items-center justify-center shrink-0">
-                                📍
-                            </div>
-                            <div>
-                                <p className="text-sm text-gray-500 font-medium uppercase tracking-wider mb-1">Location</p>
-                                <p className="text-white text-lg">London, UK / San Francisco, CA</p>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Clinical Partners</h4>
+                    <p className="text-gray-400 text-sm mt-1">We're seeking hospital partners for future clinical validation. If you're interested in early sepsis detection technology, let's talk.</p>
+                </div>
+                <div>
+                    <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Talent</h4>
+                    <p className="text-gray-400 text-sm mt-1">We're building our founding team. If you're an expert in quantum optics, biomedical engineering, clinical medicine, or medical device development, explore opportunities with us.</p>
+                </div>
+                <div>
+                    <h4 className="text-white font-semibold flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-caladan-green"></span> Collaborators</h4>
+                    <p className="text-gray-400 text-sm mt-1">We welcome partnerships with quantum photonics research groups, medical device manufacturers, and healthcare innovators.</p>
                 </div>
             </div>
         </div>
