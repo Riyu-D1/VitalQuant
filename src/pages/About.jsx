@@ -112,13 +112,10 @@ export default function About() {
       <section className="py-20 bg-zinc-900 border-t border-gray-800">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Our Advisors</h2>
-            <p className="text-gray-300 mb-6 text-lg">VitalQ is supported by world-class advisors in quantum photonics, clinical medicine, and medical device development. Our advisory board includes:</p>
-            <ul className="text-gray-300 space-y-2 text-lg mb-8">
-                <li>Leading experts in quantum optics from top research institutions</li>
-                <li>Clinical advisors in critical care and surgical medicine</li>
-                <li>Medical device regulatory consultants</li>
-            </ul>
-            <p className="text-gray-400 italic text-sm">
+            <p className="text-gray-300 mb-6 text-lg">
+                VitalQ is supported by world-class research in quantum photonics, clinical medicine, and medical device development. 
+            </p>
+            <p className="text-gray-300 text-lg">
                 We're building a world-class advisory board... If you're interested in advising VitalQ, we'd love to hear from you.
             </p>
         </div>
