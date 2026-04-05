@@ -68,14 +68,7 @@ export default function About() {
       <section className="py-20 bg-zinc-900 border-t border-gray-800">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Our Vision</h2>
-            <p className="text-gray-300 mb-6 text-lg">VitalQ's technology platform extends far beyond post-operative sepsis. The same quantum-enhanced optical sensing that detects early inflammation can be applied to:</p>
-            <ul className="list-disc list-inside text-gray-300 space-y-2 text-lg mb-8 ml-4 grid grid-cols-1 md:grid-cols-2 gap-x-4">
-                <li>Cancer biomarker monitoring</li>
-                <li>Diabetes and metabolic disease tracking</li>
-                <li>Cardiovascular risk assessment</li>
-                <li>Chronic inflammatory conditions</li>
-                <li>Remote patient monitoring for vulnerable populations</li>
-            </ul>
+            <p className="text-gray-300 mb-6 text-lg">VitalQ's technology platform extends far beyond post-operative sepsis.</p>
             <p className="text-gray-300 leading-relaxed text-lg">
                We envision a future where continuous, non-invasive biomarker monitoring is as routine as checking your heart rate—where diseases are detected at their earliest, most treatable stages, and where quantum technology saves lives every day.
             </p>
