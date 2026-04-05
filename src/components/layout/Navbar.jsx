@@ -18,7 +18,7 @@ export default function Navbar() {
                     <Link to="/#product" className="text-sm font-semibold hover:text-caladan-green transition-colors uppercase tracking-widest">Product</Link>
                     <Link to="/about" className="text-sm font-semibold hover:text-caladan-green transition-colors uppercase tracking-widest">About</Link>
                     <Link to="/tryit" className="text-sm font-semibold hover:text-caladan-green transition-colors uppercase tracking-widest text-caladan-green">Try It</Link>
-                    <a href="#contact" className="text-sm font-semibold hover:text-caladan-green transition-colors uppercase tracking-widest">Contact</a>
+                    <Link to="/contact" className="text-sm font-semibold hover:text-caladan-green transition-colors uppercase tracking-widest">Contact</Link>
                 </div>
             </div>
         </div>

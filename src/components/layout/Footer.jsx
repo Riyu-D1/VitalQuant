@@ -9,8 +9,8 @@ export default function Footer() {
                 <div className="col-span-1 md:col-span-2">
                     <Link to="/" className="font-bold text-xl text-white tracking-tight mb-4 inline-block">VitalQ.</Link>
                     <p className="text-gray-300 text-sm mb-4">Next-Gen Medical Sensors</p>
-                    <p className="text-gray-300 text-sm">Cambridge, MA</p>
-                    <a href="mailto:info@vitalquant.com" className="text-caladan-green font-semibold text-sm hover:underline mt-4 inline-block uppercase tracking-wider">Contact</a>
+                    <p className="text-gray-300 text-sm">Based in London</p>
+                    <Link to="/contact" className="text-caladan-green font-semibold text-sm hover:underline mt-4 inline-block uppercase tracking-wider">Contact</Link>
                 </div>
                 
                 <div>
