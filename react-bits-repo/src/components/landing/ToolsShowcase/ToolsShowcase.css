@@ -1,0 +1,260 @@
+/* ===========================================
+   TOOLS SHOWCASE SECTION
+   =========================================== */
+
+.tools-showcase-section {
+  position: relative;
+  padding: 80px 2rem;
+  z-index: 22;
+  user-select: none;
+}
+
+.tools-showcase-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ===========================================
+   HEADER
+   =========================================== */
+
+.tools-showcase-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tools-showcase-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tools-showcase-title {
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: -2px;
+  color: #fff;
+  margin-bottom: 0.2rem;
+  background: var(--gradient-title);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  animation: gradientShift 4s ease-in-out infinite;
+  display: inline-block;
+}
+
+.tools-showcase-subtitle {
+  font-size: 1.2rem;
+  color: #ffffffb7;
+  /* Large text-shadow removed for scroll performance */
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+/* ===========================================
+   GRID
+   =========================================== */
+
+.tools-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .tools-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================================
+   CARD
+   =========================================== */
+
+.tool-showcase-card {
+  position: relative;
+  background: var(--bg-body);
+  border: 1px solid rgba(169, 148, 184, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-showcase-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tool-showcase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(163, 148, 184, 0.3), transparent);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.tool-showcase-card:hover {
+  box-shadow: 0 4px 40px -15px rgba(46, 24, 78, 0.4);
+  background: var(--bg-card);
+}
+
+.tool-showcase-card:hover::before {
+  opacity: 1;
+}
+
+/* ===========================================
+   CARD CONTENT
+   =========================================== */
+
+.tool-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tool-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: rgba(132, 0, 255, 0.1);
+  border: 1px solid rgba(132, 0, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tool-showcase-card:hover .tool-card-icon {
+  background: rgba(132, 0, 255, 0.15);
+  border-color: rgba(132, 0, 255, 0.3);
+}
+
+.tool-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+.tool-card-description {
+  font-size: 0.85rem;
+  color: rgba(161, 148, 184, 0.9);
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  flex-grow: 1;
+}
+
+.tool-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(161, 148, 184, 0.7);
+  transition: all 0.3s ease;
+}
+
+.tool-card-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.tool-showcase-card:hover .tool-card-cta {
+  color: #8400ff;
+}
+
+.tool-showcase-card:hover .tool-card-cta svg {
+  transform: translateX(3px);
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+@media (max-width: 768px) {
+  .tools-showcase-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .tools-showcase-header {
+    margin-bottom: 2rem;
+  }
+
+  .tools-showcase-title {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+  }
+
+  .tools-showcase-subtitle {
+    font-size: 1rem;
+  }
+
+  .tool-showcase-card {
+    padding: 1.25rem;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-showcase-title {
+    font-size: 2rem;
+  }
+
+  .tools-showcase-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===========================================
+   RESPONSIVE - CARDS
+   =========================================== */
+
+@media (max-width: 768px) {
+  .tools-showcase-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .tools-showcase-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .tool-showcase-card {
+    padding: 1.5rem;
+  }
+
+  .tool-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+  }
+
+  .tool-card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}

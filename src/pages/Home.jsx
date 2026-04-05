@@ -151,9 +151,9 @@ export default function Home() {
                   <a href="#" className="bg-caladan-green hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold tracking-wide transition-all uppercase text-sm">
                       Learn More
                   </a>
-                  <a href="#" className="bg-transparent hover:bg-zinc-900/50 text-white border border-gray-800 px-8 py-4 rounded-full font-bold tracking-wide transition-all uppercase text-sm">
+                  <Link to="/contact" className="bg-transparent hover:bg-zinc-900/50 text-white border border-gray-800 px-8 py-4 rounded-full font-bold tracking-wide transition-all uppercase text-sm">
                       Schedule A Meeting
-                  </a>
+                  </Link>
               </div>
           </div>
       </section>
