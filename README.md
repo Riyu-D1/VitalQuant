@@ -78,6 +78,7 @@ Many biological changes occur at scales that are difficult to measure reliably w
 VitalQ is exploring whether **better measurement + better computation** can expose information that is currently difficult to capture.
 
 The long-term vision is to develop technologies that could enable earlier and more sensitive biological monitoring.
+<img width="6100" height="5033" alt="quantum_sepsis_integrated" src="https://github.com/user-attachments/assets/19ecbe87-b34e-446c-82dd-114e7417fe5d" />
 
 ## Important Note
 
