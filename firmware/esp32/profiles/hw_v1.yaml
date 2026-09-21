@@ -1,0 +1,78 @@
+# VitalQ hardware profile — spec §34 pattern.
+# One file per hardware_revision; validated by vitalq-core's HardwareProfile schema.
+# Sensor presence, model, bus, rates and optics are CONFIG, never compiled code.
+
+hardware_revision: hw_v1
+description: "Custom-PCB prototype (target config — pending final component selection)"
+
+compute:
+  soc: esp32s3
+  buses:
+    i2c0: { sda: 8, scl: 9, hz: 400000 }
+    spi1: { miso: 12, mosi: 11, sclk: 13 }
+
+clock:
+  ntp_sync_interval_s: 3600
+  drift_estimate_window_batches: 20
+  max_unsynced_s: 7200            # flag clock.unreliable beyond this
+
+sensors:
+  ppg:
+    enabled: true
+    model: MAX86141              # alt: MAX30102 (V0 breakout profile)
+    bus: spi1
+    channels:
+      - { id: ppg.red,   wavelength_nm: 660, led_driver: 1, pd: 0 }
+      - { id: ppg.ir,    wavelength_nm: 880, led_driver: 2, pd: 1 }
+    sample_rate_hz: 200
+    led_current_ma: [10, 10]
+    ambient_cancellation: true
+
+  spectral:
+    enabled: true
+    model: AS7341-DLGM           # same die/registers as AS7341 breakout
+    bus: i2c0
+    address: "0x39"
+    channels: [f1, f2, f3, f4, f5, f6, f7, f8, clear, nir, flicker]
+    parallel_groups: 2           # 6-ch ADC + mux — frames are NOT simultaneous (audit C2)
+    gain: 64
+    integ_time_ms: 27.8
+    illumination: emitter_on     # requires external LED; capture dark_frame per sequence
+    frame_rate_hz: 2
+
+  temperature:
+    enabled: true
+    model: MLX90637              # alt: MLX90632 (fixed 0x3B addr)
+    bus: i2c0
+    address: "0x3B"
+    outputs: [temp.object, temp.ambient]
+    rate_hz: 1
+
+  environment:
+    enabled: true
+    model: BME280                # alt: BME680 (gas_resistance optional context only)
+    bus: i2c0
+    address: "0x76"
+    outputs: [env.temperature, env.humidity, env.pressure]
+    rate_hz: 0.5
+
+  motion:
+    enabled: true
+    model: ICM-42670-P           # MPU6050 is NRND — do not design-in on new PCB
+    bus: i2c0
+    address: "0x68"
+    outputs: [motion.accel_x, motion.accel_y, motion.accel_z,
+              motion.gyro_x,  motion.gyro_y,  motion.gyro_z]
+    rate_hz: 52
+
+  contact:
+    enabled: true
+    model: FSR402
+    input: adc1_ch0              # analog divider — ordinal level, no SI units
+    outputs: [contact.level]
+    rate_hz: 20
+
+power_profile: battery            # gates duty cycling + wifi burst strategy
+storage:
+  offline_buffer: flash_ring      # alt: sdcard (V0)
+  buffer_capacity_s: 1800
