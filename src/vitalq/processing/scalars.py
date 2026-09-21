@@ -6,8 +6,10 @@ import numpy as np
 
 
 def temperature_features(vals: np.ndarray, times_s: np.ndarray,
-                         baseline_med: float | None = None) -> dict:
-    """temp_c mean, slope (°C/min), std, deviation from personal baseline."""
+                         baseline_med: float | None = None,
+                         ambient_vals: np.ndarray | None = None) -> dict:
+    """temp_c mean, slope (°C/min), std, slew rate, ambient delta,
+    deviation from personal baseline."""
     if len(vals) == 0:
         return {}
     out = {
@@ -17,8 +19,30 @@ def temperature_features(vals: np.ndarray, times_s: np.ndarray,
     if len(vals) > 2 and times_s[-1] > times_s[0]:
         out["temp_slope_cpm"] = round(
             float(np.polyfit(times_s, vals, 1)[0] * 60), 5)
+        # slew: max absolute dT/dt between consecutive samples (°C/min)
+        dt = np.diff(times_s)
+        dt[dt == 0] = np.nan
+        out["temp_slew_cpm"] = round(
+            float(np.nanmax(np.abs(np.diff(vals) / dt)) * 60), 4)
+    if ambient_vals is not None and len(ambient_vals):
+        # skin-site vs ambient: physiologically meaningful gradient
+        out["temp_minus_ambient"] = round(
+            float(np.mean(vals) - np.mean(ambient_vals)), 3)
     if baseline_med is not None:
         out["temp_baseline_dev"] = round(float(np.mean(vals) - baseline_med), 3)
+    return out
+
+
+def env_features(vals_map: dict[str, np.ndarray]) -> dict:
+    """Environment-channel extras: humidity/pressure drift per window."""
+    out: dict[str, float] = {}
+    rh = vals_map.get("env.humidity")
+    if rh is not None and len(rh) > 1:
+        out["env_rh_std"] = round(float(np.std(rh)), 3)
+    p = vals_map.get("env.pressure")
+    if p is not None and len(p) > 2:
+        out["env_pressure_slope_hpa_min"] = round(
+            float(np.polyfit(np.arange(len(p)), p, 1)[0]), 5)
     return out
 
 
@@ -32,6 +56,30 @@ def contact_quality(levels: np.ndarray) -> float:
     if m < 50:
         return 0.0                       # device off-skin
     return round(min(1.0, seated_frac * (m / 1500.0)), 3)
+
+
+def contact_hysteresis(per_window_q: list[tuple[float, float]],
+                       enter_off: int = 2, exit_on: int = 2) -> list[bool]:
+    """Temporal hysteresis on per-window contact quality: a window is 'on-skin'
+    unless <enter_off> consecutive sub-threshold windows demote it, and needs
+    <exit_on> consecutive above-threshold windows to promote back. Kills the
+    flicker a raw per-window threshold produces at band edges."""
+    state = True
+    low_run = high_run = 0
+    out: list[bool] = []
+    for _wkey, q in per_window_q:
+        if q < 0.3:
+            low_run, high_run = low_run + 1, 0
+        elif q > 0.6:
+            high_run, low_run = high_run + 1, 0
+        else:
+            low_run = high_run = 0
+        if state and low_run >= enter_off:
+            state = False
+        elif not state and high_run >= exit_on:
+            state = True
+        out.append(state)
+    return out
 
 
 def motion_score(accel_xyz: np.ndarray, fs: float) -> float:
