@@ -80,6 +80,42 @@ def _floor(t, seconds: float) -> float:
     return int(t.timestamp() // seconds * seconds)
 
 
+def _stream_runs(rows, gap_tol_s: float = 0.05):
+    """Concatenate consecutive raw windows of one channel into contiguous streams.
+
+    Raw windows may be shorter than the processing window (WINDOW_SECONDS) —
+    e.g. an import writing 5 s chunks — so process a run of back-to-back
+    windows as a single stream. A run breaks on a sampling-rate change or a
+    timestamp gap larger than gap_tol_s. Yields
+    (base_epoch_s, fs, spans, samples) where spans is a list of
+    (window_id, sample_offset_start, sample_offset_end) for provenance.
+    """
+    base = cur_fs = None
+    spans: list[tuple[int, int, int]] = []
+    stream: list[float] = []
+
+    def emit():
+        return (base, cur_fs, spans, stream)
+
+    for r in rows:
+        n = len(r["samples"])
+        t0 = r["window_start"].timestamp()
+        fs = float(r["sample_rate_hz"])
+        expected = base + (len(stream) / cur_fs) if base is not None else None
+        contiguous = (base is not None and fs == cur_fs
+                      and abs(t0 - expected) <= gap_tol_s)
+        if not contiguous and base is not None:
+            yield emit()
+            spans, stream = [], []
+            base = None
+        if base is None:
+            base, cur_fs = t0, fs
+        spans.append((r["window_id"], len(stream), len(stream) + n))
+        stream.extend(r["samples"])
+    if base is not None:
+        yield emit()
+
+
 def _ts(epoch_s: float):
     return datetime.fromtimestamp(epoch_s, timezone.utc)
 
@@ -111,12 +147,17 @@ async def process_session(dsn: str, session_id: UUID,
 
         for ch in wave_channels:
             rows = await _load_windows(conn, session_id, ch)
-            for r in rows:
-                fs = float(r["sample_rate_hz"])
-                for k, chunk in _chunks(r["samples"], fs, WINDOW_SECONDS):
-                    wstart = _floor(r["window_start"], WINDOW_SECONDS) + k * WINDOW_SECONDS
-                    wkey = float(wstart)
-                    src_by_win[wkey].append(r["window_id"])
+            for base, fs, spans, stream in _stream_runs(rows):
+                # align the stream to the WINDOW_SECONDS feature grid — a run
+                # that doesn't start on a boundary drops its leading partial
+                boundary = int(np.ceil(base / WINDOW_SECONDS) * WINDOW_SECONDS)
+                skip = int(round((boundary - base) * fs))
+                for k, chunk in _chunks(stream[skip:], fs, WINDOW_SECONDS):
+                    wkey = float(boundary + k * WINDOW_SECONDS)
+                    c_lo, c_hi = skip + k * int(fs * WINDOW_SECONDS), \
+                        skip + (k + 1) * int(fs * WINDOW_SECONDS)
+                    src_by_win[wkey].extend(
+                        wid for wid, s, e in spans if s < c_hi and e > c_lo)
                     arr = np.asarray(chunk, dtype=float)
 
                     # clean layer: resample to uniform grid
@@ -139,7 +180,8 @@ async def process_session(dsn: str, session_id: UUID,
                                   "pulse_amp_mean", "rise_time_s",
                                   "pulse_width50_s", "area_ratio",
                                   "reflection_index_s", "crest_time_s",
-                                  "resp_hz_env", "resp_confidence"):
+                                  "resp_hz_env", "resp_confidence",
+                                  "tm_n_beats", "tm_ncc_mean", "tm_hr_bpm"):
                             if res.get(f) is not None:
                                 wave_feats[wkey][f"{ch.split('.')[1]}_{f}"] = res[f]
                         sqi = res["sqi"]

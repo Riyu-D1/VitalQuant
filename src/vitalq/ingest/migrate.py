@@ -8,6 +8,8 @@ from pathlib import Path
 
 import asyncpg
 
+from vitalq.core.channels import CHANNELS
+
 MIGRATIONS_DIR = Path(__file__).resolve().parents[3] / "supabase" / "migrations"
 
 
@@ -27,6 +29,16 @@ async def _run(dsn: str, migrations_dir: Path) -> list[str]:
             await conn.execute(path.read_text())
             await conn.execute("insert into meta._migrations (name) values ($1)", path.name)
             applied.append(path.name)
+        # config.channels is seeded by 0001 but the Python registry is the source of
+        # truth — upsert every registered channel so the FK tables never drift.
+        await conn.executemany(
+            "insert into config.channels (channel_id, sensor_type, unit, sample_role) "
+            "values ($1, $2, $3, $4) on conflict (channel_id) do nothing",
+            [
+                (c.channel_id, c.sensor_type.value, c.unit, c.sample_role.value)
+                for c in CHANNELS.values()
+            ],
+        )
     finally:
         await conn.close()
     return applied

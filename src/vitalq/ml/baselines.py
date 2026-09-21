@@ -10,6 +10,7 @@ import argparse
 import asyncio
 import os
 import subprocess
+from datetime import datetime, timezone
 from uuid import UUID
 
 import numpy as np
@@ -18,6 +19,8 @@ from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import RobustScaler
 
 from vitalq.ingest import db
+from vitalq.processing import PIPELINE_VERSION
+from vitalq.processing.worker import _clean
 
 
 def _top_deviant(x_scaled: np.ndarray, keys: list[str], n: int = 3) -> list[str]:
@@ -25,6 +28,66 @@ def _top_deviant(x_scaled: np.ndarray, keys: list[str], n: int = 3) -> list[str]
     the anomaly score (Phase-C audits ask 'why was this window flagged')."""
     order = np.argsort(-np.abs(x_scaled))[:n]
     return [keys[i] for i in order]
+
+
+async def compute_subject_baselines(dsn: str, subject_id: UUID,
+                                    window_days: int = 14,
+                                    feature_set: str = "fusion_v2") -> dict:
+    """Rolling per-subject median/MAD per feature over the last `window_days`
+    days → features.baselines. This is what makes anomaly scores *personal*:
+    a deviation is measured against THIS subject, not the population."""
+    conn = await db.connect(dsn)
+    try:
+        rows = await conn.fetch(
+            """select w.values from features.windows w
+               join meta.sessions s on s.session_id = w.session_id
+               where s.subject_id=$1 and w.feature_set=$2
+                 and w.window_start > now() - interval '1 day' * $3""",
+            subject_id, feature_set, window_days)
+        if not rows:
+            return {"subject_id": str(subject_id), "computed": 0}
+        keys = sorted({k for r in rows for k in r["values"]})
+        X = np.array([[r["values"].get(k, np.nan) for k in keys]
+                      for r in rows], dtype=float)
+        med = np.nanmedian(X, axis=0)
+        mad = np.nanmedian(np.abs(X - med), axis=0)
+        now = datetime.now(timezone.utc)
+        pairs = [(subject_id, k, stat, window_days, {"v": _clean(float(v))},
+                  now, PIPELINE_VERSION)
+                 for k, v_m, v_mad in zip(keys, med, mad, strict=False)
+                 for stat, v in (("median", v_m), ("mad", v_mad))
+                 if np.isfinite(v)]
+        await conn.executemany(
+            """insert into features.baselines
+               (subject_id, channel_id, stat, window_days, value, computed_at,
+                pipeline_version)
+               values ($1,$2,$3,$4,$5,$6,$7) on conflict do nothing""",
+            pairs)
+        return {"subject_id": str(subject_id), "computed": len(pairs),
+                "n_windows": len(rows)}
+    finally:
+        await conn.close()
+
+
+async def _subject_baseline(conn, session_id: UUID, key: str,
+                            window_days: int = 14):
+    """(median, mad) for one feature key against the session's subject, or None."""
+    row = await conn.fetchrow(
+        """select s.subject_id from meta.sessions s where s.session_id=$1""",
+        session_id)
+    if row is None or row["subject_id"] is None:
+        return None
+    r = await conn.fetchrow(
+        """select max(case when stat='median' then (value->>'v')::float end) med,
+                  max(case when stat='mad'    then (value->>'v')::float end) mad
+           from features.baselines
+           where subject_id=$1 and channel_id=$2 and window_days=$3
+           group by subject_id
+           order by max(computed_at) desc limit 1""",
+        row["subject_id"], key, window_days)
+    if r is None or r["med"] is None:
+        return None
+    return float(r["med"]), float(r["mad"] or 0)
 
 
 def _commit() -> str:
@@ -109,9 +172,17 @@ def main() -> None:
     if not dsn:
         raise SystemExit("DATABASE_URL not set")
     p = argparse.ArgumentParser()
-    p.add_argument("--sessions", nargs="+", required=True)
+    p.add_argument("--sessions", nargs="+")
+    p.add_argument("--baselines-for", metavar="SUBJECT_UUID",
+                   help="compute rolling per-subject baselines instead")
     args = p.parse_args()
-    print(asyncio.run(train_personal_baseline(dsn, [UUID(s) for s in args.sessions])))
+    if args.baselines_for:
+        print(asyncio.run(compute_subject_baselines(dsn, UUID(args.baselines_for))))
+    elif args.sessions:
+        print(asyncio.run(train_personal_baseline(dsn,
+                                                  [UUID(s) for s in args.sessions])))
+    else:
+        p.error("need --sessions or --baselines-for")
 
 
 if __name__ == "__main__":

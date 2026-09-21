@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import logging
+import os
+import time
+from collections import defaultdict
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from uuid import UUID
@@ -13,7 +16,13 @@ from fastapi.responses import JSONResponse
 
 import vitalq
 from vitalq.core.clock import ClockAnchor, ClockModel
-from vitalq.core.types import BatchIngest, DeviceEventIn, SessionCreate
+from vitalq.core.types import (
+    BatchIngest,
+    DeviceEventIn,
+    LabelIn,
+    SessionCreate,
+    SubjectCreate,
+)
 from vitalq.ingest import db
 from vitalq.ingest.auth import Device, DeviceDep, UserDep
 
@@ -27,6 +36,38 @@ async def _lifespan(app_: FastAPI):
 
 
 app = FastAPI(title="vitalq-ingest", version=vitalq.__version__, lifespan=_lifespan)
+
+
+# ── rate limiting (write endpoints) ──────────────────────────────────────────
+# Token bucket per client key (device key hash or IP). In-memory — per-process;
+# Supabase deploys get real limiting at the gateway. VITALQ_RATE_RPS tunes it.
+
+_RATE_RPS = float(os.environ.get("VITALQ_RATE_RPS", "50"))
+_RATE_BURST = _RATE_RPS * 2
+_buckets: dict[str, list[float]] = defaultdict(list)   # key -> [tokens, last_ts]
+
+
+def _rate_ok(key: str) -> bool:
+    tok, last = _buckets.get(key, [_RATE_BURST, 0.0])
+    now = time.monotonic()
+    tok = min(_RATE_BURST, tok + (now - last) * _RATE_RPS)
+    if tok < 1.0:
+        _buckets[key] = [tok, now]
+        return False
+    _buckets[key] = [tok - 1.0, now]
+    return True
+
+
+@app.middleware("http")
+async def rate_limit(request: Request, call_next):
+    if request.method == "POST" and request.url.path.startswith("/v1/"):
+        key = request.headers.get("X-Device-Key") or (
+            request.client.host if request.client else "anon")
+        if not _rate_ok(key):
+            return JSONResponse({"error": {"code": "rate.limited",
+                                           "message": "rate limit exceeded"}},
+                                status_code=429)
+    return await call_next(request)
 
 
 @app.exception_handler(HTTPException)
@@ -128,6 +169,9 @@ async def ingest_batch(body: BatchIngest, request: Request, device: Device = Dev
             for e in body.events])
         accepted += len(body.events)
     except asyncpg.PostgresError as e:
+        # Roll back the anchor row: the payload never landed, so a corrected
+        # retransmission of the same batch_id must not be treated as a replay.
+        await db.delete_batch_header(device.device_id, body.batch_id)
         raise HTTPException(400, {"error": {"code": "ingest.db",
                 "message": f"batch rejected: {e.message}"}}) from e
 
@@ -159,6 +203,38 @@ async def device_events(events: list[DeviceEventIn], session_id: UUID,
         device.device_id, session_id, model.to_utc(e.t_us), e.kind,
         e.detail) for e in events])
     return {"accepted": len(events)}
+
+
+# ── subjects + ground-truth labels (docs/04, docs/07 L4 plumbing) ─────────────
+
+@app.post("/v1/subjects", status_code=201, dependencies=[UserDep])
+async def create_subject(body: SubjectCreate):
+    sid = await db.create_subject(body.external_ref, body.consent_ref)
+    return {"subject_id": str(sid)}
+
+
+@app.post("/v1/sessions/{session_id}/labels", status_code=201)
+async def add_label(session_id: UUID, body: LabelIn, request: Request):
+    # labels arrive from the device stream OR a researcher — accept either auth
+    if request.headers.get("X-Device-Key"):
+        from vitalq.ingest.auth import device_auth
+        device = await device_auth(request)
+        session = await db.session_row(session_id)
+        if session and session["device_id"] != device.device_id:
+            raise HTTPException(403, {"error": {"code": "auth.session_mismatch"}})
+    else:
+        from vitalq.ingest.auth import user_auth
+        await user_auth(request)
+    if await db.session_row(session_id) is None:
+        raise HTTPException(404, {"error": {"code": "session.unknown"}})
+    fresh = await db.insert_label(session_id, body.label_time, body.kind,
+                                  body.value, body.provenance)
+    return {"label_id": str(session_id), "inserted": fresh}
+
+
+@app.get("/v1/sessions/{session_id}/labels", dependencies=[UserDep])
+async def get_labels(session_id: UUID):
+    return _rows(await db.get_labels(session_id))
 
 
 # ── read endpoints (dashboard) ────────────────────────────────────────────────

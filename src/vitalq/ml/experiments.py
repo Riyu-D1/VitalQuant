@@ -34,8 +34,12 @@ async def _load_feature_rows(conn, session_id, feature_set="fusion_v2"):
 
 
 def _matrix(rows, keys):
-    X = np.array([[r["values"].get(k) if r["values"].get(k) is not None
-                   else np.nan for k in keys] for r in rows], dtype=float)
+    def num(k, v):
+        # feature values may carry provenance strings (e.g. hr_source) — only
+        # numerics can enter the detector matrix
+        return float(v) if isinstance(v, (int, float)) else np.nan
+    X = np.array([[num(k, r["values"].get(k)) for k in keys] for r in rows],
+                 dtype=float)
     med = np.nanmedian(X, axis=0)
     med = np.where(np.isnan(med), 0.0, med)
     return np.where(np.isnan(X), med, X)

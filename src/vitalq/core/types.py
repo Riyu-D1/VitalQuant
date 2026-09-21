@@ -123,10 +123,10 @@ class BatchIngest(BaseModel):
     firmware_version: str
     profile_hash: str | None = None
     clock: ClockAnchorIn
-    scalars: list[ScalarSampleIn] = Field(default_factory=list)
-    windows: list[SignalWindowIn] = Field(default_factory=list)
-    frames: list[SpectralFrameIn] = Field(default_factory=list)
-    events: list[DeviceEventIn] = Field(default_factory=list)
+    scalars: list[ScalarSampleIn] = Field(default_factory=list, max_length=20000)
+    windows: list[SignalWindowIn] = Field(default_factory=list, max_length=2000)
+    frames: list[SpectralFrameIn] = Field(default_factory=list, max_length=5000)
+    events: list[DeviceEventIn] = Field(default_factory=list, max_length=1000)
 
     @model_validator(mode="after")
     def _nonempty(self) -> BatchIngest:
@@ -162,3 +162,20 @@ class SessionOut(BaseModel):
     started_at: datetime
     ended_at: datetime | None
     notes: str | None
+
+class SubjectCreate(BaseModel):
+    external_ref: str | None = None
+    consent_ref: str | None = None
+
+
+class LabelIn(BaseModel):
+    """A ground-truth label stamped on a session (docs/07 L4 plumbing)."""
+    label_time: datetime
+    kind: str = Field(min_length=1, max_length=64)
+    value: dict = Field(default_factory=dict)
+    provenance: str = Field(default="manual", max_length=64)
+
+    @field_validator("label_time")
+    @classmethod
+    def _tz(cls, v: datetime) -> datetime:
+        return _aware(v)

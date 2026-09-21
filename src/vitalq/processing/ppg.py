@@ -9,7 +9,7 @@ ECG RR intervals — the naming stays honest. SpO2 stays R-ratio + uncalibrated.
 from __future__ import annotations
 
 import numpy as np
-from scipy.signal import butter, find_peaks, hilbert, sosfiltfilt, welch
+from scipy.signal import butter, correlate, find_peaks, hilbert, sosfiltfilt, welch
 from scipy.stats import kurtosis, skew
 
 HR_BAND_HZ = (0.5, 4.0)        # 30–240 bpm
@@ -285,6 +285,46 @@ def combine_sqi(c: dict) -> float:
     return round(float(np.clip(score, 0.0, 1.0)), 3)
 
 
+def pulse_template(x_filt: np.ndarray, onsets: np.ndarray, fs: float,
+                   half_frac: float = 0.55) -> np.ndarray | None:
+    """Median pulse shape aligned on beat onsets — the per-window template a
+    matched filter correlates against (recovers beats peak-finding missed)."""
+    if len(onsets) < 3:
+        return None
+    ibi = np.diff(onsets) / fs
+    ibi = ibi[(ibi >= MIN_IBI_S) & (ibi <= MAX_IBI_S)]
+    if len(ibi) == 0:
+        return None
+    half = max(3, int(np.median(ibi) * half_frac * fs))
+    beats = [x_filt[o - half:o + half] for o in onsets
+             if o - half >= 0 and o + half <= len(x_filt)]
+    if len(beats) < 2:
+        return None
+    seg = np.stack(beats)
+    seg = (seg - seg.mean(axis=1, keepdims=True))
+    template = np.median(seg, axis=0)
+    return template - template.mean()
+
+
+def template_match_peaks(x_filt: np.ndarray, template: np.ndarray,
+                         fs: float) -> tuple[np.ndarray, float]:
+    """Matched-filter beat detection: correlate the pulse template over the
+    signal and find correlation peaks at physiological spacing. Returns
+    (peak_indices, mean NCC at detections)."""
+    if template is None or len(template) >= len(x_filt):
+        return np.array([], dtype=int), 0.0
+    t = template[::-1]
+    corr = correlate(x_filt, t, mode="same")
+    norm = np.sqrt(np.convolve(x_filt ** 2, np.ones(len(t)), "same")
+                   * float(np.sum(t ** 2)) + 1e-12)
+    ncc = corr / norm                                  # in [-1, 1]
+    cand, props = find_peaks(ncc, height=0.5,
+                             distance=int(fs * MIN_IBI_S))
+    if len(cand) == 0:
+        return np.array([], dtype=int), 0.0
+    return cand, float(np.mean(props["peak_heights"]))
+
+
 def process_ppg_window(samples: list[float], fs: float) -> dict:
     """Full v2 chain for one window: peaks → onsets → cleaned IBI stats →
     frequency PRV → morphology → respiration → SQI."""
@@ -296,6 +336,21 @@ def process_ppg_window(samples: list[float], fs: float) -> dict:
     ibi_raw = ibi_raw[(ibi_raw >= MIN_IBI_S) & (ibi_raw <= MAX_IBI_S)]
     ibi, n_removed = clean_ibi(ibi_raw)
     feats = ibi_stats(ibi, len(peaks), n_removed)
+    # matched-filter detector: counts beats the peak finder missed and gives a
+    # correlation-quality read on every detection (tm = template match)
+    tmpl = pulse_template(xf, onsets, fs)
+    tm_peaks, tm_ncc = template_match_peaks(xf, tmpl, fs)
+    feats["tm_n_beats"] = int(len(tm_peaks))
+    feats["tm_ncc_mean"] = round(tm_ncc, 3) if len(tm_peaks) else None
+    if len(tm_peaks) >= 2:
+        tm_ibi = np.diff(tm_peaks) / fs
+        tm_ibi = tm_ibi[(tm_ibi >= MIN_IBI_S) & (tm_ibi <= MAX_IBI_S)]
+        if len(tm_ibi):
+            feats["tm_hr_bpm"] = round(float(60.0 / np.median(tm_ibi)), 2)
+            # template recovers >20% more beats → its HR is the better estimate
+            if feats.get("hr_bpm") is None or len(tm_peaks) > 1.2 * len(peaks):
+                feats["hr_bpm"] = feats["tm_hr_bpm"]
+                feats["hr_source"] = "template"
     feats.update(prv_frequency(onsets, ibi))
     feats.update(morphology_features(x, xf, onsets, peaks, fs))
     feats.update(resp_from_envelope(xf, fs))
