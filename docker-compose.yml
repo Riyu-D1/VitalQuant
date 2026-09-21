@@ -1,0 +1,31 @@
+# Local dev: Postgres only (Supabase hosts prod DB). Keeps the laptop light.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: vitalq
+      POSTGRES_PASSWORD: vitalq          # local dev only
+      POSTGRES_DB: vitalq
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vitalq"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      DATABASE_URL: postgresql://vitalq:vitalq@db:5432/vitalq
+      VITALQ_AUTH_MODE: local
+    ports: ["8000:8000"]
+    profiles: ["api"]
+
+volumes:
+  pgdata:
