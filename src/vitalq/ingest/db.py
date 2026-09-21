@@ -108,6 +108,14 @@ async def insert_batch_header(device_id: UUID, session_id: UUID, wall_time,
     return res.endswith("1")
 
 
+async def delete_batch_header(device_id: UUID, batch_id: UUID) -> None:
+    """Roll back a batch anchor after its payload insert failed (retry stays possible)."""
+    pool = await get_pool()
+    await pool.execute(
+        "delete from raw.ingest_batches where device_id=$1 and batch_id=$2",
+        device_id, batch_id)
+
+
 async def insert_scalars(rows: list[tuple]) -> None:
     pool = await get_pool()
     await pool.executemany(
@@ -220,3 +228,32 @@ async def get_predictions(session_id: UUID):
     return await pool.fetch(
         "select * from ml.predictions where session_id=$1 order by window_start",
         session_id)
+
+async def create_subject(external_ref: str | None, consent_ref: str | None):
+    pool = await get_pool()
+    return await pool.fetchval(
+        "insert into meta.subjects (external_ref, consent_ref) values ($1,$2) "
+        "returning subject_id", external_ref, consent_ref)
+
+
+async def get_subject(subject_id: UUID):
+    pool = await get_pool()
+    return await pool.fetchrow(
+        "select * from meta.subjects where subject_id=$1", subject_id)
+
+
+async def insert_label(session_id: UUID, label_time, kind: str,
+                       value: dict, provenance: str) -> bool:
+    pool = await get_pool()
+    res = await pool.execute(
+        """insert into meta.labels (session_id, label_time, kind, value, provenance)
+           values ($1,$2,$3,$4,$5) on conflict do nothing""",
+        session_id, label_time, kind, value, provenance)
+    return res.endswith("1")
+
+
+async def get_labels(session_id: UUID):
+    pool = await get_pool()
+    return await pool.fetch(
+        """select label_time, kind, value, provenance from meta.labels
+           where session_id=$1 order by label_time""", session_id)

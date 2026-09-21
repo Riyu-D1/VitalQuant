@@ -9,9 +9,10 @@ Run:  streamlit run apps/dashboard/app.py
 
 from __future__ import annotations
 
+import json
 import os
+from pathlib import Path
 
-import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -69,15 +70,50 @@ if wins.empty:
 else:
     channel = st.selectbox("Channel", sorted(wins.channel_id.unique()))
     ch = wins[wins.channel_id == channel]
+    sqi_map = pd.read_sql(
+        """select window_start, sqi from quality.channel_quality
+           where session_id=%(s)s and channel_id=%(c)s""",
+        engine(), params={"s": str(session_id), "c": channel})
+    sqi_map = {r.window_start: r.sqi for r in sqi_map.itertuples()}
+    st.caption("Trace colour = per-window SQI (red < 0.3 = untrusted).")
     fig = go.Figure()
     for _, r in ch.iterrows():
         t = pd.date_range(r["window_start"], periods=len(r["samples"]),
                           freq=f"{1/r['sample_rate_hz']*1e6:.0f}us")
-        fig.add_trace(go.Scatter(x=t, y=r["samples"], mode="lines",
-                                 name=channel, showlegend=False, opacity=0.7))
+        # quality rows are per 10 s processing window, raw rows per 5 s ingest
+        # window — look up the containing processing window
+        q = sqi_map.get(pd.Timestamp(r["window_start"]).floor("10s"), 1.0)
+        col = "#c33" if q < 0.3 else ("#da3" if q < 0.6 else "#3a6")
+        fig.add_trace(go.Scatter(
+            x=t, y=r["samples"], mode="lines", name=channel,
+            showlegend=False, opacity=0.85, line=dict(color=col, width=1),
+            hovertemplate=f"SQI={q:.2f}<br>%{{x}}<br>%{{y:.0f}}"))
     fig.update_layout(height=320, margin=dict(l=10, r=10, t=10, b=10),
                       xaxis_title="time", yaxis_title=channel)
     st.plotly_chart(fig, use_container_width=True)
+
+    with st.expander("Session compare (fused HR)"):
+        other = st.selectbox(
+            "Compare with", sessions.index,
+            format_func=lambda i: f"{sessions.loc[i,'started_at']} · "
+                                  f"{sessions.loc[i,'device']}")
+        oid = sessions.loc[other, "session_id"]
+        cf = pd.read_sql(
+            """select session_id, window_start, values->>'fused_hr_bpm'::float hr
+               from features.windows
+               where session_id in (%(a)s, %(b)s) and feature_set='fusion_v2'
+               order by window_start""",
+            engine(), params={"a": str(session_id), "b": str(oid)})
+        if cf.empty:
+            st.info("No fusion_v2 features for these sessions.")
+        else:
+            fgc = go.Figure()
+            for sid, g in cf.groupby("session_id"):
+                fgc.add_trace(go.Scatter(x=g.window_start, y=g.hr,
+                                         mode="lines+markers",
+                                         name=str(sid)[:8]))
+            fgc.update_layout(height=220, yaxis_title="fused_hr_bpm")
+            st.plotly_chart(fgc, use_container_width=True)
 
 # ── scalars / trends ─────────────────────────────────────────────────────────
 st.subheader("Trends")
@@ -137,11 +173,20 @@ if preds.empty:
     st.info("No model output — run `python -m vitalq.ml.baselines --sessions <id>`.")
 else:
     figp = go.Figure()
+    detail = preds["detail"].fillna({})
+    hover = [f"top: {', '.join(d.get('top_deviant', []))}"
+             if isinstance(d, dict) else "" for d in detail]
     figp.add_trace(go.Scatter(x=preds.window_start, y=preds.value,
-                              mode="lines+markers", name="anomaly_score"))
+                              mode="lines+markers", name="anomaly_score",
+                              hovertext=hover))
+    figp.add_hline(y=0.8, line_dash="dot", line_color="red",
+                   annotation_text="flag threshold (research heuristic)")
     figp.update_layout(height=220, yaxis_title="experimental anomaly score (0–1)")
     st.plotly_chart(figp, use_container_width=True)
     st.caption("Research output only — not a clinical measurement.")
+    flagged = preds[preds.value > 0.8]
+    if not flagged.empty:
+        st.caption(f"{len(flagged)} window(s) above flag threshold")
 
 # ── spectral frames ──────────────────────────────────────────────────────────
 spec = pd.read_sql(
@@ -159,11 +204,8 @@ if not spec.empty:
 # ── simulation (quantum readout) ────────────────────────────────────────────
 # docs/08 §5: surfaced only under an explicit SIMULATED banner; never mixed
 # with real telemetry.
-import json as _json
-from pathlib import Path as _Path
-
-sim_files = sorted(_Path("experiments/quantum").glob("*.json")) \
-    if _Path("experiments/quantum").exists() else []
+sim_files = sorted(Path("experiments/quantum").glob("*.json")) \
+    if Path("experiments/quantum").exists() else []
 with st.expander("Quantum readout simulation (SIMULATED)", expanded=False):
     st.warning("SIMULATED data only — `data_class='simulated'`. No quantum "
                "hardware exists in VitalQ; this is the docs/08 noise-model "
@@ -171,7 +213,7 @@ with st.expander("Quantum readout simulation (SIMULATED)", expanded=False):
     if not sim_files:
         st.info("No simulation results — run `vitalq-quantum`.")
     else:
-        sim = _json.loads(sim_files[-1].read_text())
+        sim = json.loads(sim_files[-1].read_text())
         st.caption(f"regime: {sim.get('regime')} · cells: {len(sim['cells'])}")
         b = pd.DataFrame(sim["advantage_boundary"])
         if not b.empty:

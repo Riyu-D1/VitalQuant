@@ -29,6 +29,9 @@ processing = [
 ml = [
     "scikit-learn>=1.3",
 ]
+datasets = [
+    "wfdb>=4.1",
+]
 dashboard = [
     "streamlit>=1.32",
     "plotly>=5.18",
@@ -50,6 +53,7 @@ vitalq-migrate = "vitalq.ingest.migrate:main"
 vitalq-device = "vitalq.ingest.devices:main"
 vitalq-quantum = "vitalq.quantum.experiment:main"
 vitalq-experiment = "vitalq.ml.experiments:main"
+vitalq-import = "vitalq.datasets.importer:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

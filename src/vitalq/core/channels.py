@@ -20,6 +20,7 @@ class SensorType(str, Enum):
     MOTION = "motion"
     CONTACT = "contact"
     SYSTEM = "system"
+    EXTERNAL = "external"   # imported recordings (WFDB etc.) or derived streams
 
 
 class SampleRole(str, Enum):
@@ -81,6 +82,16 @@ _CHANNELS: list[Channel] = [
     # System housekeeping
     Channel(channel_id="sys.battery_v", sensor_type=SensorType.SYSTEM, unit="V",
             sample_role=SampleRole.SCALAR, plausible_min=2.5, plausible_max=5.5),
+    # External/imported waveforms (public datasets, auxiliary leads). No plausible
+    # range — units vary by source and are recorded in session notes.
+    Channel(channel_id="resp.waveform", sensor_type=SensorType.EXTERNAL,
+            unit=None, sample_role=SampleRole.WAVEFORM),
+    Channel(channel_id="ecg.ii", sensor_type=SensorType.EXTERNAL,
+            unit=None, sample_role=SampleRole.WAVEFORM),
+    Channel(channel_id="ecg.v", sensor_type=SensorType.EXTERNAL,
+            unit=None, sample_role=SampleRole.WAVEFORM),
+    Channel(channel_id="ecg.avr", sensor_type=SensorType.EXTERNAL,
+            unit=None, sample_role=SampleRole.WAVEFORM),
 ]
 
 # Spectral frame channel names (AS7341 family) — validated separately because they are
