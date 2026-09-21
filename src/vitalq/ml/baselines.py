@@ -15,8 +15,16 @@ from uuid import UUID
 import numpy as np
 from asyncpg import Range
 from sklearn.ensemble import IsolationForest
+from sklearn.preprocessing import RobustScaler
 
 from vitalq.ingest import db
+
+
+def _top_deviant(x_scaled: np.ndarray, keys: list[str], n: int = 3) -> list[str]:
+    """Feature names with the largest |z| in this window — interpretability for
+    the anomaly score (Phase-C audits ask 'why was this window flagged')."""
+    order = np.argsort(-np.abs(x_scaled))[:n]
+    return [keys[i] for i in order]
 
 
 def _commit() -> str:
@@ -29,7 +37,7 @@ def _commit() -> str:
 
 
 async def train_personal_baseline(dsn: str, session_ids: list[UUID],
-                                  feature_set: str = "fusion_v1",
+                                  feature_set: str = "fusion_v2",
                                   contamination: float = 0.05) -> dict:
     """Fit IsolationForest on a subject's feature windows; score every window.
 
@@ -53,10 +61,15 @@ async def train_personal_baseline(dsn: str, session_ids: list[UUID],
         med = np.nanmedian(X, axis=0)
         X = np.where(np.isnan(X), med, X)
 
+        # robust scaling (median/IQR) — raw feature scales differ by orders of
+        # magnitude (degC vs g vs counts), unscaled distances bury the small ones
+        scaler = RobustScaler().fit(X)
+        Xs = scaler.transform(X)
+
         model = IsolationForest(n_estimators=100, contamination=contamination,
                                 random_state=0)
-        model.fit(X)
-        scores = -model.score_samples(X)   # higher = more anomalous
+        model.fit(Xs)
+        scores = -model.score_samples(Xs)   # higher = more anomalous
         lo, hi = float(scores.min()), float(scores.max())
         norm = (scores - lo) / max(hi - lo, 1e-9)
 
@@ -82,8 +95,9 @@ async def train_personal_baseline(dsn: str, session_ids: list[UUID],
                values ($1,$2,$3,'anomaly_score',$4,$5::jsonb)
                on conflict do nothing""",
             [(r["session_id"], r["window_start"], model_id, round(float(s), 4),
-              {"n_features": len(keys)})
-             for r, s in zip(rows, norm, strict=False)])
+              {"n_features": len(keys),
+               "top_deviant": _top_deviant(Xs_row, keys)})
+             for (r, s), Xs_row in zip(zip(rows, norm, strict=False), Xs, strict=False)])
         return {"experiment_id": str(exp_id), "model_id": str(model_id),
                 "scored": len(rows)}
     finally:
