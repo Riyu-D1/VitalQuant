@@ -120,7 +120,7 @@ else:
 st.subheader("Features")
 feats = pd.read_sql(
     """select window_start, values from features.windows
-       where session_id = %(s)s and feature_set='fusion_v1' order by window_start""",
+       where session_id = %(s)s and feature_set='fusion_v2' order by window_start""",
     engine(), params={"s": str(session_id)})
 if feats.empty:
     st.info("No features yet — run the worker.")
@@ -154,3 +154,27 @@ if not spec.empty:
         fr = spec.iloc[0]
         st.caption(f"{fr.sample_time} · illumination={fr.illumination} · group={fr.read_group}")
         st.bar_chart(pd.Series(fr["channels"]))
+
+
+# ── simulation (quantum readout) ────────────────────────────────────────────
+# docs/08 §5: surfaced only under an explicit SIMULATED banner; never mixed
+# with real telemetry.
+import json as _json
+from pathlib import Path as _Path
+
+sim_files = sorted(_Path("experiments/quantum").glob("*.json")) \
+    if _Path("experiments/quantum").exists() else []
+with st.expander("Quantum readout simulation (SIMULATED)", expanded=False):
+    st.warning("SIMULATED data only — `data_class='simulated'`. No quantum "
+               "hardware exists in VitalQ; this is the docs/08 noise-model "
+               "experiment on the raman_illustrative toy signal.")
+    if not sim_files:
+        st.info("No simulation results — run `vitalq-quantum`.")
+    else:
+        sim = _json.loads(sim_files[-1].read_text())
+        st.caption(f"regime: {sim.get('regime')} · cells: {len(sim['cells'])}")
+        b = pd.DataFrame(sim["advantage_boundary"])
+        if not b.empty:
+            st.dataframe(b.set_index(["tissue_sigma", "ambient"]))
+            st.caption("Squeezing advantage vs classical readout — collapses as "
+                       "tissue/ambient noise dominates (the honest result).")
