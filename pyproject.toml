@@ -48,6 +48,8 @@ vitalq-worker = "vitalq.processing.worker:main"
 vitalq-synth  = "vitalq.synth.device:main"
 vitalq-migrate = "vitalq.ingest.migrate:main"
 vitalq-device = "vitalq.ingest.devices:main"
+vitalq-quantum = "vitalq.quantum.experiment:main"
+vitalq-experiment = "vitalq.ml.experiments:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
