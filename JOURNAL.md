@@ -27,3 +27,8 @@ FSR sensing element + simple PCB interface
 
 22 september - Andre law
 1hr
+
+
+----
+## Moses Man - 28 Minutes
+Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source code
