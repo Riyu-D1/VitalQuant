@@ -23,3 +23,7 @@ BME680 only if we establish a reason for the gas channel
 
 #Contact
 FSR sensing element + simple PCB interface
+
+
+22 september - Andre law
+1hr
