@@ -1,0 +1,62 @@
+# Breakout-board prototype (V0) — the part set that physically exists.
+hardware_revision: hw_v0
+description: "V0 breakout rig: ESP32 + MAX30102 + AS7341 + MLX90614 + BME280 + MPU6050 + FSR402"
+compute:
+  soc: esp32
+  buses:
+    i2c0: { sda: 21, scl: 22, hz: 400000 }
+clock:
+  ntp_sync_interval_s: 3600
+sensors:
+  ppg:
+    enabled: true
+    model: MAX30102
+    bus: i2c0
+    address: "0x57"
+    channels:
+      - { id: ppg.red, wavelength_nm: 660 }
+      - { id: ppg.ir,  wavelength_nm: 880 }
+    sample_rate_hz: 200
+  spectral:
+    enabled: true
+    model: AS7341
+    bus: i2c0
+    address: "0x39"
+    channels: [f1, f2, f3, f4, f5, f6, f7, f8, clear, nir, flicker]
+    parallel_groups: 2
+    gain: 64
+    integ_time_ms: 27.8
+    illumination: ambient        # no dedicated emitter on the breakout rig
+    frame_rate_hz: 2
+  temperature:
+    enabled: true
+    model: MLX90614
+    bus: i2c0
+    address: "0x5A"
+    outputs: [temp.object, temp.ambient]
+    rate_hz: 1
+  environment:
+    enabled: true
+    model: BME280
+    bus: i2c0
+    address: "0x76"
+    outputs: [env.temperature, env.humidity, env.pressure]
+    rate_hz: 0.5
+  motion:
+    enabled: true
+    model: MPU6050               # V0 only — NRND, replaced on custom PCB
+    bus: i2c0
+    address: "0x68"
+    outputs: [motion.accel_x, motion.accel_y, motion.accel_z,
+              motion.gyro_x, motion.gyro_y, motion.gyro_z]
+    rate_hz: 52
+  contact:
+    enabled: true
+    model: FSR402
+    input: adc1_ch0
+    outputs: [contact.level]
+    rate_hz: 20
+power_profile: battery
+storage:
+  offline_buffer: sdcard
+  buffer_capacity_s: 1800

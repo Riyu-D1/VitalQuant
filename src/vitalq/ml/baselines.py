@@ -1,0 +1,189 @@
+"""Phase-C baseline: per-subject anomaly detection on feature windows.
+
+IsolationForest on windowed features — no labels required (spec §20 L3).
+Outputs kind='anomaly_score' only. Never a diagnosis.
+"""
+
+from __future__ import annotations
+
+import argparse
+import asyncio
+import os
+import subprocess
+from datetime import datetime, timezone
+from uuid import UUID
+
+import numpy as np
+from asyncpg import Range
+from sklearn.ensemble import IsolationForest
+from sklearn.preprocessing import RobustScaler
+
+from vitalq.ingest import db
+from vitalq.processing import PIPELINE_VERSION
+from vitalq.processing.worker import _clean
+
+
+def _top_deviant(x_scaled: np.ndarray, keys: list[str], n: int = 3) -> list[str]:
+    """Feature names with the largest |z| in this window — interpretability for
+    the anomaly score (Phase-C audits ask 'why was this window flagged')."""
+    order = np.argsort(-np.abs(x_scaled))[:n]
+    return [keys[i] for i in order]
+
+
+async def compute_subject_baselines(dsn: str, subject_id: UUID,
+                                    window_days: int = 14,
+                                    feature_set: str = "fusion_v2") -> dict:
+    """Rolling per-subject median/MAD per feature over the last `window_days`
+    days → features.baselines. This is what makes anomaly scores *personal*:
+    a deviation is measured against THIS subject, not the population."""
+    conn = await db.connect(dsn)
+    try:
+        rows = await conn.fetch(
+            """select w.values from features.windows w
+               join meta.sessions s on s.session_id = w.session_id
+               where s.subject_id=$1 and w.feature_set=$2
+                 and w.window_start > now() - interval '1 day' * $3""",
+            subject_id, feature_set, window_days)
+        if not rows:
+            return {"subject_id": str(subject_id), "computed": 0}
+        keys = sorted({k for r in rows for k in r["values"]})
+        X = np.array([[r["values"].get(k, np.nan) for k in keys]
+                      for r in rows], dtype=float)
+        med = np.nanmedian(X, axis=0)
+        mad = np.nanmedian(np.abs(X - med), axis=0)
+        now = datetime.now(timezone.utc)
+        pairs = [(subject_id, k, stat, window_days, {"v": _clean(float(v))},
+                  now, PIPELINE_VERSION)
+                 for k, v_m, v_mad in zip(keys, med, mad, strict=False)
+                 for stat, v in (("median", v_m), ("mad", v_mad))
+                 if np.isfinite(v)]
+        await conn.executemany(
+            """insert into features.baselines
+               (subject_id, channel_id, stat, window_days, value, computed_at,
+                pipeline_version)
+               values ($1,$2,$3,$4,$5,$6,$7) on conflict do nothing""",
+            pairs)
+        return {"subject_id": str(subject_id), "computed": len(pairs),
+                "n_windows": len(rows)}
+    finally:
+        await conn.close()
+
+
+async def _subject_baseline(conn, session_id: UUID, key: str,
+                            window_days: int = 14):
+    """(median, mad) for one feature key against the session's subject, or None."""
+    row = await conn.fetchrow(
+        """select s.subject_id from meta.sessions s where s.session_id=$1""",
+        session_id)
+    if row is None or row["subject_id"] is None:
+        return None
+    r = await conn.fetchrow(
+        """select max(case when stat='median' then (value->>'v')::float end) med,
+                  max(case when stat='mad'    then (value->>'v')::float end) mad
+           from features.baselines
+           where subject_id=$1 and channel_id=$2 and window_days=$3
+           group by subject_id
+           order by max(computed_at) desc limit 1""",
+        row["subject_id"], key, window_days)
+    if r is None or r["med"] is None:
+        return None
+    return float(r["med"]), float(r["mad"] or 0)
+
+
+def _commit() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], text=True,
+            stderr=subprocess.DEVNULL).strip()
+    except Exception:
+        return "unknown"
+
+
+async def train_personal_baseline(dsn: str, session_ids: list[UUID],
+                                  feature_set: str = "fusion_v2",
+                                  contamination: float = 0.05) -> dict:
+    """Fit IsolationForest on a subject's feature windows; score every window.
+
+    Returns {"experiment_id": ..., "model_id": ..., "scored": n}.
+    """
+    conn = await db.connect(dsn)
+    try:
+        rows = await conn.fetch(
+            """select session_id, window_start, values from features.windows
+               where session_id = any($1::uuid[]) and feature_set=$2
+               order by window_start""", session_ids, feature_set)
+        if len(rows) < 20:
+            return {"error": "insufficient feature windows (<20)"}
+
+        keys = sorted({k for r in rows for k in r["values"]})
+        X = np.array([[r["values"].get(k, np.nan) for k in keys]
+                      for r in rows], dtype=float)
+        # simple missing handling: column median; fully-nan columns dropped
+        col_ok = ~np.isnan(X).all(axis=0)
+        X, keys = X[:, col_ok], [k for k, ok in zip(keys, col_ok, strict=False) if ok]
+        med = np.nanmedian(X, axis=0)
+        X = np.where(np.isnan(X), med, X)
+
+        # robust scaling (median/IQR) — raw feature scales differ by orders of
+        # magnitude (degC vs g vs counts), unscaled distances bury the small ones
+        scaler = RobustScaler().fit(X)
+        Xs = scaler.transform(X)
+
+        model = IsolationForest(n_estimators=100, contamination=contamination,
+                                random_state=0)
+        model.fit(Xs)
+        scores = -model.score_samples(Xs)   # higher = more anomalous
+        lo, hi = float(scores.min()), float(scores.max())
+        norm = (scores - lo) / max(hi - lo, 1e-9)
+
+        exp_id = await conn.fetchval(
+            """insert into ml.experiments
+               (name, dataset_version, feature_set, model_spec, code_commit)
+               values ($1,$2,$3,$4::jsonb,$5) returning experiment_id""",
+            "personal_baseline_isoforest", f"sessions:{len(session_ids)}",
+            feature_set,
+            {"class": "IsolationForest", "features": keys,
+             "contamination": contamination, "seed": 0},
+            _commit())
+        model_id = await conn.fetchval(
+            """insert into ml.models (experiment_id, metrics, train_window)
+               values ($1,$2::jsonb,$3) returning model_id""",
+            exp_id, {"n_windows": len(rows), "score_range": [lo, hi]},
+            Range(rows[0]["window_start"], rows[-1]["window_start"],
+                  lower_inc=True, upper_inc=False, empty=False))
+
+        await conn.executemany(
+            """insert into ml.predictions
+               (session_id, window_start, model_id, kind, value, detail)
+               values ($1,$2,$3,'anomaly_score',$4,$5::jsonb)
+               on conflict do nothing""",
+            [(r["session_id"], r["window_start"], model_id, round(float(s), 4),
+              {"n_features": len(keys),
+               "top_deviant": _top_deviant(Xs_row, keys)})
+             for (r, s), Xs_row in zip(zip(rows, norm, strict=False), Xs, strict=False)])
+        return {"experiment_id": str(exp_id), "model_id": str(model_id),
+                "scored": len(rows)}
+    finally:
+        await conn.close()
+
+
+def main() -> None:
+    dsn = os.environ.get("DATABASE_URL")
+    if not dsn:
+        raise SystemExit("DATABASE_URL not set")
+    p = argparse.ArgumentParser()
+    p.add_argument("--sessions", nargs="+")
+    p.add_argument("--baselines-for", metavar="SUBJECT_UUID",
+                   help="compute rolling per-subject baselines instead")
+    args = p.parse_args()
+    if args.baselines_for:
+        print(asyncio.run(compute_subject_baselines(dsn, UUID(args.baselines_for))))
+    elif args.sessions:
+        print(asyncio.run(train_personal_baseline(dsn,
+                                                  [UUID(s) for s in args.sessions])))
+    else:
+        p.error("need --sessions or --baselines-for")
+
+
+if __name__ == "__main__":
+    main()
