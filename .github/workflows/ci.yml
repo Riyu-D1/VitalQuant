@@ -1,0 +1,34 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: vitalq
+          POSTGRES_PASSWORD: vitalq
+          POSTGRES_DB: vitalq
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U vitalq" --health-interval 3s
+          --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: install
+        run: pip install -e ".[ingest,processing,ml,dev]"
+      - name: ruff
+        run: ruff check src tests
+      - name: migrate
+        env:
+          DATABASE_URL: postgresql://vitalq:vitalq@localhost:5432/vitalq
+        run: vitalq-migrate
+      - name: pytest
+        env:
+          DATABASE_URL: postgresql://vitalq:vitalq@localhost:5432/vitalq
+          VITALQ_AUTH_MODE: local
+        run: pytest -q

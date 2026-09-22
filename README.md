@@ -2,92 +2,65 @@
 
 ### Next-generation biological sensing
 
-VitalQ is an early-stage biotech project exploring new approaches to **high-sensitivity biological sensing** using photonics, computational methods, and emerging quantum technologies.
+VitalQ is an early-stage biotech research project exploring high-sensitivity
+biological sensing using photonics, computational methods, and emerging
+quantum-inspired techniques. The goal is to investigate whether better
+measurement plus better computation can surface subtle biological changes
+earlier than conventional approaches.
 
-Our goal is to investigate whether combining advanced sensing with intelligent signal analysis can enable earlier identification of subtle changes in biological systems.
+> **Status:** Early-stage research & prototype development.
+> **Not a medical device or diagnostic system** — model outputs are
+> experimental anomaly scores only.
 
-> **Status:** Early-stage research & prototype development
+## Repository layout
 
-## What We're Building
+This is the VitalQuant monorepo — all VitalQ work in one place:
 
-VitalQ is developing an experimental sensing platform designed to:
+```
+src/vitalq/          core Python platform: ingest, processing, ml, quantum, synth, datasets
+apps/api|worker|dashboard   service entrypoints (FastAPI, pipeline worker, Streamlit)
+firmware/esp32/      sensor driver contract + hw_v0/hw_v1 profiles
+supabase/migrations/ Postgres DDL (native partitioning; no TimescaleDB)
+config/              hardware profile examples
+docs/                design rationale: spec audit → research → architecture → schema
+                     → API → pipeline → ML plan → quantum-sim design → roadmap
+tests/               unit and ingestion test suite
+web/                 VitalQ website (Vite + React 19 + Tailwind + three.js)
+web/react-bits-repo/ vendored react-bits component library the site draws from
+simulations/         standalone research simulations (quantum-enhanced detection)
+archive/             legacy single-file site (pre-React)
+JOURNAL.md           hardware/sensor research log
+docker-compose.yml   local Postgres 17
+.github/workflows/   CI
+```
 
-* Collect high-resolution biological measurements
-* Process and analyse complex sensor data
-* Explore advanced computational approaches to sensing
-* Investigate whether emerging photonic and quantum techniques can improve measurement sensitivity
+## Platform quickstart (local, no hardware)
 
-The current project is focused on establishing the underlying technology and experimental framework.
+```bash
+pip install -e ".[ingest,processing,ml,dashboard,dev]"
+docker compose up -d db                      # local Postgres 17
+export DATABASE_URL=postgresql://vitalq:vitalq@localhost:5432/vitalq
+vitalq-migrate                               # apply supabase/migrations
+vitalq-device --label bench-01 --hardware-revision hw_v0   # prints device key once
+export VITALQ_DEVICE_KEY=vq_...
 
-## Development
+uvicorn vitalq.ingest.app:app --port 8000 &  # API
+vitalq-synth --profile config/hardware.example.yaml --duration 120 \
+    --api http://localhost:8000              # synthetic device → API → DB
+vitalq-worker --all                          # → quality + features
+streamlit run apps/dashboard/app.py          # dashboard
+```
 
-The project is being developed around:
+## Website
 
-* Embedded sensing hardware
-* Real-time data acquisition
-* Cloud-based data processing
-* Machine learning
-* Advanced photonic sensing
-* Experimental quantum-inspired methods
+```bash
+cd web
+npm ci
+npm run dev      # Vite dev server
+npm run build    # production build → web/dist
+```
 
-Specific implementation details are intentionally kept private while the technology is being developed.
+## License
 
-## Current Stage
-
-VitalQ is currently in the **research and prototype-development phase**.
-
-Current work includes:
-
-* Scientific and technical research
-* Prototype architecture
-* Hardware experimentation
-* Data-acquisition software
-* Computational modelling
-* Experimental methodology
-
-Future development will be guided by the results of these experiments.
-
-## Roadmap
-
-### Research
-
-* [x] Initial concept
-* [x] Technology research
-* [x] Prototype architecture
-* [ ] Experimental design
-
-### Prototype
-
-* [ ] Hardware assembly
-* [ ] Data acquisition
-* [ ] Signal processing
-* [ ] Cloud pipeline
-* [ ] Experimental analysis
-
-### Research & Validation
-
-* [ ] Controlled experiments
-* [ ] Benchmark conventional approaches
-* [ ] Investigate advanced sensing techniques
-* [ ] Evaluate experimental results
-
-## Why VitalQ?
-
-Many biological changes occur at scales that are difficult to measure reliably with conventional approaches.
-
-VitalQ is exploring whether **better measurement + better computation** can expose information that is currently difficult to capture.
-
-The long-term vision is to develop technologies that could enable earlier and more sensitive biological monitoring.
-<img width="6100" height="5033" alt="quantum_sepsis_integrated" src="https://github.com/user-attachments/assets/19ecbe87-b34e-446c-82dd-114e7417fe5d" />
-
-## Important Note
-
-VitalQ is an experimental research project and **is not currently a medical device or diagnostic system**.
-
-The technology, methodology, and potential applications are still under investigation.
-
----
-
-**VitalQ**
-
-*Exploring the next generation of biological sensing.*
+Source-available for **Hack Club review only** — not open source.
+See [LICENSE](LICENSE).
