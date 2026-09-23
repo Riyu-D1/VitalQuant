@@ -98,3 +98,66 @@
 .font-rx100 {
   font-family: 'RX100', 'Geist Variable', sans-serif !important;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(20, 200, 113, 0.35);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+::-webkit-scrollbar-thumb {
+  background: #26262a;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #14C871;
+}
+
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-caladan-green;
+}
+
+.eyebrow-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-caladan-green;
+  box-shadow: 0 0 10px rgba(20, 200, 113, 0.9);
+}
+
+.hairline {
+  background: linear-gradient(90deg, transparent, rgba(20, 200, 113, 0.45), transparent);
+  height: 1px;
+}
+
+.card-lift {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s, box-shadow 0.4s;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  border-color: rgba(20, 200, 113, 0.35);
+  box-shadow: 0 20px 60px -20px rgba(20, 200, 113, 0.15);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 24px rgba(20, 200, 113, 0.55);
+}
+
+.img-zoom {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .img-zoom {
+  transform: scale(1.045);
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-y { animation: float-y 5s ease-in-out infinite; }
