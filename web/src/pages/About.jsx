@@ -82,13 +82,13 @@ export default function About() {
                 <h2 className="text-4xl font-bold text-white mb-6">Our Team</h2>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 <div className="bg-zinc-900 rounded-3xl p-8 border border-gray-800 shadow-lg">
                     <div className="w-20 h-20 rounded-full bg-gray-800 mb-6 flex items-center justify-center text-gray-300 font-bold text-2xl border border-gray-700">
                         RD
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-1">Riyansh Diwan</h3>
-                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-6">Co-Founder & CEO</p>
+                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-6">Founder & CEO</p>
                     <div className="text-gray-300 text-sm space-y-4">
                         <p>Visionary leader bridging the gap between advanced sensors and practical clinical deployments.</p>
                     </div>
@@ -96,12 +96,23 @@ export default function About() {
 
                 <div className="bg-zinc-900 rounded-3xl p-8 border border-gray-800 shadow-lg">
                     <div className="w-20 h-20 rounded-full bg-gray-800 mb-6 flex items-center justify-center text-gray-300 font-bold text-2xl border border-gray-700">
-                        NP
+                        MM
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-1">Naga Perla</h3>
-                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-6">Co-Founder & CTO</p>
+                    <h3 className="text-2xl font-bold text-white mb-1">Moses Man</h3>
+                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-6">Chief Technology Officer</p>
                     <div className="text-gray-300 text-sm space-y-4">
-                        <p>Expert engineer directing the development of quantum-based patient tracking solutions.</p>
+                        <p>Leading VitalQ's technology strategy and development of its quantum-enhanced sensing platform.</p>
+                    </div>
+                </div>
+
+                <div className="bg-zinc-900 rounded-3xl p-8 border border-gray-800 shadow-lg">
+                    <div className="w-20 h-20 rounded-full bg-gray-800 mb-6 flex items-center justify-center text-gray-300 font-bold text-2xl border border-gray-700">
+                        AL
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-1">Andre Law</h3>
+                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-6">Chief Finance Officer</p>
+                    <div className="text-gray-300 text-sm space-y-4">
+                        <p>Guiding VitalQ's financial strategy and sustainable growth.</p>
                     </div>
                 </div>
             </div>

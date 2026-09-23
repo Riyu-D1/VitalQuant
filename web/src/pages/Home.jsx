@@ -115,13 +115,13 @@ export default function Home() {
                 </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
                 <div className="bg-caladan-dark rounded-3xl p-8 border border-gray-800 shadow-stone-900 hover:shadow-stone-800 transition-shadow">
                     <div className="w-24 h-24 rounded-full bg-zinc-900 mb-6 flex items-center justify-center text-gray-300 font-bold text-xl border border-gray-700">
                         RD
                     </div>
                     <h3 className="text-xl font-bold text-white mb-1">Riyansh Diwan</h3>
-                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-4">Co-Founder</p>
+                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-4">Founder</p>
                     <p className="text-gray-300 leading-relaxed text-sm">
                         Visionary leader bridging the gap between advanced sensors and practical clinical deployments.
                     </p>
@@ -129,12 +129,23 @@ export default function Home() {
 
                 <div className="bg-caladan-dark rounded-3xl p-8 border border-gray-800 shadow-stone-900 hover:shadow-stone-800 transition-shadow">
                     <div className="w-24 h-24 rounded-full bg-zinc-900 mb-6 flex items-center justify-center text-gray-300 font-bold text-xl border border-gray-700">
-                        NP
+                        MM
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">Naga Perla</h3>
-                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-4">Co-Founder</p>
+                    <h3 className="text-xl font-bold text-white mb-1">Moses Man</h3>
+                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-4">Chief Technology Officer</p>
                     <p className="text-gray-300 leading-relaxed text-sm">
-                        Expert engineer directing the development of quantum-based patient tracking solutions.
+                        Leading VitalQ's technology strategy and development of its quantum-enhanced sensing platform.
+                    </p>
+                </div>
+
+                <div className="bg-caladan-dark rounded-3xl p-8 border border-gray-800 shadow-stone-900 hover:shadow-stone-800 transition-shadow">
+                    <div className="w-24 h-24 rounded-full bg-zinc-900 mb-6 flex items-center justify-center text-gray-300 font-bold text-xl border border-gray-700">
+                        AL
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-1">Andre Law</h3>
+                    <p className="text-caladan-green text-sm font-semibold uppercase tracking-wider mb-4">Chief Finance Officer</p>
+                    <p className="text-gray-300 leading-relaxed text-sm">
+                        Guiding VitalQ's financial strategy and sustainable growth.
                     </p>
                 </div>
             </div>
