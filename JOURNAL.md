@@ -12,17 +12,15 @@ Therefore the sensors I decide on for now are:
 #Optical / physiological
 MAX86141 — HR/SpO₂ optical front end
 AS7341-DLGM — spectral sensing
-external optical emitters/detector where required by the MAX architecture
-
+external optical emitters/detector where required by the MAX 
 #Temperature
-MLX90637 or MLX90632 — needs a deliberate comparison before locking it in
-
+MLX90637 or MLX90632 
 #Environmental
 BME280 — temperature/humidity/pressure
 BME680 only if we establish a reason for the gas channel
-
 #Contact
 FSR sensing element + simple PCB interface
+<img width="1869" height="966" alt="image" src="https://github.com/user-attachments/assets/834e4db5-e02a-40cd-8007-7f738f2f47c2" />
 
 
 ## 22 september - Andre law
