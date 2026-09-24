@@ -1,5 +1,5 @@
 ## 21st September - Riyansh D
-45mins
+1hr 30mins
 ##Initial product research on how to minimise space for sensors.
 
 - the main issue was that the breakout boards for sensors take up to much space therefore to reduce the space used I decided to go for the ic versions of sensors
