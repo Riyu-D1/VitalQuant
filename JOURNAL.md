@@ -20,6 +20,8 @@ BME280 — temperature/humidity/pressure
 BME680 only if we establish a reason for the gas channel
 #Contact
 FSR sensing element + simple PCB interface
+
+*The lapse is a bit shorter than time I claimed to have worked as The recording stopped midway for some reason
 <img width="1869" height="966" alt="image" src="https://github.com/user-attachments/assets/834e4db5-e02a-40cd-8007-7f738f2f47c2" />
 
 
