@@ -1,63 +1,89 @@
-Qty,Value,Footprint,MPN,DNP,Refs,Description
-6,"4.7uF","Capacitor_SMD:C_0805_2012Metric","","","C1 C2 C11 C13 C20 C29","Unpolarized capacitor"
-25,"100nF","Capacitor_SMD:C_0603_1608Metric","","","C12 C14 C17 C21 C24 C25 C27 C34 C35 C37 C45 C47 C49 C56 C57 C58 C59 C60 C61 C62 C63 C64 C65 C66 C67","Unpolarized capacitor"
-5,"10uF","Capacitor_SMD:C_0805_2012Metric","","","C16 C23 C44 C46 C48","Unpolarized capacitor"
-1,"100pF","Capacitor_SMD:C_0603_1608Metric","","","C22","Unpolarized capacitor"
-17,"1uF","Capacitor_SMD:C_0603_1608Metric","","","C3 C4 C5 C6 C7 C8 C9 C10 C15 C18 C19 C26 C28 C33 C36 C50 C51","Unpolarized capacitor"
-6,"470nF","Capacitor_SMD:C_0603_1608Metric","","","C30 C31 C32 C39 C40 C41","Unpolarized capacitor"
-1,"15nF","Capacitor_SMD:C_0603_1608Metric","","","C38","Unpolarized capacitor"
-2,"12pF","Capacitor_SMD:C_0603_1608Metric","","yes","C42 C43","Unpolarized capacitor"
-1,"47nF","Capacitor_SMD:C_0603_1608Metric","","","C52","Unpolarized capacitor"
-1,"4.7nF","Capacitor_SMD:C_0603_1608Metric","","","C53","Unpolarized capacitor"
-2,"2.2nF","Capacitor_SMD:C_0603_1608Metric","","","C54 C55","Unpolarized capacitor"
-1,"CHARGE","LED_SMD:LED_0603_1608Metric","generic red 0603","","D1","Charge LED. Assumption: generic 0603 red. Anode toward VBUS."
-1,"LED_GREEN_525nm","LED_SMD:LED_1206_3216Metric","generic 1206","","D2","Green ~525 nm into TX1. Assumption: generic 1206. Not an optically specified part."
-1,"LED_IR_940nm","LED_SMD:LED_1206_3216Metric","generic 1206","","D3","IR ~940 nm into TX3. Assumption: generic 1206. Not an optically specified part."
-1,"LED_RED_660nm","LED_SMD:LED_1206_3216Metric","generic 1206","","D4","Red ~660 nm into TX2. Assumption: generic 1206. Not an optically specified part."
-1,"SS14","Diode_SMD:D_SMA","SS14","","D5","VBUS to VSYS Schottky. Footprint overridden to SMA; the symbol default is a through-hole DO-41."
-1,"PIN_PHOTODIODE","Diode_SMD:D_SOD-123","generic Si PIN","","D6","PPG photodiode placeholder. Cathode on INP, anode on INM."
-1,"AS7341_LED","LED_SMD:LED_0603_1608Metric","generic 0603","","D7","AS7341 LDR LED. Assumption: generic 0603, anode on 1.8 V, cathode on LDR."
-1,"FSR402","Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical","generic 2.54 mm header","","J1","FSR402 connector. The force sensor is off-board."
-1,"USB-C","Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12","HRO TYPE-C-31-M-12","","J2","USB 2.0 Type-C receptacle. Assumption: HRO TYPE-C-31-M-12, the KiCad 16-pin land."
-1,"JST_PH_B2B","Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical","JST B2B-PH-K-S","","J3","1-cell LiPo. Assumption: JST PH 2-pin, pin 1 positive."
-1,"EDA","Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical","generic 2.54 mm header","","J4","AD5940 electrodes CE, RE, SE, DE. Assumption: 2.54 mm header. Series CISO is the datasheet AC test network."
-1,"ECG","Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical","generic 2.54 mm header","","J5","ADS1292R electrodes LA, RA, RL. Separate from the AFE4900 and AD5940 pairs."
-1,"AFE_ECG","Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical","generic 2.54 mm header","","J6","AFE4900 ECG electrodes INP, INM, RLD. Assumption: 2.54 mm header."
-1,"AO3401A","Package_TO_SOT_SMD:SOT-23","AO3401A","","Q1","Load switch. Source = VSYS, drain = switched battery, so the body diode does not back-feed the cell."
-1,"BSS138","Package_TO_SOT_SMD:SOT-23","BSS138","","Q2","AS7341 INT 1.8 V to ESP32 GPIO35 (3.3 V, input only)."
-1,"MMBT3904","Package_TO_SOT_SMD:SOT-23","MMBT3904","","Q3","Auto-program transistor for EN."
-1,"MMBT3904","Package_TO_SOT_SMD:SOT-23","MMBT3904","","Q4","Auto-program transistor for GPIO0."
-4,"100k","Resistor_SMD:R_0603_1608Metric","","","R1 R2 R49 R50","Resistor"
-1,"10","Resistor_SMD:R_0603_1608Metric","","","R19","Resistor"
-1,"1k 0.1%","Resistor_SMD:R_0603_1608Metric","","","R20","Resistor"
-19,"10k","Resistor_SMD:R_0603_1608Metric","","","R3 R10 R11 R12 R13 R14 R16 R17 R18 R25 R26 R27 R28 R29 R30 R45 R46 R47 R48","Resistor"
-5,"1M","Resistor_SMD:R_0603_1608Metric","","","R31 R32 R35 R36 R37","Resistor"
-2,"10M","Resistor_SMD:R_0603_1608Metric","","","R33 R34","Resistor"
-2,"40.2k","Resistor_SMD:R_0603_1608Metric","","","R38 R39","Resistor"
-7,"1k","Resistor_SMD:R_0603_1608Metric","","","R4 R9 R15 R21 R22 R23 R24","Resistor"
-4,"4.7k","Resistor_SMD:R_0603_1608Metric","","","R40 R41 R42 R43","Resistor"
-1,"200","Resistor_SMD:R_0603_1608Metric","","","R44","Resistor"
-2,"5.1k 1%","Resistor_SMD:R_0603_1608Metric","","","R5 R6","Resistor"
-1,"22.1k","Resistor_SMD:R_0603_1608Metric","","","R7","Resistor"
-1,"47.5k","Resistor_SMD:R_0603_1608Metric","","","R8","Resistor"
-1,"PCM12_as_SPST","Button_Switch_SMD:SW_SPDT_PCM12","C&K PCM12SMTR","","SW1","Power switch. Assumption: pad 2 is common; pad 3 is no-connect."
-1,"EN","Button_Switch_SMD:SW_SPST_TL3342","TL3342","","SW2","EN button. Assumption: TL3342-style 2-pad tactile switch."
-1,"BOOT","Button_Switch_SMD:SW_SPST_TL3342","TL3342","","SW3","BOOT / GPIO0 button."
-1,"ESP32-WROOM-32E-N8R2","RF_Module:ESP32-WROOM-32E","ESP32-WROOM-32E-N8R2","","U1","8 MB flash + 2 MB PSRAM. Symbol is the R2 pinout (GPIO16 NC). Footprint is the WROOM-32E land."
-1,"MCP73831T-2ACI/OT","Package_TO_SOT_SMD:SOT-23-5","MCP73831T-2ACI/OT","","U10","Li-ion charger, 4.20 V. RPROG 10k sets 100 mA."
-1,"XC6206P332MR-G","Package_TO_SOT_SMD:SOT-23","XC6206P332MR-G","","U11","3.3 V I2C-sensor rail. Local symbol uses the Torex pinout."
-1,"TPS7A2033PDBVR","Package_TO_SOT_SMD:SOT-23-5","TPS7A2033PDBVR","","U12","300 mA low-noise 3.3 V LDO for AD5940, ADS1292R, and AFE4900 Rx/IO."
-1,"AP2112K-3.3TRG1","Package_TO_SOT_SMD:SOT-23-5","AP2112K-3.3TRG1","","U13","600 mA 3.3 V LDO for the ESP32 rail."
-1,"XC6206P182MR-G","Package_TO_SOT_SMD:SOT-23","XC6206P182MR-G","","U14","1.8 V rail for the AS7341 and the low side of the I2C translator."
-1,"CP2102N-A02-GQFN28R","Package_DFN_QFN:QFN-28-1EP_5x5mm_P0.5mm_EP3.35x3.35mm","CP2102N-A02-GQFN28R","","U15","USB-UART. QFN-28 has no VIO pin; VDD is the on-chip 3.3 V regulator output."
-1,"PCA9306DC","Package_SO:VSSOP-8_2.3x2mm_P0.5mm","PCA9306DCUR","","U16","1.8 V to 3.3 V I2C translator. VREF1 = 1.8 V, EN tied to VREF2."
-1,"USBLC6-2SC6","Package_TO_SOT_SMD:SOT-23-6","USBLC6-2SC6","","U17","USB D+/D- ESD. Footprint overridden to SOT-23-6; the symbol default is SOT-666."
-1,"AFE4900YZR","vitalq:AFE4900YZR","AFE4900YZR","","U2","PPG AFE. SPI mode (I2C_SPI_SEL high). The I2C address 0x5B applies only when SEN is low and is unused here."
-1,"AD5940BCBZ","vitalq:AD5940BCBZ","AD5940BCBZ-RL7","","U3","Impedance / EDA AFE, WLCSP-56. Crystal not fitted; firmware uses the internal oscillator."
-1,"ADS1292RIPBSR","Package_QFP:TQFP-32_5x5mm_P0.5mm","ADS1292RIPBSR","","U4","ECG + respiration AFE. Internal 512 kHz clock (CLKSEL high, CLK pin left open)."
-1,"TMP117","Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm","TMP117AIDRVR","","U5","Contact temperature. ADD0 = GND selects 0x48. Exposed pad is pin 7, grounded."
-1,"AS7341-DLGM","Package_LGA:AMS_OLGA-8_2x3.1mm_P0.8mm","AS7341-DLGM","","U6","Spectral sensor, 1.8 V, I2C address 0x39. Official KiCad symbol, DS000504 p. 6."
-1,"MLX90632SLD-DCB-000-RE","vitalq:MLX90632","MLX90632SLD-DCB-000-RE","","U7","IR thermopile. ADDR = GND selects 0x3A. 100 nF on VDD is an assumption; Fig 27a says the cap is within 10 mm and does not print the value."
-1,"BME280","Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering","BME280","","U8","Humidity / pressure. CSB high and SDO low select I2C address 0x76."
-1,"LSM6DSV80XTR","vitalq:LSM6DSV80X","LSM6DSV80XTR","","U9","IMU, mode-1 I2C, address 0x6A. Pins 10 and 11 are soldered and left electrically open, per the datasheet."
-1,"16MHz","Crystal:Crystal_SMD_3215-2Pin_3.2x1.5mm","generic 16 MHz","yes","Y1","DNP. AD5940 external crystal footprint. Assumption: 2-pin 3215, 8 pF load."
+Ref,Value,Footprint,Qty
+C1,4.7u,Capacitor_SMD:C_0402_1005Metric,1
+C2,4.7u,Capacitor_SMD:C_0402_1005Metric,1
+C3,1u,Capacitor_SMD:C_0402_1005Metric,1
+C4,1u,Capacitor_SMD:C_0402_1005Metric,1
+C5,1u,Capacitor_SMD:C_0402_1005Metric,1
+C6,1u,Capacitor_SMD:C_0402_1005Metric,1
+C7,10u,Capacitor_SMD:C_0402_1005Metric,1
+C8,100n,Capacitor_SMD:C_0402_1005Metric,1
+C9,4.7u,Capacitor_SMD:C_0402_1005Metric,1
+C10,1u,Capacitor_SMD:C_0402_1005Metric,1
+C11,1u,Capacitor_SMD:C_0402_1005Metric,1
+C12,100n,Capacitor_SMD:C_0402_1005Metric,1
+C13,100n,Capacitor_SMD:C_0402_1005Metric,1
+C14,1u,Capacitor_SMD:C_0402_1005Metric,1
+C15,100n,Capacitor_SMD:C_0402_1005Metric,1
+C16,1u,Capacitor_SMD:C_0402_1005Metric,1
+C17,100n,Capacitor_SMD:C_0402_1005Metric,1
+C18,100n,Capacitor_SMD:C_0402_1005Metric,1
+C19,1u,Capacitor_SMD:C_0402_1005Metric,1
+C20,4.7u,Capacitor_SMD:C_0402_1005Metric,1
+C21,470n,Capacitor_SMD:C_0402_1005Metric,1
+C22,470n,Capacitor_SMD:C_0402_1005Metric,1
+C23,470n,Capacitor_SMD:C_0402_1005Metric,1
+C24,100n,Capacitor_SMD:C_0402_1005Metric,1
+C25,100n,Capacitor_SMD:C_0402_1005Metric,1
+C26,1u,Capacitor_SMD:C_0402_1005Metric,1
+C27,100n,Capacitor_SMD:C_0402_1005Metric,1
+C28,100n,Capacitor_SMD:C_0402_1005Metric,1
+C29,100n,Capacitor_SMD:C_0402_1005Metric,1
+C30,10u,Capacitor_SMD:C_0402_1005Metric,1
+C31,100n,Capacitor_SMD:C_0402_1005Metric,1
+C32,1u,Capacitor_SMD:C_0402_1005Metric,1
+C33,1u,Capacitor_SMD:C_0402_1005Metric,1
+C34,4.7n,Capacitor_SMD:C_0402_1005Metric,1
+C35,4.7n,Capacitor_SMD:C_0402_1005Metric,1
+C36,100n,Capacitor_SMD:C_0402_1005Metric,1
+C37,100n,Capacitor_SMD:C_0402_1005Metric,1
+C38,100n,Capacitor_SMD:C_0402_1005Metric,1
+C39,100n,Capacitor_SMD:C_0402_1005Metric,1
+C40,100n,Capacitor_SMD:C_0402_1005Metric,1
+C41,100n,Capacitor_SMD:C_0402_1005Metric,1
+C42,1u,Capacitor_SMD:C_0402_1005Metric,1
+H1,M2,MountingHole:MountingHole_2.2mm_M2,1
+H2,M2,MountingHole:MountingHole_2.2mm_M2,1
+J1,USB-C,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,1
+J2,LiPo,Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal,1
+J3,FSR402,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,1
+J4,PPG,Connector_PinHeader_1.27mm:PinHeader_1x06_P1.27mm_Horizontal,1
+J5,ECG,Connector_PinHeader_1.27mm:PinHeader_1x03_P1.27mm_Horizontal,1
+J6,EDA,Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Horizontal,1
+R1,5.1k,Resistor_SMD:R_0402_1005Metric,1
+R2,5.1k,Resistor_SMD:R_0402_1005Metric,1
+R3,10k,Resistor_SMD:R_0402_1005Metric,1
+R4,1k,Resistor_SMD:R_0402_1005Metric,1
+R5,10k,Resistor_SMD:R_0402_1005Metric,1
+R6,10k,Resistor_SMD:R_0402_1005Metric,1
+R7,10k,Resistor_SMD:R_0402_1005Metric,1
+R8,10k,Resistor_SMD:R_0402_1005Metric,1
+R9,10k,Resistor_SMD:R_0402_1005Metric,1
+R10,1k,Resistor_SMD:R_0402_1005Metric,1
+R11,10k,Resistor_SMD:R_0402_1005Metric,1
+R12,10,Resistor_SMD:R_0402_1005Metric,1
+R13,1k,Resistor_SMD:R_0402_1005Metric,1
+R14,10k,Resistor_SMD:R_0402_1005Metric,1
+R15,1M,Resistor_SMD:R_0402_1005Metric,1
+R16,1M,Resistor_SMD:R_0402_1005Metric,1
+R17,1M,Resistor_SMD:R_0402_1005Metric,1
+R18,200,Resistor_SMD:R_0402_1005Metric,1
+R19,4.7k,Resistor_SMD:R_0402_1005Metric,1
+R20,4.7k,Resistor_SMD:R_0402_1005Metric,1
+R21,4.7k,Resistor_SMD:R_0402_1005Metric,1
+R22,4.7k,Resistor_SMD:R_0402_1005Metric,1
+TP1,EN,TestPoint:TestPoint_Pad_D1.5mm,1
+TP2,IO0,TestPoint:TestPoint_Pad_D1.5mm,1
+U1,ESP32-WROOM-32E-N8R2,RF_Module:ESP32-WROOM-32E,1
+U2,MCP73831T-2ACI/OT,Package_TO_SOT_SMD:SOT-23-5,1
+U3,XC6206P332MR-G,Package_TO_SOT_SMD:SOT-23-3,1
+U4,TPS7A2018PDBVR,Package_TO_SOT_SMD:SOT-23-5,1
+U5,CP2102N-A02-GQFN28R,Package_DFN_QFN:QFN-28-1EP_5x5mm_P0.5mm_EP3.35x3.35mm,1
+U6,AFE4900YZR,vitalq:AFE4900YZR,1
+U7,AD5940BCBZ,vitalq:AD5940BCBZ,1
+U8,ADS1292RIPBSR,Package_QFP:TQFP-32_5x5mm_P0.5mm,1
+U9,PCA9306DCUR,Package_SO:VSSOP-8_2.3x2mm_P0.5mm,1
+U10,AS7341-DLGM,Package_LGA:AMS_OLGA-8_2x3.1mm_P0.8mm,1
+U11,TMP117AIDRVR,Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm,1
+U12,MLX90632SLD-DCB-000-RE,vitalq:MLX90632,1
+U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,1
+U14,LSM6DSV80XTR,vitalq:LSM6DSV80X,1

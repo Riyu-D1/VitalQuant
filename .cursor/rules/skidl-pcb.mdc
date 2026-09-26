@@ -1,52 +1,40 @@
 ---
-description: SKiDL workflow for the VitalQ hw_v1 schematic
+description: VitalQ hw_v1 schematic and unrouted board
 globs: hardware/pcb/**/*
 alwaysApply: false
 ---
 
-# VitalQ hw_v1 schematic
+# VitalQ hw_v1 board
 
-The electrical source of truth is `hardware/pcb/vitalq_hw_v1.py` and the
-`@subcircuit` modules next to it (`power`, `usb`, `mcu`, `spi_afes`,
-`i2c_sensors`, `contact`). Do not hand-edit generated files:
-`vitalq_hw_v1.net`, `vitalq_hw_v1.kicad_sch`, the other `*.kicad_sch` sheets,
-`vitalq_hw_v1.kicad_pcb`, `vitalq_hw_v1_bom.csv`, or `vitalq_hw_v1.pdf`.
+The electrical source is `hardware/pcb/design.py`. Sheets are written by
+`build_sch.py` through `schutil.py`, with explicit millimetre coordinates.
+Do not hand-edit the generated `*.kicad_sch` files or `vitalq_hw_v1.kicad_pcb`.
 
-Regenerate with `hardware/pcb/check.sh`. That script needs KiCad 9 (`kicad-cli`,
-`pcbnew`) and SKiDL 2.3 in a virtualenv. It runs SKiDL `ERC()` and
-`kicad-cli sch erc`. Both must report zero errors.
+`hardware/pcb/check.sh` regenerates the schematic and the unrouted board, then
+runs `kicad-cli` ERC and DRC. ERC must report zero errors. DRC may report
+unconnected items, because the board is not routed. Any other DRC error fails
+the script. It needs KiCad 9 on the system Python (`pcbnew`), not a virtualenv.
 
-The schematic is hierarchical sheets of global labels and power symbols.
-`vitalq_hw_v1.py` sets `net.stub = True` on every net before
-`generate_schematic` because the SKiDL wire router does not finish on this
-netlist. Leave `auto_stub=False`. Turning it on runs a two-pin snap pass
-that stacks passives and shorts nets in the schematic. Do not turn stubs
-off to "draw the wires" unless the router is known to exit.
+Local symbols and the four local footprints are in `hardware/pcb/lib/` and are
+recorded in `lib/SOURCES.md`. `make_lib.py` rebuilds that library, but it needs
+an EasyEDA cache at `/tmp/cad/ee` that is not in the repo. CI uses the
+committed library.
 
-Local symbols and footprints live in `hardware/pcb/lib/` and are produced by
-`hardware/pcb/lib/make_libs.py`. Datasheet pages are in `hardware/pcb/lib/SOURCES.md`.
-Use a stock KiCad symbol only after its pin numbers and footprint have been
-checked. The stock `XC6206PxxxMR` symbol has the Torex pinout swapped; use the
-local `XC6206` symbol.
+Wiring that is easy to break:
 
-Wiring rules that are easy to break:
+- ESP32-WROOM-32E-N8R2. GPIO16 stays inside the module. GPIO6–11 are not on the
+  symbol. GPIO2 and GPIO12 stay open. GPIO15 is CS_AD5940 and is pulled up.
+- The only ADC sense pin is GPIO36 (FSR402 through one 10 kΩ to GND).
+- +3V3 comes from the XC6206. +1V8 comes from the TPS7A2018, because AS7341
+  VDD is 1.7–2.0 V. PCA9306DCUR is the one extra IC: it translates AS7341 I2C.
+- The load sits on VBAT. USB charges the cell and powers the CP2102N. The
+  board does not run from USB with the cell missing.
+- CP2102N VDD is its own regulator output and is not tied to +3V3.
+- PWR_FLAG symbols are schematic-only. They are not in the netlist.
 
-- ESP32-WROOM-32E-N8R2. GPIO16 is PSRAM. Leave symbol pin 27 and GPIO6–11
-  unconnected. GPIO12 stays open (MTDI low). GPIO2 stays open. GPIO15 is
-  CS_AD5940 and must stay pulled up.
-- Analog sense uses ADC1 only: GPIO36 (FSR) and GPIO39 (battery). Do not move
-  those nets onto GPIO0–GPIO26 or GPIO32–33 if Wi-Fi is in use; those include
-  ADC2.
-- 3V3_D (`+3V3`, AP2112) is the ESP32 rail. 3V3_A (`+3.3VA`, TPS7A2033) is
-  AD5940, ADS1292R, and AFE4900 RX/IO. 3V3_S is the I2C rail. 1V8 is AS7341.
-  CP2102N VDD is its own regulator output and is not tied to 3V3_D.
-- AFE4900 TX_SUP comes from VSYS. There is no boost.
-- `PWR_FLAG` parts are schematic-only. `vitalq_hw_v1.py` strips them from the
-  netlist. Do not give them a footprint.
-- The board file places footprints on an import grid so the ratsnest is
-  visible. Do not treat those coordinates as a layout, and do not route the
-  board from this workflow.
+The PCB is a 52 × 40 mm, 4-layer starting placement. The ESP32 antenna points
+off the left edge. Do not put copper in that keep-out. Do not treat the
+placement as a finished route.
 
 This board is a research prototype. Do not describe it as a medical device or
-claim safety, sterility, or regulatory compliance. Electrode resistors and
-capacitors are application networks, not patient protection.
+claim safety, sterility, or regulatory compliance.
