@@ -248,16 +248,6 @@ def add_edge(board, x1, y1, x2, y2):
     board.Add(shape)
 
 
-def add_text(board, text, x, y, layer, size=0.7):
-    item = pcbnew.PCB_TEXT(board)
-    item.SetText(text)
-    item.SetPosition(vec(x, y))
-    item.SetLayer(layer)
-    item.SetTextSize(pcbnew.VECTOR2I(mm(size), mm(size)))
-    item.SetTextThickness(mm(0.12))
-    board.Add(item)
-
-
 def add_keepout(board):
     """No copper under the module antenna. The rest of the keep-out is off the board."""
     zone = pcbnew.ZONE(board)
@@ -340,15 +330,14 @@ def main():
         fp.SetValue(meta["value"])
         fp.SetPosition(vec(x, y))
         fp.SetOrientation(pcbnew.EDA_ANGLE(rot, pcbnew.DEGREES_T))
-        fp.Reference().SetTextSize(pcbnew.VECTOR2I(mm(0.6), mm(0.6)))
-        fp.Reference().SetTextThickness(mm(0.09))
+        # 0402 references cannot sit clear of the next part. Hide silk
+        # designators; the fab layer still carries ${REFERENCE}.
+        fp.Reference().SetVisible(False)
         fp.Value().SetVisible(False)
         # Flip before the footprint is on a board segfaults in this KiCad build.
         board.Add(fp)
         if bottom:
             fp.Flip(fp.GetPosition(), False)
-        if ref == "J2":
-            fp.Reference().SetPosition(vec(x, y + 2.2))
         for pad in fp.Pads():
             number = pad.GetNumber()
             # Official M2 footprints leave the NPTH pad number empty. The symbol pin is "1".
@@ -375,19 +364,6 @@ def main():
     add_edge(board, BOARD_W, BOARD_H, 0, BOARD_H)
     add_edge(board, 0, BOARD_H, 0, 0)
     add_keepout(board)
-    add_text(board, "MCU", 14, 14.2, pcbnew.F_SilkS, 0.8)
-    add_text(board, "USB", 40, 37.6, pcbnew.F_SilkS, 0.7)
-    add_text(board, "PWR", 36, 26.8, pcbnew.F_SilkS, 0.7)
-    add_text(board, "ECG", 33, 15.6, pcbnew.F_SilkS, 0.7)
-    add_text(board, "EDA", 46, 16.2, pcbnew.F_SilkS, 0.7)
-    skin = pcbnew.PCB_TEXT(board)
-    skin.SetText("SKIN")
-    skin.SetPosition(vec(34, 38.4))
-    skin.SetLayer(pcbnew.B_SilkS)
-    skin.SetMirrored(True)
-    skin.SetTextSize(pcbnew.VECTOR2I(mm(0.8), mm(0.8)))
-    skin.SetTextThickness(mm(0.12))
-    board.Add(skin)
 
     # Courtyard clashes on the same side, and copper too close to the outline.
     clashes = []

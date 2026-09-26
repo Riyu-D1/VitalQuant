@@ -449,13 +449,14 @@ def afe(d: Design):
     sh.text("6 PD anode (INM)", 16, 63, 1.3)
 
     sh.text("Bias and decoupling", 40, 130, 1.8, bold=True)
-    d.vpart(sh, "C", "C11", "1u", FP_C, 55, 155, "+3V3", "GND")
-    d.vpart(sh, "C", "C12", "100n", FP_C, 78, 155, "+3V3", "GND")
-    d.vpart(sh, "C", "C13", "100n", FP_C, 101, 155, "+3V3", "GND")
-    d.vpart(sh, "C", "C14", "1u", FP_C, 124, 155, "VBAT", "GND")
-    d.vpart(sh, "C", "C15", "100n", FP_C, 147, 155, "AFE_BG", "GND")
-    d.vpart(sh, "R", "R9", "10k", FP_R, 175, 155, "+3V3", "AFE4900_RESETZ")
-    d.vpart(sh, "R", "R10", "1k", FP_R, 198, 155, "AFE_CLK", "GND")
+    # y=172 keeps the upward AFE_CLK label clear of the VBAT label on U6.
+    d.vpart(sh, "C", "C11", "1u", FP_C, 55, 172, "+3V3", "GND")
+    d.vpart(sh, "C", "C12", "100n", FP_C, 78, 172, "+3V3", "GND")
+    d.vpart(sh, "C", "C13", "100n", FP_C, 101, 172, "+3V3", "GND")
+    d.vpart(sh, "C", "C14", "1u", FP_C, 124, 172, "VBAT", "GND")
+    d.vpart(sh, "C", "C15", "100n", FP_C, 147, 172, "AFE_BG", "GND")
+    d.vpart(sh, "R", "R9", "10k", FP_R, 175, 172, "+3V3", "AFE4900_RESETZ")
+    d.vpart(sh, "R", "R10", "1k", FP_R, 198, 172, "AFE_CLK", "GND")
 
     sh.text("C11+C12 on RX_SUP, C13 on IO_SUP, C14 on TX_SUP (VBAT), C15 on BG.", 16, 200, 1.4)
     sh.text("I2C_SPI_SEL tied to RX_SUP (+3V3) selects SPI. CONTROL1 is grounded.", 16, 206, 1.4)
@@ -466,7 +467,7 @@ def afe(d: Design):
 
 def ad(d: Design):
     sh = d.sheet("AD5940 EDA", "ad5940.kicad_sch", "5")
-    sh.rect(12, 16, 408, 248)
+    sh.rect(12, 16, 408, 262)
     sh.text("AD5940 EDA / BioZ", 16, 14, 3.2, bold=True)
     sh.text("Electrodes are wired straight to CE0 RE0 SE0 DE0. No series RC network and no crystal.", 16, 22, 1.4)
 
@@ -550,17 +551,18 @@ def ad(d: Design):
     ]
     for i, (ref, val, net) in enumerate(caps):
         col, row = i % 6, i // 6
-        d.vpart(sh, "C", ref, val, FP_C, 40 + col * 22, 125 + row * 28, net, "GND")
-    d.vpart(sh, "R", "R12", "10", FP_R, 40, 185, "+3V3", "IOVDD")
-    d.vpart(sh, "R", "R11", "10k", FP_R, 62, 185, "+3V3", "AD5940_RESET")
-    d.hpart(sh, "R", "R13", "1k", FP_R, 110, 188, "RCAL0", "RCAL1")
-    d.hpart(sh, "C", "C27", "100n", FP_C, 145, 188, "RC0_0", "RC0_1")
-    d.flag_net(sh, "IOVDD", 175, 188)
+        # 38 mm keeps the second-row net names clear of the GND symbols above them.
+        d.vpart(sh, "C", ref, val, FP_C, 40 + col * 22, 125 + row * 38, net, "GND")
+    d.vpart(sh, "R", "R12", "10", FP_R, 40, 200, "+3V3", "IOVDD")
+    d.vpart(sh, "R", "R11", "10k", FP_R, 62, 200, "+3V3", "AD5940_RESET")
+    d.hpart(sh, "R", "R13", "1k", FP_R, 110, 203, "RCAL0", "RCAL1")
+    d.hpart(sh, "C", "C27", "100n", FP_C, 145, 203, "RC0_0", "RC0_1")
+    d.flag_net(sh, "IOVDD", 175, 203)
 
-    sh.text("C16+C17 AVDD, C18 DVDD, C42 AVDD_REG, C19 IOVDD after R12, C20-C26 are the reference and bias caps.", 16, 214, 1.35)
-    sh.text("R13 is RCAL. C27 sits between RC0_0 and RC0_1. XTAL pins are open: the internal oscillator is used.", 16, 220, 1.35)
-    sh.text("DC skin conductance and the AC impedance network are not fitted. J6 is a direct electrode header.", 16, 226, 1.35)
-    sh.text("Other AIN, AFE and GPIO balls are open. GPIO0 is the only digital sideband to the ESP32.", 16, 232, 1.35)
+    sh.text("C16+C17 AVDD, C18 DVDD, C42 AVDD_REG, C19 IOVDD after R12, C20-C26 are the reference and bias caps.", 16, 236, 1.35)
+    sh.text("R13 is RCAL. C27 sits between RC0_0 and RC0_1. XTAL pins are open: the internal oscillator is used.", 16, 242, 1.35)
+    sh.text("DC skin conductance and the AC impedance network are not fitted. J6 is a direct electrode header.", 16, 248, 1.35)
+    sh.text("Other AIN, AFE and GPIO balls are open. GPIO0 is the only digital sideband to the ESP32.", 16, 254, 1.35)
 
 
 def ads(d: Design):
@@ -626,10 +628,11 @@ def ads(d: Design):
     d.hpart(sh, "C", "C35", "4.7n", FP_C, 130, 145, "PGA2N", "PGA2P")
     d.vpart(sh, "R", "R14", "10k", FP_R, 180, 145, "+3V3", "ADS1292_PWDN")
 
-    sh.text("RLD bias", 16, 145, 1.8, bold=True)
-    d.hpart(sh, "R", "R15", "1M", FP_R, 70, 165, "+3V3", "RLDREF")
-    d.hpart(sh, "R", "R16", "1M", FP_R, 115, 165, "RLDREF", "GND")
-    d.hpart(sh, "R", "R17", "1M", FP_R, 175, 165, "RLDOUT", "RLDINV")
+    sh.text("RLD bias", 16, 178, 1.8, bold=True)
+    # Below R14 so the ADS1292_PWDN label does not cross the 1M value.
+    d.hpart(sh, "R", "R15", "1M", FP_R, 70, 190, "+3V3", "RLDREF")
+    d.hpart(sh, "R", "R16", "1M", FP_R, 115, 190, "RLDREF", "GND")
+    d.hpart(sh, "R", "R17", "1M", FP_R, 175, 190, "RLDOUT", "RLDINV")
 
     sh.text("C28 AVDD, C29 DVDD, C30+C31 VREFP to GND, C32 VCAP1, C33 VCAP2, C34/C35 across the PGA pins.", 16, 200, 1.35)
     sh.text("R15/R16 set RLDREF at mid-rail. R17 closes RLDOUT to RLDINV. RESP_MOD pins are open.", 16, 206, 1.35)
