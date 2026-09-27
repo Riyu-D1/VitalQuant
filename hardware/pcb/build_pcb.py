@@ -27,9 +27,10 @@ KICAD_FP = Path("/usr/share/kicad/footprints")
 # 4 layers. Skin sensors share one bottom cluster; the second TMP117 sits
 # on the top at the same XY, outside the module body.
 BOARD_W = 36.5
-# Protection strip above the skin cluster. Rows are 4 mm apart in Y.
-# 36.5 mm is not wide enough for 4 mm between adjacent pads in a row.
-BOARD_H = 52.2
+# DPCR row on the bottom, both GDT rows on the top, charge parts above the
+# DPCR electrode copper. 36.5 mm is still too narrow for 4 mm between
+# adjacent pads in a row.
+BOARD_H = 44.4
 
 # Internal edge-cut slots (x0, y0, x1, y1), 0.8 mm wide.
 # AS7341 / LED barrier, then the thermal island around the stacked TMP117s.
@@ -115,14 +116,14 @@ PLACE = {
     "D10": (18.70, 13.50, 0, True),
     "D11": (21.10, 13.70, 90, True),
     "J1": (32.30, 22.20, 90, False),
-    "J2": (32.50, 32.80, 0, False),
+    "J2": (10.30, 42.80, 0, True),
     "J3": (23.80, 8.70, 0, False),
     "J5": (11.40, 12.30, 0, True),
     "J6": (17.40, 29.70, 0, True),
     "L1": (27.55, 2.40, 0, False),
     "L2": (28.05, 6.15, 0, False),
     "Q1": (22.30, 14.90, 0, True),
-    "Q2": (33.10, 35.90, 0, False),
+    "Q2": (20.20, 42.80, 0, True),
     "R1": (30.40, 16.05, 0, False),
     "R2": (31.32, 17.37, 0, True),
     "R3": (30.00, 14.80, 0, True),
@@ -153,11 +154,11 @@ PLACE = {
     "R29": (10.07, 7.74, 0, True),
     "R30": (14.97, 4.18, 0, True),
     "R31": (21.03, 4.18, 90, False),
-    "R32": (8.55, 35.40, 90, True),
-    "R33": (15.00, 35.40, 90, True),
-    "R34": (21.45, 35.40, 90, True),
-    "R35": (27.90, 35.40, 90, True),
-    "R36": (34.35, 35.40, 90, True),
+    "R32": (8.55, 35.25, 90, True),
+    "R33": (15.00, 35.25, 90, True),
+    "R34": (21.45, 35.25, 90, True),
+    "R35": (27.90, 35.25, 90, True),
+    "R36": (34.35, 35.25, 90, True),
     "R39": (33.46, 21.12, 90, True),
     "R40": (32.79, 28.53, 0, True),
     "R41": (32.79, 28.53, 0, False),
@@ -169,9 +170,9 @@ PLACE = {
     "R47": (6.90, 21.00, 90, True),
     "R48": (23.50, 27.40, 90, True),
     "R49": (34.90, 16.15, 0, False),
-    "R59": (35.20, 35.90, 0, False),
-    "R60": (30.90, 35.90, 0, False),
-    "R61": (28.50, 35.90, 0, False),
+    "R59": (22.40, 42.80, 0, True),
+    "R60": (18.20, 42.80, 0, True),
+    "R61": (16.00, 42.80, 0, True),
     "R50": (31.30, 15.99, 0, True),
     "R51": (28.70, 8.01, 0, True),
     "R52": (16.00, 2.90, 0, True),
@@ -196,15 +197,15 @@ PLACE = {
     "U18": (11.40, 4.20, 0, False),
     "U19": (8.70, 9.60, 0, False),
     "U20": (18.60, 9.15, 0, False),
-    "D12": (9.25, 50.05, 0, True),
-    "D13": (15.35, 50.05, 0, True),
-    "D14": (21.45, 50.05, 0, True),
-    "D15": (27.55, 50.05, 0, True),
-    "D16": (33.70, 50.05, 0, True),
-    "D17": (9.25, 44.00, 0, True),
-    "D18": (17.40, 44.00, 0, True),
-    "D19": (25.55, 44.00, 0, True),
-    "D20": (33.70, 44.00, 0, True),
+    "D12": (9.25, 34.10, 0, False),
+    "D13": (15.35, 34.10, 0, False),
+    "D14": (21.45, 34.10, 0, False),
+    "D15": (27.55, 34.10, 0, False),
+    "D16": (33.70, 34.10, 0, False),
+    "D17": (9.25, 40.10, 0, False),
+    "D18": (17.40, 40.10, 0, False),
+    "D19": (25.55, 40.10, 0, False),
+    "D20": (33.70, 40.10, 0, False),
 }
 
 def parse_sexp(text: str):

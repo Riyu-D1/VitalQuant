@@ -8,7 +8,7 @@ attempt to follow the TI and TDK pulse guidance. They do not make this a
 defibrillator-proof medical input.
 
 The schematic is drawn explicitly. The PCB is an unrouted placement:
-**36.5 × 52.2 mm**, rectangular, **4 layers**, parts on both sides.
+**36.5 × 44.4 mm**, rectangular, **4 layers**, parts on both sides.
 Six layers were not required. The analog nets are ordinary and the
 stackup is the JLCPCB 4-layer default.
 
@@ -50,11 +50,10 @@ AS7341. J5 and J6 sit on the bottom and top edges of that cluster.
 U11 is on a slotted island beside the LEDs. U20 is on the top at the
 same XY, outside the module body. The island neck faces the cluster.
 
-Above that cluster, still on the bottom, is the protection strip. Five
-2512 pulse resistors, then four EDA gas-discharge tubes, then five ECG
-gas-discharge tubes. The LiPo pads, the NTC divider, and the charge-enable
-FET sit on the top, over the right-hand end of that strip, clear of the
-module courtyard.
+Above that cluster, the five 2512 pulse resistors are on the bottom.
+Both rows of gas-discharge tubes are on the top, over that same band,
+clear of the module courtyard. The LiPo pads, the NTC divider, and the
+charge-enable FET are on the bottom, above the pulse resistors.
 
 Electrodes are flat solder pads. No headers. J5 is five pads: ADS1292R
 positive, ADS1292R negative, RLD, AFE4900 positive, AFE4900 negative.
