@@ -9,10 +9,13 @@ were not edited. They still say ESP32-S3, I2C on GPIO 8/9, SPI on
 GPIO 12/11/13, MAX86141, MLX90637 at 0x3B, and ICM-42670-P at 0x68.
 This page is the board that was built. Further drift from that profile:
 GPIO39 is open, GPIO25 is the MAX17048 alert, GPIO27 is BQ25170
-power-good, expander P7 is an active-high charge disable (the old
+power-good, GPIO17 drives the status LED, GPIO4 (CS_ADS1292) has a
+10 kΩ pull-up, expander P7 is an active-high charge disable (the old
 sense was an active-high charge enable), the charger is a BQ25170
-with a hardware NTC pin, DTR/RTS auto-program the ESP32, and the
-AFE4900 LED current must stay at 100–150 mA total.
+with a hardware NTC pin, DTR/RTS auto-program the ESP32, chest
+respiration uses the existing AD5940 chip select, the AFE4900 LED
+current must stay at 100–150 mA total, and AS7341 LED_DRIVE must stay
+at or below 40 mA.
 
 ## ESP32 GPIO
 
@@ -21,7 +24,7 @@ AFE4900 LED current must stay at 100–150 mA total.
 | EN | 3 | ESP_EN | R5 10 kΩ to +3V3 and C64 1 µF to GND. TCA6408 /RESET and Q3 collector also sit here |
 | 36 / SENSOR_VP | 4 | FSR_ADC | FSR402 divider, ADC1 only |
 | 39 / SENSOR_VN | 5 | open | Was the NTC divider. The cell NTC is now the charger TS pin. Leave this input open |
-| 34 | 6 | ADS1292_DRDY | input |
+| 34 | 6 | ADS1292_DRDY | input. R99 is 100 kΩ to +3V3 |
 | 35 | 7 | EXP_INT | TCA6408 /INT, 10 kΩ pull-up (R53). Input only |
 | 32 | 8 | LSM6_INT1 | |
 | 33 | 9 | TMP117_ALERT | U11 only. R65 is the 10 kΩ pull-up. U20 ALERT is open |
@@ -34,8 +37,8 @@ AFE4900 LED current must stay at 100–150 mA total.
 | 15 | 23 | CS_AD5940 | strap. 10 kΩ pull-up (R7) so it is high at reset |
 | 2 | 24 | open | strap. Leave low |
 | 0 | 25 | ESP_IO0 | strap. 10 kΩ pull-up (R6). Q3 also pulls it for auto-program |
-| 4 | 26 | CS_ADS1292 | |
-| 17 | 28 | open | was AFE4900 RESETZ; that net moved to the expander |
+| 4 | 26 | CS_ADS1292 | R98 is 10 kΩ to +3V3 |
+| 17 | 28 | STATUS_LED | R88 1 kΩ to D25 (KT-0603G) to GND. N8R2 datasheet note 3 reserves only IO16 for PSRAM; GPIO17 is free I/O |
 | 5 | 29 | CS_AFE4900 | |
 | 18 | 30 | SPI_SCK | shared |
 | 19 | 31 | SPI_MISO | shared |
@@ -116,7 +119,7 @@ above VIH (0.7 × 3.3 V).
 
 | Device | Pin | Tied to |
 | --- | --- | --- |
-| TPS63802 | EN | VBAT (not the expander) |
+| TPS63802 | EN | VBAT_SYS, the same net as VIN (not the expander) |
 | TPS63802 | MODE | GND (power save) |
 | TPS63802 | PG | open |
 | TPS63802 | EP (pad 11) | GND |
@@ -125,6 +128,8 @@ above VIH (0.7 × 3.3 V).
 | AFE4900 | CONTROL1 | GND |
 | AFE4900 | RLD_OUT | open. Bias for the AFE ECG inputs comes from ADS RLDOUT |
 | ADS1292R | START | GND |
+| ADS1292R | GPIO1 (pin 26) | GND through R100, 10 kΩ |
+| ADS1292R | GPIO2 (pin 25) | GND through R101, 10 kΩ |
 | ADS1292R | CLKSEL | DVDD |
 | ADS1292R | CLK | open |
 | CP2102N | ~RSTb | R62 1 kΩ to VDD_CP2102. QFN-28 VDD is VIO. VBUS sense is R63/R64 |
@@ -138,5 +143,38 @@ TPS61240 (U15) feeds SFH 7072. SLVS806D recommended output current is
 including the case where two LEDs are on in one slot. The boost switch
 limit is higher than that and is not a reason to program 200 mA. The
 AS7341 white LED (D10) is on +3V3, not on this boost; its datasheet
-current limit is 100 mA. The 860 nm LED (D11) is about 15–20 mA through
-R47 (100 Ω) when Q1 is on.
+current limit is 100 mA. The AS7341 LED_DRIVE register can reach
+258 mA. Firmware must keep LED_DRIVE at or below 40 mA. The 860 nm LED
+(D11) is about 15–20 mA through R47 (100 Ω) when Q1 is on.
+
+## Current-sense links
+
+| Ref | From | To |
+| --- | --- | --- |
+| R93 | VBAT | VBAT_SYS |
+| R94 | +3V3 | +3V3_ESP |
+| R95 | +3V3 | +3V3_ANA |
+| R96 | TX_5V_RAW | TX_5V |
+| R97 | +1V8_LDO | +1V8 |
+| R89 | MISO_ADS | SPI_MISO |
+| R90 | MISO_AFE | SPI_MISO |
+| R91 | MISO_AD | SPI_MISO |
+| R92 | MISO_FL | SPI_MISO |
+
+R93 and R94 are 0603. The others are 0402. The MISO links sit in the
+debug band, not next to the drivers.
+
+## Tag-Connect J8
+
+TC2030-NL, top side. The footprint is not in the JLCPCB BOM.
+
+| Pin | Net |
+| --- | --- |
+| 1 | +3V3 |
+| 2 | GND |
+| 3 | ESP_TX |
+| 4 | ESP_RX |
+| 5 | ESP_EN |
+| 6 | ESP_IO0 |
+
+SW1 shorts ESP_EN to GND. SW2 shorts ESP_IO0 to GND.

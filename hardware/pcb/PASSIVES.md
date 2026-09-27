@@ -11,9 +11,9 @@ patient-leakage or defibrillator-proof claim.
 
 | Ref | Value | From | To | Why |
 | --- | --- | --- | --- | --- |
-| C1 | 4.7 µF | VBUS | GND | BQ25170 CIN. SLUSDJ8A asks for at least 1 µF; 4.7 µF was already on VBUS |
+| C1 | 4.7 µF 25 V 0603 | VBUS | GND | BQ25170 CIN. CL10A475KA8NQNC (LCSC C69335). SLUSDJ8A asks for at least 1 µF |
 | C2 | 4.7 µF | VBAT | GND | BQ25170 COUT. Same minimum; 4.7 µF was already on VBAT |
-| R3 | 3.0 kΩ | CHG_ISET | GND | SLUSDJ8A: KISET / RISET, KISET = 300 AΩ. 3.0 kΩ is 100 mA (spec 90–110 mA at OUT = 3.8 V) |
+| R3 | 1.5 kΩ | CHG_ISET | GND | SLUSDJ8A: KISET / RISET, KISET = 300 AΩ. 1.5 kΩ is 200 mA. Uni-Royal 0402WGF1501TCE (LCSC C25867) |
 | R75 | 27.0 kΩ | CHG_VSET | GND | SLUSDJ8A Table 7-1: 27 kΩ sets a 1-cell Li-Ion to 4.20 V |
 | R59 | 100 kΩ | CHG_DIS | GND | Holds Q2 off. Charge stays enabled until firmware drives P7 high |
 | R60 | 10 kΩ | +3V3 | CHG_PG | BQ25170 /PG is open drain. GPIO27 reads it |
@@ -22,17 +22,17 @@ patient-leakage or defibrillator-proof claim.
 | R49 | 10 kΩ | +3V3 | CHG_STAT | STAT is open drain. Pull-up so the expander can read it |
 | C3 | 1 µF | VBAT | GND | Local VBAT bypass kept from the previous rail |
 | C4 | 1 µF | +3V3 | GND | Local 3.3 V bypass |
-| C44 | 10 µF 0603 | VBAT | GND | TPS63802 CIN. SLVSEU9 Table 10-2, GRM188R61A106ME69, 10 V. 0603 because that table is 0603 |
+| C44 | 10 µF 0603 | VBAT_SYS | GND | TPS63802 CIN, on the load side of R93. SLVSEU9 Table 10-2, GRM188R61A106ME69, 10 V |
 | C45 | 22 µF 0603 | +3V3 | GND | TPS63802 COUT. Same table, GRM188R61A226ME15. 22 µF X5R is not a reliable 0402 |
 | L1 | 0.47 µH | L1 pin | L2 pin | DFE201612E-R47M. Smallest inductor in Table 10-2 with Isat 5.5 A |
 | R23 | 560 kΩ | +3V3 | FB | TPS63802 FB divider. VOUT = 0.5 × (1 + R23/R24) = 3.30 V |
 | R24 | 100 kΩ | FB | GND | R2 in the datasheet must not exceed 100 kΩ |
-| C6 | 1 µF | +1V8 | GND | TPS7A2018 output bypass. SBVS338 recommended 1 µF |
+| C6 | 1 µF | +1V8_LDO | GND | TPS7A2018 output bypass, before R97. SBVS338 recommended 1 µF |
 | R50 | 100 kΩ | VBUS | VBUS_DET | Divider top |
 | R51 | 200 kΩ | VBUS_DET | GND | 5 V × 200/300 = 3.33 V into the expander |
 | C58 | 100 nF | VBAT | GND | MAX17048 VDD bypass, 19-4688 typical application |
-| C46 | 2.2 µF | VBAT | GND | TPS61240 CIN. SLVSAR3 typical application, 0402 is allowed at 2.2 µF |
-| C47 | 4.7 µF 0603 | TX_5V | GND | TPS61240 COUT. Datasheet specifies 0603 |
+| C46 | 2.2 µF | VBAT_SYS | GND | TPS61240 CIN, on the load side of R93. SLVSAR3 typical application |
+| C47 | 4.7 µF 0603 | TX_5V_RAW | GND | TPS61240 COUT, before R96. Datasheet specifies 0603 |
 | L2 | 1.0 µH | LX | TX_5V | DFE201612E-1R0M. Isat covers the 600 mA switch limit |
 | R25 | 100 kΩ | TX5_EN | GND | Holds the boost off until the expander drives EN |
 
@@ -46,8 +46,8 @@ inside its hardware window. No firmware is in that path.
 
 SLUSDJ8A: IN operating range is 3.0–6.6 V (USB is inside that; IN abs
 max is 30 V). Fast charge is KISET / RISET with KISET = 300 AΩ typical
-(270–330). R3 = 3.0 kΩ sets 100 mA. Precharge is 20% of that (20 mA)
-and termination is 10% (10 mA). R75 = 27.0 kΩ sets 4.20 V (Table 7-1,
+(270–330). R3 = 1.5 kΩ sets 200 mA. Precharge is 20% of that (40 mA)
+and termination is 10% (20 mA). R75 = 27.0 kΩ sets 4.20 V (Table 7-1,
 1-cell Li-Ion). STAT is open-drain, low while charging. /PG is
 open-drain and low when input power is good.
 
@@ -63,19 +63,22 @@ That is close to the 103AT-2 (B ≈ 3435 K) and not the same part, so the
 window can shift by a few degrees. It is DNP. Fit R61 or the cell NTC
 on J2 pin 3, not both. Both at once halves the resistance.
 
-Q2 stays. It is a CSD13380F3. Gate is CHG_DIS, source is GND, drain is
+Q2 stays. It is a CSD13380F3T (LCSC C2871092). Gate is CHG_DIS, source is GND, drain is
 TS. R59 holds the gate low, so Q2 is off at power-up and charge is
 enabled. Firmware can drive TCA6408 P7 high to short TS below VTS_ENZ
 and stop charge. That polarity is the opposite of the old CHG_EN net
 (high used to mean charge on). VGS is 0 V or 3.3 V; absolute maximum
 is 8 V. The body diode is reverse-biased while TS is positive and the
-source is GND.
+source is GND. Q1 is the same FET on the 860 nm LED.
 
-Dissipation at 100 mA from 5 V into a cell near 4.2 V is about
-(5 − 4.2) × 0.1 = 80 mW, not 0.18 W. At the start of fast charge, with
+Dissipation at 200 mA from 5 V into a cell near 4.2 V is about
+(5 − 4.2) × 0.2 = 160 mW. At the start of fast charge, with
 VIN at 5.25 V and the cell near the 2.8 V precharge handoff, it can
-reach about (5.25 − 2.8) × 0.1 = 0.25 W. U2 sits on the bottom next to
+reach about (5.25 − 2.8) × 0.2 = 0.49 W. U2 sits on the bottom next to
 the LiPo pads, about 35 mm from the two TMP117s.
+
+R61 stays DNP. The design assumes the cell has its own 10 kΩ NTC and a
+protection PCM. Do not fit R61 and the cell NTC together.
 
 ## MCU, USB, and straps
 
@@ -324,12 +327,13 @@ Creepage of about 4 mm was the target between electrode-side copper and
 other copper on the same layer. It is met across each DPCR: the official
 R_2512 land leaves about 4.7 mm of copper gap between its own pads.
 Four 0.8 mm slots, one in each gap between the facing electrode pads,
-make the path through the board 4.0 mm on a 1.6 mm stackup. It is not
+make the path through the board 4.2 mm on a 1.6 mm stackup (1.0 mm slot
+plus 1.6 mm down and 1.6 mm up). It is not
 met as a straight surface gap in these places:
 
 - J5 pads are on a 1.70 mm pitch. Adjacent pad copper is about 0.55 mm apart. A slot needs about 1.4 mm of gap. Spreading J5 to that pitch, or to a 4 mm centre pitch, runs into the antenna keep-out or the skin cluster. The footprint was not changed.
 - J6 and J7 pads are on a 2.20 mm pitch. Adjacent pad copper is about 1.05 mm apart, for the same reason.
-- Adjacent DPCR electrode pads (R32–R36, R76–R79, and R80–R83) are about 3.10 mm apart. Five pads of 3.35 mm plus four 4 mm gaps do not fit in 36.5 mm once the antenna keep-out is reserved. The slots are the 4 mm path. R80–R83 have three slots, one in each gap.
+- Adjacent DPCR electrode pads (R32–R36, R76–R79, and R80–R83) are about 3.10 mm apart. Five pads of 3.35 mm plus four 4 mm gaps do not fit in 36.5 mm once the antenna keep-out is reserved. The slots are the 4.2 mm path and are 1.0 mm wide. R80–R83 have three slots, one in each gap.
 - R39–R42 and C54 are still 0402, behind the pad-side 51 kΩ. The gap across each 0402 is about 0.4–0.5 mm. The pulse voltage is meant to land on R76–R79.
 
 ## I2C and optical
@@ -365,4 +369,28 @@ cannot sink. With 200 kΩ the bias is (3.3 − 2.4) / 200 kΩ = 4.5 µA.
 ≈ 2.7 V. AS7341 VDD absolute maximum is 2.2 V (DS000504). Equation 3
 sets Rpulldown = 1.8 V / 4.5 µA = 400 kΩ. Equation 4 multiplies by 0.75,
 which is 300 kΩ. R66 is 301 kΩ (RC0402FR-07301KL). The extra current
-in the 1.8 V rail is about 6 µA.
+in the 1.8 V rail is about 6 µA. R66 is not in the JLC basic 0402
+library. LCSC is blank. The value stays 301 kΩ (extended library /
+consign).
+
+## Prefab additions
+
+| Ref | Value | From | To | Why |
+| --- | --- | --- | --- | --- |
+| C7 | 22 µF 10 V 0603 | +3V3_ESP | GND | ESP32 bulk. CL10A226MQ8NRNC (LCSC C59461). Placed about 3.6 mm from module pin 2 |
+| C8 | 100 nF | +3V3_ESP | GND | ESP32 high-frequency bypass, kept |
+| C10 | 1 µF 25 V 0603 | VBUS | GND | Was a 10 V 0402. Voltage raised because it sits on VBUS. LCSC left blank |
+| R88 | 1 kΩ | STATUS_LED | LED_A | GPIO17 to D25. LCSC C11702 |
+| R89–R92 | 0 Ω 0402 | device MISO | SPI_MISO | 0402WGF0000TCE (LCSC C17168). In the debug band |
+| R93, R94 | 0 Ω 0603 | VBAT→VBAT_SYS, +3V3→+3V3_ESP | | 0603WAF0000T5E (LCSC C21189) |
+| R95 | 0 Ω 0402 | +3V3 | +3V3_ANA | same 0402 0 Ω |
+| R96 | 0 Ω 0402 | TX_5V_RAW | TX_5V | same |
+| R97 | 0 Ω 0402 | +1V8_LDO | +1V8 | same |
+| R98 | 10 kΩ | +3V3 | CS_ADS1292 | LCSC C25744 |
+| R99 | 100 kΩ | +3V3 | ADS1292_DRDY | LCSC C25741 |
+| R100 | 10 kΩ | ADS_GPIO1 | GND | ADS1292R pin 26 |
+| R101 | 10 kΩ | ADS_GPIO2 | GND | ADS1292R pin 25 |
+| R26, R27, R28, R29 | 10 MΩ | | | Uni-Royal 0402WGF1005TCE (LCSC C26082), replacing the previous 10 MΩ |
+
+TMP117 exposed pads (U11 and U20) use `vitalq:TMP117_DRV_NOPASTE`.
+Pad 7 is copper and mask only. No paste.

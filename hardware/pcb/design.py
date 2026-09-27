@@ -24,7 +24,7 @@ FP_AFE = "snap:BGA30N40P5X6_260X210X50"
 FP_AD = "snap:BGA56C40P8X7_416X356X55"
 FP_ADS = "snap:QFN40P400X400X100-33N-D"
 FP_AS = "snap:AS7341DLGT"
-FP_TMP = "snap:SON65P200X200X80-7N"
+FP_TMP = "vitalq:TMP117_DRV_NOPASTE"
 FP_MLX = "snap:MLX90632SLDDCB100SP"
 FP_IMU = "snap:QFN_LSM6DSV80XTR_STM"
 FP_C6 = "Capacitor_SMD:C_0603_1608Metric"
@@ -32,7 +32,14 @@ FP_63802 = "Package_SON:WSON-10-1EP_2x3mm_P0.5mm_EP0.84x2.4mm"
 FP_61240 = "vitalq:TPS61240_YFF"
 FP_L = "vitalq:L_DFE201612E"
 FP_SFH = "vitalq:SFH7072"
-FP_GAUGE = "vitalq:MAX17048_WLP"
+FP_GAUGE = "Package_DFN_QFN:TDFN-8-1EP_2x2mm_P0.5mm_EP0.8x1.2mm"
+FP_R6 = "Resistor_SMD:R_0603_1608Metric"
+FP_LED6 = "LED_SMD:LED_0603_1608Metric"
+FP_SW = "Button_Switch_SMD:SW_SPST_TS-1088-xR020"
+FP_ESD = "Package_TO_SOT_SMD:SOT-23-6"
+FP_TP = "TestPoint:TestPoint_Pad_D1.0mm"
+FP_TC = "Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical"
+FP_FID = "vitalq:Fiducial_1mm"
 FP_FLASH = "vitalq:W25Q512_WSON8"
 FP_EXP = "vitalq:TCA6408A_RSV"
 FP_TVS = "vitalq:TPD1E10B06_DPY"
@@ -201,12 +208,13 @@ def build_design(lib=None) -> Design:
     ad(d)
     ads(d)
     i2c(d)
+    debug(d)
     # Navigation boxes along the bottom of the power sheet.
-    x = 18
+    x = 16
     for ch in d.children:
-        ch.nav_at = (x, 232)
-        ch.nav_size = (60, 16)
-        x += 66
+        ch.nav_at = (x, 238)
+        ch.nav_size = (50, 12)
+        x += 54
     return d
 
 
@@ -233,7 +241,7 @@ def power(d: Design):
     d.vpart(sh, "R", "R2", "5.1k", FP_R, 108, 118, "USB_CC2", "GND")
 
     # BQ25170DSGR replaces MCP73831. Charge starts from USB with no 3.3 V rail.
-    # Table 7-1: 27.0 kΩ sets 4.20 V. KISET/3.0 kΩ = 100 mA (SLUSDJ8A, 90-110 mA).
+    # Table 7-1: 27.0 kΩ sets 4.20 V. KISET/1.5 kΩ = 200 mA (SLUSDJ8A).
     u = d.part(sh, "BQ25170", "U2", "BQ25170DSGR", FP_BQ, 175, 88, labels="ic")
     d.stub_net(sh, u, "1", "VBUS", 7.62)  # IN
     d.stub_net(sh, u, "8", "VBAT", 7.62)  # OUT, power_out
@@ -244,13 +252,13 @@ def power(d: Design):
     d.stub_net(sh, u, "3", "TS", 7.62)
     d.join_row(sh, u, ["4", "9"], "GND", 6.35)
     d.finish(sh, u)
-    d.vpart(sh, "R", "R3", "3.0k", FP_R, 118, 145, "CHG_ISET", "GND")
+    d.vpart(sh, "R", "R3", "1.5k", FP_R, 118, 145, "CHG_ISET", "GND")
     d.vpart(sh, "R", "R75", "27.0k", FP_R, 140, 145, "CHG_VSET", "GND")
     d.vpart(sh, "R", "R49", "10k", FP_R, 162, 145, "+3V3", "CHG_STAT")
     # R60 used to bias the NTC divider. /PG needs the pull-up; TS must not see +3V3.
     d.vpart(sh, "R", "R60", "10k", FP_R, 184, 145, "+3V3", "CHG_PG")
     # Q2 is off at power-up (R59). Driving CHG_DIS high shorts TS below VTS_ENZ.
-    q2 = d.part(sh, "CSD13380F3", "Q2", "CSD13380F3", FP_FET, 230, 118, labels="ic")
+    q2 = d.part(sh, "CSD13380F3", "Q2", "CSD13380F3T", FP_FET, 230, 118, labels="ic")
     d.stub_net(sh, q2, "1", "CHG_DIS", 7.62)
     d.stub_net(sh, q2, "3", "TS", 6.35)
     d.stub_net(sh, q2, "2", "GND", 6.35)
@@ -260,8 +268,8 @@ def power(d: Design):
     # TPS63802 replaces the XC6206. EN tied to VIN so the 3.3 V rail is up
     # before the expander has a supply. MODE low is power-save. PG is open.
     u = d.part(sh, "TPS63802", "U3", "TPS63802DLAR", FP_63802, 250, 78, labels="ic")
-    d.stub_net(sh, u, "10", "VBAT", 7.62)
-    d.stub_net(sh, u, "1", "VBAT", 7.62)
+    d.stub_net(sh, u, "10", "VBAT_SYS", 7.62)
+    d.stub_net(sh, u, "1", "VBAT_SYS", 7.62)
     d.stub_net(sh, u, "2", "GND", 7.62)
     d.stub_net(sh, u, "6", "+3V3", 8.89)
     d.stub_net(sh, u, "9", "SW_L1", 8.89)
@@ -269,14 +277,15 @@ def power(d: Design):
     d.stub_net(sh, u, "4", "FB_3V3", 8.89)
     d.join_row(sh, u, ["8", "3", "11"], "GND", 6.35)  # 11 is the exposed pad
     d.finish(sh, u)  # PG
-    d.hpart(sh, "L", "L1", "0.47u", FP_L, 330, 70, "SW_L1", "SW_L2")
+    # Clear of U4. Stubs carry SW_L1 and SW_L2; they do not touch the LDO.
+    d.hpart(sh, "L", "L1", "0.47u", FP_L, 300, 48, "SW_L1", "SW_L2")
     d.vpart(sh, "R", "R23", "560k", FP_R, 360, 100, "+3V3", "FB_3V3")
     d.vpart(sh, "R", "R24", "100k", FP_R, 382, 100, "FB_3V3", "GND")
 
     u = d.part(sh, "TPS7A2018PDBVR", "U4", "TPS7A2018PDBVR", "Package_TO_SOT_SMD:SOT-23-5", 345, 70, labels="ic")
     d.join_row(sh, u, ["1", "3"], "+3V3", 6.35)  # IN and EN, both face left — wait, they face LEFT not up.
     # join_row on left-facing pins connects them vertically. Both are +3V3. Good.
-    d.stub_net(sh, u, "5", "+1V8", 8.89)  # OUT right, power_out
+    d.stub_net(sh, u, "5", "+1V8_LDO", 8.89)  # OUT, then R97 to the 1.8 V loads
     d.stub_net(sh, u, "2", "GND", 6.35)
     d.finish(sh, u)  # NC pin is type no_connect
 
@@ -289,29 +298,29 @@ def power(d: Design):
 
     # Decoupling directly under the regulators.
     sh.text("Decoupling", 230, 108, 1.8, bold=True)
-    d.vpart(sh, "C", "C1", "4.7u", FP_C, 230, 155, "VBUS", "GND")
+    d.vpart(sh, "C", "C1", "4.7u", FP_C6, 230, 155, "VBUS", "GND")
     d.vpart(sh, "C", "C2", "4.7u", FP_C, 250, 155, "VBAT", "GND")
     d.vpart(sh, "C", "C3", "1u", FP_C, 270, 155, "VBAT", "GND")
     d.vpart(sh, "C", "C4", "1u", FP_C, 290, 155, "+3V3", "GND")
-    d.vpart(sh, "C", "C6", "1u", FP_C, 310, 155, "+1V8", "GND")
-    d.vpart(sh, "C", "C44", "10u", FP_C6, 340, 155, "VBAT", "GND")
+    d.vpart(sh, "C", "C6", "1u", FP_C, 310, 155, "+1V8_LDO", "GND")
+    d.vpart(sh, "C", "C44", "10u", FP_C6, 340, 155, "VBAT_SYS", "GND")
     d.vpart(sh, "C", "C45", "22u", FP_C6, 365, 155, "+3V3", "GND")
 
     gge = d.part(sh, "MAX17048", "U17", "MAX17048G+T10", FP_GAUGE, 70, 175, labels="ic")
-    d.stub_net(sh, gge, "A2", "VBAT", 7.62)
-    d.stub_net(sh, gge, "A3", "VBAT", 7.62)
-    d.stub_net(sh, gge, "B1", "I2C_SDA", 7.62)
-    d.stub_net(sh, gge, "B2", "I2C_SCL", 7.62)
-    d.join_row(sh, gge, ["A1", "A4", "B3"], "GND", 6.35)
-    d.stub_net(sh, gge, "B4", "GAUGE_ALRT", 7.62)
+    d.stub_net(sh, gge, "2", "VBAT", 7.62)  # CELL
+    d.stub_net(sh, gge, "3", "VBAT", 7.62)  # VDD
+    d.stub_net(sh, gge, "8", "I2C_SDA", 7.62)
+    d.stub_net(sh, gge, "7", "I2C_SCL", 7.62)
+    d.join_row(sh, gge, ["1", "4", "6", "9"], "GND", 6.35)  # CTG, GND, QSTRT, EP
+    d.stub_net(sh, gge, "5", "GAUGE_ALRT", 7.62)
     d.finish(sh, gge)
     d.vpart(sh, "R", "R74", "10k", FP_R, 112, 175, "+3V3", "GAUGE_ALRT")
     d.vpart(sh, "C", "C58", "100n", FP_C, 130, 185, "VBAT", "GND")
     d.vpart(sh, "R", "R50", "100k", FP_R, 90, 130, "VBUS", "VBUS_DET")
     d.vpart(sh, "R", "R51", "200k", FP_R, 112, 130, "VBUS_DET", "GND")
 
-    sh.text("J2 is three flat pads (BAT+ BAT- NTC). The NTC goes to BQ25170 TS, not an ADC divider.", 16, 248, 1.4)
-    sh.text("R61 is the on-board 10k NTC, DNP. Fit it or the cell NTC, not both. Do not tie TS to +3V3.", 16, 256, 1.4)
+    sh.text("J2 is BAT+ (larger pad) BAT- NTC. The cell must have a 10k NTC and a protection PCM.", 16, 248, 1.3)
+    sh.text("R61 stays DNP. Fit the cell NTC, not R61 as well. R3 is 1.5k, so charge current is 200 mA.", 16, 256, 1.3)
     sh.text("Charge is on whenever USB is present and TS is in range. CHG_DIS high shorts TS and stops it.", 16, 264, 1.4)
     # One power-output flag on GND and one on VBUS. +3V3 is driven by U3, +1V8 by U4, VBAT by U2.
     g = d.pwr(sh, "GND", 392, 130)
@@ -363,7 +372,7 @@ def usb(d: Design):
     sh.text("Decoupling", 40, 48, 1.8, bold=True)
     d.vpart(sh, "C", "C9", "4.7u", FP_C, 55, 70, "VDD_CP2102", "GND")
     d.vpart(sh, "C", "C62", "100n", FP_C, 78, 100, "VDD_CP2102", "GND")
-    d.vpart(sh, "C", "C10", "1u", FP_C, 100, 70, "VBUS", "GND")
+    d.vpart(sh, "C", "C10", "1u", FP_C6, 100, 70, "VBUS", "GND")
     d.vpart(sh, "C", "C63", "100n", FP_C, 122, 70, "VBUS", "GND")
     d.vpart(sh, "R", "R62", "1k", FP_R, 145, 100, "VDD_CP2102", "CP_RST")
     # Fig 2.5: 22.1k from the connector, 47.5k to ground. At 5.0 V the pin is 3.41 V.
@@ -429,7 +438,7 @@ def mcu(d: Design):
         "16": "AFE4900_ADC_RDY",
         "13": "AD5940_GPIO0",
         "23": "CS_AD5940",
-        "28": "NC",
+        "28": "STATUS_LED",  # GPIO17. N8R2 note 3 reserves only IO16 for PSRAM.
         "30": "SPI_SCK",
         "31": "SPI_MISO",
         "33": "I2C_SDA",
@@ -444,13 +453,13 @@ def mcu(d: Design):
         "7": "EXP_INT",
     }
     d.side_map(sh, u, pins, 8.89)
-    d.join_row(sh, u, ["2"], "+3V3", 6.35)
+    d.join_row(sh, u, ["2"], "+3V3_ESP", 6.35)
     d.join_row(sh, u, ["1"], "GND", 6.35)
     d.finish(sh, u)
 
     sh.text("Module decoupling", 40, 40, 1.6, bold=True)
-    d.vpart(sh, "C", "C7", "10u", FP_C, 55, 58, "+3V3", "GND")
-    d.vpart(sh, "C", "C8", "100n", FP_C, 78, 58, "+3V3", "GND")
+    d.vpart(sh, "C", "C7", "22u", FP_C6, 55, 58, "+3V3_ESP", "GND")
+    d.vpart(sh, "C", "C8", "100n", FP_C, 78, 58, "+3V3_ESP", "GND")
 
     d.vpart(sh, "R", "R5", "10k", FP_R, 330, 62, "+3V3", "ESP_EN")
     d.vpart(sh, "C", "C64", "1u", FP_C, 390, 78, "ESP_EN", "GND")
@@ -468,7 +477,7 @@ def mcu(d: Design):
 
     flash = d.part(sh, "W25Q512JVEIQ", "U18", "W25Q512JVEIQ", FP_FLASH, 70, 250, labels="ic")
     d.stub_net(sh, flash, "1", "CS_FLASH", 7.62)
-    d.stub_net(sh, flash, "2", "SPI_MISO", 7.62)
+    d.stub_net(sh, flash, "2", "MISO_FL", 7.62)
     d.stub_net(sh, flash, "3", "+3V3", 7.62)  # /WP
     d.stub_net(sh, flash, "5", "SPI_MOSI", 7.62)
     d.stub_net(sh, flash, "6", "SPI_SCK", 7.62)
@@ -528,19 +537,19 @@ def afe(d: Design):
         "F5": "TX_5V",
     }
     right = {
-        "C1": "+3V3",
+        "C1": "+3V3_ANA",
         "D1": "GND",
-        "C4": "+3V3",
+        "C4": "+3V3_ANA",
         "D5": "GND",
         "E1": "AFE4900_RESETZ",
-        "E2": "SPI_MISO",
+        "E2": "MISO_AFE",
         "E3": "CS_AFE4900",
         "F2": "SPI_MOSI",
         "F3": "SPI_SCK",
         "F4": "AFE4900_ADC_RDY",
-        "A4": "+3V3",
         "B4": "GND",
         "F1": "AFE_CLK",
+        "A4": "+3V3_ANA",
         "D3": "NC",
         "C3": "NC",  # DNC is type no_connect; side_map skips only "NC" string. Handle below.
     }
@@ -563,21 +572,21 @@ def afe(d: Design):
     d.finish(sh, opt)
 
     bst = d.part(sh, "TPS61240", "U15", "TPS61240YFFR", FP_61240, 70, 200, labels="ic")
-    d.stub_net(sh, bst, "A1", "VBAT", 7.62)
+    d.stub_net(sh, bst, "A1", "VBAT_SYS", 7.62)
     d.stub_net(sh, bst, "C1", "TX5_EN", 7.62)
     d.stub_net(sh, bst, "B1", "TX_SW", 7.62)
-    d.stub_net(sh, bst, "B2", "TX_5V", 7.62)
-    d.stub_net(sh, bst, "C2", "TX_5V", 7.62)  # fixed 5 V, FB senses VOUT
+    d.stub_net(sh, bst, "B2", "TX_5V_RAW", 7.62)
+    d.stub_net(sh, bst, "C2", "TX_5V_RAW", 7.62)  # fixed 5 V, FB senses VOUT
     d.stub_net(sh, bst, "A2", "GND", 6.35)
     d.finish(sh, bst)
     d.hpart(sh, "L", "L2", "1.0u", FP_L, 130, 185, "TX_SW", "TX_5V")
-    d.vpart(sh, "C", "C46", "2.2u", FP_C, 40, 250, "VBAT", "GND")
-    d.vpart(sh, "C", "C47", "4.7u", FP_C6, 70, 250, "TX_5V", "GND")
+    d.vpart(sh, "C", "C46", "2.2u", FP_C, 40, 250, "VBAT_SYS", "GND")
+    d.vpart(sh, "C", "C47", "4.7u", FP_C6, 70, 250, "TX_5V_RAW", "GND")
     d.vpart(sh, "R", "R25", "100k", FP_R, 100, 250, "TX5_EN", "GND")
 
     sh.text("Bias and decoupling", 160, 210, 1.6, bold=True)
-    d.vpart(sh, "C", "C11", "1u", FP_C, 170, 235, "+3V3", "GND")
-    d.vpart(sh, "C", "C13", "100n", FP_C, 190, 235, "+3V3", "GND")
+    d.vpart(sh, "C", "C11", "1u", FP_C, 170, 235, "+3V3_ANA", "GND")
+    d.vpart(sh, "C", "C13", "100n", FP_C, 190, 235, "+3V3_ANA", "GND")
     d.vpart(sh, "C", "C14", "1u", FP_C, 210, 235, "TX_5V", "GND")
     d.vpart(sh, "C", "C15", "100n", FP_C, 230, 235, "AFE_BG", "GND")
     d.vpart(sh, "R", "R9", "10k", FP_R, 255, 235, "AFE4900_RESETZ", "GND")
@@ -586,12 +595,12 @@ def afe(d: Design):
     # TIDUDO6B Fig 2-10 biases each input from RLD through 5.11 MΩ.
     # 100 kΩ (same guide) sits between the TPD node and the coupling cap.
     # AFE RLD_OUT stays open: ADS1292R already drives the one RLD pad.
-    d.hpart(sh, "R", "R44", "100k", FP_R, 300, 250, "AFE_P_AC", "AFE_P_SER")
-    d.hpart(sh, "R", "R46", "100k", FP_R, 360, 250, "AFE_N_AC", "AFE_N_SER")
-    d.hpart(sh, "C", "C56", "100n", FP_C, 300, 268, "AFE_P_SER", "AFE_INP")
-    d.hpart(sh, "C", "C57", "100n", FP_C, 360, 268, "AFE_N_SER", "AFE_INM")
-    d.vpart(sh, "R", "R43", "5.11M", FP_R, 330, 285, "RLDOUT", "AFE_INP")
-    d.vpart(sh, "R", "R45", "5.11M", FP_R, 370, 285, "RLDOUT", "AFE_INM")
+    d.hpart(sh, "R", "R44", "100k", FP_R, 250, 210, "AFE_P_AC", "AFE_P_SER")
+    d.hpart(sh, "R", "R46", "100k", FP_R, 310, 210, "AFE_N_AC", "AFE_N_SER")
+    d.hpart(sh, "C", "C56", "100n", FP_C, 250, 228, "AFE_P_SER", "AFE_INP")
+    d.hpart(sh, "C", "C57", "100n", FP_C, 310, 228, "AFE_N_SER", "AFE_INM")
+    d.vpart(sh, "R", "R43", "5.11M", FP_R, 250, 250, "RLDOUT", "AFE_INP")
+    d.vpart(sh, "R", "R45", "5.11M", FP_R, 290, 250, "RLDOUT", "AFE_INM")
     sh.text("C11 RX_SUP, C13 IO_SUP, C14 local TX_SUP, C47 is the boost 4.7 uF. C15 is BG.", 16, 270, 1.3)
     sh.text("R44/R46 are 100k on the TPD side. R43/R45 bias from ADS RLDOUT, not a second RLD amp.", 16, 276, 1.3)
 
@@ -607,7 +616,7 @@ def ad(d: Design):
         "A1": "NC",
         "A2": "NC",
         "A3": "BIOZ_SN",
-        "A4": "+3V3",
+        "A4": "+3V3_ANA",
         "A5": "VREF_1V82",
         "A6": "SE0",
         "A7": "CE0",
@@ -639,10 +648,10 @@ def ad(d: Design):
         "E5": "GND",
         "E6": "GND",
         "E7": "SPI_MOSI",
-        "E8": "SPI_MISO",
+        "E8": "MISO_AD",
         "F1": "AD5940_RESET",
-        "F2": "+3V3",
-        "F3": "+3V3",
+        "F2": "+3V3_ANA",
+        "F3": "+3V3_ANA",
         "F4": "NC",
         "F5": "AD5940_GPIO0",
         "F6": "NC",
@@ -672,8 +681,8 @@ def ad(d: Design):
 
     sh.text("Decoupling, RCAL, RC0", 16, 100, 1.6, bold=True)
     caps = [
-        ("C16", "1u", "+3V3"),
-        ("C18", "100n", "+3V3"),
+        ("C16", "1u", "+3V3_ANA"),
+        ("C18", "100n", "+3V3_ANA"),
         ("C42", "1u", "AVDD_REG"),
         ("C19", "1u", "IOVDD"),
         ("C20", "4.7u", "VREF_1V82"),
@@ -688,7 +697,7 @@ def ad(d: Design):
         col, row = i % 6, i // 6
         # 38 mm keeps the second-row net names clear of the GND symbols above them.
         d.vpart(sh, "C", ref, val, FP_C, 40 + col * 22, 125 + row * 38, net, "GND")
-    d.vpart(sh, "R", "R12", "10", FP_R, 40, 200, "+3V3", "IOVDD")
+    d.vpart(sh, "R", "R12", "10", FP_R, 40, 200, "+3V3_ANA", "IOVDD")
     d.vpart(sh, "R", "R11", "10k", FP_R, 62, 200, "AD5940_RESET", "GND")
     d.hpart(sh, "R", "R13", "1k", FP_R, 110, 203, "RCAL0", "RCAL1")
     d.hpart(sh, "C", "C27", "100n", FP_C, 145, 203, "RC0_0", "RC0_1")
@@ -764,21 +773,21 @@ def ads(d: Design):
         "30": "RLDOUT",
         "31": "RESP_MODP",
         "32": "RESP_MODN",
-        "14": "+3V3",  # CLKSEL = DVDD
+        "14": "+3V3_ANA",  # CLKSEL = DVDD
         "15": "ADS1292_PWDN",
         "16": "GND",
         "17": "NC",  # CLK
         "18": "CS_ADS1292",
         "19": "SPI_MOSI",
         "20": "SPI_SCK",
-        "21": "SPI_MISO",
+        "21": "MISO_ADS",
         "22": "ADS1292_DRDY",
-        "25": "NC",
-        "26": "NC",
+        "25": "ADS_GPIO2",
+        "26": "ADS_GPIO1",
         "33": "GND",  # exposed pad, must be AVSS
     }
     d.side_map(sh, u, side, 8.89)
-    d.join_row(sh, u, ["12", "23"], "+3V3", 6.35)
+    d.join_row(sh, u, ["12", "23"], "+3V3_ANA", 6.35)
     d.join_row(sh, u, ["13", "24"], "GND", 6.35)
     d.finish(sh, u)
 
@@ -796,9 +805,9 @@ def ads(d: Design):
 
     sh.text("Supplies and PGA", 16, 78, 1.6, bold=True)
     row = [
-        ("C43", "1u", "+3V3", "GND"),
-        ("C28", "100n", "+3V3", "GND"),
-        ("C29", "100n", "+3V3", "GND"),
+        ("C43", "1u", "+3V3_ANA", "GND"),
+        ("C28", "100n", "+3V3_ANA", "GND"),
+        ("C29", "100n", "+3V3_ANA", "GND"),
         ("C30", "10u", "VREFP", "GND"),
         ("C32", "1u", "VCAP1", "GND"),
         ("C33", "1u", "VCAP2", "GND"),
@@ -811,16 +820,18 @@ def ads(d: Design):
     d.vpart(sh, "R", "R14", "10k", FP_R, 185, 185, "ADS1292_PWDN", "GND")
 
     sh.text("RLD bias", 16, 228, 1.8, bold=True)
-    d.hpart(sh, "R", "R15", "1M", FP_R, 70, 240, "+3V3", "RLDREF")
+    d.hpart(sh, "R", "R15", "1M", FP_R, 70, 240, "+3V3_ANA", "RLDREF")
     d.hpart(sh, "R", "R16", "1M", FP_R, 115, 240, "RLDREF", "GND")
     d.hpart(sh, "R", "R17", "1M", FP_R, 175, 240, "RLDOUT", "RLDINV")
     d.hpart(sh, "C", "C65", "1.5n", FP_C, 230, 200, "RLDOUT", "RLDINV")
-    d.vpart(sh, "C", "C66", "1u", FP_C, 390, 250, "RLDREF", "GND")
+    d.vpart(sh, "C", "C66", "1u", FP_C, 175, 155, "RLDREF", "GND")
+    d.vpart(sh, "R", "R100", "10k", FP_R, 210, 155, "ADS_GPIO1", "GND")
+    d.vpart(sh, "R", "R101", "10k", FP_R, 235, 155, "ADS_GPIO2", "GND")
 
     # Fig 68. Electrode node is ECG_P / ECG_N, after the series resistor.
-    d.vpart(sh, "R", "R26", "10M", FP_R, 250, 185, "+3V3", "IN1P")
+    d.vpart(sh, "R", "R26", "10M", FP_R, 250, 185, "+3V3_ANA", "IN1P")
     d.vpart(sh, "R", "R27", "10M", FP_R, 272, 185, "IN1P", "GND")
-    d.vpart(sh, "R", "R28", "10M", FP_R, 294, 185, "+3V3", "IN1N")
+    d.vpart(sh, "R", "R28", "10M", FP_R, 294, 185, "+3V3_ANA", "IN1N")
     d.vpart(sh, "R", "R29", "10M", FP_R, 316, 185, "IN1N", "GND")
     d.vpart(sh, "C", "C48", "2.2n", FP_C, 340, 185, "IN1P", "GND")
     d.vpart(sh, "C", "C49", "2.2n", FP_C, 362, 185, "IN1N", "GND")
@@ -841,9 +852,9 @@ def ads(d: Design):
     d.hpart(sh, "R", "R36", "51k", FP_HV, 295, 258, "AFE_N_PAD", "AFE_N_AC")
     d.vpart(sh, "D_TVS_2", "D1", "TPD1E10B06", FP_TVS, 55, 278, "ECG_P", "GND")
     d.vpart(sh, "D_TVS_2", "D2", "TPD1E10B06", FP_TVS, 115, 278, "ECG_N", "GND")
-    d.vpart(sh, "D_TVS_2", "D3", "TPD1E10B06", FP_TVS, 400, 250, "RLD_CLAMP", "GND")
-    d.vpart(sh, "D_TVS_2", "D4", "TPD1E10B06", FP_TVS, 235, 278, "AFE_P_AC", "GND")
-    d.vpart(sh, "D_TVS_2", "D5", "TPD1E10B06", FP_TVS, 295, 278, "AFE_N_AC", "GND")
+    d.vpart(sh, "D_TVS_2", "D3", "TPD1E10B06", FP_TVS, 150, 155, "RLD_CLAMP", "GND")
+    d.vpart(sh, "D_TVS_2", "D4", "TPD1E10B06", FP_TVS, 48, 155, "AFE_P_AC", "GND")
+    d.vpart(sh, "D_TVS_2", "D5", "TPD1E10B06", FP_TVS, 90, 155, "AFE_N_AC", "GND")
 
 
 def i2c(d: Design):
@@ -888,7 +899,7 @@ def i2c(d: Design):
     d.vpart(sh, "LED_AK", "D10", "NF2W757G-F1", FP_WHITE, 55, 265, "+3V3", "LDR")
     d.vpart(sh, "R", "R47", "100", FP_R, 90, 245, "+3V3", "IR_AN")
     d.vpart(sh, "LED_AK", "D11", "SFH4053", FP_IR, 115, 245, "IR_AN", "IR_K")
-    q = d.part(sh, "CSD13380F3", "Q1", "CSD13380F3", FP_FET, 160, 265, labels="ic")
+    q = d.part(sh, "CSD13380F3", "Q1", "CSD13380F3T", FP_FET, 160, 265, labels="ic")
     d.stub_net(sh, q, "1", "IR_GATE", 6.35)
     d.stub_net(sh, q, "2", "GND", 6.35)
     d.stub_net(sh, q, "3", "IR_K", 6.35)
@@ -977,3 +988,78 @@ def i2c(d: Design):
     d.vpart(sh, "C", "C39", "100n", FP_C, 274, 228, "+3V3", "GND")
     d.vpart(sh, "C", "C40", "100n", FP_C, 296, 228, "+3V3", "GND")
     d.vpart(sh, "C", "C41", "100n", FP_C, 318, 228, "+3V3", "GND")
+
+
+def debug(d: Design):
+    """Test access, ESD, current links, and the GPIO17 heartbeat."""
+    sh = d.sheet("Test and debug", "debug.kicad_sch", "8")
+    sh.rect(12, 40, 406, 280)
+    sh.text("Test pads, programming, and current links", 16, 16, 2.6, bold=True)
+    sh.text("USBLC6-2SC6 is at the USB connector. GPIO17 drives the green LED. R3 on the power sheet is 1.5k.", 16, 24, 1.3)
+
+    esd = d.part(sh, "USBLC6-2SC6", "U21", "USBLC6-2SC6", FP_ESD, 40, 55, labels="ic")
+    d.stub_net(sh, esd, "1", "USB_DP", 6.35)
+    d.stub_net(sh, esd, "6", "USB_DP", 6.35)
+    d.stub_net(sh, esd, "3", "USB_DM", 6.35)
+    d.stub_net(sh, esd, "4", "USB_DM", 6.35)
+    d.stub_net(sh, esd, "5", "VBUS", 7.62)
+    d.stub_net(sh, esd, "2", "GND", 7.62)
+    d.finish(sh, esd)
+
+    d.vpart(sh, "SW_Push", "SW1", "TS-1088", FP_SW, 100, 55, "ESP_EN", "GND")
+    d.vpart(sh, "SW_Push", "SW2", "TS-1088", FP_SW, 125, 55, "ESP_IO0", "GND")
+    d.vpart(sh, "R", "R88", "1k", FP_R, 155, 55, "STATUS_LED", "LED_A")
+    d.vpart(sh, "LED_AK", "D25", "KT-0603G", FP_LED6, 180, 55, "LED_A", "GND")
+
+    d.hpart(sh, "R", "R89", "0", FP_R, 220, 55, "MISO_ADS", "SPI_MISO")
+    d.hpart(sh, "R", "R90", "0", FP_R, 255, 55, "MISO_AFE", "SPI_MISO")
+    d.hpart(sh, "R", "R91", "0", FP_R, 290, 55, "MISO_AD", "SPI_MISO")
+    d.hpart(sh, "R", "R92", "0", FP_R, 325, 55, "MISO_FL", "SPI_MISO")
+    d.vpart(sh, "R", "R98", "10k", FP_R, 360, 55, "+3V3", "CS_ADS1292")
+    d.vpart(sh, "R", "R99", "100k", FP_R, 385, 55, "+3V3", "ADS1292_DRDY")
+
+    d.hpart(sh, "R", "R93", "0", FP_R6, 70, 95, "VBAT", "VBAT_SYS")
+    d.hpart(sh, "R", "R94", "0", FP_R6, 120, 95, "+3V3", "+3V3_ESP")
+    d.hpart(sh, "R", "R95", "0", FP_R, 170, 95, "+3V3", "+3V3_ANA")
+    d.hpart(sh, "R", "R96", "0", FP_R, 210, 95, "TX_5V_RAW", "TX_5V")
+    d.hpart(sh, "R", "R97", "0", FP_R, 250, 95, "+1V8_LDO", "+1V8")
+    d.flag_net(sh, "+3V3_ESP", 40, 115)
+    d.flag_net(sh, "+3V3_ANA", 80, 115)
+    d.flag_net(sh, "VBAT_SYS", 120, 115)
+    d.flag_net(sh, "TX_5V", 160, 115)
+    d.flag_net(sh, "+1V8", 200, 115)
+
+    tc = d.part(sh, "Conn_01x06_Pin", "J8", "TC2030", FP_TC, 340, 110, labels="ic")
+    for num, net in {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "ESP_TX",
+        "4": "ESP_RX",
+        "5": "ESP_EN",
+        "6": "ESP_IO0",
+    }.items():
+        d.stub_net(sh, tc, num, net, 6.35)
+    d.finish(sh, tc)
+    sh.text("J8 Tag-Connect TC2030-NL: 1 +3V3, 2 GND, 3 ESP_TX, 4 ESP_RX, 5 EN, 6 IO0.", 250, 145, 1.2)
+
+    pads = [
+        ("TP1", "VBUS"), ("TP2", "VBAT"), ("TP3", "+3V3"), ("TP4", "+1V8"),
+        ("TP5", "TX_5V"), ("TP6", "VDD_CP2102"), ("TP7", "GND"), ("TP8", "GND"),
+        ("TP9", "ESP_EN"), ("TP10", "ESP_IO0"), ("TP11", "ESP_TX"), ("TP12", "ESP_RX"),
+        ("TP13", "I2C_SDA"), ("TP14", "I2C_SCL"), ("TP15", "I2C_SDA_1V8"), ("TP16", "I2C_SCL_1V8"),
+        ("TP17", "SPI_SCK"), ("TP18", "SPI_MOSI"), ("TP19", "SPI_MISO"),
+        ("TP20", "CS_ADS1292"), ("TP21", "CS_AFE4900"), ("TP22", "CS_AD5940"), ("TP23", "CS_FLASH"),
+        ("TP24", "ADS1292_DRDY"), ("TP25", "AFE4900_ADC_RDY"), ("TP26", "EXP_INT"), ("TP27", "CHG_STAT"),
+    ]
+    for i, (ref, net) in enumerate(pads):
+        col, row = i % 9, i // 9
+        tp = d.part(sh, "TestPoint", ref, net, FP_TP, 30 + col * 40, 175 + row * 22, labels="side")
+        d.stub_net(sh, tp, "1", net, 5.08)
+        d.finish(sh, tp)
+
+    for i in range(1, 7):
+        fid = d.part(sh, "Fiducial", f"FID{i}", "FID", FP_FID, 30 + i * 18, 255, labels="side", bom=False)
+        d.finish(sh, fid)
+    d.part(sh, "MountingHole", "H1", "M2", FP_M2, 160, 255, labels="side", bom=False)
+    d.part(sh, "MountingHole", "H2", "M2", FP_M2, 190, 255, labels="side", bom=False)
+    sh.text("R93-R97 are 0 ohm current links. R89-R92 isolate each MISO. SW1 resets EN. SW2 holds IO0.", 16, 268, 1.2)

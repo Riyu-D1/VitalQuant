@@ -31,46 +31,54 @@ BOARD_W = 36.5
 # pads sit just above that row. Four more 2512s for the chest bioZ leads
 # need their own band past the charger row: a 2512 courtyard is 7.66 mm
 # tall once it is turned to face the edge, and it has to clear J2.
-BOARD_H = 53.4
+# Debug band (test pads, buttons, Tag-Connect) sits past the chest pads.
+BOARD_H = 70.0
 
 # 0.8 mm slots in all four gaps between the ECG/EDA electrode pads.
 # Each slot starts across the electrode copper and ends 0.3 mm clear of
 # the parts above it. The path through the slot is the creepage path.
+# 1.0 mm wide (JLC NPTH slot minimum). Centres match the previous 0.8 mm slots.
 CREEP_SLOTS = (
-    (11.525, 37.05, 12.325, 41.40),
-    (17.975, 37.05, 18.775, 42.60),
-    (24.425, 37.05, 25.225, 42.60),
-    (30.875, 37.05, 31.675, 42.60),
-    # Gaps between the four chest-bioZ 2512 electrode pads (R80-R83).
-    (11.525, 50.75, 12.325, 53.05),
-    (17.975, 50.75, 18.775, 53.05),
-    (24.425, 50.75, 25.225, 53.05),
+    (11.425, 37.05, 12.425, 41.40),
+    (17.875, 37.05, 18.875, 42.60),
+    (24.325, 37.05, 25.325, 42.60),
+    (30.775, 37.05, 31.775, 42.60),
+    (11.425, 50.75, 12.425, 53.05),
+    (17.875, 50.75, 18.875, 53.05),
+    (24.325, 50.75, 25.325, 53.05),
 )
 
-# Internal edge-cut slots (x0, y0, x1, y1), 0.8 mm wide.
-# AS7341 / LED barrier, then the thermal island around the stacked TMP117s.
-# The top side of the island is open for a 2 mm neck toward the cluster.
+# Internal edge-cut slots (x0, y0, x1, y1). The AS7341 barrier and the
+# TMP117 moat are 1.0 mm (JLC NPTH minimum). The moat's inner wall stays
+# put so the TMP117 pads keep their clearance; the extra 0.2 mm is outward.
+# MLX90632 has three sides slotted and the high-Y side open as a trace bridge.
 SLOTS = (
-    (16.40, 15.15, 21.60, 15.95),
-    (16.10, 5.54, 21.10, 6.34),
-    (16.10, 10.35, 17.60, 11.15),
-    (19.60, 10.35, 21.10, 11.15),
-    (16.10, 5.54, 16.90, 11.15),
-    (20.30, 5.54, 21.10, 11.15),
+    (16.40, 15.05, 21.60, 16.05),
+    (15.90, 5.34, 21.30, 6.34),
+    (15.90, 10.35, 17.60, 11.35),
+    (19.60, 10.35, 21.30, 11.35),
+    (15.90, 5.34, 16.90, 11.35),
+    (20.30, 5.34, 21.30, 11.35),
+)
+MLX_SLOTS = (
+    # Left slot starts above R47. A full-height slot does not fit between R47 and the MLX pads.
+    (7.40, 22.15, 8.40, 23.20),
+    (11.60, 20.10, 12.60, 22.90),
+    (8.90, 18.60, 11.10, 19.60),
 )
 
 # (x, y, rotation_deg, bottom)
 # Rotation is applied before a bottom-side flip.
 PLACE = {
-    "C1": (31.20, 18.50, 0, True),
+    "C1": (35.0, 21.5, 90, True),
     "C2": (30.00, 12.00, 0, True),
     "C3": (31.40, 12.00, 90, True),
     "C4": (32.70, 11.50, 90, True),
     "C6": (32.65, 9.50, 90, True),
-    "C7": (14.92, 5.17, 0, True),
+    "C7": (11.5, 33.25, 90, False),
     "C8": (12.01, 7.20, 90, True),
     "C9": (17.30, 4.51, 0, False),
-    "C10": (31.32, 19.63, 0, True),
+    "C10": (34.5, 24.5, 90, True),
     "C11": (22.22, 17.67, 90, True),
     "C13": (22.00, 19.80, 90, True),
     "C14": (22.00, 21.90, 90, True),
@@ -108,7 +116,7 @@ PLACE = {
     "C48": (23.10, 9.80, 90, True),
     "C49": (13.89, 7.84, 0, True),
     "C50": (22.11, 7.84, 90, True),
-    "C51": (13.47, 19.73, 90, True),
+    "C51": (16.0, 19.5, 90, True),
     "C52": (11.77, 8.97, 0, True),
     "C53": (24.23, 8.97, 90, True),
     "C54": (30.80, 27.99, 0, False),
@@ -129,7 +137,7 @@ PLACE = {
     "D8": (18.00, 26.15, 0, True),
     "D9": (19.55, 26.15, 0, True),
     "D10": (18.70, 13.50, 0, True),
-    "D11": (21.10, 13.70, 90, True),
+    "D11": (27.0, 11.5, 90, True),
     "J1": (32.30, 22.20, 90, False),
     "J2": (10.30, 43.80, 0, True),
     "J3": (23.80, 8.70, 0, False),
@@ -163,7 +171,7 @@ PLACE = {
     "R23": (31.13, 8.84, 0, True),
     "R24": (35.50, 11.50, 90, True),
     "R25": (32.00, 15.00, 0, True),
-    "R26": (20.81, 4.85, 0, True),
+    "R26": (20.81, 4.40, 0, True),
     "R27": (23.35, 6.14, 0, True),
     "R28": (25.36, 8.15, 90, True),
     "R29": (10.07, 7.74, 0, True),
@@ -229,6 +237,33 @@ PLACE = {
     "D23": (28.10, 46.55, 0, False),
     "D24": (30.15, 46.55, 0, False),
     "J7": (32.00, 51.90, 0, False),
+    "J8": (29.4, 67.5, 0, False),
+    "U21": (33.5, 31.5, 0, False),
+    "SW1": (10.8, 68.0, 0, False),
+    "SW2": (17.4, 68.0, 0, False),
+    "D25": (22.6, 68.0, 0, False),
+    "H1": (9.0, 62.5, 0, True),
+    "H2": (33.6, 61.5, 0, True),
+    "FID1": (35.0, 56.4, 0, False),
+    "FID2": (8.2, 48.6, 0, False),
+    "FID3": (35.0, 64.8, 0, False),
+    "FID4": (34.6, 46.8, 0, True),
+    "FID5": (22.0, 64.0, 0, True),
+    "FID6": (14.5, 68.5, 0, True),
+    "R88": (15.2, 61.5, 0, False),
+    "R89": (17.4, 61.5, 0, False),
+    "R90": (19.6, 61.5, 0, False),
+    "R91": (21.8, 61.5, 0, False),
+    "R92": (24.0, 61.5, 0, False),
+    "R93": (12.0, 63.0, 0, False),
+    "R94": (12.2, 61.5, 0, False),
+    "R95": (26.2, 61.5, 0, False),
+    "R96": (28.4, 61.5, 0, False),
+    "R97": (30.6, 61.5, 0, False),
+    "R98": (16.5, 64.2, 0, False),
+    "R99": (18.8, 64.2, 0, False),
+    "R100": (21.1, 64.2, 0, False),
+    "R101": (28.8, 64.2, 0, False),
     "R50": (31.30, 15.99, 0, True),
     "R51": (28.70, 8.01, 0, True),
     "R52": (16.00, 2.90, 0, True),
@@ -244,16 +279,19 @@ PLACE = {
     "U9": (25.00, 17.20, 0, True),
     "U10": (18.70, 18.50, 0, True),
     "U11": (18.60, 9.15, 0, True),
-    "U12": (10.15, 21.40, 0, True),
-    "U13": (14.50, 9.55, 0, False),
+    "U12": (10.0, 21.5, 0, True),
+    "U13": (14.30, 9.55, 0, False),
     "U14": (28.80, 9.60, 0, False),
     "U15": (35.50, 8.90, 0, False),
     "U16": (10.70, 16.50, 0, True),
-    "U17": (11.70, 9.65, 0, False),
+    "U17": (9.4, 52.4, 0, False),
     "U18": (11.40, 4.20, 0, False),
     "U19": (8.70, 9.60, 0, False),
     "U20": (18.60, 9.15, 0, False),
 }
+for _i in range(1, 28):
+    _col, _row = (_i - 1) % 11, (_i - 1) // 11
+    PLACE[f"TP{_i}"] = (8.0 + _col * 2.3, 55.0 + _row * 2.3, 0, False)
 
 def parse_sexp(text: str):
     s = text.strip()
@@ -414,18 +452,18 @@ def add_poly(board, pts):
 
 # Thermal moat around U11/U20. Neck is the missing top span, toward the cluster.
 ISLAND = (
-    (16.10, 11.15),
-    (16.10, 5.54),
-    (21.10, 5.54),
-    (21.10, 11.15),
-    (19.60, 11.15),
+    (15.90, 11.35),
+    (15.90, 5.34),
+    (21.30, 5.34),
+    (21.30, 11.35),
+    (19.60, 11.35),
     (19.60, 10.35),
     (20.30, 10.35),
     (20.30, 6.34),
     (16.90, 6.34),
     (16.90, 10.35),
     (17.60, 10.35),
-    (17.60, 11.15),
+    (17.60, 11.35),
 )
 
 
@@ -438,6 +476,7 @@ def add_keepout(board):
     zone.SetDoNotAllowPads(True)
     zone.SetDoNotAllowCopperPour(True)
     zone.SetDoNotAllowFootprints(False)
+    zone.SetZoneName("antenna")
     zone.SetLayerSet(pcbnew.LSET.AllCuMask())
     outline = zone.Outline()
     outline.NewOutline()
@@ -448,28 +487,33 @@ def add_keepout(board):
 
 
 def apply_rules(board):
-    """JLCPCB 4-layer defaults. The project file carries the same numbers."""
+    """JLC 4-layer rules. 0.09 mm is the BGA-fanout floor; 0.127 mm is the custom-rule default."""
     ds = board.GetDesignSettings()
     ds.m_MinClearance = mm(0.09)
     ds.m_TrackMinWidth = mm(0.09)
-    ds.m_ViasMinSize = mm(0.45)
+    ds.m_ViasMinSize = mm(0.30)
     ds.m_ViasMinDrill = mm(0.2)
+    ds.m_ViasMinAnnularWidth = mm(0.05)
     ds.m_CopperEdgeClearance = mm(0.3)
-    ds.m_HoleClearance = mm(0.2)
-    ds.m_HoleToHoleMin = mm(0.5)
+    # Floor is the BGA via-in-pad case. The custom rules raise this outside bga_fanout.
+    ds.m_HoleClearance = mm(0.15)
+    ds.m_HoleToHoleMin = mm(0.2)
     ds.m_MinThroughDrill = mm(0.2)
-    ds.m_MinSilkTextHeight = mm(0.45)
-    ds.m_MinSilkTextThickness = mm(0.08)
-    # Fine-pitch BGAs (0.17 mm copper gap). Zero mask expansion keeps a
-    # solder-mask web; 0.1 mm is the JLCPCB minimum bridge.
+    ds.m_MinSilkTextHeight = mm(1.0)
+    ds.m_MinSilkTextThickness = mm(0.15)
+    ds.m_SilkClearance = mm(0.15)
+    # Zero global mask expansion keeps a web between 0.4 mm BGA balls.
+    # Via-in-pad balls set their own NSMD margin.
     ds.m_SolderMaskExpansion = mm(0)
     ds.m_SolderMaskMinWidth = mm(0.1)
     ds.m_SolderMaskToCopperClearance = mm(0.05)
     net = ds.m_NetSettings.GetDefaultNetclass()
+    # 0.09 mm floor so the BGA fan-out rule can apply. Outside that area the
+    # custom rule requires 0.127 mm.
     net.SetClearance(mm(0.09))
     net.SetTrackWidth(mm(0.2))
-    net.SetViaDiameter(mm(0.45))
-    net.SetViaDrill(mm(0.2))
+    net.SetViaDiameter(mm(0.6))
+    net.SetViaDrill(mm(0.3))
 
 
 def courtyard(fp, bottom):
@@ -522,6 +566,9 @@ def main():
         fp.Value().SetVisible(False)
         if meta.get("dnp") and hasattr(fp, "SetDNP"):
             fp.SetDNP(True)
+        if ref.startswith("TP"):
+            for pad in fp.Pads():
+                pad.SetLayerSet(pad.GetLayerSet().RemoveLayer(pcbnew.F_Paste))
         shrink_fab_reference(fp)
         # Flip before the footprint is on a board segfaults in this KiCad build.
         board.Add(fp)
@@ -554,6 +601,8 @@ def main():
     add_edge(board, 0, BOARD_H, 0, 0)
     add_slot(board, *SLOTS[0])  # AS7341 / LED barrier
     for _slot in CREEP_SLOTS:
+        add_slot(board, *_slot)
+    for _slot in MLX_SLOTS:
         add_slot(board, *_slot)
     add_poly(board, ISLAND)
     add_keepout(board)
@@ -603,7 +652,7 @@ def main():
             x1 = (box.GetX() + box.GetWidth()) / 1e6
             y1 = (box.GetY() + box.GetHeight()) / 1e6
             gap = min(x0 - 0, y0 - 0, BOARD_W - x1, BOARD_H - y1)
-            for sx0, sy0, sx1, sy1 in SLOTS + CREEP_SLOTS:
+            for sx0, sy0, sx1, sy1 in SLOTS + CREEP_SLOTS + MLX_SLOTS:
                 # Expand the slot by the required copper clearance and test a hit.
                 if not (
                     x1 <= sx0 - 0.3
@@ -637,9 +686,13 @@ def main():
     for line in unresolved:
         print("  pad", line)
 
+    from board_finish import finish_board
+
+    finish_board(board)
     board.SetFileName(str(PCB))
     pcbnew.SaveBoard(str(PCB), board)
     write_bom(comps)
+    write_jlc(board, comps)
     print(f"wrote {PCB.name}  {BOARD_W:.1f} x {BOARD_H:.1f} mm")
     if clashes or edge_hits or pth_hits or unresolved:
         return 1
@@ -670,8 +723,12 @@ MPN = {
     "U18": "W25Q512JVEIQ",
     "U19": "TCA6408ARSVR",
     "U20": "TMP117AIDRVR",
-    "Q1": "CSD13380F3",
-    "Q2": "CSD13380F3",
+    "Q1": "CSD13380F3T",
+    "Q2": "CSD13380F3T",
+    "U21": "USBLC6-2SC6",
+    "D25": "KT-0603G",
+    "SW1": "TS-1088-AR02016",
+    "SW2": "TS-1088-AR02016",
     "R32": "DPCR2512-51KJT18",
     "R33": "DPCR2512-51KJT18",
     "R34": "DPCR2512-51KJT18",
@@ -691,6 +748,11 @@ MPN = {
     "L1": "DFE201612E-R47M",
     "L2": "DFE201612E-1R0M",
     "J1": "TYPE-C-31-M-12",
+    "C1": "CL10A475KA8NQNC",
+    "C7": "CL10A226MQ8NRNC",
+    "C10": "CL10A105KA8NNNC",
+    "R93": "0603WAF0000T5E",
+    "R94": "0603WAF0000T5E",
 }
 for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D21", "D22", "D23", "D24"):
     MPN[_ref] = "TPD1E10B06DPYR"
@@ -703,6 +765,8 @@ R_MPN = {
     "1k": "RC0402FR-071KL",
     "4.7k": "RC0402FR-074K7L",
     "5.1k": "RC0402FR-075K1L",
+    "0": "0402WGF0000TCE",
+    "1.5k": "0402WGF1501TCE",
     "10k": "RC0402FR-0710KL",
     "22.1k": "RC0402FR-0722K1L",
     "40.2k": "RC0402FR-0740K2L",
@@ -714,7 +778,7 @@ R_MPN = {
     "560k": "RC0402FR-07560KL",
     "1M": "RC0402FR-071ML",
     "5.11M": "RC0402FR-075M11L",
-    "10M": "RC0402FR-0710ML",
+    "10M": "0402WGF1005TCE",
     "3.0k": "RC0402FR-073KL",
     "27.0k": "RC0402FR-0727KL",
 }
@@ -825,23 +889,155 @@ def mpn_for(ref, value, footprint):
     return ""
 
 
+# LCSC numbers confirmed against the prefab review. Anything else stays blank
+# rather than guessing a catalogue code.
+LCSC_BY_MPN = {
+    "USBLC6-2SC6": "C7519",
+    "KT-0603G": "C12624",
+    "TS-1088-AR02016": "C720477",
+    "CL10A475KA8NQNC": "C69335",
+    "CL10A226MQ8NRNC": "C59461",
+    "CSD13380F3T": "C2871092",
+    "MAX17048G+T10": "C2682616",
+    "AD5940BCBZ-RL7": "C650308",
+    "ADS1292RIRSMT": "C882777",
+    "TCA6408ARSVR": "C2649390",
+    "SFH 7072": "C2655172",
+    "0402WGF0000TCE": "C17168",
+    "0603WAF0000T5E": "C21189",
+    "0402WGF1501TCE": "C25867",
+    "0402WGF1005TCE": "C26082",
+}
+LCSC_BY_VALUE = {
+    "10k": "C25744",
+    "100k": "C25741",
+    "1k": "C11702",
+    "0": "C17168",
+}
+CONSIGN_MPNS = {
+    "DPCR2512-51KJT18",
+    "NF2W757G-F1",
+    "MLX90632SLD-DCB-100-SP",
+    "LSM6DSV80XTR",
+    "W25Q512JVEIQ",
+}
+# KiCad footprint name -> extra degrees after the bottom-side mirror.
+# SOT-23 is the Bouni kicad-jlcpcb-tools convention (pin 1 at the top of the tape).
+ROTATION_CORRECTIONS = (
+    ("SOT-23", -90),
+    ("SOT-23-5", -90),
+    ("SOT-23-6", -90),
+)
+
+
+def lcsc_for(ref, value, mpn):
+    if mpn in CONSIGN_MPNS or mpn == "RC0402FR-07301KL":
+        return ""
+    if mpn in LCSC_BY_MPN:
+        return LCSC_BY_MPN[mpn]
+    if ref.startswith("R") and value in LCSC_BY_VALUE:
+        if value == "0" and mpn == "0603WAF0000T5E":
+            return "C21189"
+        return LCSC_BY_VALUE[value]
+    return ""
+
+
+def consign_for(mpn):
+    if mpn in CONSIGN_MPNS:
+        return "consign/global sourcing"
+    if mpn == "RC0402FR-07301KL":
+        return "extended library; value stays 301k"
+    return ""
+
+
+def _jlc_rotation(fp):
+    name = str(fp.GetFPID().GetLibItemName())
+    rotation = fp.GetOrientation().AsDegrees()
+    # Bouni fabrication.py: bottom angles are mirrored on the Y axis.
+    if fp.GetLayer() != 0:
+        rotation = (180 - rotation) % 360
+    correction = 0
+    for token, delta in ROTATION_CORRECTIONS:
+        if token in name:
+            correction = delta
+            break
+    return (rotation + correction) % 360, correction, name
+
+
+def write_jlc(board, comps):
+    """JLCPCB BOM and CPL. DNP, fiducials, holes, test pads and the bare pad footprints stay off both."""
+    skip_prefix = ("FID", "TP", "H")
+    bare = {"J2", "J3", "J5", "J6", "J7", "J8"}
+    bom_rows = []
+    cpl_rows = []
+    corrections = []
+    by_ref = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    for ref, meta in sorted(comps.items(), key=lambda kv: kv[0]):
+        if meta.get("dnp") or ref.startswith(skip_prefix) or ref in bare:
+            continue
+        mpn = mpn_for(ref, meta["value"], meta["footprint"])
+        lcsc = lcsc_for(ref, meta["value"], mpn)
+        note = consign_for(mpn)
+        bom_rows.append((meta["value"], ref, meta["footprint"].split(":")[-1], lcsc, note))
+        fp = by_ref.get(ref)
+        if fp is None:
+            continue
+        pos = fp.GetPosition()
+        rot, correction, name = _jlc_rotation(fp)
+        if correction:
+            corrections.append((ref, name, correction))
+        side = "bottom" if fp.IsFlipped() else "top"
+        cpl_rows.append((ref, f"{pos.x/1e6:.4f}", f"{pos.y/1e6:.4f}", side, f"{rot:.1f}"))
+    jlc_bom = ROOT / "jlc_bom.csv"
+    jlc_cpl = ROOT / "jlc_cpl.csv"
+    with jlc_bom.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #", "Consign/Global sourcing"])
+        # Group identical parts the way JLC expects: one row, designators joined.
+        groups = {}
+        for value, ref, fp, lcsc, note in bom_rows:
+            groups.setdefault((value, fp, lcsc, note), []).append(ref)
+        for (value, fp, lcsc, note), refs in groups.items():
+            w.writerow([value, ",".join(refs), fp, lcsc, note])
+    with jlc_cpl.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(["Designator", "Mid X", "Mid Y", "Layer", "Rotation"])
+        w.writerows(cpl_rows)
+    note_path = ROOT / "build" / "jlc_rotation_corrections.txt"
+    note_path.parent.mkdir(exist_ok=True)
+    lines = [
+        "Bottom parts use Bouni fabrication.py: rotation = (180 - KiCad) mod 360.",
+        "Additional corrections (degrees) applied on top of that:",
+    ]
+    if corrections:
+        for ref, name, delta in corrections:
+            lines.append(f"  {ref} {name} {delta}")
+    else:
+        lines.append("  (none matched)")
+    lines.append("Every other footprint: 0 extra degrees. Confirm tape orientation at order time for the BGAs, WSON, and USB-C.")
+    note_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def write_bom(comps):
     rows = []
     key = lambda kv: (kv[0][0], int("".join(ch for ch in kv[0] if ch.isdigit()) or "0"))
     for ref, meta in sorted(comps.items(), key=key):
+        mpn = mpn_for(ref, meta["value"], meta["footprint"])
         rows.append(
             (
                 ref,
                 meta["value"],
-                mpn_for(ref, meta["value"], meta["footprint"]),
+                mpn,
                 meta["footprint"],
                 "1",
                 "DNP" if meta.get("dnp") else "",
+                lcsc_for(ref, meta["value"], mpn),
+                consign_for(mpn),
             )
         )
     with BOM.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["Ref", "Value", "MPN", "Footprint", "Qty", "DNP"])
+        w.writerow(["Ref", "Value", "MPN", "Footprint", "Qty", "DNP", "LCSC", "Consign/Global sourcing"])
         w.writerows(rows)
 
 
