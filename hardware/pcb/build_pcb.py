@@ -28,9 +28,9 @@ KICAD_FP = Path("/usr/share/kicad/footprints")
 # on the top at the same XY, outside the module body.
 BOARD_W = 36.5
 # DPCR row on the bottom, both GDT rows on the top, charge parts above the
-# DPCR electrode copper. 36.5 mm is still too narrow for 4 mm between
-# adjacent pads in a row.
-BOARD_H = 44.4
+# DPCR electrode copper. Four more 2512 surge resistors for the EDA pads
+# do not fit in 44.4 mm, so the outline grows below that row.
+BOARD_H = 53.6
 
 # Through-slots in three of the four gaps between DPCR electrode pads.
 # The R35-R36 gap is occupied by D20's pad, so it stays a 3.10 mm surface gap.
@@ -189,12 +189,30 @@ PLACE = {
     "R65": (20.40, 2.55, 0, False),
     "C62": (22.70, 2.55, 0, False),
     "C63": (25.00, 2.55, 0, False),
+    "R66": (26.2, 46.6, 0, False),
+    "R67": (28.4, 46.6, 0, False),
+    "R68": (30.6, 46.6, 0, False),
+    "R69": (32.8, 46.6, 0, False),
+    "R70": (35.0, 46.6, 0, False),
+    "R71": (26.2, 48.8, 0, False),
+    "R72": (28.4, 48.8, 0, False),
+    "R73": (30.6, 48.8, 0, False),
+    "R74": (32.8, 48.8, 0, False),
+    "R75": (35.0, 48.8, 0, False),
+    "C64": (26.2, 51.0, 0, False),
+    "C65": (28.4, 51.0, 0, False),
+    "C66": (30.6, 51.0, 0, False),
+    "Q3": (34.2, 51.2, 0, False),
+    "R76": (8.40, 49.40, 90, True),
+    "R77": (15.80, 49.40, 90, True),
+    "R78": (23.20, 49.40, 90, True),
+    "R79": (30.60, 49.40, 90, True),
     "R50": (31.30, 15.99, 0, True),
     "R51": (28.70, 8.01, 0, True),
     "R52": (16.00, 2.90, 0, True),
     "R53": (17.73, 3.17, 0, False),
     "U1": (12.85, 22.00, 90, False),
-    "U2": (28.85, 13.20, 0, False),
+    "U2": (8.80, 46.60, 0, False),
     "U3": (32.60, 9.80, 0, False),
     "U4": (34.10, 13.95, 0, False),
     "U5": (32.80, 4.10, 0, False),
@@ -619,7 +637,8 @@ def main():
 # 0603 bulk capacitors are the Murata parts named in the regulator tables.
 MPN = {
     "U1": "ESP32-WROOM-32E-N8R2",
-    "U2": "MCP73831T-2ACI/OT",
+    "U2": "BQ25170DSGR",
+    "Q3": "BC847BS,115",
     "U3": "TPS63802DLAR",
     "U4": "TPS7A2018PDBVR",
     "U5": "CP2102N-A02-GQFN28R",
@@ -645,6 +664,10 @@ MPN = {
     "R34": "DPCR2512-51KJT18",
     "R35": "DPCR2512-51KJT18",
     "R36": "DPCR2512-51KJT18",
+    "R76": "DPCR2512-51KJT18",
+    "R77": "DPCR2512-51KJT18",
+    "R78": "DPCR2512-51KJT18",
+    "R79": "DPCR2512-51KJT18",
     "R61": "NCU15XH103F6SRC",
     "D10": "NF2W757G-F1",
     "D11": "SFH 4053",
@@ -672,12 +695,17 @@ R_MPN = {
     "49.9k": "RC0402FR-0749K9L",
     "100k": "RC0402FR-07100KL",
     "200k": "RC0402FR-07200KL",
+    "301k": "RC0402FR-07301KL",
     "560k": "RC0402FR-07560KL",
     "1M": "RC0402FR-071ML",
+    "5.11M": "RC0402FR-075M11L",
     "10M": "RC0402FR-0710ML",
+    "3.0k": "RC0402FR-073KL",
+    "27.0k": "RC0402FR-0727KL",
 }
 # 0402 unless the footprint is 0603.
 C_MPN_0402 = {
+    "1.5n": "GRM1555C1H152JA01",
     "2.2n": "GRM1555C1H222JA01",
     "4.7n": "GRM1555C1H472JA01",
     "47n": "GRM155R71H473KA88",

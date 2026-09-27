@@ -17,7 +17,8 @@ FP_FSR = "vitalq:Pads_FSR"
 FP_H3 = "vitalq:Pads_ECG"
 FP_H4 = "vitalq:Pads_EDA"
 FP_H6 = "vitalq:Pads_PPG"
-FP_MCP = "snap:SOT95P280X145-5N"
+FP_BQ = "Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm"
+FP_NPN = "Package_TO_SOT_SMD:SOT-363_SC-70-6"
 FP_AFE = "snap:BGA30N40P5X6_260X210X50"
 FP_AD = "snap:BGA56C40P8X7_416X356X55"
 FP_ADS = "snap:QFN40P400X400X100-33N-D"
@@ -231,22 +232,30 @@ def power(d: Design):
     d.vpart(sh, "R", "R1", "5.1k", FP_R, 92, 118, "USB_CC1", "GND")
     d.vpart(sh, "R", "R2", "5.1k", FP_R, 108, 118, "USB_CC2", "GND")
 
-    u = d.part(sh, "MCP73831T-2ACI_OT", "U2", "MCP73831T-2ACI/OT", FP_MCP, 168, 78, labels="ic")
-    d.stub_net(sh, u, "4", "VBUS", 6.35)  # VDD top
-    d.stub_net(sh, u, "2", "GND", 6.35)  # VSS bottom
-    d.stub_net(sh, u, "3", "VBAT", 7.62)  # VBAT right, power_out
-    d.stub_net(sh, u, "5", "CHG_PROG", 7.62)  # PROG left
-    d.stub_net(sh, u, "1", "CHG_STAT", 7.62)  # STAT, open drain
+    # BQ25170DSGR replaces MCP73831. Charge starts from USB with no 3.3 V rail.
+    # Table 7-1: 27.0 kΩ sets 4.20 V. KISET/3.0 kΩ = 100 mA (SLUSDJ8A, 90-110 mA).
+    u = d.part(sh, "BQ25170", "U2", "BQ25170DSGR", FP_BQ, 175, 88, labels="ic")
+    d.stub_net(sh, u, "1", "VBUS", 7.62)  # IN
+    d.stub_net(sh, u, "8", "VBAT", 7.62)  # OUT, power_out
+    d.stub_net(sh, u, "2", "CHG_ISET", 7.62)
+    d.stub_net(sh, u, "7", "CHG_VSET", 7.62)
+    d.stub_net(sh, u, "5", "CHG_STAT", 7.62)
+    d.stub_net(sh, u, "6", "CHG_PG", 7.62)
+    d.stub_net(sh, u, "3", "TS", 7.62)
+    d.join_row(sh, u, ["4", "9"], "GND", 6.35)
     d.finish(sh, u)
-    # Q2 opens R3, so PROG floats and DS20001984 5.2.2 disables charge.
-    d.vpart(sh, "R", "R3", "10k", FP_R, 148, 108, "CHG_PROG", "PROG_RTN")
-    q2 = d.part(sh, "CSD13380F3", "Q2", "CSD13380F3", FP_FET, 210, 118, labels="ic")
-    d.stub_net(sh, q2, "1", "CHG_EN", 7.62)
-    d.stub_net(sh, q2, "3", "PROG_RTN", 6.35)
+    d.vpart(sh, "R", "R3", "3.0k", FP_R, 118, 145, "CHG_ISET", "GND")
+    d.vpart(sh, "R", "R75", "27.0k", FP_R, 140, 145, "CHG_VSET", "GND")
+    d.vpart(sh, "R", "R49", "10k", FP_R, 162, 145, "+3V3", "CHG_STAT")
+    # R60 used to bias the NTC divider. /PG needs the pull-up; TS must not see +3V3.
+    d.vpart(sh, "R", "R60", "10k", FP_R, 184, 145, "+3V3", "CHG_PG")
+    # Q2 is off at power-up (R59). Driving CHG_DIS high shorts TS below VTS_ENZ.
+    q2 = d.part(sh, "CSD13380F3", "Q2", "CSD13380F3", FP_FET, 230, 118, labels="ic")
+    d.stub_net(sh, q2, "1", "CHG_DIS", 7.62)
+    d.stub_net(sh, q2, "3", "TS", 6.35)
     d.stub_net(sh, q2, "2", "GND", 6.35)
     d.finish(sh, q2)
-    d.vpart(sh, "R", "R59", "100k", FP_R, 230, 130, "CHG_EN", "GND")
-    d.vpart(sh, "R", "R49", "10k", FP_R, 168, 130, "+3V3", "CHG_STAT")
+    d.vpart(sh, "R", "R59", "100k", FP_R, 250, 130, "CHG_DIS", "GND")
 
     # TPS63802 replaces the XC6206. EN tied to VIN so the 3.3 V rail is up
     # before the expander has a supply. MODE low is power-save. PG is open.
@@ -274,10 +283,9 @@ def power(d: Design):
     bat = d.part(sh, "Conn_01x03_Pin", "J2", "LiPo pads", FP_BAT, 168, 168, labels="ic")
     d.stub_net(sh, bat, "1", "VBAT", 7.62)
     d.stub_net(sh, bat, "2", "GND", 7.62)
-    d.stub_net(sh, bat, "3", "NTC_ADC", 7.62)
+    d.stub_net(sh, bat, "3", "TS", 7.62)
     d.finish(sh, bat)
-    d.vpart(sh, "R", "R60", "10k", FP_R, 250, 230, "+3V3", "NTC_ADC")
-    d.vpart(sh, "R", "R61", "10k", FP_R, 275, 230, "NTC_ADC", "GND", dnp=True)
+    d.vpart(sh, "R", "R61", "10k", FP_R, 275, 200, "TS", "GND", dnp=True)
 
     # Decoupling directly under the regulators.
     sh.text("Decoupling", 230, 108, 1.8, bold=True)
@@ -295,14 +303,16 @@ def power(d: Design):
     d.stub_net(sh, gge, "B1", "I2C_SDA", 7.62)
     d.stub_net(sh, gge, "B2", "I2C_SCL", 7.62)
     d.join_row(sh, gge, ["A1", "A4", "B3"], "GND", 6.35)
-    d.finish(sh, gge)  # ALRT
+    d.stub_net(sh, gge, "B4", "GAUGE_ALRT", 7.62)
+    d.finish(sh, gge)
+    d.vpart(sh, "R", "R74", "10k", FP_R, 112, 175, "+3V3", "GAUGE_ALRT")
     d.vpart(sh, "C", "C58", "100n", FP_C, 130, 185, "VBAT", "GND")
     d.vpart(sh, "R", "R50", "100k", FP_R, 90, 130, "VBUS", "VBUS_DET")
     d.vpart(sh, "R", "R51", "200k", FP_R, 112, 130, "VBUS_DET", "GND")
 
-    sh.text("J2 is three flat pads (BAT+ BAT- NTC), not a header. No power switch.", 16, 248, 1.4)
-    sh.text("R61 is the on-board 10k NTC, DNP. Fit it or the cell NTC, not both. Q2 floats PROG until CHG_EN is high.", 16, 256, 1.4)
-    sh.text("Charge stays off at power-up: the expander port is Hi-Z and R59 holds the gate low.", 16, 264, 1.4)
+    sh.text("J2 is three flat pads (BAT+ BAT- NTC). The NTC goes to BQ25170 TS, not an ADC divider.", 16, 248, 1.4)
+    sh.text("R61 is the on-board 10k NTC, DNP. Fit it or the cell NTC, not both. Do not tie TS to +3V3.", 16, 256, 1.4)
+    sh.text("Charge is on whenever USB is present and TS is in range. CHG_DIS high shorts TS and stops it.", 16, 264, 1.4)
     # One power-output flag on GND and one on VBUS. +3V3 is driven by U3, +1V8 by U4, VBAT by U2.
     g = d.pwr(sh, "GND", 392, 130)
     fl = d.flag(sh, 392, 142)
@@ -320,7 +330,7 @@ def power(d: Design):
 
 def usb(d: Design):
     sh = d.sheet("USB-UART", "usb.kicad_sch", "2")
-    sh.rect(12, 40, 400, 250)
+    sh.rect(12, 40, 400, 270)
     sh.text("USB-UART", 16, 16, 3.2, bold=True)
     sh.text("CP2102N-A02-GQFN28. VDD is the on-chip regulator output, not +3V3.", 16, 24, 1.6)
 
@@ -341,8 +351,10 @@ def usb(d: Design):
     d.stub_net(sh, u, "5", "USB_DM", 8.89)
     d.stub_net(sh, u, "4", "USB_DP", 8.89)
     d.join_row(sh, u, ["3"], "GND", 6.35)  # stacked with pad 29
-    d.stub_net(sh, u, "26", "ESP_RX", 10.16)  # TXD -> ESP RX
-    d.stub_net(sh, u, "25", "ESP_TX", 10.16)  # RXD <- ESP TX
+    d.stub_net(sh, u, "26", "CP_TX", 10.16)  # TXD, 1k series before ESP RX
+    d.stub_net(sh, u, "25", "CP_RX", 10.16)  # RXD, 1k series after ESP TX
+    d.stub_net(sh, u, "24", "CP_RTS", 10.16)
+    d.stub_net(sh, u, "28", "CP_DTR", 10.16)
     d.stub_net(sh, u, "9", "CP_RST", 8.89)  # RSTb, 1k to VDD
     for n in ("23", "27", "1", "2"):  # ~CTS ~DSR ~DCD ~RI/CLK
         d.stub_net(sh, u, n, "VDD_CP2102", 10.16)
@@ -357,6 +369,19 @@ def usb(d: Design):
     # Fig 2.5: 22.1k from the connector, 47.5k to ground. At 5.0 V the pin is 3.41 V.
     d.vpart(sh, "R", "R63", "22.1k", FP_R, 55, 145, "VBUS", "CP_VBUS")
     d.vpart(sh, "R", "R64", "47.5k", FP_R, 90, 145, "CP_VBUS", "GND")
+    d.hpart(sh, "R", "R72", "1k", FP_R, 55, 175, "ESP_TX", "CP_RX")
+    d.hpart(sh, "R", "R73", "1k", FP_R, 110, 175, "CP_TX", "ESP_RX")
+    # DevKitC cross-coupled pair. esptool ClassicReset: RTS asserted pulls EN low.
+    q = d.part(sh, "BC847BS_DUAL", "Q3", "BC847BS,115", FP_NPN, 70, 215, labels="ic")
+    d.stub_net(sh, q, "2", "Q3_B1", 6.35)  # base, EN transistor
+    d.stub_net(sh, q, "6", "ESP_EN", 6.35)  # collector
+    d.stub_net(sh, q, "1", "CP_RTS", 6.35)  # emitter tied to RTS
+    d.stub_net(sh, q, "5", "Q3_B2", 6.35)
+    d.stub_net(sh, q, "3", "ESP_IO0", 6.35)
+    d.stub_net(sh, q, "4", "CP_DTR", 6.35)
+    d.finish(sh, q)
+    d.vpart(sh, "R", "R70", "10k", FP_R, 130, 210, "CP_DTR", "Q3_B1")
+    d.vpart(sh, "R", "R71", "10k", FP_R, 152, 210, "CP_RTS", "Q3_B2")
     # PWR_FLAG stands in for the internal 3.45 V regulator (symbol pin is power_in).
     p = d.pwr(sh, "VDD_CP2102", 130, 55) if False else None
     # VDD_CP2102 is not a power-symbol name. Attach the flag to the label.
@@ -368,6 +393,8 @@ def usb(d: Design):
     sh.text("Unused inputs ~CTS, ~DSR, ~DCD and ~RI/CLK are tied to VDD_CP2102. R62 pulls ~RSTb up.", 40, 181, 1.4)
     sh.text("R63/R64 are the Rev 1.5 Fig 2.5 divider. VREGIN is still the USB 5 V pin.", 40, 187, 1.4)
     sh.text("C9+C62 on VDD, C1+C63 on VREGIN: 4.7 uF and 100 nF on each regulator pin.", 40, 193, 1.4)
+    sh.text("R72 and R73 are 1k in series with TX and RX so an unpowered side is not back-driven.", 40, 199, 1.3)
+    sh.text("Q3 is the DevKitC auto-program pair: DTR/RTS to EN and GPIO0. R70 and R71 are the 10k bases.", 40, 205, 1.3)
 
 
 def mcu(d: Design):
@@ -391,7 +418,7 @@ def mcu(d: Design):
     pins = {
         "3": "ESP_EN",
         "4": "FSR_ADC",
-        "5": "NTC_ADC",
+        "5": "NC",  # GPIO39 freed: battery NTC is on the charger TS pin
         "25": "ESP_IO0",
         "35": "ESP_TX",
         "24": "NC",
@@ -408,9 +435,9 @@ def mcu(d: Design):
         "33": "I2C_SDA",
         "36": "I2C_SCL",
         "37": "SPI_MOSI",
-        "10": "NC",
+        "10": "GAUGE_ALRT",  # GPIO25, not a strap
         "11": "CS_FLASH",
-        "12": "NC",
+        "12": "CHG_PG",  # GPIO27, digital input
         "8": "LSM6_INT1",
         "9": "TMP117_ALERT",
         "6": "ADS1292_DRDY",
@@ -426,6 +453,7 @@ def mcu(d: Design):
     d.vpart(sh, "C", "C8", "100n", FP_C, 78, 58, "+3V3", "GND")
 
     d.vpart(sh, "R", "R5", "10k", FP_R, 330, 62, "+3V3", "ESP_EN")
+    d.vpart(sh, "C", "C64", "1u", FP_C, 390, 78, "ESP_EN", "GND")
     d.vpart(sh, "R", "R6", "10k", FP_R, 352, 62, "+3V3", "ESP_IO0")
     d.vpart(sh, "R", "R7", "10k", FP_R, 374, 62, "+3V3", "CS_AD5940")
     d.vpart(sh, "R", "R52", "10k", FP_R, 330, 100, "+3V3", "CS_FLASH")
@@ -451,7 +479,7 @@ def mcu(d: Design):
     d.vpart(sh, "C", "C59", "100n", FP_C, 140, 250, "+3V3", "GND")
 
     exp = d.part(sh, "TCA6408ARSV", "U19", "TCA6408ARSVR", FP_EXP, 340, 200, labels="ic")
-    d.stub_net(sh, exp, "1", "+3V3", 6.35)  # /RESET held out of reset
+    d.stub_net(sh, exp, "1", "ESP_EN", 6.35)  # /RESET follows the ESP32 reset
     d.stub_net(sh, exp, "2", "AFE4900_RESETZ", 7.62)
     d.stub_net(sh, exp, "3", "ADS1292_PWDN", 7.62)
     d.stub_net(sh, exp, "4", "AD5940_RESET", 7.62)
@@ -459,7 +487,7 @@ def mcu(d: Design):
     d.stub_net(sh, exp, "7", "IR_GATE", 7.62)
     d.stub_net(sh, exp, "8", "CHG_STAT", 7.62)
     d.stub_net(sh, exp, "9", "VBUS_DET", 7.62)
-    d.stub_net(sh, exp, "10", "CHG_EN", 7.62)
+    d.stub_net(sh, exp, "10", "CHG_DIS", 7.62)
     d.stub_net(sh, exp, "11", "EXP_INT", 7.62)
     d.stub_net(sh, exp, "12", "I2C_SCL", 7.62)
     d.stub_net(sh, exp, "13", "I2C_SDA", 7.62)
@@ -471,7 +499,7 @@ def mcu(d: Design):
 
     sh.text("GPIO2 and GPIO12 are open so the straps stay low. GPIO15 (CS_AD5940) is pulled up.", 16, 200, 1.4)
     sh.text("GPIO6-11 are the module flash bus and have no symbol pins. ADC1 is GPIO36 and GPIO39.", 16, 208, 1.4)
-    sh.text("EN and IO0 have pull-ups only. Download uses the module pads. There are no buttons.", 16, 216, 1.4)
+    sh.text("EN has R5 10k and C64 1 uF. Q3 on the USB sheet is the DTR/RTS auto-program pair.", 16, 216, 1.4)
     sh.text("R7 is the only chip-select pull-up. It is required because GPIO15 must be high at reset.", 16, 224, 1.4)
 
 
@@ -555,15 +583,17 @@ def afe(d: Design):
     d.vpart(sh, "R", "R9", "10k", FP_R, 255, 235, "AFE4900_RESETZ", "GND")
     d.vpart(sh, "R", "R10", "1k", FP_R, 278, 235, "AFE_CLK", "GND")
 
-    # AFE ECG lead, AC-coupled. Bias is on the IC side of the capacitors.
-    d.hpart(sh, "C", "C56", "100n", FP_C, 320, 255, "AFE_P_AC", "AFE_INP")
-    d.hpart(sh, "C", "C57", "100n", FP_C, 370, 255, "AFE_N_AC", "AFE_INM")
-    d.vpart(sh, "R", "R43", "10M", FP_R, 300, 275, "+3V3", "AFE_INP")
-    d.vpart(sh, "R", "R44", "10M", FP_R, 322, 275, "AFE_INP", "GND")
-    d.vpart(sh, "R", "R45", "10M", FP_R, 360, 275, "+3V3", "AFE_INM")
-    d.vpart(sh, "R", "R46", "10M", FP_R, 382, 275, "AFE_INM", "GND")
+    # TIDUDO6B Fig 2-10 biases each input from RLD through 5.11 MΩ.
+    # 100 kΩ (same guide) sits between the TPD node and the coupling cap.
+    # AFE RLD_OUT stays open: ADS1292R already drives the one RLD pad.
+    d.hpart(sh, "R", "R44", "100k", FP_R, 300, 250, "AFE_P_AC", "AFE_P_SER")
+    d.hpart(sh, "R", "R46", "100k", FP_R, 360, 250, "AFE_N_AC", "AFE_N_SER")
+    d.hpart(sh, "C", "C56", "100n", FP_C, 300, 268, "AFE_P_SER", "AFE_INP")
+    d.hpart(sh, "C", "C57", "100n", FP_C, 360, 268, "AFE_N_SER", "AFE_INM")
+    d.vpart(sh, "R", "R43", "5.11M", FP_R, 330, 285, "RLDOUT", "AFE_INP")
+    d.vpart(sh, "R", "R45", "5.11M", FP_R, 370, 285, "RLDOUT", "AFE_INM")
     sh.text("C11 RX_SUP, C13 IO_SUP, C14 local TX_SUP, C47 is the boost 4.7 uF. C15 is BG.", 16, 270, 1.3)
-    sh.text("R9 holds RESETZ down until the expander drives it. R10 holds CLK low. AFE RLD_OUT is open.", 16, 276, 1.3)
+    sh.text("R44/R46 are 100k on the TPD side. R43/R45 bias from ADS RLDOUT, not a second RLD amp.", 16, 276, 1.3)
 
 
 def ad(d: Design):
@@ -661,22 +691,28 @@ def ad(d: Design):
 
     sh.text("C16 AVDD, C18 DVDD, C42 AVDD_REG, C19 IOVDD after R12, C20-C26 are the reference and bias caps.", 16, 236, 1.35)
     sh.text("R13 is RCAL. C27 sits between RC0_0 and RC0_1. XTAL pins are open: the internal oscillator is used.", 16, 242, 1.35)
-    d.hpart(sh, "R", "R39", "1k", FP_R, 220, 210, "CE0", "CE_ISO")
-    d.hpart(sh, "C", "C54", "15n", FP_C, 280, 210, "CE_ISO", "EDA_CE_PAD")
-    d.hpart(sh, "C", "C55", "470n", FP_C, 220, 235, "SE0", "SE_ISO")
-    d.hpart(sh, "R", "R40", "1k", FP_R, 280, 235, "SE_ISO", "EDA_SE_PAD")
-    d.hpart(sh, "R", "R41", "1k", FP_R, 340, 210, "RE0", "EDA_RE_PAD")
-    d.hpart(sh, "R", "R42", "1k", FP_R, 340, 235, "DE0", "EDA_DE_PAD")
-    # TPD sits on the IC side of the series parts. The GDT is on the pad.
-    d.vpart(sh, "D_TVS_2", "D6", "TPD1E10B06", FP_TVS, 380, 175, "CE_ISO", "GND")
-    d.vpart(sh, "D_TVS_2", "D7", "TPD1E10B06", FP_TVS, 400, 175, "SE_ISO", "GND")
-    d.vpart(sh, "D_TVS_2", "D8", "TPD1E10B06", FP_TVS, 380, 200, "RE0", "GND")
-    d.vpart(sh, "D_TVS_2", "D9", "TPD1E10B06", FP_TVS, 400, 200, "DE0", "GND")
+    # Surge resistor on the pad, then the AN-1557 network. C54 is behind R76.
+    d.hpart(sh, "R", "R76", "51k", FP_HV, 200, 210, "EDA_CE_PAD", "CE_SURGE")
+    d.hpart(sh, "C", "C54", "15n", FP_C, 255, 210, "CE_SURGE", "CE_ISO")
+    d.hpart(sh, "R", "R39", "1k", FP_R, 305, 210, "CE_ISO", "CE0")
+    d.hpart(sh, "R", "R77", "51k", FP_HV, 200, 232, "EDA_SE_PAD", "SE_SURGE")
+    d.hpart(sh, "R", "R40", "1k", FP_R, 255, 232, "SE_SURGE", "SE_ISO")
+    d.hpart(sh, "C", "C55", "470n", FP_C, 305, 232, "SE_ISO", "SE0")
+    d.hpart(sh, "R", "R78", "51k", FP_HV, 200, 254, "EDA_RE_PAD", "RE_SURGE")
+    d.hpart(sh, "R", "R41", "1k", FP_R, 255, 254, "RE_SURGE", "RE0")
+    d.hpart(sh, "R", "R79", "51k", FP_HV, 310, 254, "EDA_DE_PAD", "DE_SURGE")
+    d.hpart(sh, "R", "R42", "1k", FP_R, 365, 254, "DE_SURGE", "DE0")
+    # TPD is behind the surge resistor, and the 1k keeps clamp current out of the pin.
+    # 26 mm pitch. A 20 mm stack lands the next label on the GND stub and shorts the pad.
+    d.vpart(sh, "D_TVS_2", "D6", "TPD1E10B06", FP_TVS, 400, 150, "CE_ISO", "GND")
+    d.vpart(sh, "D_TVS_2", "D7", "TPD1E10B06", FP_TVS, 400, 176, "SE_ISO", "GND")
+    d.vpart(sh, "D_TVS_2", "D8", "TPD1E10B06", FP_TVS, 400, 202, "RE_SURGE", "GND")
+    d.vpart(sh, "D_TVS_2", "D9", "TPD1E10B06", FP_TVS, 400, 228, "DE_SURGE", "GND")
     d.vpart(sh, "GDT", "D17", "S30-A90X", FP_GDT, 50, 275, "EDA_CE_PAD", "GND")
     d.vpart(sh, "GDT", "D18", "S30-A90X", FP_GDT, 100, 275, "EDA_SE_PAD", "GND")
     d.vpart(sh, "GDT", "D19", "S30-A90X", FP_GDT, 150, 275, "EDA_RE_PAD", "GND")
     d.vpart(sh, "GDT", "D20", "S30-A90X", FP_GDT, 200, 275, "EDA_DE_PAD", "GND")
-    sh.text("RLIMIT is R39. CISO1 is C54. CISO2 is C55. R13 stays the 1k RCAL. D17-D20 are on the pads.", 16, 255, 1.3)
+    sh.text("R76-R79 are the pad-side 51k DPCR. C54 sits behind R76. R39 stays the 1k RLIMIT.", 16, 268, 1.3)
     sh.text("Other AIN, AFE and GPIO balls are open. GPIO0 is the only digital sideband to the ESP32.", 16, 254, 1.35)
 
 
@@ -757,6 +793,8 @@ def ads(d: Design):
     d.hpart(sh, "R", "R15", "1M", FP_R, 70, 240, "+3V3", "RLDREF")
     d.hpart(sh, "R", "R16", "1M", FP_R, 115, 240, "RLDREF", "GND")
     d.hpart(sh, "R", "R17", "1M", FP_R, 175, 240, "RLDOUT", "RLDINV")
+    d.hpart(sh, "C", "C65", "1.5n", FP_C, 230, 200, "RLDOUT", "RLDINV")
+    d.vpart(sh, "C", "C66", "1u", FP_C, 390, 250, "RLDREF", "GND")
 
     # Fig 68. Electrode node is ECG_P / ECG_N, after the series resistor.
     d.vpart(sh, "R", "R26", "10M", FP_R, 250, 185, "+3V3", "IN1P")
@@ -765,8 +803,10 @@ def ads(d: Design):
     d.vpart(sh, "R", "R29", "10M", FP_R, 316, 185, "IN1N", "GND")
     d.vpart(sh, "C", "C48", "2.2n", FP_C, 340, 185, "IN1P", "GND")
     d.vpart(sh, "C", "C49", "2.2n", FP_C, 362, 185, "IN1N", "GND")
-    d.hpart(sh, "C", "C50", "100n", FP_C, 260, 220, "ECG_P", "IN1P")
-    d.hpart(sh, "C", "C51", "100n", FP_C, 320, 220, "ECG_N", "IN1N")
+    d.hpart(sh, "C", "C50", "100n", FP_C, 250, 220, "ECG_P", "IN1P_AC")
+    d.hpart(sh, "R", "R67", "10k", FP_R, 300, 220, "IN1P_AC", "IN1P")
+    d.hpart(sh, "C", "C51", "100n", FP_C, 250, 238, "ECG_N", "IN1N_AC")
+    d.hpart(sh, "R", "R68", "10k", FP_R, 300, 238, "IN1N_AC", "IN1N")
     d.vpart(sh, "C", "C52", "2.2n", FP_C, 360, 220, "ECG_P", "GND")
     d.vpart(sh, "C", "C53", "2.2n", FP_C, 382, 220, "ECG_N", "GND")
     d.hpart(sh, "R", "R30", "40.2k", FP_R, 260, 245, "RESP_MODP", "ECG_P")
@@ -774,12 +814,13 @@ def ads(d: Design):
     # DPCR 51k stands off the defib pulse. TPD is on the IC side of that resistor.
     d.hpart(sh, "R", "R32", "51k", FP_HV, 55, 258, "ECG1_PAD", "ECG_P")
     d.hpart(sh, "R", "R33", "51k", FP_HV, 115, 258, "ECG2_PAD", "ECG_N")
-    d.hpart(sh, "R", "R34", "51k", FP_HV, 175, 258, "RLD_PAD", "RLDOUT")
+    d.hpart(sh, "R", "R34", "51k", FP_HV, 175, 278, "RLD_PAD", "RLD_CLAMP")
+    d.hpart(sh, "R", "R69", "10k", FP_R, 230, 278, "RLD_CLAMP", "RLDOUT")
     d.hpart(sh, "R", "R35", "51k", FP_HV, 235, 258, "AFE_P_PAD", "AFE_P_AC")
     d.hpart(sh, "R", "R36", "51k", FP_HV, 295, 258, "AFE_N_PAD", "AFE_N_AC")
     d.vpart(sh, "D_TVS_2", "D1", "TPD1E10B06", FP_TVS, 55, 278, "ECG_P", "GND")
     d.vpart(sh, "D_TVS_2", "D2", "TPD1E10B06", FP_TVS, 115, 278, "ECG_N", "GND")
-    d.vpart(sh, "D_TVS_2", "D3", "TPD1E10B06", FP_TVS, 175, 278, "RLDOUT", "GND")
+    d.vpart(sh, "D_TVS_2", "D3", "TPD1E10B06", FP_TVS, 400, 250, "RLD_CLAMP", "GND")
     d.vpart(sh, "D_TVS_2", "D4", "TPD1E10B06", FP_TVS, 235, 278, "AFE_P_AC", "GND")
     d.vpart(sh, "D_TVS_2", "D5", "TPD1E10B06", FP_TVS, 295, 278, "AFE_N_AC", "GND")
     # 24 mm pitch. Each stub ends 7.62 mm from the symbol centre, so a 16 mm
@@ -813,7 +854,9 @@ def i2c(d: Design):
     d.stub_net(sh, u, "5", "I2C_SDA", 7.62)
     d.finish(sh, u)
 
-    d.vpart(sh, "R", "R18", "200", FP_R, 130, 78, "+3V3", "VREF2")
+    d.vpart(sh, "R", "R18", "200k", FP_R, 130, 78, "+3V3", "VREF2")
+    # SCPS113O 8.1.7: the 1.8 V LDO cannot sink the translator bias. 301k bleeds it.
+    d.vpart(sh, "R", "R66", "301k", FP_R, 155, 110, "+1V8", "GND")
     d.flag_net(sh, "VREF2", 155, 100)
     d.vpart(sh, "R", "R21", "4.7k", FP_R, 40, 150, "+1V8", "I2C_SDA_1V8")
     d.vpart(sh, "R", "R22", "4.7k", FP_R, 62, 150, "+1V8", "I2C_SCL_1V8")

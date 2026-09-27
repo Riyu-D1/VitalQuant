@@ -31,7 +31,7 @@ SnapMagic / Ultra Librarian, from the attached `vitalq_libs` archive
 | MLX90632SLD-DCB-100-SP | `snap` `MLX90632SLD-DCB-100-SP` | `snap:MLX90632SLDDCB100SP` | Was MLX90632SLD-DCB-000-RE. Pins are unchanged (1 SDA, 2 VDD, 3 GND, 4 SCL, 5 ADDR, 6 EP to GND). Ordering digit "1" is the 1.8 V I2C option; VDD stays 3.3 V. |
 | TMP117AIDRVR | `snap` `TMP117AIDRVR` | `snap:SON65P200X200X80-7N` | DRV Table 5-1: 1 SCL, 2 GND, 3 ALERT, 4 ADD0, 5 V+, 6 SDA, 7 EP to GND. The old local symbol had ADD0 and ALERT swapped. |
 | LSM6DSV80XTR | Ultra Librarian `LSM6DSV80XTR` | `snap:QFN_LSM6DSV80XTR_STM` | UL nominal QFN variant (LGA-14L). No STEP file was supplied. `lib/snap.3d/LSM6DSV80XTR.wrl` is a 3.0 × 2.5 × 0.83 mm body (3.0 mm along X, matching the land). KiCad reads VRML in units of 0.1 inch, so the file is written in those units and offset +0.415 mm in Z. Pins 6 and 7 were `power_out` in the UL file and are `power_in` so they do not fight the GND flag. |
-| MCP73831T-2ACI/OT | `snap` `MCP73831T-2ACI_OT` | `snap:SOT95P280X145-5N` | Vendor file typed VBAT as `output`. Import sets it to `power_out` so it drives the XC6206. A courtyard rectangle was added around the pads; the copper is unchanged. STEP is Y-up: rotate X by −90 and Z by 90 so the 2.9 mm length follows the SOT-23-5 pads. Z offset is 0. |
+| MCP73831T-2ACI/OT | `snap` `MCP73831T-2ACI_OT` | `snap:SOT95P280X145-5N` | Not placed. U2 is the BQ25170 below. The imported symbol remains in the library. |
 
 ## KiCad official footprints, checked against the datasheet
 
@@ -43,6 +43,8 @@ SnapMagic / Ultra Librarian, from the attached `vitalq_libs` archive
 | PCA9306DCUR | KiCad `Interface:PCA9306DC` | KiCad `Package_SO:VSSOP-8_2.3x2mm_P0.5mm` | Extra IC. VSSOP-8, 2.3 × 2 mm, 0.5 mm pitch. https://www.ti.com/lit/ds/symlink/pca9306.pdf |
 | BME280 | KiCad `Sensor:BME280` | KiCad `Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering` | Bosch LGA-8, 2.5 × 2.5 mm, clockwise numbering. https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf |
 | ESP32-WROOM-32E-N8R2 | KiCad `RF_Module:ESP32-WROOM-32E-R2` | KiCad `RF_Module:ESP32-WROOM-32E` | Antenna is the local −Y end. Rotation 90 puts that end on the left board edge. https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf |
+| BQ25170DSGR | Local `vitalq:BQ25170` | KiCad `Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm` | Replaces MCP73831. Symbol drawn from SLUSDJ8A Table 5-1: 1 IN, 2 ISET, 3 TS, 4 GND, 5 STAT, 6 ~PG, 7 VSET, 8 OUT, 9 EP to GND. Official DSG land, no thermal vias (via-in-pad would wick solder). https://www.ti.com/lit/ds/symlink/bq25170.pdf |
+| BC847BS,115 | Local `vitalq:BC847BS_DUAL` | KiCad `Package_TO_SOT_SMD:SOT-363_SC-70-6` | Auto-program pair. The official KiCad `BC847BS` symbol is two units whose pins share coordinates, so it was not placed. This symbol is one unit with pins 1 E1, 2 B1, 3 C2, 4 E2, 5 B2, 6 C1, matching the Nexperia SOT-363. Value property is BC847BS. |
 
 ## Other footprints
 

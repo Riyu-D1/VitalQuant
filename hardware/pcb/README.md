@@ -1,14 +1,14 @@
 # VitalQ hw_v1
 
 Research prototype. This is not a medical device. Nothing here is a claim
-about safety, sterility, biocompatibility, or regulatory clearance. The
+about safety, sterility, biocompatibility, or regulatory clearance.
 The defibrillator parts are not an IEC 60601-2-27 type-test claim.
 The 51 kΩ pulse resistors and the gas-discharge tubes are a research-prototype
 attempt to follow the TI and TDK pulse guidance. They do not make this a
 defibrillator-proof medical input.
 
 The schematic is drawn explicitly. The PCB is an unrouted placement:
-**36.5 × 44.4 mm**, rectangular, **4 layers**, parts on both sides.
+**36.5 × 53.6 mm**, rectangular, **4 layers**, parts on both sides.
 Six layers were not required. The analog nets are ordinary and the
 stackup is the JLCPCB 4-layer default.
 
@@ -52,8 +52,9 @@ same XY, outside the module body. The island neck faces the cluster.
 
 Above that cluster, the five 2512 pulse resistors are on the bottom.
 Both rows of gas-discharge tubes are on the top, over that same band,
-clear of the module courtyard. The LiPo pads, the NTC divider, and the
-charge-enable FET are on the bottom, above the pulse resistors.
+clear of the module courtyard. The LiPo pads and the TS-disable FET
+are on the bottom, above the pulse resistors. Four more 2512 surge
+resistors (R76–R79) sit on the bottom at the far end of the board.
 
 Electrodes are flat solder pads. No headers. J5 is five pads: ADS1292R
 positive, ADS1292R negative, RLD, AFE4900 positive, AFE4900 negative.
@@ -64,9 +65,10 @@ electrodes. That distance is on the harness, not on this 36.5 mm board.
 Three 0.8 mm slots sit between the DPCR electrode pads (R32–R33,
 R33–R34, R34–R35). On a 1.6 mm board the path through a slot is 4.0 mm.
 The R35–R36 gap stays 3.10 mm of surface copper: D20's pad fills that
-corridor, so a slot does not fit. J5 and J6 were not spread; a slot
-does not fit in their 0.55 mm and 1.05 mm gaps without moving the
-skin cluster.
+corridor, so a slot does not fit. J5 is still 0.55 mm between pads and
+J6 is still 1.05 mm. A slot needs about 1.4 mm of gap, and spreading
+either footprint to that pitch runs into the antenna keep-out or the
+skin cluster. The new EDA surge resistors are 4.05 mm apart.
 
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
@@ -75,48 +77,49 @@ Reference designators are hidden. Fab reference text is 0.35 mm.
 
 ## Part count
 
-**165 parts.** The previous 146 are still here. Thirteen protection parts
-were added earlier (D12–D20, Q2, R59, R60, R61). This check added R62–R65,
-C62, and C63.
+**183 parts.** U2 is now a BQ25170DSGR in place of the MCP73831. Q3 is
+the auto-program pair. R66–R79 and C64–C66 are the new passives.
 
 | Group | Qty | Parts |
 | --- | --- | --- |
-| ICs | 20 | U1–U20, listed below |
+| ICs | 20 | U1–U20, listed below. U2 is BQ25170DSGR |
 | MOSFETs | 2 | Q1 and Q2, both CSD13380F3 |
+| Transistor | 1 | Q3 BC847BS,115, SOT-363 |
 | ESD diodes | 9 | D1–D9 TPD1E10B06DPYR |
 | Gas discharge | 9 | D12–D20, TDK S30-A90X, B88069X9231T203 |
 | LEDs | 2 | D10 NF2W757G-F1, D11 SFH 4053 |
 | Inductors | 2 | L1 0.47 µH, L2 1.0 µH |
 | Pads | 5 | J1 USB-C, J2 LiPo (3 pads), J3 FSR, J5 ECG, J6 EDA |
-| Resistors | 57 | 52 of 0402, plus R32–R36 in 2512 |
-| Capacitors | 59 | 56 of 0402, plus C44, C45, C47 in 0603 |
+| Resistors | 71 | 62 of 0402, plus R32–R36 and R76–R79 in 2512 |
+| Capacitors | 62 | 59 of 0402, plus C44, C45, C47 in 0603 |
 
 PWR_FLAG symbols are schematic-only and are not in this count.
 
 ## Rails
 
-USB VBUS feeds the MCP73831 and the CP2102N VREGIN pin. The CP2102N
+USB VBUS feeds the BQ25170 and the CP2102N VREGIN pin. The CP2102N
 VBUS sense pin is the Fig 2.5 divider (R63 22.1 kΩ, R64 47.5 kΩ), not
 the 5 V rail. There is no power-path diode or switch. The cell and the
 charger share VBAT.
-The TPS63802 makes 3.3 V from VBAT. The board does not run from USB
-if the cell is missing.
+The TPS63802 makes 3.3 V from VBAT. Charging starts from USB with a
+flat cell. The 3.3 V rail still needs the cell or a charged battery;
+the board does not run the ESP32 from USB alone.
 
 | Net | Source | Loads |
 | --- | --- | --- |
-| VBUS | USB-C | MCP73831 VDD, CP2102N VREGIN, the two VBUS dividers |
-| VBAT | MCP73831 and J2 | TPS63802, TPS61240, MAX17048 |
+| VBUS | USB-C | BQ25170 IN, CP2102N VREGIN, the VBUS divider |
+| VBAT | BQ25170 OUT and J2 | TPS63802, TPS61240, MAX17048 |
 | +3V3 | TPS63802 | ESP32, AFE4900 RX and IO, AD5940, ADS1292R, 3.3 V I2C, sensors, the white LED, the 860 nm LED resistor |
 | TX_5V | TPS61240 | AFE4900 TX_SUP and the SFH 7072 anodes. Enable is expander P3 |
 | +1V8 | TPS7A2018 | AS7341 VDD, PCA9306 VREF1, MLX90632 SDA/SCL pull-ups |
 | VDD_CP2102 | CP2102N internal regulator | CP2102N VDD bypass only. Not tied to +3V3 |
 
-R3 is 10 kΩ, so the MCP73831-2 charges at 100 mA while Q2 is on.
-STAT goes to the expander with a pull-up. There is no charge LED.
-Q2 is in series with R3. DS20001984H §5.2.2: letting PROG float disables
-charge. The expander powers up with P7 as an input, R59 holds the gate
-low, and charge stays off until firmware has read the NTC and drives
-CHG_EN high. That is the safe default. Charging is not enabled at power-up.
+U2 is a BQ25170DSGR, the replacement for the MCP73831. R3 is 3.0 kΩ
+(100 mA). R75 is 27.0 kΩ (4.20 V). The cell NTC, or R61 if the cell
+has none, goes straight to TS. Charge is on when USB is present and
+TS is inside the hardware window. P7 high (CHG_DIS) turns Q2 on and
+shorts TS, which stops charge. STAT still goes to the expander. /PG
+goes to GPIO27. There is no charge LED.
 
 TPS61240 output is 4.9–5.1 V. AFE4900 TX_SUP must be 3.0–5.25 V, so
 this sits inside that window. Green LED Vf max in the SFH 7072 v1.6
@@ -132,9 +135,11 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
 
 ## Assumptions that are not in a public full datasheet
 
-- AFE4900 TX_SUP headroom, ECG common-mode range, and the 100 nF / 10 MΩ
-  ECG coupling are not in the public short-form. The coupling values are
-  an inference.
+- AFE4900 TX_SUP headroom and ECG common-mode range are not in the
+  public short-form. The ECG bias follows TIDUDO6B Fig 2-10 (5.11 MΩ
+  from the body-drive node, 100 kΩ series). AC coupling is kept, and
+  the AFE's own RLD amplifier stays off, because ADS1292R already
+  drives the RLD pad. See `PASSIVES.md`.
 - AS7341 NIR is characterised at 940 nm. Response at 860 nm (SFH 4053)
   was not confirmed. LDR headroom with a white LED Vf near 2.9 V from
   a 3.3 V rail is tight and was not confirmed against the full AS7341 sheet.
@@ -149,29 +154,31 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
   ADS1292R and the channel 1 respiration function, this capacitor must
   be 47 nF." The PGA section also says 4.7 nF is recommended; the
   figure note is the one that says "must" for respiration. C35 stays
-  4.7 nF. R32 and R33 are now 51 kΩ instead of 49.9 kΩ. Fig 68's
-  electrode node is still on the IC side of that resistor, so the
-  modulation impedance is 40.2 kΩ + 51 kΩ = 91.2 kΩ. Equation 10
-  scales the respiration current by that impedance. The current is
-  about 1.2% lower than it was at 49.9 kΩ. The modulation path is
-  unchanged apart from that existing series resistor. Fig 68's note
-  is only "Patient and input protection circuitry not shown."
+  4.7 nF. The 51 kΩ surge resistors sit inside the respiration loop.
+  The PGA therefore sees a baseline near 102 kΩ, outside the
+  2000–10,000 Ω range in SBAS502C §6.5. Equation 10 only describes the
+  modulation current. That earlier "1.2% and it still works" claim is
+  withdrawn. The loop was not redesigned in this round; the options
+  are in the verification report.
 - S30-A90X land is 1.2 × 2.0 mm pads on a 3.4 mm pitch, read from the
   issue 04 recommended-land figure. The footprint matches that reading.
   TDK says solder must not close the gap under the tube.
 - The S30 impulse ratings are 8/20 µs and 10/1000 µs. They are not an
   IEC 60601-2-27 defibrillator-waveform energy rating.
-- C54 (15 nF, 50 V, 0402) and C55 (470 nF, 0402) still sit on the EDA
-  pad side of the series parts. Until a gas-discharge tube fires they
-  can see the pad voltage. Their voltage ratings do not cover a
-  500 V impulse sparkover. The 1 kΩ EDA network was not changed.
+- C54 (15 nF, 50 V) now sits behind R76. A slow pulse can still charge
+  it toward the S30 DC sparkover before the tube fires. C55 (470 nF,
+  10 V) sits on the clamp side of the SE surge resistor. The 1 kΩ
+  RLIMIT (R39) is unchanged.
 
 ## Firmware profile is out of date
 
 `firmware/esp32/profiles/hw_v1.yaml` and `config/hardware.example.yaml`
 were not edited. They still describe an ESP32-S3 board with different
 GPIO, a MAX86141, an MLX90637, and an ICM-42670-P. This PCB is the
-classic ESP32 map in `PINMAP.md`.
+classic ESP32 map in `PINMAP.md`. GPIO39 is open (the NTC is the
+BQ25170 TS pin). GPIO25 is the fuel-gauge alert. GPIO27 is charger
+power-good. Expander P7 is CHG_DIS, active high to stop charge.
+Firmware must also cap the AFE4900 LED current at 100–150 mA.
 
 ## Sheets
 
@@ -191,7 +198,7 @@ replaces it. U3 is the same reference with a new device.
 | Ref | Part |
 | --- | --- |
 | U1 | ESP32-WROOM-32E-N8R2 |
-| U2 | MCP73831T-2ACI/OT |
+| U2 | BQ25170DSGR (replaces MCP73831T-2ACI/OT) |
 | U3 | was XC6206P332MR, now TPS63802DLAR |
 | U4 | TPS7A2018PDBVR |
 | U5 | CP2102N-A02-GQFN28R |
