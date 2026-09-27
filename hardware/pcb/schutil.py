@@ -12,6 +12,7 @@ import uuid
 from pathlib import Path
 
 LIB_PATH = Path(__file__).resolve().parent / "lib" / "vitalq.kicad_sym"
+SNAP_PATH = Path(__file__).resolve().parent / "lib" / "snap.kicad_sym"
 PROJECT = "vitalq_hw_v1"
 
 
@@ -70,6 +71,14 @@ def _top_symbols(text: str) -> list[str]:
 
 
 def load_lib(path: Path = LIB_PATH) -> dict[str, SymbolDef]:
+    lib = _load_one(path)
+    if path == LIB_PATH and SNAP_PATH.exists():
+        # Official SnapMagic / Ultra Librarian symbols override any local stand-in.
+        lib.update(_load_one(SNAP_PATH))
+    return lib
+
+
+def _load_one(path: Path) -> dict[str, SymbolDef]:
     text = path.read_text(encoding="utf-8")
     lib = {}
     for block in _top_symbols(text):
@@ -78,14 +87,18 @@ def load_lib(path: Path = LIB_PATH) -> dict[str, SymbolDef]:
             continue
         name = m.group(1)
         pins = {}
+        # Official SnapMagic/Ultra Librarian symbols use "pin input line",
+        # "pin input clock", and rotations like 180.0. Electrical type is the
+        # first word; the graphic style (line/clock) is ignored.
         for pm in re.finditer(
-            r"\(pin (\w+) line\s+\(at ([-\d.]+) ([-\d.]+) (\d+)\)\s+\(length ([-\d.]+)\)(.*?)\(number \"([^\"]+)\"",
+            r"\(pin ([\w ]+?)\s+\(at ([-\d.]+) ([-\d.]+) ([-\d.]+)\)\s+\(length ([-\d.]+)\)(.*?)\(number \"([^\"]+)\"",
             block,
             re.S,
         ):
-            etype, x, y, rot, length, mid, num = pm.groups()
+            style, x, y, rot, length, mid, num = pm.groups()
+            etype = style.split()[0]
             nm = re.search(r'\(name "([^"]*)"', mid)
-            pins[num] = Pin(num, nm.group(1) if nm else "~", etype, x, y, rot, length)
+            pins[num] = Pin(num, nm.group(1) if nm else "~", etype, x, y, int(float(rot)), length)
         lib[name] = SymbolDef(name, block, pins)
     return lib
 

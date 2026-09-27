@@ -33,7 +33,7 @@ PY
 
 python3 build_pcb.py
 
-kicad-cli pcb drc --severity-error --schematic-parity --format json -o build/drc.json vitalq_hw_v1.kicad_pcb
+kicad-cli pcb drc --severity-error --severity-warning --schematic-parity --format json -o build/drc.json vitalq_hw_v1.kicad_pcb
 python3 - << 'PY'
 import json
 import sys
@@ -58,6 +58,27 @@ unexpected = {name: n for name, n in counts.items() if name != "unconnected_item
 print(f"DRC errors: {len(errors)} ({dict(counts)})")
 print(f"DRC errors excluding unrouted nets: {sum(unexpected.values())}")
 if unexpected:
+    sys.exit(1)
+
+silk = []
+
+def walk_silk(node):
+    if isinstance(node, dict):
+        if node.get("severity") == "warning" and node.get("type") in {
+            "silk_overlap",
+            "silk_over_copper",
+            "silk_edge_clearance",
+        }:
+            silk.append(node["type"])
+        for value in node.values():
+            walk_silk(value)
+    elif isinstance(node, list):
+        for item in node:
+            walk_silk(item)
+
+walk_silk(report)
+print(f"Silkscreen warnings: {len(silk)} ({dict(Counter(silk))})")
+if silk:
     sys.exit(1)
 PY
 

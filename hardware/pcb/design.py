@@ -13,11 +13,19 @@ FP_C = "Capacitor_SMD:C_0402_1005Metric"
 FP_TP = "TestPoint:TestPoint_Pad_D1.5mm"
 FP_M2 = "MountingHole:MountingHole_2.2mm_M2"
 FP_USB = "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
-FP_BAT = "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal"
-FP_FSR = "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-FP_H3 = "Connector_PinHeader_1.27mm:PinHeader_1x03_P1.27mm_Horizontal"
-FP_H4 = "Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Horizontal"
-FP_H6 = "Connector_PinHeader_1.27mm:PinHeader_1x06_P1.27mm_Horizontal"
+FP_BAT = "vitalq:Pads_LiPo"
+FP_FSR = "vitalq:Pads_FSR"
+FP_H3 = "vitalq:Pads_ECG"
+FP_H4 = "vitalq:Pads_EDA"
+FP_H6 = "vitalq:Pads_PPG"
+FP_MCP = "snap:SOT95P280X145-5N"
+FP_AFE = "snap:BGA30N40P5X6_260X210X50"
+FP_AD = "snap:BGA56C40P8X7_416X356X55"
+FP_ADS = "snap:QFN40P400X400X100-33N-D"
+FP_AS = "snap:AS7341DLGT"
+FP_TMP = "snap:SON65P200X200X80-7N"
+FP_MLX = "snap:MLX90632SLDDCB100SP"
+FP_IMU = "snap:QFN_LSM6DSV80XTR_STM"
 
 RAILS = {"+3V3", "+1V8", "VBUS", "GND"}
 
@@ -102,8 +110,13 @@ class Design:
         self.touch(inst, num)
 
     def join_row(self, sh, inst, nums, net, dist=6.35):
-        """Same net on several pins. Each pin gets its own stub so a bus wire cannot miss one."""
-        uniq = []
+        """Same net on several pins. Each pin gets its own straight stub.
+
+        A sideways jog of a few millimetres lands on the next pin when the
+        symbol pitch is 2.54 mm, which shorts neighbouring nets. Global labels
+        and power symbols already join the stubs, so no local bus is required.
+        Stacked pins share one stub; the junction ties every pin at that point.
+        """
         seen = set()
         for n in nums:
             x, y, vx, vy = inst.pin_out(n)
@@ -112,15 +125,8 @@ class Design:
                 self.touch(inst, n)
                 continue
             seen.add(key)
-            uniq.append((n, x, y))
-        for i, (n, x, y) in enumerate(uniq):
-            # A junction on a stacked pin makes every pin at that point part of the wire.
             sh.junction(x, y)
-            if len(uniq) == 1:
-                self.stub_net(sh, inst, n, net, dist)
-            else:
-                spread = (i - (len(uniq) - 1) / 2) * 10.16
-                self.jog(sh, inst, n, net, jog=spread, dist=dist)
+            self.stub_net(sh, inst, n, net, dist)
 
     def flag_net(self, sh, net, x, y):
         """PWR_FLAG on a net that is only reached through a resistor."""
@@ -192,7 +198,7 @@ def build_design(lib=None) -> Design:
 
 def power(d: Design):
     sh = d.sheet("Power and charging", "vitalq_hw_v1.kicad_sch", "1")
-    sh.rect(12, 20, 408, 168)
+    sh.rect(12, 20, 408, 200)
     sh.text("Power and charging", 16, 18, 3.2, bold=True)
     sh.text("USB-C, LiPo charger, 3.3 V rail, 1.8 V rail", 16, 26, 1.6)
 
@@ -211,7 +217,7 @@ def power(d: Design):
     d.vpart(sh, "R", "R1", "5.1k", FP_R, 92, 118, "USB_CC1", "GND")
     d.vpart(sh, "R", "R2", "5.1k", FP_R, 108, 118, "USB_CC2", "GND")
 
-    u = d.part(sh, "MCP73831-2-OT", "U2", "MCP73831T-2ACI/OT", "Package_TO_SOT_SMD:SOT-23-5", 168, 70, labels="ic")
+    u = d.part(sh, "MCP73831T-2ACI_OT", "U2", "MCP73831T-2ACI/OT", FP_MCP, 168, 78, labels="ic")
     d.stub_net(sh, u, "4", "VBUS", 6.35)  # VDD top
     d.stub_net(sh, u, "2", "GND", 6.35)  # VSS bottom
     d.stub_net(sh, u, "3", "VBAT", 7.62)  # VBAT right, power_out
@@ -232,7 +238,7 @@ def power(d: Design):
     d.stub_net(sh, u, "2", "GND", 6.35)
     d.finish(sh, u)  # NC pin is type no_connect
 
-    bat = d.part(sh, "Conn_01x02_Pin", "J2", "LiPo", FP_BAT, 168, 145, labels="ic")
+    bat = d.part(sh, "Conn_01x02_Pin", "J2", "LiPo pads", FP_BAT, 168, 150, labels="ic")
     d.stub_net(sh, bat, "1", "VBAT", 7.62)
     d.stub_net(sh, bat, "2", "GND", 7.62)
     d.finish(sh, bat)
@@ -246,6 +252,7 @@ def power(d: Design):
     d.vpart(sh, "C", "C5", "1u", FP_C, 330, 122, "+3V3", "GND")
     d.vpart(sh, "C", "C6", "1u", FP_C, 350, 122, "+1V8", "GND")
 
+    sh.text("J2 is two flat solder pads (BAT+ BAT-), not a header. No power switch.", 16, 175, 1.4)
     # One power-output flag on GND and one on VBUS. +3V3 is driven by U3, +1V8 by U4, VBAT by U2.
     g = d.pwr(sh, "GND", 392, 130)
     fl = d.flag(sh, 392, 142)
@@ -254,12 +261,7 @@ def power(d: Design):
     fl2 = d.flag(sh, 404, 78)
     sh.wire([v.pin_xy("1"), fl2.pin_xy("1")])
 
-    h1 = d.part(sh, "MountingHole", "H1", "M2", FP_M2, 30, 150, labels="side", bom=False)
-    h2 = d.part(sh, "MountingHole", "H2", "M2", FP_M2, 55, 150, labels="side", bom=False)
-    d.finish(sh, h1)
-    d.finish(sh, h2)
-
-    sh.text("TPS7A2018 (not 3.3 V): AS7341 VDD is 1.7-2.0 V. Every other IC runs at 3.3 V.", 16, 178, 1.5)
+    sh.text("TPS7A2018 (not 3.3 V): AS7341 VDD is 1.7-2.0 V. Every other IC runs at 3.3 V.", 16, 186, 1.5)
     sh.text("U4 is fed from U3. EN is tied to IN. No separate 1.8 V XC6206.", 16, 184, 1.5)
     sh.text("Load sits on VBAT. USB charges the cell and powers the UART. The board does not run from USB with the cell missing.", 16, 190, 1.5)
     sh.text("R3 = 10k sets MCP73831 to 100 mA. STAT is open. No charge LED. H1 and H2 are M2 holes.", 16, 196, 1.5)
@@ -371,15 +373,15 @@ def mcu(d: Design):
     d.vpart(sh, "R", "R5", "10k", FP_R, 330, 40, "+3V3", "ESP_EN")
     d.vpart(sh, "R", "R6", "10k", FP_R, 352, 40, "+3V3", "ESP_IO0")
     d.vpart(sh, "R", "R7", "10k", FP_R, 374, 40, "+3V3", "CS_AD5940")
-    tp1 = d.part(sh, "TestPoint", "TP1", "EN", FP_TP, 330, 78, labels="side")
+    tp1 = d.part(sh, "TestPoint", "TP1", "EN", FP_TP, 330, 78, labels="side", bom=False)
     d.stub_net(sh, tp1, "1", "ESP_EN", 5.08)
     d.finish(sh, tp1)
-    tp2 = d.part(sh, "TestPoint", "TP2", "IO0", FP_TP, 360, 78, labels="side")
+    tp2 = d.part(sh, "TestPoint", "TP2", "IO0", FP_TP, 360, 78, labels="side", bom=False)
     d.stub_net(sh, tp2, "1", "ESP_IO0", 5.08)
     d.finish(sh, tp2)
 
     sh.text("FSR402 divider", 314, 100, 1.8, bold=True)
-    hdr = d.part(sh, "Conn_01x02_Pin", "J3", "FSR402", FP_FSR, 330, 120, labels="ic")
+    hdr = d.part(sh, "Conn_01x02_Pin", "J3", "FSR pads", FP_FSR, 340, 130, labels="ic")
     d.stub_net(sh, hdr, "1", "+3V3", 7.62)
     d.stub_net(sh, hdr, "2", "FSR_ADC", 7.62)
     d.finish(sh, hdr)
@@ -393,11 +395,11 @@ def mcu(d: Design):
 
 def afe(d: Design):
     sh = d.sheet("AFE4900 PPG", "afe4900.kicad_sch", "4")
-    sh.rect(12, 18, 408, 230)
+    sh.rect(12, 18, 408, 248)
     sh.text("AFE4900 PPG", 16, 16, 3.2, bold=True)
     sh.text("SPI mode. LED and photodiode are off the board, on J4. No on-board optics.", 16, 24, 1.5)
 
-    u = d.part(sh, "AFE4900YZR", "U6", "AFE4900YZR", "vitalq:AFE4900YZR", 230, 120, labels="ic")
+    u = d.part(sh, "AFE4900YZR", "U6", "AFE4900YZR", FP_AFE, 250, 130, labels="ic")
     left = {
         "A1": "NC",
         "B1": "NC",
@@ -438,11 +440,11 @@ def afe(d: Design):
     d.side_map(sh, u, right, 8.89)
     d.finish(sh, u)
 
-    hdr = d.part(sh, "Conn_01x06_Pin", "J4", "PPG", FP_H6, 55, 70, labels="ic")
+    hdr = d.part(sh, "Conn_01x06_Pin", "J4", "PPG pads", FP_H6, 70, 55, labels="ic")
     for num, net in {"1": "VBAT", "2": "TX1", "3": "TX2", "4": "TX3", "5": "PD_INP", "6": "PD_INM"}.items():
         d.stub_net(sh, hdr, num, net, 8.89)
     d.finish(sh, hdr)
-    sh.text("J4 off-board LED and PD", 16, 40, 1.5, bold=True)
+    sh.text("J4 solder pads, off-board LED and PD. No header.", 16, 40, 1.5, bold=True)
     sh.text("1 VBAT (TX_SUP)", 16, 48, 1.3)
     sh.text("2 TX1  3 TX2  4 TX3", 16, 53, 1.3)
     sh.text("5 PD cathode (INP)", 16, 58, 1.3)
@@ -450,19 +452,17 @@ def afe(d: Design):
 
     sh.text("Bias and decoupling", 40, 130, 1.8, bold=True)
     # y=172 keeps the upward AFE_CLK label clear of the VBAT label on U6.
-    d.vpart(sh, "C", "C11", "1u", FP_C, 55, 172, "+3V3", "GND")
-    d.vpart(sh, "C", "C12", "100n", FP_C, 78, 172, "+3V3", "GND")
-    d.vpart(sh, "C", "C13", "100n", FP_C, 101, 172, "+3V3", "GND")
-    d.vpart(sh, "C", "C14", "1u", FP_C, 124, 172, "VBAT", "GND")
-    d.vpart(sh, "C", "C15", "100n", FP_C, 147, 172, "AFE_BG", "GND")
-    d.vpart(sh, "R", "R9", "10k", FP_R, 175, 172, "+3V3", "AFE4900_RESETZ")
-    d.vpart(sh, "R", "R10", "1k", FP_R, 198, 172, "AFE_CLK", "GND")
+    d.vpart(sh, "C", "C11", "1u", FP_C, 55, 200, "+3V3", "GND")
+    d.vpart(sh, "C", "C12", "100n", FP_C, 78, 200, "+3V3", "GND")
+    d.vpart(sh, "C", "C13", "100n", FP_C, 101, 200, "+3V3", "GND")
+    d.vpart(sh, "C", "C14", "1u", FP_C, 124, 200, "VBAT", "GND")
+    d.vpart(sh, "C", "C15", "100n", FP_C, 147, 200, "AFE_BG", "GND")
+    d.vpart(sh, "R", "R9", "10k", FP_R, 175, 200, "+3V3", "AFE4900_RESETZ")
+    d.vpart(sh, "R", "R10", "1k", FP_R, 198, 200, "AFE_CLK", "GND")
 
-    sh.text("C11+C12 on RX_SUP, C13 on IO_SUP, C14 on TX_SUP (VBAT), C15 on BG.", 16, 200, 1.4)
-    sh.text("I2C_SPI_SEL tied to RX_SUP (+3V3) selects SPI. CONTROL1 is grounded.", 16, 206, 1.4)
-    sh.text("R10 holds CLK low so the internal clock is used. Confirm against the full AFE4900 pin table.", 16, 212, 1.4)
-    sh.text("ECG pins, TX4, the second photodiode pair, RLD_OUT and PROG_OUT1 are open.", 16, 218, 1.4)
-    sh.text("Footprint is hand-drawn from SBAS861B page 5. The public PDF has no ball list.", 16, 224, 1.4)
+    sh.text("C11+C12 on RX_SUP, C13 on IO_SUP, C14 on TX_SUP (VBAT), C15 on BG.", 16, 228, 1.4)
+    sh.text("I2C_SPI_SEL tied to RX_SUP (+3V3) selects SPI. CONTROL1 is grounded.", 16, 234, 1.4)
+    sh.text("R10 holds CLK low so the internal clock is used. Ball names are the SnapMagic symbol.", 16, 240, 1.4)
 
 
 def ad(d: Design):
@@ -471,7 +471,7 @@ def ad(d: Design):
     sh.text("AD5940 EDA / BioZ", 16, 14, 3.2, bold=True)
     sh.text("Electrodes are wired straight to CE0 RE0 SE0 DE0. No series RC network and no crystal.", 16, 22, 1.4)
 
-    u = d.part(sh, "AD5940BCBZ", "U7", "AD5940BCBZ", "vitalq:AD5940BCBZ", 250, 130, labels="ic")
+    u = d.part(sh, "AD5940BCBZ-RL7", "U7", "AD5940BCBZ-RL7", FP_AD, 250, 40, labels="ic")
     nets = {
         "A1": "NC",
         "A2": "NC",
@@ -528,11 +528,11 @@ def ad(d: Design):
     d.side_map(sh, u, nets, 7.62)
     d.finish(sh, u)
 
-    hdr = d.part(sh, "Conn_01x04_Pin", "J6", "EDA", FP_H4, 40, 55, labels="ic")
+    hdr = d.part(sh, "Conn_01x04_Pin", "J6", "EDA pads", FP_H4, 40, 36, labels="ic")
     for num, net in {"1": "CE0", "2": "RE0", "3": "SE0", "4": "DE0"}.items():
         d.stub_net(sh, hdr, num, net, 7.62)
     d.finish(sh, hdr)
-    sh.text("J6 electrodes", 16, 36, 1.5, bold=True)
+    sh.text("J6 solder pads. No header.", 16, 28, 1.5, bold=True)
 
     sh.text("Decoupling, RCAL, RC0", 16, 100, 1.6, bold=True)
     caps = [
@@ -567,11 +567,11 @@ def ad(d: Design):
 
 def ads(d: Design):
     sh = d.sheet("ADS1292R ECG", "ads1292.kicad_sch", "6")
-    sh.rect(12, 16, 408, 236)
+    sh.rect(12, 16, 408, 258)
     sh.text("ADS1292R ECG", 16, 14, 3.2, bold=True)
     sh.text("Channel 2 is tied to channel 1. Respiration components are not fitted.", 16, 22, 1.5)
 
-    u = d.part(sh, "ADS1292RIPBSR", "U8", "ADS1292RIPBSR", "Package_QFP:TQFP-32_5x5mm_P0.5mm", 230, 115, labels="ic")
+    u = d.part(sh, "ADS1292RIRSMT", "U8", "ADS1292RIRSMT", FP_ADS, 200, 110, labels="ic")
     side = {
         "1": "PGA1N",
         "2": "PGA1P",
@@ -601,17 +601,18 @@ def ads(d: Design):
         "22": "ADS1292_DRDY",
         "25": "NC",
         "26": "NC",
+        "33": "GND",  # exposed pad, must be AVSS
     }
     d.side_map(sh, u, side, 8.89)
     d.join_row(sh, u, ["12", "23"], "+3V3", 6.35)
     d.join_row(sh, u, ["13", "24"], "GND", 6.35)
     d.finish(sh, u)
 
-    hdr = d.part(sh, "Conn_01x03_Pin", "J5", "ECG", FP_H3, 48, 48, labels="ic")
+    hdr = d.part(sh, "Conn_01x03_Pin", "J5", "ECG pads", FP_H3, 48, 40, labels="ic")
     for num, net in {"1": "IN1P", "2": "IN1N", "3": "RLDOUT"}.items():
         d.stub_net(sh, hdr, num, net, 7.62)
     d.finish(sh, hdr)
-    sh.text("J5  1 IN1P  2 IN1N  3 RLDOUT", 16, 36, 1.4)
+    sh.text("J5 solder pads: 1 IN1P  2 IN1N  3 RLDOUT. No header.", 16, 28, 1.4)
 
     sh.text("Supplies and PGA", 16, 78, 1.6, bold=True)
     row = [
@@ -623,21 +624,18 @@ def ads(d: Design):
         ("C33", "1u", "VCAP2", "GND"),
     ]
     for i, (ref, val, a, b) in enumerate(row):
-        d.vpart(sh, "C", ref, val, FP_C, 40 + i * 20, 100, a, b)
-    d.hpart(sh, "C", "C34", "4.7n", FP_C, 70, 145, "PGA1N", "PGA1P")
-    d.hpart(sh, "C", "C35", "4.7n", FP_C, 130, 145, "PGA2N", "PGA2P")
-    d.vpart(sh, "R", "R14", "10k", FP_R, 180, 145, "+3V3", "ADS1292_PWDN")
+        d.vpart(sh, "C", ref, val, FP_C, 40 + i * 22, 185, a, b)
+    d.hpart(sh, "C", "C34", "4.7n", FP_C, 70, 210, "PGA1N", "PGA1P")
+    d.hpart(sh, "C", "C35", "4.7n", FP_C, 130, 210, "PGA2N", "PGA2P")
+    d.vpart(sh, "R", "R14", "10k", FP_R, 185, 185, "+3V3", "ADS1292_PWDN")
 
-    sh.text("RLD bias", 16, 178, 1.8, bold=True)
-    # Below R14 so the ADS1292_PWDN label does not cross the 1M value.
-    d.hpart(sh, "R", "R15", "1M", FP_R, 70, 190, "+3V3", "RLDREF")
-    d.hpart(sh, "R", "R16", "1M", FP_R, 115, 190, "RLDREF", "GND")
-    d.hpart(sh, "R", "R17", "1M", FP_R, 175, 190, "RLDOUT", "RLDINV")
+    sh.text("RLD bias", 16, 228, 1.8, bold=True)
+    d.hpart(sh, "R", "R15", "1M", FP_R, 70, 240, "+3V3", "RLDREF")
+    d.hpart(sh, "R", "R16", "1M", FP_R, 115, 240, "RLDREF", "GND")
+    d.hpart(sh, "R", "R17", "1M", FP_R, 175, 240, "RLDOUT", "RLDINV")
 
-    sh.text("C28 AVDD, C29 DVDD, C30+C31 VREFP to GND, C32 VCAP1, C33 VCAP2, C34/C35 across the PGA pins.", 16, 200, 1.35)
-    sh.text("R15/R16 set RLDREF at mid-rail. R17 closes RLDOUT to RLDINV. RESP_MOD pins are open.", 16, 206, 1.35)
-    sh.text("CLKSEL is tied to DVDD. The CLK pin is open. IN2P/IN2N share the IN1 nets so channel 2 is not floating.", 16, 212, 1.35)
-    sh.text("PWDN is pulled up. Hold digital inputs low until the supplies are up if the datasheet timing is required.", 16, 218, 1.35)
+    sh.text("QFN-32 RSM, not the TQFP. Exposed pad pin 33 is AVSS. C28 AVDD, C29 DVDD, C30+C31 VREFP, C32 VCAP1, C33 VCAP2.", 16, 258, 1.25)
+    sh.text("R15/R16 set RLDREF at mid-rail. R17 closes RLDOUT to RLDINV. RESP_MOD pins are open.", 16, 264, 1.25)
 
 
 def i2c(d: Design):
@@ -669,7 +667,7 @@ def i2c(d: Design):
     d.vpart(sh, "R", "R19", "4.7k", FP_R, 100, 150, "+3V3", "I2C_SDA")
     d.vpart(sh, "R", "R20", "4.7k", FP_R, 122, 150, "+3V3", "I2C_SCL")
 
-    a = d.part(sh, "AS7341DLG", "U10", "AS7341-DLGM", "Package_LGA:AMS_OLGA-8_2x3.1mm_P0.8mm", 80, 205, labels="ic")
+    a = d.part(sh, "AS7341-DLGM", "U10", "AS7341-DLGM", FP_AS, 55, 200, labels="ic")
     d.stub_net(sh, a, "8", "I2C_SDA_1V8", 7.62)
     d.stub_net(sh, a, "2", "I2C_SCL_1V8", 7.62)
     d.join_row(sh, a, ["1"], "+1V8", 6.35)
@@ -684,28 +682,31 @@ def i2c(d: Design):
         "TMP117AIDRVR",
         "U11",
         "TMP117AIDRVR",
-        "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm",
+        FP_TMP,
         250,
         70,
         labels="ic",
     )
+    # DRV Table 5-1: pin 3 is ALERT, pin 4 is ADD0. ADD0 = GND selects 0x48.
     d.stub_net(sh, t, "1", "I2C_SCL", 7.62)
-    d.stub_net(sh, t, "3", "GND", 7.62)  # ADD0
-    d.stub_net(sh, t, "5", "TMP117_ALERT", 7.62)
+    d.stub_net(sh, t, "3", "TMP117_ALERT", 7.62)
+    d.stub_net(sh, t, "4", "GND", 7.62)
+    d.stub_net(sh, t, "5", "+3V3", 7.62)
     d.stub_net(sh, t, "6", "I2C_SDA", 7.62)
-    d.join_row(sh, t, ["4"], "+3V3", 6.35)
     d.join_row(sh, t, ["2", "7"], "GND", 6.35)
     d.finish(sh, t)
     sh.text("TMP117 0x48, ADD0 = GND", 300, 40, 1.3)
 
-    m = d.part(sh, "MLX90632", "U12", "MLX90632SLD-DCB-000-RE", "vitalq:MLX90632", 360, 70, labels="ic")
-    d.stub_net(sh, m, "1", "I2C_SDA", 7.62)
+    m = d.part(sh, "MLX90632SLD-DCB-100-SP", "U12", "MLX90632SLD-DCB-100-SP", FP_MLX, 300, 130, labels="ic")
+    # Option code "1" is the 1.8 V I2C variant. VDD stays 3.3 V. SDA/SCL share the PCA9306 1.8 V side.
+    d.stub_net(sh, m, "1", "I2C_SDA_1V8", 7.62)
     d.stub_net(sh, m, "5", "GND", 7.62)  # ADDR -> 0x3A
-    d.stub_net(sh, m, "4", "I2C_SCL", 7.62)
+    d.stub_net(sh, m, "4", "I2C_SCL_1V8", 7.62)
+    d.stub_net(sh, m, "6", "GND", 7.62)  # exposed pad
     d.join_row(sh, m, ["2"], "+3V3", 6.35)
     d.join_row(sh, m, ["3"], "GND", 6.35)
     d.finish(sh, m)
-    sh.text("MLX90632 0x3A, ADDR = GND", 300, 108, 1.3)
+    sh.text("MLX90632SLD-DCB-100-SP is the 1.8 V I2C option. VDD is still 3.3 V. ADDR = GND is 0x3A.", 220, 155, 1.3)
 
     b = d.part(
         sh,
@@ -726,7 +727,7 @@ def i2c(d: Design):
     d.finish(sh, b)
     sh.text("BME280 0x76, SDO = GND, CSB high", 300, 145, 1.3)
 
-    imu = d.part(sh, "LSM6DSV80X", "U14", "LSM6DSV80XTR", "vitalq:LSM6DSV80X", 355, 185, labels="ic")
+    imu = d.part(sh, "LSM6DSV80XTR", "U14", "LSM6DSV80XTR", FP_IMU, 280, 200, labels="ic")
     d.stub_net(sh, imu, "1", "GND", 6.35)  # SDO -> 0x6A
     d.stub_net(sh, imu, "2", "GND", 6.35)  # SDx
     d.stub_net(sh, imu, "3", "GND", 6.35)  # SCx

@@ -22,111 +22,110 @@ BOM = ROOT / "vitalq_hw_v1_bom.csv"
 KICAD_FP = Path("/usr/share/kicad/footprints")
 
 # Millimetres. Origin is the lower-left corner, Y up (KiCad board coordinates).
-# Wider than 35 mm because the module is 25.5 mm long and USB-C plus the
-# JST PH housing need a strip beside it. Antenna keep-out hangs off the left edge.
-BOARD_W = 52.0
-BOARD_H = 40.0
+# The official ESP32-WROOM-32E courtyard keeps the antenna on the left edge and
+# the shield out to about x=26.3. USB-C, opening to the right, needs the rest.
+# 37 x 30 is the smallest outline that still clears both courtyards.
+BOARD_W = 37.0
+BOARD_H = 30.0
 
 # (x, y, rotation_deg, bottom)
-# Rotation is counterclockwise, applied before a bottom-side flip.
+# Rotation is applied before a bottom-side flip.
 PLACE = {
-    # MCU. Rotation 90 sends the antenna keep-out off the left edge.
-    "U1": (12.75, 22.0, 90, False),
-    "C7": (28.6, 29.6, 0, False),
-    "C8": (28.6, 27.8, 0, False),
-    "R5": (28.6, 25.6, 0, False),
-    "R6": (28.6, 23.8, 0, False),
-    "R7": (28.6, 22.0, 0, False),
-    "TP1": (28.6, 19.6, 0, False),
-    "TP2": (28.6, 16.6, 0, False),
-    # USB-UART, top-right, clear of the analog front ends.
-    "J1": (46.0, 34.5, 0, False),
-    "U5": (35.4, 34.6, 0, False),
-    "C9": (30.5, 36.6, 0, False),
-    "C10": (30.5, 34.8, 0, False),
-    "R4": (30.5, 33.0, 0, False),
-    "R1": (47.6, 27.6, 0, False),
-    "R2": (50.0, 27.6, 0, False),
-    # Power and charging, between the UART and the analog parts.
-    "U3": (32.4, 24.6, 0, False),
-    "U4": (37.4, 24.6, 0, False),
-    "U2": (42.6, 24.6, 0, False),
-    "C1": (31.2, 21.5, 0, False),
-    "C2": (33.4, 21.5, 0, False),
-    "C3": (35.6, 21.5, 0, False),
-    "C4": (37.8, 21.5, 0, False),
-    "C5": (40.0, 21.5, 0, False),
-    "C6": (42.2, 21.5, 0, False),
-    "R3": (45.4, 21.5, 0, False),
-    # LiPo connector below the module, mating toward the bottom edge.
-    "J2": (19.0, 5.6, 0, False),
-    # BME280 and the IMU sit above the module so the air sensor is not against skin.
-    "U13": (15.2, 36.8, 0, False),
-    "U14": (21.6, 36.8, 0, False),
-    # ECG and EDA, lower right, away from the module and the USB plug.
-    "U8": (34.2, 12.6, 0, False),
-    "U7": (45.2, 13.0, 0, False),
-    "C28": (31.2, 19.4, 0, False),
-    "C29": (33.4, 19.4, 0, False),
-    "C30": (35.6, 19.4, 0, False),
-    "C31": (37.8, 19.4, 0, False),
-    "C32": (40.0, 19.4, 0, False),
-    "C33": (42.2, 19.4, 0, False),
-    "C34": (31.2, 17.6, 0, False),
-    "C35": (33.4, 17.6, 0, False),
-    "R14": (35.6, 17.6, 0, False),
-    "R15": (37.8, 17.6, 0, False),
-    "R16": (40.0, 17.6, 0, False),
-    "R17": (42.2, 17.6, 0, False),
-    # FSR divider and electrode headers on the bottom edge.
-    "J3": (26.2, 3.4, 0, False),
-    "R8": (26.2, 8.2, 0, False),
-    "J5": (31.6, 2.8, 0, False),
-    "J6": (39.6, 2.8, 0, False),
-    "H1": (48.6, 2.8, 0, False),
-    "H2": (9.2, 5.6, 0, False),
-    # Skin side. Kept clear of USB-C and other through-hole pads, and not under the module can.
-    "U6": (32.2, 36.2, 0, True),
-    "J4": (50.2, 18.0, 0, True),
-    "C11": (35.0, 37.8, 0, True),
-    "C12": (37.2, 37.8, 0, True),
-    "C13": (35.0, 36.0, 0, True),
-    "C14": (37.2, 36.0, 0, True),
-    "C15": (39.2, 37.8, 0, True),
-    "R9": (39.2, 36.0, 0, True),
-    "R10": (32.2, 33.8, 0, True),
-    "U10": (35.4, 33.2, 0, True),
-    "U11": (39.0, 33.6, 0, True),
-    "U12": (32.2, 30.4, 0, True),
-    "C36": (35.4, 30.2, 0, True),
-    "C37": (37.6, 30.2, 0, True),
-    "C38": (39.8, 30.2, 0, True),
-    "C39": (35.4, 28.4, 0, True),
-    "C40": (37.6, 28.4, 0, True),
-    "C41": (39.8, 28.4, 0, True),
-    "U9": (36.2, 26.0, 0, True),
-    "R18": (39.6, 26.0, 0, True),
-    "R19": (32.4, 26.0, 0, True),
-    "R20": (34.4, 24.2, 0, True),
-    "R21": (36.6, 24.2, 0, True),
-    "R22": (38.8, 24.2, 0, True),
-    # AD5940 passives on the back, directly under the BGA.
-    "C16": (39.4, 16.4, 0, True),
-    "C17": (41.6, 16.4, 0, True),
-    "C18": (43.8, 16.4, 0, True),
-    "C42": (46.0, 16.4, 0, True),
-    "C19": (48.2, 16.4, 0, True),
-    "C20": (39.4, 14.6, 0, True),
-    "C21": (41.6, 14.6, 0, True),
-    "C22": (43.8, 14.6, 0, True),
-    "C23": (46.0, 14.6, 0, True),
-    "C24": (48.2, 14.6, 0, True),
-    "C25": (39.4, 12.8, 0, True),
-    "C26": (41.6, 12.8, 0, True),
-    "C27": (43.8, 12.8, 0, True),
-    "R12": (46.0, 12.8, 0, True),
-    "R11": (48.2, 12.8, 0, True),
-    "R13": (50.2, 14.6, 90, True),
+    # MCU. Rotation 90 puts the antenna at the left edge; the shield ends near x=26.
+    "U1": (12.75, 15.0, 90, False),
+    "C7": (7.6, 26.3, 0, False),
+    "C8": (12.55, 26.3, 0, False),
+    "R5": (19.3, 25.85, 0, False),
+    "R6": (22.9, 25.85, 0, False),
+    "R7": (25.15, 25.4, 0, False),
+    "TP1": (21.2, 27.4, 0, False),
+    "TP2": (24.6, 27.4, 0, False),
+    # USB-C opening faces the right edge. CP2102 sits under it.
+    "J1": (32.8, 24.0, 90, False),
+    "U5": (31.9, 14.8, 0, False),
+    "C9": (27.65, 17.75, 90, False),
+    "C10": (27.65, 15.5, 90, False),
+    "R4": (27.65, 13.25, 90, False),
+    "R1": (7.75, 29.2, 0, False),
+    "R2": (12.7, 29.2, 0, False),
+    # Chargers and regulators in the right-hand column, clear of the antenna.
+    "U4": (32.2, 9.4, 0, False),
+    "U3": (32.2, 5.4, 0, False),
+    "U2": (32.2, 1.95, 0, False),
+    "C1": (35.15, 1.25, 90, False),
+    "C2": (35.15, 3.5, 90, False),
+    "C3": (35.15, 5.75, 90, False),
+    "C4": (35.15, 8.0, 90, False),
+    "C5": (35.15, 10.25, 90, False),
+    "C6": (27.65, 1.3, 90, False),
+    "R3": (29.0, 1.3, 90, False),
+    # LiPo and FSR solder pads on the bottom edge.
+    "J2": (9.8, 3.15, 0, False),
+    "J3": (16.2, 3.15, 0, False),
+    "R8": (19.45, 1.0, 0, False),
+    # Air sensor and IMU on top, above the module, not against skin.
+    "U13": (10.2, 27.4, 0, False),
+    "U14": (16.0, 27.25, 0, False),
+    # Skin side. Optical parts in one group; PPG above them; ECG and EDA below.
+    # The cluster avoids the module's through-hole ground pads and the antenna.
+    "U6": (9.0, 21.6, 0, True),
+    "U10": (13.4, 21.6, 0, True),
+    "U12": (18.6, 21.6, 0, True),
+    "U11": (23.6, 21.6, 0, True),
+    "J4": (16.5, 27.8, 0, True),
+    "J5": (10.5, 12.2, 0, True),
+    "J6": (21.5, 12.2, 0, True),
+    "C11": (15.05, 9.2, 0, True),
+    "C12": (27.2, 9.2, 0, True),
+    "C13": (7.4, 8.75, 0, True),
+    "C14": (9.65, 8.75, 0, True),
+    "C15": (11.9, 8.75, 0, True),
+    "R9": (17.3, 8.75, 0, True),
+    "R10": (19.55, 8.75, 0, True),
+    # 1.8 V translator and its passives, next to the skin group.
+    "U9": (29.2, 15.2, 0, True),
+    "R21": (26.6, 19.6, 0, True),
+    "R22": (32.0, 19.6, 0, True),
+    "R18": (26.6, 18.25, 0, True),
+    "R19": (28.85, 18.25, 0, True),
+    "R20": (31.1, 18.25, 0, True),
+    "C36": (33.35, 18.25, 0, True),
+    "C37": (7.4, 19.5, 0, True),
+    "C38": (9.65, 19.5, 0, True),
+    "C39": (22.25, 19.5, 0, True),
+    "C40": (24.5, 19.5, 0, True),
+    "C41": (17.3, 18.6, 0, True),
+    # ECG and EDA analog, lower right, away from the antenna and the USB plug.
+    "U8": (32.4, 4.0, 0, True),
+    "U7": (32.4, 10.2, 0, True),
+    "C28": (27.2, 8.15, 0, True),
+    "C29": (27.2, 6.8, 0, True),
+    "C30": (27.2, 5.45, 0, True),
+    "C31": (27.2, 4.1, 0, True),
+    "C32": (27.2, 2.75, 0, True),
+    "C33": (27.2, 1.4, 0, True),
+    "C34": (21.65, 8.35, 0, True),
+    "C35": (23.9, 8.35, 0, True),
+    "R14": (18.5, 7.45, 0, True),
+    "R15": (20.75, 7.0, 0, True),
+    "R16": (23.0, 7.0, 0, True),
+    "R17": (25.25, 7.0, 0, True),
+    "C16": (35.15, 14.2, 0, True),
+    "C17": (27.15, 13.25, 0, True),
+    "C18": (27.15, 11.9, 0, True),
+    "C19": (27.15, 10.55, 0, True),
+    "C20": (35.7, 19.3, 0, True),
+    "C21": (35.25, 17.95, 0, True),
+    "C22": (26.7, 17.05, 0, True),
+    "C23": (28.95, 17.05, 0, True),
+    "C24": (31.2, 17.05, 0, True),
+    "C25": (33.45, 16.6, 0, True),
+    "C26": (35.7, 16.6, 0, True),
+    "C27": (32.55, 15.25, 0, True),
+    "C42": (34.8, 15.25, 0, True),
+    "R11": (32.55, 13.9, 0, True),
+    "R12": (14.15, 8.15, 0, True),
+    "R13": (7.4, 7.7, 0, True),
 }
 
 
@@ -222,6 +221,8 @@ def load_footprint(fpname: str):
     nick, name = fpname.split(":", 1)
     if nick == "vitalq":
         lib = ROOT / "lib" / "vitalq.pretty"
+    elif nick == "snap":
+        lib = ROOT / "lib" / "snap.pretty"
     else:
         lib = KICAD_FP / f"{nick}.pretty"
     fp = pcbnew.FootprintLoad(str(lib), name)
@@ -260,8 +261,8 @@ def add_keepout(board):
     zone.SetLayerSet(pcbnew.LSET.AllCuMask())
     outline = zone.Outline()
     outline.NewOutline()
-    # Antenna section of the module, from the left edge to the shield.
-    for x, y in ((0.0, 0.0), (6.6, 0.0), (6.6, BOARD_H), (0.0, BOARD_H)):
+    # On-board part of the module antenna keep-out. The rest hangs off the left edge.
+    for x, y in ((0.0, 0.0), (6.5, 0.0), (6.5, BOARD_H), (0.0, BOARD_H)):
         outline.Append(mm(x), mm(y))
     board.Add(zone)
 
@@ -277,8 +278,13 @@ def apply_rules(board):
     ds.m_HoleClearance = mm(0.2)
     ds.m_HoleToHoleMin = mm(0.5)
     ds.m_MinThroughDrill = mm(0.2)
-    ds.m_MinSilkTextHeight = mm(0.6)
+    ds.m_MinSilkTextHeight = mm(0.45)
     ds.m_MinSilkTextThickness = mm(0.08)
+    # Fine-pitch BGAs (0.17 mm copper gap). Zero mask expansion keeps a
+    # solder-mask web; 0.1 mm is the JLCPCB minimum bridge.
+    ds.m_SolderMaskExpansion = mm(0)
+    ds.m_SolderMaskMinWidth = mm(0.1)
+    ds.m_SolderMaskToCopperClearance = mm(0.05)
     net = ds.m_NetSettings.GetDefaultNetclass()
     net.SetClearance(mm(0.09))
     net.SetTrackWidth(mm(0.2))
@@ -379,6 +385,27 @@ def main():
             if overlaps(yards[a], yards[b]):
                 clashes.append(f"{a} x {b}")
     edge_hits = []
+    pth_hits = []
+    for ref, (fp, bottom) in placed.items():
+        for pad in fp.Pads():
+            if pad.GetAttribute() in (pcbnew.PAD_ATTRIB_PTH, pcbnew.PAD_ATTRIB_NPTH):
+                continue
+            box = pad.GetBoundingBox()
+            for other, (ofp, obottom) in placed.items():
+                if other == ref or obottom == bottom:
+                    continue
+                for op in ofp.Pads():
+                    if op.GetAttribute() not in (pcbnew.PAD_ATTRIB_PTH, pcbnew.PAD_ATTRIB_NPTH):
+                        continue
+                    src = op.GetBoundingBox()
+                    ob = pcbnew.BOX2I(src.GetOrigin(), src.GetSize())
+                    ob.Inflate(mm(0.2))
+                    if box.Intersects(ob):
+                        pth_hits.append(f"{ref} overlaps {other} through-hole")
+                        break
+                else:
+                    continue
+                break
     for ref, (fp, _bottom) in placed.items():
         for pad in fp.Pads():
             if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH:
@@ -399,11 +426,16 @@ def main():
         f"U1 courtyard x {bb.GetX()/1e6:.1f}..{(bb.GetX()+bb.GetWidth())/1e6:.1f}"
         f" y {bb.GetY()/1e6:.1f}..{(bb.GetY()+bb.GetHeight())/1e6:.1f}"
     )
-    print(f"parts {len(placed)}  clashes {len(clashes)}  edge {len(edge_hits)}  pad-miss {len(unresolved)}")
+    print(
+        f"parts {len(placed)}  clashes {len(clashes)}  edge {len(edge_hits)}"
+        f"  pth {len(pth_hits)}  pad-miss {len(unresolved)}"
+    )
     for line in clashes:
         print("  clash", line)
     for line in edge_hits:
         print("  edge", line)
+    for line in pth_hits:
+        print("  pth", line)
     for line in unresolved:
         print("  pad", line)
 
@@ -411,7 +443,7 @@ def main():
     pcbnew.SaveBoard(str(PCB), board)
     write_bom(comps)
     print(f"wrote {PCB.name}  {BOARD_W:.0f} x {BOARD_H:.0f} mm")
-    if clashes or edge_hits or unresolved:
+    if clashes or edge_hits or pth_hits or unresolved:
         return 1
     return 0
 
