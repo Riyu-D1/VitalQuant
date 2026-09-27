@@ -27,19 +27,19 @@ KICAD_FP = Path("/usr/share/kicad/footprints")
 # 4 layers. Skin sensors share one bottom cluster; the second TMP117 sits
 # on the top at the same XY, outside the module body.
 BOARD_W = 36.5
-# DPCR row on the bottom, both GDT rows on the top, charge parts above the
-# DPCR electrode copper. Four more 2512 surge resistors for the EDA pads
-# do not fit in 44.4 mm, so the outline grows below that row.
-BOARD_H = 53.6
+# ECG DPCRs on the bottom, EDA DPCRs on the top at the same X. The charge
+# pads and the new 0402s sit just above that row. The gas tubes are gone,
+# so this band no longer needs a second height for them.
+BOARD_H = 45.6
 
-# Through-slots in three of the four gaps between DPCR electrode pads.
-# The R35-R36 gap is occupied by D20's pad, so it stays a 3.10 mm surface gap.
-# Each slot is 0.8 mm wide, ends 0.45 mm past the 2512 copper, and stays
-# 0.35 mm clear of the S30 pads. Creepage is then the path through the slot.
+# 0.8 mm slots in all four gaps between the ECG/EDA electrode pads.
+# Each slot starts across the electrode copper and ends 0.3 mm clear of
+# the parts above it. The path through the slot is the creepage path.
 CREEP_SLOTS = (
-    (11.90, 37.05, 12.70, 39.30),
-    (17.20, 37.05, 18.00, 39.30),
-    (24.20, 37.05, 25.00, 39.30),
+    (11.525, 37.05, 12.325, 41.40),
+    (17.975, 37.05, 18.775, 42.60),
+    (24.425, 37.05, 25.225, 42.60),
+    (30.875, 37.05, 31.675, 42.60),
 )
 
 # Internal edge-cut slots (x0, y0, x1, y1), 0.8 mm wide.
@@ -126,14 +126,14 @@ PLACE = {
     "D10": (18.70, 13.50, 0, True),
     "D11": (21.10, 13.70, 90, True),
     "J1": (32.30, 22.20, 90, False),
-    "J2": (10.30, 42.80, 0, True),
+    "J2": (10.30, 43.80, 0, True),
     "J3": (23.80, 8.70, 0, False),
     "J5": (11.40, 12.30, 0, True),
     "J6": (17.40, 29.70, 0, True),
     "L1": (27.55, 2.40, 0, False),
     "L2": (28.05, 6.15, 0, False),
     "Q1": (22.30, 14.90, 0, True),
-    "Q2": (20.20, 42.80, 0, True),
+    "Q2": (35.50, 43.80, 0, True),
     "R1": (30.40, 16.05, 0, False),
     "R2": (31.32, 17.37, 0, True),
     "R3": (30.00, 14.80, 0, True),
@@ -164,11 +164,11 @@ PLACE = {
     "R29": (10.07, 7.74, 0, True),
     "R30": (14.97, 4.18, 0, True),
     "R31": (21.03, 4.18, 90, False),
-    "R32": (8.55, 35.25, 90, True),
-    "R33": (15.00, 35.25, 90, True),
-    "R34": (21.45, 35.25, 90, True),
-    "R35": (27.90, 35.25, 90, True),
-    "R36": (34.35, 35.25, 90, True),
+    "R32": (8.70, 35.25, 90, True),
+    "R33": (15.15, 35.25, 90, True),
+    "R34": (21.60, 35.25, 90, True),
+    "R35": (28.05, 35.25, 90, True),
+    "R36": (34.50, 35.25, 90, True),
     "R39": (33.46, 21.12, 90, True),
     "R40": (32.79, 28.53, 0, True),
     "R41": (32.79, 28.53, 0, False),
@@ -180,39 +180,39 @@ PLACE = {
     "R47": (6.90, 21.00, 90, True),
     "R48": (23.50, 27.40, 90, True),
     "R49": (34.90, 16.15, 0, False),
-    "R59": (22.40, 42.80, 0, True),
-    "R60": (18.20, 42.80, 0, True),
-    "R61": (16.00, 42.80, 0, True),
+    "R59": (8.0, 43.80, 0, False),
+    "R60": (10.2, 43.80, 0, False),
+    "R61": (12.4, 43.80, 0, False),
     "R62": (20.40, 1.15, 0, False),
     "R63": (22.70, 1.15, 0, False),
     "R64": (25.00, 1.15, 0, False),
     "R65": (20.40, 2.55, 0, False),
     "C62": (22.70, 2.55, 0, False),
     "C63": (25.00, 2.55, 0, False),
-    "R66": (26.2, 46.6, 0, False),
-    "R67": (28.4, 46.6, 0, False),
-    "R68": (30.6, 46.6, 0, False),
-    "R69": (32.8, 46.6, 0, False),
-    "R70": (35.0, 46.6, 0, False),
-    "R71": (26.2, 48.8, 0, False),
-    "R72": (28.4, 48.8, 0, False),
-    "R73": (30.6, 48.8, 0, False),
-    "R74": (32.8, 48.8, 0, False),
-    "R75": (35.0, 48.8, 0, False),
-    "C64": (26.2, 51.0, 0, False),
-    "C65": (28.4, 51.0, 0, False),
-    "C66": (30.6, 51.0, 0, False),
-    "Q3": (34.2, 51.2, 0, False),
-    "R76": (8.40, 49.40, 90, True),
-    "R77": (15.80, 49.40, 90, True),
-    "R78": (23.20, 49.40, 90, True),
-    "R79": (30.60, 49.40, 90, True),
+    "R66": (18.80, 43.80, 0, True),
+    "R67": (20.95, 43.80, 0, True),
+    "R68": (23.10, 43.80, 0, True),
+    "R69": (25.25, 43.80, 0, True),
+    "R70": (27.40, 43.80, 0, True),
+    "R71": (29.55, 43.80, 0, True),
+    "R72": (31.70, 43.80, 0, True),
+    "R73": (33.85, 43.80, 0, True),
+    "R74": (14.6, 43.80, 0, False),
+    "R75": (16.8, 43.80, 0, False),
+    "C64": (19.0, 43.80, 0, False),
+    "C65": (21.2, 43.80, 0, False),
+    "C66": (23.4, 43.80, 0, False),
+    "Q3": (33.2, 44.15, 0, False),
+    "R76": (8.70, 35.70, 90, False),
+    "R77": (15.15, 35.70, 90, False),
+    "R78": (21.60, 35.70, 90, False),
+    "R79": (28.05, 35.70, 90, False),
     "R50": (31.30, 15.99, 0, True),
     "R51": (28.70, 8.01, 0, True),
     "R52": (16.00, 2.90, 0, True),
     "R53": (17.73, 3.17, 0, False),
     "U1": (12.85, 22.00, 90, False),
-    "U2": (8.80, 46.60, 0, False),
+    "U2": (16.00, 43.80, 0, True),
     "U3": (32.60, 9.80, 0, False),
     "U4": (34.10, 13.95, 0, False),
     "U5": (32.80, 4.10, 0, False),
@@ -231,15 +231,6 @@ PLACE = {
     "U18": (11.40, 4.20, 0, False),
     "U19": (8.70, 9.60, 0, False),
     "U20": (18.60, 9.15, 0, False),
-    "D12": (9.25, 34.10, 0, False),
-    "D13": (15.35, 34.10, 0, False),
-    "D14": (21.45, 34.10, 0, False),
-    "D15": (27.55, 34.10, 0, False),
-    "D16": (33.70, 34.10, 0, False),
-    "D17": (9.25, 40.65, 0, False),
-    "D18": (17.40, 40.65, 0, False),
-    "D19": (25.55, 40.65, 0, False),
-    "D20": (33.70, 40.65, 0, False),
 }
 
 def parse_sexp(text: str):
@@ -677,8 +668,6 @@ MPN = {
 }
 for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"):
     MPN[_ref] = "TPD1E10B06DPYR"
-for _ref in ("D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19", "D20"):
-    MPN[_ref] = "B88069X9231T203"
 DNP_REFS = {"R61"}
 
 R_MPN = {

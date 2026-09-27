@@ -37,7 +37,6 @@ FP_EXP = "vitalq:TCA6408A_RSV"
 FP_TVS = "vitalq:TPD1E10B06_DPY"
 FP_FET = "Package_DFN_QFN:Texas_PicoStar_DFN-3_0.69x0.60mm"
 FP_HV = "Resistor_SMD:R_2512_6332Metric"
-FP_GDT = "vitalq:GDT_S30"
 FP_WHITE = "vitalq:NF2W757G"
 FP_IR = "LED_SMD:LED_0402_1005Metric"
 
@@ -708,11 +707,7 @@ def ad(d: Design):
     d.vpart(sh, "D_TVS_2", "D7", "TPD1E10B06", FP_TVS, 400, 176, "SE_ISO", "GND")
     d.vpart(sh, "D_TVS_2", "D8", "TPD1E10B06", FP_TVS, 400, 202, "RE_SURGE", "GND")
     d.vpart(sh, "D_TVS_2", "D9", "TPD1E10B06", FP_TVS, 400, 228, "DE_SURGE", "GND")
-    d.vpart(sh, "GDT", "D17", "S30-A90X", FP_GDT, 50, 275, "EDA_CE_PAD", "GND")
-    d.vpart(sh, "GDT", "D18", "S30-A90X", FP_GDT, 100, 275, "EDA_SE_PAD", "GND")
-    d.vpart(sh, "GDT", "D19", "S30-A90X", FP_GDT, 150, 275, "EDA_RE_PAD", "GND")
-    d.vpart(sh, "GDT", "D20", "S30-A90X", FP_GDT, 200, 275, "EDA_DE_PAD", "GND")
-    sh.text("R76-R79 are the pad-side 51k DPCR. C54 sits behind R76. R39 stays the 1k RLIMIT.", 16, 268, 1.3)
+    sh.text("R76-R79 are the pad-side 51k DPCR. C54 sits behind R76. R39 stays the 1k RLIMIT. No gas tube.", 16, 268, 1.3)
     sh.text("Other AIN, AFE and GPIO balls are open. GPIO0 is the only digital sideband to the ESP32.", 16, 254, 1.35)
 
 
@@ -823,13 +818,6 @@ def ads(d: Design):
     d.vpart(sh, "D_TVS_2", "D3", "TPD1E10B06", FP_TVS, 400, 250, "RLD_CLAMP", "GND")
     d.vpart(sh, "D_TVS_2", "D4", "TPD1E10B06", FP_TVS, 235, 278, "AFE_P_AC", "GND")
     d.vpart(sh, "D_TVS_2", "D5", "TPD1E10B06", FP_TVS, 295, 278, "AFE_N_AC", "GND")
-    # 24 mm pitch. Each stub ends 7.62 mm from the symbol centre, so a 16 mm
-    # pitch lands the GND wire on the next electrode label and shorts the pads.
-    d.vpart(sh, "GDT", "D12", "S30-A90X", FP_GDT, 22, 100, "ECG1_PAD", "GND")
-    d.vpart(sh, "GDT", "D13", "S30-A90X", FP_GDT, 22, 124, "ECG2_PAD", "GND")
-    d.vpart(sh, "GDT", "D14", "S30-A90X", FP_GDT, 22, 148, "RLD_PAD", "GND")
-    d.vpart(sh, "GDT", "D15", "S30-A90X", FP_GDT, 22, 172, "AFE_P_PAD", "GND")
-    d.vpart(sh, "GDT", "D16", "S30-A90X", FP_GDT, 22, 196, "AFE_N_PAD", "GND")
 
 
 def i2c(d: Design):

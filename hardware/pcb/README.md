@@ -3,12 +3,12 @@
 Research prototype. This is not a medical device. Nothing here is a claim
 about safety, sterility, biocompatibility, or regulatory clearance.
 The defibrillator parts are not an IEC 60601-2-27 type-test claim.
-The 51 kΩ pulse resistors and the gas-discharge tubes are a research-prototype
-attempt to follow the TI and TDK pulse guidance. They do not make this a
-defibrillator-proof medical input.
+The 51 kΩ pulse resistors are a research-prototype attempt to follow
+the TI pulse guidance. They do not make this a defibrillator-proof
+medical input. The gas-discharge tubes were removed.
 
 The schematic is drawn explicitly. The PCB is an unrouted placement:
-**36.5 × 53.6 mm**, rectangular, **4 layers**, parts on both sides.
+**36.5 × 45.6 mm**, rectangular, **4 layers**, parts on both sides.
 Six layers were not required. The analog nets are ordinary and the
 stackup is the JLCPCB 4-layer default.
 
@@ -38,8 +38,9 @@ R8 and R10. The list is at the bottom of this file.
 
 The module antenna keep-out is x = 0 to 6.5 mm, every copper layer.
 Pads start at x ≥ 6.55 mm. USB-C is rotated so the opening is the right
-edge. The buck-boost, the 5 V boost, the charger, and the CP2102 sit on
-the top, on the right, next to USB. The flash, the IMU, the BME280, and
+edge. The buck-boost, the 5 V boost, and the CP2102 sit on
+the top, on the right, next to USB. The charger sits on the bottom,
+next to the LiPo pads, away from the TMP117s. The flash, the IMU, the BME280, and
 the expander are also on the top, below the module. Analog parts are on
 the bottom, away from that switcher column.
 
@@ -50,11 +51,10 @@ AS7341. J5 and J6 sit on the bottom and top edges of that cluster.
 U11 is on a slotted island beside the LEDs. U20 is on the top at the
 same XY, outside the module body. The island neck faces the cluster.
 
-Above that cluster, the five 2512 pulse resistors are on the bottom.
-Both rows of gas-discharge tubes are on the top, over that same band,
-clear of the module courtyard. The LiPo pads and the TS-disable FET
-are on the bottom, above the pulse resistors. Four more 2512 surge
-resistors (R76–R79) sit on the bottom at the far end of the board.
+Above that cluster, five 2512 pulse resistors (R32–R36) are on the
+bottom and four more (R76–R79) are on the top at the same X. The LiPo
+pads and the charger are on the bottom, past that row. There is no
+gas-discharge tube.
 
 Electrodes are flat solder pads. No headers. J5 is five pads: ADS1292R
 positive, ADS1292R negative, RLD, AFE4900 positive, AFE4900 negative.
@@ -62,13 +62,14 @@ J6 is the four EDA pads. The EDA cable is a flex tail to the shoulder.
 The electrodes on that tail must land at least 5 cm from the ECG
 electrodes. That distance is on the harness, not on this 36.5 mm board.
 
-Three 0.8 mm slots sit between the DPCR electrode pads (R32–R33,
-R33–R34, R34–R35). On a 1.6 mm board the path through a slot is 4.0 mm.
-The R35–R36 gap stays 3.10 mm of surface copper: D20's pad fills that
-corridor, so a slot does not fit. J5 is still 0.55 mm between pads and
-J6 is still 1.05 mm. A slot needs about 1.4 mm of gap, and spreading
-either footprint to that pitch runs into the antenna keep-out or the
-skin cluster. The new EDA surge resistors are 4.05 mm apart.
+Four 0.8 mm slots sit in the gaps between those 2512 electrode pads,
+including the R35–R36 gap. On a 1.6 mm board the path through a slot
+is 4.0 mm. The straight copper gap between adjacent 2512 pads is still
+3.10 mm: five 3.35 mm pads and four 4 mm gaps do not fit in the 36.5 mm
+width once the antenna keep-out is reserved. J5 is still 0.55 mm
+between pads and J6 is still 1.05 mm. A slot needs about 1.4 mm of gap,
+and spreading either footprint to that pitch runs into the antenna
+keep-out or the skin cluster.
 
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
@@ -77,8 +78,8 @@ Reference designators are hidden. Fab reference text is 0.35 mm.
 
 ## Part count
 
-**183 parts.** U2 is now a BQ25170DSGR in place of the MCP73831. Q3 is
-the auto-program pair. R66–R79 and C64–C66 are the new passives.
+**174 parts.** U2 is a BQ25170DSGR in place of the MCP73831. Q3 is
+the auto-program pair. D12–D20, the gas-discharge tubes, are gone.
 
 | Group | Qty | Parts |
 | --- | --- | --- |
@@ -86,7 +87,6 @@ the auto-program pair. R66–R79 and C64–C66 are the new passives.
 | MOSFETs | 2 | Q1 and Q2, both CSD13380F3 |
 | Transistor | 1 | Q3 BC847BS,115, SOT-363 |
 | ESD diodes | 9 | D1–D9 TPD1E10B06DPYR |
-| Gas discharge | 9 | D12–D20, TDK S30-A90X, B88069X9231T203 |
 | LEDs | 2 | D10 NF2W757G-F1, D11 SFH 4053 |
 | Inductors | 2 | L1 0.47 µH, L2 1.0 µH |
 | Pads | 5 | J1 USB-C, J2 LiPo (3 pads), J3 FSR, J5 ECG, J6 EDA |
@@ -160,15 +160,11 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
   modulation current. That earlier "1.2% and it still works" claim is
   withdrawn. The loop was not redesigned in this round; the options
   are in the verification report.
-- S30-A90X land is 1.2 × 2.0 mm pads on a 3.4 mm pitch, read from the
-  issue 04 recommended-land figure. The footprint matches that reading.
-  TDK says solder must not close the gap under the tube.
-- The S30 impulse ratings are 8/20 µs and 10/1000 µs. They are not an
-  IEC 60601-2-27 defibrillator-waveform energy rating.
-- C54 (15 nF, 50 V) now sits behind R76. A slow pulse can still charge
-  it toward the S30 DC sparkover before the tube fires. C55 (470 nF,
-  10 V) sits on the clamp side of the SE surge resistor. The 1 kΩ
-  RLIMIT (R39) is unchanged.
+- C54 (15 nF, 50 V) sits behind R76. With the gas tube gone, a slow
+  pulse can charge C54 toward the pad voltage; 50 V does not cover
+  that. C55 (470 nF, 10 V) sits on the clamp side of the SE surge
+  resistor. The TPD1E10B06 clamps at 10 V (1 A) and 14 V (5 A). The
+  1 kΩ RLIMIT (R39) is unchanged.
 
 ## Firmware profile is out of date
 

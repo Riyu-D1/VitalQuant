@@ -74,8 +74,8 @@ source is GND.
 Dissipation at 100 mA from 5 V into a cell near 4.2 V is about
 (5 − 4.2) × 0.1 = 80 mW, not 0.18 W. At the start of fast charge, with
 VIN at 5.25 V and the cell near the 2.8 V precharge handoff, it can
-reach about (5.25 − 2.8) × 0.1 = 0.25 W. U2 sits at the opposite end of
-the board from the two TMP117s (about 38 mm away, top side).
+reach about (5.25 − 2.8) × 0.1 = 0.25 W. U2 sits on the bottom next to
+the LiPo pads, about 35 mm from the two TMP117s.
 
 ## MCU, USB, and straps
 
@@ -251,25 +251,21 @@ the AD5940 can measure, and the 51 kΩ is a known series term to
 calibrate out. A high-current EIS sweep is not: 100 µA through
 51 kΩ + 20 kΩ needs about 7 V, and the AD5940 runs from 3.3 V.
 
-The gas-discharge tubes stay on the pads. Capacitance under 0.8 pF at
-1 MHz is negligible next to 15 nF and 470 nF. DC sparkover minimum is
-63 V, above the 1.2 Vpp excitation, so the tubes stay off during a
-normal EDA measurement.
-
-C54 is a 50 V 0402 (GRM155R71H153KA12). It is no longer tied to the
-pad, but a slow pulse can still charge it toward the S30 DC sparkover
-(63–117 V) before the tube conducts, because R76 × 15 nF is under a
-millisecond. 50 V is still short of that. C55 is GRM155R61A474KE15,
-10 V, on the clamp side of R77 and R40. The TPD1E10B06 clamps at 10 V
-max for 1 A (8/20 µs) and 14 V at 5 A, so 10 V on C55 is tight if the
-clamp is driven hard. Neither cap was upsized.
+C54 is a 50 V 0402 (GRM155R71H153KA12), behind R76. Nothing clamps the
+pad itself, so a slow pulse can charge C54 toward the pad voltage.
+50 V does not cover that. C55 is GRM155R61A474KE15, 10 V, on the clamp
+side of R77 and R40. The TPD1E10B06 clamps at 10 V max for 1 A
+(8/20 µs) and 14 V at 5 A, so 10 V on C55 is tight if the clamp is
+driven hard. Neither cap was upsized.
 
 ## Electrode protection
 
-Order of parts, from the skin toward the IC: electrode pad, gas
-discharge tube to GND, surge resistor, then TPD1E10B06 to GND, then a
-second series resistor into the IC pin. The TPD is not across the pad.
-A 5.5 V diode on the pad would take the defibrillator current.
+Order on every patient line, from the skin toward the IC: electrode
+pad, DPCR2512 51 kΩ, TPD1E10B06 to GND, then the second series resistor
+into the IC pin. EDA uses the same pad-side 51 kΩ first (R76–R79),
+then the existing 1 kΩ. There is no gas-discharge tube. The TPD is not
+across the pad. A 5.5 V diode on the pad would take the defibrillator
+current.
 
 SBAS502C §6.1 limits current into any pin except the supplies to
 ±10 mA continuous and ±100 mA momentary. If the TPD node sits near
@@ -293,8 +289,6 @@ electrode side of R67/R68 and is not across R26–R29.
 | R44, R46 | 100 kΩ, 0402 | AFE clamp node to the coupling cap |
 | D1–D5 | TPD1E10B06 | ECG_P, ECG_N, RLD_CLAMP, AFE_P_AC, AFE_N_AC |
 | D6–D9 | TPD1E10B06 | CE_ISO, SE_ISO, RE_SURGE, DE_SURGE |
-| D12–D16 | S30-A90X | ECG1, ECG2, RLD, AFE+, AFE− pads to GND |
-| D17–D20 | S30-A90X | EDA CE, SE, RE, DE pads to GND |
 
 R32–R36 are TT Electronics / Welwyn DPCR2512-51KJT18. The DPCR series
 is 2512 only, which is the smallest package in that family. The
@@ -312,33 +306,16 @@ published working-voltage numbers are not a 5 kV millisecond defibrillator
 pulse test. A Yageo HV2512's 3000 V working voltage applies only when
 R is at or above the critical resistance, which 51 kΩ is not.
 
-D12–D20 are TDK / EPCOS S30-A90X, ordering code B88069X9231T203
-(2000-piece SMD tape, datasheet issue 04, 2013-09-16). EIA 1812,
-body 4.5 × 3.2 × 2.7 mm. DC sparkover 90 V ±30% (63 V to 117 V), above
-ECG millivolts, RLD within 3.3 V, and the AD5940 1.2 Vpp excitation.
-Impulse sparkover at 100 V/µs is under 500 V (99%) / typical under 400 V,
-and at 1 kV/µs under 600 V / typical under 500 V. Service life includes
-10 operations at 2 kA, 8/20 µs, and 100 operations at 10 A, 10/1000 µs.
-Insulation resistance is over 1 GΩ at 50 V. Capacitance is under 0.8 pF
-at 1 MHz. Operating range on that issue is −40 °C to +90 °C. UL 497B,
-file E163070. These impulse ratings are not the IEC 60601-2-27
-defibrillator waveform. The footprint pads are 1.2 × 2.0 mm on a 3.4 mm
-pitch (copper gap 2.2 mm), taken from the recommended-land figure.
-Those tenths of a millimetre were not readable as text in the PDF and
-must be checked before fabrication. TDK warns that solder must not
-reduce the insulation gap under the arrester.
-
 Creepage of about 4 mm was the target between electrode-side copper and
 other copper on the same layer. It is met across each DPCR: the official
-R_2512 land leaves about 4.7 mm of copper gap between its own pads, and
-the three protection rows (resistors, EDA tubes, ECG tubes) are spaced
-so the facing copper is about 4 mm apart. It is not met in these places:
+R_2512 land leaves about 4.7 mm of copper gap between its own pads.
+Four 0.8 mm slots, one in each gap between the facing electrode pads,
+make the path through the board 4.0 mm on a 1.6 mm stackup. It is not
+met as a straight surface gap in these places:
 
 - J5 pads are on a 1.70 mm pitch. Adjacent pad copper is about 0.55 mm apart. A slot needs about 1.4 mm of gap. Spreading J5 to that pitch, or to a 4 mm centre pitch, runs into the antenna keep-out or the skin cluster. The footprint was not changed.
-- J6 pads are on a 2.20 mm pitch. Adjacent pad copper is about 1.05 mm apart, for the same reason. The four EDA surge resistors (R76–R79) are 4.05 mm apart; J6 itself is not.
-- Each S30 tube's own pads are 2.20 mm apart (electrode to GND on the part).
-- Adjacent ECG tubes are about 1.50 mm apart, electrode copper to the next tube's GND pad. Five 4.6 mm-wide lands plus a 4 mm gap do not fit in the 36.5 mm width once the antenna keep-out is reserved.
-- Adjacent DPCR electrode pads are about 3.10 mm apart, for the same width reason.
+- J6 pads are on a 2.20 mm pitch. Adjacent pad copper is about 1.05 mm apart, for the same reason.
+- Adjacent DPCR electrode pads (R32–R36 and R76–R79) are about 3.10 mm apart. Five pads of 3.35 mm plus four 4 mm gaps do not fit in 36.5 mm once the antenna keep-out is reserved. The slots are the 4 mm path.
 - R39–R42 and C54 are still 0402, behind the pad-side 51 kΩ. The gap across each 0402 is about 0.4–0.5 mm. The pulse voltage is meant to land on R76–R79.
 
 ## I2C and optical
