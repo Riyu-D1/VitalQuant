@@ -19,7 +19,7 @@ This page is the board that was built.
 | 34 | 6 | ADS1292_DRDY | input |
 | 35 | 7 | EXP_INT | TCA6408 /INT, 10 kΩ pull-up (R53). Input only |
 | 32 | 8 | LSM6_INT1 | |
-| 33 | 9 | TMP117_ALERT | U11 only. U20 ALERT is open |
+| 33 | 9 | TMP117_ALERT | U11 only. R65 is the 10 kΩ pull-up. U20 ALERT is open |
 | 25 | 10 | open | was ADS1292 PWDN; that net moved to the expander |
 | 26 | 11 | CS_FLASH | W25Q512 chip select, 10 kΩ pull-up (R52). Not a strap |
 | 27 | 12 | open | was AD5940 RESET; that net moved to the expander |
@@ -119,4 +119,4 @@ above VIH (0.7 × 3.3 V).
 | ADS1292R | START | GND |
 | ADS1292R | CLKSEL | DVDD |
 | ADS1292R | CLK | open |
-| CP2102N | ~RSTb | open (internal pull-up) |
+| CP2102N | ~RSTb | R62 1 kΩ to VDD_CP2102. VBUS sense is R63/R64, not the 5 V pin |

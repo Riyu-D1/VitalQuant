@@ -61,6 +61,13 @@ J6 is the four EDA pads. The EDA cable is a flex tail to the shoulder.
 The electrodes on that tail must land at least 5 cm from the ECG
 electrodes. That distance is on the harness, not on this 36.5 mm board.
 
+Three 0.8 mm slots sit between the DPCR electrode pads (R32–R33,
+R33–R34, R34–R35). On a 1.6 mm board the path through a slot is 4.0 mm.
+The R35–R36 gap stays 3.10 mm of surface copper: D20's pad fills that
+corridor, so a slot does not fit. J5 and J6 were not spread; a slot
+does not fit in their 0.55 mm and 1.05 mm gaps without moving the
+skin cluster.
+
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
 vias, 0.3 mm copper-to-edge, 0.1 mm solder-mask web, mask expansion 0.
@@ -68,8 +75,9 @@ Reference designators are hidden. Fab reference text is 0.35 mm.
 
 ## Part count
 
-**159 parts.** The previous 146 are still here. Thirteen were added:
-D12–D20, Q2, R59, R60, and R61.
+**165 parts.** The previous 146 are still here. Thirteen protection parts
+were added earlier (D12–D20, Q2, R59, R60, R61). This check added R62–R65,
+C62, and C63.
 
 | Group | Qty | Parts |
 | --- | --- | --- |
@@ -80,21 +88,23 @@ D12–D20, Q2, R59, R60, and R61.
 | LEDs | 2 | D10 NF2W757G-F1, D11 SFH 4053 |
 | Inductors | 2 | L1 0.47 µH, L2 1.0 µH |
 | Pads | 5 | J1 USB-C, J2 LiPo (3 pads), J3 FSR, J5 ECG, J6 EDA |
-| Resistors | 53 | 48 of 0402, plus R32–R36 in 2512 |
-| Capacitors | 57 | 54 of 0402, plus C44, C45, C47 in 0603 |
+| Resistors | 57 | 52 of 0402, plus R32–R36 in 2512 |
+| Capacitors | 59 | 56 of 0402, plus C44, C45, C47 in 0603 |
 
 PWR_FLAG symbols are schematic-only and are not in this count.
 
 ## Rails
 
-USB VBUS feeds the MCP73831 and the CP2102N VBUS pin. There is no
-power-path diode or switch. The cell and the charger share VBAT.
+USB VBUS feeds the MCP73831 and the CP2102N VREGIN pin. The CP2102N
+VBUS sense pin is the Fig 2.5 divider (R63 22.1 kΩ, R64 47.5 kΩ), not
+the 5 V rail. There is no power-path diode or switch. The cell and the
+charger share VBAT.
 The TPS63802 makes 3.3 V from VBAT. The board does not run from USB
 if the cell is missing.
 
 | Net | Source | Loads |
 | --- | --- | --- |
-| VBUS | USB-C | MCP73831 VDD, CP2102N VBUS and VREGIN, the VBUS divider |
+| VBUS | USB-C | MCP73831 VDD, CP2102N VREGIN, the two VBUS dividers |
 | VBAT | MCP73831 and J2 | TPS63802, TPS61240, MAX17048 |
 | +3V3 | TPS63802 | ESP32, AFE4900 RX and IO, AD5940, ADS1292R, 3.3 V I2C, sensors, the white LED, the 860 nm LED resistor |
 | TX_5V | TPS61240 | AFE4900 TX_SUP and the SFH 7072 anodes. Enable is expander P3 |
@@ -132,8 +142,9 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
   mechanical PDF. See `lib/SOURCES.md`.
 - W25Q512 8-pad pinout follows the JV-family WSON. The 512 Mbit PDF
   returned 404.
-- SFH 7072 pad pitch is reconstructed from the 7.5 × 3.9 mm body and a
-  2 × 6 land. Confirm pin 1 before fabrication.
+- SFH 7072 pin names match datasheet v1.6 page 19 (pin 1 is the broadband
+  photodiode cathode). The pad pitch is still reconstructed from the
+  7.5 × 3.9 mm body. Confirm the land against the drawing before fabrication.
 - ADS1292R C34 is 47 nF. SBAS502C Fig 73 note (1): "When using the
   ADS1292R and the channel 1 respiration function, this capacitor must
   be 47 nF." The PGA section also says 4.7 nF is recommended; the
@@ -145,9 +156,9 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
   about 1.2% lower than it was at 49.9 kΩ. The modulation path is
   unchanged apart from that existing series resistor. Fig 68's note
   is only "Patient and input protection circuitry not shown."
-- S30-A90X recommended-land dimensions were read from a drawing whose
-  text did not extract. Pad size and pitch are approximate. TDK says
-  solder must not close the gap under the tube.
+- S30-A90X land is 1.2 × 2.0 mm pads on a 3.4 mm pitch, read from the
+  issue 04 recommended-land figure. The footprint matches that reading.
+  TDK says solder must not close the gap under the tube.
 - The S30 impulse ratings are 8/20 µs and 10/1000 µs. They are not an
   IEC 60601-2-27 defibrillator-waveform energy rating.
 - C54 (15 nF, 50 V, 0402) and C55 (470 nF, 0402) still sit on the EDA

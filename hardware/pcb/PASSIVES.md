@@ -67,8 +67,10 @@ Populating R61 and a cell NTC at the same time puts them in parallel
 and halves the reading. Fit one of them.
 | C7 | 10 µF | +3V3 | GND | ESP32 module bulk, Espressif hardware design guideline |
 | C8 | 100 nF | +3V3 | GND | ESP32 module high-frequency bypass |
-| C9 | 4.7 µF | VDD_CP2102 | GND | CP2102N VDD bypass. Not the 3.3 V rail |
-| C10 | 1 µF | VBUS | GND | CP2102N VREGIN bypass |
+| C9 | 4.7 µF | VDD_CP2102 | GND | CP2102N VDD bulk. Not the 3.3 V rail |
+| C62 | 100 nF | VDD_CP2102 | GND | CP2102N Rev 1.5: 100 nF beside the 4.7 µF on VDD |
+| C10 | 1 µF | VBUS | GND | Extra VREGIN bypass |
+| C63 | 100 nF | VBUS | GND | CP2102N Rev 1.5: 100 nF on VREGIN. C1 is the 4.7 µF |
 | R1 | 5.1 kΩ | USB CC1 | GND | USB Type-C Rd |
 | R2 | 5.1 kΩ | USB CC2 | GND | USB Type-C Rd |
 | R5 | 10 kΩ | +3V3 | ESP_EN | ESP32 EN pull-up |
@@ -76,6 +78,10 @@ and halves the reading. Fit one of them.
 | R7 | 10 kΩ | +3V3 | CS_AD5940 | GPIO15 must be high at reset |
 | R52 | 10 kΩ | +3V3 | CS_FLASH | Keeps the flash deselected while GPIO26 is an input |
 | R53 | 10 kΩ | +3V3 | EXP_INT | TCA6408 /INT is open drain |
+| R62 | 1 kΩ | VDD_CP2102 | CP_RST | CP2102N Rev 1.5: RSTb pull-up, required in all cases |
+| R63 | 22.1 kΩ | VBUS | CP_VBUS | CP2102N Fig 2.5 divider, top |
+| R64 | 47.5 kΩ | CP_VBUS | GND | Fig 2.5 divider, bottom. Pin sees 3.41 V at 5.0 V |
+| R65 | 10 kΩ | +3V3 | TMP117_ALERT | SNOSD82D: ALERT is open-drain and needs a pull-up |
 | R8 | 10 kΩ | FSR_ADC | GND | FSR402 divider bottom. Top of the FSR is +3V3 |
 | C59 | 100 nF | +3V3 | GND | W25Q512 VCC bypass |
 | C60 | 100 nF | +3V3 | GND | TCA6408 VCC bypass |

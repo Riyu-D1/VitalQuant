@@ -32,6 +32,16 @@ BOARD_W = 36.5
 # adjacent pads in a row.
 BOARD_H = 44.4
 
+# Through-slots in three of the four gaps between DPCR electrode pads.
+# The R35-R36 gap is occupied by D20's pad, so it stays a 3.10 mm surface gap.
+# Each slot is 0.8 mm wide, ends 0.45 mm past the 2512 copper, and stays
+# 0.35 mm clear of the S30 pads. Creepage is then the path through the slot.
+CREEP_SLOTS = (
+    (11.90, 37.05, 12.70, 39.30),
+    (17.20, 37.05, 18.00, 39.30),
+    (24.20, 37.05, 25.00, 39.30),
+)
+
 # Internal edge-cut slots (x0, y0, x1, y1), 0.8 mm wide.
 # AS7341 / LED barrier, then the thermal island around the stacked TMP117s.
 # The top side of the island is open for a 2 mm neck toward the cluster.
@@ -173,6 +183,12 @@ PLACE = {
     "R59": (22.40, 42.80, 0, True),
     "R60": (18.20, 42.80, 0, True),
     "R61": (16.00, 42.80, 0, True),
+    "R62": (20.40, 1.15, 0, False),
+    "R63": (22.70, 1.15, 0, False),
+    "R64": (25.00, 1.15, 0, False),
+    "R65": (20.40, 2.55, 0, False),
+    "C62": (22.70, 2.55, 0, False),
+    "C63": (25.00, 2.55, 0, False),
     "R50": (31.30, 15.99, 0, True),
     "R51": (28.70, 8.01, 0, True),
     "R52": (16.00, 2.90, 0, True),
@@ -202,10 +218,10 @@ PLACE = {
     "D14": (21.45, 34.10, 0, False),
     "D15": (27.55, 34.10, 0, False),
     "D16": (33.70, 34.10, 0, False),
-    "D17": (9.25, 40.10, 0, False),
-    "D18": (17.40, 40.10, 0, False),
-    "D19": (25.55, 40.10, 0, False),
-    "D20": (33.70, 40.10, 0, False),
+    "D17": (9.25, 40.65, 0, False),
+    "D18": (17.40, 40.65, 0, False),
+    "D19": (25.55, 40.65, 0, False),
+    "D20": (33.70, 40.65, 0, False),
 }
 
 def parse_sexp(text: str):
@@ -506,6 +522,8 @@ def main():
     add_edge(board, BOARD_W, BOARD_H, 0, BOARD_H)
     add_edge(board, 0, BOARD_H, 0, 0)
     add_slot(board, *SLOTS[0])  # AS7341 / LED barrier
+    for _slot in CREEP_SLOTS:
+        add_slot(board, *_slot)
     add_poly(board, ISLAND)
     add_keepout(board)
 
@@ -554,7 +572,7 @@ def main():
             x1 = (box.GetX() + box.GetWidth()) / 1e6
             y1 = (box.GetY() + box.GetHeight()) / 1e6
             gap = min(x0 - 0, y0 - 0, BOARD_W - x1, BOARD_H - y1)
-            for sx0, sy0, sx1, sy1 in SLOTS:
+            for sx0, sy0, sx1, sy1 in SLOTS + CREEP_SLOTS:
                 # Expand the slot by the required copper clearance and test a hit.
                 if not (
                     x1 <= sx0 - 0.3
@@ -648,7 +666,9 @@ R_MPN = {
     "4.7k": "RC0402FR-074K7L",
     "5.1k": "RC0402FR-075K1L",
     "10k": "RC0402FR-0710KL",
+    "22.1k": "RC0402FR-0722K1L",
     "40.2k": "RC0402FR-0740K2L",
+    "47.5k": "RC0402FR-0747K5L",
     "49.9k": "RC0402FR-0749K9L",
     "100k": "RC0402FR-07100KL",
     "200k": "RC0402FR-07200KL",

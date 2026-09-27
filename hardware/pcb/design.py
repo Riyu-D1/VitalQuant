@@ -336,19 +336,27 @@ def usb(d: Design):
     )
     d.jog(sh, u, "7", "VBUS", jog=-18)  # VREGIN
     d.jog(sh, u, "6", "VDD_CP2102", jog=18)  # VDD
-    d.stub_net(sh, u, "8", "VBUS", 8.89)
+    # Rev 1.5 Fig 2.5: VBUS sense is a divider, not the 5 V rail. VREGIN stays on VBUS.
+    d.stub_net(sh, u, "8", "CP_VBUS", 8.89)
     d.stub_net(sh, u, "5", "USB_DM", 8.89)
     d.stub_net(sh, u, "4", "USB_DP", 8.89)
     d.join_row(sh, u, ["3"], "GND", 6.35)  # stacked with pad 29
     d.stub_net(sh, u, "26", "ESP_RX", 10.16)  # TXD -> ESP RX
     d.stub_net(sh, u, "25", "ESP_TX", 10.16)  # RXD <- ESP TX
+    d.stub_net(sh, u, "9", "CP_RST", 8.89)  # RSTb, 1k to VDD
     for n in ("23", "27", "1", "2"):  # ~CTS ~DSR ~DCD ~RI/CLK
         d.stub_net(sh, u, n, "VDD_CP2102", 10.16)
     d.finish(sh, u)
 
     sh.text("Decoupling", 40, 48, 1.8, bold=True)
     d.vpart(sh, "C", "C9", "4.7u", FP_C, 55, 70, "VDD_CP2102", "GND")
-    d.vpart(sh, "C", "C10", "1u", FP_C, 78, 70, "VBUS", "GND")
+    d.vpart(sh, "C", "C62", "100n", FP_C, 78, 100, "VDD_CP2102", "GND")
+    d.vpart(sh, "C", "C10", "1u", FP_C, 100, 70, "VBUS", "GND")
+    d.vpart(sh, "C", "C63", "100n", FP_C, 122, 70, "VBUS", "GND")
+    d.vpart(sh, "R", "R62", "1k", FP_R, 145, 100, "VDD_CP2102", "CP_RST")
+    # Fig 2.5: 22.1k from the connector, 47.5k to ground. At 5.0 V the pin is 3.41 V.
+    d.vpart(sh, "R", "R63", "22.1k", FP_R, 55, 145, "VBUS", "CP_VBUS")
+    d.vpart(sh, "R", "R64", "47.5k", FP_R, 90, 145, "CP_VBUS", "GND")
     # PWR_FLAG stands in for the internal 3.45 V regulator (symbol pin is power_in).
     p = d.pwr(sh, "VDD_CP2102", 130, 55) if False else None
     # VDD_CP2102 is not a power-symbol name. Attach the flag to the label.
@@ -356,10 +364,10 @@ def usb(d: Design):
     sh.label("VDD_CP2102", x, y, 180, shape="passive")
     fl = d.flag(sh, x + 12, y)
     sh.wire([(x, y), fl.pin_xy("1")])
-    sh.text("PWR_FLAG on VDD_CP2102 only. Do not tie this net to +3V3.", 40, 100, 1.4)
-    sh.text("Unused inputs ~CTS, ~DSR, ~DCD and ~RI/CLK are tied to VDD_CP2102. ~RSTb is open.", 40, 106, 1.4)
-    sh.text("No auto-program transistors and no EN or BOOT buttons.", 40, 112, 1.4)
-    sh.text("VBUS pin is tied straight to USB VBUS. The CP2102N VBUS pin is 5 V tolerant.", 40, 118, 1.4)
+    sh.text("PWR_FLAG on VDD_CP2102 only. Do not tie this net to +3V3.", 40, 175, 1.4)
+    sh.text("Unused inputs ~CTS, ~DSR, ~DCD and ~RI/CLK are tied to VDD_CP2102. R62 pulls ~RSTb up.", 40, 181, 1.4)
+    sh.text("R63/R64 are the Rev 1.5 Fig 2.5 divider. VREGIN is still the USB 5 V pin.", 40, 187, 1.4)
+    sh.text("C9+C62 on VDD, C1+C63 on VREGIN: 4.7 uF and 100 nF on each regulator pin.", 40, 193, 1.4)
 
 
 def mcu(d: Design):
@@ -850,7 +858,9 @@ def i2c(d: Design):
     d.stub_net(sh, t, "6", "I2C_SDA", 7.62)
     d.join_row(sh, t, ["2", "7"], "GND", 6.35)
     d.finish(sh, t)
-    sh.text("TMP117 U11 0x48, ADD0 = GND", 300, 48, 1.2)
+    # SNOSD82D: ALERT is open-drain and requires a pull-up. GPIO33 has none inside the module.
+    d.vpart(sh, "R", "R65", "10k", FP_R, 330, 155, "+3V3", "TMP117_ALERT")
+    sh.text("TMP117 U11 0x48, ADD0 = GND. R65 pulls ALERT up.", 300, 48, 1.2)
     t2 = d.part(sh, "TMP117AIDRVR", "U20", "TMP117AIDRVR", FP_TMP, 370, 80, labels="ic")
     d.stub_net(sh, t2, "1", "I2C_SCL", 7.62)
     d.stub_net(sh, t2, "4", "+3V3", 7.62)  # ADD0 -> 0x49
