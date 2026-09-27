@@ -22,99 +22,172 @@ BOM = ROOT / "vitalq_hw_v1_bom.csv"
 KICAD_FP = Path("/usr/share/kicad/footprints")
 
 # Millimetres. Origin is the lower-left corner, Y up (KiCad board coordinates).
-# ESP32 body courtyard, antenna on the left, ends near x=26.3. USB-C rotated
-# so its opening is the right edge needs 9.5 mm. Those two set the width.
-# 36.2 mm still clears both. 35 mm does not.
-# Height is the USB-C shell: its copper ends at y=27.45, and 0.3 mm copper-to-edge
-# means the outline cannot sit below 27.75. 27.8 mm is the clearance that holds.
-BOARD_W = 36.2
-BOARD_H = 27.8
+# The module antenna keep-out is the left 6.5 mm. USB-C is rotated so its
+# opening is the right edge; its centre sits 4.2 mm in from that edge.
+# Height clears the USB shell (centre 5.17 mm down from the top edge) and a
+# row of parts above the module. 4 layers. The board is rectangular.
+BOARD_W = 40.0
+BOARD_H = 34.0
+
+# Internal edge-cut slots (x0, y0, x1, y1), 0.8 mm wide.
+# Thermal island for the two TMP117s, plus the AS7341 / LED barrier.
+SLOTS = (
+    (29.15, 0.70, 29.95, 5.40),
+    (31.95, 5.90, 39.40, 6.70),
+    (34.35, 1.15, 35.15, 6.05),
+    (16.60, 8.06, 25.60, 8.86),
+)
 
 # (x, y, rotation_deg, bottom)
 # Rotation is applied before a bottom-side flip.
 PLACE = {
-    "C1": (35.30, 1.85, 90, False),
-    "C2": (29.93, 2.67, 90, False),
-    "C3": (35.24, 5.84, 90, False),
-    "C4": (29.93, 6.11, 90, False),
-    "C6": (35.30, 8.93, 90, False),
-    "C7": (9.20, 23.10, 0, False),
-    "C8": (11.30, 23.10, 0, False),
-    "C9": (29.47, 7.52, 0, False),
-    "C10": (29.52, 8.73, 0, False),
-    "C11": (18.34, 16.66, 90, True),
-    "C13": (17.31, 16.85, 90, True),
-    "C14": (20.56, 16.85, 90, True),
-    "C15": (23.85, 8.40, 90, True),
-    "C16": (15.10, 9.90, 90, True),
-    "C18": (9.97, 13.16, 0, True),
-    "C19": (7.93, 10.35, 90, True),
-    "C20": (7.82, 8.34, 90, True),
-    "C21": (10.27, 14.12, 0, True),
-    "C22": (7.79, 12.26, 90, True),
-    "C23": (6.98, 10.43, 90, True),
-    "C24": (12.28, 14.64, 0, True),
-    "C25": (6.86, 8.34, 90, True),
-    "C26": (8.52, 14.16, 90, True),
-    "C27": (10.38, 15.39, 0, True),
-    "C28": (14.35, 3.35, 90, True),
-    "C29": (14.14, 6.58, 0, True),
-    "C30": (8.08, 4.25, 90, True),
-    "C32": (9.62, 6.61, 0, True),
-    "C33": (7.80, 2.02, 90, True),
-    "C34": (6.87, 1.79, 90, True),
-    "C35": (14.74, 5.11, 0, True),
-    "C36": (30.70, 15.05, 90, True),
-    "C37": (22.28, 10.93, 0, True),
-    "C38": (30.45, 9.40, 90, True),
-    "C39": (8.70, 23.35, 0, True),
-    "C40": (14.40, 23.35, 0, True),
-    "C41": (33.72, 2.07, 90, True),
-    "C42": (15.57, 7.86, 90, True),
-    "C43": (12.05, 6.42, 0, True),
-    "J1": (32.00, 22.63, 90, False),
-    "J2": (17.55, 25.70, 0, False),
-    "J3": (22.55, 25.70, 0, False),
-    "J4": (21.15, 19.35, 180, True),
-    "J5": (19.35, 10.30, 270, True),
-    "J6": (25.55, 5.15, 0, True),
-    "R1": (26.11, 24.00, 90, False),
-    "R2": (29.26, 10.28, 0, False),
-    "R3": (35.12, 3.92, 0, False),
-    "R5": (7.51, 22.92, 90, False),
-    "R6": (16.80, 24.40, 90, True),
-    "R7": (18.90, 24.40, 90, True),
-    "R8": (25.55, 26.15, 90, False),
-    "R9": (19.41, 16.65, 90, True),
-    "R10": (20.21, 15.17, 0, True),
-    "R11": (13.18, 15.66, 0, True),
-    "R12": (7.30, 14.18, 90, True),
-    "R13": (7.38, 6.65, 0, True),
-    "R14": (14.44, 1.35, 90, True),
-    "R15": (15.55, 3.35, 90, True),
-    "R16": (17.20, 3.40, 0, True),
-    "R17": (7.44, 5.71, 0, True),
-    "R18": (33.94, 6.24, 0, True),
-    "R19": (32.15, 2.67, 0, True),
-    "R20": (32.37, 6.67, 90, True),
-    "R21": (30.90, 16.85, 0, True),
-    "R22": (30.55, 13.05, 90, True),
-    "U1": (12.75, 12.20, 90, False),
-    "U2": (32.55, 1.85, 0, False),
-    "U3": (32.55, 5.29, 0, False),
-    "U4": (32.55, 8.93, 0, False),
-    "U5": (32.55, 13.97, 0, False),
-    "U6": (22.50, 16.05, 0, True),
-    "U7": (11.50, 9.90, 0, True),
-    "U8": (11.15, 3.35, 0, True),
-    "U9": (33.15, 4.40, 0, True),
-    "U10": (26.90, 15.05, 0, True),
-    "U11": (22.85, 12.85, 0, True),
-    "U12": (27.25, 9.40, 0, True),
-    "U13": (8.70, 25.85, 0, False),
-    "U14": (12.70, 25.55, 0, False),
+    "C1": (29.50, 26.00, 90, False),
+    "C2": (32.00, 12.00, 90, False),
+    "C3": (33.50, 10.50, 90, False),
+    "C4": (27.00, 12.50, 90, False),
+    "C6": (30.50, 12.00, 90, False),
+    "C7": (18.00, 27.20, 90, True),
+    "C8": (16.50, 25.70, 90, True),
+    "C9": (27.00, 10.00, 90, False),
+    "C10": (28.00, 26.00, 90, False),
+    "C11": (24.50, 20.50, 90, True),
+    "C13": (26.00, 22.00, 90, True),
+    "C14": (25.50, 24.00, 90, True),
+    "C15": (23.50, 15.00, 90, True),
+    "C16": (19.50, 29.00, 90, True),
+    "C18": (16.50, 28.00, 90, True),
+    "C19": (18.00, 29.50, 90, True),
+    "C20": (18.00, 25.00, 90, True),
+    "C21": (15.00, 24.50, 90, True),
+    "C22": (21.00, 30.50, 90, True),
+    "C23": (15.00, 26.50, 90, True),
+    "C24": (21.00, 28.50, 90, True),
+    "C25": (19.50, 31.00, 90, True),
+    "C26": (16.50, 23.50, 90, True),
+    "C27": (17.50, 31.50, 90, True),
+    "C28": (16.00, 21.00, 90, True),
+    "C29": (14.50, 22.50, 90, True),
+    "C30": (14.50, 20.00, 90, True),
+    "C32": (17.00, 19.00, 90, True),
+    "C33": (18.00, 23.00, 90, True),
+    "C34": (13.00, 21.00, 90, True),
+    "C35": (13.50, 24.50, 90, True),
+    "C36": (15.50, 7.50, 90, True),
+    "C37": (29.00, 6.70, 90, False),
+    "C38": (27.50, 27.50, 0, False),
+    "C39": (17.00, 7.00, 90, True),
+    "C40": (32.20, 1.45, 0, True),
+    "C41": (14.00, 6.00, 90, True),
+    "C42": (22.50, 32.00, 90, True),
+    "C43": (11.50, 21.00, 90, True),
+    "C44": (30.10, 14.15, 0, False),
+    "C45": (34.40, 14.15, 0, False),
+    "C46": (32.50, 8.50, 90, False),
+    "C47": (38.30, 14.15, 0, False),
+    "C48": (11.00, 26.00, 90, True),
+    "C49": (12.50, 26.50, 90, True),
+    "C50": (17.00, 15.00, 90, True),
+    "C51": (10.00, 21.00, 90, True),
+    "C52": (9.50, 26.00, 90, True),
+    "C53": (22.50, 28.50, 90, True),
+    "C54": (21.00, 32.50, 90, True),
+    "C55": (24.00, 28.50, 90, True),
+    "C56": (25.00, 15.00, 90, True),
+    "C57": (25.50, 26.00, 90, True),
+    "C58": (27.50, 7.50, 90, False),
+    "C59": (24.00, 30.70, 90, True),
+    "C60": (24.00, 32.70, 90, True),
+    "C61": (37.70, 1.45, 0, True),
+    "D1": (13.10, 3.85, 0, True),
+    "D2": (14.60, 3.85, 0, True),
+    "D3": (16.10, 3.85, 0, True),
+    "D4": (17.60, 3.85, 0, True),
+    "D5": (19.10, 3.85, 0, True),
+    "D6": (9.20, 28.10, 0, True),
+    "D7": (10.80, 28.10, 0, True),
+    "D8": (12.40, 28.10, 0, True),
+    "D9": (14.00, 28.10, 0, True),
+    "D10": (20.00, 6.70, 0, True),
+    "D11": (23.30, 6.80, 90, True),
+    "J1": (35.80, 28.83, 90, False),
+    "J2": (36.40, 10.60, 0, False),
+    "J3": (25.80, 3.15, 0, False),
+    "J5": (16.40, 1.70, 0, True),
+    "J6": (12.40, 32.20, 0, True),
+    "L1": (38.55, 21.50, 0, False),
+    "L2": (37.30, 17.30, 0, False),
+    "Q1": (24.90, 6.80, 0, True),
+    "R1": (29.50, 23.50, 0, False),
+    "R2": (29.50, 27.50, 0, False),
+    "R3": (33.50, 15.50, 0, False),
+    "R5": (25.50, 28.20, 90, True),
+    "R6": (25.50, 30.20, 90, True),
+    "R7": (25.50, 32.20, 90, True),
+    "R8": (32.50, 5.00, 0, False),
+    "R9": (27.00, 26.00, 90, True),
+    "R10": (28.50, 26.00, 90, True),
+    "R11": (27.00, 28.00, 90, True),
+    "R12": (8.50, 21.00, 90, True),
+    "R13": (8.00, 26.00, 90, True),
+    "R14": (16.00, 13.00, 90, True),
+    "R15": (17.50, 13.00, 90, True),
+    "R16": (24.00, 13.00, 90, True),
+    "R17": (7.50, 14.50, 90, True),
+    "R18": (16.00, 10.00, 90, True),
+    "R19": (17.50, 10.00, 90, True),
+    "R20": (15.50, 5.50, 90, True),
+    "R21": (12.50, 5.50, 90, True),
+    "R22": (12.50, 7.50, 90, True),
+    "R23": (33.50, 19.00, 0, False),
+    "R24": (35.50, 19.00, 0, False),
+    "R25": (35.50, 15.50, 0, False),
+    "R26": (7.50, 16.50, 90, True),
+    "R27": (7.50, 18.50, 90, True),
+    "R28": (7.50, 23.00, 90, True),
+    "R29": (7.50, 28.00, 90, True),
+    "R30": (7.00, 30.00, 90, True),
+    "R31": (7.00, 20.50, 90, True),
+    "R32": (25.50, 11.50, 90, True),
+    "R33": (24.00, 11.00, 90, True),
+    "R34": (7.00, 32.00, 90, True),
+    "R35": (30.00, 26.00, 90, True),
+    "R36": (28.50, 28.00, 90, True),
+    "R39": (30.00, 28.00, 90, True),
+    "R40": (27.00, 12.50, 90, True),
+    "R41": (28.50, 12.50, 90, True),
+    "R42": (30.00, 12.50, 90, True),
+    "R43": (31.50, 12.50, 90, True),
+    "R44": (33.00, 12.00, 90, True),
+    "R45": (27.00, 10.50, 90, True),
+    "R46": (28.50, 10.50, 90, True),
+    "R47": (11.00, 3.00, 90, True),
+    "R48": (11.00, 5.00, 90, True),
+    "R49": (27.50, 14.00, 0, False),
+    "R50": (30.50, 7.00, 0, False),
+    "R51": (37.50, 15.50, 0, False),
+    "R52": (34.50, 10.70, 90, True),
+    "R53": (30.00, 10.20, 90, True),
+    "U1": (12.75, 15.50, 90, False),
+    "U2": (30.00, 21.40, 0, False),
+    "U3": (35.00, 21.50, 0, False),
+    "U4": (30.00, 17.10, 0, False),
+    "U5": (10.30, 30.30, 0, False),
+    "U6": (24.70, 17.60, 0, True),
+    "U7": (21.80, 24.60, 0, True),
+    "U8": (20.30, 18.90, 0, True),
+    "U9": (10.60, 23.60, 0, True),
+    "U10": (20.40, 12.40, 0, True),
+    "U11": (32.20, 3.55, 0, True),
+    "U12": (11.00, 17.30, 0, True),
+    "U13": (30.20, 9.40, 0, False),
+    "U14": (27.40, 30.50, 0, False),
+    "U15": (34.30, 17.30, 0, False),
+    "U16": (11.20, 11.00, 0, True),
+    "U17": (28.90, 12.40, 0, False),
+    "U18": (18.70, 30.10, 0, False),
+    "U19": (28.80, 31.40, 0, True),
+    "U20": (37.70, 3.55, 0, True),
 }
-
 
 def parse_sexp(text: str):
     s = text.strip()
@@ -215,6 +288,13 @@ def load_footprint(fpname: str):
     fp = pcbnew.FootprintLoad(str(lib), name)
     if fp is None:
         raise SystemExit(f"footprint not found: {fpname}")
+    # This KiCad install has no Connector_USB 3D shapes. The official STEP
+    # ships with the royalblue demo; keep a copy next to the other models.
+    if name.startswith("USB_C_Receptacle_HRO"):
+        step = ROOT / "lib" / "vitalq.3d" / "USB_C_Receptacle_HRO_TYPE-C-31-M-12.step"
+        models = fp.Models()
+        if len(models):
+            models[0].m_Filename = str(step)
     return fp
 
 
@@ -249,6 +329,13 @@ def add_edge(board, x1, y1, x2, y2):
     shape.SetEnd(vec(x2, y2))
     shape.SetWidth(mm(0.1))
     board.Add(shape)
+
+
+def add_slot(board, x0, y0, x1, y1):
+    add_edge(board, x0, y0, x1, y0)
+    add_edge(board, x1, y0, x1, y1)
+    add_edge(board, x1, y1, x0, y1)
+    add_edge(board, x0, y1, x0, y0)
 
 
 def add_keepout(board):
@@ -372,6 +459,8 @@ def main():
     add_edge(board, BOARD_W, 0, BOARD_W, BOARD_H)
     add_edge(board, BOARD_W, BOARD_H, 0, BOARD_H)
     add_edge(board, 0, BOARD_H, 0, 0)
+    for slot in SLOTS:
+        add_slot(board, *slot)
     add_keepout(board)
 
     # Courtyard clashes on the same side, and copper too close to the outline.
@@ -419,6 +508,16 @@ def main():
             x1 = (box.GetX() + box.GetWidth()) / 1e6
             y1 = (box.GetY() + box.GetHeight()) / 1e6
             gap = min(x0 - 0, y0 - 0, BOARD_W - x1, BOARD_H - y1)
+            for sx0, sy0, sx1, sy1 in SLOTS:
+                # Expand the slot by the required copper clearance and test a hit.
+                if not (
+                    x1 <= sx0 - 0.3
+                    or x0 >= sx1 + 0.3
+                    or y1 <= sy0 - 0.3
+                    or y0 >= sy1 + 0.3
+                ):
+                    edge_hits.append(f"{ref}.{pad.GetNumber()} slot")
+                    break
             if gap < 0.3:
                 edge_hits.append(f"{ref}.{pad.GetNumber()} edge {gap:.2f} mm")
 
@@ -451,13 +550,103 @@ def main():
     return 0
 
 
+# Exact orderable numbers. 0402 passives are Yageo RC0402FR (1%) and Murata GRM155.
+# 0603 bulk capacitors are the Murata parts named in the regulator tables.
+MPN = {
+    "U1": "ESP32-WROOM-32E-N8R2",
+    "U2": "MCP73831T-2ACI/OT",
+    "U3": "TPS63802DLAR",
+    "U4": "TPS7A2018PDBVR",
+    "U5": "CP2102N-A02-GQFN28R",
+    "U6": "AFE4900YZR",
+    "U7": "AD5940BCBZ-RL7",
+    "U8": "ADS1292RIRSMT",
+    "U9": "PCA9306DCUR",
+    "U10": "AS7341-DLGM",
+    "U11": "TMP117AIDRVR",
+    "U12": "MLX90632SLD-DCB-100-SP",
+    "U13": "BME280",
+    "U14": "LSM6DSV80XTR",
+    "U15": "TPS61240YFFR",
+    "U16": "SFH 7072",
+    "U17": "MAX17048G+T10",
+    "U18": "W25Q512JVEIQ",
+    "U19": "TCA6408ARSVR",
+    "U20": "TMP117AIDRVR",
+    "Q1": "CSD13380F3",
+    "D10": "NF2W757G-F1",
+    "D11": "SFH 4053",
+    "L1": "DFE201612E-R47M",
+    "L2": "DFE201612E-1R0M",
+    "J1": "TYPE-C-31-M-12",
+}
+for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"):
+    MPN[_ref] = "TPD1E10B06DPYR"
+
+R_MPN = {
+    "10": "RC0402FR-0710RL",
+    "100": "RC0402FR-07100RL",
+    "200": "RC0402FR-07200RL",
+    "1k": "RC0402FR-071KL",
+    "4.7k": "RC0402FR-074K7L",
+    "5.1k": "RC0402FR-075K1L",
+    "10k": "RC0402FR-0710KL",
+    "40.2k": "RC0402FR-0740K2L",
+    "49.9k": "RC0402FR-0749K9L",
+    "100k": "RC0402FR-07100KL",
+    "200k": "RC0402FR-07200KL",
+    "560k": "RC0402FR-07560KL",
+    "1M": "RC0402FR-071ML",
+    "10M": "RC0402FR-0710ML",
+}
+# 0402 unless the footprint is 0603.
+C_MPN_0402 = {
+    "2.2n": "GRM1555C1H222JA01",
+    "4.7n": "GRM1555C1H472JA01",
+    "15n": "GRM155R71H153KA12",
+    "100n": "GRM155R71C104KA88",
+    "470n": "GRM155R61A474KE15",
+    "1u": "GRM155R61A105KE15",
+    "2.2u": "GRM155R60J225ME15",
+    "4.7u": "GRM155R60J475ME87",
+    "10u": "GRM155R60J106ME05",
+}
+C_MPN_0603 = {
+    "4.7u": "GRM188R61A475KE15",
+    "10u": "GRM188R61A106ME69",
+    "22u": "GRM188R61A226ME15",
+}
+
+
+def mpn_for(ref, value, footprint):
+    if ref in MPN:
+        return MPN[ref]
+    if ref.startswith("R"):
+        return R_MPN[value]
+    if ref.startswith("C"):
+        table = C_MPN_0603 if "0603" in footprint else C_MPN_0402
+        return table[value]
+    if ref.startswith("J"):
+        return "solder pads"
+    return ""
+
+
 def write_bom(comps):
     rows = []
-    for ref, meta in sorted(comps.items(), key=lambda kv: (kv[0][0], int("".join(ch for ch in kv[0] if ch.isdigit()) or "0"))):
-        rows.append((ref, meta["value"], meta["footprint"], "1"))
+    key = lambda kv: (kv[0][0], int("".join(ch for ch in kv[0] if ch.isdigit()) or "0"))
+    for ref, meta in sorted(comps.items(), key=key):
+        rows.append(
+            (
+                ref,
+                meta["value"],
+                mpn_for(ref, meta["value"], meta["footprint"]),
+                meta["footprint"],
+                "1",
+            )
+        )
     with BOM.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["Ref", "Value", "Footprint", "Qty"])
+        w.writerow(["Ref", "Value", "MPN", "Footprint", "Qty"])
         w.writerows(rows)
 
 

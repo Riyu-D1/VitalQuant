@@ -1,227 +1,173 @@
 # VitalQ hw_v1
 
 Research prototype. This is not a medical device. Nothing here is a claim
-about safety, sterility, biocompatibility, or regulatory clearance.
+about safety, sterility, biocompatibility, or regulatory clearance. The
+49.9 kΩ electrode resistors are not an IEC 60601 patient-leakage design.
 
-The schematic is drawn explicitly (every part is on a sheet, with its
-reference and value). The PCB is an unrouted starting placement for a
-wearable: **36.2 × 27.8 mm**, 4 layers, parts on both sides. The ESP32-WROOM-32E
-shield plus its antenna keep-out ends near x = 26 mm, and the USB-C
-receptacle, opening on the right, needs 9.5 mm beside that. 36.2 mm is
-the width where those courtyards just clear. 35 mm does not. Height is
-27.8 mm. The module, the LiPo pads, the IMU and the air sensor fill the
-strip above the antenna, and the USB-C copper ends at y = 27.45 mm, so
-the 0.3 mm copper-to-edge rule stops the outline there.
+The schematic is drawn explicitly. The PCB is an unrouted placement:
+**40.0 × 34.0 mm**, rectangular, **4 layers**, parts on both sides.
+Six layers were not required. The analog nets are ordinary and the
+stackup is the JLCPCB 4-layer default.
 
 Regenerate and check with `hardware/pcb/check.sh` (KiCad 9).
 
-## Extra part
+The firmware pin map is `PINMAP.md`. Every resistor and capacitor is
+in `PASSIVES.md`. Orderable part numbers are in `vitalq_hw_v1_bom.csv`.
+Footprint sources are in `lib/SOURCES.md`.
 
-**U9 PCA9306DCUR is not on the requested IC list.** It is the one extra IC.
+## What changed from the previous board
 
-AS7341 VDD is 1.7–2.0 V, so it cannot sit on the 3.3 V rail. The 1.8 V
-TPS7A2018 powers it. An ESP32 input is not guaranteed to see 1.8 V as a
-high (VIH is about 0.75 × 3.3 V). One PCA9306 translates SDA and SCL.
-AS7341 INT is left open; firmware should poll 0x39.
+One part was replaced. The XC6206P332MR (U3) is now a TI TPS63802
+buck-boost, 3.3 V, with the datasheet 0.47 µH inductor and the 10 µF /
+22 µF 0603 capacitors. EN is tied to VBAT so the rail exists before the
+I/O expander runs. MODE is grounded (power save). The exposed pad is GND.
 
-MLX90632SLD-DCB-100-SP uses that same 1.8 V bus for SDA and SCL. The
-option-code digit "1" selects 1.8 V I2C. VDD is still 3.3 V. No second
-translator was added.
+J4, the off-board PPG pads, is gone. The ams OSRAM SFH 7072 is on the
+board, on the skin side. Anodes go to the TPS61240 5 V rail (TX_5V).
+Cathodes go to AFE4900 LED1–LED4. The two photodiodes go to two AFE4900
+PD inputs. The footprint has an 0.8 mm edge-cut slot between the emitters
+and the detectors, and a window outline on User.1.
 
-No other IC was added. The decoupling and bias passives below are the
-datasheet parts, plus the FSR divider (R8) and the AFE CLK pulldown (R10).
-There are no test points, no pin headers and no mounting holes.
+Everything else that was on the previous board is still here, including
+R8 and R10. The list is at the bottom of this file.
 
-## Part-number changes
+## Board
 
-| Was | Is | Why |
-| --- | --- | --- |
-| ADS1292RIPBSR (TQFP-32) | **ADS1292RIRSMT** (VQFN-32) | Smaller package. SBAS502 pin numbers 1–32 are the same. Exposed pad pin 33 is AVSS. |
-| MLX90632SLD-DCB-000-RE | **MLX90632SLD-DCB-100-SP** | Same pinout. The "1" option is 1.8 V I2C, so SDA and SCL moved to the PCA9306 1.8 V side. Address with ADDR = GND is still 0x3A. VDD stays on +3V3. |
+The module antenna keep-out is x = 0 to 6.5 mm, every copper layer.
+Pads start at x ≥ 6.55 mm. USB-C is rotated so the opening is the right
+edge. The shell and the parts above the module set the 34 mm height.
+The buck-boost, the 5 V boost, and their inductors sit on the top, on
+the right, next to USB and the battery pads. Analog parts are on the
+bottom, left of that column.
 
-## Part count
+Skin side, bottom: SFH 7072, AS7341 with the white LED and the 860 nm
+LED, MLX90632, and the two TMP117s. The TMP117s sit on a small island
+at the bottom-right corner. An 0.8 mm slot separates them, and another
+slot separates the island from the rest of the board, with a 2 mm neck
+on the side away from the regulators. A slot also separates the AS7341
+aperture from its two LEDs.
 
-**80 parts** on the board.
-
-| Group | Qty | Parts |
-| --- | --- | --- |
-| ICs | 14 | U1 ESP32-WROOM-32E-N8R2, U2 MCP73831T-2ACI/OT, U3 XC6206P332MR-G, U4 TPS7A2018PDBVR, U5 CP2102N-A02-GQFN28R, U6 AFE4900YZR, U7 AD5940BCBZ-RL7, U8 ADS1292RIRSMT, U9 PCA9306DCUR, U10 AS7341-DLGM, U11 TMP117AIDRVR, U12 MLX90632SLD-DCB-100-SP, U13 BME280, U14 LSM6DSV80XTR |
-| Connectors | 6 | J1 USB-C, J2 LiPo pads, J3 FSR pads, J4 PPG pads, J5 ECG pads, J6 EDA pads |
-| Passives | 60 | 21 resistors and 39 capacitors, all 0402 |
-
-PWR_FLAG symbols are schematic-only and are not in this count.
-
-There is no MPU6050, no BME680, and no MAX86141. U14 is the LSM6DSV80X.
-
-## Why TPS7A2018
-
-Every IC supply except the AS7341 runs at 3.3 V. AS7341 VDD is 1.7–2.0 V,
-so the TPS7A20 is the 1.8 V fixed variant **TPS7A2018PDBVR** (SOT-23-5, DBV).
-EN is tied to IN. The input is the XC6206 3.3 V output. KiCad's TPS7A20
-symbol is the X2SON package, so the symbol is local and the footprint is
-the official SOT-23-5.
-
-## Rail plan
-
-USB VBUS feeds the MCP73831 and the CP2102N VBUS pin directly. There is
-no power-path diode, switch, or ideal diode.
-
-The cell and the charger output share VBAT. The XC6206 input is VBAT, so
-the 3.3 V rail is the cell. USB charges the cell and runs the UART. The
-board does not run from USB if the cell is missing.
-
-| Net | Source | Loads |
-| --- | --- | --- |
-| VBUS | USB-C | MCP73831 VDD, CP2102N VBUS and VREGIN |
-| VBAT | MCP73831 and J2 | XC6206 input, AFE4900 TX_SUP, J4 VBAT pad |
-| +3V3 | XC6206P332MR-G | ESP32, AFE4900 RX_SUP and IO_SUP, AD5940 and ADS1292R supplies, 3.3 V I2C, IMU, TMP117, MLX90632 VDD, BME280, FSR top |
-| +1V8 | TPS7A2018PDBVR | AS7341 VDD, PCA9306 VREF1, MLX90632 SDA/SCL pull-ups |
-| VDD_CP2102 | CP2102N internal regulator | CP2102N VDD bypass only. Not tied to +3V3 |
-| IOVDD | +3V3 through 10 Ω | AD5940 IOVDD |
-
-R3 is 10 kΩ, so the MCP73831-2 charges at 100 mA. STAT is open. There is
-no charge LED.
-
-## I2C
-
-One 4.7 kΩ pull-up pair per bus, not per sensor.
-
-| Bus | Device | Address | Address pins |
-| --- | --- | --- | --- |
-| 3.3 V, GPIO21/22 | TMP117 | 0x48 | ADD0 = GND |
-| 3.3 V | BME280 | 0x76 | SDO = GND, CSB high |
-| 3.3 V | LSM6DSV80X | 0x6A | SDO, SDx, SCx = GND, CS high |
-| 1.8 V, behind U9 | AS7341 | 0x39 | INT, LDR, LED open |
-| 1.8 V, behind U9 | MLX90632 | 0x3A | ADDR = GND. VDD is +3V3 |
-
-PCA9306: VREF1 = 1.8 V, EN tied to VREF2, VREF2 to 3.3 V through 200 Ω,
-pull-ups on both sides.
-
-TMP117 pin 3 is ALERT and pin 4 is ADD0 (DRV Table 5-1). The previous
-local symbol had those two swapped.
-
-## ESP32-WROOM-32E-N8R2 pin map
-
-GPIO16 is PSRAM on the N8R2 and is not brought out. GPIO6–11 are the
-module flash bus and have no symbol pins. GPIO2 and GPIO12 are open so
-those straps stay low. GPIO15 must be high at reset, so it is the only
-chip-select with a pull-up.
-
-| GPIO | Symbol pin | Net | Function |
-| --- | --- | --- | --- |
-| EN | 3 | ESP_EN | 10 kΩ to +3V3 |
-| 36 / SENSOR_VP | 4 | FSR_ADC | FSR divider, ADC1 |
-| 39 / SENSOR_VN | 5 | open | |
-| 34 | 6 | ADS1292_DRDY | |
-| 35 | 7 | open | |
-| 32 | 8 | LSM6_INT1 | |
-| 33 | 9 | TMP117_ALERT | |
-| 25 | 10 | ADS1292_PWDN | |
-| 26 | 11 | ADS1292_START | |
-| 27 | 12 | AD5940_RESET | |
-| 14 | 13 | AD5940_GPIO0 | |
-| 12 | 14 | open | strap low |
-| 13 | 16 | AFE4900_ADC_RDY | |
-| 15 | 23 | CS_AD5940 | 10 kΩ to +3V3 |
-| 2 | 24 | open | strap low |
-| 0 | 25 | ESP_IO0 | 10 kΩ to +3V3 |
-| 4 | 26 | CS_ADS1292 | |
-| 16 | 27 | inside the module | PSRAM, no connect |
-| 17 | 28 | AFE4900_RESETZ | |
-| 5 | 29 | CS_AFE4900 | |
-| 18 | 30 | SPI_SCK | shared |
-| 19 | 31 | SPI_MISO | shared |
-| 21 | 33 | I2C_SDA | 3.3 V bus |
-| 3 / U0RX | 34 | ESP_RX | from CP2102 TXD |
-| 1 / U0TX | 35 | ESP_TX | to CP2102 RXD |
-| 22 | 36 | I2C_SCL | 3.3 V bus |
-| 23 | 37 | SPI_MOSI | shared |
-
-SPI mode for the AFE4900: I2C_SPI_SEL tied to RX_SUP. AD5940 and ADS1292R
-share SCK, MOSI, and MISO.
-
-## Solder pads
-
-Nothing on the board is a pin header. J2–J6 are flat SMD pads with the
-net function in silkscreen.
-
-| Ref | Pads |
-| --- | --- |
-| J2 LiPo | BAT+, BAT- |
-| J3 FSR | 3V3, FSR. One 10 kΩ (R8) from FSR_ADC to GND |
-| J4 PPG | VBAT, TX1, TX2, TX3, PD+, PD-. LEDs and the photodiode are off the board |
-| J5 ECG | IN+, IN-, RLD |
-| J6 EDA | CE, RE, SE, DE. No series RC |
-
-## Placement
-
-Top: ESP32-WROOM-32E with the antenna on the left edge and the keep-out
-covering x = 0 to 6.5 mm. USB-C opens on the right edge, with the CP2102N
-and both regulators under it. BME280, the IMU, the LiPo pads and the FSR
-pads sit in the strip above the module, so the air sensor is not against
-skin. Decoupling for the module is on that same edge, next to the 3.3 V pins.
-
-Bottom, skin side: AFE4900, AS7341, MLX90632 and TMP117 are one group
-about 9 × 11 mm near the centre, clear of the module's through-hole
-ground pads. AS7341 and the MLX90632 window are on the outer side of
-that group. PPG pads sit above it, ECG pads on its lower left (labels
-clear of the module holes), EDA pads below. AD5940 and ADS1292R sit
-just to the right of the antenna keep-out, not inside it: that zone
-forbids copper on every layer from x = 0 to 6.5 mm, so the lower-left
-corner cannot hold parts. Their bypass caps are packed against the
-ICs. C43, the 1 µF ADS1292R AVDD bulk, sits on the AVDD pin. PCA9306
-is on the lower right, away from the skin group.
+Electrodes are flat solder pads. No headers. J5 is five pads: ADS1292R
+positive, ADS1292R negative, RLD, AFE4900 positive, AFE4900 negative.
+J6 is the four EDA pads. The EDA cable is a flex tail to the shoulder.
+The electrodes on that tail must land at least 5 cm from the ECG
+electrodes. That distance is on the harness, not on this 40 mm board.
 
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
 vias, 0.3 mm copper-to-edge, 0.1 mm solder-mask web, mask expansion 0.
-Reference designators are hidden. Pad function text is 0.45 mm so it
-fits the 2.2 mm pad pitch.
+Reference designators are hidden. Fab reference text is 0.35 mm.
 
-## Assumptions
+## Part count
 
-- AFE4900 CLK is held low with 1 kΩ so the internal oscillator is used.
-  Ball names are the SnapMagic symbol.
-- AD5940 has no crystal. XTAL pins are open. Electrodes are wired
-  straight to CE0, RE0, SE0, and DE0.
-- ADS1292R channel 2 is tied to channel 1. Respiration parts are not
-  fitted. CLKSEL is tied to DVDD and CLK is open. The exposed pad is AVSS.
-  C43 is 1 µF from AVDD to GND, the bulk capacitor in SBAS502 §11.1.
-  CP2102N ~RSTb is left open; the pin has an internal pull-up.
-- ADS1292R digital inputs should stay low until the supplies are up
-  (SBAS502). CS_AD5940 cannot be low at reset because GPIO15 must be
-  high. That pull-up is R7.
-- LSM6DSV80X pins 10 and 11 are NC. The Ultra Librarian land is the
-  nominal QFN_LSM6DSV80XTR_STM body. Pins 6 and 7 are ground.
-- MLX90632SLD-DCB-100-SP pin order matches the 000-RE. Only the I2C
-  voltage changed.
+**146 parts.**
+
+| Group | Qty | Parts |
+| --- | --- | --- |
+| ICs | 20 | U1–U20, listed below |
+| MOSFET | 1 | Q1 CSD13380F3 |
+| ESD diodes | 9 | D1–D9 TPD1E10B06DPYR |
+| LEDs | 2 | D10 NF2W757G-F1, D11 SFH 4053 |
+| Inductors | 2 | L1 0.47 µH, L2 1.0 µH |
+| Pads | 5 | J1 USB-C, J2 LiPo, J3 FSR, J5 ECG, J6 EDA |
+| Resistors | 50 | 0402 |
+| Capacitors | 57 | 54 of 0402, plus C44, C45, C47 in 0603 |
+
+PWR_FLAG symbols are schematic-only and are not in this count.
+
+## Rails
+
+USB VBUS feeds the MCP73831 and the CP2102N VBUS pin. There is no
+power-path diode or switch. The cell and the charger share VBAT.
+The TPS63802 makes 3.3 V from VBAT. The board does not run from USB
+if the cell is missing.
+
+| Net | Source | Loads |
+| --- | --- | --- |
+| VBUS | USB-C | MCP73831 VDD, CP2102N VBUS and VREGIN, the VBUS divider |
+| VBAT | MCP73831 and J2 | TPS63802, TPS61240, MAX17048 |
+| +3V3 | TPS63802 | ESP32, AFE4900 RX and IO, AD5940, ADS1292R, 3.3 V I2C, sensors, the white LED, the 860 nm LED resistor |
+| TX_5V | TPS61240 | AFE4900 TX_SUP and the SFH 7072 anodes. Enable is expander P3 |
+| +1V8 | TPS7A2018 | AS7341 VDD, PCA9306 VREF1, MLX90632 SDA/SCL pull-ups |
+| VDD_CP2102 | CP2102N internal regulator | CP2102N VDD bypass only. Not tied to +3V3 |
+
+R3 is 10 kΩ, so the MCP73831-2 charges at 100 mA. STAT goes to the
+expander with a pull-up. There is no charge LED.
+
+TPS61240 output is 4.9–5.1 V. AFE4900 TX_SUP must be 3.0–5.25 V, so
+this sits inside that window. Green LED Vf max in the SFH 7072 v1.6
+sheet is 2.8 V at 20 mA.
+
+## I2C and SPI
+
+Addresses, chip selects, and the expander port map are in `PINMAP.md`.
+
+One PCA9306 (U9) translates the 1.8 V sensor bus. It is an extra IC
+relative to the original sensor list: AS7341 VDD is 1.7–2.0 V, and an
+ESP32 input is not guaranteed to see 1.8 V as a high.
+
+## Assumptions that are not in a public full datasheet
+
+- AFE4900 TX_SUP headroom, ECG common-mode range, and the 100 nF / 10 MΩ
+  ECG coupling are not in the public short-form. The coupling values are
+  an inference.
+- AS7341 NIR is characterised at 940 nm. Response at 860 nm (SFH 4053)
+  was not confirmed. LDR headroom with a white LED Vf near 2.9 V from
+  a 3.3 V rail is tight and was not confirmed against the full AS7341 sheet.
+- MAX17048 ball map and the NF2W757 land were drawn without a downloaded
+  mechanical PDF. See `lib/SOURCES.md`.
+- W25Q512 8-pad pinout follows the JV-family WSON. The 512 Mbit PDF
+  returned 404.
+- SFH 7072 pad pitch is reconstructed from the 7.5 × 3.9 mm body and a
+  2 × 6 land. Confirm pin 1 before fabrication.
+- ADS1292R C34 stays 4.7 nF even though SBAS502C says 47 nF when
+  respiration is on.
 
 ## Firmware profile is out of date
 
 `firmware/esp32/profiles/hw_v1.yaml` and `config/hardware.example.yaml`
-were not edited. They still describe a different board: ESP32-S3,
-I2C on GPIO 8/9, SPI on GPIO 12/11/13, MAX86141, MLX90637 at 0x3B, and
-ICM-42670-P at 0x68.
-
-This PCB is a classic ESP32-WROOM-32E. I2C is GPIO 21/22 on the 3.3 V
-side of the PCA9306. SPI is GPIO 19/23/18. PPG is the AFE4900, not a
-MAX86141. MLX90632 is 0x3A on the 1.8 V side, and TMP117 is 0x48 on
-3.3 V. Motion is LSM6DSV80X at 0x6A. FSR sense is ADC1 GPIO36. AS7341
-is 0x39 on the 1.8 V side. The firmware profile has no ECG or EDA entries.
-
-## Open items
-
-- Route the board. DRC unconnected-item errors are expected until then.
-- The LSM6 3D model is a 3.0 × 2.5 × 0.83 mm box. Ultra Librarian did not supply a STEP file. KiCad's VRML unit is 0.1 inch, so the file is stored in those units.
+were not edited. They still describe an ESP32-S3 board with different
+GPIO, a MAX86141, an MLX90637, and an ICM-42670-P. This PCB is the
+classic ESP32 map in `PINMAP.md`.
 
 ## Sheets
 
 1. Power and charging, including links to the other sheets
 2. USB-UART
 3. MCU and FSR
-4. AFE4900 PPG
+4. AFE4900 PPG, SFH 7072, and the 5 V boost
 5. AD5940 EDA
-6. ADS1292R ECG
-7. I2C sensors and IMU
+6. ADS1292R ECG and respiration
+7. I2C sensors, the second TMP117, and the AS7341 LEDs
 
-Symbol and footprint sources are in `lib/SOURCES.md`.
+## Original parts still on the board
+
+From the board this round started from. J4 was removed because the SFH 7072
+replaces it. U3 is the same reference with a new device.
+
+| Ref | Part |
+| --- | --- |
+| U1 | ESP32-WROOM-32E-N8R2 |
+| U2 | MCP73831T-2ACI/OT |
+| U3 | was XC6206P332MR, now TPS63802DLAR |
+| U4 | TPS7A2018PDBVR |
+| U5 | CP2102N-A02-GQFN28R |
+| U6 | AFE4900YZR |
+| U7 | AD5940BCBZ-RL7 |
+| U8 | ADS1292RIRSMT |
+| U9 | PCA9306DCUR |
+| U10 | AS7341-DLGM |
+| U11 | TMP117AIDRVR |
+| U12 | MLX90632SLD-DCB-100-SP, 1.8 V I2C variant, VDD still 3.3 V |
+| U13 | BME280 |
+| U14 | LSM6DSV80XTR |
+| J1 | USB-C |
+| J2 | LiPo pads |
+| J3 | FSR pads |
+| J5 | ECG pads, now five pads |
+| J6 | EDA pads |
+| R1–R3, R5–R22 | previous resistors, including R8 and R10 |
+| C1–C4, C6–C11, C13–C16, C18–C30, C32–C43 | previous capacitors |
+
+R4, C5, C12, C17, C31, TP1, and TP2 were already absent. They were not
+put back.
