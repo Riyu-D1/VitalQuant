@@ -64,6 +64,8 @@ switch the ESP32 SPI mode when changing CS.
 | CS_AD5940 | 15 | AD5940. Pull-up holds the GPIO15 strap high |
 | CS_FLASH | 26 | W25Q512. /WP and /HOLD tied to +3V3. Pull-up holds CS high while GPIO26 is an input |
 
+Chest respiration does not add a GPIO. It is the AD5940 high-speed loop, selected by CS_AD5940 and the on-chip switch matrix. Shoulder EDA keeps CE0, SE0, RE0, and DE0. The chest force and sense lines are separate balls: AIN1 (F+), AIN0 (F−), AIN3 (S+), AIN2 (S−). Firmware must not drive D5 (CE0) while the chest measurement is running. J5 and J6 are not paralleled onto these nets.
+
 ## I2C
 
 3.3 V bus, GPIO21 SDA and GPIO22 SCL, 4.7 kΩ pull-ups (R19, R20).

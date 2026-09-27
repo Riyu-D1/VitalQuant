@@ -28,9 +28,10 @@ KICAD_FP = Path("/usr/share/kicad/footprints")
 # on the top at the same XY, outside the module body.
 BOARD_W = 36.5
 # ECG DPCRs on the bottom, EDA DPCRs on the top at the same X. The charge
-# pads and the new 0402s sit just above that row. The gas tubes are gone,
-# so this band no longer needs a second height for them.
-BOARD_H = 45.6
+# pads sit just above that row. Four more 2512s for the chest bioZ leads
+# need their own band past the charger row: a 2512 courtyard is 7.66 mm
+# tall once it is turned to face the edge, and it has to clear J2.
+BOARD_H = 53.4
 
 # 0.8 mm slots in all four gaps between the ECG/EDA electrode pads.
 # Each slot starts across the electrode copper and ends 0.3 mm clear of
@@ -40,6 +41,10 @@ CREEP_SLOTS = (
     (17.975, 37.05, 18.775, 42.60),
     (24.425, 37.05, 25.225, 42.60),
     (30.875, 37.05, 31.675, 42.60),
+    # Gaps between the four chest-bioZ 2512 electrode pads (R80-R83).
+    (11.525, 50.75, 12.325, 53.05),
+    (17.975, 50.75, 18.775, 53.05),
+    (24.425, 50.75, 25.225, 53.05),
 )
 
 # Internal edge-cut slots (x0, y0, x1, y1), 0.8 mm wide.
@@ -207,6 +212,23 @@ PLACE = {
     "R77": (15.15, 35.70, 90, False),
     "R78": (21.60, 35.70, 90, False),
     "R79": (28.05, 35.70, 90, False),
+    "R80": (8.70, 49.40, 90, True),
+    "R81": (15.15, 49.40, 90, True),
+    "R82": (21.60, 49.40, 90, True),
+    "R83": (28.05, 49.40, 90, True),
+    "R84": (7.60, 46.55, 0, False),
+    "R85": (9.65, 46.55, 0, False),
+    "R86": (11.70, 46.55, 0, False),
+    "R87": (13.75, 46.55, 0, False),
+    "C67": (15.80, 46.55, 0, False),
+    "C68": (17.85, 46.55, 0, False),
+    "C69": (19.90, 46.55, 0, False),
+    "C70": (21.95, 46.55, 0, False),
+    "D21": (24.00, 46.55, 0, False),
+    "D22": (26.05, 46.55, 0, False),
+    "D23": (28.10, 46.55, 0, False),
+    "D24": (30.15, 46.55, 0, False),
+    "J7": (32.00, 51.90, 0, False),
     "R50": (31.30, 15.99, 0, True),
     "R51": (28.70, 8.01, 0, True),
     "R52": (16.00, 2.90, 0, True),
@@ -659,6 +681,10 @@ MPN = {
     "R77": "DPCR2512-51KJT18",
     "R78": "DPCR2512-51KJT18",
     "R79": "DPCR2512-51KJT18",
+    "R80": "DPCR2512-51KJT18",
+    "R81": "DPCR2512-51KJT18",
+    "R82": "DPCR2512-51KJT18",
+    "R83": "DPCR2512-51KJT18",
     "R61": "NCU15XH103F6SRC",
     "D10": "NF2W757G-F1",
     "D11": "SFH 4053",
@@ -666,7 +692,7 @@ MPN = {
     "L2": "DFE201612E-1R0M",
     "J1": "TYPE-C-31-M-12",
 }
-for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"):
+for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D21", "D22", "D23", "D24"):
     MPN[_ref] = "TPD1E10B06DPYR"
 DNP_REFS = {"R61"}
 
@@ -716,6 +742,7 @@ C_MPN_0603 = {
 ELECTRODE_NETS = {
     "ECG1_PAD", "ECG2_PAD", "RLD_PAD", "AFE_P_PAD", "AFE_N_PAD",
     "EDA_CE_PAD", "EDA_SE_PAD", "EDA_RE_PAD", "EDA_DE_PAD",
+    "BIOZ_FP_PAD", "BIOZ_FN_PAD", "BIOZ_SP_PAD", "BIOZ_SN_PAD",
 }
 
 

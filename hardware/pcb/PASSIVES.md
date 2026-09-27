@@ -196,10 +196,9 @@ is about 51 kΩ + Zbody + 51 kΩ. With a low body impedance it is near
 
 R67 and R68 are on the IC side of C50 and C51. They are not in the
 respiration current loop. R30 and R31 still land on ECG_P and ECG_N.
-C34 stays 47 nF (Fig 73/74 note 1). C35 stays 4.7 nF. The respiration
-topology is unchanged on purpose. Options and a recommendation are in
-`VERIFICATION.md`. Do not treat the present loop as a working
-respiration measurement.
+C34 stays 47 nF (Fig 73/74 note 1). C35 stays 4.7 nF. None of those
+parts were removed. Do not treat this loop as the breathing
+measurement. The chest path is the AD5940 4-wire network below.
 
 C65, 1.5 nF across R17, is the capacitor Fig 35 and Fig 36 draw, and
 Fig 40 labels CEXT = 1.5 nF with REXT = 1 MΩ. The figure note says
@@ -241,8 +240,21 @@ Fig 54 / AN-1557. R13 remains the RCAL resistor. It is not reused as RLIMIT.
 | R41 | 1 kΩ | RE_SURGE | RE0 | RE series |
 | R79 | 51 kΩ, 2512 | EDA_DE_PAD | DE_SURGE | First part on the DE pad |
 | R42 | 1 kΩ | DE_SURGE | DE0 | DE series |
+| R80 | 51 kΩ, 2512 | BIOZ_FP_PAD | FP_SURGE | Chest F+ pad-side DPCR |
+| C67 | 15 nF | FP_SURGE | FP_ISO | CISO1 on the force lead. Datasheet 4-wire row and AN-1557 |
+| R84 | 1 kΩ | FP_ISO | BIOZ_FP (AIN1) | RLIMIT on the force pin. AN-1557, not reused from R39 |
+| R81 | 51 kΩ, 2512 | BIOZ_FN_PAD | FN_SURGE | Chest F− pad-side DPCR |
+| R85 | 1 kΩ | FN_SURGE | FN_ISO | Second series resistor on the current return |
+| C68 | 470 nF | FN_ISO | BIOZ_FN (AIN0) | CISO on F− |
+| R82 | 51 kΩ, 2512 | BIOZ_SP_PAD | SP_SURGE | Chest S+ pad-side DPCR |
+| R86 | 1 kΩ | SP_SURGE | SP_ISO | Second series resistor on S+ |
+| C69 | 470 nF | SP_ISO | BIOZ_SP (AIN3) | CISO on S+ |
+| R83 | 51 kΩ, 2512 | BIOZ_SN_PAD | SN_SURGE | Chest S− pad-side DPCR |
+| R87 | 1 kΩ | SN_SURGE | SN_ISO | Second series resistor on S− |
+| C70 | 470 nF | SN_ISO | BIOZ_SN (AIN2) | CISO on S− |
 
-R39 stays the AN-1557 RLIMIT of 1 kΩ. R76 is in front of it, on the
+R39 stays the AN-1557 RLIMIT of 1 kΩ on the shoulder CE line. R84 is
+a second 1 kΩ, on the chest force pin, because CE0 is not shared. R76 is in front of it, on the
 pad, so a defibrillator current is dropped in the pulse resistor
 before it reaches C54 or the 1 kΩ. Skin impedance for this measurement
 is roughly 20 kΩ to 10 MΩ. At a 0.5 V excitation, 51 kΩ plus 20 kΩ is
@@ -263,7 +275,8 @@ driven hard. Neither cap was upsized.
 Order on every patient line, from the skin toward the IC: electrode
 pad, DPCR2512 51 kΩ, TPD1E10B06 to GND, then the second series resistor
 into the IC pin. EDA uses the same pad-side 51 kΩ first (R76–R79),
-then the existing 1 kΩ. There is no gas-discharge tube. The TPD is not
+then the existing 1 kΩ. The chest lines do the same with R80–R83,
+then R84–R87. There is no gas-discharge tube. The TPD is not
 across the pad. A 5.5 V diode on the pad would take the defibrillator
 current.
 
@@ -289,6 +302,7 @@ electrode side of R67/R68 and is not across R26–R29.
 | R44, R46 | 100 kΩ, 0402 | AFE clamp node to the coupling cap |
 | D1–D5 | TPD1E10B06 | ECG_P, ECG_N, RLD_CLAMP, AFE_P_AC, AFE_N_AC |
 | D6–D9 | TPD1E10B06 | CE_ISO, SE_ISO, RE_SURGE, DE_SURGE |
+| D21–D24 | TPD1E10B06 | FP_ISO, FN_ISO, SP_ISO, SN_ISO |
 
 R32–R36 are TT Electronics / Welwyn DPCR2512-51KJT18. The DPCR series
 is 2512 only, which is the smallest package in that family. The
@@ -314,8 +328,8 @@ make the path through the board 4.0 mm on a 1.6 mm stackup. It is not
 met as a straight surface gap in these places:
 
 - J5 pads are on a 1.70 mm pitch. Adjacent pad copper is about 0.55 mm apart. A slot needs about 1.4 mm of gap. Spreading J5 to that pitch, or to a 4 mm centre pitch, runs into the antenna keep-out or the skin cluster. The footprint was not changed.
-- J6 pads are on a 2.20 mm pitch. Adjacent pad copper is about 1.05 mm apart, for the same reason.
-- Adjacent DPCR electrode pads (R32–R36 and R76–R79) are about 3.10 mm apart. Five pads of 3.35 mm plus four 4 mm gaps do not fit in 36.5 mm once the antenna keep-out is reserved. The slots are the 4 mm path.
+- J6 and J7 pads are on a 2.20 mm pitch. Adjacent pad copper is about 1.05 mm apart, for the same reason.
+- Adjacent DPCR electrode pads (R32–R36, R76–R79, and R80–R83) are about 3.10 mm apart. Five pads of 3.35 mm plus four 4 mm gaps do not fit in 36.5 mm once the antenna keep-out is reserved. The slots are the 4 mm path. R80–R83 have three slots, one in each gap.
 - R39–R42 and C54 are still 0402, behind the pad-side 51 kΩ. The gap across each 0402 is about 0.4–0.5 mm. The pulse voltage is meant to land on R76–R79.
 
 ## I2C and optical

@@ -51,7 +51,7 @@ SnapMagic / Ultra Librarian, from the attached `vitalq_libs` archive
 | Part | Symbol | Footprint | Source |
 | --- | --- | --- | --- |
 | USB-C | KiCad `Connector:USB_C_Receptacle_USB2.0_16P` | KiCad `Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12` | KiCad. This install has no `Connector_USB.3dshapes` package, so the board build points the model at `lib/vitalq.3d/USB_C_Receptacle_HRO_TYPE-C-31-M-12.step`, the same official STEP that ships with the KiCad royalblue demo. |
-| LiPo, FSR, ECG, EDA | KiCad `Conn_01x03_Pin`, `Conn_01x02_Pin`, `Conn_01x05_Pin`, `Conn_01x04_Pin` | Local `vitalq:Pads_LiPo`, `Pads_FSR`, `Pads_ECG`, `Pads_EDA` | Flat SMD pads. J2 is three pads (BAT+, BAT−, NTC) at 2.2 mm pitch. ECG is five pads at 1.70 mm pitch. The 3D body is a 0.15 mm slab the size of the copper. PPG pads (`Pads_PPG`) are no longer placed. |
+| LiPo, FSR, ECG, EDA | KiCad `Conn_01x03_Pin`, `Conn_01x02_Pin`, `Conn_01x05_Pin`, `Conn_01x04_Pin` | Local `vitalq:Pads_LiPo`, `Pads_FSR`, `Pads_ECG`, `Pads_EDA`, `Pads_BIOZ` | Flat SMD pads. J2 is three pads (BAT+, BAT−, NTC) at 2.2 mm pitch. ECG is five pads at 1.70 mm pitch. J7 reuses the J6 pad geometry with F+/F−/S+/S− silk. The 3D body is a 0.15 mm slab the size of the copper. PPG pads (`Pads_PPG`) are no longer placed. |
 | DPCR2512 | KiCad `Device:R` | KiCad `Resistor_SMD:R_2512_6332Metric` | Official 2512 land. TT Electronics DPCR is 2512 only. Copper gap between the official pads is about 4.7 mm. |
 | Passives | KiCad `Device:R` and `Device:C` | KiCad `R_0402_1005Metric`, `C_0402_1005Metric`, and `C_0603_1608Metric` for C44, C45, C47 | KiCad |
 

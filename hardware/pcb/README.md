@@ -8,7 +8,7 @@ the TI pulse guidance. They do not make this a defibrillator-proof
 medical input. The gas-discharge tubes were removed.
 
 The schematic is drawn explicitly. The PCB is an unrouted placement:
-**36.5 × 45.6 mm**, rectangular, **4 layers**, parts on both sides.
+**36.5 × 53.4 mm**, rectangular, **4 layers**, parts on both sides.
 Six layers were not required. The analog nets are ordinary and the
 stackup is the JLCPCB 4-layer default.
 
@@ -53,23 +53,27 @@ same XY, outside the module body. The island neck faces the cluster.
 
 Above that cluster, five 2512 pulse resistors (R32–R36) are on the
 bottom and four more (R76–R79) are on the top at the same X. The LiPo
-pads and the charger are on the bottom, past that row. There is no
-gas-discharge tube.
+pads and the charger are on the bottom, past that row. Four more 2512s
+(R80–R83) are the chest bio-impedance leads, on the bottom past the
+charger, because a turned 2512 does not fit in the gap that is already
+there. There is no gas-discharge tube.
 
 Electrodes are flat solder pads. No headers. J5 is five pads: ADS1292R
 positive, ADS1292R negative, RLD, AFE4900 positive, AFE4900 negative.
 J6 is the four EDA pads. The EDA cable is a flex tail to the shoulder.
 The electrodes on that tail must land at least 5 cm from the ECG
-electrodes. That distance is on the harness, not on this 36.5 mm board.
+electrodes. That distance is on the harness, not on this board.
+J7 is four chest pads for the AD5940 4-wire respiration measurement
+(F+, F−, S+, S−). They are not tied to J5 or J6.
 
 Four 0.8 mm slots sit in the gaps between those 2512 electrode pads,
 including the R35–R36 gap. On a 1.6 mm board the path through a slot
 is 4.0 mm. The straight copper gap between adjacent 2512 pads is still
 3.10 mm: five 3.35 mm pads and four 4 mm gaps do not fit in the 36.5 mm
 width once the antenna keep-out is reserved. J5 is still 0.55 mm
-between pads and J6 is still 1.05 mm. A slot needs about 1.4 mm of gap,
-and spreading either footprint to that pitch runs into the antenna
-keep-out or the skin cluster.
+between pads, and J6 and J7 are still 1.05 mm. A slot needs about 1.4 mm
+of gap, and spreading either footprint to that pitch runs into the antenna
+keep-out or the skin cluster. Three more slots sit between R80–R83.
 
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
@@ -78,20 +82,21 @@ Reference designators are hidden. Fab reference text is 0.35 mm.
 
 ## Part count
 
-**174 parts.** U2 is a BQ25170DSGR in place of the MCP73831. Q3 is
+**191 parts.** U2 is a BQ25170DSGR in place of the MCP73831. Q3 is
 the auto-program pair. D12–D20, the gas-discharge tubes, are gone.
+The chest bioZ path adds J7, R80–R87, C67–C70, and D21–D24.
 
 | Group | Qty | Parts |
 | --- | --- | --- |
 | ICs | 20 | U1–U20, listed below. U2 is BQ25170DSGR |
 | MOSFETs | 2 | Q1 and Q2, both CSD13380F3 |
 | Transistor | 1 | Q3 BC847BS,115, SOT-363 |
-| ESD diodes | 9 | D1–D9 TPD1E10B06DPYR |
+| ESD diodes | 13 | D1–D9 and D21–D24, TPD1E10B06DPYR |
 | LEDs | 2 | D10 NF2W757G-F1, D11 SFH 4053 |
 | Inductors | 2 | L1 0.47 µH, L2 1.0 µH |
-| Pads | 5 | J1 USB-C, J2 LiPo (3 pads), J3 FSR, J5 ECG, J6 EDA |
-| Resistors | 71 | 62 of 0402, plus R32–R36 and R76–R79 in 2512 |
-| Capacitors | 62 | 59 of 0402, plus C44, C45, C47 in 0603 |
+| Pads | 6 | J1 USB-C, J2 LiPo (3 pads), J3 FSR, J5 ECG, J6 EDA, J7 chest bioZ |
+| Resistors | 79 | 66 of 0402, plus R32–R36, R76–R79, and R80–R83 in 2512 |
+| Capacitors | 66 | 63 of 0402, plus C44, C45, C47 in 0603 |
 
 PWR_FLAG symbols are schematic-only and are not in this count.
 
@@ -158,8 +163,9 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
   The PGA therefore sees a baseline near 102 kΩ, outside the
   2000–10,000 Ω range in SBAS502C §6.5. Equation 10 only describes the
   modulation current. That earlier "1.2% and it still works" claim is
-  withdrawn. The loop was not redesigned in this round; the options
-  are in the verification report.
+  withdrawn. That network is still on the board. It is not the
+  breathing measurement. Chest breathing is the AD5940 4-wire path
+  on J7 (AIN1, AIN0, AIN3, AIN2). See `PASSIVES.md`.
 - C54 (15 nF, 50 V) sits behind R76. With the gas tube gone, a slow
   pulse can charge C54 toward the pad voltage; 50 V does not cover
   that. C55 (470 nF, 10 V) sits on the clamp side of the SE surge
@@ -182,8 +188,8 @@ Firmware must also cap the AFE4900 LED current at 100–150 mA.
 2. USB-UART
 3. MCU and FSR
 4. AFE4900 PPG, SFH 7072, and the 5 V boost
-5. AD5940 EDA
-6. ADS1292R ECG and respiration
+5. AD5940 EDA and chest respiration
+6. ADS1292R ECG (channel-1 modulation left in place)
 7. I2C sensors, the second TMP117, and the AS7341 LEDs
 
 ## Original parts still on the board

@@ -16,6 +16,7 @@ FP_BAT = "vitalq:Pads_LiPo"
 FP_FSR = "vitalq:Pads_FSR"
 FP_H3 = "vitalq:Pads_ECG"
 FP_H4 = "vitalq:Pads_EDA"
+FP_BIO = "vitalq:Pads_BIOZ"
 FP_H6 = "vitalq:Pads_PPG"
 FP_BQ = "Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm"
 FP_NPN = "Package_TO_SOT_SMD:SOT-363_SC-70-6"
@@ -598,14 +599,14 @@ def afe(d: Design):
 def ad(d: Design):
     sh = d.sheet("AD5940 EDA", "ad5940.kicad_sch", "5")
     sh.rect(12, 40, 406, 290)
-    sh.text("AD5940 EDA / BioZ", 16, 14, 3.2, bold=True)
-    sh.text("Fig 54 / AN-1557: 1k and 15 nF in series on CE0, 470 nF on SE0, plus RCAL. Flex notes are in the README.", 16, 22, 1.3)
+    sh.text("AD5940 EDA and chest respiration", 16, 14, 3.2, bold=True)
+    sh.text("Shoulder EDA stays on CE0, SE0, RE0, DE0. Chest 4-wire uses AIN1, AIN0, AIN3, AIN2.", 16, 22, 1.3)
 
     u = d.part(sh, "AD5940BCBZ-RL7", "U7", "AD5940BCBZ-RL7", FP_AD, 250, 40, labels="ic")
     nets = {
         "A1": "NC",
         "A2": "NC",
-        "A3": "NC",
+        "A3": "BIOZ_SN",
         "A4": "+3V3",
         "A5": "VREF_1V82",
         "A6": "SE0",
@@ -613,9 +614,9 @@ def ad(d: Design):
         "A8": "RE0",
         "B1": "RCAL1",
         "B2": "NC",
-        "B3": "NC",
+        "B3": "BIOZ_FP",
         "B4": "AIN4_LPF0",
-        "B5": "NC",
+        "B5": "BIOZ_SP",
         "B6": "DE0",
         "B7": "VZERO0",
         "B8": "RC0_1",
@@ -626,7 +627,7 @@ def ad(d: Design):
         "C7": "VBIAS0",
         "C8": "RC0_0",
         "D1": "VBIAS_CAP",
-        "D2": "NC",
+        "D2": "BIOZ_FN",
         "D5": "GND",
         "D6": "NC",
         "D7": "VREF_2V5",
@@ -662,7 +663,12 @@ def ad(d: Design):
     for num, net in {"1": "EDA_CE_PAD", "2": "EDA_RE_PAD", "3": "EDA_SE_PAD", "4": "EDA_DE_PAD"}.items():
         d.stub_net(sh, hdr, num, net, 7.62)
     d.finish(sh, hdr)
-    sh.text("J6 solder pads. No header.", 16, 44, 1.5, bold=True)
+    sh.text("J6 solder pads. No header. Shoulder tail, at least 5 cm from the ECG electrodes.", 16, 44, 1.3, bold=True)
+    chest = d.part(sh, "Conn_01x04_Pin", "J7", "Chest bioZ", FP_BIO, 130, 78, labels="ic")
+    for num, net in {"1": "BIOZ_FP_PAD", "2": "BIOZ_FN_PAD", "3": "BIOZ_SP_PAD", "4": "BIOZ_SN_PAD"}.items():
+        d.stub_net(sh, chest, num, net, 7.62)
+    d.finish(sh, chest)
+    sh.text("J7 is F+ F- S+ S-. Dedicated chest pads. Not paralleled onto J5 or J6.", 16, 70, 1.3)
 
     sh.text("Decoupling, RCAL, RC0", 16, 100, 1.6, bold=True)
     caps = [
@@ -708,16 +714,36 @@ def ad(d: Design):
     d.vpart(sh, "D_TVS_2", "D8", "TPD1E10B06", FP_TVS, 400, 202, "RE_SURGE", "GND")
     d.vpart(sh, "D_TVS_2", "D9", "TPD1E10B06", FP_TVS, 400, 228, "DE_SURGE", "GND")
     sh.text("R76-R79 are the pad-side 51k DPCR. C54 sits behind R76. R39 stays the 1k RLIMIT. No gas tube.", 16, 268, 1.3)
-    sh.text("Other AIN, AFE and GPIO balls are open. GPIO0 is the only digital sideband to the ESP32.", 16, 254, 1.35)
+    sh.text("AIN6, the AFE balls, and the unused GPIO balls stay open. GPIO0 is the only digital sideband.", 16, 274, 1.3)
+    # Chest 4-wire. Same pad-side order as EDA. Force uses the Fig 54 15 nF and 1 kΩ.
+    # The other three lines use 470 nF. 26 mm keeps a TPD GND stub off the next label.
+    d.hpart(sh, "R", "R80", "51k", FP_HV, 230, 114, "BIOZ_FP_PAD", "FP_SURGE")
+    d.hpart(sh, "C", "C67", "15n", FP_C, 285, 114, "FP_SURGE", "FP_ISO")
+    d.hpart(sh, "R", "R84", "1k", FP_R, 340, 114, "FP_ISO", "BIOZ_FP")
+    d.hpart(sh, "R", "R81", "51k", FP_HV, 230, 136, "BIOZ_FN_PAD", "FN_SURGE")
+    d.hpart(sh, "R", "R85", "1k", FP_R, 285, 136, "FN_SURGE", "FN_ISO")
+    d.hpart(sh, "C", "C68", "470n", FP_C, 340, 136, "FN_ISO", "BIOZ_FN")
+    d.hpart(sh, "R", "R82", "51k", FP_HV, 230, 158, "BIOZ_SP_PAD", "SP_SURGE")
+    d.hpart(sh, "R", "R86", "1k", FP_R, 285, 158, "SP_SURGE", "SP_ISO")
+    d.hpart(sh, "C", "C69", "470n", FP_C, 340, 158, "SP_ISO", "BIOZ_SP")
+    d.hpart(sh, "R", "R83", "51k", FP_HV, 230, 180, "BIOZ_SN_PAD", "SN_SURGE")
+    d.hpart(sh, "R", "R87", "1k", FP_R, 285, 180, "SN_SURGE", "SN_ISO")
+    d.hpart(sh, "C", "C70", "470n", FP_C, 340, 180, "SN_ISO", "BIOZ_SN")
+    d.vpart(sh, "D_TVS_2", "D21", "TPD1E10B06", FP_TVS, 178, 110, "FP_ISO", "GND")
+    d.vpart(sh, "D_TVS_2", "D22", "TPD1E10B06", FP_TVS, 178, 136, "FN_ISO", "GND")
+    d.vpart(sh, "D_TVS_2", "D23", "TPD1E10B06", FP_TVS, 178, 162, "SP_ISO", "GND")
+    d.vpart(sh, "D_TVS_2", "D24", "TPD1E10B06", FP_TVS, 178, 188, "SN_ISO", "GND")
+    sh.text("Chest: F+ is AIN1 through 15 nF and R84 (1k RLIMIT). F- AIN0, S+ AIN3, S- AIN2, each through 470 nF.", 16, 282, 1.2)
+    sh.text("R80-R83 are the pad-side 51k. D21-D24 clamp the IC side. R39 stays on the shoulder CE line.", 16, 288, 1.2)
 
 
 def ads(d: Design):
     sh = d.sheet("ADS1292R ECG", "ads1292.kicad_sch", "6")
     sh.rect(12, 40, 406, 290)
-    sh.text("ADS1292R ECG and respiration", 16, 14, 3.2, bold=True)
-    sh.text("Channel 1 is respiration (SBAS502C Fig 68). Channel 2 is the ECG lead. START is tied low.", 16, 22, 1.4)
-    sh.text("C34 is 47 nF: Fig 73 note (1), required when channel 1 respiration is on.", 16, 28, 1.3)
-    sh.text("R32-R36 are 51k DPCR. Fig 68's node is after that resistor, so modulation Z is 40.2k+51k.", 16, 34, 1.2)
+    sh.text("ADS1292R ECG. Channel 1 modulation stays; chest respiration is the AD5940.", 16, 14, 2.6, bold=True)
+    sh.text("Fig 68 is still wired. Channel 2 is the ECG lead. START is tied low. Nothing in this network was removed.", 16, 22, 1.3)
+    sh.text("C34 stays 47 nF (Fig 73 note 1). The 51k surge resistors stay in this loop, so it is outside section 6.5.", 16, 28, 1.3)
+    sh.text("Do not use channel 1 as the breathing measurement. The 4-wire chest path is on the AD5940 sheet.", 16, 34, 1.2)
 
     u = d.part(sh, "ADS1292RIRSMT", "U8", "ADS1292RIRSMT", FP_ADS, 200, 110, labels="ic")
     side = {
