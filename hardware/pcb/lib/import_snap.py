@@ -90,16 +90,18 @@ def _drop_models(mod: str) -> str:
     return "".join(out)
 
 
-# Vendor STEP files for these parts are drawn with height along +Y.
-# KiCad wants height along +Z. Rotate X by -90 and lift by the body height.
-# MCP73831 also needs a Z spin so the 2.9 mm body length follows the SOT-23-5 pads.
-# TMP117 is already Z-up but its solid is shifted +0.3 mm in Y.
-# LSM6 VRML is in KiCad's 0.1 inch unit; offset lifts the centred box onto the board.
+# KiCad 9 imports these STEP files differently. ADS1292R arrives Z-up and
+# centred, so an extra X rotation stands the 4x4x1 mm body on edge. AFE4900,
+# AS7341 and MCP73831 still arrive Y-up and need the X rotation (MCP73831 also
+# spins on Z so its 2.9 mm length follows the SOT-23-5 pads). A Z offset equal
+# to the body height lifts a model that already sits on z=0, so those offsets
+# stay 0. TMP117 is Z-up but its solid is shifted +0.3 mm in Y. LSM6 VRML is
+# in KiCad's 0.1 inch unit; the Z offset lifts the centred box onto the board.
 MODEL_POSE = {
-    "AFE4900YZR.step": ((-90, 0, 0), (0, 0, 0.50)),
-    "ADS1292RIRSMT.stp": ((-90, 0, 0), (0, 0, 0.975)),
-    "AS7341-DLGM.stp": ((-90, 0, 0), (0, 0, 1.10)),
-    "MCP73831T-2ACI_OT.step": ((-90, 0, 90), (0, 0, 1.45)),
+    "AFE4900YZR.step": ((-90, 0, 0), (0, 0, 0)),
+    "ADS1292RIRSMT.stp": ((0, 0, 0), (0, 0, 0)),
+    "AS7341-DLGM.stp": ((-90, 0, 0), (0, 0, 0)),
+    "MCP73831T-2ACI_OT.step": ((-90, 0, 90), (0, 0, 0)),
     "TMP117AIDRVR.stp": ((0, 0, 0), (0, -0.30, 0)),
     "LSM6DSV80XTR.wrl": ((0, 0, 0), (0, 0, 0.415)),
 }

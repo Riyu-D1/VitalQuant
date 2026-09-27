@@ -5,12 +5,13 @@ about safety, sterility, biocompatibility, or regulatory clearance.
 
 The schematic is drawn explicitly (every part is on a sheet, with its
 reference and value). The PCB is an unrouted starting placement for a
-wearable: **36.2 × 28 mm**, 4 layers, parts on both sides. The ESP32-WROOM-32E
+wearable: **36.2 × 27.8 mm**, 4 layers, parts on both sides. The ESP32-WROOM-32E
 shield plus its antenna keep-out ends near x = 26 mm, and the USB-C
 receptacle, opening on the right, needs 9.5 mm beside that. 36.2 mm is
 the width where those courtyards just clear. 35 mm does not. Height is
-28 mm: the module body is 19.5 mm tall, and the LiPo pads, IMU and air
-sensor need the strip above it.
+27.8 mm. The module, the LiPo pads, the IMU and the air sensor fill the
+strip above the antenna, and the USB-C copper ends at y = 27.45 mm, so
+the 0.3 mm copper-to-edge rule stops the outline there.
 
 Regenerate and check with `hardware/pcb/check.sh` (KiCad 9).
 
@@ -27,9 +28,9 @@ MLX90632SLD-DCB-100-SP uses that same 1.8 V bus for SDA and SCL. The
 option-code digit "1" selects 1.8 V I2C. VDD is still 3.3 V. No second
 translator was added.
 
-No other IC was added. Test points and the decoupling and bias passives
-below are the datasheet minimum. There are no pin headers and no
-mounting holes.
+No other IC was added. The decoupling and bias passives below are the
+datasheet parts, plus the FSR divider (R8) and the AFE CLK pulldown (R10).
+There are no test points, no pin headers and no mounting holes.
 
 ## Part-number changes
 
@@ -40,17 +41,15 @@ mounting holes.
 
 ## Part count
 
-**86 parts** on the board.
+**80 parts** on the board.
 
 | Group | Qty | Parts |
 | --- | --- | --- |
 | ICs | 14 | U1 ESP32-WROOM-32E-N8R2, U2 MCP73831T-2ACI/OT, U3 XC6206P332MR-G, U4 TPS7A2018PDBVR, U5 CP2102N-A02-GQFN28R, U6 AFE4900YZR, U7 AD5940BCBZ-RL7, U8 ADS1292RIRSMT, U9 PCA9306DCUR, U10 AS7341-DLGM, U11 TMP117AIDRVR, U12 MLX90632SLD-DCB-100-SP, U13 BME280, U14 LSM6DSV80XTR |
 | Connectors | 6 | J1 USB-C, J2 LiPo pads, J3 FSR pads, J4 PPG pads, J5 ECG pads, J6 EDA pads |
-| Passives | 64 | 22 resistors and 42 capacitors, all 0402 |
-| Other | 2 | TP1 EN, TP2 IO0 |
+| Passives | 60 | 21 resistors and 39 capacitors, all 0402 |
 
-PWR_FLAG symbols are schematic-only and are not in this count. TP1 and
-TP2 are `in_bom no`, matching the KiCad test-point footprint.
+PWR_FLAG symbols are schematic-only and are not in this count.
 
 There is no MPU6050, no BME680, and no MAX86141. U14 is the LSM6DSV80X.
 
@@ -110,7 +109,7 @@ chip-select with a pull-up.
 
 | GPIO | Symbol pin | Net | Function |
 | --- | --- | --- | --- |
-| EN | 3 | ESP_EN | 10 kΩ to +3V3, TP1 |
+| EN | 3 | ESP_EN | 10 kΩ to +3V3 |
 | 36 / SENSOR_VP | 4 | FSR_ADC | FSR divider, ADC1 |
 | 39 / SENSOR_VN | 5 | open | |
 | 34 | 6 | ADS1292_DRDY | |
@@ -125,7 +124,7 @@ chip-select with a pull-up.
 | 13 | 16 | AFE4900_ADC_RDY | |
 | 15 | 23 | CS_AD5940 | 10 kΩ to +3V3 |
 | 2 | 24 | open | strap low |
-| 0 | 25 | ESP_IO0 | 10 kΩ to +3V3, TP2 |
+| 0 | 25 | ESP_IO0 | 10 kΩ to +3V3 |
 | 4 | 26 | CS_ADS1292 | |
 | 16 | 27 | inside the module | PSRAM, no connect |
 | 17 | 28 | AFE4900_RESETZ | |
@@ -170,7 +169,8 @@ clear of the module holes), EDA pads below. AD5940 and ADS1292R sit
 just to the right of the antenna keep-out, not inside it: that zone
 forbids copper on every layer from x = 0 to 6.5 mm, so the lower-left
 corner cannot hold parts. Their bypass caps are packed against the
-ICs. PCA9306 is on the lower right, away from the skin group.
+ICs. C43, the 1 µF ADS1292R AVDD bulk, sits on the AVDD pin. PCA9306
+is on the lower right, away from the skin group.
 
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
@@ -186,6 +186,8 @@ fits the 2.2 mm pad pitch.
   straight to CE0, RE0, SE0, and DE0.
 - ADS1292R channel 2 is tied to channel 1. Respiration parts are not
   fitted. CLKSEL is tied to DVDD and CLK is open. The exposed pad is AVSS.
+  C43 is 1 µF from AVDD to GND, the bulk capacitor in SBAS502 §11.1.
+  CP2102N ~RSTb is left open; the pin has an internal pull-up.
 - ADS1292R digital inputs should stay low until the supplies are up
   (SBAS502). CS_AD5940 cannot be low at reset because GPIO15 must be
   high. That pull-up is R7.

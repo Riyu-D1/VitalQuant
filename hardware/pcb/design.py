@@ -10,7 +10,6 @@ from schutil import Sheet, label_angle, load_lib, r2
 
 FP_R = "Resistor_SMD:R_0402_1005Metric"
 FP_C = "Capacitor_SMD:C_0402_1005Metric"
-FP_TP = "TestPoint:TestPoint_Pad_D1.5mm"
 FP_M2 = "MountingHole:MountingHole_2.2mm_M2"
 FP_USB = "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
 FP_BAT = "vitalq:Pads_LiPo"
@@ -250,8 +249,7 @@ def power(d: Design):
     d.vpart(sh, "C", "C2", "4.7u", FP_C, 270, 122, "VBAT", "GND")
     d.vpart(sh, "C", "C3", "1u", FP_C, 290, 122, "VBAT", "GND")
     d.vpart(sh, "C", "C4", "1u", FP_C, 310, 122, "+3V3", "GND")
-    d.vpart(sh, "C", "C5", "1u", FP_C, 330, 122, "+3V3", "GND")
-    d.vpart(sh, "C", "C6", "1u", FP_C, 350, 122, "+1V8", "GND")
+    d.vpart(sh, "C", "C6", "1u", FP_C, 330, 122, "+1V8", "GND")
 
     sh.text("J2 is two flat solder pads (BAT+ BAT-), not a header. No power switch.", 16, 175, 1.4)
     # One power-output flag on GND and one on VBUS. +3V3 is driven by U3, +1V8 by U4, VBAT by U2.
@@ -291,7 +289,6 @@ def usb(d: Design):
     d.stub_net(sh, u, "8", "VBUS", 8.89)
     d.stub_net(sh, u, "5", "USB_DM", 8.89)
     d.stub_net(sh, u, "4", "USB_DP", 8.89)
-    d.stub_net(sh, u, "9", "CP_RST", 8.89)
     d.join_row(sh, u, ["3"], "GND", 6.35)  # stacked with pad 29
     d.stub_net(sh, u, "26", "ESP_RX", 10.16)  # TXD -> ESP RX
     d.stub_net(sh, u, "25", "ESP_TX", 10.16)  # RXD <- ESP TX
@@ -299,10 +296,9 @@ def usb(d: Design):
         d.stub_net(sh, u, n, "VDD_CP2102", 10.16)
     d.finish(sh, u)
 
-    sh.text("Decoupling and ~RST", 40, 48, 1.8, bold=True)
+    sh.text("Decoupling", 40, 48, 1.8, bold=True)
     d.vpart(sh, "C", "C9", "4.7u", FP_C, 55, 70, "VDD_CP2102", "GND")
     d.vpart(sh, "C", "C10", "1u", FP_C, 78, 70, "VBUS", "GND")
-    d.vpart(sh, "R", "R4", "1k", FP_R, 102, 70, "VDD_CP2102", "CP_RST")
     # PWR_FLAG stands in for the internal 3.45 V regulator (symbol pin is power_in).
     p = d.pwr(sh, "VDD_CP2102", 130, 55) if False else None
     # VDD_CP2102 is not a power-symbol name. Attach the flag to the label.
@@ -311,7 +307,7 @@ def usb(d: Design):
     fl = d.flag(sh, x + 12, y)
     sh.wire([(x, y), fl.pin_xy("1")])
     sh.text("PWR_FLAG on VDD_CP2102 only. Do not tie this net to +3V3.", 40, 100, 1.4)
-    sh.text("Unused inputs ~CTS, ~DSR, ~DCD and ~RI/CLK are tied to VDD_CP2102.", 40, 106, 1.4)
+    sh.text("Unused inputs ~CTS, ~DSR, ~DCD and ~RI/CLK are tied to VDD_CP2102. ~RSTb is open.", 40, 106, 1.4)
     sh.text("No auto-program transistors and no EN or BOOT buttons.", 40, 112, 1.4)
     sh.text("VBUS pin is tied straight to USB VBUS. The CP2102N VBUS pin is 5 V tolerant.", 40, 118, 1.4)
 
@@ -374,12 +370,6 @@ def mcu(d: Design):
     d.vpart(sh, "R", "R5", "10k", FP_R, 330, 62, "+3V3", "ESP_EN")
     d.vpart(sh, "R", "R6", "10k", FP_R, 352, 62, "+3V3", "ESP_IO0")
     d.vpart(sh, "R", "R7", "10k", FP_R, 374, 62, "+3V3", "CS_AD5940")
-    tp1 = d.part(sh, "TestPoint", "TP1", "EN", FP_TP, 330, 78, labels="side", bom=False)
-    d.stub_net(sh, tp1, "1", "ESP_EN", 5.08)
-    d.finish(sh, tp1)
-    tp2 = d.part(sh, "TestPoint", "TP2", "IO0", FP_TP, 360, 78, labels="side", bom=False)
-    d.stub_net(sh, tp2, "1", "ESP_IO0", 5.08)
-    d.finish(sh, tp2)
 
     sh.text("FSR402 divider", 314, 100, 1.8, bold=True)
     hdr = d.part(sh, "Conn_01x02_Pin", "J3", "FSR pads", FP_FSR, 340, 130, labels="ic")
@@ -390,7 +380,7 @@ def mcu(d: Design):
 
     sh.text("GPIO2 and GPIO12 are open so the straps stay low. GPIO15 (CS_AD5940) is pulled up.", 16, 200, 1.4)
     sh.text("GPIO6-11 are the module flash bus and have no symbol pins. ADC sense is GPIO36 only.", 16, 208, 1.4)
-    sh.text("TP1 and TP2 are pads so EN and IO0 can be strapped for download. There are no buttons.", 16, 216, 1.4)
+    sh.text("EN and IO0 have pull-ups only. Download uses the module pads. There are no buttons.", 16, 216, 1.4)
     sh.text("R7 is the only chip-select pull-up. It is required because GPIO15 must be high at reset.", 16, 224, 1.4)
 
 
@@ -454,14 +444,13 @@ def afe(d: Design):
     sh.text("Bias and decoupling", 40, 130, 1.8, bold=True)
     # y=172 keeps the upward AFE_CLK label clear of the VBAT label on U6.
     d.vpart(sh, "C", "C11", "1u", FP_C, 55, 200, "+3V3", "GND")
-    d.vpart(sh, "C", "C12", "100n", FP_C, 78, 200, "+3V3", "GND")
-    d.vpart(sh, "C", "C13", "100n", FP_C, 101, 200, "+3V3", "GND")
-    d.vpart(sh, "C", "C14", "1u", FP_C, 124, 200, "VBAT", "GND")
-    d.vpart(sh, "C", "C15", "100n", FP_C, 147, 200, "AFE_BG", "GND")
-    d.vpart(sh, "R", "R9", "10k", FP_R, 175, 200, "+3V3", "AFE4900_RESETZ")
-    d.vpart(sh, "R", "R10", "1k", FP_R, 198, 200, "AFE_CLK", "GND")
+    d.vpart(sh, "C", "C13", "100n", FP_C, 78, 200, "+3V3", "GND")
+    d.vpart(sh, "C", "C14", "1u", FP_C, 101, 200, "VBAT", "GND")
+    d.vpart(sh, "C", "C15", "100n", FP_C, 124, 200, "AFE_BG", "GND")
+    d.vpart(sh, "R", "R9", "10k", FP_R, 152, 200, "+3V3", "AFE4900_RESETZ")
+    d.vpart(sh, "R", "R10", "1k", FP_R, 175, 200, "AFE_CLK", "GND")
 
-    sh.text("C11+C12 on RX_SUP, C13 on IO_SUP, C14 on TX_SUP (VBAT), C15 on BG.", 16, 228, 1.4)
+    sh.text("C11 on RX_SUP, C13 on IO_SUP, C14 on TX_SUP (VBAT), C15 on BG.", 16, 228, 1.4)
     sh.text("I2C_SPI_SEL tied to RX_SUP (+3V3) selects SPI. CONTROL1 is grounded.", 16, 234, 1.4)
     sh.text("R10 holds CLK low so the internal clock is used. Ball names are the SnapMagic symbol.", 16, 240, 1.4)
 
@@ -538,7 +527,6 @@ def ad(d: Design):
     sh.text("Decoupling, RCAL, RC0", 16, 100, 1.6, bold=True)
     caps = [
         ("C16", "1u", "+3V3"),
-        ("C17", "100n", "+3V3"),
         ("C18", "100n", "+3V3"),
         ("C42", "1u", "AVDD_REG"),
         ("C19", "1u", "IOVDD"),
@@ -560,7 +548,7 @@ def ad(d: Design):
     d.hpart(sh, "C", "C27", "100n", FP_C, 145, 203, "RC0_0", "RC0_1")
     d.flag_net(sh, "IOVDD", 175, 203)
 
-    sh.text("C16+C17 AVDD, C18 DVDD, C42 AVDD_REG, C19 IOVDD after R12, C20-C26 are the reference and bias caps.", 16, 236, 1.35)
+    sh.text("C16 AVDD, C18 DVDD, C42 AVDD_REG, C19 IOVDD after R12, C20-C26 are the reference and bias caps.", 16, 236, 1.35)
     sh.text("R13 is RCAL. C27 sits between RC0_0 and RC0_1. XTAL pins are open: the internal oscillator is used.", 16, 242, 1.35)
     sh.text("DC skin conductance and the AC impedance network are not fitted. J6 is a direct electrode header.", 16, 248, 1.35)
     sh.text("Other AIN, AFE and GPIO balls are open. GPIO0 is the only digital sideband to the ESP32.", 16, 254, 1.35)
@@ -617,10 +605,10 @@ def ads(d: Design):
 
     sh.text("Supplies and PGA", 16, 78, 1.6, bold=True)
     row = [
+        ("C43", "1u", "+3V3", "GND"),
         ("C28", "100n", "+3V3", "GND"),
         ("C29", "100n", "+3V3", "GND"),
         ("C30", "10u", "VREFP", "GND"),
-        ("C31", "100n", "VREFP", "GND"),
         ("C32", "1u", "VCAP1", "GND"),
         ("C33", "1u", "VCAP2", "GND"),
     ]
@@ -635,8 +623,8 @@ def ads(d: Design):
     d.hpart(sh, "R", "R16", "1M", FP_R, 115, 240, "RLDREF", "GND")
     d.hpart(sh, "R", "R17", "1M", FP_R, 175, 240, "RLDOUT", "RLDINV")
 
-    sh.text("QFN-32 RSM, not the TQFP. Exposed pad pin 33 is AVSS. C28 AVDD, C29 DVDD, C30+C31 VREFP, C32 VCAP1, C33 VCAP2.", 16, 258, 1.25)
-    sh.text("R15/R16 set RLDREF at mid-rail. R17 closes RLDOUT to RLDINV. RESP_MOD pins are open.", 16, 264, 1.25)
+    sh.text("QFN-32 RSM. Pad 33 is AVSS. C43 is the 1 uF AVDD bulk (SBAS502 11.1), C28 the 100 nF beside it.", 16, 258, 1.25)
+    sh.text("C29 is DVDD, C30 is VREFP, C32 is VCAP1, C33 is VCAP2. R15/R16 set RLDREF. R17 closes the RLD loop.", 16, 264, 1.25)
 
 
 def i2c(d: Design):

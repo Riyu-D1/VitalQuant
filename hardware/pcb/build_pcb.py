@@ -24,9 +24,11 @@ KICAD_FP = Path("/usr/share/kicad/footprints")
 # Millimetres. Origin is the lower-left corner, Y up (KiCad board coordinates).
 # ESP32 body courtyard, antenna on the left, ends near x=26.3. USB-C rotated
 # so its opening is the right edge needs 9.5 mm. Those two set the width.
-# 36.2 x 28 still clears both. 35 mm does not.
+# 36.2 mm still clears both. 35 mm does not.
+# Height is the USB-C shell: its copper ends at y=27.45, and 0.3 mm copper-to-edge
+# means the outline cannot sit below 27.75. 27.8 mm is the clearance that holds.
 BOARD_W = 36.2
-BOARD_H = 28.0
+BOARD_H = 27.8
 
 # (x, y, rotation_deg, bottom)
 # Rotation is applied before a bottom-side flip.
@@ -35,19 +37,16 @@ PLACE = {
     "C2": (29.93, 2.67, 90, False),
     "C3": (35.24, 5.84, 90, False),
     "C4": (29.93, 6.11, 90, False),
-    "C5": (13.40, 23.00, 0, False),
     "C6": (35.30, 8.93, 90, False),
     "C7": (9.20, 23.10, 0, False),
     "C8": (11.30, 23.10, 0, False),
     "C9": (29.47, 7.52, 0, False),
     "C10": (29.52, 8.73, 0, False),
     "C11": (18.34, 16.66, 90, True),
-    "C12": (18.17, 14.66, 90, True),
     "C13": (17.31, 16.85, 90, True),
     "C14": (20.56, 16.85, 90, True),
     "C15": (23.85, 8.40, 90, True),
     "C16": (15.10, 9.90, 90, True),
-    "C17": (12.17, 13.44, 0, True),
     "C18": (9.97, 13.16, 0, True),
     "C19": (7.93, 10.35, 90, True),
     "C20": (7.82, 8.34, 90, True),
@@ -59,9 +58,8 @@ PLACE = {
     "C26": (8.52, 14.16, 90, True),
     "C27": (10.38, 15.39, 0, True),
     "C28": (14.35, 3.35, 90, True),
-    "C29": (12.05, 6.42, 0, True),
+    "C29": (14.14, 6.58, 0, True),
     "C30": (8.08, 4.25, 90, True),
-    "C31": (7.04, 4.22, 90, True),
     "C32": (9.62, 6.61, 0, True),
     "C33": (7.80, 2.02, 90, True),
     "C34": (6.87, 1.79, 90, True),
@@ -73,6 +71,7 @@ PLACE = {
     "C40": (14.40, 23.35, 0, True),
     "C41": (33.72, 2.07, 90, True),
     "C42": (15.57, 7.86, 90, True),
+    "C43": (12.05, 6.42, 0, True),
     "J1": (32.00, 22.63, 90, False),
     "J2": (17.55, 25.70, 0, False),
     "J3": (22.55, 25.70, 0, False),
@@ -82,7 +81,6 @@ PLACE = {
     "R1": (26.11, 24.00, 90, False),
     "R2": (29.26, 10.28, 0, False),
     "R3": (35.12, 3.92, 0, False),
-    "R4": (27.83, 6.54, 0, False),
     "R5": (7.51, 22.92, 90, False),
     "R6": (16.80, 24.40, 90, True),
     "R7": (18.90, 24.40, 90, True),
@@ -94,15 +92,13 @@ PLACE = {
     "R13": (7.38, 6.65, 0, True),
     "R14": (14.44, 1.35, 90, True),
     "R15": (15.55, 3.35, 90, True),
-    "R16": (14.14, 6.58, 0, True),
+    "R16": (17.20, 3.40, 0, True),
     "R17": (7.44, 5.71, 0, True),
     "R18": (33.94, 6.24, 0, True),
     "R19": (32.15, 2.67, 0, True),
     "R20": (32.37, 6.67, 90, True),
     "R21": (30.90, 16.85, 0, True),
     "R22": (30.55, 13.05, 90, True),
-    "TP1": (9.40, 26.25, 0, True),
-    "TP2": (12.30, 26.25, 0, True),
     "U1": (12.75, 12.20, 90, False),
     "U2": (32.55, 1.85, 0, False),
     "U3": (32.55, 5.29, 0, False),
@@ -230,6 +226,21 @@ def vec(x, y):
     return pcbnew.VECTOR2I(mm(x), mm(y))
 
 
+def shrink_fab_reference(fp):
+    """Vendor fab reference text is about 1 mm and covers the body in the 2D plot."""
+    size = pcbnew.VECTOR2I(mm(0.35), mm(0.35))
+    for item in fp.GraphicalItems():
+        if not hasattr(item, "GetText"):
+            continue
+        if item.GetLayer() not in (pcbnew.F_Fab, pcbnew.B_Fab):
+            continue
+        text = item.GetText()
+        if text not in (fp.GetReference(), "${REFERENCE}", "REF**") and "REFERENCE" not in text:
+            continue
+        item.SetTextSize(size)
+        item.SetTextThickness(mm(0.07))
+
+
 def add_edge(board, x1, y1, x2, y2):
     shape = pcbnew.PCB_SHAPE(board)
     shape.SetShape(pcbnew.SHAPE_T_SEGMENT)
@@ -328,9 +339,10 @@ def main():
         fp.SetPosition(vec(x, y))
         fp.SetOrientation(pcbnew.EDA_ANGLE(rot, pcbnew.DEGREES_T))
         # 0402 references cannot sit clear of the next part. Hide silk
-        # designators; the fab layer still carries ${REFERENCE}.
+        # designators. Fab ${REFERENCE} text is shrunk so the 2D plot stays readable.
         fp.Reference().SetVisible(False)
         fp.Value().SetVisible(False)
+        shrink_fab_reference(fp)
         # Flip before the footprint is on a board segfaults in this KiCad build.
         board.Add(fp)
         if bottom:
@@ -433,7 +445,7 @@ def main():
     board.SetFileName(str(PCB))
     pcbnew.SaveBoard(str(PCB), board)
     write_bom(comps)
-    print(f"wrote {PCB.name}  {BOARD_W:.0f} x {BOARD_H:.0f} mm")
+    print(f"wrote {PCB.name}  {BOARD_W:.1f} x {BOARD_H:.1f} mm")
     if clashes or edge_hits or pth_hits or unresolved:
         return 1
     return 0

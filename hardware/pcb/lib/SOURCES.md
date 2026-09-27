@@ -24,14 +24,14 @@ SnapMagic / Ultra Librarian, from the attached `vitalq_libs` archive
 
 | Part | Symbol | Footprint | Notes |
 | --- | --- | --- | --- |
-| AFE4900YZR | `snap` `AFE4900YZR` | `snap:BGA30N40P5X6_260X210X50` | Ball names match the previous map. A1 is the library origin (bottom-left of the frame). The vendor 0.102 mm solder-mask margin bridged the 0.17 mm pad gap, so that margin was removed; mask expansion is the board setting (0). |
-| AD5940BCBZ-RL7 | `snap` `AD5940BCBZ-RL7` | `snap:BGA56C40P8X7_416X356X55` | Not Y-flipped. DNC balls are left open. |
-| ADS1292RIRSMT | `snap` `ADS1292RIRSMT` | `snap:QFN40P400X400X100-33N-D` | Was ADS1292RIPBSR (TQFP-32). TI SBAS502 numbers 1–32 are the same on the RSM VQFN. Pin 33 is the exposed pad and is tied to AVSS. |
-| AS7341-DLGM | `snap` `AS7341-DLGM` | `snap:AS7341DLGT` | Replaces the KiCad OLGA land. |
+| AFE4900YZR | `snap` `AFE4900YZR` | `snap:BGA30N40P5X6_260X210X50` | Ball names match the previous map. A1 is the library origin (bottom-left of the frame). The vendor 0.102 mm solder-mask margin bridged the 0.17 mm pad gap, so that margin was removed; mask expansion is the board setting (0). The STEP is Y-up, so the footprint rotates X by −90. Z offset is 0 so the 0.50 mm body sits on the copper. |
+| AD5940BCBZ-RL7 | `snap` `AD5940BCBZ-RL7` | `snap:BGA56C40P8X7_416X356X55` | Not Y-flipped. DNC balls are left open. STEP is already Z-up, so the model transform is identity. |
+| ADS1292RIRSMT | `snap` `ADS1292RIRSMT` | `snap:QFN40P400X400X100-33N-D` | Was ADS1292RIPBSR (TQFP-32). TI SBAS502 numbers 1–32 are the same on the RSM VQFN. Pin 33 is the exposed pad and is tied to AVSS. KiCad 9 imports this STEP already Z-up, so the model rotation is identity and the body is the flat 4 × 4 × 1 mm QFN. C43 (1 µF, AVDD to GND) is the bulk capacitor SBAS502 §11.1 asks for next to the pin. |
+| AS7341-DLGM | `snap` `AS7341-DLGM` | `snap:AS7341DLGT` | Replaces the KiCad OLGA land. STEP is Y-up: rotate X by −90, Z offset 0, so the 3.1 × 2.0 × 1.1 mm body sits on the copper. |
 | MLX90632SLD-DCB-100-SP | `snap` `MLX90632SLD-DCB-100-SP` | `snap:MLX90632SLDDCB100SP` | Was MLX90632SLD-DCB-000-RE. Pins are unchanged (1 SDA, 2 VDD, 3 GND, 4 SCL, 5 ADDR, 6 EP to GND). Ordering digit "1" is the 1.8 V I2C option; VDD stays 3.3 V. |
 | TMP117AIDRVR | `snap` `TMP117AIDRVR` | `snap:SON65P200X200X80-7N` | DRV Table 5-1: 1 SCL, 2 GND, 3 ALERT, 4 ADD0, 5 V+, 6 SDA, 7 EP to GND. The old local symbol had ADD0 and ALERT swapped. |
 | LSM6DSV80XTR | Ultra Librarian `LSM6DSV80XTR` | `snap:QFN_LSM6DSV80XTR_STM` | UL nominal QFN variant (LGA-14L). No STEP file was supplied. `lib/snap.3d/LSM6DSV80XTR.wrl` is a 3.0 × 2.5 × 0.83 mm body (3.0 mm along X, matching the land). KiCad reads VRML in units of 0.1 inch, so the file is written in those units and offset +0.415 mm in Z. Pins 6 and 7 were `power_out` in the UL file and are `power_in` so they do not fight the GND flag. |
-| MCP73831T-2ACI/OT | `snap` `MCP73831T-2ACI_OT` | `snap:SOT95P280X145-5N` | Vendor file typed VBAT as `output`. Import sets it to `power_out` so it drives the XC6206. A courtyard rectangle was added around the pads; the copper is unchanged. |
+| MCP73831T-2ACI/OT | `snap` `MCP73831T-2ACI_OT` | `snap:SOT95P280X145-5N` | Vendor file typed VBAT as `output`. Import sets it to `power_out` so it drives the XC6206. A courtyard rectangle was added around the pads; the copper is unchanged. STEP is Y-up: rotate X by −90 and Z by 90 so the 2.9 mm length follows the SOT-23-5 pads. Z offset is 0. |
 
 ## KiCad official footprints, checked against the datasheet
 
@@ -51,6 +51,5 @@ SnapMagic / Ultra Librarian, from the attached `vitalq_libs` archive
 | USB-C | KiCad `Connector:USB_C_Receptacle_USB2.0_16P` | KiCad `Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12` | KiCad. This is a connector, not a pin header. |
 | LiPo, FSR, PPG, ECG, EDA | KiCad `Conn_01x02_Pin`, `Conn_01x06_Pin`, `Conn_01x03_Pin`, `Conn_01x04_Pin` | Local `vitalq:Pads_LiPo`, `Pads_FSR`, `Pads_PPG`, `Pads_ECG`, `Pads_EDA` | Flat SMD pads, 2.2 mm pitch, 1.15 × 1.70 mm. Silkscreen names the function (BAT+, IN+, CE, TX1, …). There is no official footprint for a labelled solder-pad array. |
 | Passives | KiCad `Device:R` and `Device:C` | KiCad `R_0402_1005Metric`, `C_0402_1005Metric` | KiCad |
-| TP1, TP2 | Local `TestPoint` | KiCad `TestPoint:TestPoint_Pad_D1.5mm` | KiCad footprint excludes the pad from the BOM. The symbol matches (`in_bom no`). |
 
 No pin headers and no mounting holes are on the board.
