@@ -5,11 +5,12 @@ about safety, sterility, biocompatibility, or regulatory clearance.
 
 The schematic is drawn explicitly (every part is on a sheet, with its
 reference and value). The PCB is an unrouted starting placement for a
-wearable: **37 × 30 mm**, 4 layers, parts on both sides. The ESP32-WROOM-32E
+wearable: **36.2 × 28 mm**, 4 layers, parts on both sides. The ESP32-WROOM-32E
 shield plus its antenna keep-out ends near x = 26 mm, and the USB-C
-receptacle needs about 11 mm beside that, so 37 × 30 is as small as those
-two official footprints allow. 35 × 30 mm collides the module courtyard
-with the USB-C courtyard.
+receptacle, opening on the right, needs 9.5 mm beside that. 36.2 mm is
+the width where those courtyards just clear. 35 mm does not. Height is
+28 mm: the module body is 19.5 mm tall, and the LiPo pads, IMU and air
+sensor need the strip above it.
 
 Regenerate and check with `hardware/pcb/check.sh` (KiCad 9).
 
@@ -157,15 +158,19 @@ net function in silkscreen.
 
 Top: ESP32-WROOM-32E with the antenna on the left edge and the keep-out
 covering x = 0 to 6.5 mm. USB-C opens on the right edge, with the CP2102N
-under it. The charger and both LDOs fill the rest of that column. BME280
-and the IMU sit above the module so the air sensor is not against skin.
-LiPo and FSR pads are on the bottom edge.
+and both regulators under it. BME280, the IMU, the LiPo pads and the FSR
+pads sit in the strip above the module, so the air sensor is not against
+skin. Decoupling for the module is on that same edge, next to the 3.3 V pins.
 
-Bottom, skin side: AFE4900, AS7341, MLX90632, and TMP117 are one group
-under the module, clear of the module's through-hole ground pads and of
-the antenna. PPG pads sit above that group. ECG and EDA pads sit below
-it. AD5940 and ADS1292R are on the lower right, away from the antenna
-and from the USB plug. Their passives are on the same side.
+Bottom, skin side: AFE4900, AS7341, MLX90632 and TMP117 are one group
+about 9 × 11 mm near the centre, clear of the module's through-hole
+ground pads. AS7341 and the MLX90632 window are on the outer side of
+that group. PPG pads sit above it, ECG pads on its lower left (labels
+clear of the module holes), EDA pads below. AD5940 and ADS1292R sit
+just to the right of the antenna keep-out, not inside it: that zone
+forbids copper on every layer from x = 0 to 6.5 mm, so the lower-left
+corner cannot hold parts. Their bypass caps are packed against the
+ICs. PCA9306 is on the lower right, away from the skin group.
 
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
@@ -205,7 +210,7 @@ is 0x39 on the 1.8 V side. The firmware profile has no ECG or EDA entries.
 ## Open items
 
 - Route the board. DRC unconnected-item errors are expected until then.
-- The LSM6 3D model is a box. Ultra Librarian did not supply a STEP file.
+- The LSM6 3D model is a 3.0 × 2.5 × 0.83 mm box. Ultra Librarian did not supply a STEP file. KiCad's VRML unit is 0.1 inch, so the file is stored in those units.
 
 ## Sheets
 

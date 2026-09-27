@@ -198,7 +198,8 @@ def build_design(lib=None) -> Design:
 
 def power(d: Design):
     sh = d.sheet("Power and charging", "vitalq_hw_v1.kicad_sch", "1")
-    sh.rect(12, 20, 408, 200)
+    # Title block is x 310-418, y 2-34. Keep the frame above it.
+    sh.rect(12, 40, 406, 200)
     sh.text("Power and charging", 16, 18, 3.2, bold=True)
     sh.text("USB-C, LiPo charger, 3.3 V rail, 1.8 V rail", 16, 26, 1.6)
 
@@ -271,7 +272,7 @@ def power(d: Design):
 
 def usb(d: Design):
     sh = d.sheet("USB-UART", "usb.kicad_sch", "2")
-    sh.rect(12, 18, 400, 250)
+    sh.rect(12, 40, 400, 250)
     sh.text("USB-UART", 16, 16, 3.2, bold=True)
     sh.text("CP2102N-A02-GQFN28. VDD is the on-chip regulator output, not +3V3.", 16, 24, 1.6)
 
@@ -317,11 +318,11 @@ def usb(d: Design):
 
 def mcu(d: Design):
     sh = d.sheet("MCU and FSR", "mcu.kicad_sch", "3")
-    sh.rect(12, 18, 300, 255)
-    sh.rect(308, 18, 408, 150)
+    sh.rect(12, 40, 300, 255)
+    sh.rect(308, 40, 406, 150)
     sh.text("MCU", 16, 16, 3.2, bold=True)
     sh.text("ESP32-WROOM-32E-N8R2. GPIO16 is PSRAM and stays inside the module.", 16, 24, 1.5)
-    sh.text("Straps and FSR", 314, 16, 2.2, bold=True)
+    sh.text("Straps and FSR", 314, 46, 2.2, bold=True)
 
     u = d.part(
         sh,
@@ -370,9 +371,9 @@ def mcu(d: Design):
     d.vpart(sh, "C", "C7", "10u", FP_C, 55, 58, "+3V3", "GND")
     d.vpart(sh, "C", "C8", "100n", FP_C, 78, 58, "+3V3", "GND")
 
-    d.vpart(sh, "R", "R5", "10k", FP_R, 330, 40, "+3V3", "ESP_EN")
-    d.vpart(sh, "R", "R6", "10k", FP_R, 352, 40, "+3V3", "ESP_IO0")
-    d.vpart(sh, "R", "R7", "10k", FP_R, 374, 40, "+3V3", "CS_AD5940")
+    d.vpart(sh, "R", "R5", "10k", FP_R, 330, 62, "+3V3", "ESP_EN")
+    d.vpart(sh, "R", "R6", "10k", FP_R, 352, 62, "+3V3", "ESP_IO0")
+    d.vpart(sh, "R", "R7", "10k", FP_R, 374, 62, "+3V3", "CS_AD5940")
     tp1 = d.part(sh, "TestPoint", "TP1", "EN", FP_TP, 330, 78, labels="side", bom=False)
     d.stub_net(sh, tp1, "1", "ESP_EN", 5.08)
     d.finish(sh, tp1)
@@ -395,7 +396,7 @@ def mcu(d: Design):
 
 def afe(d: Design):
     sh = d.sheet("AFE4900 PPG", "afe4900.kicad_sch", "4")
-    sh.rect(12, 18, 408, 248)
+    sh.rect(12, 40, 406, 248)
     sh.text("AFE4900 PPG", 16, 16, 3.2, bold=True)
     sh.text("SPI mode. LED and photodiode are off the board, on J4. No on-board optics.", 16, 24, 1.5)
 
@@ -467,7 +468,7 @@ def afe(d: Design):
 
 def ad(d: Design):
     sh = d.sheet("AD5940 EDA", "ad5940.kicad_sch", "5")
-    sh.rect(12, 16, 408, 262)
+    sh.rect(12, 40, 406, 262)
     sh.text("AD5940 EDA / BioZ", 16, 14, 3.2, bold=True)
     sh.text("Electrodes are wired straight to CE0 RE0 SE0 DE0. No series RC network and no crystal.", 16, 22, 1.4)
 
@@ -528,11 +529,11 @@ def ad(d: Design):
     d.side_map(sh, u, nets, 7.62)
     d.finish(sh, u)
 
-    hdr = d.part(sh, "Conn_01x04_Pin", "J6", "EDA pads", FP_H4, 40, 36, labels="ic")
+    hdr = d.part(sh, "Conn_01x04_Pin", "J6", "EDA pads", FP_H4, 40, 52, labels="ic")
     for num, net in {"1": "CE0", "2": "RE0", "3": "SE0", "4": "DE0"}.items():
         d.stub_net(sh, hdr, num, net, 7.62)
     d.finish(sh, hdr)
-    sh.text("J6 solder pads. No header.", 16, 28, 1.5, bold=True)
+    sh.text("J6 solder pads. No header.", 16, 44, 1.5, bold=True)
 
     sh.text("Decoupling, RCAL, RC0", 16, 100, 1.6, bold=True)
     caps = [
@@ -567,7 +568,7 @@ def ad(d: Design):
 
 def ads(d: Design):
     sh = d.sheet("ADS1292R ECG", "ads1292.kicad_sch", "6")
-    sh.rect(12, 16, 408, 258)
+    sh.rect(12, 40, 406, 258)
     sh.text("ADS1292R ECG", 16, 14, 3.2, bold=True)
     sh.text("Channel 2 is tied to channel 1. Respiration components are not fitted.", 16, 22, 1.5)
 
@@ -608,11 +609,11 @@ def ads(d: Design):
     d.join_row(sh, u, ["13", "24"], "GND", 6.35)
     d.finish(sh, u)
 
-    hdr = d.part(sh, "Conn_01x03_Pin", "J5", "ECG pads", FP_H3, 48, 40, labels="ic")
+    hdr = d.part(sh, "Conn_01x03_Pin", "J5", "ECG pads", FP_H3, 48, 56, labels="ic")
     for num, net in {"1": "IN1P", "2": "IN1N", "3": "RLDOUT"}.items():
         d.stub_net(sh, hdr, num, net, 7.62)
     d.finish(sh, hdr)
-    sh.text("J5 solder pads: 1 IN1P  2 IN1N  3 RLDOUT. No header.", 16, 28, 1.4)
+    sh.text("J5 solder pads: 1 IN1P  2 IN1N  3 RLDOUT. No header.", 16, 44, 1.4)
 
     sh.text("Supplies and PGA", 16, 78, 1.6, bold=True)
     row = [
@@ -640,14 +641,14 @@ def ads(d: Design):
 
 def i2c(d: Design):
     sh = d.sheet("I2C and IMU", "i2c.kicad_sch", "7")
-    sh.rect(12, 28, 200, 250)
-    sh.rect(208, 28, 408, 250)
+    sh.rect(12, 40, 200, 250)
+    sh.rect(208, 40, 406, 250)
     sh.text("I2C sensors and IMU", 16, 14, 3.0, bold=True)
     sh.text("Left: 1.8 V AS7341 behind PCA9306. Right: 3.3 V bus, including the IMU.", 16, 22, 1.4)
 
-    sh.text("EXTRA IC  U9 PCA9306DCUR", 18, 36, 2.0, bold=True)
-    sh.text("AS7341 I2C is not 3.3 V tolerant, and 1.8 V is below the ESP32 high level.", 18, 44, 1.3)
-    sh.text("One translator on SDA and SCL. INT is open; the firmware polls 0x39.", 18, 50, 1.3)
+    sh.text("EXTRA IC  U9 PCA9306DCUR", 18, 48, 2.0, bold=True)
+    sh.text("AS7341 I2C is not 3.3 V tolerant, and 1.8 V is below the ESP32 high level.", 18, 56, 1.3)
+    sh.text("One translator on SDA and SCL. INT is open; the firmware polls 0x39.", 18, 62, 1.3)
 
     u = d.part(sh, "PCA9306DC", "U9", "PCA9306DCUR", "Package_SO:VSSOP-8_2.3x2mm_P0.5mm", 70, 95, labels="ic")
     d.stub_net(sh, u, "3", "I2C_SCL_1V8", 7.62)

@@ -90,14 +90,30 @@ def _drop_models(mod: str) -> str:
     return "".join(out)
 
 
+# Vendor STEP files for these parts are drawn with height along +Y.
+# KiCad wants height along +Z. Rotate X by -90 and lift by the body height.
+# MCP73831 also needs a Z spin so the 2.9 mm body length follows the SOT-23-5 pads.
+# TMP117 is already Z-up but its solid is shifted +0.3 mm in Y.
+# LSM6 VRML is in KiCad's 0.1 inch unit; offset lifts the centred box onto the board.
+MODEL_POSE = {
+    "AFE4900YZR.step": ((-90, 0, 0), (0, 0, 0.50)),
+    "ADS1292RIRSMT.stp": ((-90, 0, 0), (0, 0, 0.975)),
+    "AS7341-DLGM.stp": ((-90, 0, 0), (0, 0, 1.10)),
+    "MCP73831T-2ACI_OT.step": ((-90, 0, 90), (0, 0, 1.45)),
+    "TMP117AIDRVR.stp": ((0, 0, 0), (0, -0.30, 0)),
+    "LSM6DSV80XTR.wrl": ((0, 0, 0), (0, 0, 0.415)),
+}
+
+
 def _fix_model(mod: str, model: str | None) -> str:
     mod = _drop_models(mod)
     if model:
+        rot, off = MODEL_POSE.get(model, ((0, 0, 0), (0, 0, 0)))
         block = (
             f'  (model "${{KIPRJMOD}}/lib/snap.3d/{model}"\n'
-            "    (offset (xyz 0 0 0))\n"
+            f"    (offset (xyz {off[0]:.3f} {off[1]:.3f} {off[2]:.3f}))\n"
             "    (scale (xyz 1 1 1))\n"
-            "    (rotate (xyz 0 0 0))\n"
+            f"    (rotate (xyz {rot[0]:.0f} {rot[1]:.0f} {rot[2]:.0f}))\n"
             "  )\n"
         )
         idx = mod.rstrip().rfind(")")
@@ -106,12 +122,15 @@ def _fix_model(mod: str, model: str | None) -> str:
 
 
 def _wrl_box() -> str:
-    # KiCad treats VRML coordinates as millimetres. LGA-14L is 2.5 x 3.0 x 0.86.
-    return """#VRML V2.0 utf8
-Shape {
-  appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } }
-  geometry Box { size 2.5 3.0 0.86 }
-}
+    # KiCad's VRML unit is 0.1 inch, so a 3 mm edge is 3/2.54 here.
+    # LGA-14L body: 3.0 mm along X (the long pad rows), 2.5 mm along Y, 0.83 mm tall.
+    sx, sy, sz = 3.0 / 2.54, 2.5 / 2.54, 0.83 / 2.54
+    return f"""#VRML V2.0 utf8
+# KiCad VRML unit is 0.1 inch. Body is 3.0 x 2.5 x 0.83 mm (LSM6DSV80X LGA-14).
+Shape {{
+  appearance Appearance {{ material Material {{ diffuseColor 0.15 0.15 0.18 }} }}
+  geometry Box {{ size {sx:.6f} {sy:.6f} {sz:.6f} }}
+}}
 """
 
 

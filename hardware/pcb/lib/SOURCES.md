@@ -30,7 +30,7 @@ SnapMagic / Ultra Librarian, from the attached `vitalq_libs` archive
 | AS7341-DLGM | `snap` `AS7341-DLGM` | `snap:AS7341DLGT` | Replaces the KiCad OLGA land. |
 | MLX90632SLD-DCB-100-SP | `snap` `MLX90632SLD-DCB-100-SP` | `snap:MLX90632SLDDCB100SP` | Was MLX90632SLD-DCB-000-RE. Pins are unchanged (1 SDA, 2 VDD, 3 GND, 4 SCL, 5 ADDR, 6 EP to GND). Ordering digit "1" is the 1.8 V I2C option; VDD stays 3.3 V. |
 | TMP117AIDRVR | `snap` `TMP117AIDRVR` | `snap:SON65P200X200X80-7N` | DRV Table 5-1: 1 SCL, 2 GND, 3 ALERT, 4 ADD0, 5 V+, 6 SDA, 7 EP to GND. The old local symbol had ADD0 and ALERT swapped. |
-| LSM6DSV80XTR | Ultra Librarian `LSM6DSV80XTR` | `snap:QFN_LSM6DSV80XTR_STM` | UL nominal QFN variant (LGA-14L, 2.5 × 3.0 × 0.86 mm). No STEP file was supplied. `lib/snap.3d/LSM6DSV80XTR.wrl` is a plain body of that size. Pins 6 and 7 were `power_out` in the UL file and are `power_in` so they do not fight the GND flag. |
+| LSM6DSV80XTR | Ultra Librarian `LSM6DSV80XTR` | `snap:QFN_LSM6DSV80XTR_STM` | UL nominal QFN variant (LGA-14L). No STEP file was supplied. `lib/snap.3d/LSM6DSV80XTR.wrl` is a 3.0 × 2.5 × 0.83 mm body (3.0 mm along X, matching the land). KiCad reads VRML in units of 0.1 inch, so the file is written in those units and offset +0.415 mm in Z. Pins 6 and 7 were `power_out` in the UL file and are `power_in` so they do not fight the GND flag. |
 | MCP73831T-2ACI/OT | `snap` `MCP73831T-2ACI_OT` | `snap:SOT95P280X145-5N` | Vendor file typed VBAT as `output`. Import sets it to `power_out` so it drives the XC6206. A courtyard rectangle was added around the pads; the copper is unchanged. |
 
 ## KiCad official footprints, checked against the datasheet
