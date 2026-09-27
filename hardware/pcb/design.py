@@ -35,6 +35,8 @@ FP_FLASH = "vitalq:W25Q512_WSON8"
 FP_EXP = "vitalq:TCA6408A_RSV"
 FP_TVS = "vitalq:TPD1E10B06_DPY"
 FP_FET = "Package_DFN_QFN:Texas_PicoStar_DFN-3_0.69x0.60mm"
+FP_HV = "Resistor_SMD:R_2512_6332Metric"
+FP_GDT = "vitalq:GDT_S30"
 FP_WHITE = "vitalq:NF2W757G"
 FP_IR = "LED_SMD:LED_0402_1005Metric"
 
@@ -57,8 +59,8 @@ class Design:
             self.children.append(sh)
         return sh
 
-    def part(self, sh, sym, ref, value, fp, x, y, rot=0, labels="side", bom=True):
-        inst = sh.add(self.lib, sym, ref, value, fp, x, y, rot, bom=bom, board=True)
+    def part(self, sh, sym, ref, value, fp, x, y, rot=0, labels="side", bom=True, dnp=False):
+        inst = sh.add(self.lib, sym, ref, value, fp, x, y, rot, bom=bom, board=True, dnp=dnp)
         if labels == "side":
             inst.ref_at = (x + 4.5, y - 1.4)
             inst.val_at = (x + 4.5, y + 1.6)
@@ -160,8 +162,8 @@ class Design:
         self.net_at(sh, net, d[0], d[1], d[0] - c[0], d[1] - c[1])
         self.touch(inst, num)
 
-    def vpart(self, sh, sym, ref, value, fp, x, y, top, bot):
-        inst = self.part(sh, sym, ref, value, fp, x, y, 0, labels="side")
+    def vpart(self, sh, sym, ref, value, fp, x, y, top, bot, dnp=False):
+        inst = self.part(sh, sym, ref, value, fp, x, y, 0, labels="side", dnp=dnp)
         self.stub_net(sh, inst, "1", top, 3.81)
         self.stub_net(sh, inst, "2", bot, 3.81)
         self.close(sh, inst)
@@ -210,7 +212,7 @@ def build_design(lib=None) -> Design:
 def power(d: Design):
     sh = d.sheet("Power and charging", "vitalq_hw_v1.kicad_sch", "1")
     # Title block is x 310-418, y 2-34. Keep the frame above it.
-    sh.rect(12, 40, 406, 220)
+    sh.rect(12, 40, 406, 275)
     sh.text("Power and charging", 16, 18, 3.2, bold=True)
     sh.text("USB-C, LiPo charger, 3.3 V rail, 1.8 V rail", 16, 26, 1.6)
 
@@ -236,7 +238,14 @@ def power(d: Design):
     d.stub_net(sh, u, "5", "CHG_PROG", 7.62)  # PROG left
     d.stub_net(sh, u, "1", "CHG_STAT", 7.62)  # STAT, open drain
     d.finish(sh, u)
-    d.vpart(sh, "R", "R3", "10k", FP_R, 148, 108, "CHG_PROG", "GND")
+    # Q2 opens R3, so PROG floats and DS20001984 5.2.2 disables charge.
+    d.vpart(sh, "R", "R3", "10k", FP_R, 148, 108, "CHG_PROG", "PROG_RTN")
+    q2 = d.part(sh, "CSD13380F3", "Q2", "CSD13380F3", FP_FET, 210, 118, labels="ic")
+    d.stub_net(sh, q2, "1", "CHG_EN", 7.62)
+    d.stub_net(sh, q2, "3", "PROG_RTN", 6.35)
+    d.stub_net(sh, q2, "2", "GND", 6.35)
+    d.finish(sh, q2)
+    d.vpart(sh, "R", "R59", "100k", FP_R, 230, 130, "CHG_EN", "GND")
     d.vpart(sh, "R", "R49", "10k", FP_R, 168, 130, "+3V3", "CHG_STAT")
 
     # TPS63802 replaces the XC6206. EN tied to VIN so the 3.3 V rail is up
@@ -262,10 +271,13 @@ def power(d: Design):
     d.stub_net(sh, u, "2", "GND", 6.35)
     d.finish(sh, u)  # NC pin is type no_connect
 
-    bat = d.part(sh, "Conn_01x02_Pin", "J2", "LiPo pads", FP_BAT, 168, 150, labels="ic")
+    bat = d.part(sh, "Conn_01x03_Pin", "J2", "LiPo pads", FP_BAT, 168, 168, labels="ic")
     d.stub_net(sh, bat, "1", "VBAT", 7.62)
     d.stub_net(sh, bat, "2", "GND", 7.62)
+    d.stub_net(sh, bat, "3", "NTC_ADC", 7.62)
     d.finish(sh, bat)
+    d.vpart(sh, "R", "R60", "10k", FP_R, 250, 230, "+3V3", "NTC_ADC")
+    d.vpart(sh, "R", "R61", "10k", FP_R, 275, 230, "NTC_ADC", "GND", dnp=True)
 
     # Decoupling directly under the regulators.
     sh.text("Decoupling", 230, 108, 1.8, bold=True)
@@ -288,7 +300,9 @@ def power(d: Design):
     d.vpart(sh, "R", "R50", "100k", FP_R, 90, 130, "VBUS", "VBUS_DET")
     d.vpart(sh, "R", "R51", "200k", FP_R, 112, 130, "VBUS_DET", "GND")
 
-    sh.text("J2 is two flat solder pads (BAT+ BAT-), not a header. No power switch.", 16, 210, 1.4)
+    sh.text("J2 is three flat pads (BAT+ BAT- NTC), not a header. No power switch.", 16, 248, 1.4)
+    sh.text("R61 is the on-board 10k NTC, DNP. Fit it or the cell NTC, not both. Q2 floats PROG until CHG_EN is high.", 16, 256, 1.4)
+    sh.text("Charge stays off at power-up: the expander port is Hi-Z and R59 holds the gate low.", 16, 264, 1.4)
     # One power-output flag on GND and one on VBUS. +3V3 is driven by U3, +1V8 by U4, VBAT by U2.
     g = d.pwr(sh, "GND", 392, 130)
     fl = d.flag(sh, 392, 142)
@@ -369,7 +383,7 @@ def mcu(d: Design):
     pins = {
         "3": "ESP_EN",
         "4": "FSR_ADC",
-        "5": "NC",
+        "5": "NTC_ADC",
         "25": "ESP_IO0",
         "35": "ESP_TX",
         "24": "NC",
@@ -437,17 +451,18 @@ def mcu(d: Design):
     d.stub_net(sh, exp, "7", "IR_GATE", 7.62)
     d.stub_net(sh, exp, "8", "CHG_STAT", 7.62)
     d.stub_net(sh, exp, "9", "VBUS_DET", 7.62)
+    d.stub_net(sh, exp, "10", "CHG_EN", 7.62)
     d.stub_net(sh, exp, "11", "EXP_INT", 7.62)
     d.stub_net(sh, exp, "12", "I2C_SCL", 7.62)
     d.stub_net(sh, exp, "13", "I2C_SDA", 7.62)
     d.stub_net(sh, exp, "16", "GND", 7.62)  # ADDR -> 0x20
     d.join_row(sh, exp, ["14", "15"], "+3V3", 6.35)
     d.join_row(sh, exp, ["6"], "GND", 6.35)
-    d.finish(sh, exp)  # P7 spare
+    d.finish(sh, exp)
     d.vpart(sh, "C", "C60", "100n", FP_C, 390, 250, "+3V3", "GND")
 
     sh.text("GPIO2 and GPIO12 are open so the straps stay low. GPIO15 (CS_AD5940) is pulled up.", 16, 200, 1.4)
-    sh.text("GPIO6-11 are the module flash bus and have no symbol pins. ADC sense is GPIO36 only.", 16, 208, 1.4)
+    sh.text("GPIO6-11 are the module flash bus and have no symbol pins. ADC1 is GPIO36 and GPIO39.", 16, 208, 1.4)
     sh.text("EN and IO0 have pull-ups only. Download uses the module pads. There are no buttons.", 16, 216, 1.4)
     sh.text("R7 is the only chip-select pull-up. It is required because GPIO15 must be high at reset.", 16, 224, 1.4)
 
@@ -545,7 +560,7 @@ def afe(d: Design):
 
 def ad(d: Design):
     sh = d.sheet("AD5940 EDA", "ad5940.kicad_sch", "5")
-    sh.rect(12, 40, 406, 262)
+    sh.rect(12, 40, 406, 290)
     sh.text("AD5940 EDA / BioZ", 16, 14, 3.2, bold=True)
     sh.text("Fig 54 / AN-1557: 1k and 15 nF in series on CE0, 470 nF on SE0, plus RCAL. Flex notes are in the README.", 16, 22, 1.3)
 
@@ -644,11 +659,16 @@ def ad(d: Design):
     d.hpart(sh, "R", "R40", "1k", FP_R, 280, 235, "SE_ISO", "EDA_SE_PAD")
     d.hpart(sh, "R", "R41", "1k", FP_R, 340, 210, "RE0", "EDA_RE_PAD")
     d.hpart(sh, "R", "R42", "1k", FP_R, 340, 235, "DE0", "EDA_DE_PAD")
-    d.vpart(sh, "D_TVS_2", "D6", "TPD1E10B06", FP_TVS, 380, 200, "EDA_CE_PAD", "GND")
-    d.vpart(sh, "D_TVS_2", "D7", "TPD1E10B06", FP_TVS, 400, 200, "EDA_SE_PAD", "GND")
-    d.vpart(sh, "D_TVS_2", "D8", "TPD1E10B06", FP_TVS, 380, 230, "EDA_RE_PAD", "GND")
-    d.vpart(sh, "D_TVS_2", "D9", "TPD1E10B06", FP_TVS, 400, 230, "EDA_DE_PAD", "GND")
-    sh.text("RLIMIT is R39. CISO1 is C54. CISO2 is C55. R13 stays the 1k RCAL. D6-D9 are at the electrode pads.", 16, 255, 1.3)
+    # TPD sits on the IC side of the series parts. The GDT is on the pad.
+    d.vpart(sh, "D_TVS_2", "D6", "TPD1E10B06", FP_TVS, 380, 175, "CE_ISO", "GND")
+    d.vpart(sh, "D_TVS_2", "D7", "TPD1E10B06", FP_TVS, 400, 175, "SE_ISO", "GND")
+    d.vpart(sh, "D_TVS_2", "D8", "TPD1E10B06", FP_TVS, 380, 200, "RE0", "GND")
+    d.vpart(sh, "D_TVS_2", "D9", "TPD1E10B06", FP_TVS, 400, 200, "DE0", "GND")
+    d.vpart(sh, "GDT", "D17", "S30-A90X", FP_GDT, 50, 275, "EDA_CE_PAD", "GND")
+    d.vpart(sh, "GDT", "D18", "S30-A90X", FP_GDT, 100, 275, "EDA_SE_PAD", "GND")
+    d.vpart(sh, "GDT", "D19", "S30-A90X", FP_GDT, 150, 275, "EDA_RE_PAD", "GND")
+    d.vpart(sh, "GDT", "D20", "S30-A90X", FP_GDT, 200, 275, "EDA_DE_PAD", "GND")
+    sh.text("RLIMIT is R39. CISO1 is C54. CISO2 is C55. R13 stays the 1k RCAL. D17-D20 are on the pads.", 16, 255, 1.3)
     sh.text("Other AIN, AFE and GPIO balls are open. GPIO0 is the only digital sideband to the ESP32.", 16, 254, 1.35)
 
 
@@ -658,6 +678,7 @@ def ads(d: Design):
     sh.text("ADS1292R ECG and respiration", 16, 14, 3.2, bold=True)
     sh.text("Channel 1 is respiration (SBAS502C Fig 68). Channel 2 is the ECG lead. START is tied low.", 16, 22, 1.4)
     sh.text("C34 is 47 nF: Fig 73 note (1), required when channel 1 respiration is on.", 16, 28, 1.3)
+    sh.text("R32-R36 are 51k DPCR. Fig 68's node is after that resistor, so modulation Z is 40.2k+51k.", 16, 34, 1.2)
 
     u = d.part(sh, "ADS1292RIRSMT", "U8", "ADS1292RIRSMT", FP_ADS, 200, 110, labels="ic")
     side = {
@@ -742,17 +763,24 @@ def ads(d: Design):
     d.vpart(sh, "C", "C53", "2.2n", FP_C, 382, 220, "ECG_N", "GND")
     d.hpart(sh, "R", "R30", "40.2k", FP_R, 260, 245, "RESP_MODP", "ECG_P")
     d.hpart(sh, "R", "R31", "40.2k", FP_R, 330, 245, "RESP_MODN", "ECG_N")
-    # Series 49.9k plus TPD1E10B06 at each ECG electrode, including the AFE pair.
-    d.hpart(sh, "R", "R32", "49.9k", FP_R, 55, 265, "ECG1_PAD", "ECG_P")
-    d.hpart(sh, "R", "R33", "49.9k", FP_R, 115, 265, "ECG2_PAD", "ECG_N")
-    d.hpart(sh, "R", "R34", "49.9k", FP_R, 175, 265, "RLD_PAD", "RLDOUT")
-    d.hpart(sh, "R", "R35", "49.9k", FP_R, 235, 265, "AFE_P_PAD", "AFE_P_AC")
-    d.hpart(sh, "R", "R36", "49.9k", FP_R, 295, 265, "AFE_N_PAD", "AFE_N_AC")
-    d.vpart(sh, "D_TVS_2", "D1", "TPD1E10B06", FP_TVS, 40, 285, "ECG1_PAD", "GND")
-    d.vpart(sh, "D_TVS_2", "D2", "TPD1E10B06", FP_TVS, 70, 285, "ECG2_PAD", "GND")
-    d.vpart(sh, "D_TVS_2", "D3", "TPD1E10B06", FP_TVS, 100, 285, "RLD_PAD", "GND")
-    d.vpart(sh, "D_TVS_2", "D4", "TPD1E10B06", FP_TVS, 130, 285, "AFE_P_PAD", "GND")
-    d.vpart(sh, "D_TVS_2", "D5", "TPD1E10B06", FP_TVS, 160, 285, "AFE_N_PAD", "GND")
+    # DPCR 51k stands off the defib pulse. TPD is on the IC side of that resistor.
+    d.hpart(sh, "R", "R32", "51k", FP_HV, 55, 258, "ECG1_PAD", "ECG_P")
+    d.hpart(sh, "R", "R33", "51k", FP_HV, 115, 258, "ECG2_PAD", "ECG_N")
+    d.hpart(sh, "R", "R34", "51k", FP_HV, 175, 258, "RLD_PAD", "RLDOUT")
+    d.hpart(sh, "R", "R35", "51k", FP_HV, 235, 258, "AFE_P_PAD", "AFE_P_AC")
+    d.hpart(sh, "R", "R36", "51k", FP_HV, 295, 258, "AFE_N_PAD", "AFE_N_AC")
+    d.vpart(sh, "D_TVS_2", "D1", "TPD1E10B06", FP_TVS, 55, 278, "ECG_P", "GND")
+    d.vpart(sh, "D_TVS_2", "D2", "TPD1E10B06", FP_TVS, 115, 278, "ECG_N", "GND")
+    d.vpart(sh, "D_TVS_2", "D3", "TPD1E10B06", FP_TVS, 175, 278, "RLDOUT", "GND")
+    d.vpart(sh, "D_TVS_2", "D4", "TPD1E10B06", FP_TVS, 235, 278, "AFE_P_AC", "GND")
+    d.vpart(sh, "D_TVS_2", "D5", "TPD1E10B06", FP_TVS, 295, 278, "AFE_N_AC", "GND")
+    # 24 mm pitch. Each stub ends 7.62 mm from the symbol centre, so a 16 mm
+    # pitch lands the GND wire on the next electrode label and shorts the pads.
+    d.vpart(sh, "GDT", "D12", "S30-A90X", FP_GDT, 22, 100, "ECG1_PAD", "GND")
+    d.vpart(sh, "GDT", "D13", "S30-A90X", FP_GDT, 22, 124, "ECG2_PAD", "GND")
+    d.vpart(sh, "GDT", "D14", "S30-A90X", FP_GDT, 22, 148, "RLD_PAD", "GND")
+    d.vpart(sh, "GDT", "D15", "S30-A90X", FP_GDT, 22, 172, "AFE_P_PAD", "GND")
+    d.vpart(sh, "GDT", "D16", "S30-A90X", FP_GDT, 22, 196, "AFE_N_PAD", "GND")
 
 
 def i2c(d: Design):

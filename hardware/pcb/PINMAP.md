@@ -15,7 +15,7 @@ This page is the board that was built.
 | --- | --- | --- | --- |
 | EN | 3 | ESP_EN | 10 kΩ pull-up to +3V3 (R5) |
 | 36 / SENSOR_VP | 4 | FSR_ADC | FSR402 divider, ADC1 only |
-| 39 / SENSOR_VN | 5 | open | |
+| 39 / SENSOR_VN | 5 | NTC_ADC | ADC1_CH3. R60 10 kΩ from +3V3, cell NTC on J2 pin 3 to GND. R61 is the DNP on-board 10 kΩ NTC |
 | 34 | 6 | ADS1292_DRDY | input |
 | 35 | 7 | EXP_INT | TCA6408 /INT, 10 kΩ pull-up (R53). Input only |
 | 32 | 8 | LSM6_INT1 | |
@@ -84,9 +84,9 @@ No two devices on the same bus share an address.
 ## TCA6408A pins
 
 /RESET is tied to +3V3. Both VCCI and VCCP are +3V3. The device powers up
-with ports as inputs (Hi-Z). R9, R14, R11, R25 and R48 pull the driven
-nets down, so the front ends, the 5 V boost, and the 860 nm LED stay off
-until firmware writes the port.
+with ports as inputs (Hi-Z). R9, R14, R11, R25, R48 and R59 pull the driven
+nets down, so the front ends, the 5 V boost, the 860 nm LED, and the
+charger stay off until firmware writes the port.
 
 | Port | Pin | Net | What it drives | Idle |
 | --- | --- | --- | --- | --- |
@@ -97,7 +97,7 @@ until firmware writes the port.
 | P4 | 7 | IR_GATE | CSD13380F3 gate, SFH 4053 | R48 100 kΩ to GND |
 | P5 | 8 | CHG_STAT | MCP73831 STAT | R49 10 kΩ to +3V3. Open drain |
 | P6 | 9 | VBUS_DET | VBUS divider | R50 100 kΩ from VBUS, R51 200 kΩ to GND |
-| P7 | 10 | open | spare | |
+| P7 | 10 | CHG_EN | Q2 gate, MCP73831 PROG pull-down | R59 100 kΩ to GND. Low or Hi-Z floats PROG and charge stays off |
 | /INT | 11 | EXP_INT | ESP32 GPIO35 | R53 10 kΩ to +3V3 |
 
 VBUS_DET is about 3.33 V at 5.0 V VBUS (200/300). At 5.25 V it is 3.50 V,

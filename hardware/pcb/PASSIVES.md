@@ -4,9 +4,8 @@ Every resistor and capacitor, the pin it serves, and the datasheet
 section that set the value. 0402 unless the row says 0603. Manufacturer
 part numbers are in `vitalq_hw_v1_bom.csv`.
 
-This is a research prototype. The 49.9 kΩ electrode resistors limit a
-short to the 3.3 V rail to about 66 µA. That is not an IEC 60601
-patient-leakage claim.
+This is a research prototype. The electrode network is not an IEC 60601
+patient-leakage or defibrillator-proof claim.
 
 ## Power
 
@@ -14,7 +13,10 @@ patient-leakage claim.
 | --- | --- | --- | --- | --- |
 | C1 | 4.7 µF | VBUS | GND | MCP73831 input bypass, DS20001984 Fig 2-1 |
 | C2 | 4.7 µF | VBAT | GND | MCP73831 battery bypass, same figure |
-| R3 | 10 kΩ | PROG | GND | MCP73831-2, IREG = 1000 V / RPROG = 100 mA |
+| R3 | 10 kΩ | PROG | PROG_RTN | MCP73831-2, IREG = 1000 V / RPROG = 100 mA while Q2 is on |
+| R59 | 100 kΩ | CHG_EN | GND | Holds Q2 off while TCA6408 P7 is Hi-Z |
+| R60 | 10 kΩ | +3V3 | NTC_ADC | Top of the battery-temperature divider |
+| R61 | 10 kΩ NTC, DNP | NTC_ADC | GND | On-board NCU15XH103F6SRC. Fit this or the cell NTC, not both |
 | R49 | 10 kΩ | +3V3 | CHG_STAT | STAT is open drain. Pull-up so the expander can read it |
 | C3 | 1 µF | VBAT | GND | Local VBAT bypass kept from the previous rail |
 | C4 | 1 µF | +3V3 | GND | Local 3.3 V bypass |
@@ -31,6 +33,38 @@ patient-leakage claim.
 | C47 | 4.7 µF 0603 | TX_5V | GND | TPS61240 COUT. Datasheet specifies 0603 |
 | L2 | 1.0 µH | LX | TX_5V | DFE201612E-1R0M. Isat covers the 600 mA switch limit |
 | R25 | 100 kΩ | TX5_EN | GND | Holds the boost off until the expander drives EN |
+
+## Charge temperature cut-off
+
+The charger is still the MCP73831. DS20001984H §5.2.2 (Device Disable):
+placing the programming resistor from PROG to VSS enables charge.
+Allowing PROG to float, or driving PROG high, disables the device and
+terminates a charge cycle. With PROG open the chip draws about 25 µA
+and battery reverse current is under 2 µA.
+
+Q2 is a CSD13380F3 N-FET, the same PicoStar as Q1 (0.69 × 0.60 mm,
+smaller than SOT-723). Drain is PROG_RTN, source is GND, gate is
+CHG_EN. VGS absolute maximum is 8 V. The gate is 0 V or 3.3 V.
+VGS(th) is 0.55–1.30 V, so 3.3 V turns it on. RDS(on) is 135 mΩ max
+at 1.8 V and is negligible next to 10 kΩ.
+
+TCA6408A P7 (pin 10) drives CHG_EN. The expander powers up with every
+port as an input. R59, 100 kΩ to GND, holds the gate low, Q2 stays
+off, and PROG floats. Charge is disabled until firmware reads the NTC
+and drives P7 high. That is the safe default. Charging is not enabled
+at power-up. There is no hardware window comparator; the cut-off
+decision is in firmware, which this repo does not change.
+
+J2 is three pads: BAT+, BAT−, and NTC, for a cell whose 10 kΩ NTC
+returns to pack negative. R60 (10 kΩ to +3V3) and that NTC divide
+into ESP32 GPIO39 (module pin 5, ADC1_CH3, SENSOR_VN). At 25 °C the
+divider is about 1.65 V. GPIO39 never has to go above 3.3 V. ADC2 is
+not used; Wi-Fi uses ADC2.
+
+R61 is the same 10 kΩ at 25 °C, Murata NCU15XH103F6SRC, 0402, ±1%,
+B ≈ 3380 K, footprint on the board next to the cell pads. It is DNP.
+Populating R61 and a cell NTC at the same time puts them in parallel
+and halves the reading. Fit one of them.
 | C7 | 10 µF | +3V3 | GND | ESP32 module bulk, Espressif hardware design guideline |
 | C8 | 100 nF | +3V3 | GND | ESP32 module high-frequency bypass |
 | C9 | 4.7 µF | VDD_CP2102 | GND | CP2102N VDD bypass. Not the 3.3 V rail |
@@ -101,6 +135,17 @@ follows the "must" note. C35, on PGA2, stays 4.7 nF.
 | R30 | 40.2 kΩ | RESP_MODP | ECG_P | Fig 68 modulation |
 | R31 | 40.2 kΩ | RESP_MODN | ECG_N | Fig 68 modulation |
 
+SBAS502C Fig 68's note is only "Patient and input protection circuitry
+not shown." The electrode node in that figure is ECG_P / ECG_N, which
+is the IC side of R32 / R33. Equation 10 sets the respiration current
+to (VREFP − AVSS) divided by the modulation-circuit impedance. That
+impedance was 40.2 kΩ + 49.9 kΩ = 90.1 kΩ. It is now 40.2 kΩ + 51 kΩ
+= 91.2 kΩ, about 1.2% higher, so the current is about 1.2% lower.
+The 51 kΩ part replaces the resistor that was already in that path.
+It is not a second resistor stacked on R30 / R31. C34 stays 47 nF
+(Fig 73/74 note 1, the "must" for channel-1 respiration). C35 stays
+4.7 nF. Respiration modulation still works.
+
 ## AD5940
 
 Fig 54 / AN-1557. R13 remains the RCAL resistor. It is not reused as RLIMIT.
@@ -130,23 +175,92 @@ Fig 54 / AN-1557. R13 remains the RCAL resistor. It is not reused as RLIMIT.
 | R42 | 1 kΩ | DE0 | EDA_DE_PAD | DE series |
 
 A second large series resistor on CE0 would sit on top of RLIMIT and
-change the excitation. The EDA lines therefore use 1 kΩ, and the ECG
-lines use 49.9 kΩ.
+change the excitation. AN-1557 fixes RLIMIT at 1 kΩ from 1.2 Vpp
+(0.4243 Vrms) and 400 µA rms. The EDA lines therefore stay at 1 kΩ.
+The ECG and RLD lines use 51 kΩ.
+
+The gas-discharge tubes are on the pad side of C54 and C55. Their
+capacitance is under 0.8 pF at 1 MHz, against 15 nF and 470 nF, so
+the excitation network is effectively unchanged. DC sparkover minimum
+is 63 V, far above the 1.2 Vpp excitation, so the tubes stay off
+during a normal EDA measurement.
+
+C54 is a 50 V 0402 (GRM155R71H153KA12). C55 is GRM155R61A474KE15.
+Neither rating covers the tube's impulse sparkover (under 500 V at
+100 V/µs, under 600 V at 1 kV/µs). They still see the pad until the
+tube fires. That voltage stress is unverified. A higher-voltage 470 nF
+0402 was not substituted.
+
+AFE4900 ECG inputs still see 51 kΩ into the existing 100 nF / 10 MΩ
+bias. The change from 49.9 kΩ does not move the ECG high-pass corner
+in any way that matters. The 100 nF / 10 MΩ network itself is an
+inference; it is not in the public AFE4900 short-form.
 
 ## Electrode protection
 
-TPD1E10B06, ILEAK 100 nA max, VRWM 5.5 V. The diode is at the pad, not
-across the 10 MΩ bias. 100 nA across 10 MΩ would be 1 V.
+Order of parts, from the skin toward the IC: electrode pad, gas
+discharge tube to GND, series resistor, then TPD1E10B06 to GND on the
+IC side of that resistor. The TPD is not across the pad. A 5.5 V diode
+on the pad would take the defibrillator current. On the ADS1292R pins
+the TPD is also not across the 10 MΩ bias. 100 nA across 10 MΩ would
+be 1 V. ILEAK of the TPD1E10B06 is 100 nA max, VRWM 5.5 V.
 
 | Ref | Value | Line |
 | --- | --- | --- |
-| R32 | 49.9 kΩ | ECG1 pad to ADS1292R IN2P |
-| R33 | 49.9 kΩ | ECG2 pad to ADS1292R IN2N |
-| R34 | 49.9 kΩ | RLD pad to ADS1292R RLDOUT |
-| R35 | 49.9 kΩ | AFE ECG+ pad to the AC coupling cap |
-| R36 | 49.9 kΩ | AFE ECG− pad to the AC coupling cap |
-| D1–D5 | TPD1E10B06 | ECG1, ECG2, RLD, AFE+, AFE− pads to GND |
-| D6–D9 | TPD1E10B06 | EDA CE, SE, RE, DE pads to GND |
+| R32 | 51 kΩ, 2512 | ECG1 pad to the Fig 68 node ECG_P |
+| R33 | 51 kΩ, 2512 | ECG2 pad to the Fig 68 node ECG_N |
+| R34 | 51 kΩ, 2512 | RLD pad to ADS1292R RLDOUT |
+| R35 | 51 kΩ, 2512 | AFE ECG+ pad to the AC coupling cap |
+| R36 | 51 kΩ, 2512 | AFE ECG− pad to the AC coupling cap |
+| D1–D5 | TPD1E10B06 | IC side of R32–R36: ECG_P, ECG_N, RLDOUT, AFE_P_AC, AFE_N_AC |
+| D6–D9 | TPD1E10B06 | IC side of the EDA series parts: CE_ISO, SE_ISO, RE0, DE0 |
+| D12–D16 | S30-A90X | ECG1, ECG2, RLD, AFE+, AFE− pads to GND |
+| D17–D20 | S30-A90X | EDA CE, SE, RE, DE pads to GND |
+
+R32–R36 are TT Electronics / Welwyn DPCR2512-51KJT18. The DPCR series
+is 2512 only, which is the smallest package in that family. The
+datasheet standard values include 51 kΩ ±5% (the nearest listed value
+to 50 kΩ). Power is 1.5 W at 70 °C. Continuous limiting-element voltage
+is 500 V. Dielectric withstand, coating to board, is also 500 V; that
+is not the pulse rating. The defibrillation pulse test is 100 pulses,
+5 kV peak, ΔR max 1%. ESD is 15 kV air / 8 kV contact. Body 6.5 × 3.2 mm,
+termination gap 4.4 mm minimum. Ordering code follows the datasheet
+example DPCR2512-20KJT18 with the 51 kΩ value. Future Electronics also
+lists this family as tested to IEC 60601-2-27 at 5 kV peak; the rating
+used here is the manufacturer's pulse test, not a system type test.
+Vishay CRCW-HP, Panasonic ERJ-P, and Yageo HV were not used. Their
+published working-voltage numbers are not a 5 kV millisecond defibrillator
+pulse test. A Yageo HV2512's 3000 V working voltage applies only when
+R is at or above the critical resistance, which 51 kΩ is not.
+
+D12–D20 are TDK / EPCOS S30-A90X, ordering code B88069X9231T203
+(2000-piece SMD tape, datasheet issue 04, 2013-09-16). EIA 1812,
+body 4.5 × 3.2 × 2.7 mm. DC sparkover 90 V ±30% (63 V to 117 V), above
+ECG millivolts, RLD within 3.3 V, and the AD5940 1.2 Vpp excitation.
+Impulse sparkover at 100 V/µs is under 500 V (99%) / typical under 400 V,
+and at 1 kV/µs under 600 V / typical under 500 V. Service life includes
+10 operations at 2 kA, 8/20 µs, and 100 operations at 10 A, 10/1000 µs.
+Insulation resistance is over 1 GΩ at 50 V. Capacitance is under 0.8 pF
+at 1 MHz. Operating range on that issue is −40 °C to +90 °C. UL 497B,
+file E163070. These impulse ratings are not the IEC 60601-2-27
+defibrillator waveform. The footprint pads are 1.2 × 2.0 mm on a 3.4 mm
+pitch (copper gap 2.2 mm), taken from the recommended-land figure.
+Those tenths of a millimetre were not readable as text in the PDF and
+must be checked before fabrication. TDK warns that solder must not
+reduce the insulation gap under the arrester.
+
+Creepage of about 4 mm was the target between electrode-side copper and
+other copper on the same layer. It is met across each DPCR: the official
+R_2512 land leaves about 4.7 mm of copper gap between its own pads, and
+the three protection rows (resistors, EDA tubes, ECG tubes) are spaced
+so the facing copper is about 4 mm apart. It is not met in these places:
+
+- J5 pads are on a 1.70 mm pitch. Adjacent pad copper is about 0.55 mm apart.
+- J6 pads are on a 2.20 mm pitch. Adjacent pad copper is about 1.05 mm apart.
+- Each S30 tube's own pads are 2.20 mm apart (electrode to GND on the part).
+- Adjacent ECG tubes are about 1.50 mm apart, electrode copper to the next tube's GND pad. Five 4.6 mm-wide lands plus a 4 mm gap do not fit in the 36.5 mm width once the antenna keep-out is reserved.
+- Adjacent DPCR electrode pads are about 3.10 mm apart, for the same width reason.
+- R40, R41, R42 and C54 are 0402. The gap across each of those parts is about 0.4–0.5 mm. They were not enlarged; AN-1557 keeps the EDA series resistance at 1 kΩ, and a 2512 would add far more than that if two were put in series to stand off 5 kV. The EDA pads rely on the gas-discharge tube plus the existing 1 kΩ.
 
 ## I2C and optical
 

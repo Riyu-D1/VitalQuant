@@ -2,10 +2,13 @@
 
 Research prototype. This is not a medical device. Nothing here is a claim
 about safety, sterility, biocompatibility, or regulatory clearance. The
-49.9 kΩ electrode resistors are not an IEC 60601 patient-leakage design.
+The defibrillator parts are not an IEC 60601-2-27 type-test claim.
+The 51 kΩ pulse resistors and the gas-discharge tubes are a research-prototype
+attempt to follow the TI and TDK pulse guidance. They do not make this a
+defibrillator-proof medical input.
 
 The schematic is drawn explicitly. The PCB is an unrouted placement:
-**36.5 × 32.0 mm**, rectangular, **4 layers**, parts on both sides.
+**36.5 × 52.2 mm**, rectangular, **4 layers**, parts on both sides.
 Six layers were not required. The analog nets are ordinary and the
 stackup is the JLCPCB 4-layer default.
 
@@ -47,6 +50,12 @@ AS7341. J5 and J6 sit on the bottom and top edges of that cluster.
 U11 is on a slotted island beside the LEDs. U20 is on the top at the
 same XY, outside the module body. The island neck faces the cluster.
 
+Above that cluster, still on the bottom, is the protection strip. Five
+2512 pulse resistors, then four EDA gas-discharge tubes, then five ECG
+gas-discharge tubes. The LiPo pads, the NTC divider, and the charge-enable
+FET sit on the top, over the right-hand end of that strip, clear of the
+module courtyard.
+
 Electrodes are flat solder pads. No headers. J5 is five pads: ADS1292R
 positive, ADS1292R negative, RLD, AFE4900 positive, AFE4900 negative.
 J6 is the four EDA pads. The EDA cable is a flex tail to the shoulder.
@@ -60,17 +69,19 @@ Reference designators are hidden. Fab reference text is 0.35 mm.
 
 ## Part count
 
-**146 parts.**
+**159 parts.** The previous 146 are still here. Thirteen were added:
+D12–D20, Q2, R59, R60, and R61.
 
 | Group | Qty | Parts |
 | --- | --- | --- |
 | ICs | 20 | U1–U20, listed below |
-| MOSFET | 1 | Q1 CSD13380F3 |
+| MOSFETs | 2 | Q1 and Q2, both CSD13380F3 |
 | ESD diodes | 9 | D1–D9 TPD1E10B06DPYR |
+| Gas discharge | 9 | D12–D20, TDK S30-A90X, B88069X9231T203 |
 | LEDs | 2 | D10 NF2W757G-F1, D11 SFH 4053 |
 | Inductors | 2 | L1 0.47 µH, L2 1.0 µH |
-| Pads | 5 | J1 USB-C, J2 LiPo, J3 FSR, J5 ECG, J6 EDA |
-| Resistors | 50 | 0402 |
+| Pads | 5 | J1 USB-C, J2 LiPo (3 pads), J3 FSR, J5 ECG, J6 EDA |
+| Resistors | 53 | 48 of 0402, plus R32–R36 in 2512 |
 | Capacitors | 57 | 54 of 0402, plus C44, C45, C47 in 0603 |
 
 PWR_FLAG symbols are schematic-only and are not in this count.
@@ -91,8 +102,12 @@ if the cell is missing.
 | +1V8 | TPS7A2018 | AS7341 VDD, PCA9306 VREF1, MLX90632 SDA/SCL pull-ups |
 | VDD_CP2102 | CP2102N internal regulator | CP2102N VDD bypass only. Not tied to +3V3 |
 
-R3 is 10 kΩ, so the MCP73831-2 charges at 100 mA. STAT goes to the
-expander with a pull-up. There is no charge LED.
+R3 is 10 kΩ, so the MCP73831-2 charges at 100 mA while Q2 is on.
+STAT goes to the expander with a pull-up. There is no charge LED.
+Q2 is in series with R3. DS20001984H §5.2.2: letting PROG float disables
+charge. The expander powers up with P7 as an input, R59 holds the gate
+low, and charge stays off until firmware has read the NTC and drives
+CHG_EN high. That is the safe default. Charging is not enabled at power-up.
 
 TPS61240 output is 4.9–5.1 V. AFE4900 TX_SUP must be 3.0–5.25 V, so
 this sits inside that window. Green LED Vf max in the SFH 7072 v1.6
@@ -124,7 +139,22 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
   ADS1292R and the channel 1 respiration function, this capacitor must
   be 47 nF." The PGA section also says 4.7 nF is recommended; the
   figure note is the one that says "must" for respiration. C35 stays
-  4.7 nF.
+  4.7 nF. R32 and R33 are now 51 kΩ instead of 49.9 kΩ. Fig 68's
+  electrode node is still on the IC side of that resistor, so the
+  modulation impedance is 40.2 kΩ + 51 kΩ = 91.2 kΩ. Equation 10
+  scales the respiration current by that impedance. The current is
+  about 1.2% lower than it was at 49.9 kΩ. The modulation path is
+  unchanged apart from that existing series resistor. Fig 68's note
+  is only "Patient and input protection circuitry not shown."
+- S30-A90X recommended-land dimensions were read from a drawing whose
+  text did not extract. Pad size and pitch are approximate. TDK says
+  solder must not close the gap under the tube.
+- The S30 impulse ratings are 8/20 µs and 10/1000 µs. They are not an
+  IEC 60601-2-27 defibrillator-waveform energy rating.
+- C54 (15 nF, 50 V, 0402) and C55 (470 nF, 0402) still sit on the EDA
+  pad side of the series parts. Until a gas-discharge tube fires they
+  can see the pad voltage. Their voltage ratings do not cover a
+  500 V impulse sparkover. The 1 kΩ EDA network was not changed.
 
 ## Firmware profile is out of date
 
@@ -165,7 +195,7 @@ replaces it. U3 is the same reference with a new device.
 | U13 | BME280 |
 | U14 | LSM6DSV80XTR |
 | J1 | USB-C |
-| J2 | LiPo pads |
+| J2 | LiPo pads, now BAT+, BAT−, and NTC |
 | J3 | FSR pads |
 | J5 | ECG pads, now five pads |
 | J6 | EDA pads |

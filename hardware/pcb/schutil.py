@@ -130,7 +130,7 @@ def outward(pin: Pin, rot: int) -> tuple[float, float]:
 
 
 class Inst:
-    def __init__(self, sym: SymbolDef, ref, value, footprint, x, y, rot=0, bom=True, board=True):
+    def __init__(self, sym: SymbolDef, ref, value, footprint, x, y, rot=0, bom=True, board=True, dnp=False):
         self.sym = sym
         self.ref = ref
         self.value = value
@@ -140,6 +140,7 @@ class Inst:
         self.rot = rot
         self.bom = bom
         self.board = board
+        self.dnp = dnp
         self.uuid = uid()
         self.pin_uuids = {n: uid() for n in sym.pins}
         self.ref_at = None
@@ -186,9 +187,9 @@ class Sheet:
         self.draw: list[str] = []
         self.used: set[str] = set()
 
-    def add(self, lib, name, ref, value, footprint, x, y, rot=0, bom=True, board=True) -> Inst:
+    def add(self, lib, name, ref, value, footprint, x, y, rot=0, bom=True, board=True, dnp=False) -> Inst:
         sym = lib[name]
-        inst = Inst(sym, ref, value, footprint, x, y, rot, bom, board)
+        inst = Inst(sym, ref, value, footprint, x, y, rot, bom, board, dnp)
         self.insts.append(inst)
         self.used.add(name)
         return inst
@@ -310,6 +311,7 @@ class Sheet:
             val_x = getattr(inst, "_val_x_override", ref_x)
         bom = "yes" if inst.bom else "no"
         board = "yes" if inst.board else "no"
+        dnp = "yes" if inst.dnp else "no"
         pins = "\n".join(
             f'\t\t(pin "{n}" (uuid "{inst.pin_uuids[n]}"))' for n in inst.sym.pins
         )
@@ -321,7 +323,7 @@ class Sheet:
 \t\t(exclude_from_sim no)
 \t\t(in_bom {bom})
 \t\t(on_board {board})
-\t\t(dnp no)
+\t\t(dnp {dnp})
 \t\t(uuid "{inst.uuid}")
 \t\t(property "Reference" "{inst.ref}"
 \t\t\t(at {ref_x} {ref_y} 0)

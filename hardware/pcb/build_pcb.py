@@ -27,7 +27,9 @@ KICAD_FP = Path("/usr/share/kicad/footprints")
 # 4 layers. Skin sensors share one bottom cluster; the second TMP117 sits
 # on the top at the same XY, outside the module body.
 BOARD_W = 36.5
-BOARD_H = 32.0
+# Protection strip above the skin cluster. Rows are 4 mm apart in Y.
+# 36.5 mm is not wide enough for 4 mm between adjacent pads in a row.
+BOARD_H = 52.2
 
 # Internal edge-cut slots (x0, y0, x1, y1), 0.8 mm wide.
 # AS7341 / LED barrier, then the thermal island around the stacked TMP117s.
@@ -113,13 +115,14 @@ PLACE = {
     "D10": (18.70, 13.50, 0, True),
     "D11": (21.10, 13.70, 90, True),
     "J1": (32.30, 22.20, 90, False),
-    "J2": (23.80, 3.55, 0, False),
+    "J2": (32.50, 32.80, 0, False),
     "J3": (23.80, 8.70, 0, False),
     "J5": (11.40, 12.30, 0, True),
     "J6": (17.40, 29.70, 0, True),
     "L1": (27.55, 2.40, 0, False),
     "L2": (28.05, 6.15, 0, False),
     "Q1": (22.30, 14.90, 0, True),
+    "Q2": (33.10, 35.90, 0, False),
     "R1": (30.40, 16.05, 0, False),
     "R2": (31.32, 17.37, 0, True),
     "R3": (30.00, 14.80, 0, True),
@@ -150,11 +153,11 @@ PLACE = {
     "R29": (10.07, 7.74, 0, True),
     "R30": (14.97, 4.18, 0, True),
     "R31": (21.03, 4.18, 90, False),
-    "R32": (27.32, 10.47, 0, True),
-    "R33": (11.83, 5.01, 0, True),
-    "R34": (18.00, 3.00, 0, True),
-    "R35": (22.00, 24.00, 90, True),
-    "R36": (27.66, 12.89, 90, True),
+    "R32": (8.55, 35.40, 90, True),
+    "R33": (15.00, 35.40, 90, True),
+    "R34": (21.45, 35.40, 90, True),
+    "R35": (27.90, 35.40, 90, True),
+    "R36": (34.35, 35.40, 90, True),
     "R39": (33.46, 21.12, 90, True),
     "R40": (32.79, 28.53, 0, True),
     "R41": (32.79, 28.53, 0, False),
@@ -166,6 +169,9 @@ PLACE = {
     "R47": (6.90, 21.00, 90, True),
     "R48": (23.50, 27.40, 90, True),
     "R49": (34.90, 16.15, 0, False),
+    "R59": (35.20, 35.90, 0, False),
+    "R60": (30.90, 35.90, 0, False),
+    "R61": (28.50, 35.90, 0, False),
     "R50": (31.30, 15.99, 0, True),
     "R51": (28.70, 8.01, 0, True),
     "R52": (16.00, 2.90, 0, True),
@@ -190,6 +196,15 @@ PLACE = {
     "U18": (11.40, 4.20, 0, False),
     "U19": (8.70, 9.60, 0, False),
     "U20": (18.60, 9.15, 0, False),
+    "D12": (9.25, 50.05, 0, True),
+    "D13": (15.35, 50.05, 0, True),
+    "D14": (21.45, 50.05, 0, True),
+    "D15": (27.55, 50.05, 0, True),
+    "D16": (33.70, 50.05, 0, True),
+    "D17": (9.25, 44.00, 0, True),
+    "D18": (17.40, 44.00, 0, True),
+    "D19": (25.55, 44.00, 0, True),
+    "D20": (33.70, 44.00, 0, True),
 }
 
 def parse_sexp(text: str):
@@ -251,9 +266,11 @@ def load_netlist(path: Path):
         if not isinstance(comp, list) or not comp or comp[0] != "comp":
             continue
         ref = atom(comp, "ref")
+        dnp = atom(comp, "dnp", None)
         comps[ref] = {
             "value": atom(comp, "value", ""),
             "footprint": atom(comp, "footprint", ""),
+            "dnp": dnp in ("yes", "true", "1") or ref in DNP_REFS,
         }
     nets = []
     pin_net = {}
@@ -455,6 +472,8 @@ def main():
         # designators. Fab ${REFERENCE} text is shrunk so the 2D plot stays readable.
         fp.Reference().SetVisible(False)
         fp.Value().SetVisible(False)
+        if meta.get("dnp") and hasattr(fp, "SetDNP"):
+            fp.SetDNP(True)
         shrink_fab_reference(fp)
         # Flip before the footprint is on a board segfaults in this KiCad build.
         board.Add(fp)
@@ -554,6 +573,7 @@ def main():
         f"U1 courtyard x {bb.GetX()/1e6:.1f}..{(bb.GetX()+bb.GetWidth())/1e6:.1f}"
         f" y {bb.GetY()/1e6:.1f}..{(bb.GetY()+bb.GetHeight())/1e6:.1f}"
     )
+    creepage_report(placed, pin_net)
     print(
         f"parts {len(placed)}  clashes {len(clashes)}  edge {len(edge_hits)}"
         f"  pth {len(pth_hits)}  pad-miss {len(unresolved)}"
@@ -600,6 +620,13 @@ MPN = {
     "U19": "TCA6408ARSVR",
     "U20": "TMP117AIDRVR",
     "Q1": "CSD13380F3",
+    "Q2": "CSD13380F3",
+    "R32": "DPCR2512-51KJT18",
+    "R33": "DPCR2512-51KJT18",
+    "R34": "DPCR2512-51KJT18",
+    "R35": "DPCR2512-51KJT18",
+    "R36": "DPCR2512-51KJT18",
+    "R61": "NCU15XH103F6SRC",
     "D10": "NF2W757G-F1",
     "D11": "SFH 4053",
     "L1": "DFE201612E-R47M",
@@ -608,6 +635,9 @@ MPN = {
 }
 for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"):
     MPN[_ref] = "TPD1E10B06DPYR"
+for _ref in ("D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19", "D20"):
+    MPN[_ref] = "B88069X9231T203"
+DNP_REFS = {"R61"}
 
 R_MPN = {
     "10": "RC0402FR-0710RL",
@@ -645,6 +675,78 @@ C_MPN_0603 = {
 }
 
 
+ELECTRODE_NETS = {
+    "ECG1_PAD", "ECG2_PAD", "RLD_PAD", "AFE_P_PAD", "AFE_N_PAD",
+    "EDA_CE_PAD", "EDA_SE_PAD", "EDA_RE_PAD", "EDA_DE_PAD",
+}
+
+
+def _box_mm(box):
+    x0 = box.GetX() / 1e6
+    y0 = box.GetY() / 1e6
+    x1 = (box.GetX() + box.GetWidth()) / 1e6
+    y1 = (box.GetY() + box.GetHeight()) / 1e6
+    return x0, y0, x1, y1
+
+
+def _gap(a, b):
+    ax0, ay0, ax1, ay1 = a
+    bx0, by0, bx1, by1 = b
+    dx = max(0.0, max(ax0, bx0) - min(ax1, bx1))
+    # separate if not overlapping in that axis
+    if ax1 < bx0:
+        dx = bx0 - ax1
+    elif bx1 < ax0:
+        dx = ax0 - bx1
+    else:
+        dx = 0.0
+    if ay1 < by0:
+        dy = by0 - ay1
+    elif by1 < ay0:
+        dy = ay0 - by1
+    else:
+        dy = 0.0
+    return (dx * dx + dy * dy) ** 0.5
+
+
+def _pad_layers(pad, fp):
+    # Flipped SMD pads still report F.Cu from GetLayerName(); the footprint layer is the copper side.
+    if pad.GetAttribute() in (pcbnew.PAD_ATTRIB_PTH, pcbnew.PAD_ATTRIB_NPTH):
+        return {"F.Cu", "B.Cu"}
+    return {fp.GetLayerName()}
+
+
+def creepage_report(placed, pin_net):
+    """Same-layer edge-to-edge gap from each electrode pad to other copper."""
+    pads = []
+    for ref, (fp, _bottom) in placed.items():
+        for pad in fp.Pads():
+            if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH:
+                continue
+            net = pin_net.get((ref, pad.GetNumber()), "")
+            pads.append(
+                (ref, pad.GetNumber(), net, _box_mm(pad.GetBoundingBox()), _pad_layers(pad, fp))
+            )
+    worst = []
+    for ra, pa, na, ba, la in pads:
+        if na not in ELECTRODE_NETS:
+            continue
+        best = None
+        for rb, pb, nb, bb, lb in pads:
+            if (ra, pa) == (rb, pb) or nb == na or not (la & lb):
+                continue
+            gap = _gap(ba, bb)
+            if best is None or gap < best[0]:
+                best = (gap, f"{ra}.{pa}", na, f"{rb}.{pb}", nb)
+        if best:
+            worst.append(best)
+    worst.sort()
+    print("electrode creepage, closest other copper on the same layer:")
+    for gap, a, na, b, nb in worst:
+        flag = "  SHORT OF 4 mm" if gap < 4.0 else ""
+        print(f"  {gap:.2f} mm  {a} ({na}) to {b} ({nb}){flag}")
+
+
 def mpn_for(ref, value, footprint):
     if ref in MPN:
         return MPN[ref]
@@ -669,11 +771,12 @@ def write_bom(comps):
                 mpn_for(ref, meta["value"], meta["footprint"]),
                 meta["footprint"],
                 "1",
+                "DNP" if meta.get("dnp") else "",
             )
         )
     with BOM.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["Ref", "Value", "MPN", "Footprint", "Qty"])
+        w.writerow(["Ref", "Value", "MPN", "Footprint", "Qty", "DNP"])
         w.writerows(rows)
 
 
