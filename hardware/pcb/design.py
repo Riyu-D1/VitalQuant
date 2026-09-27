@@ -657,6 +657,7 @@ def ads(d: Design):
     sh.rect(12, 40, 406, 290)
     sh.text("ADS1292R ECG and respiration", 16, 14, 3.2, bold=True)
     sh.text("Channel 1 is respiration (SBAS502C Fig 68). Channel 2 is the ECG lead. START is tied low.", 16, 22, 1.4)
+    sh.text("C34 is 47 nF: Fig 73 note (1), required when channel 1 respiration is on.", 16, 28, 1.3)
 
     u = d.part(sh, "ADS1292RIRSMT", "U8", "ADS1292RIRSMT", FP_ADS, 200, 110, labels="ic")
     side = {
@@ -718,7 +719,8 @@ def ads(d: Design):
     ]
     for i, (ref, val, a, b) in enumerate(row):
         d.vpart(sh, "C", ref, val, FP_C, 40 + i * 22, 185, a, b)
-    d.hpart(sh, "C", "C34", "4.7n", FP_C, 70, 210, "PGA1N", "PGA1P")
+    # SBAS502C Fig 73/74 note (1): PGA1 CFILTER must be 47 nF with channel-1 respiration.
+    d.hpart(sh, "C", "C34", "47n", FP_C, 70, 210, "PGA1N", "PGA1P")
     d.hpart(sh, "C", "C35", "4.7n", FP_C, 130, 210, "PGA2N", "PGA2P")
     d.vpart(sh, "R", "R14", "10k", FP_R, 185, 185, "ADS1292_PWDN", "GND")
 

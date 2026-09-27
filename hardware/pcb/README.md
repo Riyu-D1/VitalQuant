@@ -5,7 +5,7 @@ about safety, sterility, biocompatibility, or regulatory clearance. The
 49.9 kΩ electrode resistors are not an IEC 60601 patient-leakage design.
 
 The schematic is drawn explicitly. The PCB is an unrouted placement:
-**40.0 × 34.0 mm**, rectangular, **4 layers**, parts on both sides.
+**36.5 × 32.0 mm**, rectangular, **4 layers**, parts on both sides.
 Six layers were not required. The analog nets are ordinary and the
 stackup is the JLCPCB 4-layer default.
 
@@ -35,23 +35,23 @@ R8 and R10. The list is at the bottom of this file.
 
 The module antenna keep-out is x = 0 to 6.5 mm, every copper layer.
 Pads start at x ≥ 6.55 mm. USB-C is rotated so the opening is the right
-edge. The shell and the parts above the module set the 34 mm height.
-The buck-boost, the 5 V boost, and their inductors sit on the top, on
-the right, next to USB and the battery pads. Analog parts are on the
-bottom, left of that column.
+edge. The buck-boost, the 5 V boost, the charger, and the CP2102 sit on
+the top, on the right, next to USB. The flash, the IMU, the BME280, and
+the expander are also on the top, below the module. Analog parts are on
+the bottom, away from that switcher column.
 
-Skin side, bottom: SFH 7072, AS7341 with the white LED and the 860 nm
-LED, MLX90632, and the two TMP117s. The TMP117s sit on a small island
-at the bottom-right corner. An 0.8 mm slot separates them, and another
-slot separates the island from the rest of the board, with a 2 mm neck
-on the side away from the regulators. A slot also separates the AS7341
-aperture from its two LEDs.
+Skin side, one cluster: SFH 7072 (its own emitter/detector slot), the
+AS7341 with the white LED and the 860 nm LED about 5 mm from the
+aperture, and the MLX90632. An 0.8 mm slot separates those LEDs from the
+AS7341. J5 and J6 sit on the bottom and top edges of that cluster.
+U11 is on a slotted island beside the LEDs. U20 is on the top at the
+same XY, outside the module body. The island neck faces the cluster.
 
 Electrodes are flat solder pads. No headers. J5 is five pads: ADS1292R
 positive, ADS1292R negative, RLD, AFE4900 positive, AFE4900 negative.
 J6 is the four EDA pads. The EDA cable is a flex tail to the shoulder.
 The electrodes on that tail must land at least 5 cm from the ECG
-electrodes. That distance is on the harness, not on this 40 mm board.
+electrodes. That distance is on the harness, not on this 36.5 mm board.
 
 The board is not routed. JLCPCB 4-layer numbers are in
 `vitalq_hw_v1.kicad_pro`: 0.09 mm track and clearance, 0.2 / 0.45 mm
@@ -120,8 +120,11 @@ ESP32 input is not guaranteed to see 1.8 V as a high.
   returned 404.
 - SFH 7072 pad pitch is reconstructed from the 7.5 × 3.9 mm body and a
   2 × 6 land. Confirm pin 1 before fabrication.
-- ADS1292R C34 stays 4.7 nF even though SBAS502C says 47 nF when
-  respiration is on.
+- ADS1292R C34 is 47 nF. SBAS502C Fig 73 note (1): "When using the
+  ADS1292R and the channel 1 respiration function, this capacitor must
+  be 47 nF." The PGA section also says 4.7 nF is recommended; the
+  figure note is the one that says "must" for respiration. C35 stays
+  4.7 nF.
 
 ## Firmware profile is out of date
 

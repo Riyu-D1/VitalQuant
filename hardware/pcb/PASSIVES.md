@@ -65,10 +65,14 @@ patient-leakage claim.
 
 ## ADS1292R
 
-SBAS502C Fig 68 is the respiration network. Channel 1 is respiration.
-Channel 2 is ECG. The two inputs are not tied together. C34 stays 4.7 nF.
-The figure note says 47 nF when respiration is enabled; this board keeps
-4.7 nF because that was an explicit requirement.
+SBAS502C Fig 68 is the respiration network. Its note is only "Patient
+and input protection circuitry not shown." Section 8.3.10.4 does not
+set CFILTER. Channel 1 is respiration. Channel 2 is ECG. The inputs are
+not tied together. C34 is 47 nF because Fig 73 and Fig 74 note (1), on
+the PGA1 capacitor, says: "When using the ADS1292R and the channel 1
+respiration function, this capacitor must be 47 nF." The PGA section
+also says a 4.7 nF capacitor is recommended for respiration. This board
+follows the "must" note. C35, on PGA2, stays 4.7 nF.
 
 | Ref | Value | From | To | Why |
 | --- | --- | --- | --- | --- |
@@ -78,7 +82,7 @@ The figure note says 47 nF when respiration is enabled; this board keeps
 | C30 | 10 µF | VREFP | GND | VREFP reservoir, §11.1 |
 | C32 | 1 µF | VCAP1 | GND | VCAP1, §11.1 |
 | C33 | 1 µF | VCAP2 | GND | VCAP2, §11.1 |
-| C34 | 4.7 nF | PGA1N | PGA1P | PGA1 filter. Kept at 4.7 nF with respiration enabled |
+| C34 | 47 nF | PGA1N | PGA1P | PGA1 filter. Fig 73 note (1): must be 47 nF with channel-1 respiration |
 | C35 | 4.7 nF | PGA2N | PGA2P | PGA2 filter |
 | R14 | 10 kΩ | PWDN | GND | Held in power-down until expander P1 |
 | R15 | 1 MΩ | +3V3 | RLDREF | RLD reference divider, Fig 68 |
@@ -159,9 +163,9 @@ across the 10 MΩ bias. 100 nA across 10 MΩ would be 1 V.
 | C37 | 100 nF | +3V3 | GND | BME280 |
 | C38 | 100 nF | +3V3 | GND | LSM6DSV80X |
 | C39 | 100 nF | +3V3 | GND | MLX90632 VDD |
-| C40 | 100 nF | +3V3 | GND | TMP117 U11, on the thermal island |
+| C40 | 100 nF | +3V3 | GND | TMP117 U11, inside the thermal island |
 | C41 | 100 nF | +3V3 | GND | spare sensor bypass, placed with the 1.8 V group |
-| C61 | 100 nF | +3V3 | GND | TMP117 U20, on the thermal island |
+| C61 | 100 nF | +3V3 | GND | TMP117 U20, inside the thermal island, top side |
 
 D10, the Nichia white LED, has no series resistor. Its anode is +3V3 and
 its cathode is the AS7341 LDR current sink. LDR absolute maximum is 3.6 V,
