@@ -86,13 +86,13 @@ const TEAM = [
     initials: 'RD',
     name: 'Riyansh Diwan',
     role: 'Co-Founder & CEO',
-    bio: 'Vision, partnerships, and the clinical problem. Leads strategy and fundraising.',
+    bio: 'Vision, partnerships, and the clinical problem. Leads strategy and fundraising. Head of engineering, research, and hardware.',
   },
   {
     initials: 'MM',
     name: 'Moses Man',
     role: 'Co-Founder & CTO',
-    bio: 'Optics, firmware, and the full-stack platform. Leads engineering and research.',
+    bio: 'Optics, firmware, and the full-stack platform. Research lead. Leads software architecture.',
   },
   {
     initials: 'AL',
