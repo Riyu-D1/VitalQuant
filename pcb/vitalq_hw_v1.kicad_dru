@@ -1,0 +1,34 @@
+(version 1)
+
+(rule "default clearance outside BGA fanout"
+	(constraint clearance (min 0.127mm))
+	(condition "A.NetClass != 'HV_ELECTRODE' && A.NetClass != 'ELECTRODE_LV' && !A.intersectsArea('bga_fanout')")
+)
+
+(rule "BGA fanout"
+	(constraint clearance (min 0.09mm))
+	(constraint track_width (min 0.09mm))
+	(constraint hole_clearance (min 0.15mm))
+	(constraint hole_to_hole (min 0.2mm))
+	(condition "A.intersectsArea('bga_fanout')")
+)
+
+(rule "HV electrode to other nets"
+	(constraint clearance (min 1.5mm))
+	(condition "A.NetClass == 'HV_ELECTRODE' && B.NetClass != 'HV_ELECTRODE'")
+)
+
+(rule "HV electrode width"
+	(constraint track_width (min 0.25mm) (opt 0.25mm))
+	(condition "A.NetClass == 'HV_ELECTRODE'")
+)
+
+(rule "electrode LV clearance"
+	(constraint clearance (min 0.2mm))
+	(condition "A.NetClass == 'ELECTRODE_LV'")
+)
+
+(rule "electrode LV width"
+	(constraint track_width (min 0.15mm) (opt 0.15mm))
+	(condition "A.NetClass == 'ELECTRODE_LV'")
+)
