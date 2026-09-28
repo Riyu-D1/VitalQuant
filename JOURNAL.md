@@ -54,3 +54,10 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
   - CP2102: finally this was chosen as esp32 modules lack built in usb programming hardware therefore a USB to UART bridge IC was required.
 - Now I need to move on to creating the initial pcb schematic and finding footprints for all of these components so they can be wired and visually seen in the eventual CAD file for the case development.
 <img width="1869" height="966" alt="image" src="https://github.com/user-attachments/assets/c0abe951-9192-40eb-93fe-f0d6ebf889d0" />
+
+----
+## Moses - 26 Sept
+3 hours
+- Worked on the software and refactored the codebase to make it easier to debug issues when connecting with the software
+- Installed and emulated a ESP32 to test firmware connectivity with our custom software
+- Simulated test signals using the emulated ESP32 to test calibration of the software
