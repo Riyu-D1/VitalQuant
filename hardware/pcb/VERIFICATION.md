@@ -346,3 +346,28 @@ Firmware files were not edited. `firmware/esp32/profiles/hw_v1.yaml`
 and `config/hardware.example.yaml` still describe an ESP32-S3, I2C on
 GPIO 8/9, SPI on GPIO 12/11/13, a MAX86141, an MLX90637 at 0x3B, and an
 ICM-42670-P at 0x68. The board is the classic ESP32 map in `PINMAP.md`.
+
+## Placement repack pass (2026-09-29)
+
+Placement-only reorganisation on this branch — no part was removed and
+no footprint changed. Skin-facing sensors stay in one ~16 × 16 mm
+bottom-side cluster (J5, U16, U12, U10, D10, D11, U11/U20). Per-IC
+support passives were pulled adjacent to U6/U7/U8/U9 as described in
+`README.md`. Re-run of `check.sh` after the repack:
+
+| check | count |
+|---|---|
+| courtyard clashes | 0 |
+| pad < 0.3 mm to slot/edge | 0 |
+| SMD vs opposite-side PTH | 0 |
+| missing pads | 0 |
+| unconnected_items | 499 (board still unrouted) |
+| non-unconnected DRC errors | 28 |
+
+The 28 residual errors are pre-existing, not from this pass: the four
+VIP vias that land inside U1 pad 25 (solder-mask bridge / shorting /
+hole-clearance), the intrinsic pad proximity inside the Q1/Q2
+CSD13380F3T packages, the J5 electrode pads vs their clamp diodes
+D1–D5/D10 (inside the 1.5 mm HV rule by design), and two GND stitch
+vias near R36/J7. `renders/` has top/bottom 3D views and
+`placement_map.png`, a colour-coded courtyard map by functional group.

@@ -79,6 +79,21 @@ between pads, and J6 and J7 are still 1.05 mm. A custom rule asks for
 1.5 mm from each high-voltage electrode net to unrelated copper. DRC
 still reports that rule. Adjacent electrode pads are not 1.5 mm apart.
 
+Placement was repacked after review: all 245 parts kept, none removed.
+Every skin-facing sensor stays on the bottom in one cluster — the ECG
+pads (J5), SFH 7072, MLX90632, AS7341, both LEDs, and the TMP117 pair
+sit inside a ~16 × 16 mm window around the same skin spot. The 860 nm
+LED (D11) was moved beside the white LED so both emitters light the
+same aperture. Each IC's passives were pulled tight against it: the
+AFE4900 supply/reference network (C16–C27, C42, R11–R13) wraps U7 on
+the bottom, the ADS1292R input/RLD network (R14–R31, R67–R69,
+C28–C35, C43, C48–C53, C65–C66) hugs U8, and the AD5940 loop plus the
+isolated electrode path (C56–C57, C15, R43–R45, C54–C55, R39–R42,
+D6–D9) sit at U6 and along the J6 corridor. U9's I2C pull-ups now
+flank the expander, and the USB-UART series resistors moved beside the
+connector row. Placement gates are clean: 0 courtyard clashes, 0
+pad-to-slot/edge hits, 0 SMD-vs-through-hole hits, 0 missing pads.
+
 The board is partly routed. Freerouting stalled, and a later maze pass
 that shorted nets was discarded. `VERIFICATION.md` lists every remaining
 unconnected net. Design rules are in `vitalq_hw_v1.kicad_pro` and
