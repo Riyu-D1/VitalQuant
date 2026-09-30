@@ -590,6 +590,7 @@ def power(d: Design):
     sh.text("Decoupling", 230, 108, 1.8, bold=True)
     d.vpart(sh, "C", "C1", "4.7u", FP_C6, 230, 155, "VBUS", "GND")
     d.vpart(sh, "C", "C2", "4.7u", FP_C, 250, 155, "VBAT", "GND")
+    d.vpart(sh, "C", "C85", "47u", FP_C6, 262, 155, "VBAT", "GND")  # bulk for WiFi+LED bursts on the cell
     d.vpart(sh, "C", "C3", "1u", FP_C, 270, 155, "VBAT", "GND")
     d.vpart(sh, "C", "C4", "1u", FP_C, 290, 155, "+3V3", "GND")
     d.vpart(sh, "C", "C6", "1u", FP_C, 310, 155, "+1V8_LDO", "GND")
