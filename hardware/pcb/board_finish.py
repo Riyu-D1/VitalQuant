@@ -237,6 +237,9 @@ def _stitch(board, hv_rects):
             c = fp.GetPosition()
             cx, cy = c.x / 1e6, c.y / 1e6
             hv_rects.append((cx - 2.2, cy - 2.2, cx + 2.2, cy + 2.2))
+    # And the ESP32-S3-MINI-1 antenna zone under the module's overhanging tab
+    # (mirrors the antenna_keepout rule area emitted by build_pcb.add_keepout).
+    hv_rects.append((4.55, -1.0, 20.25, 2.45))
     points = []
     step = 2.8
     y = 1.2

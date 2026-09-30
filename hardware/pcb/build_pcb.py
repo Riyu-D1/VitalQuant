@@ -42,8 +42,8 @@ if not KICAD_FP.is_dir():
 # Millimetres. Origin is the lower-left corner, Y up (KiCad board coordinates).
 # hw_v2 outline is 40.0 x 62.0 (FLOORPLAN_V2.md). 4 layers. Skin sensors share
 # one bottom cluster; the second TMP117 sits on the top at the same XY.
-# USB-C (J1) is on the bottom edge at y~2.7; the U.FL coax dress lane threads
-# the J9 pad gap below U1's module end.
+# USB-C (J1) is on the top edge at y~2.7; the ESP32-S3-MINI-1 antenna tab
+# overhangs the top edge above U1's pad field (x 4.7..20.1).
 BOARD_W = 40.0
 # Patient-facing defib ladder runs as two 2512 rows at y~28.4 (bottom:
 # R32-R36, top: R76-R79) and y~36.3 (bottom: R80-R83), with the creepage
@@ -166,7 +166,7 @@ PLACE = {
     "J5": (18.60, 60.40, 0, True),
     "J6": (9.00, 60.40, 0, True),
     "J13": (29.60, 60.40, 0, True),
-    "J9": (8.00, 1.50, 0, True),
+    "J9": (38.80, 15.00, 90, True),
     "J10": (38.80, 43.40, 90, True),
     "J11": (38.80, 55.00, 90, True),
     "J12": (3.30, 50.00, 90, True),
@@ -310,10 +310,10 @@ PLACE = {
     "R67": (1.17, 31.53, 90, True),
     "R68": (13.72, 34.06, 0, True),
     "R69": (26.73, 33.56, 0, True),
-    "R7": (13.62, 0.92, 0, True),
-    "R70": (15.62, 0.92, 0, True),
-    "R71": (17.62, 0.92, 0, True),
-    "R72": (19.62, 0.92, 0, True),
+    "R7": (16.40, 23.00, 0, True),
+    "R70": (30.50, 22.60, 0, True),
+    "R71": (34.00, 23.00, 0, True),
+    "R72": (24.50, 22.60, 0, True),
     "R73": (23.22, 0.92, 0, True),
     "R74": (25.22, 0.92, 0, True),
     "R75": (27.22, 0.92, 0, True),
@@ -577,11 +577,11 @@ ISLAND = (
 
 
 def add_keepout(board):
-    """hw_v2: U1 is ESP32-S3-MINI-1U at (12.4, 10.0) rot 0 — the U.FL
-    receptacle lands at about (7.9, 3.9) on the module's low-Y end, so the
-    coax exits straight down to the bottom edge. J9's tail-pad row leaves a
-    1.05 mm gap at x 7.475-8.525; the dress lane threads that gap (no
-    tracks/vias/pads/pours) so the pigtail crosses no copper."""
+    """hw_v2: U1 is ESP32-S3-MINI-1 at (12.4, 10.0) rot 0 — the on-board
+    PCB antenna is the pad-free tab on the module's -Y end, overhanging the
+    top board edge by ~2.8 mm (Espressif-preferred mounting). The keep-out
+    covers the tab's inboard strip (y 0..2.45, x 4.55..20.25): no tracks,
+    vias, pads or pours on any layer. J9's tail pads moved out of the zone."""
     zone = pcbnew.ZONE(board)
     zone.SetIsRuleArea(True)
     zone.SetDoNotAllowTracks(True)
@@ -589,13 +589,11 @@ def add_keepout(board):
     zone.SetDoNotAllowPads(True)
     zone.SetDoNotAllowZoneFills(True)  # KiCad 10 renamed SetDoNotAllowCopperPour
     zone.SetDoNotAllowFootprints(False)
-    zone.SetZoneName("ufl_dress")
+    zone.SetZoneName("antenna_keepout")
     zone.SetLayerSet(pcbnew.LSET.AllCuMask())
     outline = zone.Outline()
     outline.NewOutline()
-    # ~0.8 mm lane from the board edge up to just under U1's pad row
-    # (pads start at y=2.6), centred on the J9 gap at x~8.0.
-    for x, y in ((7.6, 0.0), (8.4, 0.0), (8.4, 2.5), (7.6, 2.5)):
+    for x, y in ((4.55, 0.0), (20.25, 0.0), (20.25, 2.45), (4.55, 2.45)):
         outline.Append(mm(x), mm(y))
     board.Add(zone)
 
@@ -670,8 +668,8 @@ def _retarget_board_finish(bf):
     def _blocked(x, y, rects, pad_boxes):
         if x < 0.9 or x > BOARD_W - 0.9 or y < 0.9 or y > BOARD_H - 0.9:
             return True
-        # U.FL dress lane under the module end (see add_keepout).
-        if 7.4 <= x <= 8.6 and y <= 4.2:
+        # Antenna keep-out under the module's overhanging tab (see add_keepout).
+        if 4.55 <= x <= 20.25 and y <= 2.45:
             return True
         # HV keep-outs already carry a 1.0 mm inflate; the extra 0.9 puts
         # the 0.6 mm stitch barrel >=1.9 mm from HV pad copper, clearing the
@@ -1074,7 +1072,7 @@ def main():
 # Exact orderable numbers. 0402 passives are Yageo RC0402FR (1%) and Murata GRM155.
 # 0603 bulk capacitors are the Murata parts named in the regulator tables.
 MPN = {
-    "U1": "ESP32-S3-MINI-1U-N4R2",
+    "U1": "ESP32-S3-MINI-1-N4R2",
     "U2": "BQ25170DSGR",
     "Q3": "BC847BS,115",
     "U3": "TPS63802DLAR",
@@ -1271,6 +1269,7 @@ def mpn_for(ref, value, footprint):
 # LCSC numbers confirmed against the prefab review. Anything else stays blank
 # rather than guessing a catalogue code.
 LCSC_BY_MPN = {
+    "ESP32-S3-MINI-1-N4R2": "C3013941",
     "USBLC6-2SC6": "C7519",
     "KT-0603G": "C12624",
     "TS-1088-AR02016": "C720477",

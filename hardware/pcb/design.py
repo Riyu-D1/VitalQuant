@@ -9,7 +9,7 @@ the hw_v1 naming for compatibility with build_pcb.py.
 # ---------------------------------------------------------------------------
 # hw_v2 delta — 2026-09-29 (schematic agent; HW_V2_SPEC.md is authoritative)
 #
-#   * U1: ESP32-WROOM-32E-N8R2 -> ESP32-S3-MINI-1U-N4R2 (U.FL antenna, native
+#   * U1: ESP32-WROOM-32E-N8R2 -> ESP32-S3-MINI-1-N4R2 (on-board PCB antenna, native
 #     USB on IO19/IO20, UART0 console kept on TXD0/RXD0 = GPIO43/44). All nets
 #     remapped per the spec interface table. EN/IO0 buttons, R5/R6/C64, the
 #     Q3 auto-program pair and the TC2030 header wiring are unchanged.
@@ -73,7 +73,7 @@ FP_IR = "LED_SMD:LED_0402_1005Metric"
 
 # hw_v2 additions. Custom lands still to be drawn in vitalq.pretty are named
 # vitalq:* and flagged VERIFY where noted.
-FP_S3 = "vitalq:ESP32_S3_MINI_1U"  # local land cloned from ESP32-S2-MINI-1U (same 15.4x15.4 package family); VERIFY pad order vs S3 pinout
+FP_S3 = "vitalq:ESP32_S3_MINI_1"  # MINI-1 land: same 65-pin pad map as MINI-1U plus 5.1 mm antenna overhang; VERIFY pad order vs S3 pinout
 FP_86178 = "vitalq:MAX86178_WLP49"  # VERIFY: 7x7 WLP 2.77x2.57 mm, 0.4 pitch — land TBD
 FP_SHT45 = "vitalq:SHT45_DFN4"  # local land (official lib lacks DFN-4 1.5x1.5); VERIFY vs Sensirion
 FP_RTC = "vitalq:RV3028C7"  # VERIFY: SON-8 3.2x1.5 mm land TBD
@@ -177,7 +177,7 @@ def hw_v2_lib() -> dict:
     can regenerate the same blocks later if wanted."""
     lib = {}
 
-    # ESP32-S3-MINI-1U-N4R2. Pad numbers per ESP32-S3-MINI-1/-1U datasheet
+    # ESP32-S3-MINI-1-N4R2. Pad numbers per ESP32-S3-MINI-1/-1U datasheet
     # v1.3 Table 3-1 (65 pads; pads 46-65 are the GND ring, pad 61 is the
     # nine-pad heatsink group — verified against the official Espressif land).
     # N4R2: 4 MB quad flash + 2 MB quad PSRAM inside; IO26 is the PSRAM
@@ -211,11 +211,11 @@ def hw_v2_lib() -> dict:
     # The official land numbers the 3x3 EP/heatsink grid as pad 61 (GND);
     # it is already inside the 46-65 ring, so no separate EPAD pin is needed.
     s3_gnd = [str(n) for n in (1, 2, 42, 43, *range(46, 66))]  # ring + EPAD(61)
-    lib["ESP32-S3-MINI-1U-N4R2"] = box_sym(
-        "ESP32-S3-MINI-1U-N4R2",
+    lib["ESP32-S3-MINI-1-N4R2"] = box_sym(
+        "ESP32-S3-MINI-1-N4R2",
         "U",
-        "ESP32-S3-MINI-1U-N4R2, datasheet v1.3 Table 3-1. U.FL antenna. "
-        "EP = pad 61 on the vitalq land; VERIFY pad order vs S3 pinout.",
+        "ESP32-S3-MINI-1-N4R2, datasheet v1.3 Table 3-1. On-board PCB "
+        "antenna. EP = pad 61 on the vitalq land; VERIFY pad order vs S3 pinout.",
         FP_S3,
         s3_left + s3_right + [("3", "3V3", "power_in", "U")]
         + [(n, "GND", "power_in", "D") for n in s3_gnd],
@@ -717,14 +717,14 @@ def mcu(d: Design):
     sh.rect(12, 40, 300, 290)
     sh.rect(308, 40, 406, 280)
     sh.text("MCU", 16, 16, 3.2, bold=True)
-    sh.text("ESP32-S3-MINI-1U-N4R2. U.FL antenna: the x<6.5 mm keep-out is gone. 4 MB flash + 2 MB PSRAM inside.", 16, 24, 1.5)
+    sh.text("ESP32-S3-MINI-1-N4R2. On-board PCB antenna: antenna end at the board edge over an all-layer keep-out. 4 MB flash + 2 MB PSRAM inside.", 16, 24, 1.5)
     sh.text("Straps and FSR", 314, 46, 2.2, bold=True)
 
     u = d.part(
         sh,
-        "ESP32-S3-MINI-1U-N4R2",
+        "ESP32-S3-MINI-1-N4R2",
         "U1",
-        "ESP32-S3-MINI-1U-N4R2",
+        "ESP32-S3-MINI-1-N4R2",
         FP_S3,
         150,
         140,
