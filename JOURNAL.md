@@ -61,3 +61,10 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - Worked on the software and refactored the codebase to make it easier to debug issues when connecting with the software
 - Installed and emulated a ESP32 to test firmware connectivity with our custom software
 - Simulated test signals using the emulated ESP32 to test calibration of the software
+
+----
+## Moses - 30 Sept
+3 hours
+- Downloading datasets of sepsis patient data
+- Manipulating datasets for training
+- Finetuning a custom decision model via QLoRA using LatticeAG infrastructure
