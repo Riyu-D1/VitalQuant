@@ -1,12 +1,35 @@
 #!/usr/bin/env python3
-"""VitalQ hw_v1 schematic. Every part is placed; nets are short stubs plus labels.
+"""VitalQ hw_v2 schematic (strict superset of hw_v1 — see delta block below).
 
-Power symbols and global labels of the same name are one net (checked).
+Every part is placed; nets are short stubs plus labels. Power symbols and
+global labels of the same name are one net (checked). Output filenames keep
+the hw_v1 naming for compatibility with build_pcb.py.
 """
+
+# ---------------------------------------------------------------------------
+# hw_v2 delta — 2026-09-29 (schematic agent; HW_V2_SPEC.md is authoritative)
+#
+#   * U1: ESP32-WROOM-32E-N8R2 -> ESP32-S3-MINI-1U-N4R2 (U.FL antenna, native
+#     USB on IO19/IO20, UART0 console kept on TXD0/RXD0 = GPIO43/44). All nets
+#     remapped per the spec interface table. EN/IO0 buttons, R5/R6/C64, the
+#     Q3 auto-program pair and the TC2030 header wiring are unchanged.
+#   * USB strap links: R102/R103 (fitted 0R-0402) route J1 D+/D- to the S3;
+#     R104/R105 (DNP) strap to the CP2102 instead. CP2102+U21+Q3 fully kept.
+#   * New sheet 9: MAX86178 combined ECG/PPG/BioZ AFE (SPI + CS GPIO38,
+#     INT GPIO39) plus the satellite tail pads J9/J10/J11, J12 FFC (DNP) and
+#     the J13 ECG pad pair (DNP). J12 is 14-pos, not the spec's 12: the
+#     three tails carry 13 nets, so a 14-pos FFC (FH12-14S-0.5SH) is the smallest that fits.
+#   * SHT45 U23 on I2C 0x44 (skin side); RV-3028-C7 RTC U24 DNP at 0x52;
+#     IM69D130 PDM mic U25 DNP on MIC_CLK/MIC_DAT (GPIO40/41); D12 730 nm LED
+#     + Q4 CSD13380F3T gated by AD5940 GPIO2 (ball E1, net NIR730_GATE).
+#   * Strict superset: no hw_v1 part, net, TVS, or test point was removed.
+#     New symbols are drawn in-file by hw_v2_lib() so lib/*.kicad_sym and the
+#     library build script stay untouched.
+# ---------------------------------------------------------------------------
 
 from __future__ import annotations
 
-from schutil import Sheet, label_angle, load_lib, r2
+from schutil import Pin, Sheet, SymbolDef, label_angle, load_lib, r2
 
 FP_R = "Resistor_SMD:R_0402_1005Metric"
 FP_C = "Capacitor_SMD:C_0402_1005Metric"
@@ -48,7 +71,271 @@ FP_HV = "Resistor_SMD:R_2512_6332Metric"
 FP_WHITE = "vitalq:NF2W757G"
 FP_IR = "LED_SMD:LED_0402_1005Metric"
 
+# hw_v2 additions. Custom lands still to be drawn in vitalq.pretty are named
+# vitalq:* and flagged VERIFY where noted.
+FP_S3 = "vitalq:ESP32_S3_MINI_1U"  # local land cloned from ESP32-S2-MINI-1U (same 15.4x15.4 package family); VERIFY pad order vs S3 pinout
+FP_86178 = "vitalq:MAX86178_WLP49"  # VERIFY: 7x7 WLP 2.77x2.57 mm, 0.4 pitch — land TBD
+FP_SHT45 = "vitalq:SHT45_DFN4"  # local land (official lib lacks DFN-4 1.5x1.5); VERIFY vs Sensirion
+FP_RTC = "vitalq:RV3028C7"  # VERIFY: SON-8 3.2x1.5 mm land TBD
+FP_MIC = "vitalq:IM69D130"  # VERIFY: Infineon LLGA-5 bottom-port land TBD
+FP_FFC = "Connector_FFC-FPC:Hirose_FH12-14S-0.5SH_1x14-1MP_P0.50mm_Horizontal"  # official 14-pos land; final connector family TBD (DNP)
+FP_PAD2 = "vitalq:Pads_1x02"  # VERIFY: tail pad land TBD
+FP_PAD3 = "vitalq:Pads_1x03"  # VERIFY: tail pad land TBD
+FP_PAD4 = "vitalq:Pads_1x04"  # VERIFY: tail pad land TBD
+FP_PAD6 = "vitalq:Pads_1x06"  # VERIFY: tail pad land TBD
+
 RAILS = {"+3V3", "+1V8", "VBUS", "GND"}
+
+
+def box_sym(name, ref, desc, fp, pins, width=10.16, stack_sides="", hidden=()):
+    """Box symbol in the same format lib/make_lib.py:kicad9_symbol writes.
+
+    hw_v2 parts are drawn here instead of editing lib/*.kicad_sym, which the
+    library build owns. Returns a SymbolDef; register it via hw_v2_lib().
+    pins: list of (number, name, etype, side), side in L/R/U/D. Sides listed
+    in stack_sides give every pin the same coordinate, so one stub ties the
+    whole group (module GND rings). hidden: (number, name) pins drawn inside
+    the body as no_connect, for pads that must stay open.
+    """
+    left = [p for p in pins if p[3] == "L"]
+    right = [p for p in pins if p[3] == "R"]
+    up = [p for p in pins if p[3] == "U"]
+    down = [p for p in pins if p[3] == "D"]
+    nside = max(len(left), len(right), 1)
+    height = max(nside * 2.54 + 2.54, 7.62)
+    top = height / 2
+    pin_len = 2.54
+
+    def y_for(i, n):
+        if n == 1:
+            return 0.0
+        span = (n - 1) * 2.54
+        return span / 2 - i * 2.54
+
+    coords = {}
+    for i, (num, _n, _t, _s) in enumerate(left):
+        coords[num] = (-width - pin_len, 0.0 if "L" in stack_sides else y_for(i, len(left)), 0)
+    for i, (num, _n, _t, _s) in enumerate(right):
+        coords[num] = (width + pin_len, 0.0 if "R" in stack_sides else y_for(i, len(right)), 180)
+    for i, (num, _n, _t, _s) in enumerate(up):
+        x = 0.0 if "U" in stack_sides else (i - (len(up) - 1) / 2) * 2.54
+        coords[num] = (x, top + pin_len, 270)
+    for i, (num, _n, _t, _s) in enumerate(down):
+        x = 0.0 if "D" in stack_sides else (i - (len(down) - 1) / 2) * 2.54
+        coords[num] = (x, -top - pin_len, 90)
+    for j, (num, _n) in enumerate(hidden):
+        coords[num] = (-width + 1.27, top - 2.54 - j * 1.27, 0)  # inside the body
+
+    pinmap = {}
+    pin_sexpr = []
+    for num, pname, etype, _side in pins:
+        x, y, rot = coords[num]
+        pinmap[num] = Pin(num, pname, etype, x, y, rot, pin_len)
+        pin_sexpr.append(
+            f"""\t\t\t(pin {etype} line
+\t\t\t\t(at {x:.2f} {y:.2f} {rot})
+\t\t\t\t(length {pin_len:.2f})
+\t\t\t\t(name "{pname}" (effects (font (size 1.27 1.27))))
+\t\t\t\t(number "{num}" (effects (font (size 1.27 1.27))))
+\t\t\t)"""
+        )
+    for num, pname in hidden:
+        x, y, rot = coords[num]
+        pinmap[num] = Pin(num, pname, "no_connect", x, y, rot, pin_len)
+        pin_sexpr.append(
+            f"""\t\t\t(pin no_connect line
+\t\t\t\t(at {x:.2f} {y:.2f} {rot})
+\t\t\t\t(length {pin_len:.2f})
+\t\t\t\t(hide yes)
+\t\t\t\t(name "{pname}" (effects (font (size 1.27 1.27))))
+\t\t\t\t(number "{num}" (effects (font (size 1.27 1.27))))
+\t\t\t)"""
+        )
+    pins_txt = "\n".join(pin_sexpr)
+    block = f"""\t(symbol "{name}"
+\t\t(exclude_from_sim no)
+\t\t(in_bom yes)
+\t\t(on_board yes)
+\t\t(property "Reference" "{ref}" (at 0 {top + 2.54:.2f} 0) (effects (font (size 1.27 1.27))))
+\t\t(property "Value" "{name}" (at 0 {-top - 2.54:.2f} 0) (effects (font (size 1.27 1.27))))
+\t\t(property "Footprint" "{fp}" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+\t\t(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+\t\t(property "Description" "{desc}" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+\t\t(symbol "{name}_0_1"
+\t\t\t(rectangle (start {-width:.2f} {top:.2f}) (end {width:.2f} {-top:.2f})
+\t\t\t\t(stroke (width 0.254) (type default)) (fill (type background)))
+\t\t)
+\t\t(symbol "{name}_1_1"
+{pins_txt}
+\t\t)
+\t)"""
+    return SymbolDef(name, block, pinmap)
+
+
+def hw_v2_lib() -> dict:
+    """Symbols added for hw_v2. The lib files are not touched; make_lib.py
+    can regenerate the same blocks later if wanted."""
+    lib = {}
+
+    # ESP32-S3-MINI-1U-N4R2. Pad numbers per ESP32-S3-MINI-1/-1U datasheet
+    # v1.3 Table 3-1 (65 pads; pads 46-65 are the GND ring, pad 61 is the
+    # nine-pad heatsink group — verified against the official Espressif land).
+    # N4R2: 4 MB quad flash + 2 MB quad PSRAM inside; IO26 is the PSRAM
+    # chip-select and is reserved. USB is native on IO19 (D-) / IO20 (D+),
+    # UART0 console on TXD0/RXD0 (GPIO43/44).
+    s3_left = [("45", "EN", "input", "L")] + [
+        (str(4 + i), f"IO{i}", "bidirectional", "L") for i in range(11)  # IO0-IO10
+    ]
+    s3_right = (
+        [(str(15 + i), f"IO{11 + i}", "bidirectional", "R") for i in range(11)]  # IO11-IO21
+        + [
+            ("26", "IO26", "bidirectional", "R"),  # PSRAM CS inside N4R2 — leave open
+            ("27", "IO47", "bidirectional", "R"),
+            ("28", "IO33", "bidirectional", "R"),
+            ("29", "IO34", "bidirectional", "R"),
+            ("30", "IO48", "bidirectional", "R"),
+            ("31", "IO35", "bidirectional", "R"),
+            ("32", "IO36", "bidirectional", "R"),
+            ("33", "IO37", "bidirectional", "R"),
+            ("34", "IO38", "bidirectional", "R"),
+            ("35", "IO39", "bidirectional", "R"),
+            ("36", "IO40", "bidirectional", "R"),
+            ("37", "IO41", "bidirectional", "R"),
+            ("38", "IO42", "bidirectional", "R"),
+            ("39", "TXD0", "output", "R"),   # GPIO43, U0TXD
+            ("40", "RXD0", "input", "R"),    # GPIO44, U0RXD
+            ("41", "IO45", "bidirectional", "R"),  # strap — leave unstrapped
+            ("44", "IO46", "bidirectional", "R"),  # strap — leave unstrapped
+        ]
+    )
+    # The official land numbers the 3x3 EP/heatsink grid as pad 61 (GND);
+    # it is already inside the 46-65 ring, so no separate EPAD pin is needed.
+    s3_gnd = [str(n) for n in (1, 2, 42, 43, *range(46, 66))]  # ring + EPAD(61)
+    lib["ESP32-S3-MINI-1U-N4R2"] = box_sym(
+        "ESP32-S3-MINI-1U-N4R2",
+        "U",
+        "ESP32-S3-MINI-1U-N4R2, datasheet v1.3 Table 3-1. U.FL antenna. "
+        "EP = pad 61 on the vitalq land; VERIFY pad order vs S3 pinout.",
+        FP_S3,
+        s3_left + s3_right + [("3", "3V3", "power_in", "U")]
+        + [(n, "GND", "power_in", "D") for n in s3_gnd],
+        width=15.24,
+        stack_sides="D",
+    )
+
+    # MAX86178 WLP-49. The full ball map is under NDA — VERIFY every ball
+    # ref below against the released pin table before layout. Names follow
+    # the MAX86176 family convention. RSV balls are left unconnected.
+    lib["MAX86178"] = box_sym(
+        "MAX86178",
+        "U",
+        "MAX86178ENJ+ WLP-49 ECG/PPG/BioZ AFE. VERIFY: ball map is NDA.",
+        FP_86178,
+        [
+            ("A1", "PD1_INP", "input", "L"),
+            ("A2", "PD1_INM", "input", "L"),
+            ("A3", "LED1_DRV", "output", "L"),
+            ("A4", "LED2_DRV", "output", "L"),
+            ("A5", "LED3_DRV", "output", "L"),
+            ("A6", "ECG_INP", "input", "L"),
+            ("A7", "ECG_INM", "input", "L"),
+            ("G7", "SCLK", "input", "R"),
+            ("G6", "SDI", "input", "R"),
+            ("G5", "SDO", "tri_state", "R"),
+            ("G4", "SEN", "input", "R"),
+            ("G3", "INTB", "open_collector", "R"),
+            ("F1", "AVDD", "power_in", "U"),
+            ("F2", "DVDD", "power_in", "U"),
+            ("F3", "LED_DRV_SUP", "power_in", "U"),
+            ("F4", "VREF", "passive", "U"),
+            ("F5", "AGND", "power_in", "D"),
+            ("F6", "DGND", "power_in", "D"),
+            ("F7", "LGND", "power_in", "D"),
+        ],
+        width=12.7,
+        hidden=[(f"{r}{c}", f"RSV{r}{c}") for r in "BCDE" for c in range(1, 8)]
+        + [("G1", "RSV"), ("G2", "RSV")],
+    )
+
+    # SHT45-AD1B DFN-4: pin 1 SDA, 2 SCL, 3 VDD, 4 VSS (SHT4x datasheet 5.4).
+    # The die pad is not bonded to a pin.
+    lib["SHT45-AD1B"] = box_sym(
+        "SHT45-AD1B",
+        "U",
+        "SHT45 DFN-4 RH+T sensor, I2C 0x44. Die pad is not connected.",
+        FP_SHT45,
+        [
+            ("1", "SDA", "bidirectional", "L"),
+            ("2", "SCL", "input", "L"),
+            ("3", "VDD", "power_in", "U"),
+            ("4", "VSS", "power_in", "D"),
+        ],
+        width=7.62,
+    )
+
+    # RV-3028-C7 SON-8: 1 CLKOUT, 2 /INT (open drain), 3 SCL, 4 SDA,
+    # 5 VSS (metal lid), 6 VBACKUP, 7 VDD, 8 EVI (do not float).
+    lib["RV-3028-C7"] = box_sym(
+        "RV-3028-C7",
+        "U",
+        "RV-3028-C7 RTC, SON-8, I2C 0x52. EVI must not float; VBACKUP to VSS via 10k when unused.",
+        FP_RTC,
+        [
+            ("3", "SCL", "input", "L"),
+            ("4", "SDA", "bidirectional", "L"),
+            ("1", "CLKOUT", "output", "R"),
+            ("2", "INT", "open_collector", "R"),
+            ("8", "EVI", "input", "R"),
+            ("7", "VDD", "power_in", "U"),
+            ("5", "VSS", "power_in", "D"),
+            ("6", "VBACKUP", "power_in", "D"),
+        ],
+        width=7.62,
+    )
+
+    # IM69D130 LLGA-5 bottom-port PDM mic: 1 DATA, 2 VDD, 3 CLOCK,
+    # 4 SELECT (L/R strapped), 5 GND. 100 nF on VDD per datasheet.
+    lib["IM69D130"] = box_sym(
+        "IM69D130",
+        "U",
+        "IM69D130 PDM mic, LLGA-5. SELECT strapped low = left slot.",
+        FP_MIC,
+        [
+            ("1", "DATA", "output", "L"),
+            ("3", "CLOCK", "input", "L"),
+            ("4", "SELECT", "input", "R"),
+            ("2", "VDD", "power_in", "U"),
+            ("5", "GND", "power_in", "D"),
+        ],
+        width=7.62,
+    )
+
+    # 14-pos FFC for J12 — spec asked for a 12-pos carrying J9+J10+J11, which
+    # is 13 nets; 14-pos is the smallest standard FFC connector that covers them (FH12-14S-0.5SH land).
+    lib["Conn_01x14_Pin"] = box_sym(
+        "Conn_01x14_Pin",
+        "J",
+        "Generic 14-pin connector, one row.",
+        "",
+        [(str(i), f"Pin_{i}", "passive", "R") for i in range(1, 15)],
+        width=2.54,
+    )
+    return lib
+
+
+def usb_c_shield_pin(lib):
+    """J1: the library symbol calls its shell pin "S1", but the
+    USB_C_Receptacle_HRO_TYPE-C-31-M-12 land numbers its four shell pads
+    "SH". Renumber the pin in memory so all four shell pads take GND.
+    lib/vitalq.kicad_sym itself stays untouched."""
+    sym = lib["USB_C_Receptacle_USB2.0_16P"]
+    block = sym.block.replace('(number "S1"', '(number "SH"', 1)
+    assert block != sym.block, "USB-C symbol lost its S1 shell pin"
+    pins = {}
+    for num, p in sym.pins.items():
+        key = "SH" if num == "S1" else num
+        pins[key] = Pin(key, p.name, p.etype, p.x, p.y, p.rot, p.length)
+    lib["USB_C_Receptacle_USB2.0_16P"] = SymbolDef(sym.name, block, pins)
 
 
 class Design:
@@ -177,9 +464,9 @@ class Design:
         self.close(sh, inst)
         return inst
 
-    def hpart(self, sh, sym, ref, value, fp, x, y, left, right):
+    def hpart(self, sh, sym, ref, value, fp, x, y, left, right, dnp=False):
         """Rotation 90: pin 2 on the left, pin 1 on the right."""
-        inst = self.part(sh, sym, ref, value, fp, x, y, 90, labels="side")
+        inst = self.part(sh, sym, ref, value, fp, x, y, 90, labels="side", dnp=dnp)
         # Side labels sit on the pin axis. Put them above the body.
         inst.ref_at = (x - 2, y - 3.6)
         inst.val_at = (x + 4, y - 3.6)
@@ -200,6 +487,8 @@ class Design:
 
 def build_design(lib=None) -> Design:
     lib = lib or load_lib()
+    lib.update(hw_v2_lib())  # hw_v2 symbols; lib/*.kicad_sym stays untouched
+    usb_c_shield_pin(lib)  # J1 shell pads on the land are numbered SH
     d = Design(lib)
     power(d)
     usb(d)
@@ -209,12 +498,13 @@ def build_design(lib=None) -> Design:
     ads(d)
     i2c(d)
     debug(d)
+    max86178(d)
     # Navigation boxes along the bottom of the power sheet.
     x = 16
     for ch in d.children:
         ch.nav_at = (x, 238)
-        ch.nav_size = (50, 12)
-        x += 54
+        ch.nav_size = (44, 12)  # hw_v2: eight sheets — tightened pitch
+        x += 48
     return d
 
 
@@ -226,15 +516,15 @@ def power(d: Design):
     sh.text("USB-C, LiPo charger, 3.3 V rail, 1.8 V rail", 16, 26, 1.6)
 
     j = d.part(sh, "USB_C_Receptacle_USB2.0_16P", "J1", "USB-C", FP_USB, 48, 78, labels="ic")
-    # Right-hand signal pins.
-    d.stub_net(sh, j, "A4", "VBUS", 10.16)  # stacked VBUS
+    # All four VBUS pads and all four GND pads wired — current margin + EMI.
+    d.join_row(sh, j, ["A4", "A9", "B4", "B9"], "VBUS", 5.08)
     d.stub_net(sh, j, "A5", "USB_CC1", 7.62)
     d.stub_net(sh, j, "B5", "USB_CC2", 7.62)
     d.stub_net(sh, j, "A6", "USB_DP", 7.62)
     d.stub_net(sh, j, "B6", "USB_DP", 7.62)
     d.stub_net(sh, j, "A7", "USB_DM", 7.62)
     d.stub_net(sh, j, "B7", "USB_DM", 7.62)
-    d.join_row(sh, j, ["A1", "S1"], "GND", 5.08)  # GND stack + shield, both face down
+    d.join_row(sh, j, ["A1", "SH", "A12", "B1", "B12"], "GND", 5.08)  # GND stack + shield
     d.finish(sh, j)
 
     d.vpart(sh, "R", "R1", "5.1k", FP_R, 92, 118, "USB_CC1", "GND")
@@ -303,6 +593,7 @@ def power(d: Design):
     d.vpart(sh, "C", "C3", "1u", FP_C, 270, 155, "VBAT", "GND")
     d.vpart(sh, "C", "C4", "1u", FP_C, 290, 155, "+3V3", "GND")
     d.vpart(sh, "C", "C6", "1u", FP_C, 310, 155, "+1V8_LDO", "GND")
+    d.vpart(sh, "C", "C84", "1u", FP_C, 325, 155, "+3V3", "GND")
     d.vpart(sh, "C", "C44", "10u", FP_C6, 340, 155, "VBAT_SYS", "GND")
     d.vpart(sh, "C", "C45", "22u", FP_C6, 365, 155, "+3V3", "GND")
 
@@ -339,7 +630,7 @@ def power(d: Design):
 
 def usb(d: Design):
     sh = d.sheet("USB-UART", "usb.kicad_sch", "2")
-    sh.rect(12, 40, 400, 270)
+    sh.rect(12, 40, 400, 292)  # hw_v2: extended for the strap links
     sh.text("USB-UART", 16, 16, 3.2, bold=True)
     sh.text("CP2102N-A02-GQFN28. VDD is the on-chip regulator output, not +3V3.", 16, 24, 1.6)
 
@@ -357,8 +648,10 @@ def usb(d: Design):
     d.jog(sh, u, "6", "VDD_CP2102", jog=18)  # VDD
     # Rev 1.5 Fig 2.5: VBUS sense is a divider, not the 5 V rail. VREGIN stays on VBUS.
     d.stub_net(sh, u, "8", "CP_VBUS", 8.89)
-    d.stub_net(sh, u, "5", "USB_DM", 8.89)
-    d.stub_net(sh, u, "4", "USB_DP", 8.89)
+    # hw_v2: the CP2102 USB side is on its own nets now. R104/R105 (DNP)
+    # strap it to J1 when the S3 native-USB default (R102/R103) is removed.
+    d.stub_net(sh, u, "5", "USB_DM_CP", 8.89)
+    d.stub_net(sh, u, "4", "USB_DP_CP", 8.89)
     d.join_row(sh, u, ["3"], "GND", 6.35)  # stacked with pad 29
     d.stub_net(sh, u, "26", "CP_TX", 10.16)  # TXD, 1k series before ESP RX
     d.stub_net(sh, u, "25", "CP_RX", 10.16)  # RXD, 1k series after ESP TX
@@ -405,56 +698,87 @@ def usb(d: Design):
     sh.text("R72 and R73 are 1k in series with TX and RX so an unpowered side is not back-driven.", 40, 199, 1.3)
     sh.text("Q3 is the DevKitC auto-program pair: DTR/RTS to EN and GPIO0. R70 and R71 are the 10k bases.", 40, 205, 1.3)
 
+    # hw_v2 USB strap links (the SJ pair in the spec). R102/R103 are fitted:
+    # J1 D+/D- go to the S3 native USB pins (IO19/IO20). The alternate strap
+    # is R104/R105 (DNP) into the CP2102 for out-of-band console recovery.
+    # Never fit both pairs — two USB devices cannot share one D+/D- pair.
+    sh.text("USB D+/D- strap links", 250, 232, 1.8, bold=True)
+    d.hpart(sh, "R", "R102", "0", FP_R, 260, 243, "USB_DP", "USB_DP_S3")
+    d.hpart(sh, "R", "R103", "0", FP_R, 305, 243, "USB_DM", "USB_DM_S3")
+    d.hpart(sh, "R", "R104", "0", FP_R, 260, 258, "USB_DP", "USB_DP_CP", dnp=True)
+    d.hpart(sh, "R", "R105", "0", FP_R, 305, 258, "USB_DM", "USB_DM_CP", dnp=True)
+    sh.text("Fitted: J1 -> S3 IO20/IO19 (native USB, on-chip JTAG+console).", 250, 270, 1.3)
+    sh.text("Alternate strap (DNP): move 0R to R104/R105 for the CP2102 bridge.", 250, 276, 1.3)
+    sh.text("U5/U21/Q3 are unchanged. CP2102 keeps UART0 on ESP_TX/ESP_RX.", 250, 282, 1.3)
+
 
 def mcu(d: Design):
     sh = d.sheet("MCU and FSR", "mcu.kicad_sch", "3")
     sh.rect(12, 40, 300, 290)
     sh.rect(308, 40, 406, 280)
     sh.text("MCU", 16, 16, 3.2, bold=True)
-    sh.text("ESP32-WROOM-32E-N8R2. GPIO16 is PSRAM and stays inside the module.", 16, 24, 1.5)
+    sh.text("ESP32-S3-MINI-1U-N4R2. U.FL antenna: the x<6.5 mm keep-out is gone. 4 MB flash + 2 MB PSRAM inside.", 16, 24, 1.5)
     sh.text("Straps and FSR", 314, 46, 2.2, bold=True)
 
     u = d.part(
         sh,
-        "ESP32-WROOM-32E-R2",
+        "ESP32-S3-MINI-1U-N4R2",
         "U1",
-        "ESP32-WROOM-32E-N8R2",
-        "RF_Module:ESP32-WROOM-32E",
+        "ESP32-S3-MINI-1U-N4R2",
+        FP_S3,
         150,
         140,
         labels="ic",
     )
+    # Pad numbers and net map per HW_V2_SPEC interface table; pad -> GPIO in
+    # the pin names of hw_v2_lib(). EN (pad 45) and IO0 (pad 4) keep the
+    # hw_v1 button/auto-program wiring.
     pins = {
-        "3": "ESP_EN",
-        "4": "FSR_ADC",
-        "5": "NC",  # GPIO39 freed: battery NTC is on the charger TS pin
-        "25": "ESP_IO0",
-        "35": "ESP_TX",
-        "24": "NC",
-        "34": "ESP_RX",
-        "26": "CS_ADS1292",
-        "29": "CS_AFE4900",
-        "14": "NC",
-        "16": "AFE4900_ADC_RDY",
-        "13": "AD5940_GPIO0",
-        "23": "CS_AD5940",
-        "28": "STATUS_LED",  # GPIO17. N8R2 note 3 reserves only IO16 for PSRAM.
-        "30": "SPI_SCK",
-        "31": "SPI_MISO",
-        "33": "I2C_SDA",
-        "36": "I2C_SCL",
-        "37": "SPI_MOSI",
-        "10": "GAUGE_ALRT",  # GPIO25, not a strap
-        "11": "CS_FLASH",
-        "12": "CHG_PG",  # GPIO27, digital input
-        "8": "LSM6_INT1",
-        "9": "TMP117_ALERT",
-        "6": "ADS1292_DRDY",
-        "7": "EXP_INT",
+        "45": "ESP_EN",
+        "4": "ESP_IO0",  # IO0 boot strap: SW2, R6 pull-up, Q3
+        "5": "FSR_ADC",  # IO1 = ADC1_CH0, FSR402 divider
+        "6": "ADS1292_DRDY",  # IO2, timestamped input
+        "7": "EXP_INT",  # IO3, JTAG-sel strap — R53 pull-up is fine
+        "8": "LSM6_INT1",  # IO4
+        "9": "TMP117_ALERT",  # IO5
+        "10": "GAUGE_ALRT",  # IO6
+        "11": "CHG_PG",  # IO7
+        "12": "I2C_SDA",  # IO8
+        "13": "I2C_SCL",  # IO9
+        "14": "CS_ADS1292",  # IO10
+        "15": "SPI_MOSI",  # IO11
+        "16": "SPI_SCK",  # IO12
+        "17": "SPI_MISO",  # IO13
+        "18": "AD5940_GPIO0",  # IO14
+        "19": "CS_AD5940",  # IO15
+        "20": "CS_FLASH",  # IO16, W25Q512
+        "21": "STATUS_LED",  # IO17 -> R88 -> D25 -> GND
+        "22": "CS_AFE4900",  # IO18
+        "23": "USB_DM_S3",  # IO19 = USB_D-, J1 through R103
+        "24": "USB_DP_S3",  # IO20 = USB_D+, J1 through R102
+        "25": "AFE4900_ADC_RDY",  # IO21, timestamped input
+        "26": "NC",  # IO26 = in-module PSRAM CS on N4R2 — do not use
+        "27": "NC",  # IO47 spare
+        "28": "NC",  # IO33 spare
+        "29": "NC",  # IO34 spare
+        "30": "NC",  # IO48 spare
+        "31": "NC",  # IO35 spare
+        "32": "NC",  # IO36 spare
+        "33": "NC",  # IO37 spare
+        "34": "CS_MAX86178",  # IO38 — new SPI chip-select
+        "35": "MAX86178_INT",  # IO39 — timestamped input
+        "36": "MIC_CLK",  # IO40 — IM69D130 PDM clock (DNP)
+        "37": "MIC_DAT",  # IO41 — IM69D130 PDM data (DNP)
+        "38": "SPARE_IN",    # IO42 — MTMS, digital-only (no SAR ADC on S3); spare input
+        "39": "ESP_TX",  # TXD0 = GPIO43 -> R72 -> CP2102 RXD
+        "40": "ESP_RX",  # RXD0 = GPIO44 <- R73 <- CP2102 TXD
+        "41": "NC",  # IO45 — strap pin, left unstrapped (no load)
+        "44": "NC",  # IO46 — strap pin, left unstrapped (no load)
     }
     d.side_map(sh, u, pins, 8.89)
-    d.join_row(sh, u, ["2"], "+3V3_ESP", 6.35)
-    d.join_row(sh, u, ["1"], "GND", 6.35)
+    d.join_row(sh, u, ["3"], "+3V3_ESP", 6.35)
+    # Pads 1, 2, 42, 43, the 46-65 ground ring and the EPAD are stacked GND.
+    d.join_row(sh, u, [str(n) for n in (1, 2, 42, 43, *range(46, 66))], "GND", 6.35)
     d.finish(sh, u)
 
     sh.text("Module decoupling", 40, 40, 1.6, bold=True)
@@ -506,10 +830,29 @@ def mcu(d: Design):
     d.finish(sh, exp)
     d.vpart(sh, "C", "C60", "100n", FP_C, 390, 250, "+3V3", "GND")
 
-    sh.text("GPIO2 and GPIO12 are open so the straps stay low. GPIO15 (CS_AD5940) is pulled up.", 16, 200, 1.4)
-    sh.text("GPIO6-11 are the module flash bus and have no symbol pins. ADC1 is GPIO36 and GPIO39.", 16, 208, 1.4)
+    # hw_v2 strap notes for the S3 module.
+    sh.text("IO0 is the boot strap (SW2, R6). IO3 is JTAG-sel; R53 holds EXP_INT high. IO45/IO46 left unstrapped.", 16, 200, 1.4)
+    sh.text("IO26 is the in-module PSRAM select on N4R2. IO33-37, IO47, IO48 are spare GPIO, left open.", 16, 208, 1.4)
     sh.text("EN has R5 10k and C64 1 uF. Q3 on the USB sheet is the DTR/RTS auto-program pair.", 16, 216, 1.4)
-    sh.text("R7 is the only chip-select pull-up. It is required because GPIO15 must be high at reset.", 16, 224, 1.4)
+    sh.text("R7 keeps CS_AD5940 high at reset. CS pull-ups R52/R98 unchanged; IO15 is not an S3 strap.", 16, 224, 1.4)
+
+    # hw_v2: IO42 (pad 38) is digital-only — no SAR ADC on S3. R107/R108 are a
+    # DNP divider reserved as a logic-level VBAT-present detect option only;
+    # battery voltage/SoC stays with MAX17048. Do not populate for analog use.
+    d.vpart(sh, "R", "R107", "100k", FP_R, 390, 170, "VBAT", "SPARE_IN", dnp=True)
+    d.vpart(sh, "R", "R108", "100k", FP_R, 390, 195, "SPARE_IN", "GND", dnp=True)
+    sh.text("SPARE_IN: IO42 digital-only; DNP divider = logic VBAT detect only.", 314, 168, 1.2)
+
+    # hw_v2: IM69D130 PDM mic (DNP — footprint only, firmware optional).
+    mic = d.part(sh, "IM69D130", "U25", "IM69D130", FP_MIC, 235, 258, labels="ic", dnp=True)
+    d.stub_net(sh, mic, "1", "MIC_DAT", 7.62)   # PDM data <- IO41
+    d.stub_net(sh, mic, "3", "MIC_CLK", 7.62)   # PDM clock <- IO40
+    d.stub_net(sh, mic, "4", "GND", 7.62)       # SELECT low = left slot
+    d.join_row(sh, mic, ["2"], "+3V3", 6.35)
+    d.join_row(sh, mic, ["5"], "GND", 6.35)
+    d.finish(sh, mic)
+    d.vpart(sh, "C", "C78", "100n", FP_C, 265, 255, "+3V3", "GND", dnp=True)
+    sh.text("U25 IM69D130, DNP. PDM on IO40/IO41. 100 nF on VDD (datasheet).", 170, 282, 1.3)
 
 
 def afe(d: Design):
@@ -579,10 +922,11 @@ def afe(d: Design):
     d.stub_net(sh, bst, "C2", "TX_5V_RAW", 7.62)  # fixed 5 V, FB senses VOUT
     d.stub_net(sh, bst, "A2", "GND", 6.35)
     d.finish(sh, bst)
-    d.hpart(sh, "L", "L2", "1.0u", FP_L, 130, 185, "TX_SW", "TX_5V")
+    d.hpart(sh, "L", "L2", "1.0u", FP_L, 130, 185, "VBAT_SYS", "TX_SW")
     d.vpart(sh, "C", "C46", "2.2u", FP_C, 40, 250, "VBAT_SYS", "GND")
     d.vpart(sh, "C", "C47", "4.7u", FP_C6, 70, 250, "TX_5V_RAW", "GND")
     d.vpart(sh, "R", "R25", "100k", FP_R, 100, 250, "TX5_EN", "GND")
+    d.vpart(sh, "R", "R116", "10k", FP_R, 160, 250, "+3V3_ANA", "CS_AFE4900")
 
     sh.text("Bias and decoupling", 160, 210, 1.6, bold=True)
     d.vpart(sh, "C", "C11", "1u", FP_C, 170, 235, "+3V3_ANA", "GND")
@@ -613,8 +957,12 @@ def ad(d: Design):
 
     u = d.part(sh, "AD5940BCBZ-RL7", "U7", "AD5940BCBZ-RL7", FP_AD, 250, 40, labels="ic")
     nets = {
-        "A1": "NC",
-        "A2": "NC",
+        # hw_v2: A1/A2/C5 leave the J11 sweat site (RESEARCH-GRADE).
+        # VERIFY vs the datasheet switch matrix: AFE4 is driven by the
+        # excitation buffer (D-switch) as CE; AFE3 is the reference sense
+        # (P-switch) as RE; AIN6 muxes to the LPTIA input as WE.
+        "A1": "SWEAT_CE",  # AFE4 — counter-electrode drive (VERIFY)
+        "A2": "SWEAT_RE",  # AFE3 — reference sense (VERIFY)
         "A3": "BIOZ_SN",
         "A4": "+3V3_ANA",
         "A5": "VREF_1V82",
@@ -632,7 +980,7 @@ def ad(d: Design):
         "C1": "RCAL0",
         "C2": "NC",
         "C4": "GND",
-        "C5": "NC",
+        "C5": "SWEAT_WE",  # AIN6 — working-electrode current in (VERIFY)
         "C7": "VBIAS0",
         "C8": "RC0_0",
         "D1": "VBIAS_CAP",
@@ -641,7 +989,7 @@ def ad(d: Design):
         "D6": "NC",
         "D7": "VREF_2V5",
         "D8": "AVDD_REG",
-        "E1": "NC",
+        "E1": "NIR730_GATE",  # GPIO2 — hw_v2: gates Q4, the 730 nm LED
         "E2": "NC",
         "E3": "GND",
         "E4": "GND",
@@ -723,7 +1071,7 @@ def ad(d: Design):
     d.vpart(sh, "D_TVS_2", "D8", "TPD1E10B06", FP_TVS, 400, 202, "RE_SURGE", "GND")
     d.vpart(sh, "D_TVS_2", "D9", "TPD1E10B06", FP_TVS, 400, 228, "DE_SURGE", "GND")
     sh.text("R76-R79 are the pad-side 51k DPCR. C54 sits behind R76. R39 stays the 1k RLIMIT. No gas tube.", 16, 268, 1.3)
-    sh.text("AIN6, the AFE balls, and the unused GPIO balls stay open. GPIO0 is the only digital sideband.", 16, 274, 1.3)
+    sh.text("hw_v2: AIN6/AFE3/AFE4 feed J11 (RESEARCH-GRADE sweat site) and GPIO2 is NIR730_GATE. Other GPIO balls stay open.", 16, 274, 1.3)
     # Chest 4-wire. Same pad-side order as EDA. Force uses the Fig 54 15 nF and 1 kΩ.
     # The other three lines use 470 nF. 26 mm keeps a TPD GND stub off the next label.
     d.hpart(sh, "R", "R80", "51k", FP_HV, 230, 114, "BIOZ_FP_PAD", "FP_SURGE")
@@ -776,7 +1124,7 @@ def ads(d: Design):
         "14": "+3V3_ANA",  # CLKSEL = DVDD
         "15": "ADS1292_PWDN",
         "16": "GND",
-        "17": "NC",  # CLK
+        "17": "GND",  # CLK tied to DGND per SBAS502 when CLKSEL is internal
         "18": "CS_ADS1292",
         "19": "SPI_MOSI",
         "20": "SPI_SCK",
@@ -926,7 +1274,7 @@ def i2c(d: Design):
     d.stub_net(sh, t, "6", "I2C_SDA", 7.62)
     d.join_row(sh, t, ["2", "7"], "GND", 6.35)
     d.finish(sh, t)
-    # SNOSD82D: ALERT is open-drain and requires a pull-up. GPIO33 has none inside the module.
+    # SNOSD82D: ALERT is open-drain and requires a pull-up. IO5 has no internal pull-up.
     d.vpart(sh, "R", "R65", "10k", FP_R, 330, 155, "+3V3", "TMP117_ALERT")
     sh.text("TMP117 U11 0x48, ADD0 = GND. R65 pulls ALERT up.", 300, 48, 1.2)
     t2 = d.part(sh, "TMP117AIDRVR", "U20", "TMP117AIDRVR", FP_TMP, 370, 80, labels="ic")
@@ -989,6 +1337,47 @@ def i2c(d: Design):
     d.vpart(sh, "C", "C40", "100n", FP_C, 296, 228, "+3V3", "GND")
     d.vpart(sh, "C", "C41", "100n", FP_C, 318, 228, "+3V3", "GND")
 
+    # ---- hw_v2 additions on the 3.3 V bus -------------------------------
+    # U23 SHT45-AD1B, skin-side DFN-4, I2C 0x44. Shares the R19/R20 pull-ups.
+    sht = d.part(sh, "SHT45-AD1B", "U23", "SHT45-AD1B", FP_SHT45, 365, 175, labels="ic")
+    d.stub_net(sh, sht, "1", "I2C_SDA", 7.62)
+    d.stub_net(sh, sht, "2", "I2C_SCL", 7.62)
+    d.join_row(sh, sht, ["3"], "+3V3", 6.35)
+    d.join_row(sh, sht, ["4"], "GND", 6.35)
+    d.finish(sh, sht)
+    d.vpart(sh, "C", "C76", "100n", FP_C, 395, 200, "+3V3", "GND")
+    sh.text("U23 SHT45-AD1B, 0x44, skin side.", 330, 190, 1.2)
+
+    # U24 RV-3028-C7 RTC, DNP, I2C 0x52. VBACKUP goes to VSS through a 10k
+    # (datasheet "must" when backup is unused — not a direct short). EVI low.
+    rtc = d.part(sh, "RV-3028-C7", "U24", "RV-3028-C7", FP_RTC, 360, 235, labels="ic", dnp=True)
+    d.stub_net(sh, rtc, "3", "I2C_SCL", 7.62)
+    d.stub_net(sh, rtc, "4", "I2C_SDA", 7.62)
+    d.stub_net(sh, rtc, "2", "RTC_INT", 7.62)  # open-drain /INT — no host GPIO assigned
+    d.stub_net(sh, rtc, "8", "GND", 7.62)      # EVI tied low
+    d.join_row(sh, rtc, ["7"], "+3V3", 6.35)   # VDD
+    d.join_row(sh, rtc, ["5"], "GND", 6.35)  # VSS
+    d.stub_net(sh, rtc, "6", "RTC_VBK", 6.35)  # VBACKUP — datasheet requires 10k to VSS, not a short
+    d.vpart(sh, "R", "R115", "10k", FP_R, 410, 262, "RTC_VBK", "GND", dnp=True)
+    d.flag_net(sh, "RTC_VBK", 355, 270)  # power input reached only through R115
+    d.finish(sh, rtc)  # CLKOUT left open
+    d.vpart(sh, "C", "C77", "100n", FP_C, 335, 262, "+3V3", "GND", dnp=True)
+    d.vpart(sh, "R", "R112", "10k", FP_R, 390, 262, "+3V3", "RTC_INT", dnp=True)
+    sh.text("U24 RV-3028-C7, DNP, 0x52. VBACKUP to VSS via R115 10k; CLKOUT open.", 330, 250, 1.2)
+
+    # D12: 730 nm NIR LED for the AS7341 StO2 channel. Same switch pattern
+    # as Q1/D11: 100R from +3V3, cathode to the CSD13380F3 drain. Gate is
+    # AD5940 ball E1 (GPIO2) on net NIR730_GATE, pulled down by R110.
+    d.vpart(sh, "R", "R109", "100", FP_R, 30, 245, "+3V3", "NIR_AN")
+    d.vpart(sh, "LED_AK", "D12", "SFH 4735 730nm", FP_IR, 30, 270, "NIR_AN", "NIR_K")  # VERIFY: emitter choice
+    q4 = d.part(sh, "CSD13380F3", "Q4", "CSD13380F3T", FP_FET, 185, 275, labels="ic")
+    d.stub_net(sh, q4, "1", "NIR730_GATE", 6.35)
+    d.stub_net(sh, q4, "2", "GND", 6.35)
+    d.stub_net(sh, q4, "3", "NIR_K", 6.35)
+    d.finish(sh, q4)
+    d.vpart(sh, "R", "R110", "100k", FP_R, 185, 250, "NIR730_GATE", "GND")
+    sh.text("D12 is the 730 nm LED; Q4 gate is AD5940 GPIO2 (E1). Pairs with the AS7341 NIR channel.", 16, 288, 1.1)
+
 
 def debug(d: Design):
     """Test access, ESD, current links, and the GPIO17 heartbeat."""
@@ -1015,6 +1404,7 @@ def debug(d: Design):
     d.hpart(sh, "R", "R90", "0", FP_R, 255, 55, "MISO_AFE", "SPI_MISO")
     d.hpart(sh, "R", "R91", "0", FP_R, 290, 55, "MISO_AD", "SPI_MISO")
     d.hpart(sh, "R", "R92", "0", FP_R, 325, 55, "MISO_FL", "SPI_MISO")
+    d.hpart(sh, "R", "R106", "0", FP_R, 355, 80, "MISO_MX", "SPI_MISO")  # hw_v2: MAX86178 isolation link
     d.vpart(sh, "R", "R98", "10k", FP_R, 360, 55, "+3V3", "CS_ADS1292")
     d.vpart(sh, "R", "R99", "100k", FP_R, 385, 55, "+3V3", "ADS1292_DRDY")
 
@@ -1050,6 +1440,7 @@ def debug(d: Design):
         ("TP17", "SPI_SCK"), ("TP18", "SPI_MOSI"), ("TP19", "SPI_MISO"),
         ("TP20", "CS_ADS1292"), ("TP21", "CS_AFE4900"), ("TP22", "CS_AD5940"), ("TP23", "CS_FLASH"),
         ("TP24", "ADS1292_DRDY"), ("TP25", "AFE4900_ADC_RDY"), ("TP26", "EXP_INT"), ("TP27", "CHG_STAT"),
+        ("TP28", "RTC_INT"),
     ]
     for i, (ref, net) in enumerate(pads):
         col, row = i % 9, i // 9
@@ -1062,4 +1453,115 @@ def debug(d: Design):
         d.finish(sh, fid)
     d.part(sh, "MountingHole", "H1", "M2", FP_M2, 160, 255, labels="side", bom=False)
     d.part(sh, "MountingHole", "H2", "M2", FP_M2, 190, 255, labels="side", bom=False)
-    sh.text("R93-R97 are 0 ohm current links. R89-R92 isolate each MISO. SW1 resets EN. SW2 holds IO0.", 16, 268, 1.2)
+    sh.text("R93-R97 are 0 ohm current links. R89-R92 + R106 isolate each MISO. SW1 resets EN. SW2 holds IO0.", 16, 268, 1.2)
+
+
+def max86178(d: Design):
+    """hw_v2 page 9: MAX86178 optical/ECG AFE plus the sensor-tail connectors."""
+    sh = d.sheet("MAX86178 and tails", "max86178.kicad_sch", "9")
+    sh.rect(12, 40, 406, 290)
+    sh.text("MAX86178 optical/ECG AFE", 16, 16, 3.2, bold=True)
+    sh.text("VERIFY: the WLP-49 ball map is NDA-restricted. Every ball ref on U22 is a placeholder", 16, 24, 1.3)
+    sh.text("named after the MAX86176 family. Check the released pin table before layout.", 16, 29.5, 1.3)
+    sh.text("SPI shares the bus: CS on IO38, /INT on IO39, MISO through the R106 link on sheet 8.", 16, 35, 1.3)
+
+    u = d.part(sh, "MAX86178", "U22", "MAX86178ENJ+", FP_86178, 140, 120, labels="ic")
+    # Sensor tail, left side. LED drivers sink current: they take cathodes.
+    d.stub_net(sh, u, "A1", "PD_A", 7.62)      # photodiode anode input
+    d.stub_net(sh, u, "A2", "PD_K", 7.62)      # photodiode cathode input
+    d.stub_net(sh, u, "A3", "LED1_K", 7.62)    # LED driver 1 -> LED1 cathode
+    d.stub_net(sh, u, "A4", "LED2_K", 7.62)    # LED driver 2 -> LED2 cathode
+    d.stub_net(sh, u, "A5", "LED3_K", 7.62)    # LED driver 3 -> LED3 cathode
+    d.stub_net(sh, u, "A6", "MX_ECG_INP", 7.62)  # spare ECG lead, J13 DNP
+    d.stub_net(sh, u, "A7", "MX_ECG_INM", 7.62)
+    # Digital, right side.
+    d.stub_net(sh, u, "G7", "SPI_SCK", 7.62)
+    d.stub_net(sh, u, "G6", "SPI_MOSI", 7.62)
+    d.stub_net(sh, u, "G5", "MISO_MX", 7.62)   # through R106 to SPI_MISO
+    d.stub_net(sh, u, "G4", "CS_MAX86178", 7.62)
+    d.stub_net(sh, u, "G3", "MAX86178_INT", 7.62)
+    # Supplies. AVDD rides the quiet analog rail; the LED drivers need the
+    # cell voltage (VERIFY: LED_DRV_SUP may want a boost instead of VBAT).
+    d.stub_net(sh, u, "F1", "+3V3_ANA", 7.62)  # AVDD
+    d.stub_net(sh, u, "F2", "+3V3", 7.62)      # DVDD
+    d.stub_net(sh, u, "F3", "VBAT", 7.62)      # LED_DRV_SUP (VERIFY rail)
+    d.stub_net(sh, u, "F4", "MX_VREF", 7.62)
+    d.join_row(sh, u, ["F5", "F6", "F7"], "GND", 6.35)  # AGND/DGND/LGND
+    d.finish(sh, u)
+    d.vpart(sh, "C", "C83", "1u", FP_C, 140, 165, "MX_VREF", "GND")  # VERIFY: ref bypass value
+    d.vpart(sh, "R", "R113", "10k", FP_R, 200, 80, "+3V3", "MAX86178_INT")  # /INT is open-drain
+    d.vpart(sh, "R", "R117", "10k", FP_R, 222, 80, "+3V3", "CS_MAX86178")
+
+    # Local decoupling: 100 nF + 1 uF per rail, matching the other AFEs.
+    sh.text("Decoupling", 240, 60, 1.6, bold=True)
+    d.vpart(sh, "C", "C79", "100n", FP_C, 250, 75, "+3V3_ANA", "GND")
+    d.vpart(sh, "C", "C80", "1u", FP_C, 272, 75, "+3V3_ANA", "GND")
+    d.vpart(sh, "C", "C81", "100n", FP_C, 294, 75, "+3V3", "GND")
+    d.vpart(sh, "C", "C82", "1u", FP_C, 316, 75, "VBAT", "GND")
+    sh.text("AVDD on +3V3_ANA, DVDD on +3V3, LED supply on VBAT (VERIFY).", 240, 92, 1.2)
+
+    # ---- Sensor-tail connectors ----------------------------------------
+    # J9: 4-pad I2C tail (e.g. a remote TMP117/SHT45 flex).
+    j9 = d.part(sh, "Conn_01x04_Pin", "J9", "I2C tail pads", FP_PAD4, 270, 130, labels="ic")
+    for num, net in {"1": "+3V3", "2": "I2C_SDA", "3": "I2C_SCL", "4": "GND"}.items():
+        d.stub_net(sh, j9, num, net, 6.35)
+    d.finish(sh, j9)
+    sh.text("J9: 1 +3V3, 2 SDA, 3 SCL, 4 GND.", 240, 150, 1.2)
+
+    # J10: 6-pad optical tail — LED cathodes x3, shared LED anode, PD pair.
+    j10 = d.part(sh, "Conn_01x06_Pin", "J10", "Optical tail pads", FP_PAD6, 270, 185, labels="ic")
+    for num, net in {
+        "1": "LED1_K", "2": "LED2_K", "3": "LED3_K",
+        "4": "LED_AN", "5": "PD_K", "6": "PD_A",
+    }.items():
+        d.stub_net(sh, j10, num, net, 6.35)
+    d.finish(sh, j10)
+    sh.text("J10: LED1/2/3 cathodes, LED anode, PD cathode, PD anode.", 240, 208, 1.2)
+    # LED_AN is the shared anode rail for the remote emitters. VBAT lacks the
+    # headroom for a green channel (Vf ~3 V plus driver compliance), so the
+    # anode rail rides TX_5V through R114 — time-shared with the AFE4900 TX
+    # section under the same boost enable.
+    sh.text("LED_AN ties to TX_5V through R114 (5 V headroom for green/satellite emitters).", 240, 214, 1.2)
+    d.hpart(sh, "R", "R114", "0", FP_R, 330, 190, "TX_5V", "LED_AN")
+
+    # J11: 3-pad RESEARCH-GRADE sweat-electrode site, fed by AD5940 spares.
+    j11 = d.part(sh, "Conn_01x03_Pin", "J11", "Sweat site", FP_PAD3, 270, 240, labels="ic")
+    for num, net in {"1": "J11_WE", "2": "J11_RE", "3": "J11_CE"}.items():
+        d.stub_net(sh, j11, num, net, 6.35)
+    d.finish(sh, j11)
+    # Series 0R gives a cut point and the TPDs an IC-side home, matching the
+    # ladder pattern on the patient pads. TPDs ship DNP on the proto.
+    d.hpart(sh, "R", "R120", "0", FP_HV, 300, 230, "J11_WE", "SWEAT_WE")
+    d.hpart(sh, "R", "R121", "0", FP_HV, 300, 242, "J11_RE", "SWEAT_RE")
+    d.hpart(sh, "R", "R122", "0", FP_HV, 300, 254, "J11_CE", "SWEAT_CE")
+    d.vpart(sh, "D_TVS_2", "D26", "TPD1E10B06", FP_TVS, 335, 230, "SWEAT_WE", "GND", dnp=True)
+    d.vpart(sh, "D_TVS_2", "D27", "TPD1E10B06", FP_TVS, 350, 242, "SWEAT_RE", "GND", dnp=True)
+    d.vpart(sh, "D_TVS_2", "D28", "TPD1E10B06", FP_TVS, 335, 254, "SWEAT_CE", "GND", dnp=True)
+    sh.text("J11 sweat site — RESEARCH-GRADE. WE=AIN6(C5), RE=AFE3(A2), CE=AFE4(A1); VERIFY switch matrix.", 240, 268, 1.2)
+
+    # J12: DNP FFC carrying every tail net. Spec asked for 12-pos; J9+J10+J11
+    # is 13 nets, so a 14-pos FH12 is used — deviation noted in the header.
+    j12 = d.part(sh, "Conn_01x14_Pin", "J12", "FH12-14S", FP_FFC, 365, 160, labels="ic", dnp=True)
+    ffc = {
+        "1": "+3V3", "2": "I2C_SDA", "3": "I2C_SCL", "4": "GND",
+        "5": "LED1_K", "6": "LED2_K", "7": "LED3_K", "8": "LED_AN",
+        "9": "PD_K", "10": "PD_A",
+        "11": "SWEAT_WE", "12": "SWEAT_RE", "13": "SWEAT_CE",
+    }  # pin 14 is spare — finish() marks it no_connect
+    for num, net in ffc.items():
+        d.stub_net(sh, j12, num, net, 6.35)
+    d.finish(sh, j12)
+    sh.text("J12 DNP FFC: pins 1-4 = J9 order, 5-10 = J10 order, 11-13 = J11 order, 14 open.", 240, 108, 1.2)
+
+    # J13: optional ECG pad pair for the MAX86178 bio-potential inputs. DNP.
+    j13 = d.part(sh, "Conn_01x02_Pin", "J13", "MX ECG pads", FP_PAD2, 140, 215, labels="ic", dnp=True)
+    d.stub_net(sh, j13, "1", "J13_INP", 6.35)
+    d.stub_net(sh, j13, "2", "J13_INM", 6.35)
+    d.finish(sh, j13)
+    d.hpart(sh, "R", "R118", "0", FP_HV, 175, 205, "J13_INP", "MX_ECG_INP")
+    d.hpart(sh, "R", "R119", "0", FP_HV, 175, 215, "J13_INM", "MX_ECG_INM")
+    d.vpart(sh, "D_TVS_2", "D29", "TPD1E10B06", FP_TVS, 210, 205, "MX_ECG_INP", "GND", dnp=True)
+    d.vpart(sh, "D_TVS_2", "D30", "TPD1E10B06", FP_TVS, 210, 215, "MX_ECG_INM", "GND", dnp=True)
+    sh.text("J13 DNP: optional second ECG input pair. R118/R119 + D29/D30 ladder footprints.", 140, 232, 1.2)
+
+    sh.text("No parts removed on this sheet — it is additive. Ball refs all VERIFY before layout.", 16, 280, 1.3)

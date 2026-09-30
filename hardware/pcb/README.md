@@ -14,11 +14,16 @@ JLC04161H-7628, 1.6 mm, 1 oz outer and 0.5 oz inner, ENIG, with POFV
 via-in-pad on the BGA balls that can escape. Routing is not finished.
 `VERIFICATION.md` lists the nets that are still open.
 
-Regenerate and check with `hardware/pcb/check.sh` (KiCad 9).
+Regenerate and check with `hardware/pcb/check.sh` (KiCad 10.0.4).
 
 The firmware pin map is `PINMAP.md`. Every resistor and capacitor is
 in `PASSIVES.md`. Orderable part numbers are in `vitalq_hw_v1_bom.csv`.
 Footprint sources are in `lib/SOURCES.md`.
+
+This branch also carries the `hw_v2` specification (`HW_V2_SPEC.md`).
+The files in this directory still describe hw_v1 until the regenerated
+schematic and board land; see the hw_v2 paragraph in the Board section
+and `VERIFICATION.md` §hw_v2.
 
 ## What changed from the previous board
 
@@ -100,6 +105,30 @@ unconnected net. Design rules are in `vitalq_hw_v1.kicad_pro` and
 `vitalq_hw_v1.kicad_dru`: 0.09 mm is the BGA floor, 0.127 mm is the
 clearance outside that area, copper-to-edge is 0.3 mm, and the mask web
 is 0.1 mm. Reference designators are hidden. Fab reference text is 0.35 mm.
+
+hw_v2 is specified on this branch (`HW_V2_SPEC.md`, authoritative) and is
+**placed but unrouted**; everything above still describes hw_v1. In
+short: U1 becomes an ESP32-S3-MINI-1U-N4R2 with a U.FL antenna — the
+x < 6.5 mm keep-out strip goes away — and native USB on GPIO19/20 takes
+over J1 through the fitted R102/R103 0 Ω straps, while the CP2102 console
+stays on UART0 and can take the USB pair instead through the DNP R104/R105
+straps (never fit both pairs). Adds: a MAX86178 WLP-49 synchronised ECG/PPG/BioZ
+AFE that also drives a satellite-PPG tail (J10), an SHT45 skin RH + temp
+sensor at 0x44 on the bottom face, a 730 nm LED (D12) paired with the
+AS7341 NIR channel, a distal-temperature tail (J9, sensor at 0x4A), a
+RESEARCH-GRADE sweat-electrode site (J11), a DNP unified 14-pos FFC tail
+(J12), a DNP ECG pad pair for the MAX86178 (J13), a DNP RTC (0x52), a DNP
+PDM mic, and a foam insulation dome over U20 for
+the core-temperature trend channel (assembly note only). Nothing is
+removed — the defib ladder, TP1–TP28, J8, and the whole power tree stay.
+The placed outline is **40.0 × 62.0 mm** (291 parts): it grew 8 mm east
+from the ~32 mm target to host the J11/J13 HV-boundary protection row
+— J10 and J11 sit on the new east edge, and their 0 Ω cut-points
+R118–R122 are 2512 HV-boundary parts like the defib ladder. `check.sh`
+passes end-to-end (ERC 0, placement gates 0, 499 unconnected nets plus
+9 waived intra-package clearances) but the board is **unrouted and not
+fabrication-ready**. Full design doc:
+`../../docs/10-hw-v2-upgrade.md`; BOM delta: `BOM_V2_ADDENDUM.md`.
 
 ## Part count
 

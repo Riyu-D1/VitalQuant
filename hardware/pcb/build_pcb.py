@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
-"""Unrouted wearable placement for VitalQ hw_v1.
+"""Unrouted wearable placement for VitalQ hw_v1 → hw_v2.
 
 The schematic netlist is the connectivity source. This script loads every
 footprint, assigns pad nets from that netlist, and parks the parts in
 functional clusters. It does not route.
+
+hw_v2: every PLACE coordinate below is on the 40.0 × 62.0 mm outline
+(FLOORPLAN_V2.md §6 retarget). The skin sensor cluster stays co-registered
+on the bottom at y~44-56, the defib ladder rows run at y~28/36 with the
+creepage slots between columns, and the tail pads dress the top edge.
+board_finish.py still carries the old 36.5 × 70 constants, so main() retargets
+its board geometry + keep-outs via module attribute patches before
+finish_board() runs.
 """
 
 from __future__ import annotations
 
 import csv
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -19,279 +28,364 @@ ROOT = Path(__file__).resolve().parent
 SCH = ROOT / "vitalq_hw_v1.kicad_sch"
 PCB = ROOT / "vitalq_hw_v1.kicad_pcb"
 BOM = ROOT / "vitalq_hw_v1_bom.csv"
-KICAD_FP = Path("/usr/share/kicad/footprints")
+KICAD_FP = Path(os.environ.get("KICAD_FOOTPRINT_DIR", "")) if os.environ.get("KICAD_FOOTPRINT_DIR") else Path("/usr/share/kicad/footprints")
+if not KICAD_FP.is_dir():
+    for _cand in (
+        Path("/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints"),
+        Path("/usr/share/kicad/footprints"),
+        Path("/usr/local/share/kicad/footprints"),
+    ):
+        if _cand.is_dir():
+            KICAD_FP = _cand
+            break
 
 # Millimetres. Origin is the lower-left corner, Y up (KiCad board coordinates).
-# The module antenna keep-out is the left 6.5 mm. USB-C is rotated so its
-# opening is the right edge; its centre sits 4.2 mm in from that edge.
-# 4 layers. Skin sensors share one bottom cluster; the second TMP117 sits
-# on the top at the same XY, outside the module body.
-BOARD_W = 36.5
-# ECG DPCRs on the bottom, EDA DPCRs on the top at the same X. The charge
-# pads sit just above that row. Four more 2512s for the chest bioZ leads
-# need their own band past the charger row: a 2512 courtyard is 7.66 mm
-# tall once it is turned to face the edge, and it has to clear J2.
-# Debug band (test pads, buttons, Tag-Connect) sits past the chest pads.
-BOARD_H = 70.0
+# hw_v2 outline is 40.0 x 62.0 (FLOORPLAN_V2.md). 4 layers. Skin sensors share
+# one bottom cluster; the second TMP117 sits on the top at the same XY.
+# USB-C (J1) is on the bottom edge at y~2.7; the U.FL coax dress lane threads
+# the J9 pad gap below U1's module end.
+BOARD_W = 40.0
+# Patient-facing defib ladder runs as two 2512 rows at y~28.4 (bottom:
+# R32-R36, top: R76-R79) and y~36.3 (bottom: R80-R83), with the creepage
+# slots cut between the columns. Test points and fiducials scatter through
+# the skin-cluster band; the connector tails dress the top edge (y~60.4).
+BOARD_H = 62.0
 
-# 0.8 mm slots in all four gaps between the ECG/EDA electrode pads.
-# Each slot starts across the electrode copper and ends 0.3 mm clear of
-# the parts above it. The path through the slot is the creepage path.
-# 1.0 mm wide (JLC NPTH slot minimum). Centres match the previous 0.8 mm slots.
+# 1.0 mm slots (JLC NPTH slot minimum) in the gaps between the electrode
+# pad columns of both ladder rows. The path through the slot is the
+# creepage path; each slot spans the electrode copper and clears the
+# surrounding parts by >=0.3 mm.
 CREEP_SLOTS = (
-    (11.425, 37.05, 12.425, 41.40),
-    (17.875, 37.05, 18.875, 42.60),
-    (24.325, 37.05, 25.325, 42.60),
-    (30.775, 37.05, 31.775, 42.60),
-    (11.425, 50.75, 12.425, 53.05),
-    (17.875, 50.75, 18.875, 53.05),
-    (24.325, 50.75, 25.325, 53.05),
+    (6.825, 22.3, 7.825, 26.7),
+    (13.275, 22.3, 14.275, 26.7),
+    (19.725, 22.3, 20.725, 26.7),
+    (26.175, 22.3, 27.175, 26.7),
+    (6.825, 38.0, 7.825, 42.4),
+    (13.275, 38.0, 14.275, 42.4),
+    (20.1, 38.0, 21.1, 42.4),
 )
 
-# Internal edge-cut slots (x0, y0, x1, y1). The AS7341 barrier and the
-# TMP117 moat are 1.0 mm (JLC NPTH minimum). The moat's inner wall stays
-# put so the TMP117 pads keep their clearance; the extra 0.2 mm is outward.
-# MLX90632 has three sides slotted and the high-Y side open as a trace bridge.
+# Internal edge-cut slots (x0, y0, x1, y1). SLOTS[0] is the AS7341/LED
+# barrier under the optical cluster (drawn via add_slot); SLOTS[1:] are
+# check-rects mirroring the drawn ISLAND moat channel — they keep the
+# pad-to-cut clearance gates honest around the U11/U20 TMP117 pair at
+# (20.2, 47.9). MLX90632 (U12 at 10.3, 48.3)
+# has three sides slotted with the high-Y side open as a trace bridge.
 SLOTS = (
-    (15.55, 15.05, 21.60, 16.05),
-    (15.90, 5.34, 21.30, 6.34),
-    (15.90, 10.35, 17.60, 11.35),
-    (19.60, 10.35, 21.30, 11.35),
-    (15.90, 5.34, 16.90, 11.35),
-    (20.30, 5.34, 21.30, 11.35),
+    (22.0, 51.0, 23.0, 52.0),
+    # TMP117 moat check-rects — they mirror the ISLAND channel below (the
+    # polygon is what actually gets drawn; these let the clearance gates
+    # test pads against the real cut edges, including the neck).
+    (17.2, 43.69, 18.53, 50.2),
+    (18.53, 43.69, 21.87, 45.4),
+    (21.87, 43.69, 23.1, 50.2),
+    (20.7, 49.2, 21.87, 50.2),
 )
 MLX_SLOTS = (
-    # Left slot starts above R47. A full-height slot does not fit between R47 and the MLX pads.
-    (7.40, 22.15, 8.40, 23.20),
-    (11.60, 20.10, 12.60, 22.90),
-    (8.90, 18.60, 11.10, 19.60),
+    (7.3, 49.05, 8.3, 50.1),
+    (11.9, 47.0, 12.9, 49.8),
+    (9.3, 45.1, 11.5, 46.1),
 )
 
 # (x, y, rotation_deg, bottom)
 # Rotation is applied before a bottom-side flip.
+# hw_v2 40 x 62 layout: U1 + comms at the bottom edge (y<20), the defib
+# ladder rows run across y~28.4/36.3 with creepage slots between columns,
+# the skin sensor cluster co-registers on the bottom at y~44-56, and the
+# tail pads + debug connectors dress the top edge (y~60).
 PLACE = {
-    "C1": (35.0, 21.5, 90, True),
-    "C2": (30.00, 12.00, 0, True),
-    "C3": (31.40, 12.00, 90, True),
-    "C4": (32.70, 11.50, 90, True),
-    "C6": (32.65, 9.50, 90, True),
-    "C7": (11.5, 33.25, 90, False),
-    "C8": (12.01, 7.20, 90, True),
-    "C9": (28.3, 4.1, 0, False),
-    "C10": (34.5, 24.5, 90, True),
-    "C11": (22.22, 17.67, 90, True),
-    "C13": (22.0, 19.8, 90, True),
-    "C14": (24.8, 10.41, 0, True),
-    "C15": (26.9, 10.41, 0, True),
-    "C16": (7.3, 1.05, 0, True),
-    "C18": (14.0, 0.9, 0, True),
-    "C19": (16.2, 0.9, 0, True),
-    "C20": (11.8, 34.5, 0, True),
-    "C21": (18.38, 34.6, 0, True),
-    "C22": (18.38, 35.7, 0, True),
-    "C23": (18.4, 0.9, 0, True),
-    "C24": (7.6, 4.4, 0, True),
-    "C25": (13.86, 20.05, 0, True),
-    "C26": (20.6, 0.9, 0, True),
-    "C27": (18.4, 2.3, 0, True),
-    "C28": (31.6, 23.9, 0, True),
-    "C29": (30.9, 28.9, 0, True),
-    "C30": (25.3, 28.4, 0, True),
-    "C32": (31.3, 25.1, 0, True),
-    "C33": (27.4, 13.7, 0, False),
-    "C34": (23.2, 24.8, 0, True),
-    "C35": (21.7, 23.0, 0, True),
-    "C36": (15.33, 21.22, 0, True),
-    "C37": (28.00, 5.00, 0, True),
-    "C38": (29.40, 5.00, 90, True),
-    "C39": (12.00, 1.00, 0, True),
-    "C40": (18.60, 7.00, 0, True),
-    "C41": (18.00, 21.65, 0, True),
-    "C42": (12.3, 35.8, 0, True),
-    "C43": (29.8, 29.3, 0, False),
-    "C44": (34.10, 11.50, 90, True),
-    "C45": (30.30, 10.27, 0, True),
-    "C46": (30.00, 13.40, 0, True),
-    "C47": (33.65, 13.77, 0, True),
-    "C48": (29.2, 22.7, 0, True),
-    "C49": (25.3, 26.0, 0, True),
-    "C50": (25.3, 24.8, 0, True),
-    "C51": (21.7, 21.8, 0, True),
-    "C52": (29.5, 23.9, 0, True),
-    "C53": (23.2, 26.0, 0, True),
-    "C54": (33.6, 28.7, 0, True),
-    "C55": (18.36, 33.1, 0, True),
-    "C56": (26.53, 13.71, 90, True),
-    "C57": (24.8, 11.61, 0, True),
-    "C58": (28.6, 12.0, 90, True),
-    "C59": (11.16, 4.1, 0, True),
-    "C60": (13.17, 6.44, 90, True),
-    "C61": (18.60, 7.00, 0, False),
-    "D1": (8.30, 10.10, 0, True),
-    "D2": (10.00, 10.10, 0, True),
-    "D3": (11.70, 10.10, 0, True),
-    "D4": (13.40, 10.10, 0, True),
-    "D5": (15.10, 10.10, 0, True),
-    "D6": (14.90, 26.15, 0, True),
-    "D7": (16.45, 26.15, 0, True),
-    "D8": (18.00, 26.15, 0, True),
-    "D9": (19.55, 26.15, 0, True),
-    "D10": (18.70, 13.50, 0, True),
-    "D11": (22.15, 13.72, 0, True),
-    "J1": (32.30, 22.20, 90, False),
-    "J2": (10.30, 43.80, 0, True),
-    "J3": (23.80, 8.70, 0, False),
-    "J5": (11.40, 12.30, 0, True),
-    "J6": (17.40, 29.70, 0, True),
-    "L1": (27.55, 2.40, 0, False),
-    "L2": (28.05, 6.15, 0, False),
-    "Q1": (18.55, 11.0, 0, True),
-    "Q2": (35.50, 43.80, 0, True),
-    "R1": (30.40, 16.05, 0, False),
-    "R2": (31.32, 17.37, 0, True),
-    "R3": (30.00, 14.80, 0, True),
-    "R5": (14.2, 3.97, 0, True),
-    "R6": (19.29, 3.97, 90, False),
-    "R7": (10.01, 6.55, 0, True),
-    "R8": (28.00, 6.40, 0, True),
-    "R9": (25.0, 8.7, 0, True),
-    "R10": (27.33, 15.27, 0, False),
-    "R11": (28.2, 27.99, 0, False),
-    "R12": (7.6, 2.1, 0, True),
-    "R13": (12.5, 2.3, 0, True),
-    "R14": (28.3, 16.4, 0, True),
-    "R15": (31.9, 28.4, 0, False),
-    "R16": (31.3, 21.5, 0, True),
-    "R17": (19.6, 22.7, 0, True),
-    "R18": (31.5, 19.12, 0, True),
-    "R19": (33.3, 16.42, 0, True),
-    "R20": (22.8, 6.7, 0, True),
-    "R21": (22.8, 8.91, 0, True),
-    "R22": (33.6, 19.12, 0, True),
-    "R23": (31.13, 8.84, 0, True),
-    "R24": (35.50, 11.50, 90, True),
-    "R25": (32.00, 15.00, 0, True),
-    "R26": (31.3, 22.7, 0, True),
-    "R27": (23.2, 27.2, 0, True),
-    "R28": (31.3, 20.3, 0, True),
-    "R29": (19.6, 23.9, 0, True),
-    "R30": (25.9, 29.8, 0, True),
-    "R31": (29.5, 14.9, 0, False),
-    "R32": (8.70, 35.25, 90, True),
-    "R33": (15.15, 35.25, 90, True),
-    "R34": (21.60, 35.25, 90, True),
-    "R35": (28.05, 35.25, 90, True),
-    "R36": (34.50, 35.25, 90, True),
-    "R39": (33.46, 21.12, 90, True),
-    "R40": (18.38, 25.0, 0, True),
-    "R41": (27.68, 30.1, 0, False),
-    "R42": (20.48, 25.0, 0, True),
-    "R43": (22.7, 10.12, 0, True),
-    "R44": (27.5, 12.52, 0, False),
-    "R45": (25.6, 7.3, 0, True),
-    "R46": (27.76, 9.07, 0, True),
-    "R47": (22.15, 12.52, 0, True),
-    "R48": (22.8, 11.32, 0, True),
-    "R49": (34.9, 16.15, 0, False),
-    "R59": (8.0, 43.80, 0, False),
-    "R60": (10.2, 43.8, 0, False),
-    "R61": (12.4, 43.80, 0, False),
-    "R62": (20.4, 1.15, 0, False),
-    "R63": (22.71, 1.15, 0, True),
-    "R64": (25.0, 1.15, 0, False),
-    "R65": (20.4, 2.55, 0, False),
-    "C62": (22.7, 2.55, 0, False),
-    "C63": (25.0, 2.55, 0, False),
-    "R66": (18.80, 43.80, 0, True),
-    "R67": (27.4, 24.8, 0, True),
-    "R68": (29.2, 21.5, 0, True),
-    "R69": (25.3, 27.2, 0, True),
-    "R70": (32.5, 4.11, 0, True),
-    "R71": (32.5, 2.91, 0, True),
-    "R72": (32.5, 5.31, 0, True),
-    "R73": (34.6, 4.11, 0, True),
-    "R74": (14.6, 43.8, 0, False),
-    "R75": (16.8, 43.80, 0, False),
-    "C64": (27.66, 31.2, 0, False),
-    "C65": (30.4, 30.6, 0, False),
-    "C66": (33.5, 30.8, 0, True),
-    "Q3": (33.2, 44.15, 0, False),
-    "R76": (8.70, 35.70, 90, False),
-    "R77": (15.15, 35.70, 90, False),
-    "R78": (21.60, 35.70, 90, False),
-    "R79": (28.05, 35.70, 90, False),
-    "R80": (8.70, 49.40, 90, True),
-    "R81": (15.15, 49.40, 90, True),
-    "R82": (21.60, 49.40, 90, True),
-    "R83": (28.05, 49.40, 90, True),
-    "R84": (7.60, 46.55, 0, False),
-    "R85": (9.65, 46.55, 0, False),
-    "R86": (11.70, 46.55, 0, False),
-    "R87": (13.75, 46.55, 0, False),
-    "C67": (15.80, 46.55, 0, False),
-    "C68": (17.85, 46.55, 0, False),
-    "C69": (19.90, 46.55, 0, False),
-    "C70": (21.95, 46.55, 0, False),
-    "D21": (24.00, 46.55, 0, False),
-    "D22": (26.05, 46.55, 0, False),
-    "D23": (28.10, 46.55, 0, False),
-    "D24": (30.15, 46.55, 0, False),
-    "J7": (32.00, 51.90, 0, False),
-    "J8": (29.4, 67.5, 0, False),
-    "U21": (33.5, 31.5, 0, False),
-    "SW1": (10.8, 68.0, 0, False),
-    "SW2": (17.4, 68.0, 0, False),
-    "D25": (22.6, 68.0, 0, False),
-    "H1": (9.0, 62.5, 0, True),
-    "H2": (33.6, 61.5, 0, True),
-    "FID1": (35.0, 56.4, 0, False),
-    "FID2": (8.2, 48.6, 0, False),
-    "FID3": (35.0, 64.8, 0, False),
-    "FID4": (34.6, 46.8, 0, True),
-    "FID5": (22.0, 64.0, 0, True),
-    "FID6": (14.5, 68.5, 0, True),
-    "R88": (15.2, 61.5, 0, False),
-    "R89": (17.4, 61.5, 0, False),
-    "R90": (19.6, 61.5, 0, False),
-    "R91": (21.8, 61.5, 0, False),
-    "R92": (24.0, 61.5, 0, False),
-    "R93": (12.0, 63.0, 0, False),
-    "R94": (12.2, 61.5, 0, False),
-    "R95": (26.2, 61.5, 0, False),
-    "R96": (28.4, 61.5, 0, False),
-    "R97": (30.6, 61.5, 0, False),
-    "R98": (16.5, 64.2, 0, False),
-    "R99": (18.8, 64.2, 0, False),
-    "R100": (21.1, 64.2, 0, False),
-    "R101": (28.8, 64.2, 0, False),
-    "R50": (31.30, 15.99, 0, True),
-    "R51": (28.70, 8.01, 0, True),
-    "R52": (11.18, 5.31, 0, True),
-    "R53": (9.3, 0.9, 0, True),
-    "U1": (12.85, 22.00, 90, False),
-    "U2": (16.00, 43.80, 0, True),
-    "U3": (32.60, 9.80, 0, False),
-    "U4": (34.10, 13.95, 0, False),
-    "U5": (32.80, 4.10, 0, False),
-    "U6": (24.60, 13.80, 0, True),
-    "U7": (9.55, 27.35, 90, True),
-    "U8": (25.40, 21.60, 0, True),
-    "U9": (25.00, 17.20, 0, True),
-    "U10": (18.70, 18.50, 0, True),
-    "U11": (18.60, 9.15, 0, True),
-    "U12": (10.0, 21.5, 0, True),
-    "U13": (14.30, 9.55, 0, False),
-    "U14": (28.80, 9.60, 0, False),
-    "U15": (35.50, 8.90, 0, False),
-    "U16": (10.70, 16.50, 0, True),
-    "U17": (9.4, 52.4, 0, False),
-    "U18": (11.40, 4.20, 0, False),
-    "U19": (8.70, 9.60, 0, False),
-    "U20": (18.60, 9.15, 0, False),
+    "U1": (12.40, 10.00, 0, False),
+    "J1": (26.00, 2.70, 180, False),
+    "U5": (24.50, 13.40, 0, False),
+    "Q3": (22.80, 18.50, 0, False),
+    "C9": (26.20, 17.50, 0, False),
+    "C64": (19.90, 9.00, 0, True),
+    "SW1": (2.20, 17.60, 90, False),
+    "SW2": (2.20, 11.30, 90, False),
+    "R5": (22.40, 9.40, 0, False),
+    "R6": (24.50, 8.70, 0, False),
+    "R64": (26.60, 9.40, 0, False),
+    "R62": (29.50, 9.30, 0, False),
+    "R65": (28.80, 10.60, 0, False),
+    "C62": (30.20, 12.30, 90, False),
+    "C63": (18.79, 11.93, 90, True),
+    "R10": (30.90, 14.30, 90, False),
+    "R32": (4.10, 28.40, 270, True),
+    "R33": (10.55, 28.40, 270, True),
+    "R34": (17.00, 28.40, 270, True),
+    "R35": (23.45, 28.40, 270, True),
+    "R36": (29.90, 28.40, 270, True),
+    "R76": (4.10, 28.40, 270, False),
+    "R77": (10.55, 28.40, 270, False),
+    "R78": (17.00, 28.40, 270, False),
+    "R79": (23.45, 28.40, 270, False),
+    "R80": (4.10, 36.30, 90, True),
+    "R81": (10.55, 36.30, 90, True),
+    "R82": (17.00, 36.30, 90, True),
+    "R83": (23.45, 36.30, 90, True),
+    "U3": (29.50, 32.00, 0, False),
+    "L1": (30.10, 28.80, 0, False),
+    "U4": (29.50, 19.30, 0, False),
+    "U15": (26.00, 19.90, 0, False),
+    "L2": (29.00, 16.40, 0, False),
+    "U17": (6.00, 34.00, 0, False),
+    "U13": (10.00, 34.20, 0, False),
+    "U14": (14.00, 34.50, 0, False),
+    "U18": (4.60, 46.10, 0, False),
+    "U19": (30.10, 46.20, 0, False),
+    "U20": (20.20, 47.90, 0, False),
+    "U25": (10.82, 41.30, 90, False),
+    "D25": (4.00, 40.40, 0, False),
+    "R49": (26.30, 31.00, 90, False),
+    "R15": (30.30, 25.90, 0, False),
+    "R1": (30.50, 20.05, 90, True),
+    "D1": (4.90, 20.00, 0, False),
+    "D2": (6.35, 20.00, 0, False),
+    "D3": (7.80, 20.00, 0, False),
+    "D6": (12.15, 20.00, 0, False),
+    "D7": (13.60, 20.00, 0, False),
+    "D8": (15.05, 20.00, 0, False),
+    "D9": (16.50, 20.00, 0, False),
+    "D21": (17.95, 20.00, 0, False),
+    "D22": (19.45, 20.00, 0, False),
+    "D23": (20.90, 20.20, 0, False),
+    "D24": (23.40, 20.40, 0, False),
+    "R39": (5.10, 18.85, 0, False),
+    "R40": (7.10, 18.85, 0, False),
+    "C21": (13.10, 18.85, 0, False),
+    "C22": (15.10, 18.85, 0, False),
+    "C42": (13.53, 14.38, 0, True),
+    "R88": (19.30, 18.85, 0, False),
+    "R93": (30.60, 35.70, 90, False),
+    "R94": (11.75, 6.00, 90, True),
+    "R95": (5.80, 50.00, 0, False),
+    "R96": (5.80, 51.80, 0, False),
+    "J8": (26.45, 50.70, 0, False),
+    "J3": (26.50, 60.35, 0, False),
+    "J7": (14.50, 60.35, 0, False),
+    "J5": (18.60, 60.40, 0, True),
+    "J6": (9.00, 60.40, 0, True),
+    "J13": (29.60, 60.40, 0, True),
+    "J9": (8.00, 1.50, 0, True),
+    "J10": (38.80, 43.40, 90, True),
+    "J11": (38.80, 55.00, 90, True),
+    "J12": (3.30, 50.00, 90, True),
+    "J2": (12.40, 11.90, 0, True),
+    "U7": (9.50, 19.20, 90, True),
+    "U8": (24.50, 16.50, 0, True),
+    "U9": (18.90, 19.50, 0, True),
+    "U2": (16.00, 14.80, 0, True),
+    "U21": (23.20, 10.80, 0, True),
+    "U24": (29.40, 17.00, 0, True),
+    "Q2": (18.70, 14.30, 0, True),
+    "Q1": (14.90, 17.20, 0, True),
+    "R59": (13.60, 18.40, 0, True),
+    "R60": (16.60, 17.60, 0, True),
+    "R61": (18.70, 17.30, 0, True),
+    "R66": (22.50, 20.50, 0, True),
+    "R8": (30.30, 14.60, 0, True),
+    "R25": (27.00, 10.40, 0, True),
+    "C69": (26.40, 12.90, 0, True),
+    "C68": (20.40, 13.40, 0, True),
+    "R102": (23.90, 8.00, 0, True),
+    "R103": (26.40, 6.90, 0, True),
+    "R104": (28.50, 7.60, 0, True),
+    "R105": (24.00, 6.50, 0, True),
+    "R100": (24.60, 20.30, 0, True),
+    "R101": (15.50, 20.40, 0, True),
+    "R42": (28.60, 43.40, 0, True),
+    "C1": (30.50, 35.40, 90, True),
+    "U16": (13.40, 53.50, 0, True),
+    "U10": (24.30, 54.00, 0, True),
+    "U12": (10.30, 48.30, 0, True),
+    "U11": (20.20, 47.90, 0, True),
+    "U6": (25.70, 48.30, 0, True),
+    "U22": (26.10, 45.05, 0, True),
+    "U23": (7.60, 44.50, 0, True),
+    "D10": (19.70, 52.60, 90, True),
+    "D11": (14.00, 46.30, 0, True),
+    "D12": (15.90, 48.30, 0, True),
+    "Q4": (12.30, 44.40, 0, True),
+    "R84": (10.60, 44.30, 0, True),
+    "R85": (14.00, 45.10, 0, True),
+    "R86": (16.10, 45.70, 0, True),
+    "R87": (14.80, 49.50, 0, True),
+    "C80": (30.50, 39.50, 0, True),
+    "C81": (30.16, 60.00, 90, False),
+    "C82": (10.40, 44.20, 0, False),
+    "C83": (24.61, 44.85, 0, False),
+    "C78": (21.00, 54.05, 0, False),
+    "C79": (20.80, 55.55, 0, False),
+    "C8": (6.33, 5.18, 0, True),
+    "C67": (5.21, 54.55, 0, False),
+    "C70": (1.60, 56.05, 0, False),
+    "C76": (3.61, 56.05, 0, False),
+    "C77": (19.00, 54.05, 0, False),
+    "C66": (30.79, 12.54, 90, True),
+    "C61": (10.00, 54.05, 0, False),
+    "C65": (12.00, 54.05, 0, False),
+    "C60": (5.61, 53.05, 0, False),
+    "C59": (7.81, 52.05, 0, False),
+    "FID1": (24.90, 55.00, 0, False),
+    "FID2": (2.00, 58.60, 0, False),
+    "FID3": (5.50, 58.60, 0, False),
+    "FID5": (30.30, 56.20, 0, False),
+    "FID6": (28.20, 56.50, 0, True),
+    "H1": (2.60, 6.00, 0, True),
+    "H2": (1.85, 1.90, 0, False),
+    "TP1": (16.40, 42.50, 0, False),
+    "TP2": (18.60, 42.50, 0, False),
+    "TP3": (23.00, 42.50, 0, False),
+    "TP4": (25.20, 42.50, 0, False),
+    "TP5": (18.20, 55.75, 0, False),
+    "TP6": (18.20, 51.75, 0, False),
+    "TP7": (14.95, 56.25, 0, False),
+    "TP8": (25.20, 46.50, 0, False),
+    "TP9": (27.40, 46.50, 0, False),
+    "TP10": (5.70, 56.25, 0, False),
+    "TP11": (1.00, 50.50, 0, False),
+    "TP12": (3.20, 50.50, 0, False),
+    "TP13": (9.20, 37.00, 0, False),
+    "TP14": (16.40, 54.50, 0, False),
+    "TP15": (27.40, 54.50, 0, False),
+    "TP16": (22.00, 57.50, 0, False),
+    "TP17": (7.70, 53.75, 0, False),
+    "TP18": (7.20, 28.25, 0, False),
+    "TP19": (13.70, 28.25, 0, False),
+    "TP20": (20.20, 28.25, 0, False),
+    "TP21": (26.70, 28.25, 0, False),
+    "TP22": (9.45, 55.75, 0, False),
+    "TP23": (12.20, 55.75, 0, False),
+    "TP24": (27.40, 38.50, 0, False),
+    "TP25": (1.00, 36.50, 0, False),
+    "TP26": (20.30, 36.40, 0, False),
+    "TP27": (20.90, 51.70, 0, False),
+    "FID4": (6.55, 6.95, 0, True),
+    "C10": (9.38, 6.42, 0, True),
+    "C44": (18.80, 5.20, 0, True),
+    "C45": (15.77, 6.42, 0, True),
+    "C47": (29.90, 21.90, 0, False),
+    "C7": (2.17, 10.33, 0, True),
+    "R106": (8.83, 8.16, 0, True),
+    "R107": (10.82, 8.16, 0, True),
+    "R108": (12.82, 8.16, 0, True),
+    "R109": (16.10, 48.70, 0, False),
+    "R11": (16.82, 8.16, 0, True),
+    "R110": (14.20, 44.00, 0, True),
+    "R112": (4.83, 10.07, 0, True),
+    "R113": (6.83, 10.07, 0, True),
+    "R114": (12.40, 44.40, 0, False),
+    "R12": (6.83, 11.57, 0, True),
+    "R13": (1.62, 12.07, 0, True),
+    "R14": (20.22, 14.67, 0, True),
+    "R16": (18.63, 16.16, 0, True),
+    "R17": (20.62, 16.16, 0, True),
+    "R18": (28.23, 14.47, 0, True),
+    "R19": (28.23, 18.97, 0, True),
+    "R2": (1.62, 14.07, 0, True),
+    "R20": (3.63, 14.07, 0, True),
+    "R21": (1.62, 15.57, 0, True),
+    "R22": (3.63, 15.57, 0, True),
+    "R23": (1.62, 17.07, 0, True),
+    "R24": (3.63, 17.07, 0, True),
+    "R26": (1.62, 18.57, 0, True),
+    "R27": (3.63, 18.57, 0, True),
+    "R28": (1.62, 20.07, 0, True),
+    "R29": (3.63, 20.07, 0, True),
+    "R3": (5.17, 14.53, 90, True),
+    "R30": (5.17, 16.52, 90, True),
+    "R31": (5.17, 18.52, 90, True),
+    "R41": (13.53, 19.46, 0, True),
+    "R43": (7.43, 51.77, 0, True),
+    "R44": (7.43, 53.27, 0, True),
+    "R45": (7.43, 54.77, 0, True),
+    "R46": (6.97, 46.73, 90, True),
+    "R47": (25.42, 50.77, 0, True),
+    "R48": (27.42, 50.77, 0, True),
+    "R50": (23.76, 45.23, 90, True),
+    "R51": (23.76, 47.23, 90, True),
+    "R52": (27.56, 47.73, 90, True),
+    "R53": (28.66, 45.92, 90, True),
+    "R63": (28.66, 47.92, 90, True),
+    "R67": (1.17, 31.53, 90, True),
+    "R68": (13.72, 34.06, 0, True),
+    "R69": (26.73, 33.56, 0, True),
+    "R7": (13.62, 0.92, 0, True),
+    "R70": (15.62, 0.92, 0, True),
+    "R71": (17.62, 0.92, 0, True),
+    "R72": (19.62, 0.92, 0, True),
+    "R73": (23.22, 0.92, 0, True),
+    "R74": (25.22, 0.92, 0, True),
+    "R75": (27.22, 0.92, 0, True),
+    "R89": (7.82, 14.07, 0, True),
+    "R9": (9.82, 14.07, 0, True),
+    "R90": (11.36, 14.53, 90, True),
+    "R91": (13.90, 37.00, 0, False),
+    "R92": (29.82, 23.46, 0, False),
+    "R97": (1.62, 32.96, 0, False),
+    "R98": (1.62, 34.46, 0, False),
+    "R99": (3.17, 33.42, 90, False),
+    "C11": (3.16, 12.51, 90, True),
+    "C13": (29.94, 43.79, 0, False),
+    "C14": (23.75, 49.20, 90, True),
+    "C15": (20.20, 34.05, 0, True),
+    "C16": (26.60, 20.16, 0, True),
+    "C18": (3.16, 35.40, 90, False),
+    "C19": (8.83, 15.08, 0, True),
+    "C2": (20.00, 11.50, 90, True),
+    "C20": (13.10, 15.50, 0, True),
+    "C23": (5.00, 21.80, 0, True),
+    "C24": (5.70, 20.30, 0, True),
+    "C25": (6.70, 15.30, 0, True),
+    "C26": (24.00, 32.86, 0, False),
+    "C27": (26.00, 32.86, 0, False),
+    "C28": (19.20, 33.86, 0, False),
+    "C29": (17.20, 34.36, 0, False),
+    "C3": (21.20, 34.36, 0, False),
+    "C30": (29.34, 12.48, 0, True),
+    "C32": (27.89, 12.54, 90, True),
+    "C33": (26.30, 11.50, 0, True),
+    "C34": (24.40, 13.20, 0, True),
+    "C35": (30.80, 10.90, 0, True),
+    "C36": (15.40, 40.45, 0, False),
+    "C37": (17.40, 40.45, 0, False),
+    "C38": (22.20, 40.45, 0, False),
+    "C39": (24.20, 40.45, 0, False),
+    "C4": (26.20, 40.45, 0, False),
+    "C40": (28.20, 40.45, 0, False),
+    "C41": (3.01, 41.95, 0, False),
+    "C43": (5.01, 41.95, 0, False),
+    "C46": (23.00, 21.60, 0, False),
+    "C48": (12.60, 46.05, 0, False),
+    "C49": (10.00, 47.05, 0, False),
+    "C50": (10.00, 48.55, 0, False),
+    "C51": (9.40, 50.05, 0, False),
+    "C52": (14.00, 50.05, 0, False),
+    "C53": (11.40, 50.55, 0, False),
+    "C54": (13.40, 51.55, 0, False),
+    "C55": (1.60, 52.05, 0, False),
+    "C56": (3.61, 52.05, 0, False),
+    "C57": (9.80, 52.05, 0, False),
+    "C58": (27.34, 44.19, 0, False),
+    "C6": (25.54, 21.59, 0, False),
+    "C84": (28.50, 20.30, 0, True),
+    "R115": (28.00, 21.30, 0, True),
+    "R116": (30.80, 56.50, 0, True),
+    "R117": (28.40, 41.90, 90, True),
+    "R118": (35.70, 44.30, 180, False),
+    "R119": (35.70, 56.50, 180, False),
+    "R120": (34.30, 48.50, 90, True),
+    "R121": (34.30, 39.70, 90, True),
+    "R122": (34.65, 58.00, 90, True),
+    "D26": (17.50, 37.00, 0, False),
+    "D27": (23.70, 36.40, 0, False),
+    "D28": (25.40, 36.40, 0, False),
+    "D29": (33.50, 46.80, 0, False),
+    "D30": (19.30, 38.50, 0, False),
+    "TP28": (5.02, 37.50, 0, False),
+    "D4": (22.14, 7.64, 0, True),
+    "D5": (28.74, 6.34, 0, True),
 }
-for _i in range(1, 28):
-    _col, _row = (_i - 1) % 11, (_i - 1) // 11
-    PLACE[f"TP{_i}"] = (8.0 + _col * 2.3, 55.0 + _row * 2.3, 0, False)
 
 def parse_sexp(text: str):
     s = text.strip()
@@ -353,10 +447,17 @@ def load_netlist(path: Path):
             continue
         ref = atom(comp, "ref")
         dnp = atom(comp, "dnp", None)
+        # kicad-cli exports schematic DNP as a valueless property
+        # (property (name "dnp")) — not a (dnp "yes") atom.
+        dnp_prop = any(
+            isinstance(c, list) and c and c[0] == "property"
+            and any(isinstance(p, list) and p[:2] == ["name", "dnp"] for p in c[1:])
+            for c in comp[1:]
+        )
         comps[ref] = {
             "value": atom(comp, "value", ""),
             "footprint": atom(comp, "footprint", ""),
-            "dnp": dnp in ("yes", "true", "1") or ref in DNP_REFS,
+            "dnp": dnp_prop or dnp in ("yes", "true", "1") or ref in DNP_REFS,
         }
     nets = []
     pin_net = {}
@@ -450,38 +551,51 @@ def add_poly(board, pts):
         add_edge(board, x0, y0, x1, y1)
 
 
-# Thermal moat around U11/U20. Neck is the missing top span, toward the cluster.
+# Thermal moat around the U11/U20 TMP117 pair at (20.2, 47.9). One polygon
+# draws the entire milled channel: west leg x17.2-18.53, top bar
+# y43.69-45.4, east leg x21.87-23.1, and the two south wings x17.2-18.3 /
+# x20.7-23.1 at y49.2-50.2 — every leg >=1.0 mm so it mills at JLC's
+# non-plated-slot floor. The paddle is the notched material
+# x18.53-21.87, y45.4-49.2 plus its south neck through the x18.3-20.7 gap —
+# all 14 U11/U20 pads sit on it with ~0.32 mm margin. A closed Edge.Cuts
+# loop removes its interior, so the paddle outline itself must never be
+# the loop.
 ISLAND = (
-    (15.90, 11.35),
-    (15.90, 5.34),
-    (21.30, 5.34),
-    (21.30, 11.35),
-    (19.60, 11.35),
-    (19.60, 10.35),
-    (20.30, 10.35),
-    (20.30, 6.34),
-    (16.90, 6.34),
-    (16.90, 10.35),
-    (17.60, 10.35),
-    (17.60, 11.35),
+    (17.2, 43.69),
+    (23.1, 43.69),
+    (23.1, 50.2),
+    (20.7, 50.2),
+    (20.7, 49.2),
+    (21.87, 49.2),
+    (21.87, 45.4),
+    (18.53, 45.4),
+    (18.53, 49.2),
+    (18.3, 49.2),
+    (18.3, 50.2),
+    (17.2, 50.2),
 )
 
 
 def add_keepout(board):
-    """No copper under the module antenna. The rest of the keep-out is off the board."""
+    """hw_v2: U1 is ESP32-S3-MINI-1U at (12.4, 10.0) rot 0 — the U.FL
+    receptacle lands at about (7.9, 3.9) on the module's low-Y end, so the
+    coax exits straight down to the bottom edge. J9's tail-pad row leaves a
+    1.05 mm gap at x 7.475-8.525; the dress lane threads that gap (no
+    tracks/vias/pads/pours) so the pigtail crosses no copper."""
     zone = pcbnew.ZONE(board)
     zone.SetIsRuleArea(True)
     zone.SetDoNotAllowTracks(True)
     zone.SetDoNotAllowVias(True)
     zone.SetDoNotAllowPads(True)
-    zone.SetDoNotAllowCopperPour(True)
+    zone.SetDoNotAllowZoneFills(True)  # KiCad 10 renamed SetDoNotAllowCopperPour
     zone.SetDoNotAllowFootprints(False)
-    zone.SetZoneName("antenna")
+    zone.SetZoneName("ufl_dress")
     zone.SetLayerSet(pcbnew.LSET.AllCuMask())
     outline = zone.Outline()
     outline.NewOutline()
-    # On-board part of the module antenna keep-out. The rest hangs off the left edge.
-    for x, y in ((0.0, 0.0), (6.5, 0.0), (6.5, BOARD_H), (0.0, BOARD_H)):
+    # ~0.8 mm lane from the board edge up to just under U1's pad row
+    # (pads start at y=2.6), centred on the J9 gap at x~8.0.
+    for x, y in ((7.6, 0.0), (8.4, 0.0), (8.4, 2.5), (7.6, 2.5)):
         outline.Append(mm(x), mm(y))
     board.Add(zone)
 
@@ -526,6 +640,173 @@ def overlaps(a, b):
     if a is None or b is None or a.OutlineCount() == 0 or b.OutlineCount() == 0:
         return False
     return a.Collide(b)
+
+
+# ---------------------------------------------------------------------------
+# board_finish retarget shims. board_finish.py still carries the hw_v1
+# 36.5 x 70 constants plus absolute keep-out/pour/silk coordinates (another
+# workstream owns that file), so main() patches the module before calling
+# finish_board. The pad-driven pieces (HV keep-outs, hole keep-outs, BGA
+# fan-out areas, via-in-pad, pin-1 dots) already follow the placed copper.
+
+
+def _retarget_board_finish(bf):
+    """Install the 40 x 62 versions of board_finish's absolute geometry."""
+    bf.BOARD_W = BOARD_W
+    bf.BOARD_H = BOARD_H
+
+    def _pour_keepouts(board):
+        """No L3 power copper under the temperature sensors (moved islands)."""
+        for x0, y0, x1, y1 in (
+            (18.1, 44.3, 22.2, 50.3),  # TMP117 island around U11/U20
+            (7.2, 44.9, 13.0, 50.3),   # MLX90632 moat around U12
+        ):
+            bf._rect_zone(
+                board, (pcbnew.In2_Cu,),
+                ((x0, y0), (x1, y0), (x1, y1), (x0, y1)),
+                "sensor_nopower", pours=True,
+            )
+
+    def _blocked(x, y, rects, pad_boxes):
+        if x < 0.9 or x > BOARD_W - 0.9 or y < 0.9 or y > BOARD_H - 0.9:
+            return True
+        # U.FL dress lane under the module end (see add_keepout).
+        if 7.4 <= x <= 8.6 and y <= 4.2:
+            return True
+        # HV keep-outs already carry a 1.0 mm inflate; the extra 0.9 puts
+        # the 0.6 mm stitch barrel >=1.9 mm from HV pad copper, clearing the
+        # 1.5 mm 'HV electrode to other nets' rule with margin.
+        for x0, y0, x1, y1 in rects:
+            if x0 - 0.9 <= x <= x1 + 0.9 and y0 - 0.9 <= y <= y1 + 0.9:
+                return True
+        # 0.55 clears via annulus (0.3) + hole/copper clearance (0.2) and
+        # covers NPTH pads, which carry no plated barrel to measure against.
+        for x0, y0, x1, y1 in pad_boxes:
+            if x0 - 0.55 <= x <= x1 + 0.55 and y0 - 0.55 <= y <= y1 + 0.55:
+                return True
+        return False
+
+    def _stitch(board, hv_rects):
+        gnd = board.FindNet("GND")
+        if gnd is None:
+            return 0
+        pad_boxes = []
+        for fp in board.GetFootprints():
+            for pad in fp.Pads():
+                pad_boxes.append(bf._box(pad, 0))
+        for fp in board.GetFootprints():
+            if fp.GetReference().startswith("H"):
+                c = fp.GetPosition()
+                cx, cy = c.x / 1e6, c.y / 1e6
+                hv_rects.append((cx - 2.2, cy - 2.2, cx + 2.2, cy + 2.2))
+        points = []
+        step = 2.8
+        y = 1.2
+        while y < BOARD_H - 1.0:
+            points.append((1.2, y))
+            points.append((BOARD_W - 1.2, y))
+            y += step
+        x = 1.2
+        while x < BOARD_W - 1.0:
+            points.append((x, 1.2))
+            points.append((x, BOARD_H - 1.2))
+            x += step
+        # Switcher neighbourhoods: U3/L1 buck-boost, U15/U4 rails, L2 filter.
+        for cx, cy in ((29.5, 32.0), (26.0, 19.9), (29.0, 16.4)):
+            for dx in (-1.6, 0, 1.6):
+                for dy in (-1.6, 0, 1.6):
+                    points.append((cx + dx, cy + dy))
+        placed = []
+        n = 0
+        for x, y in points:
+            if bf._blocked(x, y, hv_rects, pad_boxes):
+                continue
+            if any((x - px) ** 2 + (y - py) ** 2 < 1.3 ** 2 for px, py in placed):
+                continue
+            bf._add_via(board, pcbnew.VECTOR2I(mm(x), mm(y)), gnd, 0.6, 0.3, tent=True)
+            placed.append((x, y))
+            n += 1
+        return n
+
+    def _pours(board):
+        board_pts = (
+            (0.3, 0.3), (BOARD_W - 0.3, 0.3),
+            (BOARD_W - 0.3, BOARD_H - 0.3), (0.3, BOARD_H - 0.3),
+        )
+        bf._zone(board, "GND", pcbnew.In1_Cu, board_pts, 0)
+        bf._zone(board, "GND", pcbnew.B_Cu, board_pts, 0)
+        bf._zone(board, "+3V3", pcbnew.In2_Cu, board_pts, 0)
+        # L3 islands follow the moved power blocks: VBAT under U2/J2,
+        # TX_5V under the SFH7072 anode cluster, +1V8 under the U9 LDO output.
+        bf._zone(board, "VBAT", pcbnew.In2_Cu,
+                 ((11.0, 10.0), (20.5, 10.0), (20.5, 17.0), (11.0, 17.0)), 2)
+        bf._zone(board, "TX_5V", pcbnew.In2_Cu,
+                 ((11.0, 52.0), (19.8, 52.0), (19.8, 56.8), (11.0, 56.8)), 3)
+        bf._zone(board, "+1V8", pcbnew.In2_Cu,
+                 ((18.5, 18.3), (24.5, 18.3), (24.5, 21.5), (18.5, 21.5)), 3)
+
+    def _silk(board):
+        boxes = bf._pad_boxes(board)
+        candidates = (
+            ("VitalQ hw_v1 rev A 2026-09", 8.3, 24.0, pcbnew.F_SilkS, 22.0, 1.2),
+            ("JLCJLCJLCJLC", 15.0, 42.2, pcbnew.B_SilkS, 12.0, 1.2),
+            ("J8 1 +3V3  2 GND  3 TX  4 RX  5 EN  6 IO0", 2.0, 47.9, pcbnew.F_SilkS, 26.0, 1.2),
+        )
+        for text, x, y, layer, width, height in candidates:
+            if bf._hits(x, y - height, x + width, y, boxes):
+                continue
+            bf._silk_text(board, text, x, y, layer)
+        labels = {
+            "J3": "J3 FSR",
+            "J5": "J5 ECG1 ECG2 RLD PPG+ PPG-",
+            "J6": "J6 CE RE SE DE",
+            "J7": "J7 F+ F- S+ S-",
+            "J2": "J2 BAT+ BAT- NTC",
+        }
+        for ref, text in labels.items():
+            fp = board.FindFootprintByReference(ref)
+            if fp is None:
+                continue
+            # Labels must clear silk rings (e.g. test-point pin-1 marks) too,
+            # not just pads — add each footprint's silk circles to the hit set.
+            label_boxes = list(boxes)
+            for other in board.GetFootprints():
+                for item in other.GraphicalItems():
+                    if not isinstance(item, pcbnew.PCB_SHAPE):
+                        continue
+                    if item.GetShape() != pcbnew.SHAPE_T_CIRCLE:
+                        continue
+                    if item.GetLayer() not in (pcbnew.F_SilkS, pcbnew.B_SilkS):
+                        continue
+                    bb = item.GetBoundingBox()
+                    label_boxes.append((
+                        bb.GetX() / 1e6 - 0.1, bb.GetY() / 1e6 - 0.1,
+                        (bb.GetX() + bb.GetWidth()) / 1e6 + 0.1,
+                        (bb.GetY() + bb.GetHeight()) / 1e6 + 0.1,
+                    ))
+            pos = fp.GetPosition()
+            layer = pcbnew.B_SilkS if fp.IsFlipped() else pcbnew.F_SilkS
+            for dy in (3.2, 4.4, -3.6):
+                for dx in (0.0, 1.0, 2.0):
+                    x, y = pos.x / 1e6 - 4.0 + dx, pos.y / 1e6 + dy
+                    if x < 0.8:
+                        x = 0.8
+                    if bf._hits(x, y - 1.1, x + min(len(text) * 0.7, 24), y, label_boxes):
+                        continue
+                    if y < 1.2 or y > BOARD_H - 0.4:
+                        continue
+                    bf._silk_text(board, text, x, y, layer)
+                    break
+                else:
+                    continue
+                break
+        bf._pin1_dots(board, boxes)
+
+    bf._pour_keepouts = _pour_keepouts
+    bf._blocked = _blocked
+    bf._stitch = _stitch
+    bf._pours = _pours
+    bf._silk = _silk
 
 
 def main():
@@ -593,6 +874,10 @@ def main():
             continue
         if pin == "1" and "" in numbers and ref.startswith("H"):
             continue
+        # NC pins generate per-pin "unconnected-" nets; a padless NC ball
+        # (U22 rows B-E dropped for fanout escape) is intentional, not a miss.
+        if name.startswith("unconnected-"):
+            continue
         unresolved.append(f"{ref} pin {pin} ({name}) has no footprint pad")
 
     add_edge(board, 0, 0, BOARD_W, 0)
@@ -642,6 +927,92 @@ def main():
                 else:
                     continue
                 break
+    # Inner BGA balls of U6/U7 get a 0.30/0.20 VIP barrel in board_finish:
+    # those vias pierce both copper layers, so every other pad must clear
+    # a 0.30 mm box around the ball center regardless of layer.
+    def _inner_balls(fp):
+        pads = list(fp.Pads())
+        for pad in pads:
+            px, py = pad.GetPosition().x, pad.GetPosition().y
+
+            def has(sx, sy):
+                for o in pads:
+                    if o == pad:
+                        continue
+                    dx = o.GetPosition().x - px
+                    dy = o.GetPosition().y - py
+                    along = dx * sx + dy * sy
+                    if abs(dx * sy - dy * sx) < mm(0.12) and mm(0.30) < along < mm(0.55):
+                        return True
+                return False
+
+            if has(1, 0) and has(-1, 0) and has(0, 1) and has(0, -1):
+                yield pad
+
+    vip_boxes = []
+    for _ref in ("U6", "U7"):
+        fp, _ = placed[_ref]
+        for pad in _inner_balls(fp):
+            pos = pad.GetPosition()
+            vip_boxes.append(
+                (
+                    _ref,
+                    (
+                        pos.x / 1e6 - 0.30,
+                        pos.y / 1e6 - 0.30,
+                        pos.x / 1e6 + 0.30,
+                        pos.y / 1e6 + 0.30,
+                    ),
+                )
+            )
+
+    def _pbox(pad):
+        box = pad.GetBoundingBox()
+        return (
+            box.GetX() / 1e6,
+            box.GetY() / 1e6,
+            (box.GetX() + box.GetWidth()) / 1e6,
+            (box.GetY() + box.GetHeight()) / 1e6,
+        )
+
+    for ref, (fp, bottom) in placed.items():
+        for pad in fp.Pads():
+            pb = _pbox(pad)
+            attr = pad.GetAttribute()
+            if attr == pcbnew.PAD_ATTRIB_NPTH:
+                # Mounting drills pierce every layer: edge, slot and a 0.2 mm
+                # hole-to-copper gap against every other pad/hole.
+                if min(pb[0], pb[1], BOARD_W - pb[2], BOARD_H - pb[3]) < 0.3:
+                    edge_hits.append(f"{ref}.{pad.GetNumber()} edge")
+                for s in SLOTS + CREEP_SLOTS + MLX_SLOTS:
+                    if not (
+                        pb[2] <= s[0] - 0.3
+                        or pb[0] >= s[2] + 0.3
+                        or pb[3] <= s[1] - 0.3
+                        or pb[1] >= s[3] + 0.3
+                    ):
+                        edge_hits.append(f"{ref}.{pad.GetNumber()} slot")
+                        break
+                for other, (ofp, _ob) in placed.items():
+                    if other == ref:
+                        continue
+                    for op in ofp.Pads():
+                        if _gap(pb, _pbox(op)) < 0.2:
+                            pth_hits.append(
+                                f"{ref}.{pad.GetNumber()} hole vs {other}.{op.GetNumber()}"
+                            )
+                            break
+                    else:
+                        continue
+                    break
+                continue
+            for oref, vb in vip_boxes:
+                if oref == ref:
+                    continue
+                if pb[0] < vb[2] and pb[2] > vb[0] and pb[1] < vb[3] and pb[3] > vb[1]:
+                    pth_hits.append(f"{ref}.{pad.GetNumber()} overlaps {oref} VIP via")
+                    break
+
     for ref, (fp, _bottom) in placed.items():
         for pad in fp.Pads():
             if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH:
@@ -686,9 +1057,10 @@ def main():
     for line in unresolved:
         print("  pad", line)
 
-    from board_finish import finish_board
+    import board_finish as bf
 
-    finish_board(board)
+    _retarget_board_finish(bf)
+    bf.finish_board(board)
     board.SetFileName(str(PCB))
     pcbnew.SaveBoard(str(PCB), board)
     write_bom(comps)
@@ -702,7 +1074,7 @@ def main():
 # Exact orderable numbers. 0402 passives are Yageo RC0402FR (1%) and Murata GRM155.
 # 0603 bulk capacitors are the Murata parts named in the regulator tables.
 MPN = {
-    "U1": "ESP32-WROOM-32E-N8R2",
+    "U1": "ESP32-S3-MINI-1U-N4R2",
     "U2": "BQ25170DSGR",
     "Q3": "BC847BS,115",
     "U3": "TPS63802DLAR",
@@ -725,6 +1097,7 @@ MPN = {
     "U20": "TMP117AIDRVR",
     "Q1": "CSD13380F3T",
     "Q2": "CSD13380F3T",
+    "Q4": "CSD13380F3T",
     "U21": "USBLC6-2SC6",
     "D25": "KT-0603G",
     "SW1": "TS-1088-AR02016",
@@ -754,7 +1127,8 @@ MPN = {
     "R93": "0603WAF0000T5E",
     "R94": "0603WAF0000T5E",
 }
-for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D21", "D22", "D23", "D24"):
+for _ref in ("D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D21", "D22", "D23", "D24",
+             "D26", "D27", "D28", "D29", "D30"):
     MPN[_ref] = "TPD1E10B06DPYR"
 DNP_REFS = {"R61"}
 
@@ -765,7 +1139,7 @@ R_MPN = {
     "1k": "RC0402FR-071KL",
     "4.7k": "RC0402FR-074K7L",
     "5.1k": "RC0402FR-075K1L",
-    "0": "0402WGF0000TCE",
+    "0": "25121WJ0000T4E",
     "1.5k": "0402WGF1501TCE",
     "10k": "RC0402FR-0710KL",
     "22.1k": "RC0402FR-0722K1L",
@@ -807,6 +1181,9 @@ ELECTRODE_NETS = {
     "ECG1_PAD", "ECG2_PAD", "RLD_PAD", "AFE_P_PAD", "AFE_N_PAD",
     "EDA_CE_PAD", "EDA_SE_PAD", "EDA_RE_PAD", "EDA_DE_PAD",
     "BIOZ_FP_PAD", "BIOZ_FN_PAD", "BIOZ_SP_PAD", "BIOZ_SN_PAD",
+    # Connector-side tails upstream of the R118-R122 cut-points —
+    # patient-facing when J11/J13 are populated.
+    "J11_WE", "J11_RE", "J11_CE", "J13_INP", "J13_INM",
 }
 
 
@@ -880,6 +1257,8 @@ def mpn_for(ref, value, footprint):
     if ref in MPN:
         return MPN[ref]
     if ref.startswith("R"):
+        if value == "0":
+            return "25121WJ0000T4E" if "2512" in footprint else "0402WGF0000TCE"
         return R_MPN[value]
     if ref.startswith("C"):
         table = C_MPN_0603 if "0603" in footprint else C_MPN_0402
@@ -904,6 +1283,7 @@ LCSC_BY_MPN = {
     "TCA6408ARSVR": "C2649390",
     "SFH 7072": "C2655172",
     "0402WGF0000TCE": "C17168",
+    "25121WJ0000T4E": "C2908946",
     "0603WAF0000T5E": "C21189",
     "0402WGF1501TCE": "C25867",
     "0402WGF1005TCE": "C26082",
@@ -912,7 +1292,7 @@ LCSC_BY_VALUE = {
     "10k": "C25744",
     "100k": "C25741",
     "1k": "C11702",
-    "0": "C17168",
+    "0": "C2908946",
 }
 CONSIGN_MPNS = {
     "DPCR2512-51KJT18",
@@ -967,7 +1347,7 @@ def _jlc_rotation(fp):
 def write_jlc(board, comps):
     """JLCPCB BOM and CPL. DNP, fiducials, holes, test pads and the bare pad footprints stay off both."""
     skip_prefix = ("FID", "TP", "H")
-    bare = {"J2", "J3", "J5", "J6", "J7", "J8"}
+    bare = {"J2", "J3", "J5", "J6", "J7", "J8", "J9", "J10", "J11"}
     bom_rows = []
     cpl_rows = []
     corrections = []
