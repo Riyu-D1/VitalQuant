@@ -19,8 +19,8 @@ the hw_v1 naming for compatibility with build_pcb.py.
 #     INT GPIO39) plus the satellite tail pads J9/J10/J11, J12 FFC (DNP) and
 #     the J13 ECG pad pair (DNP). J12 is 14-pos, not the spec's 12: the
 #     three tails carry 13 nets, so a 14-pos FFC (FH12-14S-0.5SH) is the smallest that fits.
-#   * SHT45 U23 on I2C 0x44 (skin side); RV-3028-C7 RTC U24 DNP at 0x52;
-#     IM69D130 PDM mic U25 DNP on MIC_CLK/MIC_DAT (GPIO40/41); D12 730 nm LED
+#   * SHT45 U23 on I2C 0x44 (skin side); RV-3028-C7 RTC U24 at 0x52;
+#     IM69D130 PDM mic U25 on MIC_CLK/MIC_DAT (GPIO40/41); D12 730 nm LED
 #     + Q4 CSD13380F3T gated by AD5940 GPIO2 (ball E1, net NIR730_GATE).
 #   * Strict superset: no hw_v1 part, net, TVS, or test point was removed.
 #     New symbols are drawn in-file by hw_v2_lib() so lib/*.kicad_sym and the
@@ -844,16 +844,16 @@ def mcu(d: Design):
     d.vpart(sh, "R", "R108", "100k", FP_R, 390, 195, "SPARE_IN", "GND", dnp=True)
     sh.text("SPARE_IN: IO42 digital-only; DNP divider = logic VBAT detect only.", 314, 168, 1.2)
 
-    # hw_v2: IM69D130 PDM mic (DNP — footprint only, firmware optional).
-    mic = d.part(sh, "IM69D130", "U25", "IM69D130", FP_MIC, 235, 258, labels="ic", dnp=True)
+    # hw_v2: IM69D130 PDM mic (fitted — firmware optional).
+    mic = d.part(sh, "IM69D130", "U25", "IM69D130", FP_MIC, 235, 258, labels="ic")
     d.stub_net(sh, mic, "1", "MIC_DAT", 7.62)   # PDM data <- IO41
     d.stub_net(sh, mic, "3", "MIC_CLK", 7.62)   # PDM clock <- IO40
     d.stub_net(sh, mic, "4", "GND", 7.62)       # SELECT low = left slot
     d.join_row(sh, mic, ["2"], "+3V3", 6.35)
     d.join_row(sh, mic, ["5"], "GND", 6.35)
     d.finish(sh, mic)
-    d.vpart(sh, "C", "C78", "100n", FP_C, 265, 255, "+3V3", "GND", dnp=True)
-    sh.text("U25 IM69D130, DNP. PDM on IO40/IO41. 100 nF on VDD (datasheet).", 170, 282, 1.3)
+    d.vpart(sh, "C", "C78", "100n", FP_C, 265, 255, "+3V3", "GND")
+    sh.text("U25 IM69D130. PDM on IO40/IO41. 100 nF on VDD (datasheet).", 170, 282, 1.3)
 
 
 def afe(d: Design):
@@ -1349,9 +1349,9 @@ def i2c(d: Design):
     d.vpart(sh, "C", "C76", "100n", FP_C, 395, 200, "+3V3", "GND")
     sh.text("U23 SHT45-AD1B, 0x44, skin side.", 330, 190, 1.2)
 
-    # U24 RV-3028-C7 RTC, DNP, I2C 0x52. VBACKUP goes to VSS through a 10k
+    # U24 RV-3028-C7 RTC, I2C 0x52. VBACKUP goes to VSS through a 10k
     # (datasheet "must" when backup is unused — not a direct short). EVI low.
-    rtc = d.part(sh, "RV-3028-C7", "U24", "RV-3028-C7", FP_RTC, 360, 235, labels="ic", dnp=True)
+    rtc = d.part(sh, "RV-3028-C7", "U24", "RV-3028-C7", FP_RTC, 360, 235, labels="ic")
     d.stub_net(sh, rtc, "3", "I2C_SCL", 7.62)
     d.stub_net(sh, rtc, "4", "I2C_SDA", 7.62)
     d.stub_net(sh, rtc, "2", "RTC_INT", 7.62)  # open-drain /INT — no host GPIO assigned
@@ -1359,12 +1359,12 @@ def i2c(d: Design):
     d.join_row(sh, rtc, ["7"], "+3V3", 6.35)   # VDD
     d.join_row(sh, rtc, ["5"], "GND", 6.35)  # VSS
     d.stub_net(sh, rtc, "6", "RTC_VBK", 6.35)  # VBACKUP — datasheet requires 10k to VSS, not a short
-    d.vpart(sh, "R", "R115", "10k", FP_R, 410, 262, "RTC_VBK", "GND", dnp=True)
+    d.vpart(sh, "R", "R115", "10k", FP_R, 410, 262, "RTC_VBK", "GND")
     d.flag_net(sh, "RTC_VBK", 355, 270)  # power input reached only through R115
     d.finish(sh, rtc)  # CLKOUT left open
-    d.vpart(sh, "C", "C77", "100n", FP_C, 335, 262, "+3V3", "GND", dnp=True)
-    d.vpart(sh, "R", "R112", "10k", FP_R, 390, 262, "+3V3", "RTC_INT", dnp=True)
-    sh.text("U24 RV-3028-C7, DNP, 0x52. VBACKUP to VSS via R115 10k; CLKOUT open.", 330, 250, 1.2)
+    d.vpart(sh, "C", "C77", "100n", FP_C, 335, 262, "+3V3", "GND")
+    d.vpart(sh, "R", "R112", "10k", FP_R, 390, 262, "+3V3", "RTC_INT")
+    sh.text("U24 RV-3028-C7, 0x52. VBACKUP to VSS via R115 10k; CLKOUT open.", 330, 250, 1.2)
 
     # D12: 730 nm NIR LED for the AS7341 StO2 channel. Same switch pattern
     # as Q1/D11: 100R from +3V3, cathode to the CSD13380F3 drain. Gate is
@@ -1531,13 +1531,13 @@ def max86178(d: Design):
         d.stub_net(sh, j11, num, net, 6.35)
     d.finish(sh, j11)
     # Series 0R gives a cut point and the TPDs an IC-side home, matching the
-    # ladder pattern on the patient pads. TPDs ship DNP on the proto.
+    # ladder pattern on the patient pads. TPD clamps fitted.
     d.hpart(sh, "R", "R120", "0", FP_HV, 300, 230, "J11_WE", "SWEAT_WE")
     d.hpart(sh, "R", "R121", "0", FP_HV, 300, 242, "J11_RE", "SWEAT_RE")
     d.hpart(sh, "R", "R122", "0", FP_HV, 300, 254, "J11_CE", "SWEAT_CE")
-    d.vpart(sh, "D_TVS_2", "D26", "TPD1E10B06", FP_TVS, 335, 230, "SWEAT_WE", "GND", dnp=True)
-    d.vpart(sh, "D_TVS_2", "D27", "TPD1E10B06", FP_TVS, 350, 242, "SWEAT_RE", "GND", dnp=True)
-    d.vpart(sh, "D_TVS_2", "D28", "TPD1E10B06", FP_TVS, 335, 254, "SWEAT_CE", "GND", dnp=True)
+    d.vpart(sh, "D_TVS_2", "D26", "TPD1E10B06", FP_TVS, 335, 230, "SWEAT_WE", "GND")
+    d.vpart(sh, "D_TVS_2", "D27", "TPD1E10B06", FP_TVS, 350, 242, "SWEAT_RE", "GND")
+    d.vpart(sh, "D_TVS_2", "D28", "TPD1E10B06", FP_TVS, 335, 254, "SWEAT_CE", "GND")
     sh.text("J11 sweat site — RESEARCH-GRADE. WE=AIN6(C5), RE=AFE3(A2), CE=AFE4(A1); VERIFY switch matrix.", 240, 268, 1.2)
 
     # J12: DNP FFC carrying every tail net. Spec asked for 12-pos; J9+J10+J11
@@ -1561,8 +1561,8 @@ def max86178(d: Design):
     d.finish(sh, j13)
     d.hpart(sh, "R", "R118", "0", FP_HV, 175, 205, "J13_INP", "MX_ECG_INP")
     d.hpart(sh, "R", "R119", "0", FP_HV, 175, 215, "J13_INM", "MX_ECG_INM")
-    d.vpart(sh, "D_TVS_2", "D29", "TPD1E10B06", FP_TVS, 210, 205, "MX_ECG_INP", "GND", dnp=True)
-    d.vpart(sh, "D_TVS_2", "D30", "TPD1E10B06", FP_TVS, 210, 215, "MX_ECG_INM", "GND", dnp=True)
-    sh.text("J13 DNP: optional second ECG input pair. R118/R119 + D29/D30 ladder footprints.", 140, 232, 1.2)
+    d.vpart(sh, "D_TVS_2", "D29", "TPD1E10B06", FP_TVS, 210, 205, "MX_ECG_INP", "GND")
+    d.vpart(sh, "D_TVS_2", "D30", "TPD1E10B06", FP_TVS, 210, 215, "MX_ECG_INM", "GND")
+    sh.text("J13 DNP pads: optional second ECG input pair. R118/R119 + D29/D30 fitted.", 140, 232, 1.2)
 
     sh.text("No parts removed on this sheet — it is additive. Ball refs all VERIFY before layout.", 16, 280, 1.3)

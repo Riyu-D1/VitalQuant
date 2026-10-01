@@ -29,8 +29,8 @@
 | U21 | USBLC6-2SC6 | SOT-23-6 | C7519 | USB ESD array |
 | U22 | MAX86178ENJ+ | WLP-49 | — | ECG/PPG/BioZ AFE (NDA part) |
 | U23 | SHT45-AD1B(-R2) | DFN-4 | — | Humidity/temp |
-| U24 | RV-3028-C7 | SON-8 | — | **DNP** RTC |
-| U25 | IM69D130V01XTSA1 | LLGA-5 | — | **DNP** PDM mic |
+| U24 | RV-3028-C7 | SON-8 | — | RTC |
+| U25 | IM69D130V01XTSA1 | LLGA-5 | — | PDM mic (fitted) |
 
 ## Optical emitters — 4
 
@@ -45,7 +45,7 @@
 
 | Part | Refs | Qty fitted | DNP |
 |---|---|---|---|
-| TPD1E10B06DPYR | D1–D9, D21–D24 | 13 | D26–D30 (5) |
+| TPD1E10B06DPYR | D1–D9, D21–D30 | 18 | 0 |
 | USBLC6-2SC6 | (listed above, U21) | — | — |
 
 ## Connectors / switches — 4 orderable
@@ -75,7 +75,7 @@
 
 | MPN | Value / Pkg | Qty fit | DNP | Refs |
 |---|---|---|---|---|
-| GRM155R71C104KA88 | 100 nF / 0402 | 28 | 2 | C8,C13,C15,C18,C24,C25,C27–C29,C36–C41,C50,C51,C56–C63,C76,C79,C81 (+C77,C78) |
+| GRM155R71C104KA88 | 100 nF / 0402 | 30 | 0 | C8,C13,C15,C18,C24,C25,C27–C29,C36–C41,C50,C51,C56–C63,C76–C79,C81 |
 | GRM155R61A105KE15 | 1 µF / 0402 | 18 | 0 | C3,C4,C6,C11,C14,C16,C19,C26,C32,C33,C42,C43,C64,C66,C80,C82,C83,C84 |
 | GRM155R61A474KE15 | 470 nF / 0402 | 7 | 0 | C21–C23,C55,C68–C70 |
 | GRM1555C1H222JA01 | 2.2 nF / 0402 | 4 | 0 | C48,C49,C52,C53 |
@@ -98,7 +98,7 @@
 
 | MPN | Value / Pkg | Qty fit | DNP | Refs |
 |---|---|---|---|---|
-| RC0402FR-0710KL | 10 kΩ / 0402 | 24 | 2 | R5–R9,R11,R14,R49,R52,R53,R60,R65,R67–R71,R74,R98,R100,R101,R113,R116,R117 (+R112,R115) C25744 |
+| RC0402FR-0710KL | 10 kΩ / 0402 | 26 | 0 | R5–R9,R11,R14,R49,R52,R53,R60,R65,R67–R71,R74,R98,R100,R101,R112,R113,R115,R116,R117 (C25744) |
 | RC0402FR-071KL | 1 kΩ / 0402 | 14 | 0 | R10,R13,R39–R42,R62,R72,R73,R84–R88 (C11702) |
 | DPCR2512-51KJT18 | 51 kΩ / 2512 | 13 | 0 | R32–R36, R76–R83 (HV ladder) |
 | 0402WGF0000TCE | 0 Ω / 0402 | 11 | 2 | R89–R92,R95–R97,R102,R103,R106,R114 (+R104,R105) C17168 |
@@ -130,4 +130,6 @@
 - J2/J3/J5/J6/J7/J9/J10/J11/J13 solder-pad fields, J8 TC2030 pads
 
 ## Distinct orderable line items: 57
-## Totals per board: 281 fitted + 11 DNP parts
+## Totals per board: 285 fitted + 7 DNP placements
+(Remaining DNP — all intentional options: R61 cell-NTC, R104/R105 CP2102 USB strap
+(mutually exclusive with R102/R103), R107/R108 SPARE divider, J12 FFC, J13 pads)
