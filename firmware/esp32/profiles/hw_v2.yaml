@@ -2,8 +2,7 @@
 # One file per hardware_revision; validated by vitalq-core's HardwareProfile schema.
 # Sensor presence, model, bus, rates and optics are CONFIG, never compiled code.
 #
-# EXAMPLE — mirrors firmware/esp32/profiles/hw_v2.yaml (authoritative source:
-# hardware/pcb/HW_V2_SPEC.md, branch hw_v2). Older revisions: hw_v0.yaml, hw_v1.yaml.
+# hw_v2 — authoritative source: hardware/pcb/HW_V2_SPEC.md (branch hw_v2).
 # ESP32-WROOM-32E → ESP32-S3-MINI-1U-N4R2 (4 MB flash + 2 MB PSRAM, U.FL antenna).
 #
 # GPIO map (S3-MINI-1U, per spec interface table):
@@ -35,9 +34,9 @@
 #   P4 IR_GATE, P5 CHG_STAT, P6 VBUS_DET, P7 CHG_DIS
 #
 # NIR730_GATE: D12 730 nm LED (+3V3 via R109 100Ω) cathode switched by Q4,
-# gated by AD5940 GPIO2 on ball E1 — NOT GPIO0 (GPIO0/ball F5 = ESP32
-# GPIO14 link, net AD5940_GPIO0). Pairs with
-# the AS7341 nir channel for the derived tissue.sto2 ratio.
+# gated by AD5940 GPIO2 on ball E1 — NOT GPIO0 (GPIO0/ball F5 is the ESP32
+# GPIO14 input link, net AD5940_GPIO0). Pairs with the AS7341 nir channel
+# for the derived tissue.sto2 ratio.
 #
 # Tail connectors:
 #   J9  distal-temp tail — 4 pads (3V3/SDA/SCL/GND), flex TMP117/TMP119 @ 0x4A

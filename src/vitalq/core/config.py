@@ -22,15 +22,24 @@ from vitalq.core.channels import (
 # Sensors the codebase ships drivers/abstractions for. A model name outside this
 # set fails validation loudly rather than being silently ignored by firmware.
 KNOWN_SENSOR_MODELS = {
-    "MAX30102", "MAX86140", "MAX86141",
+    "MAX30102", "MAX86140", "MAX86141", "MAX86178",
+    "ADS1292R", "AFE4900", "AD5940",
     "AS7341", "AS7341-DLGM",
     "MLX90614", "MLX90632", "MLX90637",
+    "TMP117", "TMP119", "SHT45",
     "BME280", "BME680",
-    "MPU6050", "ICM-42670-P", "LSM6DS3", "BMI270",
+    "MPU6050", "ICM-42670-P", "LSM6DS3", "BMI270", "LSM6DSV80X",
     "FSR402",
+    # hw_v2 board-support devices (no measurement channels of their own)
+    "TCA6408", "MAX17048", "W25Q512", "RV-3028-C7", "IM69D130",
 }
 
-SENSOR_KINDS = ("ppg", "spectral", "temperature", "environment", "motion", "contact")
+SENSOR_KINDS = (
+    "ppg", "spectral", "temperature", "environment", "motion", "contact",
+    # hw_v2 additions — one entry per physical/logical device, keyed by function
+    "ecg", "ppg_satellite", "eda", "sweat", "temperature_contact", "skin",
+    "gauge", "expander", "rtc", "mic", "flash",
+)
 
 
 class BusI2C(BaseModel):
@@ -78,6 +87,10 @@ class SensorDef(BaseModel):
     bus: str | None = None
     address: str | None = None
     input: str | None = None                      # analog pin e.g. adc1_ch0 (FSR)
+    cs: int | None = None                         # SPI chip-select GPIO (multi-CS host)
+    int_pin: int | None = None                    # data-ready/interrupt GPIO (timestamped inputs)
+    dnp: bool = False                             # do-not-populate footprint (rtc, mic, J12)
+    research_grade: bool = False                  # RESEARCH-GRADE channel, never clinical
     outputs: list[str] = Field(default_factory=list)
     rate_hz: float | None = None
     sample_rate_hz: float | None = None

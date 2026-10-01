@@ -16,8 +16,8 @@ patient-leakage or defibrillator-proof claim.
 | R3 | 1.5 kΩ | CHG_ISET | GND | SLUSDJ8A: KISET / RISET, KISET = 300 AΩ. 1.5 kΩ is 200 mA. Uni-Royal 0402WGF1501TCE (LCSC C25867) |
 | R75 | 27.0 kΩ | CHG_VSET | GND | SLUSDJ8A Table 7-1: 27 kΩ sets a 1-cell Li-Ion to 4.20 V |
 | R59 | 100 kΩ | CHG_DIS | GND | Holds Q2 off. Charge stays enabled until firmware drives P7 high |
-| R60 | 10 kΩ | +3V3 | CHG_PG | BQ25170 /PG is open drain. GPIO27 reads it |
-| R74 | 10 kΩ | +3V3 | GAUGE_ALRT | MAX17048 ALRT is open drain. GPIO25 reads it |
+| R60 | 10 kΩ | +3V3 | CHG_PG | BQ25170 /PG is open drain. GPIO7 reads it |
+| R74 | 10 kΩ | +3V3 | GAUGE_ALRT | MAX17048 ALRT is open drain. GPIO6 reads it |
 | R61 | 10 kΩ NTC, DNP | TS | GND | On-board NCU15XH103F6SRC. Fit this or the cell NTC, not both. Not an ADC divider |
 | R49 | 10 kΩ | +3V3 | CHG_STAT | STAT is open drain. Pull-up so the expander can read it |
 | C3 | 1 µF | VBAT | GND | Local VBAT bypass kept from the previous rail |
@@ -33,7 +33,7 @@ patient-leakage or defibrillator-proof claim.
 | C58 | 100 nF | VBAT | GND | MAX17048 VDD bypass, 19-4688 typical application |
 | C46 | 2.2 µF | VBAT_SYS | GND | TPS61240 CIN, on the load side of R93. SLVSAR3 typical application |
 | C47 | 4.7 µF 0603 | TX_5V_RAW | GND | TPS61240 COUT, before R96. Datasheet specifies 0603 |
-| L2 | 1.0 µH | LX | TX_5V | DFE201612E-1R0M. Isat covers the 600 mA switch limit |
+| L2 | 1.0 µH | VBAT_SYS | TX_SW | DFE201612E-1R0M. Isat covers the 600 mA switch limit. Span corrected: it was drawn TX_SW → TX_5V, on the wrong side of the switch node |
 | R25 | 100 kΩ | TX5_EN | GND | Holds the boost off until the expander drives EN |
 
 ## Charge temperature cut-off
@@ -56,7 +56,8 @@ GND is the cold/hot window. The datasheet's example is a Semitec
 103AT-2. Cold is about 1.04 V (~0 °C) and hot is about 188 mV (~45 °C)
 for that beta. VTS_ENZ is 50 mV typical (40–60 mV); pulling TS below
 that disables charge. Do not hang an ESP32 ADC on TS. The ADC is not
-high-Z and it would steal the 38 µA bias. GPIO39 is open.
+high-Z and it would steal the 38 µA bias. On hw_v2 GPIO39 is no longer
+open anyway — it is MAX86178_INT.
 
 R61 is Murata NCU15XH103F6SRC, 0402, 10 kΩ ±1% at 25 °C, B25/50 ≈ 3380 K.
 That is close to the 103AT-2 (B ≈ 3435 K) and not the same part, so the
@@ -84,7 +85,7 @@ protection PCM. Do not fit R61 and the cell NTC together.
 
 | Ref | Value | From | To | Why |
 | --- | --- | --- | --- | --- |
-| C7 | 10 µF | +3V3 | GND | ESP32 module bulk, Espressif hardware design guideline |
+| C7 | 22 µF 10 V 0603 | +3V3_ESP | GND | ESP32 module bulk, Espressif hardware design guideline (see C7 row under "Prefab additions" for the MPN/placement detail) |
 | C8 | 100 nF | +3V3 | GND | ESP32 module high-frequency bypass |
 | C9 | 4.7 µF | VDD_CP2102 | GND | CP2102N VDD bulk. Not the 3.3 V rail |
 | C62 | 100 nF | VDD_CP2102 | GND | CP2102N Rev 1.5: 100 nF beside the 4.7 µF on VDD |
@@ -100,7 +101,7 @@ protection PCM. Do not fit R61 and the cell NTC together.
 | R73 | 1 kΩ | CP_TX | ESP_RX | Series on UART RX, same reason |
 | R6 | 10 kΩ | +3V3 | ESP_IO0 | GPIO0 strap pull-up |
 | R7 | 10 kΩ | +3V3 | CS_AD5940 | GPIO15 must be high at reset |
-| R52 | 10 kΩ | +3V3 | CS_FLASH | Keeps the flash deselected while GPIO26 is an input |
+| R52 | 10 kΩ | +3V3 | CS_FLASH | Keeps the flash deselected until GPIO16 drives it (output) |
 | R53 | 10 kΩ | +3V3 | EXP_INT | TCA6408 /INT is open drain |
 | R62 | 1 kΩ | VDD_CP2102 | CP_RST | CP2102N Rev 1.5: RSTb pull-up, required in all cases |
 | R63 | 22.1 kΩ | VBUS | CP_VBUS | CP2102N Fig 2.5 divider, top |
@@ -283,6 +284,18 @@ then R84–R87. There is no gas-discharge tube. The TPD is not
 across the pad. A 5.5 V diode on the pad would take the defibrillator
 current.
 
+The J11 sweat site and the J13 second-ECG pair use the same order at
+0 Ω scale: connector pad, 0 Ω series cut-point (R120–R122 on J11,
+R118/R119 on J13), then a DNP TPD1E10B06 to GND (D26–D28, D29–D30)
+before the AD5940 spare inputs and the MAX86178 bio-potential pins.
+The 0 Ω parts are the cut point — removing one isolates the tail —
+and the clamp footprints ship DNP on the proto. The cut-points are
+R_2512_6332Metric (FP_HV), the same HV-boundary footprint pattern as
+R76–R83 (~4.7 mm pad span), not ordinary 0402 links — they sit in the
+east protection column next to the J10/J11 east-edge sites so the
+connector pad → 51 kΩ-class series → clamp chain keeps its creepage
+posture.
+
 SBAS502C §6.1 limits current into any pin except the supplies to
 ±10 mA continuous and ±100 mA momentary. If the TPD node sits near
 15 V and the rail is 3.3 V, 10 kΩ leaves about 1.2 mA, under that
@@ -306,6 +319,7 @@ electrode side of R67/R68 and is not across R26–R29.
 | D1–D5 | TPD1E10B06 | ECG_P, ECG_N, RLD_CLAMP, AFE_P_AC, AFE_N_AC |
 | D6–D9 | TPD1E10B06 | CE_ISO, SE_ISO, RE_SURGE, DE_SURGE |
 | D21–D24 | TPD1E10B06 | FP_ISO, FN_ISO, SP_ISO, SN_ISO |
+| D26–D30 | TPD1E10B06, DNP | SWEAT_WE/RE/CE and MX_ECG_INP/INM to GND, on the IC side of the R118–R122 0 Ω links |
 
 R32–R36 are TT Electronics / Welwyn DPCR2512-51KJT18. The DPCR series
 is 2512 only, which is the smallest package in that family. The
@@ -381,7 +395,7 @@ consign).
 | C8 | 100 nF | +3V3_ESP | GND | ESP32 high-frequency bypass, kept |
 | C10 | 1 µF 25 V 0603 | VBUS | GND | Was a 10 V 0402. Voltage raised because it sits on VBUS. LCSC left blank |
 | R88 | 1 kΩ | STATUS_LED | LED_A | GPIO17 to D25. LCSC C11702 |
-| R89–R92 | 0 Ω 0402 | device MISO | SPI_MISO | 0402WGF0000TCE (LCSC C17168). In the debug band |
+| R89–R92 | 0 Ω 0402 | device MISO | SPI_MISO | In the debug band. BOM maps value 0 → 25121WJ0000T4E (LCSC C2908946, a 2512 jumper — the map is value-keyed, so it lands on the 0402 links too) |
 | R93, R94 | 0 Ω 0603 | VBAT→VBAT_SYS, +3V3→+3V3_ESP | | 0603WAF0000T5E (LCSC C21189) |
 | R95 | 0 Ω 0402 | +3V3 | +3V3_ANA | same 0402 0 Ω |
 | R96 | 0 Ω 0402 | TX_5V_RAW | TX_5V | same |
@@ -394,3 +408,55 @@ consign).
 
 TMP117 exposed pads (U11 and U20) use `vitalq:TMP117_DRV_NOPASTE`.
 Pad 7 is copper and mask only. No paste.
+
+## hw_v2 additions
+
+Spec: `HW_V2_SPEC.md`. Reference designators are as assigned in
+`design.py` (final). 0402 convention continues except the J11/J13
+cut-points: R118–R122 are R_2512_6332Metric (FP_HV), the same
+HV-boundary footprint pattern as R76–R83.
+
+| Ref | Value | From | To | Why |
+| --- | --- | --- | --- | --- |
+| R109 | 100 Ω | +3V3 | D12 anode (NIR_AN) | 730 nm LED series resistor, mirrors the R47 pattern on the 860 nm LED. ~13–15 mA at a ~1.8–2.0 V emitter Vf. Confirm against the selected emitter's datasheet |
+| R110 | 100 kΩ | NIR730_GATE | GND | Holds Q4 / the LED off at boot, same role as R48 on IR_GATE. NIR730_GATE is AD5940 GPIO2, ball E1 |
+| R106 | 0 Ω | MISO_MX | SPI_MISO | MAX86178 MISO isolation link — fifth in the R89–R92 pattern; BOM maps value 0 → 25121WJ0000T4E (LCSC C2908946) |
+| R113 | 10 kΩ | +3V3 | MAX86178_INT | /INT is open-drain, needs the pull-up |
+| R114 | 0 Ω | TX_5V | LED_AN | Shared-anode rail moved off VBAT onto TX_5V — VBAT lacks the headroom for a ~3 V Vf emitter plus driver compliance. Time-shared with the AFE4900 TX section under TX5_EN |
+| R115 | 10 kΩ, DNP | RTC_VBK (VBACKUP) | GND | RV-3028-C7 datasheet: an unused VBACKUP must reach VSS through 10 kΩ, not a dead short. DNP with U24 |
+| R116 | 10 kΩ | +3V3_ANA | CS_AFE4900 | Pull-up on the AFE's own supply rail; CS_AFE4900 idles high |
+| R117 | 10 kΩ | +3V3 | CS_MAX86178 | CS pull-up, same role as R98/R7/R52 |
+| R118, R119 | 0 Ω 2512 (FP_HV) | J13_INP / J13_INM | MX_ECG_INP / MX_ECG_INM | Series cut-points on the DNP second-ECG pair — removing them isolates the tail; D29/D30 sit on the IC side. Same HV-boundary footprint pattern as R76–R83; BOM 25121WJ0000T4E (C2908946) |
+| R120–R122 | 0 Ω 2512 (FP_HV) | J11_WE / J11_RE / J11_CE | SWEAT_WE / SWEAT_RE / SWEAT_CE | Series cut-points on the sweat site; give the DNP clamps D26–D28 an IC-side node and let the tail be depopulated. Same FP_HV land as R118/R119; BOM 25121WJ0000T4E (C2908946) |
+| R107, R108 | 100 kΩ, DNP | VBAT / SPARE_IN | SPARE_IN / GND | Logic-level battery-present divider on IO42 only — IO42 is digital-only, so this is never an analog VBAT_SENSE. Battery voltage stays with MAX17048 |
+| R112 | 10 kΩ, DNP | +3V3 | RTC_INT | RV-3028 /INT pull-up. DNP with the part |
+| C79 | 100 nF | +3V3_ANA | GND | MAX86178 AVDD high-frequency bypass |
+| C80 | 1 µF | +3V3_ANA | GND | MAX86178 AVDD bulk |
+| C81 | 100 nF | +3V3 | GND | MAX86178 DVDD bypass |
+| C82 | 1 µF | VBAT | GND | MAX86178 LED_DRV_SUP bypass |
+| C83 | 1 µF | MX_VREF | GND | MAX86178 reference bypass — # VERIFY value vs the NDA datasheet |
+| C76 | 100 nF | +3V3 | GND | SHT45 VDD bypass, beside U23 |
+| C77 | 100 nF, DNP | +3V3 | GND | RV-3028-C7 VDD bypass. The C7 variant integrates the 32.768 kHz crystal — **verify against the Micro Crystal datasheet** — so no load capacitors. DNP with the part |
+| C78 | 100 nF, DNP | +3V3 | GND | IM69D130 VDD bypass. DNP with the part |
+| R102, R103 | 0 Ω | J1 USB D+/D− | USB_DP_S3 / USB_DM_S3 (S3 GPIO20/19) | Default USB strap: native S3 USB. **Fitted** |
+| R104, R105 | 0 Ω, DNP | J1 USB D+/D− | USB_DP_CP / USB_DM_CP (CP2102) | Alternate strap: CP2102 bridge for out-of-band console recovery. **Never fit both pairs — two USB devices cannot share one D+/D− pair** |
+| C84 | 1 µF | +3V3 | GND | Extra bypass in the regulator decoupling row — +3V3 is the input rail of U4 |
+| J9–J13 pads | — | — | — | Bare SMD pads: no series R, no pull-ups, no ESD parts specified. Tail-sensor I2C shares the R19/R20 bus pull-ups. J12 is the DNP 14-pos FFC option (FH12-14S-0.5SH). See VERIFICATION §hw_v2 tail-ESD gate |
+| TP28 | test point | RTC_INT | — | 28th test pad, on the RTC interrupt line |
+
+SHT45 keeps the shared I2C3V3 pull-ups (R19/R20, 4.7 kΩ) and now has
+C76 as its local 100 nF VDD decoupler, per the Sensirion
+recommendation — the earlier "no dedicated passives" note is closed.
+
+RV-3028-C7 note: if the integrated-crystal claim checks out, the RTC
+needs only C77 — no 32.768 kHz load caps, no external crystal. It runs
+on the main 3.3 V rail with no backup cell specified (VBACKUP reaches
+VSS through R115 10 kΩ, DNP — the datasheet requires the resistor,
+not a direct short), so wall-clock state is lost on battery removal;
+that is acceptable for the logging-anchor role but is recorded here,
+not assumed away.
+
+The U1 module swap reuses the existing decoupling pattern: C7 (22 µF
+bulk) and C8 (100 nF) stay on +3V3_ESP next to the module, same as the
+WROOM. No strap resistors are added for GPIO45/46 (left unstrapped per
+spec); GPIO0 keeps its button/TP10 path and GPIO3 keeps R53.

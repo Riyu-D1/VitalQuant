@@ -20,6 +20,7 @@ class SensorType(str, Enum):
     MOTION = "motion"
     CONTACT = "contact"
     SYSTEM = "system"
+    ELECTROCHEMICAL = "electrochemical"  # amperometric/potentiometric front-ends (AD5940)
     EXTERNAL = "external"   # imported recordings (WFDB etc.) or derived streams
 
 
@@ -92,6 +93,31 @@ _CHANNELS: list[Channel] = [
             unit=None, sample_role=SampleRole.WAVEFORM),
     Channel(channel_id="ecg.avr", sensor_type=SensorType.EXTERNAL,
             unit=None, sample_role=SampleRole.WAVEFORM),
+    # --- hw_v2 additions (hardware/pcb/HW_V2_SPEC.md) --------------------------
+    # Satellite PPG — MAX86178 (SPI CS=GPIO38) driving the J10 tail's SFH7050A;
+    # its 3 LED cathodes time-mux onto this one stream (wavelength per profile).
+    Channel(channel_id="ppg.satellite", sensor_type=SensorType.OPTICAL, unit="count",
+            sample_role=SampleRole.WAVEFORM, plausible_min=0),
+    # SHT45 skin-face RH + temperature (I2C3V3 0x44).
+    Channel(channel_id="skin.rh", sensor_type=SensorType.ENVIRONMENT, unit="pctRH",
+            sample_role=SampleRole.SCALAR, plausible_min=0, plausible_max=100),
+    Channel(channel_id="skin.temp", sensor_type=SensorType.TEMPERATURE, unit="degC",
+            sample_role=SampleRole.SCALAR, plausible_min=-40, plausible_max=125),
+    # Distal TMP117/TMP119 on the J9 flex tail (I2C3V3 0x4A).
+    Channel(channel_id="skin.temp_distal", sensor_type=SensorType.TEMPERATURE, unit="degC",
+            sample_role=SampleRole.SCALAR, plausible_min=-40, plausible_max=125),
+    # Derived streams (computed, not raw reads): zero-heat-flux core estimate from
+    # the TMP117 pair (0x48/0x49) under the insulation dome, and tissue StO2 from
+    # the AS7341 NIR channel ratioed against the gated 730 nm LED (NIR730_GATE).
+    Channel(channel_id="core.temp_est", sensor_type=SensorType.EXTERNAL, unit="degC",
+            sample_role=SampleRole.SCALAR, plausible_min=25, plausible_max=45),
+    Channel(channel_id="tissue.sto2", sensor_type=SensorType.EXTERNAL, unit="pct",
+            sample_role=SampleRole.SCALAR, plausible_min=0, plausible_max=100),
+    # RESEARCH-GRADE: sweat-lactate amperometric channel, J11 WE/RE/CE electrodes
+    # into an AD5940 spare mux channel. Research channel only — never a clinical output.
+    Channel(channel_id="sweat.lactate", sensor_type=SensorType.ELECTROCHEMICAL,
+            unit="mmol/L", sample_role=SampleRole.SCALAR, plausible_min=0,
+            plausible_max=100),
 ]
 
 # Spectral frame channel names (AS7341 family) — validated separately because they are
