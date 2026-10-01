@@ -81,11 +81,23 @@ def _hv_keepouts(board):
     """No inner copper and no vias under defibrillation copper. The pad's own layer stays."""
     rects = []
     for fp in board.GetFootprints():
-        own = pcbnew.B_Cu if fp.IsFlipped() else pcbnew.F_Cu
-        blocked = [layer for layer in (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu) if layer != own]
+        fp_own = pcbnew.B_Cu if fp.IsFlipped() else pcbnew.F_Cu
         for pad in fp.Pads():
             if pad.GetNetname() not in HV_NETS:
                 continue
+            # Per-pad own layer: a footprint can sit unflipped while its
+            # pads are B.Cu-only (edge tails) — trusting IsFlipped sealed
+            # J11's pads inside hv_inner on their own escape layer.
+            ls = pad.GetLayerSet()
+            own = fp_own
+            if ls.Contains(pcbnew.B_Cu) and not ls.Contains(pcbnew.F_Cu):
+                own = pcbnew.B_Cu
+            elif ls.Contains(pcbnew.F_Cu) and not ls.Contains(pcbnew.B_Cu):
+                own = pcbnew.F_Cu
+            # "No inner copper and no vias under defib copper" — inner
+            # layers only. Covering the opposite outer layer sealed the
+            # interleaved pad row (F shadows landed on B pads' escapes).
+            blocked = [pcbnew.In1_Cu, pcbnew.In2_Cu]
             x0, y0, x1, y1 = _box(pad, 1.0)
             rects.append((x0, y0, x1, y1))
             _rect_zone(
@@ -201,6 +213,21 @@ def _vip(board):
             if name.startswith("unconnected") or net is None or net.GetNetname() == "":
                 continue
             if not _is_inner(pad, pads):
+                continue
+            pad.SetSize(pcbnew.VECTOR2I(mm(0.25), mm(0.25)))
+            pad.SetLocalSolderMaskMargin(mm(0.025))
+            _add_via(board, pad.GetPosition(), net, 0.30, 0.20, tent=False)
+            count += 1
+    # U22 WLP-49: row F is trapped between rows A and G (0.15 mm pad gaps —
+    # no escape lane on B.Cu), so every live F-row ball needs VIP+POFV.
+    fp = board.FindFootprintByReference("U22")
+    if fp is not None:
+        for pad in fp.Pads():
+            net = pad.GetNet()
+            name = pad.GetNetname()
+            if not pad.GetName().startswith("F"):
+                continue
+            if name.startswith("unconnected") or net is None or net.GetNetname() == "":
                 continue
             pad.SetSize(pcbnew.VECTOR2I(mm(0.25), mm(0.25)))
             pad.SetLocalSolderMaskMargin(mm(0.025))
