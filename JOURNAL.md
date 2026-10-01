@@ -77,5 +77,6 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - I had recorded a lapse but this time was not recorded and there was some glitch where the lapse cannot be found (I have followed this up with hackclub)
 - This took a lot of time as I had to ensure the research I had done was up to date with all the sensor research I had done.
 - The new sensors were now organised only on the pcb and basic wiring was completed but this still needs to be heavily double checked and routing still has to be completed so lots of work will need to be put in to complete the pcb still.
+- The BOM is all listed in the devin hw2_pcb branch
 - This is just a very basic and initial render of the pcb
 <img width="274" height="498" alt="image" src="https://github.com/user-attachments/assets/0db3fd01-83a3-4335-b2a0-09a58c8ec203" />
