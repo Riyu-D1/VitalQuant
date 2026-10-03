@@ -2,15 +2,18 @@
 
 Board: `vitalq_hw_v1.kicad_pcb` (regenerated hw_v2), **40.0 × 62.0 mm**
 (grew east from 32.0 to host the J11/J13 HV-boundary protection row —
-J10/J11 moved to the new east edge), 4 layers (F.Cu / In1.Cu / In2.Cu /
-B.Cu), double-sided assembly, **291 footprints (144 top / 147 bottom)**,
-1,025 pads.
+J10/J11 moved to the new east edge), **6 layers** since 2026-10-03
+(F.Cu / In1.Cu GND / In2.Cu power+signal / In3.Cu signal / In4.Cu GND /
+B.Cu), double-sided assembly, **292 footprints**,
+~1,025 pads.
 
-**Status: NOT FAB-READY.** The board is intentionally unrouted: 0 track
-segments, 499 reported `unconnected_items` violations (kicad-cli DRC,
-2026-09-30) — the true missing-link count is higher (see §1; the 499
-list is incomplete). Do not send it out until every net is routed and
-DRC is clean except agreed waivers.
+**Status: PARTIALLY ROUTED — NOT FAB-READY.** As of 2026-10-03 the
+board carries 1,727 track segments + 226 vias from the parallel
+grid-router effort described in VERIFICATION.md ("2026-10-03 —
+six-layer routing effort"). ~450 unconnected items remain per
+kicad-cli DRC, concentrated in the U6/U7/U8 dense center, the I2C/SPI
+buses, HV tails, and power nets lacking pour islands. Do not send it
+out until every net is routed and DRC is clean except agreed waivers.
 
 Generated 2026-09-30 with KiCad 10.0.4 pcbnew + `kicad-cli pcb drc`.
 

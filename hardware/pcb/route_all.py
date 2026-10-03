@@ -26,14 +26,18 @@ from collections import defaultdict
 import pcbnew
 
 MM = 1_000_000
-F_CU, B_CU, IN1, IN2 = pcbnew.F_Cu, pcbnew.B_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu
-ROUTE_LAYERS = (F_CU, B_CU, IN2)       # In1 stays a solid GND return plane
-VIA_SPAN_LAYERS = (F_CU, B_CU, IN1, IN2)  # through vias must clear all four
+F_CU, B_CU = pcbnew.F_Cu, pcbnew.B_Cu
+IN1, IN2, IN3, IN4 = (pcbnew.In1_Cu, pcbnew.In2_Cu,
+                     pcbnew.In3_Cu, pcbnew.In4_Cu)
+# 6-layer: F + B + In2 (shared w/ power pours) + In3 for signals.
+# In1 and In4 stay solid GND return planes.
+ROUTE_LAYERS = (F_CU, B_CU, IN2, IN3)
+VIA_SPAN_LAYERS = (F_CU, B_CU, IN1, IN2, IN3, IN4)  # through vias clear all six
 
 GRID = 0.10          # mm
 BUCKET = 2.0         # spatial hash cell size (>= max obstacle influence)
 MAX_INFL = 2.0       # max obstacle influence = 1.5 clearance + 0.5 slack
-VIA_D, VIA_H = 0.60, 0.30   # default through via
+VIA_D, VIA_H = 0.45, 0.20   # small through via — fits dense pockets
 VIA_PEN = 6.0              # mm-equivalent cost for a layer change
 STEP_ORTHO = GRID
 STEP_DIAG = GRID * math.sqrt(2)
@@ -327,7 +331,11 @@ def astar(obs, start, goal, my_net, my_cls, w, margin=9.0, goals=None):
 
     pq = [(h(s[0], s[1], s[2]), 0.0, s)]
     came, dist, gdone = {}, {s: 0.0}, set()
+    pops = 0
     while pq:
+        pops += 1
+        if pops > 300_000:        # hard bound — bail rather than churn forever
+            return None
         _, d, cur = heapq.heappop(pq)
         if cur == g or (goals and cur in goals):
             hit = cur
@@ -342,8 +350,8 @@ def astar(obs, start, goal, my_net, my_cls, w, margin=9.0, goals=None):
             fx, fy = nx * GRID, ny * GRID
             if not free(fx, fy, cly):
                 continue
-            if dx and dy and (not free(x + dx * GRID, y, cly) and not free(x, y + dy * GRID, cly)):
-                continue
+            if dx and dy and (not free(x + dx * GRID, y, cly) or not free(x, y + dy * GRID, cly)):
+                continue    # no corner cutting — the chord would clip the blocked cell
             nd = d + cost
             nkey = (nx, ny, cly)
             if nd < dist.get(nkey, 1e9):
@@ -393,6 +401,25 @@ def simplify(path):
 
 
 EMITTED = defaultdict(list)   # net -> [board items], for rip-up
+
+
+def path_clear(obs, path, net, cls, hw):
+    """Final safety check: every emitted segment sampled along its length
+    must satisfy exact clearance vs all foreign copper/pads/keepouts.
+    Catches anything the grid-center cell_blocked missed (corner clips,
+    stale caches). Returns True if the whole path is safe to emit."""
+    for i in range(len(path) - 1):
+        ax, ay, al = path[i]
+        bx, by, bl = path[i + 1]
+        if al != bl:
+            continue                       # via — validated by via_fits at search time
+        n = max(1, int(math.hypot(bx - ax, by - ay) / GRID))
+        for k in range(n + 1):
+            px = ax + (bx - ax) * k / n
+            py = ay + (by - ay) * k / n
+            if obs.cell_blocked(px, py, al, net, cls, hw):
+                return False
+    return True
 
 
 def emit(board, obs, path, net, w):
@@ -451,9 +478,10 @@ def route_net(board, obs, netname):
         return 0, 0, []
     cls = class_of(board, netname)
     _, w = CLASS_RULE.get(cls, (DEFAULT_CLR, DEFAULT_W))
-    # Seed the net tree with pad 0's cells; every other pad routes to the
-    # nearest existing copper of this net (Steiner-style growth).
-    tree = set()
+    # Seed the net tree with existing copper (partial routes survive a re-run)
+    # plus pad 0's cells; every other pad routes to the nearest existing
+    # copper of this net (Steiner-style growth).
+    tree = net_tree_cells(board, netname)
     for la in pads[0][4]:
         tree.add((round(pads[0][2] / GRID), round(pads[0][3] / GRID), la))
     remaining = pads[1:]
@@ -468,6 +496,11 @@ def route_net(board, obs, netname):
             return min(math.hypot(p[2] - c[0] * GRID, p[3] - c[1] * GRID) for c in ts)
 
         p = min(remaining, key=dtree)
+        # already connected: copper already runs through this pad's cells
+        if any((round(p[2] / GRID), round(p[3] / GRID), la) in tree for la in p[4]):
+            ok += 1
+            remaining.remove(p)
+            continue
         tcell = min(tree, key=lambda c: math.hypot(p[2] - c[0] * GRID, p[3] - c[1] * GRID))
         done = False
         for margin in (9.0, 25.0, 45.0):
@@ -477,6 +510,8 @@ def route_net(board, obs, netname):
                              netname, cls, w, margin, goals=tree)
                 if path:
                     sp = simplify(path)
+                    if not path_clear(obs, sp, netname, cls, w / 2):
+                        continue    # segment-level check failed — try next layer/margin
                     emit(board, obs, sp, netname, w)
                     tree |= raster_cells(sp)
                     ok += 1
@@ -522,6 +557,8 @@ def route_pad(board, obs, netname, pad):
         p0 = pads_of_net(board, netname)[0]
         for la in p0[4]:
             tree.add((round(p0[2] / GRID), round(p0[3] / GRID), la))
+    if any((round(pad[2] / GRID), round(pad[3] / GRID), la) in tree for la in pad[4]):
+        return True    # copper already reaches this pad
     tcell = min(tree, key=lambda c: math.hypot(pad[2] - c[0] * GRID, pad[3] - c[1] * GRID))
     for margin in (9.0, 25.0, 45.0):
         for la in pad[4]:
@@ -529,13 +566,29 @@ def route_pad(board, obs, netname, pad):
                          (tcell[0] * GRID, tcell[1] * GRID, tcell[2]),
                          netname, cls, w, margin, goals=tree)
             if path:
-                emit(board, obs, simplify(path), netname, w)
+                sp = simplify(path)
+                if not path_clear(obs, sp, netname, cls, w / 2):
+                    continue
+                emit(board, obs, sp, netname, w)
                 return True
     return False
 
 
 def main():
-    board = pcbnew.LoadBoard(sys.argv[1])
+    infile = sys.argv[1]
+    outfile = infile
+    only = None
+    i = 2
+    while i < len(sys.argv):
+        if sys.argv[i] == "--only":
+            only = set(open(sys.argv[i + 1]).read().split())
+            i += 2
+        elif sys.argv[i] == "--out":
+            outfile = sys.argv[i + 1]
+            i += 2
+        else:
+            i += 1
+    board = pcbnew.LoadBoard(infile)
     obs = Obstacles(board)
 
     nets = defaultdict(int)
@@ -545,6 +598,8 @@ def main():
             if n and not n.startswith(SKIP_NET_PREFIXES):
                 nets[n] += 1
     nets = {n: c for n, c in nets.items() if c > 1}
+    if only is not None:
+        nets = {n: c for n, c in nets.items() if n in only}
 
     def span(n):
         ps = pads_of_net(board, n)
@@ -603,11 +658,12 @@ def main():
             board.Remove(it)
         obs.dead.add(net)
 
-    for rnd in range(3):
+    for rnd in range(4):
         if not open_pads:
             break
         print(f"== rip-up round {rnd + 1}: {len(open_pads)} open ==", flush=True)
         still = []
+        ripped_now = set()
         for n, p in open_pads:
             if route_pad(board, obs, n, p):
                 ok += 1
@@ -618,21 +674,22 @@ def main():
                 continue
             for s in se:
                 ripped_ever.add(s)
+                ripped_now.add(s)
                 rip(s)
             print(f"    rip {sorted(se)} for {n}: {p[0]}.{p[1]}", flush=True)
             if route_pad(board, obs, n, p):
                 ok += 1
             else:
                 still.append((n, p))
-            for s in se:
-                # keep s in obs.dead — its ripped items are gone from the
-                # board, so their stale bucket entries must stay ignored
-                o2, f2, fp2 = route_net(board, obs, s)
-                ok += o2
-                still += [(s, q) for q in fp2]
+        # re-route everything ripped this round AFTER the sweep — stops the
+        # rip/re-fail cascade
+        for s in sorted(ripped_now, key=lambda n: len(pads_of_net(board, n))):
+            o2, f2, fp2 = route_net(board, obs, s)
+            ok += o2
+            still += [(s, q) for q in fp2]
         open_pads = still
 
-    pcbnew.SaveBoard(sys.argv[1], board)
+    pcbnew.SaveBoard(outfile, board)
     print(f"== done: {ok} links routed, {len(open_pads)} open ==", flush=True)
 
 

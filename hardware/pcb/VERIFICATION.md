@@ -316,7 +316,11 @@ as verified.
 Do not order this revision as a finished board. The gerbers match the
 partial route.
 
-- Layers: 4. Stackup JLC04161H-7628, 1.6 mm, 1 oz outer, 0.5 oz inner.
+- Layers: **6** (hw_v2 was re-stacked during the 2026-10-03 routing effort:
+  F.Cu signal / In1.Cu solid GND / In2.Cu power islands + shared signal /
+  In3.Cu dedicated signal / In4.Cu solid GND / B.Cu signal).
+  Six-layer fab stackup TBD with the manufacturer (e.g. JLC06161H family);
+  1.6 mm, 1 oz outer, 0.5 oz inner assumed.
 - Finish: ENIG.
 - Via-in-pad: POFV (filled and capped) on the 24 BGA escape vias. Do not add through vias under the ESP32.
 - Assembly: standard PCBA, double-sided.
@@ -623,3 +627,59 @@ Electrical fixes in the same round:
   (2512 jumper). DNP parts (R115, D26–D30, J12, J13 and the
   TP-series pads) are excluded from jlc_bom/jlc_cpl.
 - `vitalq_hw_v1.dsn` regenerated and current.
+
+## 2026-10-03 — six-layer routing effort (final state)
+
+The board was re-stacked to **6 copper layers** to open routing channels
+(F.Cu / In1 GND solid / In2 power islands + shared signal / In3 signal /
+In4 GND solid / B.Cu — four usable signal layers, every signal layer
+adjacent to a GND reference plane). Routing was done by a custom
+grid/A* router (`route_all.py`) split into disjoint net partitions
+across parallel workers, merged in priority order with per-item
+clearance validation (`route_merge.py`), followed by conflict
+arbitration and three retry waves. Pours were filled with
+`ZONE_FILLER`; power nets without islands got via drops
+(`power_hook.py`).
+
+**Result on the committed board: 1,727 track segments + 226 vias
+across 6 layers.** Placement gates remain all-zero after the
+build_pcb.py regeneration (292 parts, clashes 0, edge 0, pth 0,
+pad-miss 0).
+
+### Placement change for routability
+
+R81's BIOZ_FN_PAD (HV) was geometrically sealed: U25's acoustic-port
+NPTH sat 0.34 mm south of the pad inside the creepage-slot corridor —
+vs the 1.5 mm HV rule it could never route. Fixed by shifting the
+ladder: **R33 and R77 moved 1.0 mm north (y 28.40 → 27.40), R81 moved
+1.2 mm north (y 36.30 → 35.10)** — now in `build_pcb.py` `PLACED`, so
+regeneration reproduces it. Pad clearance to the NPTH is 1.55 mm and
+the pad body exits the slot pinch. Courtyard/edge/PTH/pad-miss gates
+still all-zero. jlc_cpl.csv regenerated with the new positions.
+
+### Remaining opens — honest status: NOT fab-ready
+
+KiCad DRC on the routed file reports **~450 unconnected items**
+(net-level detail: `python3 unrouted_report.py vitalq_hw_v1.kicad_pcb`;
+~12 of the count are no-net fiducial/mechanical pads). The residue is
+concentrated exactly where every tool (this router, Freerouting, the
+4-layer attempt) stalls:
+
+- **U6/U7/U8 dense-center escapes** and the I2C/SPI multi-drop buses
+  (I2C_SCL/SDA tails, SPI CS/MISO legs).
+- **HV/ELV tails**: `BIOZ_FN_PAD` (R81.1 ↔ J7.2 — pad now physically
+  clear but the corridor can't thread it) and `ECG2_PAD` (J5.2).
+- **Power opens** on nets without pour islands (VBUS, VDD_CP2102,
+  VBAT_SYS, TX_5V_RAW, +3V3_ANA pads) — these need track/pour work,
+  not more vias.
+
+DRC also reports ~330 clearance / ~125 copper-edge / ~180 dangling
+items on the merged copper; each merge item passed the router's own
+clearance model at commit time, so most are zone-fill interactions and
+dangling stubs, not hard shorts — but they must be cleaned before fab.
+
+**Do not send this revision to fabrication.** Closing the residue
+needs either interactive push-and-shove routing in pcbnew (recommended:
+the opens are localized) or a placement spread + re-route. All sensor
+interfaces remain focused on the single skin cluster as required;
+nothing was removed to make routing easier.

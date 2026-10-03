@@ -111,16 +111,16 @@ PLACE = {
     "C63": (18.79, 11.93, 90, True),
     "R10": (30.90, 14.30, 90, False),
     "R32": (4.10, 28.40, 270, True),
-    "R33": (10.55, 28.40, 270, True),
+    "R33": (10.55, 27.40, 270, True),
     "R34": (17.00, 28.40, 270, True),
     "R35": (23.45, 28.40, 270, True),
     "R36": (29.90, 28.40, 270, True),
     "R76": (4.10, 28.40, 270, False),
-    "R77": (10.55, 28.40, 270, False),
+    "R77": (10.55, 27.40, 270, False),
     "R78": (17.00, 28.40, 270, False),
     "R79": (23.45, 28.40, 270, False),
     "R80": (4.10, 36.30, 90, True),
-    "R81": (10.55, 36.30, 90, True),
+    "R81": (10.55, 35.10, 90, True),
     "R82": (17.00, 36.30, 90, True),
     "R83": (23.45, 36.30, 90, True),
     "U3": (29.50, 32.00, 0, False),
@@ -732,6 +732,7 @@ def _retarget_board_finish(bf):
             (0.3, 0.3), (BOARD_W - 0.3, 0.3),
             (BOARD_W - 0.3, BOARD_H - 0.3), (0.3, BOARD_H - 0.3),
         )
+        bf._zone(board, "GND", pcbnew.F_Cu, board_pts, 0)
         bf._zone(board, "GND", pcbnew.In1_Cu, board_pts, 0)
         bf._zone(board, "GND", pcbnew.B_Cu, board_pts, 0)
         bf._zone(board, "+3V3", pcbnew.In2_Cu, board_pts, 0)
@@ -743,6 +744,8 @@ def _retarget_board_finish(bf):
                  ((11.0, 52.0), (19.8, 52.0), (19.8, 56.8), (11.0, 56.8)), 3)
         bf._zone(board, "+1V8", pcbnew.In2_Cu,
                  ((18.5, 18.3), (24.5, 18.3), (24.5, 21.5), (18.5, 21.5)), 3)
+        # In4: second solid GND plane — return for In3/B-side signals.
+        bf._zone(board, "GND", pcbnew.In4_Cu, board_pts, 0)
 
     def _silk(board):
         boxes = bf._pad_boxes(board)
@@ -820,7 +823,7 @@ def main():
         raise SystemExit(f"placement list mismatch missing={missing} extra={extra}")
 
     board = pcbnew.CreateEmptyBoard()
-    board.SetCopperLayerCount(4)
+    board.SetCopperLayerCount(6)
     apply_rules(board)
 
     net_items = {}

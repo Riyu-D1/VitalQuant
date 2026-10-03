@@ -97,7 +97,7 @@ def _hv_keepouts(board):
             # "No inner copper and no vias under defib copper" — inner
             # layers only. Covering the opposite outer layer sealed the
             # interleaved pad row (F shadows landed on B pads' escapes).
-            blocked = [pcbnew.In1_Cu, pcbnew.In2_Cu]
+            blocked = [pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.In3_Cu, pcbnew.In4_Cu]
             x0, y0, x1, y1 = _box(pad, 1.0)
             rects.append((x0, y0, x1, y1))
             _rect_zone(
@@ -140,7 +140,8 @@ def _hole_keepouts(board):
         r = 1.1 + 1.0
         _rect_zone(
             board,
-            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu),
+            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.In3_Cu,
+             pcbnew.In4_Cu, pcbnew.B_Cu),
             ((cx - r, cy - r), (cx + r, cy - r), (cx + r, cy + r), (cx - r, cy + r)),
             "hole_keepout", tracks=True, vias=True, pours=True,
         )
@@ -159,7 +160,8 @@ def _bga_areas(board):
         y1 = (box.GetY() + box.GetHeight()) / 1e6 + 0.4
         _rect_zone(
             board,
-            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu),
+            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.In3_Cu,
+             pcbnew.In4_Cu, pcbnew.B_Cu),
             ((x0, y0), (x1, y0), (x1, y1), (x0, y1)),
             "bga_fanout",
         )
@@ -329,6 +331,9 @@ def _pours(board):
     _zone(board, "VBAT", pcbnew.In2_Cu, ((11.0, 9.5), (20.5, 9.5), (20.5, 17.5), (11.0, 17.5)), 2)
     _zone(board, "TX_5V", pcbnew.In2_Cu, ((12.5, 47.5), (27.5, 47.5), (27.5, 54.5), (12.5, 54.5)), 3)
     _zone(board, "+1V8", pcbnew.In2_Cu, ((17.0, 18.0), (26.5, 18.0), (26.5, 55.0), (23.3, 55.0), (23.3, 22.0), (17.0, 22.0)), 3)
+    # In4: second solid GND plane — shields In3 signals and gives B-side
+    # routes a close return. In3 stays a dedicated signal layer.
+    _zone(board, "GND", pcbnew.In4_Cu, board_pts, 0)
 
 
 def _silk_text(board, text, x, y, layer):
