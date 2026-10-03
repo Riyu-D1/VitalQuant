@@ -5,3 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# SPA fallback: client-side routes (/model, /about, ...) must resolve to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
