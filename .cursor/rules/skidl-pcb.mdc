@@ -1,0 +1,40 @@
+---
+description: VitalQ hw_v1 schematic and unrouted board
+globs: hardware/pcb/**/*
+alwaysApply: false
+---
+
+# VitalQ hw_v1 board
+
+The electrical source is `hardware/pcb/design.py`. Sheets are written by
+`build_sch.py` through `schutil.py`, with explicit millimetre coordinates.
+Do not hand-edit the generated `*.kicad_sch` files or `vitalq_hw_v1.kicad_pcb`.
+
+`hardware/pcb/check.sh` regenerates the schematic and the unrouted board, then
+runs `kicad-cli` ERC and DRC. ERC must report zero errors. DRC may report
+unconnected items, because the board is not routed. Any other DRC error fails
+the script. It needs KiCad 9 on the system Python (`pcbnew`), not a virtualenv.
+
+Local symbols and the four local footprints are in `hardware/pcb/lib/` and are
+recorded in `lib/SOURCES.md`. `make_lib.py` rebuilds that library, but it needs
+an EasyEDA cache at `/tmp/cad/ee` that is not in the repo. CI uses the
+committed library.
+
+Wiring that is easy to break:
+
+- ESP32-WROOM-32E-N8R2. GPIO16 stays inside the module. GPIO6–11 are not on the
+  symbol. GPIO2 and GPIO12 stay open. GPIO15 is CS_AD5940 and is pulled up.
+- The only ADC sense pin is GPIO36 (FSR402 through one 10 kΩ to GND).
+- +3V3 comes from the XC6206. +1V8 comes from the TPS7A2018, because AS7341
+  VDD is 1.7–2.0 V. PCA9306DCUR is the one extra IC: it translates AS7341 I2C.
+- The load sits on VBAT. USB charges the cell and powers the CP2102N. The
+  board does not run from USB with the cell missing.
+- CP2102N VDD is its own regulator output and is not tied to +3V3.
+- PWR_FLAG symbols are schematic-only. They are not in the netlist.
+
+The PCB is a 52 × 40 mm, 4-layer starting placement. The ESP32 antenna points
+off the left edge. Do not put copper in that keep-out. Do not treat the
+placement as a finished route.
+
+This board is a research prototype. Do not describe it as a medical device or
+claim safety, sterility, or regulatory compliance.

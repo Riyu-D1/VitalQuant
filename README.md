@@ -20,6 +20,7 @@ This is the VitalQuant monorepo — all VitalQ work in one place:
 src/vitalq/          core Python platform: ingest, processing, ml, quantum, synth, datasets
 apps/api|worker|dashboard   service entrypoints (FastAPI, pipeline worker, Streamlit)
 firmware/esp32/      sensor driver contract + hw_v0/hw_v1 profiles
+hardware/pcb/        hw_v1 schematic and unrouted wearable PCB (see hardware/pcb/README.md)
 supabase/migrations/ Postgres DDL (native partitioning; no TimescaleDB)
 config/              hardware profile examples
 docs/                design rationale: spec audit → research → architecture → schema
