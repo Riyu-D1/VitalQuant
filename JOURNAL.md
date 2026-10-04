@@ -80,3 +80,13 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - The BOM is all listed in the devin hw2_pcb branch
 - This is just a very basic and initial render of the pcb
 <img width="274" height="498" alt="image" src="https://github.com/user-attachments/assets/0db3fd01-83a3-4335-b2a0-09a58c8ec203" />
+
+## Riyansh - 2 Oct
+1hr 30 mins
+
+- Between and school and other work I had to get some more time to basically fniallise what componanats were going to be used because this was just the intial desgin the one i had done on 30 sept.
+- Turns out that there were many more upgrades that could be carried out which I had no idea about.
+- A few listed ones being an onboard ecg and multiple other photo diodes
+- I have listed the updated list in the main branch BOM list
+- Andre should be creating a new updated list in the excel sheet with the new 80 parts
+
