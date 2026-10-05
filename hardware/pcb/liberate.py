@@ -34,6 +34,14 @@ for i, a in enumerate(sys.argv[3:], 3):
         MAXRIPS = int(a.split('=')[1] if '=' in a else sys.argv[i + 1])
 
 nets = [l.strip() for l in open(NETFILE) if l.strip()]
+import route_hv_all as rha
+HV_PROTECT = {n for n, s, f in rha.PLANS}     # electrode routes never ripped
+# In4 doubles as an escape-routing layer under BGA fields (zone refill yields
+# clearance around tracks there — documented waiver).
+if pcbnew.In4_Cu not in ra.ROUTE_LAYERS:
+    ra.ROUTE_LAYERS = tuple(list(ra.ROUTE_LAYERS) + [pcbnew.In4_Cu])
+import route_flood as _rf
+_rf.__dict__  # route_flood reads ra.ROUTE_LAYERS dynamically — patched above
 b = pcbnew.LoadBoard(IN)
 obs = ra.Obstacles(b)
 guard = rh.SlotGuard(obs, b)
@@ -42,6 +50,7 @@ GRID = ra.GRID
 
 # ---- one-shot snapshots (never touch board containers again) ----------
 ALL_TRACKS = list(b.GetTracks())          # proxies used ONLY for Remove()
+NETOBJ = {n.GetNetname(): n for n in b.GetNetsByName().values()}
 GROUPS = {}                               # net -> [(rect, cells)]
 for fp in b.GetFootprints():
     try:
@@ -88,6 +97,7 @@ def own_cells(net):
                 for dy in range(-rr, rr + 1):
                     for ly in ra.ROUTE_LAYERS:
                         out.add((int(cx) + dx, int(cy) + dy, ly))
+    out |= MYVIAS.get(net, set())
     return out
 
 
@@ -185,6 +195,13 @@ def delete_item(kind, geom):
         if id(t) in DELETED:
             continue
         try:
+            nm0 = None
+            try:
+                nm0 = str(t.GetNetname())
+            except Exception:
+                continue
+            if nm0 in HV_PROTECT:
+                continue
             if kind == 'via' and t.Type() == pcbnew.PCB_VIA_T:
                 p = t.GetPosition()
                 if abs(p.x / 1e6 - geom[0]) < 0.02 \
@@ -214,6 +231,71 @@ def delete_item(kind, geom):
     return nm
 
 
+MYVIAS = {}      # net -> set of cells contributed by emitted blind microvias
+
+
+def microvia_escape(net, rect, cells):
+    """Pad is pocketed: try a blind microvia touching the pad that drops the
+    net onto the adjacent inner layer (B->In4 / F->In1) where the flood is
+    free. Returns True if a via was emitted."""
+    pad_lys = {l for _, _, l in cells}
+    spans = []
+    if pcbnew.B_Cu in pad_lys:
+        spans.append((pcbnew.B_Cu, pcbnew.In4_Cu))
+    if pcbnew.F_Cu in pad_lys:
+        spans.append((pcbnew.F_Cu, pcbnew.In1_Cu))
+    if not spans:
+        return False
+    import math as _m
+    cx = (rect[0] + rect[2]) / 2
+    cy = (rect[1] + rect[3]) / 2
+    pw2 = (rect[2] - rect[0]) / 2 + 0.10     # via ring may overlap pad edge
+    ph2 = (rect[3] - rect[1]) / 2 + 0.10
+    VR, VD = 0.15, 0.10                     # 0.3mm pad / 0.1mm laser drill
+    cands = [(0.0, 0.0)]
+    for d in (0.10, 0.2, 0.28):
+        for ang in range(0, 360, 45):
+            cands.append((d * _m.cos(_m.radians(ang)),
+                          d * _m.sin(_m.radians(ang))))
+    netobj = NETOBJ.get(net) or b.FindNet(net)
+    for tly, ily in spans:
+        for dx, dy in cands:
+            x, y = cx + dx, cy + dy
+            # via ring must still kiss the pad on the pad layer
+            if not (rect[0] - VR - 0.02 <= x <= rect[2] + VR + 0.02
+                    and rect[1] - VR - 0.02 <= y <= rect[3] + VR + 0.02):
+                continue
+            if any(obs.cell_blocked(x, y, ly, net, cls_of(net), VR)
+                   for ly in (tly, ily)):
+                continue
+            v = pcbnew.PCB_VIA(b)
+            v.SetPosition(pcbnew.VECTOR2I(ra.mm(x), ra.mm(y)))
+            v.SetWidth(ra.mm(VR * 2))
+            v.SetDrill(ra.mm(VD))
+            v.SetNet(netobj)
+            v.SetViaType(pcbnew.VIATYPE_MICROVIA)
+            v.SetLayerPair(tly, ily)
+            b.Add(v)
+            # index as copper on exactly its two span layers
+            for ly in (tly, ily):
+                obs._put_rect(ly, (x - VR, y - VR, x + VR, y + VR, net, 'vip'))
+            gx, gy = int(x / GRID), int(y / GRID)
+            rr = int(VR / GRID) + 1
+            got = MYVIAS.setdefault(net, set())
+            for ddx in range(-rr, rr + 1):
+                for ddy in range(-rr, rr + 1):
+                    got.add((gx + ddx, gy + ddy, tly))
+                    got.add((gx + ddx, gy + ddy, ily))
+            print(f'  {net}: microvia {tly}->{ily} @({x:.2f},{y:.2f})',
+                  flush=True)
+            return True
+    return False
+
+
+def cls_of(net):
+    return obs._cls.get(net, 'Default')
+
+
 def patch_rip(my_net, rect, radius):
     """Remove every foreign seg/via whose centre lies within `radius` mm of
     the pad rect centre. Returns set of harmed net names."""
@@ -233,7 +315,7 @@ def patch_rip(my_net, rect, radius):
             if abs(px - cx) > radius or abs(py - cy) > radius:
                 continue
             nm = str(t.GetNetname())
-            if nm == my_net:
+            if nm == my_net or nm in HV_PROTECT:
                 continue
             b.Remove(t)
             DELETED.add(id(t))
@@ -298,6 +380,7 @@ for net in queue:
     ripped_here = []
     status = None
     _patch_tries = 0
+    _via_tries = 0
     for _round in range(6):
         oc = own_cells(net)
         un = [(r, c) for r, c in groups if not (c & oc)]
@@ -311,6 +394,10 @@ for net in queue:
         if (reach & oc) or saturated:
             h, left = hop_route(net, cls, groups)
             hops += h
+            continue
+        # sealed pocket — first try a blind microvia escape (non-destructive)
+        if _via_tries < 2 and microvia_escape(net, un[0][0], un[0][1]):
+            _via_tries += 1
             continue
         # sealed pocket — census the boundary
         rippable = [(k, c) for k, c in tally.most_common()
