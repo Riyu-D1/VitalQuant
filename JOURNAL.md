@@ -39,7 +39,11 @@ FSR sensing element + simple PCB interface
 
 ----
 ## Moses Man - 28 Minutes
-Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source code
+Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source code of the software in VitalQuant
+<img width="958" height="470" alt="image" src="https://github.com/user-attachments/assets/3476ca2c-5cf6-4894-8291-82da5a963909" />
+<img width="338" height="466" alt="image" src="https://github.com/user-attachments/assets/6a4b1a0e-3247-440c-a54f-595e50bf8b36" />
+
+
 
 ---
 ## 24 September - Riyansh D
@@ -61,13 +65,18 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - Worked on the software and refactored the codebase to make it easier to debug issues when connecting with the software
 - Installed and emulated a ESP32 to test firmware connectivity with our custom software
 - Simulated test signals using the emulated ESP32 to test calibration of the software
+<img width="931" height="449" alt="image" src="https://github.com/user-attachments/assets/351650c1-49eb-4521-ba3d-cbcd4cf8a326" />
+<img width="698" height="461" alt="image" src="https://github.com/user-attachments/assets/4845104f-2735-4731-bc92-7fdba0c06c26" />
 
 ----
 ## Moses - 30 Sept
 3 hours
 - Downloading datasets of sepsis patient data
 - Manipulating datasets for training
-- Finetuning a custom decision model via QLoRA using LatticeAG infrastructure
+- Finetuning a proprietary custom decision model (LAT-D-VQt-1) via QLoRA using LatticeAG infrastructure
+- https://latticeag.vercel.app/#/products/lat-d-vqt-1
+<img width="959" height="473" alt="image" src="https://github.com/user-attachments/assets/2a0ed26a-c70f-42ab-9dc2-edc92d3a1584" />
+
 
 ---
 ## Riyansh - 30 sept
@@ -80,6 +89,8 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - The BOM is all listed in the devin hw2_pcb branch
 - This is just a very basic and initial render of the pcb
 <img width="274" height="498" alt="image" src="https://github.com/user-attachments/assets/0db3fd01-83a3-4335-b2a0-09a58c8ec203" />
+<img width="959" height="479" alt="image" src="https://github.com/user-attachments/assets/82be96a9-5820-4802-967b-1c7a29a431c7" />
+
 
 ## Riyansh - 2 Oct
 1hr 30 mins
