@@ -72,8 +72,8 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 ## Moses - 30 Sept
 3 hours
 - Downloading datasets of sepsis patient data
-- Manipulating datasets for training
-- Finetuning a proprietary custom decision model (LAT-D-VQt-1) via QLoRA using LatticeAG infrastructure
+- Manipulating datasets ready for training
+- Post-trained a proprietary custom decision model (LAT-D-VQt-1) via LoRA FP16 using LatticeAG infrastructure - 8x A100 80gb GPUs
 - https://latticeag.vercel.app/#/products/lat-d-vqt-1
 <img width="959" height="473" alt="image" src="https://github.com/user-attachments/assets/2a0ed26a-c70f-42ab-9dc2-edc92d3a1584" />
 <img width="959" height="479" alt="image" src="https://github.com/user-attachments/assets/82be96a9-5820-4802-967b-1c7a29a431c7" />
