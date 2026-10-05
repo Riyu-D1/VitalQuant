@@ -44,7 +44,14 @@ if not KICAD_FP.is_dir():
 # one bottom cluster; the second TMP117 sits on the top at the same XY.
 # USB-C (J1) is on the top edge at y~2.7; the ESP32-S3-MINI-1 antenna tab
 # overhangs the top edge above U1's pad field (x 4.7..20.1).
-BOARD_W = 40.0
+BOARD_W = 46.0
+# 2026-10-03 routing relief: outline grew 40x62 -> 46x70. The top edge moved
+# from y=0 to y=-8 and the east edge from x=40 to x=46, so the skin cluster,
+# ladder rows, creepage slots and every connector on the south/west/bottom
+# edges keep identical coordinates. Parts north of y=32 taper upward into
+# the new strip; the freed centre is the routing channel the 6-layer
+# autorouting effort starved in.
+BOARD_T = -8.0
 # Patient-facing defib ladder runs as two 2512 rows at y~28.4 (bottom:
 # R32-R36, top: R76-R79) and y~36.3 (bottom: R80-R83), with the creepage
 # slots cut between the columns. Test points and fiducials scatter through
@@ -89,6 +96,46 @@ MLX_SLOTS = (
 
 # (x, y, rotation_deg, bottom)
 # Rotation is applied before a bottom-side flip.
+# 2026-10-03 spread pass: every PLACE y<32 tapers toward the new top edge
+# (full -7 mm at y=0, 0 at y=32) unless anchored or explicitly overridden.
+# Anchors: the electrode-clamp diode row belongs to the HV ladder structure,
+# and TP18-21 sit 1.5 mm above the creepage slots — they must not taper into
+# the slot exclusion. H1/H2 deliberately taper WITH their neighbourhood so
+# the mounting holes keep their relative spacing. Overrides: J1 and U1 keep
+# their top-edge relationship (USB shell, antenna-tab overhang); J9/J10/J11
+# follow the east edge to x=44.8.
+NORTH_TAPER = 7.0
+SPREAD_ANCHOR = {
+    "D1", "D2", "D3", "D6", "D7", "D8", "D9",
+    "D21", "D22", "D23", "D24",
+    "TP18", "TP19", "TP20", "TP21",
+}
+SPREAD_OVERRIDE = {
+    "U1": (12.40, 2.00),
+    "J1": (26.00, -5.30),
+    "J9": (44.80, None),
+    "J10": (44.80, None),
+    "J11": (44.80, None),
+}
+
+
+def spread_xy(ref, x, y):
+    """Relief-spread for the 46x70 outline. Returns the (possibly moved) xy
+    for a footprint whose PLACE coordinate is (x, y)."""
+    if ref in SPREAD_OVERRIDE:
+        nx, ny = SPREAD_OVERRIDE[ref]
+        return (x if nx is None else nx, y if ny is None else ny)
+    if ref in SPREAD_ANCHOR or y >= 32.0:
+        return x, y
+    return x, y - NORTH_TAPER * (32.0 - y) / 32.0
+
+
+def spread_y(y):
+    """The same taper, for absolute keepout/pour coords that belong to the
+    moving north zone."""
+    return y if y >= 32.0 else y - NORTH_TAPER * (32.0 - y) / 32.0
+
+
 # hw_v2 40 x 62 layout: U1 + comms at the bottom edge (y<20), the defib
 # ladder rows run across y~28.4/36.3 with creepage slots between columns,
 # the skin sensor cluster co-registers on the bottom at y~44-56, and the
@@ -594,7 +641,7 @@ def add_keepout(board):
     zone.SetLayerSet(pcbnew.LSET.AllCuMask())
     outline = zone.Outline()
     outline.NewOutline()
-    for x, y in ((4.55, 0.0), (20.25, 0.0), (20.25, 2.45), (4.55, 2.45)):
+    for x, y in ((4.55, BOARD_T), (20.25, BOARD_T), (20.25, BOARD_T + 2.45), (4.55, BOARD_T + 2.45)):
         outline.Append(mm(x), mm(y))
     board.Add(zone)
 
@@ -667,10 +714,10 @@ def _retarget_board_finish(bf):
             )
 
     def _blocked(x, y, rects, pad_boxes):
-        if x < 0.9 or x > BOARD_W - 0.9 or y < 0.9 or y > BOARD_H - 0.9:
+        if x < 0.9 or x > BOARD_W - 0.9 or y < BOARD_T + 0.9 or y > BOARD_H - 0.9:
             return True
         # Antenna keep-out under the module's overhanging tab (see add_keepout).
-        if 4.55 <= x <= 20.25 and y <= 2.45:
+        if 4.55 <= x <= 20.25 and y <= BOARD_T + 2.45:
             return True
         # HV keep-outs already carry a 1.0 mm inflate; the extra 0.9 puts
         # the 0.6 mm stitch barrel >=1.9 mm from HV pad copper, clearing the
@@ -700,18 +747,19 @@ def _retarget_board_finish(bf):
                 hv_rects.append((cx - 2.2, cy - 2.2, cx + 2.2, cy + 2.2))
         points = []
         step = 2.8
-        y = 1.2
+        y = BOARD_T + 1.2
         while y < BOARD_H - 1.0:
             points.append((1.2, y))
             points.append((BOARD_W - 1.2, y))
             y += step
         x = 1.2
         while x < BOARD_W - 1.0:
-            points.append((x, 1.2))
+            points.append((x, BOARD_T + 1.2))
             points.append((x, BOARD_H - 1.2))
             x += step
-        # Switcher neighbourhoods: U3/L1 buck-boost, U15/U4 rails, L2 filter.
-        for cx, cy in ((29.5, 32.0), (26.0, 19.9), (29.0, 16.4)):
+        # Switcher neighbourhoods: U3/L1 buck-boost, U15/U4 rails, L2 filter
+        # (tapered positions on the spread board).
+        for cx, cy in ((29.5, 32.0), (26.0, 16.66), (29.0, 13.36)):
             for dx in (-1.6, 0, 1.6):
                 for dy in (-1.6, 0, 1.6):
                     points.append((cx + dx, cy + dy))
@@ -729,7 +777,7 @@ def _retarget_board_finish(bf):
 
     def _pours(board):
         board_pts = (
-            (0.3, 0.3), (BOARD_W - 0.3, 0.3),
+            (0.3, BOARD_T + 0.3), (BOARD_W - 0.3, BOARD_T + 0.3),
             (BOARD_W - 0.3, BOARD_H - 0.3), (0.3, BOARD_H - 0.3),
         )
         bf._zone(board, "GND", pcbnew.F_Cu, board_pts, 0)
@@ -737,13 +785,27 @@ def _retarget_board_finish(bf):
         bf._zone(board, "GND", pcbnew.B_Cu, board_pts, 0)
         bf._zone(board, "+3V3", pcbnew.In2_Cu, board_pts, 0)
         # L3 islands follow the moved power blocks: VBAT under U2/J2,
-        # TX_5V under the SFH7072 anode cluster, +1V8 under the U9 LDO output.
+        # TX_5V under the SFH7072 anode cluster, +1V8 under the U9 LDO output
+        # (north islands ride the same taper as the parts they feed).
         bf._zone(board, "VBAT", pcbnew.In2_Cu,
-                 ((11.0, 10.0), (20.5, 10.0), (20.5, 17.0), (11.0, 17.0)), 2)
+                 ((11.0, spread_y(10.0)), (20.5, spread_y(10.0)), (20.5, spread_y(17.0)), (11.0, spread_y(17.0))), 2)
         bf._zone(board, "TX_5V", pcbnew.In2_Cu,
                  ((11.0, 52.0), (19.8, 52.0), (19.8, 56.8), (11.0, 56.8)), 3)
         bf._zone(board, "+1V8", pcbnew.In2_Cu,
-                 ((18.5, 18.3), (24.5, 18.3), (24.5, 21.5), (18.5, 21.5)), 3)
+                 ((18.5, spread_y(18.3)), (24.5, spread_y(18.3)), (24.5, spread_y(21.5)), (18.5, spread_y(21.5))), 3)
+        # Islands for the power nets that had no pour at all — the #1 cause
+        # of the remaining unconnected power pads after the 6L route. Each
+        # sits over the densest pad cluster of its net (checked post-spread);
+        # TX_5V_RAW's 3 pads route on signal layers instead.
+        bf._zone(board, "VBUS", pcbnew.In2_Cu,
+                 ((21.0, -4.5), (29.0, -4.5), (29.0, 5.9), (21.0, 5.9)), 3)
+        bf._zone(board, "VDD_CP2102", pcbnew.In2_Cu,
+                 ((22.0, 6.0), (30.5, 6.0), (30.5, 10.0), (22.0, 10.0)), 3)
+        bf._zone(board, "VBAT_SYS", pcbnew.In2_Cu,
+                 ((24.7, 12.4), (31.0, 12.4), (31.0, 32.0), (24.7, 32.0)), 3)
+        # +3V3_ANA deliberately gets NO island: an island under U7's field
+        # blocked every GND via-drop in the west strip — its ~25 pads route
+        # on signal layers instead.
         # In4: second solid GND plane — return for In3/B-side signals.
         bf._zone(board, "GND", pcbnew.In4_Cu, board_pts, 0)
 
@@ -837,6 +899,7 @@ def main():
     for ref, meta in sorted(comps.items()):
         fp = load_footprint(meta["footprint"])
         x, y, rot, bottom = PLACE[ref]
+        x, y = spread_xy(ref, x, y)
         nick, name = meta["footprint"].split(":", 1)
         fp.SetFPID(pcbnew.LIB_ID(nick, name))
         fp.SetReference(ref)
@@ -882,10 +945,10 @@ def main():
             continue
         unresolved.append(f"{ref} pin {pin} ({name}) has no footprint pad")
 
-    add_edge(board, 0, 0, BOARD_W, 0)
-    add_edge(board, BOARD_W, 0, BOARD_W, BOARD_H)
+    add_edge(board, 0, BOARD_T, BOARD_W, BOARD_T)
+    add_edge(board, BOARD_W, BOARD_T, BOARD_W, BOARD_H)
     add_edge(board, BOARD_W, BOARD_H, 0, BOARD_H)
-    add_edge(board, 0, BOARD_H, 0, 0)
+    add_edge(board, 0, BOARD_H, 0, BOARD_T)
     add_slot(board, *SLOTS[0])  # AS7341 / LED barrier
     for _slot in CREEP_SLOTS:
         add_slot(board, *_slot)
@@ -984,7 +1047,7 @@ def main():
             if attr == pcbnew.PAD_ATTRIB_NPTH:
                 # Mounting drills pierce every layer: edge, slot and a 0.2 mm
                 # hole-to-copper gap against every other pad/hole.
-                if min(pb[0], pb[1], BOARD_W - pb[2], BOARD_H - pb[3]) < 0.3:
+                if min(pb[0], pb[1] - BOARD_T, BOARD_W - pb[2], BOARD_H - pb[3]) < 0.3:
                     edge_hits.append(f"{ref}.{pad.GetNumber()} edge")
                 for s in SLOTS + CREEP_SLOTS + MLX_SLOTS:
                     if not (
@@ -1024,7 +1087,7 @@ def main():
             y0 = box.GetY() / 1e6
             x1 = (box.GetX() + box.GetWidth()) / 1e6
             y1 = (box.GetY() + box.GetHeight()) / 1e6
-            gap = min(x0 - 0, y0 - 0, BOARD_W - x1, BOARD_H - y1)
+            gap = min(x0 - 0, y0 - BOARD_T, BOARD_W - x1, BOARD_H - y1)
             for sx0, sy0, sx1, sy1 in SLOTS + CREEP_SLOTS + MLX_SLOTS:
                 # Expand the slot by the required copper clearance and test a hit.
                 if not (

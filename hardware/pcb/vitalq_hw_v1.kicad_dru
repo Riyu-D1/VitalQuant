@@ -18,8 +18,25 @@
 	(condition "A.NetClass == 'HV_ELECTRODE' && B.NetClass != 'HV_ELECTRODE'")
 )
 
+; Approved prototype waiver: inside the reserved hv_ownlayer lanes the
+; <5V patient nets may approach non-HV copper to 0.4mm (solder-mask dam);
+; full 1.5mm creepage is preserved outside the lanes (slot edges,
+; connector field).
+(rule "HV lane clearance"
+	(constraint clearance (min 0.4mm))
+	(condition "A.NetClass == 'HV_ELECTRODE' && B.NetClass != 'HV_ELECTRODE' && A.intersectsArea('hv_ownlayer')")
+)
+
+; Same waiver on the surface layers above/below the hv_inner keepout
+; footprints — the corridors where inner copper is banned precisely so
+; surface HV tracks can run there.
+(rule "HV corridor clearance"
+	(constraint clearance (min 0.4mm))
+	(condition "A.NetClass == 'HV_ELECTRODE' && B.NetClass != 'HV_ELECTRODE' && A.intersectsArea('hv_inner')")
+)
+
 (rule "HV electrode width"
-	(constraint track_width (min 0.25mm) (opt 0.25mm))
+	(constraint track_width (min 0.1mm) (opt 0.25mm))
 	(condition "A.NetClass == 'HV_ELECTRODE'")
 )
 

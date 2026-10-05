@@ -37,7 +37,7 @@ VIA_SPAN_LAYERS = (F_CU, B_CU, IN1, IN2, IN3, IN4)  # through vias clear all six
 GRID = 0.10          # mm
 BUCKET = 2.0         # spatial hash cell size (>= max obstacle influence)
 MAX_INFL = 2.0       # max obstacle influence = 1.5 clearance + 0.5 slack
-VIA_D, VIA_H = 0.45, 0.20   # small through via — fits dense pockets
+VIA_D, VIA_H = 0.60, 0.30   # through via at board min-drill (JLC legal)
 VIA_PEN = 6.0              # mm-equivalent cost for a layer change
 STEP_ORTHO = GRID
 STEP_DIAG = GRID * math.sqrt(2)
@@ -60,7 +60,10 @@ def mm(v):
 class Obstacles:
     def __init__(self, board):
         self.buckets = {ly: defaultdict(list) for ly in VIA_SPAN_LAYERS}
-        self.seg_buckets = {ly: defaultdict(list) for ly in ROUTE_LAYERS}
+        # Segments are stored on every copper layer, not just ROUTE_LAYERS:
+        # imported (e.g. Freerouting) copper may sit on In1/In4 and through
+        # vias must still clear it.
+        self.seg_buckets = {ly: defaultdict(list) for ly in VIA_SPAN_LAYERS}
         self.via_buckets = defaultdict(list)   # vias exist on all layers
         self.wall_buckets = defaultdict(list)
         self.bga_rects = []
@@ -613,8 +616,12 @@ def main():
     pours = {"GND", "+3V3", "+3V3_ANA", "+3V3_ESP", "VBAT", "VBAT_SYS",
              "VBUS", "VDD_CP2102", "TX_5V", "TX_5V_RAW", "+1V8", "+1V8_LDO"}
     handled = set(hv) | set(elv) | set(usb) | pours
-    # short, local nets first — long buses route around them later
-    rest = sorted((n for n in nets if n not in handled), key=lambda n: (nets[n], span(n)))
+    # short, local nets first — long buses route around them later.
+    # An explicit --only list forces pour nets to route as well (pour-net
+    # stubs to a pour edge/plane via are how the tail-end opens close).
+    rest = sorted(
+        (n for n in nets if n not in handled or (only is not None and n in pours)),
+        key=lambda n: (nets[n], span(n)))
 
     print(f"== routing: {len(hv)} HV, {len(elv)} ELV, {len(usb)} USB, {len(rest)} misc ==", flush=True)
     ok = fail = 0
@@ -658,7 +665,7 @@ def main():
             board.Remove(it)
         obs.dead.add(net)
 
-    for rnd in range(4):
+    for rnd in range(0 if "--no-ripup" in sys.argv else 4):
         if not open_pads:
             break
         print(f"== rip-up round {rnd + 1}: {len(open_pads)} open ==", flush=True)
@@ -688,6 +695,8 @@ def main():
             ok += o2
             still += [(s, q) for q in fp2]
         open_pads = still
+        # checkpoint after every round — a kill never loses committed copper
+        pcbnew.SaveBoard(outfile, board)
 
     pcbnew.SaveBoard(outfile, board)
     print(f"== done: {ok} links routed, {len(open_pads)} open ==", flush=True)
