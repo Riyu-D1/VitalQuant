@@ -1,0 +1,230 @@
+# VitalQ hardware profile — spec §34 pattern.
+# One file per hardware_revision; validated by vitalq-core's HardwareProfile schema.
+# Sensor presence, model, bus, rates and optics are CONFIG, never compiled code.
+#
+# hw_v2 — authoritative source: hardware/pcb/HW_V2_SPEC.md (branch hw_v2).
+# ESP32-WROOM-32E → ESP32-S3-MINI-1U-N4R2 (4 MB flash + 2 MB PSRAM, U.FL antenna).
+#
+# GPIO map (S3-MINI-1U, per spec interface table):
+#   GPIO1  FSR_ADC (ADC1_CH0)          GPIO2  ADS1292_DRDY  (timestamped input)
+#   GPIO3  EXP_INT (TCA6408, strap)    GPIO4  LSM6_INT1
+#   GPIO5  TMP117_ALERT                GPIO6  GAUGE_ALRT
+#   GPIO7  CHG_PG                      GPIO8/9  I2C_SDA / I2C_SCL (I2C3V3)
+#   GPIO10 CS_ADS1292                  GPIO11/12/13  SPI_MOSI / SPI_SCK / SPI_MISO
+#   GPIO14 AD5940_GPIO0 (AD5940 ball F5)  GPIO15 CS_AD5940
+#   GPIO16 CS_FLASH (W25Q512)          GPIO17 STATUS_LED (via R88)
+#   GPIO18 CS_AFE4900                  GPIO19/20 USB_D- / USB_D+ (native USB-CDC → J1)
+#   GPIO21 AFE4900_ADC_RDY (timestamped input)
+#   GPIO38 CS_MAX86178                 GPIO39 MAX86178_INT (timestamped input)
+#   GPIO40/41 MIC_CLK / MIC_DAT (DNP)  GPIO42 SPARE_IN (digital-only, no ADC — spare input)
+#   GPIO43/44 UART0_TX / UART0_RX → CP2102N console (kept)
+#   ESP_IO0 / ESP_EN: module pins (SW1/SW2, TP10/TP9; TP24 = ADS1292_DRDY)
+#
+# USB: native USB-CDC on GPIO19/20 is the DEFAULT strap — R102/R103 (0Ω,
+# fitted) route J1 D+/D- to USB_DP_S3/USB_DM_S3. Alternate strap R104/R105
+# (0Ω, DNP) routes D+/D- to USB_DP_CP/USB_DM_CP → CP2102N on UART0 for
+# out-of-band console recovery. NEVER fit both pairs — two USB devices
+# cannot share one D+/D- pair. Firmware must support either transport.
+#
+# Timestamped-input contract: DRDY/ADC_RDY/INT edges must be stamped in the ISR/
+# driver task, NOT at FIFO pop — see sensor_driver.h "FIFO timestamp contract".
+#
+# TCA6408 expander P0-P7 — UNCHANGED from hw_v1 (ground truth: PINMAP.md):
+#   P0 AFE4900_RESETZ, P1 ADS1292_PWDN, P2 AD5940_RESET, P3 TX5_EN,
+#   P4 IR_GATE, P5 CHG_STAT, P6 VBUS_DET, P7 CHG_DIS
+#
+# NIR730_GATE: D12 730 nm LED (+3V3 via R109 100Ω) cathode switched by Q4,
+# gated by AD5940 GPIO2 on ball E1 — NOT GPIO0 (GPIO0/ball F5 is the ESP32
+# GPIO14 input link, net AD5940_GPIO0). Pairs with the AS7341 nir channel
+# for the derived tissue.sto2 ratio.
+#
+# Tail connectors:
+#   J9  distal-temp tail — 4 pads (3V3/SDA/SCL/GND), flex TMP117/TMP119 @ 0x4A
+#   J10 satellite-PPG tail — 6 pads: MAX86178 LED1/LED2/LED3 cathodes,
+#       LED_AN (TX_5V via R114), PD cathode/anode → off-board SFH7050A
+#       (same-site sync w/ main PPG)
+#   J11 sweat-electrode site — 3 pads SWEAT_WE/RE/CE → AD5940 spare mux
+#       channel; RESEARCH-GRADE (see `sweat:` entry)
+#   J12 unified FFC tail (DNP, FH12-14S-0.5SH, 14-pos; pin 14 open)
+#       carrying J9+J10+J11 — assembly option vs. the discrete pads
+#   J13 MAX86178 ECG pad pair (DNP) — MX_ECG_INP / MX_ECG_INM
+
+hardware_revision: hw_v2
+description: "Custom-PCB rev2: ESP32-S3-MINI-1U, ADS1292R+AFE4900+AD5940+MAX86178 AFE set, SHT45+TMP117×3, J9-J13 tails"
+
+compute:
+  soc: esp32s3                            # ESP32-S3-MINI-1U-N4R2 module
+  buses:
+    i2c0: { sda: 8, scl: 9, hz: 400000 }  # I2C3V3 (R19/R20); PCA9306 → I2C1V8 island (AS7341, MLX90632)
+    spi1: { miso: 13, mosi: 11, sclk: 12 }# shared SPI2 host, 5 chip-selects (per-device `cs:` below)
+
+clock:
+  ntp_sync_interval_s: 3600
+  drift_estimate_window_batches: 20
+  max_unsynced_s: 7200            # flag clock.unreliable beyond this
+  # RV-3028-C7 RTC (I2C3V3 0x52, DNP — see `rtc:` entry) supplies absolute
+  # wall-clock anchors for multi-day logging when populated; until then the
+  # ClockService anchors monotonic µs from SNTP only (per-batch anchor).
+
+sensors:
+  ecg:
+    enabled: true
+    model: ADS1292R             # ECG + respiration; defib-protection ladder kept
+    bus: spi1
+    cs: 10                      # CS_ADS1292
+    int_pin: 2                  # ADS1292_DRDY — timestamped input
+    outputs: [ecg.ii, resp.waveform]
+    sample_rate_hz: 500
+
+  ppg:
+    enabled: true
+    model: AFE4900              # main SpO2 PPG → SFH7072 optical front-end (kept)
+    bus: spi1
+    cs: 18                      # CS_AFE4900
+    int_pin: 21                 # AFE4900_ADC_RDY — timestamped input
+    channels:
+      - { id: ppg.red, wavelength_nm: 660, led_driver: 1, pd: 0 }
+      - { id: ppg.ir,  wavelength_nm: 940, led_driver: 2, pd: 1 }
+      # SFH7072 IR peak is ~940 nm; its green emitters are not in the channel
+      # set. VERIFY emitter set/wavelengths vs SFH7072 datasheet + PINMAP.md
+    sample_rate_hz: 200
+    ambient_cancellation: true
+
+  ppg_satellite:
+    enabled: true
+    model: MAX86178             # synchronized ECG/PPG/BioZ AFE; hw_v2 duty = satellite PPG tail J10
+    bus: spi1
+    cs: 38                      # CS_MAX86178
+    int_pin: 39                 # MAX86178_INT — timestamped input
+    channels:
+      # SFH7050A emitters on J10 time-mux onto the single ppg.satellite stream;
+      # led_driver = MAX86178 LED1/2/3 cathode pad. VERIFY wavelength set vs BOM.
+      - { id: ppg.satellite, wavelength_nm: 530,  led_driver: 1, pd: 0 }
+      - { id: ppg.satellite, wavelength_nm: 660,  led_driver: 2, pd: 0 }
+      - { id: ppg.satellite, wavelength_nm: 940,  led_driver: 3, pd: 0 }
+    sample_rate_hz: 200
+    ambient_cancellation: true
+
+  eda:
+    enabled: true
+    model: AD5940               # EDA / bioZ-lactate duty (kept); reset via expander P2
+    bus: spi1
+    cs: 15                      # CS_AD5940
+    # also owns NIR730_GATE — AD5940 GPIO2 on ball E1 (not GPIO0/ball F5)
+    outputs: []                 # EDA/bioZ waveform channel ids pending registration
+
+  sweat:
+    enabled: true
+    model: AD5940               # same physical device as `eda:` — logical split for J11
+    bus: spi1
+    cs: 15                      # shares CS_AD5940; J11 SWEAT_WE/RE/CE → spare mux channel
+    research_grade: true        # RESEARCH-GRADE per spec — never a clinical output
+    outputs: [sweat.lactate]    # amperometric sweat lactate, mmol/L
+    rate_hz: 1
+
+  spectral:
+    enabled: true
+    model: AS7341               # I2C1V8 island (behind PCA9306, shared GPIO8/9 bus)
+    bus: i2c0
+    address: "0x39"
+    channels: [f1, f2, f3, f4, f5, f6, f7, f8, clear, nir, flicker]
+    parallel_groups: 2          # 6-ch ADC + mux — frames are NOT simultaneous (audit C2)
+    gain: 64
+    integ_time_ms: 27.8
+    illumination: emitter_on    # external LED; nir channel pairs w/ NIR730_GATE (730 nm)
+    frame_rate_hz: 2            # derived tissue.sto2 = nir ratio gated vs dark_frame
+
+  temperature:
+    enabled: true
+    model: MLX90632             # non-contact IR — I2C1V8 island
+    bus: i2c0
+    address: "0x3A"
+    outputs: [temp.object, temp.ambient]
+    rate_hz: 1
+
+  temperature_contact:
+    enabled: true
+    model: TMP117               # ×3 on I2C3V3 — see address note
+    bus: i2c0
+    address: "0x48"             # schema holds one address; the design has all
+                                # three: 0x48 U11 skin, 0x49 U20 under the
+                                # insulation dome (ZHF pair → core.temp_est),
+                                # 0x4A distal on J9 tail → skin.temp_distal.
+                                # TMP117_ALERT = GPIO5
+    outputs: [core.temp_est, skin.temp_distal]
+    rate_hz: 1
+
+  skin:
+    enabled: true
+    model: SHT45                # SHT45-AD1B skin-face RH + temp, bottom side
+    bus: i2c0
+    address: "0x44"             # shares R19/R20 pull-ups
+    outputs: [skin.rh, skin.temp]
+    rate_hz: 1
+
+  environment:
+    enabled: true
+    model: BME280               # kept
+    bus: i2c0
+    address: "0x76"
+    outputs: [env.temperature, env.humidity, env.pressure]
+    rate_hz: 0.5
+
+  motion:
+    enabled: true
+    model: LSM6DSV80X           # kept — high-g (±80 g) accel + gyro; INT1 = GPIO4
+    bus: i2c0
+    address: "0x6A"
+    outputs: [motion.accel_x, motion.accel_y, motion.accel_z,
+              motion.gyro_x,  motion.gyro_y,  motion.gyro_z]
+    rate_hz: 52
+
+  contact:
+    enabled: true
+    model: FSR402               # kept — FSR pads
+    input: adc1_ch0             # FSR_ADC = GPIO1 — ordinal level, no SI units
+    outputs: [contact.level]
+    rate_hz: 20
+
+  gauge:
+    enabled: true
+    model: MAX17048             # fuel gauge, power tree kept; GAUGE_ALRT = GPIO6
+    bus: i2c0
+    address: "0x36"
+    int_pin: 6
+    outputs: [sys.battery_v]
+    rate_hz: 0.2
+
+  expander:
+    enabled: true
+    model: TCA6408              # P0-P7 map in header comment; EXP_INT = GPIO3
+    bus: i2c0
+    address: "0x20"
+    int_pin: 3
+    outputs: []                 # GPIO only — owns resets/PWDN/TX5_EN/IR_GATE/charge ctl
+
+  flash:
+    enabled: true
+    model: W25Q512              # 64 MB logging store (kept); /WP and /HOLD tied to +3V3
+    bus: spi1
+    cs: 16                      # CS_FLASH
+    outputs: []                 # storage media, not a measurement channel
+
+  rtc:
+    enabled: false
+    dnp: true                   # DNP footprint — populate for multi-day logging
+    model: RV-3028-C7           # absolute wall-clock anchor for the clock model
+    bus: i2c0
+    address: "0x52"
+    outputs: []
+
+  mic:
+    enabled: false
+    dnp: true                   # DNP footprint only — firmware optional
+    model: IM69D130             # chest acoustic channel, PDM clk/dat on GPIO40/41
+    outputs: []
+
+power_profile: battery            # gates duty cycling + wifi burst strategy
+storage:
+  offline_buffer: flash_ring      # W25Q512 (CS_FLASH = GPIO16)
+  buffer_capacity_s: 1800

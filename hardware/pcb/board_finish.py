@@ -4,13 +4,20 @@ from __future__ import annotations
 
 import pcbnew
 
-BOARD_W = 36.5
-BOARD_H = 70.0
+BOARD_W = 40.0
+BOARD_H = 62.0
 
 HV_NETS = (
     "ECG1_PAD", "ECG2_PAD", "RLD_PAD", "AFE_P_PAD", "AFE_N_PAD",
     "EDA_CE_PAD", "EDA_SE_PAD", "EDA_RE_PAD", "EDA_DE_PAD",
     "BIOZ_FP_PAD", "BIOZ_FN_PAD", "BIOZ_SP_PAD", "BIOZ_SN_PAD",
+    # Connector-side tail nets upstream of the series-R footprints.
+    # The device-side nets (SWEAT_*, MX_ECG_*) stay in the default
+    # class on purpose: at U7/U22 they fan out of 0.4/0.35 mm BGA
+    # fields where the HV class clearance and pad-shadow keepouts
+    # cannot physically fit. The 0R cut-points (R118-R122) are the
+    # HV boundary; protection clamps sit IC-side by design.
+    "J11_WE", "J11_RE", "J11_CE", "J13_INP", "J13_INM",
 )
 LV_NETS = (
     "ECG_P", "ECG_N", "RLD_CLAMP", "AFE_P_AC", "AFE_N_AC",
@@ -46,7 +53,7 @@ def _rect_zone(board, layers, pts, name, **flags):
     zone.SetZoneName(name)
     zone.SetDoNotAllowTracks(flags.get("tracks", False))
     zone.SetDoNotAllowVias(flags.get("vias", False))
-    zone.SetDoNotAllowCopperPour(flags.get("pours", False))
+    zone.SetDoNotAllowZoneFills(flags.get("pours", False))
     zone.SetDoNotAllowPads(flags.get("pads", False))
     zone.SetDoNotAllowFootprints(False)
     lset = pcbnew.LSET()
@@ -74,17 +81,37 @@ def _hv_keepouts(board):
     """No inner copper and no vias under defibrillation copper. The pad's own layer stays."""
     rects = []
     for fp in board.GetFootprints():
-        own = pcbnew.B_Cu if fp.IsFlipped() else pcbnew.F_Cu
-        blocked = [layer for layer in (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu) if layer != own]
+        fp_own = pcbnew.B_Cu if fp.IsFlipped() else pcbnew.F_Cu
         for pad in fp.Pads():
             if pad.GetNetname() not in HV_NETS:
                 continue
+            # Per-pad own layer: a footprint can sit unflipped while its
+            # pads are B.Cu-only (edge tails) — trusting IsFlipped sealed
+            # J11's pads inside hv_inner on their own escape layer.
+            ls = pad.GetLayerSet()
+            own = fp_own
+            if ls.Contains(pcbnew.B_Cu) and not ls.Contains(pcbnew.F_Cu):
+                own = pcbnew.B_Cu
+            elif ls.Contains(pcbnew.F_Cu) and not ls.Contains(pcbnew.B_Cu):
+                own = pcbnew.F_Cu
+            # "No inner copper and no vias under defib copper" — inner
+            # layers only. Covering the opposite outer layer sealed the
+            # interleaved pad row (F shadows landed on B pads' escapes).
+            blocked = [pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.In3_Cu, pcbnew.In4_Cu]
             x0, y0, x1, y1 = _box(pad, 1.0)
             rects.append((x0, y0, x1, y1))
             _rect_zone(
                 board, blocked,
                 ((x0, y0), (x1, y0), (x1, y1), (x0, y1)),
                 "hv_inner", tracks=True, vias=True, pours=True,
+            )
+            # Own layer: bar pours only inside the pad shadow — the pad
+            # still needs track access, but a same-layer pour must not
+            # flush to within the zone-clearance of defib copper.
+            _rect_zone(
+                board, (own,),
+                ((x0, y0), (x1, y0), (x1, y1), (x0, y1)),
+                "hv_ownlayer", pours=True,
             )
     return rects
 
@@ -113,14 +140,17 @@ def _hole_keepouts(board):
         r = 1.1 + 1.0
         _rect_zone(
             board,
-            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu),
+            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.In3_Cu,
+             pcbnew.In4_Cu, pcbnew.B_Cu),
             ((cx - r, cy - r), (cx + r, cy - r), (cx + r, cy + r), (cx - r, cy + r)),
             "hole_keepout", tracks=True, vias=True, pours=True,
         )
 
 
 def _bga_areas(board):
-    for ref in ("U6", "U7"):
+    # U22 = MAX86178 WLP-49 at 0.35 mm pitch: perimeter balls escape direct,
+    # the interior power column needs VIP+POFV per ROUTING_PLAN.md.
+    for ref in ("U6", "U7", "U22"):
         fp = board.FindFootprintByReference(ref)
         if fp is None:
             continue
@@ -130,7 +160,8 @@ def _bga_areas(board):
         y1 = (box.GetY() + box.GetHeight()) / 1e6 + 0.4
         _rect_zone(
             board,
-            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.B_Cu),
+            (pcbnew.F_Cu, pcbnew.In1_Cu, pcbnew.In2_Cu, pcbnew.In3_Cu,
+             pcbnew.In4_Cu, pcbnew.B_Cu),
             ((x0, y0), (x1, y0), (x1, y1), (x0, y1)),
             "bga_fanout",
         )
@@ -189,6 +220,21 @@ def _vip(board):
             pad.SetLocalSolderMaskMargin(mm(0.025))
             _add_via(board, pad.GetPosition(), net, 0.30, 0.20, tent=False)
             count += 1
+    # U22 WLP-49: row F is trapped between rows A and G (0.15 mm pad gaps —
+    # no escape lane on B.Cu), so every live F-row ball needs VIP+POFV.
+    fp = board.FindFootprintByReference("U22")
+    if fp is not None:
+        for pad in fp.Pads():
+            net = pad.GetNet()
+            name = pad.GetNetname()
+            if not pad.GetName().startswith("F"):
+                continue
+            if name.startswith("unconnected") or net is None or net.GetNetname() == "":
+                continue
+            pad.SetSize(pcbnew.VECTOR2I(mm(0.25), mm(0.25)))
+            pad.SetLocalSolderMaskMargin(mm(0.025))
+            _add_via(board, pad.GetPosition(), net, 0.30, 0.20, tent=False)
+            count += 1
     return count
 
 
@@ -220,6 +266,9 @@ def _stitch(board, hv_rects):
             c = fp.GetPosition()
             cx, cy = c.x / 1e6, c.y / 1e6
             hv_rects.append((cx - 2.2, cy - 2.2, cx + 2.2, cy + 2.2))
+    # And the ESP32-S3-MINI-1 antenna zone under the module's overhanging tab
+    # (mirrors the antenna_keepout rule area emitted by build_pcb.add_keepout).
+    hv_rects.append((4.55, -1.0, 20.25, 2.45))
     points = []
     step = 2.8
     y = 1.2
@@ -276,10 +325,15 @@ def _pours(board):
     _zone(board, "GND", pcbnew.In1_Cu, board_pts, 0)
     _zone(board, "GND", pcbnew.B_Cu, board_pts, 0)
     _zone(board, "+3V3", pcbnew.In2_Cu, board_pts, 0)
-    # Higher priority islands on L3. The filler keeps them out of the sensor keep-outs.
-    _zone(board, "VBAT", pcbnew.In2_Cu, ((26.0, 6.0), (36.2, 6.0), (36.2, 20.0), (26.0, 20.0)), 2)
-    _zone(board, "TX_5V", pcbnew.In2_Cu, ((30.0, 4.0), (36.2, 4.0), (36.2, 12.0), (30.0, 12.0)), 3)
-    _zone(board, "+1V8", pcbnew.In2_Cu, ((31.0, 12.0), (36.2, 12.0), (36.2, 16.5), (31.0, 16.5)), 3)
+    # Higher priority islands on L3, retargeted onto their real consumer
+    # clusters on the 40 mm outline: VBAT under J2/U2, TX_5V under the
+    # AFE/emitter row, +1V8 under U9/R66 with a south corridor to AS7341.
+    _zone(board, "VBAT", pcbnew.In2_Cu, ((11.0, 9.5), (20.5, 9.5), (20.5, 17.5), (11.0, 17.5)), 2)
+    _zone(board, "TX_5V", pcbnew.In2_Cu, ((12.5, 47.5), (27.5, 47.5), (27.5, 54.5), (12.5, 54.5)), 3)
+    _zone(board, "+1V8", pcbnew.In2_Cu, ((17.0, 18.0), (26.5, 18.0), (26.5, 55.0), (23.3, 55.0), (23.3, 22.0), (17.0, 22.0)), 3)
+    # In4: second solid GND plane — shields In3 signals and gives B-side
+    # routes a close return. In3 stays a dedicated signal layer.
+    _zone(board, "GND", pcbnew.In4_Cu, board_pts, 0)
 
 
 def _silk_text(board, text, x, y, layer):
@@ -332,6 +386,21 @@ def _pin1_dots(board, boxes):
         if _hits(cx - 0.25, cy - 0.25, cx + 0.25, cy + 0.25, boxes):
             continue
         if min(cx, cy, BOARD_W - cx, BOARD_H - cy) < 0.3:
+            continue
+        # Skip footprints that already carry a pin-1 silk mark near pad 1.
+        marked = False
+        for item in fp.GraphicalItems():
+            if not isinstance(item, pcbnew.PCB_SHAPE):
+                continue
+            if item.GetShape() != pcbnew.SHAPE_T_CIRCLE:
+                continue
+            if item.GetLayer() not in (pcbnew.F_SilkS, pcbnew.B_SilkS):
+                continue
+            c = item.GetCenter()
+            if ((c.x / 1e6 - cx) ** 2 + (c.y / 1e6 - cy) ** 2) ** 0.5 < 0.6:
+                marked = True
+                break
+        if marked:
             continue
         shape = pcbnew.PCB_SHAPE(board)
         shape.SetShape(pcbnew.SHAPE_T_CIRCLE)
@@ -386,8 +455,14 @@ def _silk(board):
 def finish_board(board):
     _netclass(board, "HV_ELECTRODE", 0.2, 0.25)
     _netclass(board, "ELECTRODE_LV", 0.2, 0.15)
+    _netclass(board, "USB_90R", 0.15, 0.25)
     _assign(board, HV_NETS, "HV_ELECTRODE")
     _assign(board, LV_NETS, "ELECTRODE_LV")
+    _assign(
+        board,
+        ("USB_DP", "USB_DM", "USB_DP_S3", "USB_DM_S3", "USB_DP_CP", "USB_DM_CP"),
+        "USB_90R",
+    )
     hv = _hv_keepouts(board)
     _pour_keepouts(board)
     _hole_keepouts(board)

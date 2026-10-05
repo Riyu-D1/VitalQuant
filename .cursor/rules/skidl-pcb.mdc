@@ -32,9 +32,10 @@ Wiring that is easy to break:
 - CP2102N VDD is its own regulator output and is not tied to +3V3.
 - PWR_FLAG symbols are schematic-only. They are not in the netlist.
 
-The PCB is a 52 × 40 mm, 4-layer starting placement. The ESP32 antenna points
-off the left edge. Do not put copper in that keep-out. Do not treat the
-placement as a finished route.
+The PCB is a 40 × 62 mm, 4-layer starting placement (widened east to host the
+J11/J13 HV-boundary cut-points and clamps). The ESP32 antenna points off the
+left edge. Do not put copper in that keep-out. Do not treat the placement as a
+finished route.
 
 This board is a research prototype. Do not describe it as a medical device or
 claim safety, sterility, or regulatory compliance.
