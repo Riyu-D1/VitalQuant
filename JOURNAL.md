@@ -76,6 +76,7 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - Finetuning a proprietary custom decision model (LAT-D-VQt-1) via QLoRA using LatticeAG infrastructure
 - https://latticeag.vercel.app/#/products/lat-d-vqt-1
 <img width="959" height="473" alt="image" src="https://github.com/user-attachments/assets/2a0ed26a-c70f-42ab-9dc2-edc92d3a1584" />
+<img width="959" height="479" alt="image" src="https://github.com/user-attachments/assets/82be96a9-5820-4802-967b-1c7a29a431c7" />
 
 
 ---
@@ -89,7 +90,6 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - The BOM is all listed in the devin hw2_pcb branch
 - This is just a very basic and initial render of the pcb
 <img width="274" height="498" alt="image" src="https://github.com/user-attachments/assets/0db3fd01-83a3-4335-b2a0-09a58c8ec203" />
-<img width="959" height="479" alt="image" src="https://github.com/user-attachments/assets/82be96a9-5820-4802-967b-1c7a29a431c7" />
 
 
 ## Riyansh - 2 Oct
