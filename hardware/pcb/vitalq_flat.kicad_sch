@@ -6519,6 +6519,24 @@
 						)
 					)
 				)
+				(pin passive line
+					(at 5.08 -19.05 180)
+					(length 2.54)
+					(name "MP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "MP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
 			(embedded_fonts no)
 		)
@@ -10908,26 +10926,6 @@
 					)
 					(fill
 						(type background)
-					)
-				)
-			)
-			(symbol "MountingHole_1_1"
-				(pin no_connect line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "MH"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
 					)
 				)
 			)
@@ -16950,6 +16948,10 @@
 	(no_connect
 		(at 1189.99 965.2)
 		(uuid "48b5926b-410f-4ced-9f55-841ef4c9f54e")
+	)
+	(no_connect
+		(at 1404.62 1023.62)
+		(uuid "4d4a7935-3792-49d6-a09c-07e50592710e")
 	)
 	(no_connect
 		(at 778.51 494.03)
@@ -46659,9 +46661,6 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "42060fca-5171-48fc-af32-d86cca36d317")
-		)
 		(instances
 			(project "vitalq_flat"
 				(path "/cbbdfd44-951c-4f0b-9fac-a13ab1eca057"
@@ -54542,9 +54541,6 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "34e8b741-9116-42cf-a3e7-91450cef8147")
-		)
 		(instances
 			(project "vitalq_flat"
 				(path "/cbbdfd44-951c-4f0b-9fac-a13ab1eca057"
@@ -61734,6 +61730,9 @@
 		)
 		(pin "14"
 			(uuid "011c4583-9e7a-430b-a0a3-6196d4454c7d")
+		)
+		(pin "MP"
+			(uuid "f29d525a-4484-4f47-9425-91f891e29b6a")
 		)
 		(instances
 			(project "vitalq_flat"
