@@ -52,6 +52,28 @@ coordinates* so they track the layout, not the case.
     bay ceiling    9.7   (4.5 mm cell + 0.4 pad)
     cover apex    11.5   (1.8 mm top wall)
 
+## Debossed emblem (cover)
+
+The cover top face carries the chosen VitalQ mark — the **QRST monogram**
+(~/Downloads/VitalQ_Logo_v1 `c1_qrst`, reversed style: Q ring + "key-like"
+PQRST tail) — cut **into** the dome (deboss, not emboss).
+
+- Params: `EMBLEM_SIZE = 18 mm` overall, `EMBLEM_X/Y = (0, -23)` — centred
+  in X, shifted toward the USB end so the whole footprint clears the
+  battery pocket (pocket starts at y = -12.4).
+- `EMBLEM_DEPTH = 0.6 mm`, uniform over the curved dome: the groove floor
+  is built by intersecting the emblem footprint column with a copy of the
+  cover offset down by the depth, so every point sits 0.6 mm under the
+  local surface rather than at a flat depth.
+- Min wall under the grooves: **~2.4 mm** (deck ceiling z=8.3 below;
+  pocket never closer than ~0.3 mm in plan) — verified by probe columns
+  along the groove centrelines; spec ≥ 1.0 mm.
+- Min feature width: tail stroke 1.5 mm, ring 3.1 mm — well over the
+  0.5 mm FDM floor. Prints rim-down, no supports (grooves face up).
+- Note: boolean quirk documented in `case.py` — footprint prisms must stay
+  plain CCW solids (a holed `Part` silently fails `&`; a CW polygon
+  extrudes downward).
+
 ## FDM notes
 
 - Walls 1.8 mm (~4×0.4 perimeters), floor 1.4 mm at centre — all ≥ 3 shells.
@@ -76,7 +98,7 @@ coordinates* so they track the layout, not the case.
 ## Files
 
 `case.py` (parametric source), `case_base.*`, `case_cover.*` (STEP+STL),
-`case_assembly.step`, `case_{iso,top,bottom,section}.{svg,png}`,
+`case_assembly.step`, `case_{iso,top,bottom,section,emblem}.{svg,png}`,
 `vitalq_pcb.step` (reference board, exported from VitalQ_Quilter_v6).
 
 Run: `case/.venv/bin/python case/case.py` — rebuilds everything in `case/`.

@@ -86,6 +86,16 @@ SCREW_BORE_H = 2.2
 RIB_Y = (-20.0, 30.0)  # case-y positions of cover ribs pressing the board
 RIB_T = 2.0
 
+# ------------------------------ emblem -------------------------------------
+# QRST monogram (~/Downloads/VitalQ_Logo_v1, c1_qrst reversed geometry):
+# Q ring + PQRST tail, debossed into the cover dome. Dome curvature is
+# X-only, so the cut floor is warped by dome_z(x) -> uniform depth.
+EMBLEM_SIZE = 18.0    # overall mark height, mm
+EMBLEM_X, EMBLEM_Y = 0.0, -23.0   # centred in X; shifted -Y clear of the
+                                  # battery pocket (pocket y>=-12.4)
+EMBLEM_DEPTH = 0.6    # deboss depth, mm
+MIN_WALL = 1.0        # required material left under the deboss
+
 # ------------------------------ derived ------------------------------------
 CW = PCB_W + 2 * PCB_CLR                     # cavity width   46.7
 CL = PCB_L + 2 * PCB_CLR                     # cavity length  70.7
@@ -189,6 +199,163 @@ def build_base():
     return base
 
 
+# =========================== EMBLEM (deboss) ===============================
+# Source geometry in SVG units (64x64 artboard, y-down), from
+# VitalQ_Logo_v1/make_logos.py::m_qrst: ring circle(30,28) r21 sw9 and the
+# PQRST tail path rotated 38deg about (39,45), sw 4.4.
+_EM_RING = ((30.0, 28.0), 21.0, 9.0)
+_EM_TAIL_CMDS = ("M39 45 l3.2 0 q1.6 -2.4 3.2 0 l2.2 0 l1.0 2.0 "
+                 "l1.3 -2.8 l1.6 -9.4 l1.7 10.6 l1.2 2.6 l2.6 0 "
+                 "q2.2 -3.2 4.4 0 l3.0 0")
+_EM_TAIL_W = 4.4
+_EM_ROT_CENTRE = (39.0, 45.0)
+_EM_ROT_DEG = 38.0
+
+
+def _tail_polyline():
+    """Parse the PQRST path -> absolute points -> rotate about tail root."""
+    import re
+    pts = []
+    cur = None
+    cmds = re.findall(r"([Mlq])([^Mlq]*)", _EM_TAIL_CMDS)
+    for c, argstr in cmds:
+        a = [float(v) for v in argstr.split()]
+        if c == "M":
+            cur = (a[0], a[1]); pts.append(cur)
+        elif c == "l":
+            cur = (cur[0] + a[0], cur[1] + a[1]); pts.append(cur)
+        elif c == "q":  # relative quad: sample 8 segs
+            x0, y0 = cur
+            (cx, cy, x1, y1) = (x0 + a[0], y0 + a[1], x0 + a[2], y0 + a[3])
+            for t_i in range(1, 9):
+                t = t_i / 8
+                pts.append((x0 * (1 - t) ** 2 + cx * 2 * t * (1 - t) +
+                            x1 * t * t, y0 * (1 - t) ** 2 +
+                            cy * 2 * t * (1 - t) + y1 * t * t))
+            cur = (x1, y1)
+    rad = math.radians(_EM_ROT_DEG)
+    ox, oy = _EM_ROT_CENTRE
+    return [(ox + (x - ox) * math.cos(rad) - (y - oy) * math.sin(rad),
+             oy + (x - ox) * math.sin(rad) + (y - oy) * math.cos(rad))
+            for x, y in pts]
+
+
+def _tail_polys(pts, w, cap_segs=10):
+    """Polyline -> list of simple polygons (segment quads + vertex disks).
+
+    Union of per-segment quads + a disk at every vertex reproduces the
+    stroked path and never self-intersects, unlike a mitered outline at
+    the sharp QRS corners.
+    """
+    polys = []
+    n = len(pts)
+    for i in range(n - 1):
+        x0, y0 = pts[i]
+        x1, y1 = pts[i + 1]
+        dx, dy = x1 - x0, y1 - y0
+        dl = math.hypot(dx, dy) or 1.0
+        nx, ny = -dy / dl * w / 2, dx / dl * w / 2
+        polys.append([(x0 + nx, y0 + ny), (x1 + nx, y1 + ny),
+                      (x1 - nx, y1 - ny), (x0 - nx, y0 - ny)])
+    for x, y in pts:
+        polys.append([(x + w / 2 * math.cos(2 * math.pi * k / cap_segs),
+                       y + w / 2 * math.sin(2 * math.pi * k / cap_segs))
+                      for k in range(cap_segs)])
+    return polys
+
+
+def _emblem_to_case(x, y, scale, cx, cy):
+    """SVG pt -> case coords: scale, centre, flip Y (svg is y-down)."""
+    return ((x - cx) * scale + EMBLEM_X, -(y - cy) * scale + EMBLEM_Y)
+
+
+def dome_z(x):
+    """Cover outer surface height at case-x (cylindrical dome, axis Y)."""
+    return Z_APEX - R_TOP + math.sqrt(R_TOP ** 2 - x ** 2)
+
+
+def _xy_prism(poly2d, z0, z1):
+    # winding matters: a CW polygon extrudes -Z. Force CCW.
+    a = sum(x0 * y1 - x1 * y0 for (x0, y0), (x1, y1)
+            in zip(poly2d, poly2d[1:] + poly2d[:1]))
+    if a < 0:
+        poly2d = poly2d[::-1]
+    return Pos(0, 0, z0) * extrude(Polygon(*poly2d), amount=z1 - z0)
+
+
+def emblem_footprint():
+    """(outer-footprint prism, inner-hole prism) in case coords."""
+    (rcx, rcy), rr, rw = _EM_RING
+    tail = _tail_polyline()
+    xs = [rcx - rr - rw / 2, rcx + rr + rw / 2] + [p[0] for p in tail]
+    ys = [rcy - rr - rw / 2, rcy + rr + rw / 2] + [p[1] for p in tail]
+    cx, cy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
+    scale = EMBLEM_SIZE / (max(xs) - min(xs))
+
+    def conv(poly):
+        return [_emblem_to_case(x, y, scale, cx, cy) for x, y in poly]
+
+    segs = 64
+    ring_out = conv([(rcx + (rr + rw / 2) * math.cos(2 * math.pi * i / segs),
+                      rcy + (rr + rw / 2) * math.sin(2 * math.pi * i / segs))
+                     for i in range(segs)])
+    ring_in = conv([(rcx + (rr - rw / 2) * math.cos(2 * math.pi * i / segs),
+                     rcy + (rr - rw / 2) * math.sin(2 * math.pi * i / segs))
+                    for i in range(segs)])
+    # keep every footprint prism a plain SOLID - a Part with a hole fails
+    # boolean intersection against the cover block; subtract hole at the end.
+    fp = _xy_prism(ring_out, Z_SEAM, Z_APEX + 2)
+    for p in _tail_polys(tail, _EM_TAIL_W):
+        fp += _xy_prism(conv(p), Z_SEAM, Z_APEX + 2)
+    hole = _xy_prism(ring_in, Z_SEAM, Z_APEX + 2)
+    return fp, hole
+
+
+def deboss_emblem(cover):
+    """Cut the emblem EMBLEM_DEPTH into the dome, following the curvature.
+
+    col = cover material inside the footprint; col - (cover shifted down by
+    depth) leaves exactly the top depth-thick layer -> uniform-depth groove.
+    The Q's counter is preserved by subtracting the inner-disk prism.
+    """
+    fp, hole = emblem_footprint()
+    region = Pos(EMBLEM_X, EMBLEM_Y, 0) * Box(OW - 2, 30, 2 * (Z_APEX + 5))
+    block = cover & region
+    layer = (fp & block) - Pos(0, 0, -EMBLEM_DEPTH) * block
+    cut = layer - hole
+    return cover - cut
+
+
+def emblem_probe_pts():
+    """Points on the groove centrelines (for the wall-under-emblem check)."""
+    (rcx, rcy), rr, rw = _EM_RING
+    tail = _tail_polyline()
+    xs = [rcx - rr - rw / 2, rcx + rr + rw / 2] + [p[0] for p in tail]
+    ys = [rcy - rr - rw / 2, rcy + rr + rw / 2] + [p[1] for p in tail]
+    cx, cy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
+    scale = EMBLEM_SIZE / (max(xs) - min(xs))
+    ring_mid = [_emblem_to_case(rcx + rr * math.cos(2 * math.pi * i / 24),
+                                rcy + rr * math.sin(2 * math.pi * i / 24),
+                                scale, cx, cy) for i in range(24)]
+    tail_mid = [_emblem_to_case(x, y, scale, cx, cy) for x, y in tail[::2]]
+    return ring_mid + tail_mid
+
+
+def emblem_min_wall(cover):
+    """Min material left under the deboss: probe columns on groove lines."""
+    worst = 99.0
+    worst_at = None
+    for px, py in emblem_probe_pts():
+        col = cover & Pos(px, py, Z_SEAM) * Cylinder(
+            0.15, Z_APEX - Z_SEAM + 0.5,
+            align=(Align.CENTER, Align.CENTER, Align.MIN))
+        bb = col.bounding_box()
+        wall = bb.max.Z - bb.min.Z   # column: cavity ceiling -> groove floor
+        if wall < worst:
+            worst, worst_at = wall, (px, py)
+    return worst, worst_at
+
+
 # ============================ COVER (top half) =============================
 def build_cover():
     cover = rounded_box(OW, OL, CORNER_R, Z_SEAM, Z_APEX + 0.6)
@@ -227,6 +394,10 @@ def build_cover():
         cover -= Pos(ex, ey, ear_top - SCREW_BORE_H) * Cylinder(
             SCREW_BORE_D / 2, SCREW_BORE_H + 1.0,
             align=(Align.CENTER, Align.CENTER, Align.MIN))
+
+    # debossed QRST emblem on the dome (uniform-depth grooves following
+    # the dome curvature - see deboss_emblem)
+    cover = deboss_emblem(cover)
 
     return cover
 
@@ -282,8 +453,15 @@ def main():
     render(layers, "case_bottom", (0.01, -0.02, -1), look_up=(0, 1, 0))
     half = asm & Pos(-100, 0, -50) * Box(200, 200, 200)
     render([(half, (0.25, 0.25, 0.25))], "case_section", (1, 0, 0.08))
+    # emblem close-up: cover only, low oblique light angle
+    render([(cover, (0.25, 0.25, 0.25))], "case_emblem",
+           (0.45, -0.85, 0.35))
 
+    wall, at = emblem_min_wall(cover)
     print(f"outer: {OW:.1f} x {OL:.1f} mm   apex z={Z_APEX:.1f}  sag={SAG:.2f}")
+    print(f"emblem: {EMBLEM_SIZE} mm @ ({EMBLEM_X},{EMBLEM_Y}) "
+          f"depth {EMBLEM_DEPTH} -> min wall {wall:.2f} mm at "
+          f"({at[0]:.1f},{at[1]:.1f})  (min req {MIN_WALL})")
 
 
 if __name__ == "__main__":
