@@ -26,9 +26,17 @@ def in_range(r, prefix, lo, hi):
     return bool(m) and lo <= int(m.group(1)) <= hi
 
 def is_hv(r):
+    # HV electrode corridor: creepage ladders R32-36/R76-83, J11/J13 0-ohm
+    # cut-points R118-122, TVS/clamp rows D1-D3 + D6-D9 + D21-D30.
+    # (D4/D5 are USB ESD clamps near J1, not corridor -> unlocked.)
     return (in_range(r, "R", 32, 36) or in_range(r, "R", 76, 83)
-            or in_range(r, "R", 118, 122) or in_range(r, "D", 1, 9)
-            or in_range(r, "D", 21, 30))
+            or in_range(r, "R", 118, 122) or in_range(r, "D", 1, 3)
+            or in_range(r, "D", 6, 9) or in_range(r, "D", 21, 30))
+
+# Skin-facing sensor cluster, physics-fixed on the bottom side
+# (optical/thermal co-registration ~x7-26, y44-56) + U20 TMP117 top twin.
+SENSORS = {"U6", "U10", "U11", "U12", "U16", "U20", "U22", "U23",
+           "D10", "D11", "D12"}
 
 board = pcbnew.LoadBoard(SRC)
 
@@ -50,8 +58,7 @@ for fp in board.GetFootprints():
     r = fp.GetReference()
     on_bottom = fp.GetLayer() == pcbnew.B_Cu
     pre = re.match(r"[A-Z]+", r).group(0)
-    lock = (on_bottom or is_hv(r) or pre in ("J", "TP", "SW", "H", "FID")
-            or r in ("U1", "U20"))
+    lock = (r in SENSORS or is_hv(r) or pre in ("J", "TP") or r == "U1")
     (locked if lock else loose).append(fp)
 
 fp_boxes = {id(fp): fp.GetBoundingBox() for fp in loose}
@@ -72,7 +79,7 @@ print(f"locked {len(locked)}  loose {len(loose)}  total {len(locked)+len(loose)}
 x0 = max(xs) + 10 * MM
 y0 = min(ys)
 cur_x, cur_y, row_h = x0, y0, 0
-ROW_W, GAP = 130 * MM, int(1.5 * MM)
+ROW_W, GAP = 170 * MM, int(1.5 * MM)
 
 for fp in sorted(loose, key=lambda f: refnum(f.GetReference())):
     bb = fp_boxes[id(fp)]
@@ -88,5 +95,7 @@ for fp in sorted(loose, key=lambda f: refnum(f.GetReference())):
 
 pcbnew.SaveBoard(DST, board)
 print("saved", DST)
+print("LOCKED:", " ".join(sorted((fp.GetReference() for fp in locked),
+                                 key=refnum)))
 print("LOOSE:", " ".join(sorted((fp.GetReference() for fp in loose),
                                 key=refnum)))
