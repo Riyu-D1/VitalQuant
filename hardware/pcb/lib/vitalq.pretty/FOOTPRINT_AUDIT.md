@@ -47,6 +47,30 @@ schematic's use of A1–G7 names is consistent with the package naming
 convention, but each ball's electrical function cannot be confirmed from
 public sources — flagged in the footprint `descr`.
 
+## 1b. MAX86141_WLP20.kicad_mod — MAX86141 (U22, hw_v2.1) — **NEW**
+
+Sources:
+
+- https://www.analog.com/en/products/max86141.html
+- Analog Devices package outline 21-100134 (package code N201A2+1)
+
+Package: 20-bump WLP, 5 columns × 4 rows, **0.4 mm pitch**, body
+2.048 × 1.848 mm, pads A1–D5 (bumps-down view, A1 top-left). Round NSMD
+lands Ø0.24 mm (within the suggested 0.22–0.25 mm window). Courtyard
+2.3 × 2.1 mm, fab body outline, silk pin-1 mark at the A1 corner.
+
+Bump map (per the 21-100134/N201A2+1 coordinate table): A1 VLED,
+A2 SCLK, A3 SDO, A4 SDI, A5 CSB; B1 LED3_DRV, B2 INT, B3 GPIO1,
+B4 GPIO2, B5 VREF; C1 LED2_DRV, C2 VDD_DIG, C3 GND_DIG, C4 GND_ANA,
+C5 PD_GND; D1 LED1_DRV, D2 VDD_ANA, D3 PGND, D4 PD2_IN, D5 PD1_IN.
+
+Note: on the board U22 sits on B.Cu rotated 180° — the embedded board
+copy mirrors the library pad Y coordinates, exactly as the previous
+WLP49 embedding did. Fanout: outer balls escape on the surface; inner
+balls (B2–B4, C2–C4) need via-in-pad or escape routing (~0.15 mm drill /
+0.25–0.3 mm pad, or ≤0.1 mm traces if rules allow) — flagged for
+Quilter fanout.
+
 ## 2. ESP32_S3_MINI_1U.kicad_mod — ESP32-S3-MINI-1U — **VERIFIED/FIXED**
 
 Sources:
@@ -155,7 +179,8 @@ pattern to check against, so the geometry cannot be VERIFIED.
 
 | Footprint | Status |
 |---|---|
-| MAX86178_WLP49 | FIXED (pitch 0.40→0.35 mm, pads Ø0.22→0.20 mm, courtyard+pin-1 added); ball function map UNVERIFIED (NDA) |
+| MAX86141_WLP20 | NEW (hw_v2.1) — 20-bump WLP per outline 21-100134, 0.4 mm pitch, Ø0.24 mm NSMD pads, courtyard+pin-1 |
+| MAX86178_WLP49 | FIXED (pitch 0.40→0.35 mm, pads Ø0.22→0.20 mm, courtyard+pin-1 added); ball function map UNVERIFIED (NDA); **superseded on board by MAX86141_WLP20 for U22** |
 | ESP32_S3_MINI_1U | VERIFIED geometry; FIXED courtyard 14.6→16 mm; schematic-side "EPAD 66" stale — pads end at 65 |
 | SHT45_DFN4 | FIXED (pad dims transposed → 0.50×0.30 mm, courtyard+pin-1 added) |
 | RV3028C7 | FIXED (lands 0.30×0.45→0.5×0.8 mm, pitch normalized to 0.9 mm, courtyard+pin-1 added) |

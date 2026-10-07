@@ -30,10 +30,13 @@ replacement is strictly better. No sensing function is ever dropped.
      existing R53 pull-up, fine), GPIO45/46 leave unstrapped (no loads).
 
 ### Additions (all I2C addresses verified free)
-2. **MAX86178 WLP-49** — synchronized ECG/PPG/BioZ AFE (new sheet). SPI +
-   CS_MAX86178 + MAX86178_INT. Drives the new satellite PPG tail natively
-   (3 LED cathodes + anode + 1 PD pair). Existing AFE4900/ADS1292R/
-   AD5940 all stay — AD5940 keeps EDA/bioZ-lactate duty.
+2. **MAX86141 WLP-20** — optical PPG AFE (hw_v2.1 swap, replacing the
+   MAX86178 WLP-49). SPI + CS_MAX86178 + MAX86178_INT (net names kept).
+   Drives the satellite PPG tail natively (3 LED cathodes + anode + 1 PD
+   pair). SDO level-shifted to 3.3 V by new U26 SN74AXC2T245. ECG/BioZ
+   channels dropped — J13's MX_ECG pads are unused (D29/D30, R118/R119
+   left in place). Existing AFE4900/ADS1292R/AD5940 all stay — AD5940
+   keeps EDA/bioZ-lactate duty.
 3. **SHT45-AD1B** skin RH+temp, DFN-4 1.5×1.5 mm, bottom skin face,
    I2C3V3 0x44. Shares R19/R20 pull-ups.
 4. **D12: 730 nm LED** (LED_0402 package) + 0402 series R from +3V3,

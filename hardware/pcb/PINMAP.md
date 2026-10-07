@@ -317,6 +317,55 @@ part. From the pinmap side:
   / 4 PDs and has ECG + BioZ front ends per the public short form.
   The spare ECG pair lands on J13 (DNP).
 
+## MAX86141 substitution (U22, hw_v2.1)
+
+U22 is now **MAX86141ENP+** (LCSC C5328762) — a 20-bump WLP optical PPG
+AFE (package N201A2+1, outline 21-100134, 2.048 × 1.848 mm, 5 × 4 grid,
+0.4 mm pitch, Ø0.24 mm NSMD lands, footprint `vitalq:MAX86141_WLP20`).
+Same refdes, same schematic/footprint UUIDs, same locked board position
+(B.Cu, 26.1/45.05, rot 180). The MAX86178 ECG/BioZ front ends are gone —
+J13's MX_ECG_INP/INM nets no longer reach U22 (D29/D30 clamps and
+R118/R119 cut-points remain in place but are now unused).
+
+U22 pin → net map (as netlisted):
+
+| Ball | Pin | Net |
+| --- | --- | --- |
+| A1 | VLED | TX_5V (bypass C89 10 µF) |
+| A2 | SCLK | SPI_SCK |
+| A3 | SDO | MX_SDO_1V8 → U26 A1 (1.8 V side) |
+| A4 | SDI | SPI_MOSI |
+| A5 | CSB | CS_MAX86178 (GPIO38 — net name kept) |
+| B1 | LED3_DRV | LED3_K |
+| B2 | INT | MAX86178_INT (GPIO39 — net name kept) |
+| B3 | GPIO1 | no connect |
+| B4 | GPIO2 | no connect |
+| B5 | VREF | MX_VREF (bypass C83 1 µF) |
+| C1 | LED2_DRV | LED2_K |
+| C2 | VDD_DIG | +1V8 (bypass C88 100 nF) |
+| C3 | GND_DIG | GND |
+| C4 | GND_ANA | GND |
+| C5 | PD_GND | PD_A |
+| D1 | LED1_DRV | LED1_K |
+| D2 | VDD_ANA | +1V8 (bypass C86 100 nF + C87 10 µF) |
+| D3 | PGND | GND |
+| D4 | PD2_IN | no connect |
+| D5 | PD1_IN | PD_K |
+
+**U26 = SN74AXC2T245RSWR** (LCSC C1882550, RSW0010A UQFN-10 1.4 × 1.8 mm)
+translates the 1.8 V SDO into the shared 3.3 V SPI MISO. Wiring:
+A1 ← MX_SDO_1V8 (pin 8), B1 → MISO_MX (pin 5, into R106 as before),
+DIR1 = +1V8 (pin 10, A→B), DIR2 = GND (pin 1, B→A), A2 NC (pin 9),
+B2 = GND (pin 4), OE = **CS_MAX86178** (pin 2 — MISO tri-states while
+the chip is deselected), GND (pin 3), VCCA = +1V8 (pin 7, bypass C90
+100 nF), VCCB = +3V3 (pin 6, bypass C91 100 nF). INT stays direct:
+open-drain with existing R113 10 kΩ pull-up to +3V3.
+
+New bypass caps C86–C91 (all parked off-board for Quilter placement):
+C86/C88/C90/C91 = 100 nF 0402 (C1525), C87 = 10 µF 0402 6.3 V (C15525),
+C89 = 10 µF 0603 10 V (C19702). C29 keeps its footprint but is no longer
+a U22 bypass cap (its +3V3_ANA role ended with the old F7 ball).
+
 ## AD5940 spare GPIO → NIR730_GATE
 
 D12 is the new 730 nm LED (LED_0402) for the tissue-StO₂ ratio against
