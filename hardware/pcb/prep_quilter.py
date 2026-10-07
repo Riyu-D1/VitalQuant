@@ -58,7 +58,7 @@ for fp in board.GetFootprints():
     r = fp.GetReference()
     on_bottom = fp.GetLayer() == pcbnew.B_Cu
     pre = re.match(r"[A-Z]+", r).group(0)
-    lock = (r in SENSORS or is_hv(r) or pre in ("J", "TP") or r == "U1")
+    lock = (r in SENSORS or is_hv(r) or pre == "J" or r == "U1")
     (locked if lock else loose).append(fp)
 
 fp_boxes = {id(fp): fp.GetBoundingBox() for fp in loose}
