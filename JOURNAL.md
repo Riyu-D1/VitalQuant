@@ -111,3 +111,12 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - Therefore I will let this run overnight and checkup on it tomorrow
 <img width="978" height="1478" alt="image" src="https://github.com/user-attachments/assets/59edd74b-1eb2-4d3d-9360-cc06a918c412" />
 
+## Riyansh - 8 OCT
+30 mins
+
+- The quilter processes had finished so I rechecked over them and suprisiglly it was able to route only 92% as there were constriiction
+- I resubmitted 2 jobs this time the old one to do another pass aswell as resubmitting a larger board which i will wait on the output.
+- This should be able to now finish of the placement and routing
+<img width="1680" height="897" alt="image" src="https://github.com/user-attachments/assets/ebb42624-0448-4db9-af0e-cde097524b50" />
+
+
