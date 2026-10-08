@@ -68,7 +68,7 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 <Logo className={scrolled ? 'w-9 h-9' : 'w-11 h-11'} />
-                <span className="font-rx100 text-xl pt-0.5 tracking-wide">VITALQ</span>
+                <span className="font-rx100 text-xl pt-0.5 tracking-wide">VITALQUANT</span>
               </Link>
             </div>
 

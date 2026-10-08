@@ -1,6 +1,6 @@
 """API contract + vertical-slice integration test (Postgres-backed).
 
-Skipped without DATABASE_URL — run `docker compose up -d db && vitalq-migrate`
+Skipped without DATABASE_URL — run `docker compose up -d db && vitalquant-migrate`
 locally; CI provides the postgres service and runs migrations first.
 """
 
@@ -23,8 +23,8 @@ DSN = os.environ.get("DATABASE_URL")
 @pytest.fixture(scope="session")
 def seeded():
     """Migrate schema + register one device; returns (device_id, api_key)."""
-    from vitalq.ingest.auth import hash_key
-    from vitalq.ingest.migrate import _run
+    from vitalquant.ingest.auth import hash_key
+    from vitalquant.ingest.migrate import _run
 
     asyncio.run(_run(DSN, PROFILE.parents[1] / "supabase" / "migrations"))
 
@@ -49,8 +49,8 @@ def seeded():
 
 @pytest.fixture()
 async def client():
-    from vitalq.ingest import db
-    from vitalq.ingest.app import app
+    from vitalquant.ingest import db
+    from vitalquant.ingest.app import app
     async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
                                  base_url="http://test") as c:
         yield c
@@ -83,8 +83,8 @@ async def test_vertical_slice(client, seeded):
     sid = await _open_session(client, key)
 
     # synthetic batches via the real generator (schema-consistent by construction)
-    from vitalq.core.config import load_profile
-    from vitalq.synth.generator import CorruptionSpec, SynthConfig, SyntheticDevice
+    from vitalquant.core.config import load_profile
+    from vitalquant.synth.generator import CorruptionSpec, SynthConfig, SyntheticDevice
     prof = load_profile(str(PROFILE))
     dev = SyntheticDevice(prof, SynthConfig(
         session_id=UUID(sid), duration_s=240, batch_s=15,
@@ -112,7 +112,7 @@ async def test_vertical_slice(client, seeded):
                               headers={"X-Device-Key": key})).status_code == 200
 
     # processing → quality + features
-    from vitalq.processing.worker import process_session
+    from vitalquant.processing.worker import process_session
     stats = await process_session(DSN, UUID(sid))
     assert stats["features"] > 0
 
@@ -122,7 +122,7 @@ async def test_vertical_slice(client, seeded):
     assert f and all(row["data_class"] == "synthetic" for row in f)
 
     # ML baseline → predictions
-    from vitalq.ml.baselines import train_personal_baseline
+    from vitalquant.ml.baselines import train_personal_baseline
     out = await train_personal_baseline(DSN, [UUID(sid)])
     assert out.get("scored", 0) > 0
     p = (await client.get(f"/v1/predictions/{sid}")).json()

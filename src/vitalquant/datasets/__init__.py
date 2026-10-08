@@ -1,6 +1,6 @@
 """Dataset ingestion: real recorded data entering through the same batch API.
 
-`vitalq-import` accepts:
+`vitalquant-import` accepts:
 - CSV: one column per channel (uniform fs) → waveform windows or scalars
 - WFDB (optional `datasets` extra): PhysioNet records, e.g. BIDMC PPG —
   PLETH→ppg.ir, RESP→resp.waveform, ECG II→ecg.ii (open access, no creds)

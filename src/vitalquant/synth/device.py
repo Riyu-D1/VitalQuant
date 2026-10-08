@@ -1,4 +1,4 @@
-"""Synthetic device CLI — `vitalq-synth`.
+"""Synthetic device CLI — `vitalquant-synth`.
 
 Drives the real API end-to-end (open session → batches → close), or writes
 JSONL batches to disk for offline worker tests. All rows carry
@@ -14,19 +14,19 @@ from datetime import datetime, timezone
 
 import httpx
 
-from vitalq.core.config import load_profile
-from vitalq.synth.generator import CorruptionSpec, SynthConfig, SyntheticDevice
+from vitalquant.core.config import load_profile
+from vitalquant.synth.generator import CorruptionSpec, SynthConfig, SyntheticDevice
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="VitalQ synthetic device")
+    p = argparse.ArgumentParser(description="VitalQuant synthetic device")
     p.add_argument("--profile", required=True, help="hardware profile YAML")
     p.add_argument("--duration", type=float, default=300)
     p.add_argument("--batch-s", type=float, default=30)
     p.add_argument("--hr-bpm", type=float, default=65)
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--api", help="base URL, e.g. http://localhost:8000")
-    p.add_argument("--device-key", default=os.environ.get("VITALQ_DEVICE_KEY"))
+    p.add_argument("--device-key", default=os.environ.get("VITALQUANT_DEVICE_KEY"))
     p.add_argument("--subject-id")
     p.add_argument("--body-site", default="bench")
     p.add_argument("--out", help="write JSONL batches here instead of POSTing")
@@ -57,7 +57,7 @@ def main() -> None:
         return
 
     if not args.device_key:
-        raise SystemExit("--device-key or VITALQ_DEVICE_KEY required for API mode")
+        raise SystemExit("--device-key or VITALQUANT_DEVICE_KEY required for API mode")
 
     hdr = {"X-Device-Key": args.device_key}
     with httpx.Client(base_url=args.api, headers=hdr, timeout=30) as c:

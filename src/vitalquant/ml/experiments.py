@@ -5,7 +5,7 @@ out sessions' feature vectors (declared multipliers in `inject`), scored, and
 metrics computed against the injection mask. model_spec records the injection
 params so an experiments row can never be mistaken for real-label performance.
 
-CLI: `vitalq-experiment --sessions <uuid...>`.
+CLI: `vitalquant-experiment --sessions <uuid...>`.
 """
 
 from __future__ import annotations
@@ -18,9 +18,9 @@ from uuid import UUID
 import numpy as np
 from sklearn.preprocessing import RobustScaler
 
-from vitalq.ingest import db
-from vitalq.ml.baselines import _commit
-from vitalq.ml.detectors import AnomalyEnsemble
+from vitalquant.ingest import db
+from vitalquant.ml.baselines import _commit
+from vitalquant.ml.detectors import AnomalyEnsemble
 
 DEFAULT_INJECT = {"fused_hr_bpm": ("mul", 1.6), "temp_c": ("add", 3.0),
                   "fused_sqi": ("mul", 0.1)}

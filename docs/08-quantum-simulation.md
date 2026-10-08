@@ -1,6 +1,6 @@
 # 08 — Quantum-Inspired Simulation Architecture (Step 8)
 
-Scope (spec §24–26): VitalQ contains **no quantum hardware**. This module is a controlled
+Scope (spec §24–26): VitalQuant contains **no quantum hardware**. This module is a controlled
 simulation environment answering: *"Under which physically-defensible assumptions could a
 squeezed-light readout improve measurement SNR, and where does the advantage vanish?"*
 All its outputs carry `data_class='simulated'` and are labelled accordingly everywhere.
@@ -20,7 +20,7 @@ angle, non-quantum noise floor (ambient, tissue/perfusion, electronics), photon 
 Each is a named term in the model below — the honest experiment is *where the advantage
 dies*, not whether it exists.
 
-## 2. Module design (`vitalq-quantum/`)
+## 2. Module design (`vitalquant-quantum/`)
 
 ```python
 # noise_models.py — composable, all parameters explicit
@@ -38,7 +38,7 @@ AmbientLeakage(level)            # emitter-independent offset noise
 # signal_models.py
 LorentzianPeak(center, width, amp)
 RamanToyModel(config)            # formalises the inherited §25 parameterisation
-AbsorptionDip(...)               # reflectance-mode analogy (VitalQ's actual regime)
+AbsorptionDip(...)               # reflectance-mode analogy (VitalQuant's actual regime)
 
 # experiment.py
 run(matrix: ExperimentMatrix) -> ExperimentResult  # param sweep → metrics tables
@@ -62,17 +62,17 @@ declared), false-positive rate vs threshold.
 A single figure: **advantage boundary map** — squeezing benefit (ΔSNR vs classical) as a
 function of `r`/`η` under increasing non-quantum noise. Expectation from physics:
 advantage collapses once tissue/ambient noise exceeds shot noise by ~3 dB. *If* the sim
-says that, the honest VitalQ conclusion is: quantum-inspired readout is a long-term
+says that, the honest VitalQuant conclusion is: quantum-inspired readout is a long-term
 sensitivity argument for a shot-noise-limited optical head, not a claim about the
 current device. Publishable either way; fraudulent if the floor terms are omitted.
 
 ## 5. Separation rules (spec §24 — enforced, not suggested)
 
-- Module is a leaf dependency: `vitalq-processing` and the API never import it.
+- Module is a leaf dependency: `vitalquant-processing` and the API never import it.
 - Every sim result row/file carries `data_class='simulated'` and `sim_spec` metadata.
 - Dashboard surfaces it only under "Simulation" pages with an explicit banner.
 - `RamanToyModel` is tagged `regime: 'raman_illustrative'` — not conflated with the
-  AS7341 reflectance regime VitalQ actually measures in.
+  AS7341 reflectance regime VitalQuant actually measures in.
 
 ## 6. Reproducibility
 

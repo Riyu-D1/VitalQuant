@@ -90,7 +90,7 @@ export default function Model() {
           </h1>
           <FadeContent delay={500} duration={1000}>
             <p className="mt-8 text-xl text-gray-300 leading-relaxed font-light">
-              A closed-weight clinical decision model, built for VitalQ by LatticeAG.
+              A closed-weight clinical decision model, built for VitalQuant by LatticeAG.
               Post-trained on real clinical time-series to answer a fixed set of
               deterioration questions from the signals a wearable can actually measure.
             </p>
@@ -132,7 +132,7 @@ export default function Model() {
           is useless in the setting it was designed for.
         </p>
         <p className="text-white font-medium">
-          The weights are closed and held by VitalQ. LatticeAG ran the training and
+          The weights are closed and held by VitalQuant. LatticeAG ran the training and
           evaluation; the full technical record - protocol, ablation and results - is
           published on their side.
         </p>

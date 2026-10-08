@@ -1,4 +1,4 @@
-"""vitalq-ingest FastAPI app — device + dashboard endpoints (docs/05)."""
+"""vitalquant-ingest FastAPI app — device + dashboard endpoints (docs/05)."""
 
 from __future__ import annotations
 
@@ -14,19 +14,19 @@ import asyncpg
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 
-import vitalq
-from vitalq.core.clock import ClockAnchor, ClockModel
-from vitalq.core.types import (
+import vitalquant
+from vitalquant.core.clock import ClockAnchor, ClockModel
+from vitalquant.core.types import (
     BatchIngest,
     DeviceEventIn,
     LabelIn,
     SessionCreate,
     SubjectCreate,
 )
-from vitalq.ingest import db
-from vitalq.ingest.auth import Device, DeviceDep, UserDep
+from vitalquant.ingest import db
+from vitalquant.ingest.auth import Device, DeviceDep, UserDep
 
-log = logging.getLogger("vitalq.ingest")
+log = logging.getLogger("vitalquant.ingest")
 
 
 @asynccontextmanager
@@ -35,14 +35,14 @@ async def _lifespan(app_: FastAPI):
     await db.close_pool()
 
 
-app = FastAPI(title="vitalq-ingest", version=vitalq.__version__, lifespan=_lifespan)
+app = FastAPI(title="vitalquant-ingest", version=vitalquant.__version__, lifespan=_lifespan)
 
 
 # ── rate limiting (write endpoints) ──────────────────────────────────────────
 # Token bucket per client key (device key hash or IP). In-memory — per-process;
-# Supabase deploys get real limiting at the gateway. VITALQ_RATE_RPS tunes it.
+# Supabase deploys get real limiting at the gateway. VITALQUANT_RATE_RPS tunes it.
 
-_RATE_RPS = float(os.environ.get("VITALQ_RATE_RPS", "50"))
+_RATE_RPS = float(os.environ.get("VITALQUANT_RATE_RPS", "50"))
 _RATE_BURST = _RATE_RPS * 2
 _buckets: dict[str, list[float]] = defaultdict(list)   # key -> [tokens, last_ts]
 
@@ -72,7 +72,7 @@ async def rate_limit(request: Request, call_next):
 
 @app.exception_handler(HTTPException)
 async def http_exc(request: Request, exc: HTTPException):
-    """VitalQ errors are {error:{code,message}} — unwrap FastAPI's detail wrapper."""
+    """VitalQuant errors are {error:{code,message}} — unwrap FastAPI's detail wrapper."""
     detail = exc.detail
     if isinstance(detail, dict) and "error" in detail:
         return JSONResponse(detail, status_code=exc.status_code)
@@ -217,13 +217,13 @@ async def create_subject(body: SubjectCreate):
 async def add_label(session_id: UUID, body: LabelIn, request: Request):
     # labels arrive from the device stream OR a researcher — accept either auth
     if request.headers.get("X-Device-Key"):
-        from vitalq.ingest.auth import device_auth
+        from vitalquant.ingest.auth import device_auth
         device = await device_auth(request)
         session = await db.session_row(session_id)
         if session and session["device_id"] != device.device_id:
             raise HTTPException(403, {"error": {"code": "auth.session_mismatch"}})
     else:
-        from vitalq.ingest.auth import user_auth
+        from vitalquant.ingest.auth import user_auth
         await user_auth(request)
     if await db.session_row(session_id) is None:
         raise HTTPException(404, {"error": {"code": "session.unknown"}})
@@ -288,4 +288,4 @@ async def health():
 
 @app.get("/v1/version")
 async def version():
-    return {"version": vitalq.__version__}
+    return {"version": vitalquant.__version__}

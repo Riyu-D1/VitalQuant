@@ -1,4 +1,4 @@
-"""Apply supabase/migrations/*.sql to DATABASE_URL in order. `vitalq-migrate`."""
+"""Apply supabase/migrations/*.sql to DATABASE_URL in order. `vitalquant-migrate`."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from pathlib import Path
 
 import asyncpg
 
-from vitalq.core.channels import CHANNELS
+from vitalquant.core.channels import CHANNELS
 
 MIGRATIONS_DIR = Path(__file__).resolve().parents[3] / "supabase" / "migrations"
 
@@ -48,7 +48,7 @@ def main() -> None:
     dsn = os.environ.get("DATABASE_URL")
     if not dsn:
         raise SystemExit("DATABASE_URL not set")
-    migrations_dir = Path(os.environ.get("VITALQ_MIGRATIONS_DIR", MIGRATIONS_DIR))
+    migrations_dir = Path(os.environ.get("VITALQUANT_MIGRATIONS_DIR", MIGRATIONS_DIR))
     applied = asyncio.run(_run(dsn, migrations_dir))
     print("applied:" if applied else "up to date", ", ".join(applied))
 

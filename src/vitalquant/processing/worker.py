@@ -7,7 +7,7 @@ respiration, SQI v2) → multi-channel SQI-weighted fusion → scalar chains
 (feature_set='fusion_v2'). Idempotent via PK conflicts; pipeline_version and
 source_window_ids are stamped on every derived row.
 
-CLI: `vitalq-worker --session <uuid> | --all`.
+CLI: `vitalquant-worker --session <uuid> | --all`.
 """
 
 from __future__ import annotations
@@ -21,10 +21,10 @@ from uuid import UUID
 
 import numpy as np
 
-from vitalq.ingest import db
-from vitalq.processing import PIPELINE_VERSION, WINDOW_SECONDS
-from vitalq.processing import ppg as pp
-from vitalq.processing import scalars as sc
+from vitalquant.ingest import db
+from vitalquant.processing import PIPELINE_VERSION, WINDOW_SECONDS
+from vitalquant.processing import ppg as pp
+from vitalquant.processing import scalars as sc
 
 CLEAN_RESAMPLE_HZ = 100.0      # uniform grid for the clean layer
 PPG_CHANNELS_PREFIX = "ppg."
