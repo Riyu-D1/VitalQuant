@@ -101,3 +101,13 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - I have listed the updated list in the main branch BOM list
 - Andre should be creating a new updated list in the excel sheet with the new 80 parts
 
+## Riyansh - 7 OCT
+1hr 27 mins
+
+- I had free day yesterday which I spent on more pcb research and completetion
+- I spent 2 hrs the day before attempting to route the pcb which i forgot to log but this essentially was taking way to long and by the end was to complex and pretty much impossible for me to do as an individual
+- As a result I gave the routing to devin and connected freerouter but devin also kept getting stuck on a churn and rip up loop.
+- Therefore i did research and found a physics based simulation tool called quilter therefore I organised all the files and setup a job in quilter which will take anywhere from 4-24 hours to complete
+- Therefore I will let this run overnight and checkup on it tomorrow
+<img width="978" height="1478" alt="image" src="https://github.com/user-attachments/assets/59edd74b-1eb2-4d3d-9360-cc06a918c412" />
+
