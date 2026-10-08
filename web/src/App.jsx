@@ -7,6 +7,7 @@ import About from './pages/About';
 import Model from './pages/Model';
 import TryIt from './pages/TryIt';
 import Contact from './pages/Contact';
+import Paper from './pages/Paper';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/model" element={<Model />} />
             <Route path="/tryit" element={<TryIt />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/paper" element={<Paper />} />
           </Routes>
         </main>
 
