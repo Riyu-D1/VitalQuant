@@ -1,0 +1,2601 @@
+{
+  "date": "2026-10-08T22:03:48.965952+01:00",
+  "repository": "Riyu-D1/VitalQuant",
+  "branch": "vitalq-deliverables",
+  "directory": "deliverables/VitalQ_Route_v8",
+  "pcb_sha256": "2e72cea440d3ceca4b4397c833fa101f08e9898f24b6b74c597eff5b1def5eb5",
+  "excluded_directories": [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "_delivery_worktree",
+    "quilter_raw"
+  ],
+  "excluded_local_files": [
+    "scratch_refill.kicad_prl",
+    "backups/vitalq_v2_20261008_1813_pre_batch0.kicad_prl",
+    "backups/20261008_195914_resume_refilled/vitalq_v2.kicad_prl",
+    "backups/20261008_195914_resume_unmodified/vitalq_v2.kicad_prl",
+    "backups/20261008_201553_candidate_R4/vitalq_v2.kicad_prl",
+    "backups/20261008_202103_candidate_R5/vitalq_v2.kicad_prl",
+    "backups/20261008_202430_candidate_R6/vitalq_v2.kicad_prl",
+    "backups/20261008_203136_candidate_R7/vitalq_v2.kicad_prl",
+    "backups/20261008_204459_candidate_M1_J8/vitalq_v2.kicad_prl",
+    "backups/20261008_205043_candidate_M1_J8/vitalq_v2.kicad_prl",
+    "backups/20261008_210517_candidate_C1/vitalq_v2.kicad_prl",
+    "backups/20261008_211008_candidate_C2/vitalq_v2.kicad_prl",
+    "backups/20261008_211735_candidate_C3/vitalq_v2.kicad_prl",
+    "backups/20261008_212523_candidate_M2_FIDs/vitalq_v2.kicad_prl",
+    "backups/20261008_214504_candidate_M3_POFV/vitalq_v2.kicad_prl"
+  ],
+  "files": [
+    {
+      "source_path": "ANALYSIS.md",
+      "stored_path": "ANALYSIS.md",
+      "gzip": false,
+      "source_bytes": 13075,
+      "stored_bytes": 13075,
+      "source_sha256": "34c2cd1c13fc71e9867d30df8b8e322e9c91782e45906f58b1c8b83c99b0fb9b",
+      "stored_sha256": "34c2cd1c13fc71e9867d30df8b8e322e9c91782e45906f58b1c8b83c99b0fb9b"
+    },
+    {
+      "source_path": "GND,+3V3_ANA,PD_INP,PD_INM,PD2_INP,PD2_INM,TX1,TX2,TX3,TX4,TX_5V,MISO_AFE,CS_AFE4900,SPI_MOSI,SPI_SCK,AFE_INM,AFE_BG.png",
+      "stored_path": "GND,+3V3_ANA,PD_INP,PD_INM,PD2_INP,PD2_INM,TX1,TX2,TX3,TX4,TX_5V,MISO_AFE,CS_AFE4900,SPI_MOSI,SPI_SCK,AFE_INM,AFE_BG.png",
+      "gzip": false,
+      "source_bytes": 358357,
+      "stored_bytes": 358357,
+      "source_sha256": "20047f09fafaabaf5263d6da88476af1d3ff70f97cc1de3502564fe3cb75ec5e",
+      "stored_sha256": "20047f09fafaabaf5263d6da88476af1d3ff70f97cc1de3502564fe3cb75ec5e"
+    },
+    {
+      "source_path": "PLAN.md",
+      "stored_path": "PLAN.md",
+      "gzip": false,
+      "source_bytes": 17080,
+      "stored_bytes": 17080,
+      "source_sha256": "b824e2896e28f41e3de11741a0ac43a0abca843786f26afe40a8bd852bbd8f0e",
+      "stored_sha256": "b824e2896e28f41e3de11741a0ac43a0abca843786f26afe40a8bd852bbd8f0e"
+    },
+    {
+      "source_path": "PROGRESS.md",
+      "stored_path": "PROGRESS.md",
+      "gzip": false,
+      "source_bytes": 21792,
+      "stored_bytes": 21792,
+      "source_sha256": "b5dfdc10157568c4ec38364bc37ca22bc83329589f5821b3682628253151364d",
+      "stored_sha256": "b5dfdc10157568c4ec38364bc37ca22bc83329589f5821b3682628253151364d"
+    },
+    {
+      "source_path": "PROMPT.md",
+      "stored_path": "PROMPT.md",
+      "gzip": false,
+      "source_bytes": 5045,
+      "stored_bytes": 5045,
+      "source_sha256": "9e56611c44337a357b08e4c7f2098d2d6ee5ce3a369b078ebd52b49125fed0a7",
+      "stored_sha256": "9e56611c44337a357b08e4c7f2098d2d6ee5ce3a369b078ebd52b49125fed0a7"
+    },
+    {
+      "source_path": "REPORT.md",
+      "stored_path": "REPORT.md",
+      "gzip": false,
+      "source_bytes": 24772,
+      "stored_bytes": 24772,
+      "source_sha256": "92790c2750b764d5434b5891c0ba4f937c246721d328cc1982faab94f370b87d",
+      "stored_sha256": "92790c2750b764d5434b5891c0ba4f937c246721d328cc1982faab94f370b87d"
+    },
+    {
+      "source_path": "analysis_refilled.json",
+      "stored_path": "analysis_refilled.json",
+      "gzip": false,
+      "source_bytes": 3119775,
+      "stored_bytes": 3119775,
+      "source_sha256": "6c6dfa6e6bd104dffa136752aafabb3ff5ab904975de6c02834a88b85cbcebfa",
+      "stored_sha256": "6c6dfa6e6bd104dffa136752aafabb3ff5ab904975de6c02834a88b85cbcebfa"
+    },
+    {
+      "source_path": "analysis_refilled.txt",
+      "stored_path": "analysis_refilled.txt",
+      "gzip": false,
+      "source_bytes": 54557,
+      "stored_bytes": 54557,
+      "source_sha256": "098c3e83bad09f6c1cf7fe6004ddf9258920d6f605995c2a8c8330dc639f6ea0",
+      "stored_sha256": "098c3e83bad09f6c1cf7fe6004ddf9258920d6f605995c2a8c8330dc639f6ea0"
+    },
+    {
+      "source_path": "analysis_unconn.json",
+      "stored_path": "analysis_unconn.json",
+      "gzip": false,
+      "source_bytes": 19518,
+      "stored_bytes": 19518,
+      "source_sha256": "6530a2fceb46959c5a801f4d7b7bdd251f9f6f1905a85c95674bb6e975fa06b0",
+      "stored_sha256": "6530a2fceb46959c5a801f4d7b7bdd251f9f6f1905a85c95674bb6e975fa06b0"
+    },
+    {
+      "source_path": "analysis_unconn.txt",
+      "stored_path": "analysis_unconn.txt",
+      "gzip": false,
+      "source_bytes": 9172,
+      "stored_bytes": 9172,
+      "source_sha256": "e65e4ff84fbacbffb586772faeb6d6b214ce721818097c54fe940a23997b66bb",
+      "stored_sha256": "e65e4ff84fbacbffb586772faeb6d6b214ce721818097c54fe940a23997b66bb"
+    },
+    {
+      "source_path": "audit_checkpoint.json",
+      "stored_path": "audit_checkpoint.json",
+      "gzip": false,
+      "source_bytes": 370631,
+      "stored_bytes": 370631,
+      "source_sha256": "68aa7479394030d235c96c59bfdcce81d82acb99d5ceac91c0bdf25928321f59",
+      "stored_sha256": "68aa7479394030d235c96c59bfdcce81d82acb99d5ceac91c0bdf25928321f59"
+    },
+    {
+      "source_path": "audit_final.json",
+      "stored_path": "audit_final.json",
+      "gzip": false,
+      "source_bytes": 226358,
+      "stored_bytes": 226358,
+      "source_sha256": "1663d9919b5217ee65b325cc04990def2af394a0b0f1eb46f7baec2c2bf7496a",
+      "stored_sha256": "1663d9919b5217ee65b325cc04990def2af394a0b0f1eb46f7baec2c2bf7496a"
+    },
+    {
+      "source_path": "audit_resume.json",
+      "stored_path": "audit_resume.json",
+      "gzip": false,
+      "source_bytes": 424257,
+      "stored_bytes": 424257,
+      "source_sha256": "f6c1c8183201a3f15c9c150beb2f51a1a86b21dd46a5d37fa4c2695a007c5c45",
+      "stored_sha256": "f6c1c8183201a3f15c9c150beb2f51a1a86b21dd46a5d37fa4c2695a007c5c45"
+    },
+    {
+      "source_path": "batch_C1.json",
+      "stored_path": "batch_C1.json",
+      "gzip": false,
+      "source_bytes": 16788,
+      "stored_bytes": 16788,
+      "source_sha256": "37dcbe1cada3c855b78e64e524ebfaf97748dd0eefd409cea43f981998a41a11",
+      "stored_sha256": "37dcbe1cada3c855b78e64e524ebfaf97748dd0eefd409cea43f981998a41a11"
+    },
+    {
+      "source_path": "batch_C2.json",
+      "stored_path": "batch_C2.json",
+      "gzip": false,
+      "source_bytes": 13345,
+      "stored_bytes": 13345,
+      "source_sha256": "beaac2ed197f69acc2b96bff4fd9aff0dee92b34137ccee6032da176bdc5e6cc",
+      "stored_sha256": "beaac2ed197f69acc2b96bff4fd9aff0dee92b34137ccee6032da176bdc5e6cc"
+    },
+    {
+      "source_path": "batch_C3.json",
+      "stored_path": "batch_C3.json",
+      "gzip": false,
+      "source_bytes": 5137,
+      "stored_bytes": 5137,
+      "source_sha256": "75ce4da068f6ce79dd2baa3c9d99323c4b3229b594688511e068419214b6ec68",
+      "stored_sha256": "75ce4da068f6ce79dd2baa3c9d99323c4b3229b594688511e068419214b6ec68"
+    },
+    {
+      "source_path": "batch_M1.json",
+      "stored_path": "batch_M1.json",
+      "gzip": false,
+      "source_bytes": 7822,
+      "stored_bytes": 7822,
+      "source_sha256": "9bc2bb64da1d6ed6eb28955ee1f7742320a0ad6f56dda700f2302e6fb7122e9b",
+      "stored_sha256": "9bc2bb64da1d6ed6eb28955ee1f7742320a0ad6f56dda700f2302e6fb7122e9b"
+    },
+    {
+      "source_path": "batch_M2.json",
+      "stored_path": "batch_M2.json",
+      "gzip": false,
+      "source_bytes": 4309,
+      "stored_bytes": 4309,
+      "source_sha256": "aa4e6609db62af21350e1a00df6fb0cb7d3d087b7a96469d506cd4636c353a64",
+      "stored_sha256": "aa4e6609db62af21350e1a00df6fb0cb7d3d087b7a96469d506cd4636c353a64"
+    },
+    {
+      "source_path": "batch_M3.json",
+      "stored_path": "batch_M3.json",
+      "gzip": false,
+      "source_bytes": 1724,
+      "stored_bytes": 1724,
+      "source_sha256": "d391770c1393cb09347f04711e58a9643a6e790ea7dd820dae6f7688cf8916b6",
+      "stored_sha256": "d391770c1393cb09347f04711e58a9643a6e790ea7dd820dae6f7688cf8916b6"
+    },
+    {
+      "source_path": "batch_R4.json",
+      "stored_path": "batch_R4.json",
+      "gzip": false,
+      "source_bytes": 5726,
+      "stored_bytes": 5726,
+      "source_sha256": "42184960f84baa7abd3f08aa5d5451fde508863a5a8937d9e8a0fbbf77a542c6",
+      "stored_sha256": "42184960f84baa7abd3f08aa5d5451fde508863a5a8937d9e8a0fbbf77a542c6"
+    },
+    {
+      "source_path": "batch_R5.json",
+      "stored_path": "batch_R5.json",
+      "gzip": false,
+      "source_bytes": 14283,
+      "stored_bytes": 14283,
+      "source_sha256": "15ebb6a3d2d1701bd2c677748e7c74ea365ef564073c1a43bcbcf5a933033a17",
+      "stored_sha256": "15ebb6a3d2d1701bd2c677748e7c74ea365ef564073c1a43bcbcf5a933033a17"
+    },
+    {
+      "source_path": "batch_R6.json",
+      "stored_path": "batch_R6.json",
+      "gzip": false,
+      "source_bytes": 2632,
+      "stored_bytes": 2632,
+      "source_sha256": "f231f20ac0d57779a110a51acc1d6a55cdb04fb6598c8a71bb1d9a167eeeb4dd",
+      "stored_sha256": "f231f20ac0d57779a110a51acc1d6a55cdb04fb6598c8a71bb1d9a167eeeb4dd"
+    },
+    {
+      "source_path": "batch_R7.json",
+      "stored_path": "batch_R7.json",
+      "gzip": false,
+      "source_bytes": 64152,
+      "stored_bytes": 64152,
+      "source_sha256": "5abe2620a48bd886d70a5b2cfc9cdb70a1f58993816365c854febe4a5bcdd180",
+      "stored_sha256": "5abe2620a48bd886d70a5b2cfc9cdb70a1f58993816365c854febe4a5bcdd180"
+    },
+    {
+      "source_path": "blocked_connections_final.json",
+      "stored_path": "blocked_connections_final.json",
+      "gzip": false,
+      "source_bytes": 39238,
+      "stored_bytes": 39238,
+      "source_sha256": "83233d57d1d68c0466955d8aaac329fa1d9c320c29dec89b8457b0758bc0018a",
+      "stored_sha256": "83233d57d1d68c0466955d8aaac329fa1d9c320c29dec89b8457b0758bc0018a"
+    },
+    {
+      "source_path": "cleanup_removal_ledger.json",
+      "stored_path": "cleanup_removal_ledger.json",
+      "gzip": false,
+      "source_bytes": 244,
+      "stored_bytes": 244,
+      "source_sha256": "525b52741a3acee8873114e0d96c6bbba6eb94df659c78739843661d8a6a0ed8",
+      "stored_sha256": "525b52741a3acee8873114e0d96c6bbba6eb94df659c78739843661d8a6a0ed8"
+    },
+    {
+      "source_path": "drc_C2_refilled.json",
+      "stored_path": "drc_C2_refilled.json",
+      "gzip": false,
+      "source_bytes": 210846,
+      "stored_bytes": 210846,
+      "source_sha256": "a8607d8a5b5e2f9706d4054d80fa6e14295e7774d1bd80057902205d51cb75f9",
+      "stored_sha256": "a8607d8a5b5e2f9706d4054d80fa6e14295e7774d1bd80057902205d51cb75f9"
+    },
+    {
+      "source_path": "drc_C3_refilled.json",
+      "stored_path": "drc_C3_refilled.json",
+      "gzip": false,
+      "source_bytes": 209797,
+      "stored_bytes": 209797,
+      "source_sha256": "cf66fe9ba9cdfc2e5e6298cc2287ac8ae8e4f0788570f2b4a59db4a419605b33",
+      "stored_sha256": "cf66fe9ba9cdfc2e5e6298cc2287ac8ae8e4f0788570f2b4a59db4a419605b33"
+    },
+    {
+      "source_path": "drc_M1_refilled.json",
+      "stored_path": "drc_M1_refilled.json",
+      "gzip": false,
+      "source_bytes": 225621,
+      "stored_bytes": 225621,
+      "source_sha256": "881dfc2608086889ec1cd7c01a7de92e04a3eeaa37b49e06ef2bd046db3c9fd7",
+      "stored_sha256": "881dfc2608086889ec1cd7c01a7de92e04a3eeaa37b49e06ef2bd046db3c9fd7"
+    },
+    {
+      "source_path": "drc_M2_refilled.json",
+      "stored_path": "drc_M2_refilled.json",
+      "gzip": false,
+      "source_bytes": 209859,
+      "stored_bytes": 209859,
+      "source_sha256": "4eba504d149ea61651c7bb8b38f59d296027650e0e7dd036fab8f4bee42f873d",
+      "stored_sha256": "4eba504d149ea61651c7bb8b38f59d296027650e0e7dd036fab8f4bee42f873d"
+    },
+    {
+      "source_path": "drc_M3_refilled.json",
+      "stored_path": "drc_M3_refilled.json",
+      "gzip": false,
+      "source_bytes": 209821,
+      "stored_bytes": 209821,
+      "source_sha256": "a6070524071051525fa94d381283f2a79b01f7ddd614f9af0845f26cbbf29c3c",
+      "stored_sha256": "a6070524071051525fa94d381283f2a79b01f7ddd614f9af0845f26cbbf29c3c"
+    },
+    {
+      "source_path": "drc_R4_all_refilled.json",
+      "stored_path": "drc_R4_all_refilled.json",
+      "gzip": false,
+      "source_bytes": 237697,
+      "stored_bytes": 237697,
+      "source_sha256": "3c013e2e40af2542c74cda11e16ea2aae5970abd14dd4b92b6fa0a7257f71eba",
+      "stored_sha256": "3c013e2e40af2542c74cda11e16ea2aae5970abd14dd4b92b6fa0a7257f71eba"
+    },
+    {
+      "source_path": "drc_R4_refilled.json",
+      "stored_path": "drc_R4_refilled.json",
+      "gzip": false,
+      "source_bytes": 237697,
+      "stored_bytes": 237697,
+      "source_sha256": "3c013e2e40af2542c74cda11e16ea2aae5970abd14dd4b92b6fa0a7257f71eba",
+      "stored_sha256": "3c013e2e40af2542c74cda11e16ea2aae5970abd14dd4b92b6fa0a7257f71eba"
+    },
+    {
+      "source_path": "drc_R5_refilled.json",
+      "stored_path": "drc_R5_refilled.json",
+      "gzip": false,
+      "source_bytes": 231738,
+      "stored_bytes": 231738,
+      "source_sha256": "b78525288d18c4dc4bffe52d043d7614db47a9c17c28298e51dd78c7c4a3f65f",
+      "stored_sha256": "b78525288d18c4dc4bffe52d043d7614db47a9c17c28298e51dd78c7c4a3f65f"
+    },
+    {
+      "source_path": "drc_R6_refilled.json",
+      "stored_path": "drc_R6_refilled.json",
+      "gzip": false,
+      "source_bytes": 228052,
+      "stored_bytes": 228052,
+      "source_sha256": "d63239ff9b63bf011321c154b7f2b62dc194f11e2b3b9d08fdfb6559e3024b8e",
+      "stored_sha256": "d63239ff9b63bf011321c154b7f2b62dc194f11e2b3b9d08fdfb6559e3024b8e"
+    },
+    {
+      "source_path": "drc_R7_refilled.json",
+      "stored_path": "drc_R7_refilled.json",
+      "gzip": false,
+      "source_bytes": 225674,
+      "stored_bytes": 225674,
+      "source_sha256": "cc3736e7c4f9e9871a0c072c5a79324ef99df55d7ad236d7fae9b1b77b8edd93",
+      "stored_sha256": "cc3736e7c4f9e9871a0c072c5a79324ef99df55d7ad236d7fae9b1b77b8edd93"
+    },
+    {
+      "source_path": "drc_audit_refilled.json",
+      "stored_path": "drc_audit_refilled.json",
+      "gzip": false,
+      "source_bytes": 242186,
+      "stored_bytes": 242186,
+      "source_sha256": "480d96e92ede6933c92e7e3975ec024bcf6d0028880228628c9d64ba41eecd8f",
+      "stored_sha256": "480d96e92ede6933c92e7e3975ec024bcf6d0028880228628c9d64ba41eecd8f"
+    },
+    {
+      "source_path": "drc_baseline_quilter_1_1.json",
+      "stored_path": "drc_baseline_quilter_1_1.json",
+      "gzip": false,
+      "source_bytes": 598499,
+      "stored_bytes": 598499,
+      "source_sha256": "73974e775851481a429b90cc33399a360cb9bc98baf51ebed57bd930dfafab15",
+      "stored_sha256": "73974e775851481a429b90cc33399a360cb9bc98baf51ebed57bd930dfafab15"
+    },
+    {
+      "source_path": "drc_batch0.json",
+      "stored_path": "drc_batch0.json",
+      "gzip": false,
+      "source_bytes": 583053,
+      "stored_bytes": 583053,
+      "source_sha256": "e9cd581ef971488033c231b41a09ab635faaa306f4a02e806970157059049225",
+      "stored_sha256": "e9cd581ef971488033c231b41a09ab635faaa306f4a02e806970157059049225"
+    },
+    {
+      "source_path": "drc_batch1.json",
+      "stored_path": "drc_batch1.json",
+      "gzip": false,
+      "source_bytes": 582260,
+      "stored_bytes": 582260,
+      "source_sha256": "1b3952cd39b3e086e7fdadd2cdcc623f89b2bf432d812fa7bea4a0cf1f05847e",
+      "stored_sha256": "1b3952cd39b3e086e7fdadd2cdcc623f89b2bf432d812fa7bea4a0cf1f05847e"
+    },
+    {
+      "source_path": "drc_batch2.json",
+      "stored_path": "drc_batch2.json",
+      "gzip": false,
+      "source_bytes": 570343,
+      "stored_bytes": 570343,
+      "source_sha256": "ff8ea22ef372c8e937d6757825dca7045d816e9e0192f818fbf6a2f66d48897d",
+      "stored_sha256": "ff8ea22ef372c8e937d6757825dca7045d816e9e0192f818fbf6a2f66d48897d"
+    },
+    {
+      "source_path": "drc_batch3.json",
+      "stored_path": "drc_batch3.json",
+      "gzip": false,
+      "source_bytes": 580484,
+      "stored_bytes": 580484,
+      "source_sha256": "fcb2d8f9491b3c92ba47263a9f24ccbb42c76c18dd2c7c180be6394b79d629c0",
+      "stored_sha256": "fcb2d8f9491b3c92ba47263a9f24ccbb42c76c18dd2c7c180be6394b79d629c0"
+    },
+    {
+      "source_path": "drc_final.json",
+      "stored_path": "drc_final.json",
+      "gzip": false,
+      "source_bytes": 209832,
+      "stored_bytes": 209832,
+      "source_sha256": "f4e293585657a2402c3c348b9456b34b38646ec9f9aee0a3005b0bc7e2a004ce",
+      "stored_sha256": "f4e293585657a2402c3c348b9456b34b38646ec9f9aee0a3005b0bc7e2a004ce"
+    },
+    {
+      "source_path": "drc_restart_all_refilled.json",
+      "stored_path": "drc_restart_all_refilled.json",
+      "gzip": false,
+      "source_bytes": 242225,
+      "stored_bytes": 242225,
+      "source_sha256": "8b13a52a17047835a081d638327e3f44565dd52bf143ffe2a3cb4fd6c910f8fa",
+      "stored_sha256": "8b13a52a17047835a081d638327e3f44565dd52bf143ffe2a3cb4fd6c910f8fa"
+    },
+    {
+      "source_path": "drc_resume_refilled.json",
+      "stored_path": "drc_resume_refilled.json",
+      "gzip": false,
+      "source_bytes": 242215,
+      "stored_bytes": 242215,
+      "source_sha256": "1921cf5daf606828c0d5054c8d8c6741df145cf38998bd64182a72fc6239afaa",
+      "stored_sha256": "1921cf5daf606828c0d5054c8d8c6741df145cf38998bd64182a72fc6239afaa"
+    },
+    {
+      "source_path": "final_result.json",
+      "stored_path": "final_result.json",
+      "gzip": false,
+      "source_bytes": 2187,
+      "stored_bytes": 2187,
+      "source_sha256": "8cec9c3f8b98b100de3e04b7ca172c67c86bffb2e978c7e4927a2ea8a79d70a9",
+      "stored_sha256": "8cec9c3f8b98b100de3e04b7ca172c67c86bffb2e978c7e4927a2ea8a79d70a9"
+    },
+    {
+      "source_path": "geom.json",
+      "stored_path": "geom.json",
+      "gzip": false,
+      "source_bytes": 1942578,
+      "stored_bytes": 1942578,
+      "source_sha256": "46c11af8d5bc4b9047306631b463554890f7e4b75d0848ca9a4236ebbf1bd578",
+      "stored_sha256": "46c11af8d5bc4b9047306631b463554890f7e4b75d0848ca9a4236ebbf1bd578"
+    },
+    {
+      "source_path": "geometry_C2_refilled.json",
+      "stored_path": "geometry_C2_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 101671382,
+      "stored_bytes": 39111380,
+      "source_sha256": "96d6c67ff778bbe2e823b7b803859415e4e06fe5e9319c8f71eb964a9676d02f",
+      "stored_sha256": "9966e3b5d055f1b07d906aacc09605457de3912deb35ff1a7f46fe9db5aa897c"
+    },
+    {
+      "source_path": "geometry_C3_refilled.json",
+      "stored_path": "geometry_C3_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 101668279,
+      "stored_bytes": 39104399,
+      "source_sha256": "e8627bbb859ce8cf28dbd0f2fa9e1606d499ae0fb07ea4d648e14317c4f57e49",
+      "stored_sha256": "0236bf12a4f62a10ff6f0505eb98a3ded8cf6f0f5012ad20dfbc7e299c31da2c"
+    },
+    {
+      "source_path": "geometry_M1_refilled.json",
+      "stored_path": "geometry_M1_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 101817144,
+      "stored_bytes": 39112992,
+      "source_sha256": "89a7d1fde5179f5c2a67806597b42c9f2660eceb1d97812099457161773bd97b",
+      "stored_sha256": "076d2d6ee388cba0e96bb78add4c2815e7a28377329751c2173560ab09b6dd66"
+    },
+    {
+      "source_path": "geometry_R4_refilled.json",
+      "stored_path": "geometry_R4_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 96136905,
+      "stored_bytes": 38826292,
+      "source_sha256": "fb22ffb943595b3cefb8b4c0e25fbe743fc6529159a4ffe79d7c6cfc8b688157",
+      "stored_sha256": "cfbfd76ec6438eac18a557bb20403be488c4346bdce9b39846dd14e9f5ed255d"
+    },
+    {
+      "source_path": "geometry_R5_refilled.json",
+      "stored_path": "geometry_R5_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 99495024,
+      "stored_bytes": 39017079,
+      "source_sha256": "db0e2da511edbd1aeeae5f57f4cb3ff7edc36beb25d815ae750ec76d18300dc8",
+      "stored_sha256": "7cdd55f2e0e66974f9258934671a49209302894f875b6207e530303aeac58c73"
+    },
+    {
+      "source_path": "geometry_R6_refilled.json",
+      "stored_path": "geometry_R6_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 100232805,
+      "stored_bytes": 39060813,
+      "source_sha256": "919a978e2b066f44bf5fe5bbd552c8e8a8ca62189753c43cd1bfb8bbba8beefd",
+      "stored_sha256": "10f84dd9c629d8763588375e8058548c182a4fd015db184ff29f8c66af317c22"
+    },
+    {
+      "source_path": "geometry_R7_refilled.json",
+      "stored_path": "geometry_R7_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 101779136,
+      "stored_bytes": 39103338,
+      "source_sha256": "7ea1919fb97990131adb86d7ebb4066e0b240e99b2ce5946a892427c181d6b24",
+      "stored_sha256": "fbba7aed05523c58e0e92632d9823a12b7e581490e67d42d881133acb20529cc"
+    },
+    {
+      "source_path": "geometry_audit_final.json",
+      "stored_path": "geometry_audit_final.json",
+      "gzip": false,
+      "source_bytes": 29668,
+      "stored_bytes": 29668,
+      "source_sha256": "102bd2f27cc3561e64d33f24acbca8d2ced347580d4db0f4bb97a3fb20bd3e0b",
+      "stored_sha256": "102bd2f27cc3561e64d33f24acbca8d2ced347580d4db0f4bb97a3fb20bd3e0b"
+    },
+    {
+      "source_path": "geometry_final_refilled.json",
+      "stored_path": "geometry_final_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 101667985,
+      "stored_bytes": 39086801,
+      "source_sha256": "330183b510657c834ba161820d8e97d7399bca6b46de7e50e6656c2b79767760",
+      "stored_sha256": "f9d1c1c4b8c3b566e47d3a27026f74ee55578ada724816b1c24ebbdfd290238c"
+    },
+    {
+      "source_path": "geometry_refilled.json",
+      "stored_path": "geometry_refilled.json.gz",
+      "gzip": true,
+      "source_bytes": 91588648,
+      "stored_bytes": 36296610,
+      "source_sha256": "3f55c4caa7ea7c6b24c621bdba919ebbf932ab5bf6bccfa6e0de68b3bad5f9cf",
+      "stored_sha256": "88d39f30a4ef13d9d44ad60654a7ee51bf490f3cec773c970a2d1ba55cede14e"
+    },
+    {
+      "source_path": "hv_uncapped_R5.json",
+      "stored_path": "hv_uncapped_R5.json",
+      "gzip": false,
+      "source_bytes": 145317,
+      "stored_bytes": 145317,
+      "source_sha256": "68daf9208b4deb0ca00422ec6183239e1eafdbba5a0c7511ea5f9f7dff370271",
+      "stored_sha256": "68daf9208b4deb0ca00422ec6183239e1eafdbba5a0c7511ea5f9f7dff370271"
+    },
+    {
+      "source_path": "hv_uncapped_final.json",
+      "stored_path": "hv_uncapped_final.json",
+      "gzip": false,
+      "source_bytes": 144466,
+      "stored_bytes": 144466,
+      "source_sha256": "dcf68ab59f5310f1711f077d6af26836242a3e2e167b4d02b5130ffe6086b8e6",
+      "stored_sha256": "dcf68ab59f5310f1711f077d6af26836242a3e2e167b4d02b5130ffe6086b8e6"
+    },
+    {
+      "source_path": "hv_uncapped_restart.json",
+      "stored_path": "hv_uncapped_restart.json",
+      "gzip": false,
+      "source_bytes": 150139,
+      "stored_bytes": 150139,
+      "source_sha256": "ef53d4d854c3709c1c995a324082ecc48a96317a7cc2db1c0ff64df2c0812fca",
+      "stored_sha256": "ef53d4d854c3709c1c995a324082ecc48a96317a7cc2db1c0ff64df2c0812fca"
+    },
+    {
+      "source_path": "hv_worklist.json",
+      "stored_path": "hv_worklist.json",
+      "gzip": false,
+      "source_bytes": 43114,
+      "stored_bytes": 43114,
+      "source_sha256": "f646abd8900192cb6e66d3e46bd5f847bbb26944786b215d3ebcbf5838ddd4e1",
+      "stored_sha256": "f646abd8900192cb6e66d3e46bd5f847bbb26944786b215d3ebcbf5838ddd4e1"
+    },
+    {
+      "source_path": "j8_permitted_vias.json",
+      "stored_path": "j8_permitted_vias.json",
+      "gzip": false,
+      "source_bytes": 4496,
+      "stored_bytes": 4496,
+      "source_sha256": "fac4718aec0d3fda1196e87ab1c953493abd7fe4e8677d9a27c3ef1d2c7c96e0",
+      "stored_sha256": "fac4718aec0d3fda1196e87ab1c953493abd7fe4e8677d9a27c3ef1d2c7c96e0"
+    },
+    {
+      "source_path": "j8_pofv_policy.json",
+      "stored_path": "j8_pofv_policy.json",
+      "gzip": false,
+      "source_bytes": 31124,
+      "stored_bytes": 31124,
+      "source_sha256": "5c091f795fda6f31a1084f4908974b91defacd9c867cb81fb4859e01cf2d1797",
+      "stored_sha256": "5c091f795fda6f31a1084f4908974b91defacd9c867cb81fb4859e01cf2d1797"
+    },
+    {
+      "source_path": "j8_save_geometry_audit.json",
+      "stored_path": "j8_save_geometry_audit.json",
+      "gzip": false,
+      "source_bytes": 29194,
+      "stored_bytes": 29194,
+      "source_sha256": "75a8a3f46a663db1f1237c0461d8b88e7091a5c08765a551f9312e9c196698eb",
+      "stored_sha256": "75a8a3f46a663db1f1237c0461d8b88e7091a5c08765a551f9312e9c196698eb"
+    },
+    {
+      "source_path": "mechanical_geometry.json",
+      "stored_path": "mechanical_geometry.json",
+      "gzip": false,
+      "source_bytes": 62869,
+      "stored_bytes": 62869,
+      "source_sha256": "79ed3187a56ae19747aea6edaa4556904238494c6aa627f80dd63cc4c62896f0",
+      "stored_sha256": "79ed3187a56ae19747aea6edaa4556904238494c6aa627f80dd63cc4c62896f0"
+    },
+    {
+      "source_path": "pad_connectivity_final.json",
+      "stored_path": "pad_connectivity_final.json",
+      "gzip": false,
+      "source_bytes": 284,
+      "stored_bytes": 284,
+      "source_sha256": "030784fca417cf9f814f2d76d2b3bb16b493dffd2279415370ec9a969ef5edca",
+      "stored_sha256": "030784fca417cf9f814f2d76d2b3bb16b493dffd2279415370ec9a969ef5edca"
+    },
+    {
+      "source_path": "plan_C1_dangling.json",
+      "stored_path": "plan_C1_dangling.json",
+      "gzip": false,
+      "source_bytes": 13283,
+      "stored_bytes": 13283,
+      "source_sha256": "78ccade09325f4da93589a37514819f97e1af8eb15449d1b70e78247685fc8b8",
+      "stored_sha256": "78ccade09325f4da93589a37514819f97e1af8eb15449d1b70e78247685fc8b8"
+    },
+    {
+      "source_path": "plan_C2_dangling.json",
+      "stored_path": "plan_C2_dangling.json",
+      "gzip": false,
+      "source_bytes": 13885,
+      "stored_bytes": 13885,
+      "source_sha256": "2b5af2c526d281d77bf130dd47269d5b326f67c06fdf59f61c7c5c838da51bbb",
+      "stored_sha256": "2b5af2c526d281d77bf130dd47269d5b326f67c06fdf59f61c7c5c838da51bbb"
+    },
+    {
+      "source_path": "plan_C3_stubs.json",
+      "stored_path": "plan_C3_stubs.json",
+      "gzip": false,
+      "source_bytes": 4542,
+      "stored_bytes": 4542,
+      "source_sha256": "9e566a938e4277d1a6823694d4e7e228121ad1f33342424bd7492dec86280016",
+      "stored_sha256": "9e566a938e4277d1a6823694d4e7e228121ad1f33342424bd7492dec86280016"
+    },
+    {
+      "source_path": "plan_M2_fiducials.json",
+      "stored_path": "plan_M2_fiducials.json",
+      "gzip": false,
+      "source_bytes": 3384,
+      "stored_bytes": 3384,
+      "source_sha256": "5e0165d21e8e2d30988f4710fd3d49be46e77ac2e3a21694351fb3c49e63b384",
+      "stored_sha256": "5e0165d21e8e2d30988f4710fd3d49be46e77ac2e3a21694351fb3c49e63b384"
+    },
+    {
+      "source_path": "plan_R4_GND.json",
+      "stored_path": "plan_R4_GND.json",
+      "gzip": false,
+      "source_bytes": 2656,
+      "stored_bytes": 2656,
+      "source_sha256": "a64bdc7100489d2716478505e07eb5c539a37044d3b457fe8f921e8d66924146",
+      "stored_sha256": "a64bdc7100489d2716478505e07eb5c539a37044d3b457fe8f921e8d66924146"
+    },
+    {
+      "source_path": "plan_R4_GND_exact.json",
+      "stored_path": "plan_R4_GND_exact.json",
+      "gzip": false,
+      "source_bytes": 3476,
+      "stored_bytes": 3476,
+      "source_sha256": "72a0586338db708480ed6ef83f1ff9742a2bcdd2b898c3b0e16d117b3c57a460",
+      "stored_sha256": "72a0586338db708480ed6ef83f1ff9742a2bcdd2b898c3b0e16d117b3c57a460"
+    },
+    {
+      "source_path": "plan_R5_3V3.json",
+      "stored_path": "plan_R5_3V3.json",
+      "gzip": false,
+      "source_bytes": 10040,
+      "stored_bytes": 10040,
+      "source_sha256": "df5a4557ed8a9b8e05a78d4f74a13ae296ad95f1fef415a641bbe44a02bc8c5c",
+      "stored_sha256": "df5a4557ed8a9b8e05a78d4f74a13ae296ad95f1fef415a641bbe44a02bc8c5c"
+    },
+    {
+      "source_path": "plan_R5_3V3_exact.json",
+      "stored_path": "plan_R5_3V3_exact.json",
+      "gzip": false,
+      "source_bytes": 10991,
+      "stored_bytes": 10991,
+      "source_sha256": "26fd945250b30170e84a1d240f93321b2f494dda346ce7a67f7c5a4bf92507f5",
+      "stored_sha256": "26fd945250b30170e84a1d240f93321b2f494dda346ce7a67f7c5a4bf92507f5"
+    },
+    {
+      "source_path": "plan_R6_3V3_exact.json",
+      "stored_path": "plan_R6_3V3_exact.json",
+      "gzip": false,
+      "source_bytes": 1908,
+      "stored_bytes": 1908,
+      "source_sha256": "ea9584d8ea43819816c02111af148b67dbc8295c1c7dc0cc190fbb1337f74705",
+      "stored_sha256": "ea9584d8ea43819816c02111af148b67dbc8295c1c7dc0cc190fbb1337f74705"
+    },
+    {
+      "source_path": "plan_R7_signals.json",
+      "stored_path": "plan_R7_signals.json",
+      "gzip": false,
+      "source_bytes": 63487,
+      "stored_bytes": 63487,
+      "source_sha256": "dfeddc40072a0d0de153dc49f175d61be6e32581c9cba7022f7188e0d2298951",
+      "stored_sha256": "dfeddc40072a0d0de153dc49f175d61be6e32581c9cba7022f7188e0d2298951"
+    },
+    {
+      "source_path": "plan_R8_signals.json",
+      "stored_path": "plan_R8_signals.json",
+      "gzip": false,
+      "source_bytes": 755,
+      "stored_bytes": 755,
+      "source_sha256": "f1e63e6dd26cb60cd1b0dfa97e96c124c2e2427b6bfbb603e8894200d743bc84",
+      "stored_sha256": "f1e63e6dd26cb60cd1b0dfa97e96c124c2e2427b6bfbb603e8894200d743bc84"
+    },
+    {
+      "source_path": "plan_R9_signals.json",
+      "stored_path": "plan_R9_signals.json",
+      "gzip": false,
+      "source_bytes": 737,
+      "stored_bytes": 737,
+      "source_sha256": "fa04001f29d0ddc57247fc1ebf40833d50c7fbf0985e2b01e5913965e293d204",
+      "stored_sha256": "fa04001f29d0ddc57247fc1ebf40833d50c7fbf0985e2b01e5913965e293d204"
+    },
+    {
+      "source_path": "requirements-routing.txt",
+      "stored_path": "requirements-routing.txt",
+      "gzip": false,
+      "source_bytes": 42,
+      "stored_bytes": 42,
+      "source_sha256": "b39dc2fdf624ffb6e0c582e994c9cc202c63c8aa21fee22a48677c7bcae6eb22",
+      "stored_sha256": "b39dc2fdf624ffb6e0c582e994c9cc202c63c8aa21fee22a48677c7bcae6eb22"
+    },
+    {
+      "source_path": "routes_b2.json",
+      "stored_path": "routes_b2.json",
+      "gzip": false,
+      "source_bytes": 213,
+      "stored_bytes": 213,
+      "source_sha256": "06c3e1724ac5926e60e1c36e2156b56520d28903b257364b3b32dafb5fedef86",
+      "stored_sha256": "06c3e1724ac5926e60e1c36e2156b56520d28903b257364b3b32dafb5fedef86"
+    },
+    {
+      "source_path": "scratch_refill.kicad_pcb",
+      "stored_path": "scratch_refill.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4690116,
+      "stored_bytes": 4690116,
+      "source_sha256": "48766a75e16188d121f087cc8d00d143e716bec6d5a173b9656fca0f39e8b757",
+      "stored_sha256": "48766a75e16188d121f087cc8d00d143e716bec6d5a173b9656fca0f39e8b757"
+    },
+    {
+      "source_path": "scratch_refill.kicad_pro",
+      "stored_path": "scratch_refill.kicad_pro",
+      "gzip": false,
+      "source_bytes": 8896,
+      "stored_bytes": 8896,
+      "source_sha256": "29e47a291db34e130670f34b1adb96ab9b1d37ac2001f9adb8e9a63dedddd6e0",
+      "stored_sha256": "29e47a291db34e130670f34b1adb96ab9b1d37ac2001f9adb8e9a63dedddd6e0"
+    },
+    {
+      "source_path": "signal_attempts.json",
+      "stored_path": "signal_attempts.json",
+      "gzip": false,
+      "source_bytes": 8120,
+      "stored_bytes": 8120,
+      "source_sha256": "9c801d781eb30556fd59e41d999b14bb6c2148f0116cd67a4fb5c14c3d11b10f",
+      "stored_sha256": "9c801d781eb30556fd59e41d999b14bb6c2148f0116cd67a4fb5c14c3d11b10f"
+    },
+    {
+      "source_path": "vitalq_v2.kicad_pcb",
+      "stored_path": "vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4675647,
+      "stored_bytes": 4675647,
+      "source_sha256": "2e72cea440d3ceca4b4397c833fa101f08e9898f24b6b74c597eff5b1def5eb5",
+      "stored_sha256": "2e72cea440d3ceca4b4397c833fa101f08e9898f24b6b74c597eff5b1def5eb5"
+    },
+    {
+      "source_path": "vitalq_v2.kicad_pro",
+      "stored_path": "vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "vitalq_v2.kicad_sch",
+      "stored_path": "vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/vitalq_v2_20261008_1813_pre_batch0.kicad_pcb",
+      "stored_path": "backups/vitalq_v2_20261008_1813_pre_batch0.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4720334,
+      "stored_bytes": 4720334,
+      "source_sha256": "51e419adfe308cc1aabdc0da84006213f2649403b51d08887207c4377a85867f",
+      "stored_sha256": "51e419adfe308cc1aabdc0da84006213f2649403b51d08887207c4377a85867f"
+    },
+    {
+      "source_path": "backups/vitalq_v2_20261008_1840_pre_batch1.kicad_pcb",
+      "stored_path": "backups/vitalq_v2_20261008_1840_pre_batch1.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4720394,
+      "stored_bytes": 4720394,
+      "source_sha256": "dd6354e861cb2dffadfde2f9a5897cb4ac3c1bd2ffb427a8854ffd7823493ab9",
+      "stored_sha256": "dd6354e861cb2dffadfde2f9a5897cb4ac3c1bd2ffb427a8854ffd7823493ab9"
+    },
+    {
+      "source_path": "backups/vitalq_v2_20261008_1851_pre_batch2.kicad_pcb",
+      "stored_path": "backups/vitalq_v2_20261008_1851_pre_batch2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 3455981,
+      "stored_bytes": 3455981,
+      "source_sha256": "87eb1196bc14f814e2d24ec3005d5fa6765dd6dd4a7943b0a0307621abf1515e",
+      "stored_sha256": "87eb1196bc14f814e2d24ec3005d5fa6765dd6dd4a7943b0a0307621abf1515e"
+    },
+    {
+      "source_path": "backups/vitalq_v2_20261008_1905_pre_batch3.kicad_pcb",
+      "stored_path": "backups/vitalq_v2_20261008_1905_pre_batch3.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 3457405,
+      "stored_bytes": 3457405,
+      "source_sha256": "b2cc522b57c1d768bf9518911c77482fe4a428da9de76b7be3173284122b37da",
+      "stored_sha256": "b2cc522b57c1d768bf9518911c77482fe4a428da9de76b7be3173284122b37da"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_refilled/drc.json",
+      "stored_path": "backups/20261008_195914_resume_refilled/drc.json",
+      "gzip": false,
+      "source_bytes": 242060,
+      "stored_bytes": 242060,
+      "source_sha256": "ab9426c034d395429162ab195504155d987c773613d43b56d58765cd2bcf5b05",
+      "stored_sha256": "ab9426c034d395429162ab195504155d987c773613d43b56d58765cd2bcf5b05"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_refilled/manifest.json",
+      "stored_path": "backups/20261008_195914_resume_refilled/manifest.json",
+      "gzip": false,
+      "source_bytes": 457,
+      "stored_bytes": 457,
+      "source_sha256": "23269b227b68e026f5c2c292030940fbc181275829f68e64b3851022314e03d3",
+      "stored_sha256": "23269b227b68e026f5c2c292030940fbc181275829f68e64b3851022314e03d3"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_refilled/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_195914_resume_refilled/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4584054,
+      "stored_bytes": 4584054,
+      "source_sha256": "82aaf99f3fb674851cecde6a62188ceffe25b2a3eda5c67e217991a815eddb80",
+      "stored_sha256": "82aaf99f3fb674851cecde6a62188ceffe25b2a3eda5c67e217991a815eddb80"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_refilled/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_195914_resume_refilled/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_refilled/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_195914_resume_refilled/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_unmodified/manifest.json",
+      "stored_path": "backups/20261008_195914_resume_unmodified/manifest.json",
+      "gzip": false,
+      "source_bytes": 459,
+      "stored_bytes": 459,
+      "source_sha256": "830702a51f4550a67b54322d4150aac2f8acce1b79e99d03f2ba7d9fb0deb218",
+      "stored_sha256": "830702a51f4550a67b54322d4150aac2f8acce1b79e99d03f2ba7d9fb0deb218"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_unmodified/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_195914_resume_unmodified/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 3458153,
+      "stored_bytes": 3458153,
+      "source_sha256": "ec42e59834e5c53a40899233748c56231567ae9747893e64160814c8a545c0b2",
+      "stored_sha256": "ec42e59834e5c53a40899233748c56231567ae9747893e64160814c8a545c0b2"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_unmodified/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_195914_resume_unmodified/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_195914_resume_unmodified/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_195914_resume_unmodified/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_201553_candidate_R4/drc.json",
+      "stored_path": "backups/20261008_201553_candidate_R4/drc.json",
+      "gzip": false,
+      "source_bytes": 237625,
+      "stored_bytes": 237625,
+      "source_sha256": "4e77a3da10491a46b8c3406c4239008d033de25b2e769b3f9524bf4b4e99e92b",
+      "stored_sha256": "4e77a3da10491a46b8c3406c4239008d033de25b2e769b3f9524bf4b4e99e92b"
+    },
+    {
+      "source_path": "backups/20261008_201553_candidate_R4/manifest.json",
+      "stored_path": "backups/20261008_201553_candidate_R4/manifest.json",
+      "gzip": false,
+      "source_bytes": 494,
+      "stored_bytes": 494,
+      "source_sha256": "cdf110d7c7bfe07d691b37ddf19997cacc28b5b22882b78cf0fa13c4e763fd0d",
+      "stored_sha256": "cdf110d7c7bfe07d691b37ddf19997cacc28b5b22882b78cf0fa13c4e763fd0d"
+    },
+    {
+      "source_path": "backups/20261008_201553_candidate_R4/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_201553_candidate_R4/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4591246,
+      "stored_bytes": 4591246,
+      "source_sha256": "68b3c03a1d95e17ebeae5f729d92fb0f23f1d1f8f11a580ab8af49ac360ffe48",
+      "stored_sha256": "68b3c03a1d95e17ebeae5f729d92fb0f23f1d1f8f11a580ab8af49ac360ffe48"
+    },
+    {
+      "source_path": "backups/20261008_201553_candidate_R4/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_201553_candidate_R4/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_201553_candidate_R4/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_201553_candidate_R4/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_201553_pre_R4/manifest.json",
+      "stored_path": "backups/20261008_201553_pre_R4/manifest.json",
+      "gzip": false,
+      "source_bytes": 448,
+      "stored_bytes": 448,
+      "source_sha256": "2a9da328e881303ef553c8fc843fa6510facea49f1c2b0d3d1907dae1ca82491",
+      "stored_sha256": "2a9da328e881303ef553c8fc843fa6510facea49f1c2b0d3d1907dae1ca82491"
+    },
+    {
+      "source_path": "backups/20261008_201553_pre_R4/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_201553_pre_R4/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 3458153,
+      "stored_bytes": 3458153,
+      "source_sha256": "ec42e59834e5c53a40899233748c56231567ae9747893e64160814c8a545c0b2",
+      "stored_sha256": "ec42e59834e5c53a40899233748c56231567ae9747893e64160814c8a545c0b2"
+    },
+    {
+      "source_path": "backups/20261008_201553_pre_R4/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_201553_pre_R4/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_201553_pre_R4/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_201553_pre_R4/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_202103_candidate_R5/drc.json",
+      "stored_path": "backups/20261008_202103_candidate_R5/drc.json",
+      "gzip": false,
+      "source_bytes": 231738,
+      "stored_bytes": 231738,
+      "source_sha256": "b78525288d18c4dc4bffe52d043d7614db47a9c17c28298e51dd78c7c4a3f65f",
+      "stored_sha256": "b78525288d18c4dc4bffe52d043d7614db47a9c17c28298e51dd78c7c4a3f65f"
+    },
+    {
+      "source_path": "backups/20261008_202103_candidate_R5/manifest.json",
+      "stored_path": "backups/20261008_202103_candidate_R5/manifest.json",
+      "gzip": false,
+      "source_bytes": 454,
+      "stored_bytes": 454,
+      "source_sha256": "815b386e8d34b6850b84b1622793d242162d4a5d1297aac656f1aa57ce005ba9",
+      "stored_sha256": "815b386e8d34b6850b84b1622793d242162d4a5d1297aac656f1aa57ce005ba9"
+    },
+    {
+      "source_path": "backups/20261008_202103_candidate_R5/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_202103_candidate_R5/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4613365,
+      "stored_bytes": 4613365,
+      "source_sha256": "137ee11fa4a16c2762f7a1a862c7414c71ef2fd899571c5682d99529f90a2703",
+      "stored_sha256": "137ee11fa4a16c2762f7a1a862c7414c71ef2fd899571c5682d99529f90a2703"
+    },
+    {
+      "source_path": "backups/20261008_202103_candidate_R5/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_202103_candidate_R5/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_202103_candidate_R5/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_202103_candidate_R5/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_202103_pre_R5/manifest.json",
+      "stored_path": "backups/20261008_202103_pre_R5/manifest.json",
+      "gzip": false,
+      "source_bytes": 448,
+      "stored_bytes": 448,
+      "source_sha256": "ef5f3b6d8a6efe5fd9363aa73a62d7a10368da652e54fd227af69fc739c699ed",
+      "stored_sha256": "ef5f3b6d8a6efe5fd9363aa73a62d7a10368da652e54fd227af69fc739c699ed"
+    },
+    {
+      "source_path": "backups/20261008_202103_pre_R5/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_202103_pre_R5/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4591246,
+      "stored_bytes": 4591246,
+      "source_sha256": "68b3c03a1d95e17ebeae5f729d92fb0f23f1d1f8f11a580ab8af49ac360ffe48",
+      "stored_sha256": "68b3c03a1d95e17ebeae5f729d92fb0f23f1d1f8f11a580ab8af49ac360ffe48"
+    },
+    {
+      "source_path": "backups/20261008_202103_pre_R5/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_202103_pre_R5/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_202103_pre_R5/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_202103_pre_R5/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_202430_candidate_R6/drc.json",
+      "stored_path": "backups/20261008_202430_candidate_R6/drc.json",
+      "gzip": false,
+      "source_bytes": 228052,
+      "stored_bytes": 228052,
+      "source_sha256": "d63239ff9b63bf011321c154b7f2b62dc194f11e2b3b9d08fdfb6559e3024b8e",
+      "stored_sha256": "d63239ff9b63bf011321c154b7f2b62dc194f11e2b3b9d08fdfb6559e3024b8e"
+    },
+    {
+      "source_path": "backups/20261008_202430_candidate_R6/manifest.json",
+      "stored_path": "backups/20261008_202430_candidate_R6/manifest.json",
+      "gzip": false,
+      "source_bytes": 454,
+      "stored_bytes": 454,
+      "source_sha256": "dc806dfb8546b88e54ab2329dd687f31649f0281ec9acc2c62f63a3da5f6cacf",
+      "stored_sha256": "dc806dfb8546b88e54ab2329dd687f31649f0281ec9acc2c62f63a3da5f6cacf"
+    },
+    {
+      "source_path": "backups/20261008_202430_candidate_R6/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_202430_candidate_R6/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4618391,
+      "stored_bytes": 4618391,
+      "source_sha256": "061f4005183f93bd88afbaba98b704efcf0fb89100f92517300a14fa2feb458e",
+      "stored_sha256": "061f4005183f93bd88afbaba98b704efcf0fb89100f92517300a14fa2feb458e"
+    },
+    {
+      "source_path": "backups/20261008_202430_candidate_R6/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_202430_candidate_R6/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_202430_candidate_R6/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_202430_candidate_R6/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_202430_pre_R6/manifest.json",
+      "stored_path": "backups/20261008_202430_pre_R6/manifest.json",
+      "gzip": false,
+      "source_bytes": 448,
+      "stored_bytes": 448,
+      "source_sha256": "61bd6afdd740953bc1dced946dcb54c050d8544ab817022436ce5dea6cfc450e",
+      "stored_sha256": "61bd6afdd740953bc1dced946dcb54c050d8544ab817022436ce5dea6cfc450e"
+    },
+    {
+      "source_path": "backups/20261008_202430_pre_R6/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_202430_pre_R6/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4613365,
+      "stored_bytes": 4613365,
+      "source_sha256": "137ee11fa4a16c2762f7a1a862c7414c71ef2fd899571c5682d99529f90a2703",
+      "stored_sha256": "137ee11fa4a16c2762f7a1a862c7414c71ef2fd899571c5682d99529f90a2703"
+    },
+    {
+      "source_path": "backups/20261008_202430_pre_R6/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_202430_pre_R6/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_202430_pre_R6/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_202430_pre_R6/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_203136_candidate_R7/drc.json",
+      "stored_path": "backups/20261008_203136_candidate_R7/drc.json",
+      "gzip": false,
+      "source_bytes": 225674,
+      "stored_bytes": 225674,
+      "source_sha256": "cc3736e7c4f9e9871a0c072c5a79324ef99df55d7ad236d7fae9b1b77b8edd93",
+      "stored_sha256": "cc3736e7c4f9e9871a0c072c5a79324ef99df55d7ad236d7fae9b1b77b8edd93"
+    },
+    {
+      "source_path": "backups/20261008_203136_candidate_R7/manifest.json",
+      "stored_path": "backups/20261008_203136_candidate_R7/manifest.json",
+      "gzip": false,
+      "source_bytes": 454,
+      "stored_bytes": 454,
+      "source_sha256": "5e8deb172d62b8dfac6c0916e938652c2c7eb605cb9d7b62e5bd2da5488aea05",
+      "stored_sha256": "5e8deb172d62b8dfac6c0916e938652c2c7eb605cb9d7b62e5bd2da5488aea05"
+    },
+    {
+      "source_path": "backups/20261008_203136_candidate_R7/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_203136_candidate_R7/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4684249,
+      "stored_bytes": 4684249,
+      "source_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb",
+      "stored_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb"
+    },
+    {
+      "source_path": "backups/20261008_203136_candidate_R7/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_203136_candidate_R7/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_203136_candidate_R7/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_203136_candidate_R7/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_203136_pre_R7/manifest.json",
+      "stored_path": "backups/20261008_203136_pre_R7/manifest.json",
+      "gzip": false,
+      "source_bytes": 448,
+      "stored_bytes": 448,
+      "source_sha256": "fe82d6dc39143d8a3312fd70e4822cd2e3c0fe87398880e88c76783d133800bb",
+      "stored_sha256": "fe82d6dc39143d8a3312fd70e4822cd2e3c0fe87398880e88c76783d133800bb"
+    },
+    {
+      "source_path": "backups/20261008_203136_pre_R7/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_203136_pre_R7/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4618391,
+      "stored_bytes": 4618391,
+      "source_sha256": "061f4005183f93bd88afbaba98b704efcf0fb89100f92517300a14fa2feb458e",
+      "stored_sha256": "061f4005183f93bd88afbaba98b704efcf0fb89100f92517300a14fa2feb458e"
+    },
+    {
+      "source_path": "backups/20261008_203136_pre_R7/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_203136_pre_R7/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_203136_pre_R7/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_203136_pre_R7/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_204025_candidate_M1_J8/manifest.json",
+      "stored_path": "backups/20261008_204025_candidate_M1_J8/manifest.json",
+      "gzip": false,
+      "source_bytes": 457,
+      "stored_bytes": 457,
+      "source_sha256": "888dac196270b9f8b85d27355f1736fa96c38f17fd2bad95ff4cc926fb5d238c",
+      "stored_sha256": "888dac196270b9f8b85d27355f1736fa96c38f17fd2bad95ff4cc926fb5d238c"
+    },
+    {
+      "source_path": "backups/20261008_204025_candidate_M1_J8/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_204025_candidate_M1_J8/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 0,
+      "stored_bytes": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source_path": "backups/20261008_204025_candidate_M1_J8/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_204025_candidate_M1_J8/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_204025_candidate_M1_J8/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_204025_candidate_M1_J8/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_204025_pre_M1_J8/manifest.json",
+      "stored_path": "backups/20261008_204025_pre_M1_J8/manifest.json",
+      "gzip": false,
+      "source_bytes": 451,
+      "stored_bytes": 451,
+      "source_sha256": "ba21341bee014f5e9a28e2462a139c0bec2f999481b047879bedf044bfc90a59",
+      "stored_sha256": "ba21341bee014f5e9a28e2462a139c0bec2f999481b047879bedf044bfc90a59"
+    },
+    {
+      "source_path": "backups/20261008_204025_pre_M1_J8/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_204025_pre_M1_J8/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4684249,
+      "stored_bytes": 4684249,
+      "source_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb",
+      "stored_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb"
+    },
+    {
+      "source_path": "backups/20261008_204025_pre_M1_J8/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_204025_pre_M1_J8/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_204025_pre_M1_J8/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_204025_pre_M1_J8/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_204459_candidate_M1_J8/drc.json",
+      "stored_path": "backups/20261008_204459_candidate_M1_J8/drc.json",
+      "gzip": false,
+      "source_bytes": 225695,
+      "stored_bytes": 225695,
+      "source_sha256": "c9e6f318f7b04620c408222225a0c5f2c3b9316db8beaa1cc7fde6295c425e7b",
+      "stored_sha256": "c9e6f318f7b04620c408222225a0c5f2c3b9316db8beaa1cc7fde6295c425e7b"
+    },
+    {
+      "source_path": "backups/20261008_204459_candidate_M1_J8/manifest.json",
+      "stored_path": "backups/20261008_204459_candidate_M1_J8/manifest.json",
+      "gzip": false,
+      "source_bytes": 457,
+      "stored_bytes": 457,
+      "source_sha256": "a2e8d8eb71f12094c8c1b95c6dbc29c7c74a9259f7273198772bdff91d58b6d1",
+      "stored_sha256": "a2e8d8eb71f12094c8c1b95c6dbc29c7c74a9259f7273198772bdff91d58b6d1"
+    },
+    {
+      "source_path": "backups/20261008_204459_candidate_M1_J8/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_204459_candidate_M1_J8/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4689718,
+      "stored_bytes": 4689718,
+      "source_sha256": "a08f6ca90819b878a0d5e037c430c1af205bb1787e9ff65d741f12897bb4c2e6",
+      "stored_sha256": "a08f6ca90819b878a0d5e037c430c1af205bb1787e9ff65d741f12897bb4c2e6"
+    },
+    {
+      "source_path": "backups/20261008_204459_candidate_M1_J8/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_204459_candidate_M1_J8/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_204459_candidate_M1_J8/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_204459_candidate_M1_J8/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_204459_pre_M1_J8/manifest.json",
+      "stored_path": "backups/20261008_204459_pre_M1_J8/manifest.json",
+      "gzip": false,
+      "source_bytes": 451,
+      "stored_bytes": 451,
+      "source_sha256": "3cb771101a6cd5f2031da6e5ac9616345e578b6b49c120057cc1b1270b947150",
+      "stored_sha256": "3cb771101a6cd5f2031da6e5ac9616345e578b6b49c120057cc1b1270b947150"
+    },
+    {
+      "source_path": "backups/20261008_204459_pre_M1_J8/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_204459_pre_M1_J8/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4684249,
+      "stored_bytes": 4684249,
+      "source_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb",
+      "stored_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb"
+    },
+    {
+      "source_path": "backups/20261008_204459_pre_M1_J8/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_204459_pre_M1_J8/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_204459_pre_M1_J8/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_204459_pre_M1_J8/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_205043_candidate_M1_J8/drc.json",
+      "stored_path": "backups/20261008_205043_candidate_M1_J8/drc.json",
+      "gzip": false,
+      "source_bytes": 225621,
+      "stored_bytes": 225621,
+      "source_sha256": "881dfc2608086889ec1cd7c01a7de92e04a3eeaa37b49e06ef2bd046db3c9fd7",
+      "stored_sha256": "881dfc2608086889ec1cd7c01a7de92e04a3eeaa37b49e06ef2bd046db3c9fd7"
+    },
+    {
+      "source_path": "backups/20261008_205043_candidate_M1_J8/manifest.json",
+      "stored_path": "backups/20261008_205043_candidate_M1_J8/manifest.json",
+      "gzip": false,
+      "source_bytes": 457,
+      "stored_bytes": 457,
+      "source_sha256": "8a1c3a2223d01ba875a1730e09498f23e7eb29328dca95d1ca7cee6cf47a7a02",
+      "stored_sha256": "8a1c3a2223d01ba875a1730e09498f23e7eb29328dca95d1ca7cee6cf47a7a02"
+    },
+    {
+      "source_path": "backups/20261008_205043_candidate_M1_J8/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_205043_candidate_M1_J8/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4690532,
+      "stored_bytes": 4690532,
+      "source_sha256": "c38fd903f8c6c60b147b7950b2542f6ae615212e7ac51201119d320e259f1acb",
+      "stored_sha256": "c38fd903f8c6c60b147b7950b2542f6ae615212e7ac51201119d320e259f1acb"
+    },
+    {
+      "source_path": "backups/20261008_205043_candidate_M1_J8/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_205043_candidate_M1_J8/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_205043_candidate_M1_J8/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_205043_candidate_M1_J8/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_205043_pre_M1_J8/manifest.json",
+      "stored_path": "backups/20261008_205043_pre_M1_J8/manifest.json",
+      "gzip": false,
+      "source_bytes": 451,
+      "stored_bytes": 451,
+      "source_sha256": "ac2f58710c40d7f9d51e900307f5ad0ad22a9140713079b49d5ec726faddeb57",
+      "stored_sha256": "ac2f58710c40d7f9d51e900307f5ad0ad22a9140713079b49d5ec726faddeb57"
+    },
+    {
+      "source_path": "backups/20261008_205043_pre_M1_J8/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_205043_pre_M1_J8/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4684249,
+      "stored_bytes": 4684249,
+      "source_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb",
+      "stored_sha256": "b4b1737f3320e5a0174186eb5a3b715a416c887d01f606724b3729e98b1b2ecb"
+    },
+    {
+      "source_path": "backups/20261008_205043_pre_M1_J8/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_205043_pre_M1_J8/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_205043_pre_M1_J8/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_205043_pre_M1_J8/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_210517_candidate_C1/drc.json",
+      "stored_path": "backups/20261008_210517_candidate_C1/drc.json",
+      "gzip": false,
+      "source_bytes": 212911,
+      "stored_bytes": 212911,
+      "source_sha256": "b4f8f3834aa1096cc4a2b9b660236e32b10b55c783274d0aaf6f8a4972f18349",
+      "stored_sha256": "b4f8f3834aa1096cc4a2b9b660236e32b10b55c783274d0aaf6f8a4972f18349"
+    },
+    {
+      "source_path": "backups/20261008_210517_candidate_C1/geometry.json",
+      "stored_path": "backups/20261008_210517_candidate_C1/geometry.json.gz",
+      "gzip": true,
+      "source_bytes": 101441646,
+      "stored_bytes": 38955852,
+      "source_sha256": "733e8021c1d1fe697603f09d5ef52f872532c876728eb18761402ba92e8827f7",
+      "stored_sha256": "4b80542c2ec55e6d77e57bc832d77cc6ea0af9e7cf9dc7dd6b6d022048534815"
+    },
+    {
+      "source_path": "backups/20261008_210517_candidate_C1/manifest.json",
+      "stored_path": "backups/20261008_210517_candidate_C1/manifest.json",
+      "gzip": false,
+      "source_bytes": 454,
+      "stored_bytes": 454,
+      "source_sha256": "426e406de82ef8d5a4dd66c0ff6573aae5ac90befd4b1e9c811af58d42f5066e",
+      "stored_sha256": "426e406de82ef8d5a4dd66c0ff6573aae5ac90befd4b1e9c811af58d42f5066e"
+    },
+    {
+      "source_path": "backups/20261008_210517_candidate_C1/pad_connectivity.json",
+      "stored_path": "backups/20261008_210517_candidate_C1/pad_connectivity.json",
+      "gzip": false,
+      "source_bytes": 558,
+      "stored_bytes": 558,
+      "source_sha256": "0b1da6eeef720e46dfbd41eb08dfb40a92c15048b4c022f0ec49ca1400b6fab5",
+      "stored_sha256": "0b1da6eeef720e46dfbd41eb08dfb40a92c15048b4c022f0ec49ca1400b6fab5"
+    },
+    {
+      "source_path": "backups/20261008_210517_candidate_C1/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_210517_candidate_C1/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4675003,
+      "stored_bytes": 4675003,
+      "source_sha256": "e4f9d5b41662efe48baaa43e2df2537e535f5d5a150e4c375f2894f221434d43",
+      "stored_sha256": "e4f9d5b41662efe48baaa43e2df2537e535f5d5a150e4c375f2894f221434d43"
+    },
+    {
+      "source_path": "backups/20261008_210517_candidate_C1/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_210517_candidate_C1/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_210517_candidate_C1/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_210517_candidate_C1/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_210517_pre_C1/manifest.json",
+      "stored_path": "backups/20261008_210517_pre_C1/manifest.json",
+      "gzip": false,
+      "source_bytes": 448,
+      "stored_bytes": 448,
+      "source_sha256": "18a7ca10bfc6078e13443e203542b667118814f24d6dcf9c8bb8fc6b8f6c1a3f",
+      "stored_sha256": "18a7ca10bfc6078e13443e203542b667118814f24d6dcf9c8bb8fc6b8f6c1a3f"
+    },
+    {
+      "source_path": "backups/20261008_210517_pre_C1/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_210517_pre_C1/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4690532,
+      "stored_bytes": 4690532,
+      "source_sha256": "c38fd903f8c6c60b147b7950b2542f6ae615212e7ac51201119d320e259f1acb",
+      "stored_sha256": "c38fd903f8c6c60b147b7950b2542f6ae615212e7ac51201119d320e259f1acb"
+    },
+    {
+      "source_path": "backups/20261008_210517_pre_C1/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_210517_pre_C1/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_210517_pre_C1/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_210517_pre_C1/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_211007_pre_C2/manifest.json",
+      "stored_path": "backups/20261008_211007_pre_C2/manifest.json",
+      "gzip": false,
+      "source_bytes": 448,
+      "stored_bytes": 448,
+      "source_sha256": "779c9b342c4876ff821c2c2a18f79ad86938317a11f0fa7d43e379dcf6be8a43",
+      "stored_sha256": "779c9b342c4876ff821c2c2a18f79ad86938317a11f0fa7d43e379dcf6be8a43"
+    },
+    {
+      "source_path": "backups/20261008_211007_pre_C2/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_211007_pre_C2/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4690532,
+      "stored_bytes": 4690532,
+      "source_sha256": "c38fd903f8c6c60b147b7950b2542f6ae615212e7ac51201119d320e259f1acb",
+      "stored_sha256": "c38fd903f8c6c60b147b7950b2542f6ae615212e7ac51201119d320e259f1acb"
+    },
+    {
+      "source_path": "backups/20261008_211007_pre_C2/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_211007_pre_C2/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_211007_pre_C2/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_211007_pre_C2/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_211008_candidate_C2/drc.json",
+      "stored_path": "backups/20261008_211008_candidate_C2/drc.json",
+      "gzip": false,
+      "source_bytes": 210846,
+      "stored_bytes": 210846,
+      "source_sha256": "a8607d8a5b5e2f9706d4054d80fa6e14295e7774d1bd80057902205d51cb75f9",
+      "stored_sha256": "a8607d8a5b5e2f9706d4054d80fa6e14295e7774d1bd80057902205d51cb75f9"
+    },
+    {
+      "source_path": "backups/20261008_211008_candidate_C2/geometry.json",
+      "stored_path": "backups/20261008_211008_candidate_C2/geometry.json.gz",
+      "gzip": true,
+      "source_bytes": 101671382,
+      "stored_bytes": 39111380,
+      "source_sha256": "96d6c67ff778bbe2e823b7b803859415e4e06fe5e9319c8f71eb964a9676d02f",
+      "stored_sha256": "9966e3b5d055f1b07d906aacc09605457de3912deb35ff1a7f46fe9db5aa897c"
+    },
+    {
+      "source_path": "backups/20261008_211008_candidate_C2/manifest.json",
+      "stored_path": "backups/20261008_211008_candidate_C2/manifest.json",
+      "gzip": false,
+      "source_bytes": 454,
+      "stored_bytes": 454,
+      "source_sha256": "3e087e5573f49a842dc169a74ec591153693cb70a58b184ed034f83129f6adac",
+      "stored_sha256": "3e087e5573f49a842dc169a74ec591153693cb70a58b184ed034f83129f6adac"
+    },
+    {
+      "source_path": "backups/20261008_211008_candidate_C2/pad_connectivity.json",
+      "stored_path": "backups/20261008_211008_candidate_C2/pad_connectivity.json",
+      "gzip": false,
+      "source_bytes": 284,
+      "stored_bytes": 284,
+      "source_sha256": "3b291a9d6c1fb31981304c94e22cf2096c770ef0f56d970339fafe425d6b4f6d",
+      "stored_sha256": "3b291a9d6c1fb31981304c94e22cf2096c770ef0f56d970339fafe425d6b4f6d"
+    },
+    {
+      "source_path": "backups/20261008_211008_candidate_C2/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_211008_candidate_C2/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4676908,
+      "stored_bytes": 4676908,
+      "source_sha256": "9cb2e1c2d0fe621b201419ff4a7e5af7d7b3ccb7aadd9e8ee566589bc447948a",
+      "stored_sha256": "9cb2e1c2d0fe621b201419ff4a7e5af7d7b3ccb7aadd9e8ee566589bc447948a"
+    },
+    {
+      "source_path": "backups/20261008_211008_candidate_C2/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_211008_candidate_C2/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_211008_candidate_C2/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_211008_candidate_C2/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_211735_candidate_C3/drc.json",
+      "stored_path": "backups/20261008_211735_candidate_C3/drc.json",
+      "gzip": false,
+      "source_bytes": 209797,
+      "stored_bytes": 209797,
+      "source_sha256": "cf66fe9ba9cdfc2e5e6298cc2287ac8ae8e4f0788570f2b4a59db4a419605b33",
+      "stored_sha256": "cf66fe9ba9cdfc2e5e6298cc2287ac8ae8e4f0788570f2b4a59db4a419605b33"
+    },
+    {
+      "source_path": "backups/20261008_211735_candidate_C3/geometry.json",
+      "stored_path": "backups/20261008_211735_candidate_C3/geometry.json.gz",
+      "gzip": true,
+      "source_bytes": 101668279,
+      "stored_bytes": 39104399,
+      "source_sha256": "e8627bbb859ce8cf28dbd0f2fa9e1606d499ae0fb07ea4d648e14317c4f57e49",
+      "stored_sha256": "0236bf12a4f62a10ff6f0505eb98a3ded8cf6f0f5012ad20dfbc7e299c31da2c"
+    },
+    {
+      "source_path": "backups/20261008_211735_candidate_C3/manifest.json",
+      "stored_path": "backups/20261008_211735_candidate_C3/manifest.json",
+      "gzip": false,
+      "source_bytes": 454,
+      "stored_bytes": 454,
+      "source_sha256": "2c8a31a09f6c5304cbdcf1be4b5b9bf8eb4f6226f9d984f67043558807797b0f",
+      "stored_sha256": "2c8a31a09f6c5304cbdcf1be4b5b9bf8eb4f6226f9d984f67043558807797b0f"
+    },
+    {
+      "source_path": "backups/20261008_211735_candidate_C3/pad_connectivity.json",
+      "stored_path": "backups/20261008_211735_candidate_C3/pad_connectivity.json",
+      "gzip": false,
+      "source_bytes": 284,
+      "stored_bytes": 284,
+      "source_sha256": "f8111a2b505685910f406857f7446604b0a4f036c8db62d21af3cc7d197b8bbe",
+      "stored_sha256": "f8111a2b505685910f406857f7446604b0a4f036c8db62d21af3cc7d197b8bbe"
+    },
+    {
+      "source_path": "backups/20261008_211735_candidate_C3/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_211735_candidate_C3/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4675549,
+      "stored_bytes": 4675549,
+      "source_sha256": "222417ecae65045ba98b21ac2b97cf1b4ac30ccee606379ce9d2080988b31c5a",
+      "stored_sha256": "222417ecae65045ba98b21ac2b97cf1b4ac30ccee606379ce9d2080988b31c5a"
+    },
+    {
+      "source_path": "backups/20261008_211735_candidate_C3/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_211735_candidate_C3/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_211735_candidate_C3/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_211735_candidate_C3/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_211735_pre_C3/manifest.json",
+      "stored_path": "backups/20261008_211735_pre_C3/manifest.json",
+      "gzip": false,
+      "source_bytes": 448,
+      "stored_bytes": 448,
+      "source_sha256": "8f95ec9e16cc9c9b038f2cdb8541ede8f73509092f8a6076a9595ee44c48ab94",
+      "stored_sha256": "8f95ec9e16cc9c9b038f2cdb8541ede8f73509092f8a6076a9595ee44c48ab94"
+    },
+    {
+      "source_path": "backups/20261008_211735_pre_C3/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_211735_pre_C3/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4676908,
+      "stored_bytes": 4676908,
+      "source_sha256": "9cb2e1c2d0fe621b201419ff4a7e5af7d7b3ccb7aadd9e8ee566589bc447948a",
+      "stored_sha256": "9cb2e1c2d0fe621b201419ff4a7e5af7d7b3ccb7aadd9e8ee566589bc447948a"
+    },
+    {
+      "source_path": "backups/20261008_211735_pre_C3/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_211735_pre_C3/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_211735_pre_C3/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_211735_pre_C3/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_212523_candidate_M2_FIDs/drc.json",
+      "stored_path": "backups/20261008_212523_candidate_M2_FIDs/drc.json",
+      "gzip": false,
+      "source_bytes": 209859,
+      "stored_bytes": 209859,
+      "source_sha256": "4eba504d149ea61651c7bb8b38f59d296027650e0e7dd036fab8f4bee42f873d",
+      "stored_sha256": "4eba504d149ea61651c7bb8b38f59d296027650e0e7dd036fab8f4bee42f873d"
+    },
+    {
+      "source_path": "backups/20261008_212523_candidate_M2_FIDs/manifest.json",
+      "stored_path": "backups/20261008_212523_candidate_M2_FIDs/manifest.json",
+      "gzip": false,
+      "source_bytes": 459,
+      "stored_bytes": 459,
+      "source_sha256": "409edf280de7c022c661fbd104dd5ff0e8bb5239f8ee904c5db19f546135af2d",
+      "stored_sha256": "409edf280de7c022c661fbd104dd5ff0e8bb5239f8ee904c5db19f546135af2d"
+    },
+    {
+      "source_path": "backups/20261008_212523_candidate_M2_FIDs/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_212523_candidate_M2_FIDs/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4675551,
+      "stored_bytes": 4675551,
+      "source_sha256": "2ef18b56c560e39017abc9f6aa07e79ed765818bc5c0d16e11f99e20c271f21d",
+      "stored_sha256": "2ef18b56c560e39017abc9f6aa07e79ed765818bc5c0d16e11f99e20c271f21d"
+    },
+    {
+      "source_path": "backups/20261008_212523_candidate_M2_FIDs/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_212523_candidate_M2_FIDs/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_212523_candidate_M2_FIDs/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_212523_candidate_M2_FIDs/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_212523_pre_M2_FIDs/manifest.json",
+      "stored_path": "backups/20261008_212523_pre_M2_FIDs/manifest.json",
+      "gzip": false,
+      "source_bytes": 453,
+      "stored_bytes": 453,
+      "source_sha256": "61ec263269d5fde8af2326b33dda8d03d849a7ca580c4e1b457aa68677f29c62",
+      "stored_sha256": "61ec263269d5fde8af2326b33dda8d03d849a7ca580c4e1b457aa68677f29c62"
+    },
+    {
+      "source_path": "backups/20261008_212523_pre_M2_FIDs/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_212523_pre_M2_FIDs/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4675549,
+      "stored_bytes": 4675549,
+      "source_sha256": "222417ecae65045ba98b21ac2b97cf1b4ac30ccee606379ce9d2080988b31c5a",
+      "stored_sha256": "222417ecae65045ba98b21ac2b97cf1b4ac30ccee606379ce9d2080988b31c5a"
+    },
+    {
+      "source_path": "backups/20261008_212523_pre_M2_FIDs/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_212523_pre_M2_FIDs/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_212523_pre_M2_FIDs/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_212523_pre_M2_FIDs/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_214504_candidate_M3_POFV/drc.json",
+      "stored_path": "backups/20261008_214504_candidate_M3_POFV/drc.json",
+      "gzip": false,
+      "source_bytes": 209821,
+      "stored_bytes": 209821,
+      "source_sha256": "a6070524071051525fa94d381283f2a79b01f7ddd614f9af0845f26cbbf29c3c",
+      "stored_sha256": "a6070524071051525fa94d381283f2a79b01f7ddd614f9af0845f26cbbf29c3c"
+    },
+    {
+      "source_path": "backups/20261008_214504_candidate_M3_POFV/manifest.json",
+      "stored_path": "backups/20261008_214504_candidate_M3_POFV/manifest.json",
+      "gzip": false,
+      "source_bytes": 459,
+      "stored_bytes": 459,
+      "source_sha256": "5177f0d2034a73eba0b3754eb82bfa8e18cab9e959b0045c14c9db0f4ba15691",
+      "stored_sha256": "5177f0d2034a73eba0b3754eb82bfa8e18cab9e959b0045c14c9db0f4ba15691"
+    },
+    {
+      "source_path": "backups/20261008_214504_candidate_M3_POFV/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_214504_candidate_M3_POFV/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4675647,
+      "stored_bytes": 4675647,
+      "source_sha256": "2e72cea440d3ceca4b4397c833fa101f08e9898f24b6b74c597eff5b1def5eb5",
+      "stored_sha256": "2e72cea440d3ceca4b4397c833fa101f08e9898f24b6b74c597eff5b1def5eb5"
+    },
+    {
+      "source_path": "backups/20261008_214504_candidate_M3_POFV/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_214504_candidate_M3_POFV/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_214504_candidate_M3_POFV/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_214504_candidate_M3_POFV/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "backups/20261008_214504_pre_M3_POFV/manifest.json",
+      "stored_path": "backups/20261008_214504_pre_M3_POFV/manifest.json",
+      "gzip": false,
+      "source_bytes": 453,
+      "stored_bytes": 453,
+      "source_sha256": "a0dab2dd259e08a2faa766a57c25b3e49f5b4520bb59d19b18ad7df47f213250",
+      "stored_sha256": "a0dab2dd259e08a2faa766a57c25b3e49f5b4520bb59d19b18ad7df47f213250"
+    },
+    {
+      "source_path": "backups/20261008_214504_pre_M3_POFV/vitalq_v2.kicad_pcb",
+      "stored_path": "backups/20261008_214504_pre_M3_POFV/vitalq_v2.kicad_pcb",
+      "gzip": false,
+      "source_bytes": 4675551,
+      "stored_bytes": 4675551,
+      "source_sha256": "2ef18b56c560e39017abc9f6aa07e79ed765818bc5c0d16e11f99e20c271f21d",
+      "stored_sha256": "2ef18b56c560e39017abc9f6aa07e79ed765818bc5c0d16e11f99e20c271f21d"
+    },
+    {
+      "source_path": "backups/20261008_214504_pre_M3_POFV/vitalq_v2.kicad_pro",
+      "stored_path": "backups/20261008_214504_pre_M3_POFV/vitalq_v2.kicad_pro",
+      "gzip": false,
+      "source_bytes": 14566,
+      "stored_bytes": 14566,
+      "source_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c",
+      "stored_sha256": "86093e442627f75da8e0679c87103ebf5cf065dd39a2a5a384ca8994fd08153c"
+    },
+    {
+      "source_path": "backups/20261008_214504_pre_M3_POFV/vitalq_v2.kicad_sch",
+      "stored_path": "backups/20261008_214504_pre_M3_POFV/vitalq_v2.kicad_sch",
+      "gzip": false,
+      "source_bytes": 1345162,
+      "stored_bytes": 1345162,
+      "source_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5",
+      "stored_sha256": "8df859b23f03aec5af0ee1953857fa9618dea7f6c5b5e3b314de6d8953dc4cb5"
+    },
+    {
+      "source_path": "renders/base_bottom.png",
+      "stored_path": "renders/base_bottom.png",
+      "gzip": false,
+      "source_bytes": 222736,
+      "stored_bytes": 222736,
+      "source_sha256": "86014c18d7eda57d5188d19139511e5feaeac90cff8a46a58038f164630988c0",
+      "stored_sha256": "86014c18d7eda57d5188d19139511e5feaeac90cff8a46a58038f164630988c0"
+    },
+    {
+      "source_path": "renders/base_top.png",
+      "stored_path": "renders/base_top.png",
+      "gzip": false,
+      "source_bytes": 372509,
+      "stored_bytes": 372509,
+      "source_sha256": "1c0ffa761c8f0a24447b8c44c82d89949c7764f0171a9abebce47406ed5e1917",
+      "stored_sha256": "1c0ffa761c8f0a24447b8c44c82d89949c7764f0171a9abebce47406ed5e1917"
+    },
+    {
+      "source_path": "renders/congestion.png",
+      "stored_path": "renders/congestion.png",
+      "gzip": false,
+      "source_bytes": 1170900,
+      "stored_bytes": 1170900,
+      "source_sha256": "23e3ff42768cae0d6789fc25a220ded217fb39f7215a55fdb6a0152da30a2b9b",
+      "stored_sha256": "23e3ff42768cae0d6789fc25a220ded217fb39f7215a55fdb6a0152da30a2b9b"
+    },
+    {
+      "source_path": "renders/dbg.png",
+      "stored_path": "renders/dbg.png",
+      "gzip": false,
+      "source_bytes": 181812,
+      "stored_bytes": 181812,
+      "source_sha256": "a056f6e8df85278130a20a2e02b4cbf4436e04035327123c2465de4639a054ab",
+      "stored_sha256": "a056f6e8df85278130a20a2e02b4cbf4436e04035327123c2465de4639a054ab"
+    },
+    {
+      "source_path": "renders/dbg_u5.png",
+      "stored_path": "renders/dbg_u5.png",
+      "gzip": false,
+      "source_bytes": 213516,
+      "stored_bytes": 213516,
+      "source_sha256": "4921d196c99c2054afa04f3627fa562e4b8ffcaa0d8e72c7d9df9236c88398a2",
+      "stored_sha256": "4921d196c99c2054afa04f3627fa562e4b8ffcaa0d8e72c7d9df9236c88398a2"
+    },
+    {
+      "source_path": "renders/dbg_u6_B.png",
+      "stored_path": "renders/dbg_u6_B.png",
+      "gzip": false,
+      "source_bytes": 252756,
+      "stored_bytes": 252756,
+      "source_sha256": "ff37370e81f58548827c329182c7bf0292cdbc8ac8803a05bde06daff6b3579a",
+      "stored_sha256": "ff37370e81f58548827c329182c7bf0292cdbc8ac8803a05bde06daff6b3579a"
+    },
+    {
+      "source_path": "renders/dbg_u6_L3.png",
+      "stored_path": "renders/dbg_u6_L3.png",
+      "gzip": false,
+      "source_bytes": 242975,
+      "stored_bytes": 242975,
+      "source_sha256": "01999f1542811eebd0b67b2b92798407e3c37e0b7bb818fc435da737da1eae23",
+      "stored_sha256": "01999f1542811eebd0b67b2b92798407e3c37e0b7bb818fc435da737da1eae23"
+    },
+    {
+      "source_path": "renders/final_3d.png",
+      "stored_path": "renders/final_3d.png",
+      "gzip": false,
+      "source_bytes": 1780130,
+      "stored_bytes": 1780130,
+      "source_sha256": "d22173a7dffbcb63e1e229cea25e8642963f8926bc564d7b8c28afaaf47f09f3",
+      "stored_sha256": "d22173a7dffbcb63e1e229cea25e8642963f8926bc564d7b8c28afaaf47f09f3"
+    },
+    {
+      "source_path": "renders/final_bottom.png",
+      "stored_path": "renders/final_bottom.png",
+      "gzip": false,
+      "source_bytes": 1021642,
+      "stored_bytes": 1021642,
+      "source_sha256": "d1fea258d2298c6c9ed08ccfac3331de1ea6e18e7964b75b70a6d94923fe8151",
+      "stored_sha256": "d1fea258d2298c6c9ed08ccfac3331de1ea6e18e7964b75b70a6d94923fe8151"
+    },
+    {
+      "source_path": "renders/final_bottom_copper.svg",
+      "stored_path": "renders/final_bottom_copper.svg",
+      "gzip": false,
+      "source_bytes": 212904,
+      "stored_bytes": 212904,
+      "source_sha256": "dd8b311de36787024aa04c74f078c99eca411be455e6761526c21db0ebf5d8da",
+      "stored_sha256": "dd8b311de36787024aa04c74f078c99eca411be455e6761526c21db0ebf5d8da"
+    },
+    {
+      "source_path": "renders/final_top.png",
+      "stored_path": "renders/final_top.png",
+      "gzip": false,
+      "source_bytes": 1475346,
+      "stored_bytes": 1475346,
+      "source_sha256": "cb806052ded8469d95ed2bfaac9b2ca4bc5b7dd68b41b0aaa290626ccbfc7b33",
+      "stored_sha256": "cb806052ded8469d95ed2bfaac9b2ca4bc5b7dd68b41b0aaa290626ccbfc7b33"
+    },
+    {
+      "source_path": "renders/final_top_copper.svg",
+      "stored_path": "renders/final_top_copper.svg",
+      "gzip": false,
+      "source_bytes": 650083,
+      "stored_bytes": 650083,
+      "source_sha256": "590af226e1f3100e15379e61720b88fc85bc93d362b5a7b889ee993aac0fcf7e",
+      "stored_sha256": "590af226e1f3100e15379e61720b88fc85bc93d362b5a7b889ee993aac0fcf7e"
+    },
+    {
+      "source_path": "renders/r_hv_bl.png",
+      "stored_path": "renders/r_hv_bl.png",
+      "gzip": false,
+      "source_bytes": 220778,
+      "stored_bytes": 220778,
+      "source_sha256": "705eb4fe187e19a2c6967b03c8b70dba5f99f6b5067e14f84d4ab3a89ded1298",
+      "stored_sha256": "705eb4fe187e19a2c6967b03c8b70dba5f99f6b5067e14f84d4ab3a89ded1298"
+    },
+    {
+      "source_path": "renders/r_hv_left.png",
+      "stored_path": "renders/r_hv_left.png",
+      "gzip": false,
+      "source_bytes": 527428,
+      "stored_bytes": 527428,
+      "source_sha256": "0e246ab07fd01aa233ff36085b47d46fc1dc9fcb66d05b250a7f0b6fbef35b00",
+      "stored_sha256": "0e246ab07fd01aa233ff36085b47d46fc1dc9fcb66d05b250a7f0b6fbef35b00"
+    },
+    {
+      "source_path": "renders/r_j12.png",
+      "stored_path": "renders/r_j12.png",
+      "gzip": false,
+      "source_bytes": 370406,
+      "stored_bytes": 370406,
+      "source_sha256": "e4492402206c2e0bdc9552ed6badb58b5a8773c0d2f3855c5c432a2e8b50d384",
+      "stored_sha256": "e4492402206c2e0bdc9552ed6badb58b5a8773c0d2f3855c5c432a2e8b50d384"
+    },
+    {
+      "source_path": "renders/r_sensor.png",
+      "stored_path": "renders/r_sensor.png",
+      "gzip": false,
+      "source_bytes": 260001,
+      "stored_bytes": 260001,
+      "source_sha256": "bc6ec05d9ca031a79a4531905dad416411064086e522126f616110f2757846f3",
+      "stored_sha256": "bc6ec05d9ca031a79a4531905dad416411064086e522126f616110f2757846f3"
+    },
+    {
+      "source_path": "renders/r_u6.png",
+      "stored_path": "renders/r_u6.png",
+      "gzip": false,
+      "source_bytes": 358357,
+      "stored_bytes": 358357,
+      "source_sha256": "20047f09fafaabaf5263d6da88476af1d3ff70f97cc1de3502564fe3cb75ec5e",
+      "stored_sha256": "20047f09fafaabaf5263d6da88476af1d3ff70f97cc1de3502564fe3cb75ec5e"
+    },
+    {
+      "source_path": "renders/r_u7.png",
+      "stored_path": "renders/r_u7.png",
+      "gzip": false,
+      "source_bytes": 379291,
+      "stored_bytes": 379291,
+      "source_sha256": "9dbb7a4300650ee56869a4b25f8d7dd54cb5368eb61470d7f4e0138199a5793f",
+      "stored_sha256": "9dbb7a4300650ee56869a4b25f8d7dd54cb5368eb61470d7f4e0138199a5793f"
+    },
+    {
+      "source_path": "scripts/accept_reviewed_batch.py",
+      "stored_path": "scripts/accept_reviewed_batch.py",
+      "gzip": false,
+      "source_bytes": 3502,
+      "stored_bytes": 3502,
+      "source_sha256": "f7687132e71d42d7a32916c1f9f97d7f836ce6f4c4667de3411ec4ed3da00fb7",
+      "stored_sha256": "f7687132e71d42d7a32916c1f9f97d7f836ce6f4c4667de3411ec4ed3da00fb7"
+    },
+    {
+      "source_path": "scripts/analyze_unconn.py",
+      "stored_path": "scripts/analyze_unconn.py",
+      "gzip": false,
+      "source_bytes": 6038,
+      "stored_bytes": 6038,
+      "source_sha256": "568835eefb31d5b896ac7018ebab76c414b4dc006f6d94b1863a4db3339e5516",
+      "stored_sha256": "568835eefb31d5b896ac7018ebab76c414b4dc006f6d94b1863a4db3339e5516"
+    },
+    {
+      "source_path": "scripts/apply_b1.py",
+      "stored_path": "scripts/apply_b1.py",
+      "gzip": false,
+      "source_bytes": 2594,
+      "stored_bytes": 2594,
+      "source_sha256": "03c7e62bc4ebe255aba0951951eee487c04fdc1c1c33ecdaeaf9c4b9e1b67fb9",
+      "stored_sha256": "03c7e62bc4ebe255aba0951951eee487c04fdc1c1c33ecdaeaf9c4b9e1b67fb9"
+    },
+    {
+      "source_path": "scripts/apply_dangling_cleanup.py",
+      "stored_path": "scripts/apply_dangling_cleanup.py",
+      "gzip": false,
+      "source_bytes": 4828,
+      "stored_bytes": 4828,
+      "source_sha256": "5896251c0933157cba19e9b94e7190d40187473a632090b4bfaf30e58b96627c",
+      "stored_sha256": "5896251c0933157cba19e9b94e7190d40187473a632090b4bfaf30e58b96627c"
+    },
+    {
+      "source_path": "scripts/apply_fiducials.py",
+      "stored_path": "scripts/apply_fiducials.py",
+      "gzip": false,
+      "source_bytes": 4751,
+      "stored_bytes": 4751,
+      "source_sha256": "9c57eaf87564e8659366c192a951c9b3a70e51d11b61000082b92fdf1bb1df41",
+      "stored_sha256": "9c57eaf87564e8659366c192a951c9b3a70e51d11b61000082b92fdf1bb1df41"
+    },
+    {
+      "source_path": "scripts/apply_j8_restoration.py",
+      "stored_path": "scripts/apply_j8_restoration.py",
+      "gzip": false,
+      "source_bytes": 4195,
+      "stored_bytes": 4195,
+      "source_sha256": "95cb6ef920d5d741b6b4f79e9f0601e94a44cafbc106b4a8c3ac94b7493e4c20",
+      "stored_sha256": "95cb6ef920d5d741b6b4f79e9f0601e94a44cafbc106b4a8c3ac94b7493e4c20"
+    },
+    {
+      "source_path": "scripts/apply_plane_batch.py",
+      "stored_path": "scripts/apply_plane_batch.py",
+      "gzip": false,
+      "source_bytes": 6141,
+      "stored_bytes": 6141,
+      "source_sha256": "070a57e5914fd3e7a5217dad8e5401be24ca276b1ad4e200c295049a375fe111",
+      "stored_sha256": "070a57e5914fd3e7a5217dad8e5401be24ca276b1ad4e200c295049a375fe111"
+    },
+    {
+      "source_path": "scripts/apply_signal_batch.py",
+      "stored_path": "scripts/apply_signal_batch.py",
+      "gzip": false,
+      "source_bytes": 6721,
+      "stored_bytes": 6721,
+      "source_sha256": "2fcfe1e6c2c1af1a455f58058dcfa502ab4dab61baea511de85aa345a40793b4",
+      "stored_sha256": "2fcfe1e6c2c1af1a455f58058dcfa502ab4dab61baea511de85aa345a40793b4"
+    },
+    {
+      "source_path": "scripts/audit_checkpoint.py",
+      "stored_path": "scripts/audit_checkpoint.py",
+      "gzip": false,
+      "source_bytes": 7122,
+      "stored_bytes": 7122,
+      "source_sha256": "7289ae30678967530e3102d13e0ee74237036560b1baa51b4a0da4e2c020d187",
+      "stored_sha256": "7289ae30678967530e3102d13e0ee74237036560b1baa51b4a0da4e2c020d187"
+    },
+    {
+      "source_path": "scripts/batch1_gnd.py",
+      "stored_path": "scripts/batch1_gnd.py",
+      "gzip": false,
+      "source_bytes": 2099,
+      "stored_bytes": 2099,
+      "source_sha256": "1f3e276335075d58f1bc3b00ea51e735733b7177b6d343dc2198144bc9c3cb5f",
+      "stored_sha256": "1f3e276335075d58f1bc3b00ea51e735733b7177b6d343dc2198144bc9c3cb5f"
+    },
+    {
+      "source_path": "scripts/build_final_report.py",
+      "stored_path": "scripts/build_final_report.py",
+      "gzip": false,
+      "source_bytes": 20132,
+      "stored_bytes": 20132,
+      "source_sha256": "801ffab020ffc8bd9e673086ffd34b2c690cf482498a5a0392b196708844bcfc",
+      "stored_sha256": "801ffab020ffc8bd9e673086ffd34b2c690cf482498a5a0392b196708844bcfc"
+    },
+    {
+      "source_path": "scripts/checkpoint.py",
+      "stored_path": "scripts/checkpoint.py",
+      "gzip": false,
+      "source_bytes": 1463,
+      "stored_bytes": 1463,
+      "source_sha256": "709d1fc9b0aa1cdee9f77d341f9a9753463e3eeac814d34a48db15413c0a560d",
+      "stored_sha256": "709d1fc9b0aa1cdee9f77d341f9a9753463e3eeac814d34a48db15413c0a560d"
+    },
+    {
+      "source_path": "scripts/congestion.py",
+      "stored_path": "scripts/congestion.py",
+      "gzip": false,
+      "source_bytes": 2141,
+      "stored_bytes": 2141,
+      "source_sha256": "86820d094db018332178700f12a02db777f522c6e92d53e6e2c56047163777d1",
+      "stored_sha256": "86820d094db018332178700f12a02db777f522c6e92d53e6e2c56047163777d1"
+    },
+    {
+      "source_path": "scripts/courtyard.py",
+      "stored_path": "scripts/courtyard.py",
+      "gzip": false,
+      "source_bytes": 855,
+      "stored_bytes": 855,
+      "source_sha256": "d41f794f749f696aca4bd90cdb50738f4d1fe753efbcef93076f69f094a4b1c7",
+      "stored_sha256": "d41f794f749f696aca4bd90cdb50738f4d1fe753efbcef93076f69f094a4b1c7"
+    },
+    {
+      "source_path": "scripts/dbgmask.py",
+      "stored_path": "scripts/dbgmask.py",
+      "gzip": false,
+      "source_bytes": 829,
+      "stored_bytes": 829,
+      "source_sha256": "130279baebc14cca2dbadc3644596d0140a2ef6a75d711b0fa8f6aebeaf1b143",
+      "stored_sha256": "130279baebc14cca2dbadc3644596d0140a2ef6a75d711b0fa8f6aebeaf1b143"
+    },
+    {
+      "source_path": "scripts/diagnose_refilled.py",
+      "stored_path": "scripts/diagnose_refilled.py",
+      "gzip": false,
+      "source_bytes": 5971,
+      "stored_bytes": 5971,
+      "source_sha256": "f8779d129d31fb3f89d4ad835eb3e420c225fa028462f3b7111f9bd1ebb1f7e0",
+      "stored_sha256": "f8779d129d31fb3f89d4ad835eb3e420c225fa028462f3b7111f9bd1ebb1f7e0"
+    },
+    {
+      "source_path": "scripts/dump_geom.py",
+      "stored_path": "scripts/dump_geom.py",
+      "gzip": false,
+      "source_bytes": 3108,
+      "stored_bytes": 3108,
+      "source_sha256": "e29126fed8092c310638cf87f1b9c6844bdf283c4279e067bb03aab973ba314b",
+      "stored_sha256": "e29126fed8092c310638cf87f1b9c6844bdf283c4279e067bb03aab973ba314b"
+    },
+    {
+      "source_path": "scripts/edge.py",
+      "stored_path": "scripts/edge.py",
+      "gzip": false,
+      "source_bytes": 2016,
+      "stored_bytes": 2016,
+      "source_sha256": "7fba34f4a1852c521313c2bf498cbea9f50019b245e37cee558b3dbba809ec9b",
+      "stored_sha256": "7fba34f4a1852c521313c2bf498cbea9f50019b245e37cee558b3dbba809ec9b"
+    },
+    {
+      "source_path": "scripts/edge2.py",
+      "stored_path": "scripts/edge2.py",
+      "gzip": false,
+      "source_bytes": 1481,
+      "stored_bytes": 1481,
+      "source_sha256": "7bcd1a22ae7d07013ace9078a2e7f0a253bb63863dbcf1f81c9ea53c6c8d1087",
+      "stored_sha256": "7bcd1a22ae7d07013ace9078a2e7f0a253bb63863dbcf1f81c9ea53c6c8d1087"
+    },
+    {
+      "source_path": "scripts/extract_exact.py",
+      "stored_path": "scripts/extract_exact.py",
+      "gzip": false,
+      "source_bytes": 4593,
+      "stored_bytes": 4593,
+      "source_sha256": "b6a3402d17d43c22aeb791f2e7f299d6a4c7ac4609976d7895266b712ca0ac1c",
+      "stored_sha256": "b6a3402d17d43c22aeb791f2e7f299d6a4c7ac4609976d7895266b712ca0ac1c"
+    },
+    {
+      "source_path": "scripts/final_geometry_audit.py",
+      "stored_path": "scripts/final_geometry_audit.py",
+      "gzip": false,
+      "source_bytes": 4322,
+      "stored_bytes": 4322,
+      "source_sha256": "51d72abe7415b18aed4749a39ddab0eac684825121d0298434b64c005c696c33",
+      "stored_sha256": "51d72abe7415b18aed4749a39ddab0eac684825121d0298434b64c005c696c33"
+    },
+    {
+      "source_path": "scripts/final_pcb_audit.py",
+      "stored_path": "scripts/final_pcb_audit.py",
+      "gzip": false,
+      "source_bytes": 3146,
+      "stored_bytes": 3146,
+      "source_sha256": "5a9316886fc67f6e5b0469cdbdbb148dc41cc0e2d294138c7812bc016605d0f9",
+      "stored_sha256": "5a9316886fc67f6e5b0469cdbdbb148dc41cc0e2d294138c7812bc016605d0f9"
+    },
+    {
+      "source_path": "scripts/finalize_vip_process.py",
+      "stored_path": "scripts/finalize_vip_process.py",
+      "gzip": false,
+      "source_bytes": 3166,
+      "stored_bytes": 3166,
+      "source_sha256": "f8662a28783b03b6d8e1b1a47b8ac8f4b306bee3a6007b0eea66d7ef2b2999cf",
+      "stored_sha256": "f8662a28783b03b6d8e1b1a47b8ac8f4b306bee3a6007b0eea66d7ef2b2999cf"
+    },
+    {
+      "source_path": "scripts/fix_b1.py",
+      "stored_path": "scripts/fix_b1.py",
+      "gzip": false,
+      "source_bytes": 1914,
+      "stored_bytes": 1914,
+      "source_sha256": "2c971dd06cc974e76e33dd4f93d95cb39b4da74df0b5bd1e83f5d32391cf0d38",
+      "stored_sha256": "2c971dd06cc974e76e33dd4f93d95cb39b4da74df0b5bd1e83f5d32391cf0d38"
+    },
+    {
+      "source_path": "scripts/fix_b1b.py",
+      "stored_path": "scripts/fix_b1b.py",
+      "gzip": false,
+      "source_bytes": 1269,
+      "stored_bytes": 1269,
+      "source_sha256": "195d008a1368f64662cc1573aa106036df156c7afb324437b50cba2b7b295caf",
+      "stored_sha256": "195d008a1368f64662cc1573aa106036df156c7afb324437b50cba2b7b295caf"
+    },
+    {
+      "source_path": "scripts/fp_edge.py",
+      "stored_path": "scripts/fp_edge.py",
+      "gzip": false,
+      "source_bytes": 1556,
+      "stored_bytes": 1556,
+      "source_sha256": "077023e3ee6ce7fea5a3edf50d59e2b30f56c31663344235a692577dd56d23fb",
+      "stored_sha256": "077023e3ee6ce7fea5a3edf50d59e2b30f56c31663344235a692577dd56d23fb"
+    },
+    {
+      "source_path": "scripts/inspect_drc_delta.py",
+      "stored_path": "scripts/inspect_drc_delta.py",
+      "gzip": false,
+      "source_bytes": 1238,
+      "stored_bytes": 1238,
+      "source_sha256": "fca210309ec818f33ba1117dc6d014af8399701f6f8004979e283a14808312ce",
+      "stored_sha256": "fca210309ec818f33ba1117dc6d014af8399701f6f8004979e283a14808312ce"
+    },
+    {
+      "source_path": "scripts/inspect_j8_save.py",
+      "stored_path": "scripts/inspect_j8_save.py",
+      "gzip": false,
+      "source_bytes": 871,
+      "stored_bytes": 871,
+      "source_sha256": "641bc3ddb08bd6048bf453da01f95a773ee5f019a81ac66226d21f8c3aa4d5a7",
+      "stored_sha256": "641bc3ddb08bd6048bf453da01f95a773ee5f019a81ac66226d21f8c3aa4d5a7"
+    },
+    {
+      "source_path": "scripts/islands.py",
+      "stored_path": "scripts/islands.py",
+      "gzip": false,
+      "source_bytes": 4578,
+      "stored_bytes": 4578,
+      "source_sha256": "849c1a777e476c083dcd9a6eca9cf60f89fbfb872384fb983cde1e6e532d3458",
+      "stored_sha256": "849c1a777e476c083dcd9a6eca9cf60f89fbfb872384fb983cde1e6e532d3458"
+    },
+    {
+      "source_path": "scripts/j8_pofv.py",
+      "stored_path": "scripts/j8_pofv.py",
+      "gzip": false,
+      "source_bytes": 5257,
+      "stored_bytes": 5257,
+      "source_sha256": "359dbe11d3b0b0939bea8695ae3883e2fc2b7f9a4bf9fd24427071dd2ff1f2f9",
+      "stored_sha256": "359dbe11d3b0b0939bea8695ae3883e2fc2b7f9a4bf9fd24427071dd2ff1f2f9"
+    },
+    {
+      "source_path": "scripts/multilayer_route.py",
+      "stored_path": "scripts/multilayer_route.py",
+      "gzip": false,
+      "source_bytes": 6428,
+      "stored_bytes": 6428,
+      "source_sha256": "01d32172be42943f4b5314fc8fb6f30aab1ec009069f332a1a463f4ad8f83dc0",
+      "stored_sha256": "01d32172be42943f4b5314fc8fb6f30aab1ec009069f332a1a463f4ad8f83dc0"
+    },
+    {
+      "source_path": "scripts/netpads.py",
+      "stored_path": "scripts/netpads.py",
+      "gzip": false,
+      "source_bytes": 1203,
+      "stored_bytes": 1203,
+      "source_sha256": "d8184f875b9251af62a6a3cdcff36d31ae31732bd9bc0349d20ba0443bf8052f",
+      "stored_sha256": "d8184f875b9251af62a6a3cdcff36d31ae31732bd9bc0349d20ba0443bf8052f"
+    },
+    {
+      "source_path": "scripts/package_delivery.py",
+      "stored_path": "scripts/package_delivery.py",
+      "gzip": false,
+      "source_bytes": 4876,
+      "stored_bytes": 4876,
+      "source_sha256": "2a0ec9bae9764d131ce6d8e5924cc04007a3bb9502c02f9b4f4cd12b3eca0eb4",
+      "stored_sha256": "2a0ec9bae9764d131ce6d8e5924cc04007a3bb9502c02f9b4f4cd12b3eca0eb4"
+    },
+    {
+      "source_path": "scripts/pads.py",
+      "stored_path": "scripts/pads.py",
+      "gzip": false,
+      "source_bytes": 986,
+      "stored_bytes": 986,
+      "source_sha256": "2ba431cbcad29357f327419f37d16bb75cf937214a4fdcee93eedf6149f7dd18",
+      "stored_sha256": "2ba431cbcad29357f327419f37d16bb75cf937214a4fdcee93eedf6149f7dd18"
+    },
+    {
+      "source_path": "scripts/plan_fiducials.py",
+      "stored_path": "scripts/plan_fiducials.py",
+      "gzip": false,
+      "source_bytes": 2577,
+      "stored_bytes": 2577,
+      "source_sha256": "bb0f3f7d02332b3d75ae1722bbe57c765dcef26c442c3973669a15a561d7cdbe",
+      "stored_sha256": "bb0f3f7d02332b3d75ae1722bbe57c765dcef26c442c3973669a15a561d7cdbe"
+    },
+    {
+      "source_path": "scripts/plan_j8_policy.py",
+      "stored_path": "scripts/plan_j8_policy.py",
+      "gzip": false,
+      "source_bytes": 2548,
+      "stored_bytes": 2548,
+      "source_sha256": "44c62c8b81a4a7176f20fb7b0a73e625a1ef7527be7a572b42565949576db7b6",
+      "stored_sha256": "44c62c8b81a4a7176f20fb7b0a73e625a1ef7527be7a572b42565949576db7b6"
+    },
+    {
+      "source_path": "scripts/plan_plane_repairs.py",
+      "stored_path": "scripts/plan_plane_repairs.py",
+      "gzip": false,
+      "source_bytes": 3909,
+      "stored_bytes": 3909,
+      "source_sha256": "8a3dbbb26c09a9f04d44e2fcc0736704ed5e87c2ff39eda765b107da63b82e65",
+      "stored_sha256": "8a3dbbb26c09a9f04d44e2fcc0736704ed5e87c2ff39eda765b107da63b82e65"
+    },
+    {
+      "source_path": "scripts/plan_remaining_stub_cleanup.py",
+      "stored_path": "scripts/plan_remaining_stub_cleanup.py",
+      "gzip": false,
+      "source_bytes": 1739,
+      "stored_bytes": 1739,
+      "source_sha256": "980b016fe75ca644f633c181ebfef36982267d3dbf1b7a0dd71f406857b29ff5",
+      "stored_sha256": "980b016fe75ca644f633c181ebfef36982267d3dbf1b7a0dd71f406857b29ff5"
+    },
+    {
+      "source_path": "scripts/plan_signal_batch.py",
+      "stored_path": "scripts/plan_signal_batch.py",
+      "gzip": false,
+      "source_bytes": 3840,
+      "stored_bytes": 3840,
+      "source_sha256": "98fd816dcddea10f264d81ac6141d8512cf6c3a2538979cb81f95e5f38922e2b",
+      "stored_sha256": "98fd816dcddea10f264d81ac6141d8512cf6c3a2538979cb81f95e5f38922e2b"
+    },
+    {
+      "source_path": "scripts/prepare_cleanup.py",
+      "stored_path": "scripts/prepare_cleanup.py",
+      "gzip": false,
+      "source_bytes": 2065,
+      "stored_bytes": 2065,
+      "source_sha256": "baafe914c12a4bd79c350b4b374d1d9659d96f3f67ba084bd05e21f2e6145064",
+      "stored_sha256": "baafe914c12a4bd79c350b4b374d1d9659d96f3f67ba084bd05e21f2e6145064"
+    },
+    {
+      "source_path": "scripts/refill.py",
+      "stored_path": "scripts/refill.py",
+      "gzip": false,
+      "source_bytes": 153,
+      "stored_bytes": 153,
+      "source_sha256": "3a9bbeff75aa943ba41dd685da238615dab5e12aa4638c2775a70a8396c8ceb2",
+      "stored_sha256": "3a9bbeff75aa943ba41dd685da238615dab5e12aa4638c2775a70a8396c8ceb2"
+    },
+    {
+      "source_path": "scripts/refine_cleanup_plan.py",
+      "stored_path": "scripts/refine_cleanup_plan.py",
+      "gzip": false,
+      "source_bytes": 1033,
+      "stored_bytes": 1033,
+      "source_sha256": "091cca2380a5ce6cd694d6a8f36c7d0473065849d1678f9ae59ecc9c497f6930",
+      "stored_sha256": "091cca2380a5ce6cd694d6a8f36c7d0473065849d1678f9ae59ecc9c497f6930"
+    },
+    {
+      "source_path": "scripts/route_geometry.py",
+      "stored_path": "scripts/route_geometry.py",
+      "gzip": false,
+      "source_bytes": 8933,
+      "stored_bytes": 8933,
+      "source_sha256": "75bad7871f8c634e939dd758741dd93de805ed1636d808b9cfaa442df5f0ebdd",
+      "stored_sha256": "75bad7871f8c634e939dd758741dd93de805ed1636d808b9cfaa442df5f0ebdd"
+    },
+    {
+      "source_path": "scripts/router.py",
+      "stored_path": "scripts/router.py",
+      "gzip": false,
+      "source_bytes": 21041,
+      "stored_bytes": 21041,
+      "source_sha256": "167f53b998992d34075a82a69e0bfc3c75cf870e9517f05d984aac4861574373",
+      "stored_sha256": "167f53b998992d34075a82a69e0bfc3c75cf870e9517f05d984aac4861574373"
+    },
+    {
+      "source_path": "scripts/scan_all_keepouts.py",
+      "stored_path": "scripts/scan_all_keepouts.py",
+      "gzip": false,
+      "source_bytes": 1836,
+      "stored_bytes": 1836,
+      "source_sha256": "484d77df5f84742021c98e5bb396763754ef6444dea47c39a6986ca683acf16a",
+      "stored_sha256": "484d77df5f84742021c98e5bb396763754ef6444dea47c39a6986ca683acf16a"
+    },
+    {
+      "source_path": "scripts/summarize_hv.py",
+      "stored_path": "scripts/summarize_hv.py",
+      "gzip": false,
+      "source_bytes": 939,
+      "stored_bytes": 939,
+      "source_sha256": "2c02780dd4b66fe546abd977bfb32e8483430c5ffb20bccf8b17f2d6efd9284b",
+      "stored_sha256": "2c02780dd4b66fe546abd977bfb32e8483430c5ffb20bccf8b17f2d6efd9284b"
+    },
+    {
+      "source_path": "scripts/surface_route.py",
+      "stored_path": "scripts/surface_route.py",
+      "gzip": false,
+      "source_bytes": 3747,
+      "stored_bytes": 3747,
+      "source_sha256": "d052572928153580c84b161df2d39cb1d31e9f5fb6c944be795069d2ef131642",
+      "stored_sha256": "d052572928153580c84b161df2d39cb1d31e9f5fb6c944be795069d2ef131642"
+    },
+    {
+      "source_path": "scripts/test_route.py",
+      "stored_path": "scripts/test_route.py",
+      "gzip": false,
+      "source_bytes": 530,
+      "stored_bytes": 530,
+      "source_sha256": "22f2246d73ba8ee7403e39f60b85188b5b297e621bf8c5e8b392ae6c04ec4dc2",
+      "stored_sha256": "22f2246d73ba8ee7403e39f60b85188b5b297e621bf8c5e8b392ae6c04ec4dc2"
+    },
+    {
+      "source_path": "scripts/test_route_geometry.py",
+      "stored_path": "scripts/test_route_geometry.py",
+      "gzip": false,
+      "source_bytes": 6629,
+      "stored_bytes": 6629,
+      "source_sha256": "1098490514851b275d9e396d9d116a3fb075b6a4a9bfda26870df817273e53ad",
+      "stored_sha256": "1098490514851b275d9e396d9d116a3fb075b6a4a9bfda26870df817273e53ad"
+    },
+    {
+      "source_path": "scripts/unconn.py",
+      "stored_path": "scripts/unconn.py",
+      "gzip": false,
+      "source_bytes": 2416,
+      "stored_bytes": 2416,
+      "source_sha256": "b84d42091e996016c4ef034a1dfe65501d572871e5ae9827a34fb6d0e904fe2f",
+      "stored_sha256": "b84d42091e996016c4ef034a1dfe65501d572871e5ae9827a34fb6d0e904fe2f"
+    },
+    {
+      "source_path": "scripts/verify_pad_connectivity.py",
+      "stored_path": "scripts/verify_pad_connectivity.py",
+      "gzip": false,
+      "source_bytes": 1324,
+      "stored_bytes": 1324,
+      "source_sha256": "fead6e77d46ede71969bbda93541d9c83ca08fe76fe0d7263547947a3b1c4751",
+      "stored_sha256": "fead6e77d46ede71969bbda93541d9c83ca08fe76fe0d7263547947a3b1c4751"
+    },
+    {
+      "source_path": "scripts/view.py",
+      "stored_path": "scripts/view.py",
+      "gzip": false,
+      "source_bytes": 3433,
+      "stored_bytes": 3433,
+      "source_sha256": "75ddd508a705277007de235bc392947210780c1d98f9b19a12c6674c8752db64",
+      "stored_sha256": "75ddd508a705277007de235bc392947210780c1d98f9b19a12c6674c8752db64"
+    },
+    {
+      "source_path": "scripts/view_edge.py",
+      "stored_path": "scripts/view_edge.py",
+      "gzip": false,
+      "source_bytes": 2519,
+      "stored_bytes": 2519,
+      "source_sha256": "c4605be8896436490cb565440136e7d0eef24475cf66b7a5c44740f349024813",
+      "stored_sha256": "c4605be8896436490cb565440136e7d0eef24475cf66b7a5c44740f349024813"
+    },
+    {
+      "source_path": "scripts/zones.py",
+      "stored_path": "scripts/zones.py",
+      "gzip": false,
+      "source_bytes": 730,
+      "stored_bytes": 730,
+      "source_sha256": "acdd2ea75ace660b83689db49fb4dec3f9705e0afb8dc810fac6d45f64455a1b",
+      "stored_sha256": "acdd2ea75ace660b83689db49fb4dec3f9705e0afb8dc810fac6d45f64455a1b"
+    },
+    {
+      "source_path": "scripts/zones2.py",
+      "stored_path": "scripts/zones2.py",
+      "gzip": false,
+      "source_bytes": 979,
+      "stored_bytes": 979,
+      "source_sha256": "f6db63a138d640ea37e61de308dd2b9692a781df2c92b654bf30595596d4e716",
+      "stored_sha256": "f6db63a138d640ea37e61de308dd2b9692a781df2c92b654bf30595596d4e716"
+    },
+    {
+      "source_path": "vitalq_v2.kicad_prl",
+      "stored_path": "vitalq_v2.kicad_prl",
+      "gzip": false,
+      "source_bytes": 2296,
+      "stored_bytes": 2296,
+      "source_sha256": "fddb663c249a0d2f2f87d4272ddb8ba3aaed3b1e7b30212dcd4c3cb9788d74cc",
+      "stored_sha256": "fddb663c249a0d2f2f87d4272ddb8ba3aaed3b1e7b30212dcd4c3cb9788d74cc"
+    }
+  ],
+  "source_bytes": 1403772550,
+  "stored_bytes": 668825270,
+  "note": "Generated geometry above 50 MiB is losslessly gzip-compressed in the delivery copy only. All local source/design files are retained. Manifest excludes itself. vitalq_v2.kicad_pcb/.prl refreshed post-report per user's latest saved edit."
+}
