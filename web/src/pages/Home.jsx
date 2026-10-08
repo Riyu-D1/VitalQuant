@@ -171,7 +171,7 @@ export default function Home() {
 
           <FadeContent delay={900} duration={1000}>
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              VitalQ combines squeezed-light sensing, continuous optical telemetry,
+              VitalQuant combines squeezed-light sensing, continuous optical telemetry,
               and patient-specific pattern recognition to surface the earliest
               physiological signature of sepsis.
             </p>

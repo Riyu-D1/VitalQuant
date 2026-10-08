@@ -1,6 +1,6 @@
-"""Register a device + print its one-time API key. `vitalq-device`.
+"""Register a device + print its one-time API key. `vitalquant-device`.
 
-Usage:  vitalq-device --label "bench-01" --hardware-revision hw_v0
+Usage:  vitalquant-device --label "bench-01" --hardware-revision hw_v0
 Writes the sha256 of the key to meta.devices; the raw key is printed once and
 never stored.
 """
@@ -14,7 +14,7 @@ import secrets
 
 import asyncpg
 
-from vitalq.ingest.auth import hash_key
+from vitalquant.ingest.auth import hash_key
 
 
 async def _create(dsn: str, label: str, hw_rev: str) -> tuple[str, str]:

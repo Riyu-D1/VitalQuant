@@ -1,6 +1,6 @@
 # 01 — Spec Audit (Step 1)
 
-Audit of the VitalQ agent-handoff specification. Each item is tagged
+Audit of the VitalQuant agent-handoff specification. Each item is tagged
 **GAP** (missing requirement), **CONFLICT** (internal contradiction / tension),
 **ASSUMPTION** (technically questionable, needs evidence), **DEP** (external dependency),
 **UNKNOWN** (cannot be resolved without research or hardware decisions).

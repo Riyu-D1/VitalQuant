@@ -18,14 +18,14 @@ from pathlib import Path
 
 import numpy as np
 
-from vitalq.quantum import DATA_CLASS
-from vitalq.quantum.noise_models import (
+from vitalquant.quantum import DATA_CLASS
+from vitalquant.quantum.noise_models import (
     AmbientLeakage,
     LossySqueezedNoise,
     ShotNoise,
     TissueNoise,
 )
-from vitalq.quantum.signal_models import RamanToyModel
+from vitalquant.quantum.signal_models import RamanToyModel
 
 
 @dataclass
@@ -138,12 +138,12 @@ def run(matrix: ExperimentMatrix) -> dict:
         "cells": cells,
         "advantage_boundary": boundary,
         "separation_notice": "SIMULATED — no quantum hardware; raman_illustrative "
-                             "regime, not VitalQ's reflectance measurement.",
+                             "regime, not VitalQuant's reflectance measurement.",
             }
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="VitalQ quantum-readout simulation "
+    p = argparse.ArgumentParser(description="VitalQuant quantum-readout simulation "
                                             "(data_class=simulated)")
     p.add_argument("--out", default="experiments/quantum/latest.json")
     p.add_argument("--trials", type=int, default=200)

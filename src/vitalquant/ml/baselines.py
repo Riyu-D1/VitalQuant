@@ -18,9 +18,9 @@ from asyncpg import Range
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import RobustScaler
 
-from vitalq.ingest import db
-from vitalq.processing import PIPELINE_VERSION
-from vitalq.processing.worker import _clean
+from vitalquant.ingest import db
+from vitalquant.processing import PIPELINE_VERSION
+from vitalquant.processing.worker import _clean
 
 
 def _top_deviant(x_scaled: np.ndarray, keys: list[str], n: int = 3) -> list[str]:

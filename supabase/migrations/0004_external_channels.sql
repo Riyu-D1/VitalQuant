@@ -1,5 +1,5 @@
 -- External/imported waveform channels (public datasets, auxiliary leads).
--- config.channels is also synced from vitalq.core.channels by vitalq-migrate;
+-- config.channels is also synced from vitalquant.core.channels by vitalquant-migrate;
 -- this migration covers deployments that apply SQL directly.
 
 insert into config.channels (channel_id, sensor_type, unit, sample_role) values

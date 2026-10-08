@@ -2,8 +2,8 @@
 and the honest result — advantage vanishing under non-quantum noise."""
 import numpy as np
 
-from vitalq.quantum.experiment import ExperimentMatrix, run
-from vitalq.quantum.noise_models import (
+from vitalquant.quantum.experiment import ExperimentMatrix, run
+from vitalquant.quantum.noise_models import (
     AdditiveFloor,
     AmbientLeakage,
     LossySqueezedNoise,
@@ -11,7 +11,7 @@ from vitalq.quantum.noise_models import (
     SqueezedShotNoise,
     TissueNoise,
 )
-from vitalq.quantum.signal_models import RamanToyModel
+from vitalquant.quantum.signal_models import RamanToyModel
 
 
 def test_shot_noise_sqrt_scaling():

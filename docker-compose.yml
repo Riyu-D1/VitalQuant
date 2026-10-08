@@ -3,12 +3,12 @@ services:
   db:
     image: postgres:17-alpine
     environment:
-      POSTGRES_USER: vitalq
-      POSTGRES_PASSWORD: vitalq          # local dev only
-      POSTGRES_DB: vitalq
+      POSTGRES_USER: vitalquant
+      POSTGRES_PASSWORD: vitalquant          # local dev only
+      POSTGRES_DB: vitalquant
     ports: ["5432:5432"]
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U vitalq"]
+      test: ["CMD-SHELL", "pg_isready -U vitalquant"]
       interval: 3s
       timeout: 3s
       retries: 20
@@ -22,8 +22,8 @@ services:
     depends_on:
       db: { condition: service_healthy }
     environment:
-      DATABASE_URL: postgresql://vitalq:vitalq@db:5432/vitalq
-      VITALQ_AUTH_MODE: local
+      DATABASE_URL: postgresql://vitalquant:vitalquant@db:5432/vitalquant
+      VITALQUANT_AUTH_MODE: local
     ports: ["8000:8000"]
     profiles: ["api"]
 

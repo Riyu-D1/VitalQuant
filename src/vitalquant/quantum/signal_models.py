@@ -4,7 +4,7 @@
 Lorentzian Amide-I-like peak whose position shifts linearly with an
 `agg_frac` proxy. It is tagged regime='raman_illustrative': the shift relation
 is illustrative, not an established quantitative law, and it is NOT the
-reflectance regime VitalQ's AS7341 measures in.
+reflectance regime VitalQuant's AS7341 measures in.
 """
 
 from __future__ import annotations
@@ -47,7 +47,7 @@ class RamanToyModel:
 
 @dataclass
 class AbsorptionDip:
-    """Reflectance-mode analogy — closer to what VitalQ actually measures:
+    """Reflectance-mode analogy — closer to what VitalQuant actually measures:
     a dip below a continuum rather than an emission peak."""
     center: float
     width: float

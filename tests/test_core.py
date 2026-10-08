@@ -4,10 +4,10 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-from vitalq.core.channels import CHANNELS, get_channel
-from vitalq.core.clock import ClockAnchor, ClockModel
-from vitalq.core.config import KNOWN_SENSOR_MODELS, load_profile
-from vitalq.core.types import BatchIngest, ScalarSampleIn, SignalWindowIn
+from vitalquant.core.channels import CHANNELS, get_channel
+from vitalquant.core.clock import ClockAnchor, ClockModel
+from vitalquant.core.config import KNOWN_SENSOR_MODELS, load_profile
+from vitalquant.core.types import BatchIngest, ScalarSampleIn, SignalWindowIn
 
 ROOT = Path(__file__).resolve().parents[1]
 

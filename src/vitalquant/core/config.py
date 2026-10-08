@@ -13,7 +13,7 @@ from typing import Literal
 import yaml
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from vitalq.core.channels import (
+from vitalquant.core.channels import (
     CHANNEL_IDS,
     SPECTRAL_CHANNELS,
     get_channel,

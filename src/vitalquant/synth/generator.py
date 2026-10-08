@@ -18,8 +18,8 @@ from uuid import NAMESPACE_URL, UUID, uuid4, uuid5
 
 import numpy as np
 
-from vitalq.core.config import HardwareProfile
-from vitalq.core.types import (
+from vitalquant.core.config import HardwareProfile
+from vitalquant.core.types import (
     BatchIngest,
     ClockAnchorIn,
     DeviceEventIn,
@@ -242,7 +242,7 @@ class SyntheticDevice:
 
             batch = BatchIngest(
                 # deterministic per (session, index): re-emission is a true replay
-                batch_id=uuid5(NAMESPACE_URL, f"vitalq-batch:{cfg.session_id}:{i}"),
+                batch_id=uuid5(NAMESPACE_URL, f"vitalquant-batch:{cfg.session_id}:{i}"),
                 session_id=cfg.session_id,
                 firmware_version=cfg.firmware_version,
                 profile_hash=prof.profile_hash,

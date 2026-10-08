@@ -1,4 +1,4 @@
-"""vitalq.processing — validation, clock fix, per-modality chains, SQI, features.
+"""vitalquant.processing — validation, clock fix, per-modality chains, SQI, features.
 
 PIPELINE_VERSION is stamped on every derived row (provenance, spec §46).
 Bump it whenever any stage's output changes.

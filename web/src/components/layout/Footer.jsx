@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-4">
               <Logo className="w-9 h-9" />
-              <span className="font-rx100 text-xl text-white tracking-wide">VITALQ</span>
+              <span className="font-rx100 text-xl text-white tracking-wide">VITALQUANT</span>
             </Link>
             <p className="text-gray-400 text-sm mb-1">Quantum-enhanced biosensing.</p>
             <p className="text-gray-500 text-sm">London, UK</p>
@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-gray-600">© {new Date().getFullYear()} VitalQ. All rights reserved.</p>
+          <p className="text-xs text-gray-600">© {new Date().getFullYear()} VitalQuant. All rights reserved.</p>
           <p className="text-xs text-gray-600">Detecting sepsis before symptoms appear.</p>
         </div>
       </div>

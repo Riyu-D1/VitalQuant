@@ -14,9 +14,9 @@ from uuid import UUID
 
 from fastapi import Depends, HTTPException, Request
 
-from vitalq.ingest import db
+from vitalquant.ingest import db
 
-AUTH_MODE = os.environ.get("VITALQ_AUTH_MODE", "local")
+AUTH_MODE = os.environ.get("VITALQUANT_AUTH_MODE", "local")
 
 
 @dataclass

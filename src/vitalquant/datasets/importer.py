@@ -1,4 +1,4 @@
-"""`vitalq-import` CLI — CSV / WFDB records → ingest API batches.
+"""`vitalquant-import` CLI — CSV / WFDB records → ingest API batches.
 
 The import posts through whatever httpx.AsyncClient it is given: a real
 `base_url` in production, or `httpx.ASGITransport(app)` in tests/one-shot
@@ -42,7 +42,7 @@ async def open_session(client, device_key: str, session_id: UUID, started_at,
 async def send_batch(client, device_key: str, session_id: UUID, seq: int,
                      batch: dict, stream: str = "") -> dict:
     # `stream` distinguishes parallel channels sharing seq numbers in one session
-    batch_id = uuid5(NAMESPACE_URL, f"vitalq-batch:{session_id}:{stream}:{seq}")
+    batch_id = uuid5(NAMESPACE_URL, f"vitalquant-batch:{session_id}:{stream}:{seq}")
     payload = {**batch, "batch_id": str(batch_id),
                "session_id": str(session_id),
                "firmware_version": "import-v1"}
@@ -138,7 +138,7 @@ def load_wfdb(record: str, database: str) -> tuple[dict[str, np.ndarray], float]
     try:
         import wfdb
     except ImportError as e:
-        raise SystemExit("wfdb not installed — pip install 'vitalq[datasets]'"
+        raise SystemExit("wfdb not installed — pip install 'vitalquant[datasets]'"
                          ) from e
     rec = wfdb.rdrecord(record, pn_dir=database)
     chans = {}
@@ -154,11 +154,11 @@ def load_wfdb(record: str, database: str) -> tuple[dict[str, np.ndarray], float]
 
 async def _run(args) -> None:
     import httpx
-    device_key = args.device_key or os.environ.get("VITALQ_DEVICE_KEY")
+    device_key = args.device_key or os.environ.get("VITALQUANT_DEVICE_KEY")
     if not device_key:
-        raise SystemExit("--device-key or VITALQ_DEVICE_KEY required")
+        raise SystemExit("--device-key or VITALQUANT_DEVICE_KEY required")
     if args.api == "asgi":
-        from vitalq.ingest.app import app
+        from vitalquant.ingest.app import app
         client = httpx.AsyncClient(
             transport=httpx.ASGITransport(app=app), base_url="http://x")
     else:
@@ -168,7 +168,7 @@ async def _run(args) -> None:
     if args.wfdb:
         database, _, record = args.wfdb.rpartition("/")
         chans, fs = load_wfdb(record, database)
-        session_id = uuid5(NAMESPACE_URL, f"vitalq-import:wfdb:{args.wfdb}")
+        session_id = uuid5(NAMESPACE_URL, f"vitalquant-import:wfdb:{args.wfdb}")
         await open_session(client, device_key, session_id, t0, "real",
                            f"wfdb import {args.wfdb}")
         n = 0
@@ -181,7 +181,7 @@ async def _run(args) -> None:
     cols = [m.split("=")[1] for m in args.map]
     data = read_csv_columns(args.csv, cols)
     session_id = uuid5(NAMESPACE_URL,
-                       f"vitalq-import:csv:{os.path.basename(args.csv)}")
+                       f"vitalquant-import:csv:{os.path.basename(args.csv)}")
     await open_session(client, device_key, session_id, t0, args.data_class,
                        f"csv import {args.csv}")
     n = 0

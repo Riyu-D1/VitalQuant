@@ -14,11 +14,11 @@ files.forEach(file => {
   let content = fs.readFileSync(file, 'utf8');
   
   // Name replacements
-  content = content.replace(/QuantumPhotonics\./g, 'VitalQ.');
+  content = content.replace(/QuantumPhotonics\./g, 'VitalQuant.');
   content = content.replace(/Quantum Photonics/gi, 'Vitalquant');
   content = content.replace(/quantumphotonics\.test/g, 'vitalquant.com');
-  content = content.replace(/Quantum precision/gi, 'VitalQ precision');
-  content = content.replace(/quantum leap/gi, 'VitalQ leap');
+  content = content.replace(/Quantum precision/gi, 'VitalQuant precision');
+  content = content.replace(/quantum leap/gi, 'VitalQuant leap');
   
   // Font replacements - targeting large texts
   content = content.replace(/hero-title/g, 'hero-title font-rx100');

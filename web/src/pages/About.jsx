@@ -61,18 +61,18 @@ const TEAM = [
     initials: 'MM',
     name: 'Moses Man',
     role: 'Co-Founder & CTO',
-    bio: "Leading VitalQ's technology strategy and development of its quantum-enhanced sensing platform.",
+    bio: "Leading VitalQuant's technology strategy and development of its quantum-enhanced sensing platform.",
   },
   {
     initials: 'AL',
     name: 'Andre Law',
     role: 'CFO',
-    bio: "Guiding VitalQ's financial strategy and sustainable growth.",
+    bio: "Guiding VitalQuant's financial strategy and sustainable growth.",
   },
 ];
 
 const TIMELINE = [
-  { year: '2026', text: 'VitalQ founded with mission to bring quantum sensing to clinical care', active: true },
+  { year: '2026', text: 'VitalQuant founded with mission to bring quantum sensing to clinical care', active: true },
   { year: 'Current', text: 'Developing quantum-enhanced prototype and establishing foundry partnerships for integrated photonic chip fabrication', active: true },
   { year: '2026–2027', text: 'Classical optical prototype validation, tissue phantom testing, initial funding secured' },
   { year: '2027–2028', text: 'Quantum enhancement integration, pre-clinical studies, clinical partnerships established' },
@@ -104,7 +104,7 @@ export default function About() {
           </FadeContent>
           <h1 className="font-rx100 mt-6">
             <SplitText
-              text="About VitalQ"
+              text="About VitalQuant"
               className="block text-5xl lg:text-7xl text-white"
               splitType="chars"
               delay={45}
@@ -114,7 +114,7 @@ export default function About() {
           </h1>
           <FadeContent delay={600} duration={1000}>
             <p className="mt-8 text-xl text-gray-300 leading-relaxed font-light">
-              We're building the future of post-operative care. VitalQ is developing
+              We're building the future of post-operative care. VitalQuant is developing
               the world's first quantum-enhanced wearable sensor that detects
               life-threatening complications hours before traditional methods —
               giving patients and clinicians the critical time needed for
@@ -145,7 +145,7 @@ export default function About() {
 
       <Chapter num="02" title="Our Solution">
         <p>
-          VitalQ combines quantum photonics with advanced biosensing to continuously
+          VitalQuant combines quantum photonics with advanced biosensing to continuously
           monitor inflammatory and metabolic biomarkers in real-time. Using squeezed
           light — a quantum optics technique that reduces measurement noise below
           classical limits — our sensor achieves unprecedented sensitivity.
@@ -165,7 +165,7 @@ export default function About() {
 
       <Chapter num="03" title="Our Technology" tint>
         <p>
-          At the heart of VitalQ is quantum-enhanced optical sensing. We leverage
+          At the heart of VitalQuant is quantum-enhanced optical sensing. We leverage
           integrated photonics — specifically thin-film lithium niobate chips — to
           generate squeezed light states that improve signal-to-noise ratios by
           2–5× compared to classical sensors.
@@ -196,7 +196,7 @@ export default function About() {
             <div className="mt-2"><Eyebrow /></div>
             <h2 className="mt-4 text-3xl md:text-4xl font-rx100 text-white tracking-tight">Why Now</h2>
             <p className="mt-6 text-gray-300 text-lg">
-              Three critical technologies have converged to make VitalQ possible:
+              Three critical technologies have converged to make VitalQuant possible:
             </p>
           </FadeContent>
           <div className="mt-10 grid md:grid-cols-3 gap-5">
@@ -221,7 +221,7 @@ export default function About() {
       </section>
 
       <Chapter num="05" title="Our Vision" tint>
-        <p>VitalQ's technology platform extends far beyond post-operative sepsis.</p>
+        <p>VitalQuant's technology platform extends far beyond post-operative sepsis.</p>
         <p>
           We envision a future where continuous, non-invasive biomarker monitoring
           is as routine as checking your heart rate — where diseases are detected
@@ -266,12 +266,12 @@ export default function About() {
           <FadeContent>
             <h2 className="text-3xl font-rx100 text-white">Our Advisors</h2>
             <p className="mt-6 text-gray-300 text-lg">
-              VitalQ is supported by world-class research in quantum photonics,
+              VitalQuant is supported by world-class research in quantum photonics,
               clinical medicine, and medical device development.
             </p>
             <p className="mt-4 text-gray-300 text-lg">
               We're building a world-class advisory board. If you're interested in
-              advising VitalQ, we'd love to hear from you.
+              advising VitalQuant, we'd love to hear from you.
             </p>
           </FadeContent>
         </div>
