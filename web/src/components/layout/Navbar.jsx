@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 
 const LINKS = [
-  { to: '/#product', label: 'Product' },
+  { to: '/product', label: 'Product', path: '/product' },
   { to: '/model', label: 'Model', path: '/model' },
   { to: '/paper', label: 'Research', path: '/paper' },
   { to: '/about', label: 'About', path: '/about' },
