@@ -1,0 +1,35 @@
+# VitalQuant
+
+> VitalQuant is an early-stage research and prototyping company in London, UK building a
+> multimodal wearable sensing platform for early detection of post-operative physiological
+> deterioration (e.g. sepsis). Stage: early research + working prototype — not a medical
+> device, not clinically validated; model outputs are experimental scores, not diagnoses.
+
+## Product
+
+- Wearable sensor node (ESP32): dual-wavelength PPG (MAX86141/MAX30102, 660+880 nm, 200 Hz),
+  11-channel spectral (AS7341), contact temperature (MLX90637/MLX90614), environment
+  (BME280), 6-axis IMU (ICM-42670-P/MPU6050), contact force (FSR402).
+- Platform: FastAPI ingest API (idempotent batch writes, per-device keys, clock correction),
+  signal-quality-gated processing pipeline, 7-schema Postgres data model (raw/clean/quality/
+  features/ml/config/meta) with real/synthetic/simulated provenance tags.
+- Model: LAT-D-VQt-1, a closed-weight clinical time-series decision model (built with
+  LatticeAG) answering a fixed deterioration question set from wearable channels only.
+- Quantum-inspired readout simulator with a composable noise hierarchy; measured squeezed-
+  readout SNR advantage 2.72x (shot-noise regime) -> 1.14x (tissue-noise regime).
+
+## Pages
+
+- Home: https://vitalquant.tech/
+- Product: https://vitalquant.tech/product
+- Model (LAT-D-VQt-1): https://vitalquant.tech/model
+- Research paper: https://vitalquant.tech/paper (PDF: https://vitalquant.tech/vitalquant-paper.pdf)
+- About / team: https://vitalquant.tech/about
+- Try the demo: https://vitalquant.tech/tryit
+- Contact: https://vitalquant.tech/contact
+
+## Links
+
+- Source code: https://github.com/Riyu-D1/VitalQuant
+- Model technical writeup (LatticeAG): https://latticeag.vercel.app/#/products/lat-d-vqt-1
+- Contact: hello@vitalquant.tech

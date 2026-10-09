@@ -56,13 +56,6 @@ const FACTS = [
   },
 ];
 
-const LIMITS = [
-  'Not a medical device. Outputs are experimental decision scores, not a diagnosis or a treatment recommendation.',
-  'Not clinically validated. Nothing here has been through regulatory review.',
-  'Not a chatbot. It answers a fixed clinical question set, not arbitrary requests.',
-  'Not built on channels a wearable cannot supply - invasive-only signals are excluded by design.',
-];
-
 export default function Model() {
   return (
     <div className="bg-caladan-dark text-white">
@@ -167,22 +160,6 @@ export default function Model() {
           </div>
         </div>
       </section>
-
-      <Section num="03" title="What it is not">
-        <ul className="space-y-3">
-          {LIMITS.map((l) => (
-            <li key={l} className="flex gap-3">
-              <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-caladan-green/70" />
-              <span>{l}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="text-gray-400">
-          The technical page on LatticeAG carries the evaluation detail, including the
-          slices that test whether the model depends on channels our sensor may not
-          provide.
-        </p>
-      </Section>
 
       {/* CTA */}
       <section className="py-20 border-t border-zinc-800/60 bg-zinc-950/60">

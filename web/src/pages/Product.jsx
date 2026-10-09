@@ -148,13 +148,6 @@ const MODEL_POINTS = [
   },
 ];
 
-const LIMITS = [
-  'Not a medical device. Outputs are experimental anomaly and decision scores, not a diagnosis or a treatment recommendation.',
-  'Not clinically validated. Nothing on this page has been through regulatory review.',
-  'Not a chatbot. LAT-D-VQt-1 answers a fixed clinical question set — it does not take arbitrary requests.',
-  'Not magic. Every quality and advantage number we publish is an executed output of our own pipeline.',
-];
-
 export default function Product() {
   return (
     <div className="bg-caladan-dark text-white">
@@ -365,18 +358,6 @@ export default function Product() {
             Full noise model and experiment matrix in the research paper.
           </span>
         </div>
-      </Section>
-
-      {/* Honesty */}
-      <Section num="05" title="What it is not" tint>
-        <ul className="space-y-3">
-          {LIMITS.map((l) => (
-            <li key={l} className="flex gap-3">
-              <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-caladan-green/70" />
-              <span>{l}</span>
-            </li>
-          ))}
-        </ul>
       </Section>
 
       {/* CTA */}

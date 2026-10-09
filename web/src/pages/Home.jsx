@@ -41,42 +41,42 @@ const STEPS = [
 const FEATURES = [
   {
     num: '01',
-    tag: 'Photonic sensing',
-    title: 'Quantum-Enhanced Detection',
-    text: 'Squeezed-light photonics measure perfusion dynamics below the noise floor of conventional LEDs — resolving the microvascular signature that precedes sepsis.',
+    tag: 'The wearable — exists today',
+    title: 'Six-Modal Sensor Node',
+    text: 'Our hw_v0 rig is built and streaming: PPG, spectral, thermal, environment, motion and contact sensing on one ESP32, feeding real signal into the pipeline. The custom PCB (hw_v1) is the next revision.',
     img: '/image.png',
-    alt: 'Photonic sensing chip',
+    alt: 'VitalQuant sensor hardware',
     bullets: [
-      'Sub-shot-noise sensitivity via squeezed light',
-      'Microvascular perfusion changes, resolved',
-      'Continuous, wearable form factor',
+      'Dual-wavelength PPG + 11-channel spectral',
+      'Thermal, environment, motion, contact',
+      'On-device buffering with clock discipline',
     ],
   },
   {
     num: '02',
-    tag: 'Machine learning',
-    title: 'Pattern Recognition at Scale',
-    text: 'Quantum-inspired classifiers model the nonlinear correlations between physiological signals that linear scoring systems simply cannot see.',
+    tag: 'The platform — exists today',
+    title: 'Quality-Gated Pipeline + Decision Model',
+    text: 'In the repo now: an idempotent ingest API, per-session clock correction, signal-quality gates, a baseline anomaly layer — and LAT-D-VQt-1, our closed-weight clinical decision model built with LatticeAG.',
     img: '/image copy.png',
-    alt: 'Pattern recognition neural model',
+    alt: 'VitalQuant data platform',
     bullets: [
-      'Nonlinear feature detection',
-      'Patient-specific baselines',
-      'False-alarm rate tuned for ICU realities',
+      'SQI gates on every window — bad signal abstained, not imputed',
+      'Per-subject baselines, label-free anomaly scoring',
+      'LAT-D-VQt-1 answers a fixed deterioration question set',
     ],
     reverse: true,
   },
   {
     num: '03',
-    tag: 'Clinical deployment',
-    title: 'Built for Real Hospitals',
-    text: 'Actionable alerts on existing workflows — not another dashboard. Designed around noise reduction, interpretability, and integration with EMR systems.',
+    tag: 'Clinical deployment — next',
+    title: 'Built for Post-Op Care Teams',
+    text: 'The target user is the clinician watching post-operative patients: deterioration alerts that reach the ward, not another dashboard. Workflow integration is planned — today this is a research platform, not a deployed device.',
     img: '/image copy 2.png',
-    alt: 'Hospital deployment platform',
+    alt: 'Clinical alerting for post-operative care',
     bullets: [
-      'EMR and nurse-station integration',
-      'Signal quality index on every reading',
-      'On-device preprocessing, cloud analytics',
+      'Built for clinicians and post-op care pathways',
+      'Alert routing and EMR integration on the roadmap',
+      'Research-stage today — validation before deployment',
     ],
   },
 ];
@@ -171,21 +171,21 @@ export default function Home() {
 
           <FadeContent delay={900} duration={1000}>
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              VitalQuant combines squeezed-light sensing, continuous optical telemetry,
-              and patient-specific pattern recognition to surface the earliest
-              physiological signature of sepsis.
+              VitalQuant is a wearable sensing platform for clinicians and post-op care
+              teams — continuous optical telemetry through a quality-gated pipeline into a
+              clinical decision model, to surface deterioration before symptoms appear.
             </p>
           </FadeContent>
 
           <FadeContent delay={1200} duration={1000}>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="#product"
+              <Link
+                to="/product"
                 className="group inline-flex items-center gap-2 bg-caladan-green text-black font-semibold px-8 py-4 rounded-full text-sm tracking-wide hover:bg-white transition-colors duration-300"
               >
                 Explore the platform
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 border border-white/20 text-white font-medium px-8 py-4 rounded-full text-sm tracking-wide hover:border-caladan-green/60 hover:text-caladan-green transition-colors duration-300"
@@ -281,10 +281,14 @@ export default function Home() {
       <section id="product" className="py-24 md:py-32 border-t border-zinc-800/60">
         <div className="max-w-6xl mx-auto px-6">
           <FadeContent>
-            <Eyebrow>The platform</Eyebrow>
+            <Eyebrow>What it is, and who it's for</Eyebrow>
             <h2 className="mt-4 text-3xl md:text-5xl font-rx100 text-white leading-tight max-w-2xl">
-              Three layers. One early warning.
+              What exists today — and what comes next.
             </h2>
+            <p className="mt-5 text-gray-400 max-w-2xl leading-relaxed">
+              For clinicians and post-op care teams. The sensor and the platform are real
+              and running; clinical deployment is the roadmap, not a claim.
+            </p>
           </FadeContent>
 
           <div className="mt-20 space-y-24 md:space-y-32">
