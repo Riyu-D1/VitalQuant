@@ -1,0 +1,56 @@
+/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_231531_R2-57_U19_C59_3mm_south
+11:15:32 PM: Debug: Adding duplicate image handler for 'PNG file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'JPEG file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'TIFF file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'GIF file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'PNM file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'PCX file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'IFF file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'TGA file'
+11:15:32 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-57/stage1/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 556 violations
+Found 9 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-57/stage1/drc.json
+Saved board
+{"unconnected": 9, "real": 469, "total": 556, "parity": 29, "types": {"items_not_allowed": 201, "tracks_crossing": 50, "shorting_items": 78, "clearance": 33, "hole_clearance": 35, "npth_inside_courtyard": 1, "courtyards_overlap": 2, "copper_edge_clearance": 21, "solder_mask_bridge": 41, "track_dangling": 6, "via_dangling": 1, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1, "silk_over_copper": 1}}
+11:16:12 PM: Debug: Adding duplicate image handler for 'PNG file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'JPEG file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'TIFF file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'GIF file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'PNM file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'PCX file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'IFF file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'TGA file'
+11:16:12 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7845, 'vias': 825, 'zones': 6, 'keepouts': 81, 'outline': 1}
+local hits ripped 54 ['+3V3', '+3V3_ANA', 'AFE4900_RESETZ', 'CHG_DIS', 'CHG_STAT', 'ESP_EN', 'ESP_IO0', 'ESP_TX', 'EXP_INT', 'GND', 'I2C_SCL', 'I2C_SDA', 'TX5_EN', 'VBUS_DET']
+POFV blocked C59 1 ['BIOZ_SP_PAD', 'EXP_INT']
+POFV blocked C59 2 ['EXP_INT', 'hv_inner']
+FANOUT 3 ADS1292_PWDN [{'net': 'ADS1292_PWDN', 'xy': [16.85, 44.3], 'diameter': 0.4, 'drill': 0.2, 'pofv': False, 'pad': None, 'uuid': 'new-d755966c-d79b-4745-8208-18c2b5186bb1', 'layers': [0, 2, 4, 6, 8, 10, 12, 14]}]
+FANOUT FAILED 4 AD5940_RESET no legal start/goal cells (sealed endpoint)
+FANOUT FAILED 7 IR_GATE no legal start/goal cells (sealed endpoint)
+ROUTED +3V3 C59 3 tracks 1 vias
+ROUTED +3V3 R52 1 tracks 0 vias
+ROUTED ESP_IO0 R6 4 tracks 1 vias
+FAILED GND U19 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 661 cells)
+FAILED GND U19 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 661 cells)
+FAILED GND U19#2 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 147 cells)
+FAILED GND U19#2 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 147 cells)
+ROUTED GND C59 1 tracks 0 vias
+FAILED +3V3 U19 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no legal start/goal cells (sealed endpoint)
+FAILED +3V3 U19 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no legal start/goal cells (sealed endpoint)
+FAILED +3V3 U19#2 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no legal start/goal cells (sealed endpoint)
+FAILED +3V3 U19#2 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no legal start/goal cells (sealed endpoint)
+ROUTED AFE4900_RESETZ U19 2 tracks 0 vias
+FAILED I2C_SDA U11 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 141 cells)
+FAILED I2C_SDA U11 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 141 cells)
+FAILED I2C_SCL U19 R2-57 8L U19/C59/R6 +3 mm south drag, POFV in-pad, In5 preferred, local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no legal start/goal cells (sealed endpoint)

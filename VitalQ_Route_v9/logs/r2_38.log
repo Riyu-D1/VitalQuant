@@ -1,0 +1,384 @@
+/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_215614_R2-38_U19_drag_8L
+09:56:15 PM: Debug: Adding duplicate image handler for 'PNG file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'JPEG file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'TIFF file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'GIF file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'PNM file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'PCX file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'IFF file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'TGA file'
+09:56:15 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/stage1/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 472 violations
+Found 10 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/stage1/drc.json
+Saved board
+{"unconnected": 10, "real": 386, "total": 472, "parity": 29, "types": {"items_not_allowed": 201, "shorting_items": 62, "hole_clearance": 40, "clearance": 34, "tracks_crossing": 11, "npth_inside_courtyard": 1, "solder_mask_bridge": 32, "track_dangling": 5, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+09:56:36 PM: Debug: Adding duplicate image handler for 'PNG file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'JPEG file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'TIFF file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'GIF file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'PNM file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'PCX file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'IFF file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'TGA file'
+09:56:36 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7819, 'vias': 817, 'zones': 6, 'keepouts': 81, 'outline': 1}
+local hits ripped 48 ['+3V3', '+3V3_ANA', 'AFE4900_RESETZ', 'CHG_DIS', 'CHG_STAT', 'ESP_EN', 'ESP_TX', 'EXP_INT', 'GND', 'I2C_SCL', 'I2C_SDA', 'PD_K', 'VBUS_DET']
+FANOUT 3 ADS1292_PWDN [{'net': 'ADS1292_PWDN', 'xy': [16.85, 44.25], 'diameter': 0.4, 'drill': 0.2, 'pofv': False, 'pad': None, 'uuid': 'new-d1d70048-ebc7-4ced-be68-398b46b879d4', 'layers': [0, 2, 4, 6, 8, 10, 12, 14]}]
+FANOUT FAILED 4 AD5940_RESET no legal start/goal cells (sealed endpoint)
+FANOUT FAILED 7 IR_GATE no legal start/goal cells (sealed endpoint)
+ROUTED +3V3 U19 1 tracks 0 vias
+ROUTED +3V3 U19#2 1 tracks 0 vias
+FAILED EXP_INT U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 356 cells)
+FAILED EXP_INT U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 356 cells)
+ROUTED GND U19 1 tracks 0 vias
+FAILED I2C_SCL U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 398 cells)
+FAILED I2C_SCL U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 398 cells)
+FAILED PD_K J12 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 467708 cells)
+ROUTED PD_K J12 16 tracks 4 vias
+FAILED AFE4900_RESETZ U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 1106 cells)
+FAILED AFE4900_RESETZ U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 1106 cells)
+FAILED CHG_STAT U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 1065 cells)
+FAILED CHG_STAT U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 1065 cells)
+FAILED I2C_SDA U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 1104 cells)
+FAILED I2C_SDA U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 1104 cells)
+FAILED +3V3 C59 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 2498 cells)
+FAILED +3V3 C59 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 2498 cells)
+BLOCKED ESP_TX J8
+ROUTED VBUS_DET U19 3 tracks 0 vias
+FAILED CHG_DIS U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 333 cells)
+FAILED CHG_DIS U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 333 cells)
+FAILED +3V3_ANA R95 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 48290 cells)
+ROUTED +3V3_ANA R95 18 tracks 4 vias
+FAILED AD5940_RESET U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 1062 cells)
+FAILED AD5940_RESET U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 1062 cells)
+FAILED ADS1292_PWDN U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 17835 cells)
+FAILED ADS1292_PWDN U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 80434 cells)
+FAILED IR_GATE U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 4 mm no path (expanded 340 cells)
+FAILED IR_GATE U19 R2-38 8L drag-with-tracks U19 dy+1 (supervisor #02), local hit fixes, fanout escape via south of hv band, then A* F/B/In2/In3, margin 10 mm no path (expanded 340 cells)
+10:00:02 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:00:02 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/vitalq_v2.kicad_pcb
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 317 violations
+Found 17 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/drc.json
+Saved board
+{"unconnected": 17, "real": 231, "total": 317, "parity": 29, "types": {"items_not_allowed": 199, "hole_clearance": 13, "npth_inside_courtyard": 1, "track_dangling": 17, "via_dangling": 1, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+dangling repair round 1: 13 new items
+10:00:23 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:00:23 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7810, 'vias': 818, 'zones': 6, 'keepouts': 81, 'outline': 1}
+10:00:33 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:00:33 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/vitalq_v2.kicad_pcb
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 315 violations
+Found 17 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/drc.json
+Saved board
+{"unconnected": 17, "real": 229, "total": 315, "parity": 29, "types": {"items_not_allowed": 199, "hole_clearance": 13, "npth_inside_courtyard": 1, "track_dangling": 11, "via_dangling": 5, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+dangling repair round 2: 11 new items
+10:00:51 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:00:51 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7770, 'vias': 818, 'zones': 6, 'keepouts': 81, 'outline': 1}
+10:01:02 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:01:02 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/vitalq_v2.kicad_pcb
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 313 violations
+Found 17 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/drc.json
+Saved board
+{"unconnected": 17, "real": 227, "total": 313, "parity": 29, "types": {"items_not_allowed": 199, "hole_clearance": 13, "npth_inside_courtyard": 1, "track_dangling": 11, "via_dangling": 3, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+dangling repair round 3: 9 new items
+10:01:19 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:01:19 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7734, 'vias': 813, 'zones': 6, 'keepouts': 81, 'outline': 1}
+10:01:30 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:01:30 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/vitalq_v2.kicad_pcb
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 309 violations
+Found 17 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/drc.json
+Saved board
+{"unconnected": 17, "real": 223, "total": 309, "parity": 29, "types": {"items_not_allowed": 199, "hole_clearance": 13, "npth_inside_courtyard": 1, "track_dangling": 8, "via_dangling": 2, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+dangling repair round 4: 5 new items
+10:01:47 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:01:47 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7708, 'vias': 810, 'zones': 6, 'keepouts': 81, 'outline': 1}
+10:01:57 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:01:57 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/vitalq_v2.kicad_pcb
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+swig/python detected a memory leak of type 'PCB_TRACK *', no destructor found.
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 307 violations
+Found 17 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/drc.json
+Saved board
+{"unconnected": 17, "real": 221, "total": 307, "parity": 29, "types": {"items_not_allowed": 199, "hole_clearance": 13, "npth_inside_courtyard": 1, "track_dangling": 8, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+dangling repair round 5: 3 new items
+10:02:14 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:02:14 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7701, 'vias': 808, 'zones': 6, 'keepouts': 81, 'outline': 1}
+10:02:24 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:02:24 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7701, 'vias': 808, 'zones': 6, 'keepouts': 81, 'outline': 1}
+Traceback (most recent call last):
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/audit.py", line 111, in <module>
+    save_json(args.output, result)
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/session.py", line 17, in save_json
+    Path(path).write_text(json.dumps(value, indent=2) + '\n')
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1047, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-38/audit.json'

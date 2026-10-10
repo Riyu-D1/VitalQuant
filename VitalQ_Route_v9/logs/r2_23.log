@@ -1,0 +1,123 @@
+/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_200806_R2-23_U6_3mm_rip_dedicated_layers
+08:08:08 PM: Debug: Adding duplicate image handler for 'PNG file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'JPEG file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'TIFF file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'GIF file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'PNM file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'PCX file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'IFF file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'TGA file'
+08:08:08 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-23/stage1/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 319 violations
+Found 20 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-23/stage1/drc.json
+Saved board
+{"unconnected": 20, "real": 233, "total": 319, "parity": 29, "types": {"items_not_allowed": 200, "hole_clearance": 22, "clearance": 9, "track_dangling": 2, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+08:08:26 PM: Debug: Adding duplicate image handler for 'PNG file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'JPEG file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'TIFF file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'GIF file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'PNM file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'PCX file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'IFF file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'TGA file'
+08:08:26 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7961, 'vias': 735, 'zones': 5, 'keepouts': 81, 'outline': 1}
+regional rip 298 items on 32 nets
+BLOCKED PD2_INM U6
+U6 B3 PD2_INM FAILED
+BLOCKED TX1 U6
+U6 D4 TX1 FAILED
+BLOCKED AFE_BG U6
+U6 D2 AFE_BG FAILED
+ROUTED +3V3_ANA U6 4 tracks 1 vias
+U6 C4 +3V3_ANA ok
+BLOCKED CS_AFE4900 U6
+U6 E3 CS_AFE4900 FAILED
+BLOCKED TX3 U6
+U6 E4 TX3 FAILED
+BLOCKED MISO_AFE U6
+U6 E2 MISO_AFE FAILED
+BLOCKED PD2_INP U6
+U6 B2 PD2_INP FAILED
+ROUTED +3V3_ANA U6 5 tracks 1 vias
+OUTER C1 +3V3_ANA ok
+BLOCKED SPI_SCK U6
+OUTER F3 SPI_SCK FAILED
+ROUTED AFE4900_RESETZ U6 3 tracks 1 vias
+OUTER E1 AFE4900_RESETZ ok
+ROUTED AFE_CLK U6 4 tracks 0 vias
+OUTER F1 AFE_CLK ok
+ROUTED AFE4900_ADC_RDY U6 5 tracks 1 vias
+OUTER F4 AFE4900_ADC_RDY ok
+ROUTED TX_5V U6 11 tracks 4 vias
+OUTER F5 TX_5V ok
+FAILED TX4 U6 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (outer U6.C5), margin 5 mm no path (expanded 12 cells)
+FAILED TX4 U6 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (outer U6.C5), margin 10 mm no path (expanded 12 cells)
+OUTER C5 TX4 FAILED
+FAILED AFE_INP U6 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (outer U6.B1), margin 5 mm no path (expanded 10 cells)
+FAILED AFE_INP U6 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (outer U6.B1), margin 10 mm no path (expanded 10 cells)
+OUTER B1 AFE_INP FAILED
+ROUTED +3V3_ANA U6 1 tracks 0 vias
+OUTER A4 +3V3_ANA ok
+ROUTED GND U6 1 tracks 0 vias
+OUTER D1 GND ok
+ROUTED AFE_INM U6 6 tracks 1 vias
+U6 A1 AFE_INM ok
+ROUTED PD_INP U6 3 tracks 1 vias
+U6 A2 PD_INP ok
+ROUTED PD_INM U6 10 tracks 2 vias
+U6 A3 PD_INM ok
+FAILED TX2 U6 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget U6.E5, margin 5 mm no path (expanded 28722 cells)
+ROUTED TX2 U6 19 tracks 6 vias
+U6 E5 TX2 ok
+ROUTED SPI_MOSI U6 13 tracks 1 vias
+U6 F2 SPI_MOSI ok
+ROUTED GND U18 1 tracks 0 vias
+ROUTED GND U22 3 tracks 0 vias
+ROUTED GND U22#2 1 tracks 0 vias
+ROUTED SPI_MOSI U22 2 tracks 0 vias
+ROUTED TX_5V U22 6 tracks 1 vias
+ROUTED TX_5V C89/R96 5 tracks 1 vias
+ROUTED +3V3_ANA C79 3 tracks 0 vias
+FAILED TX4 U6 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (remaining U6 nets), margin 4 mm no path (expanded 12 cells)
+BLOCKED TX4 U6
+FAILED AFE_INP U6 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (remaining U6 nets), margin 4 mm no path (expanded 10 cells)
+BLOCKED AFE_INP U6
+ROUTED +3V3 J8 1 tracks 0 vias
+ROUTED +3V3 U18 1 tracks 0 vias
+ROUTED MAX86178_INT U22 1 tracks 0 vias
+ROUTED ESP_EN J8 2 tracks 0 vias
+ROUTED +1V8 C36/U10 4 tracks 0 vias
+ROUTED CS_FLASH U18 5 tracks 1 vias
+FAILED MX_SDO_1V8 U22 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 29 cells)
+FAILED MX_SDO_1V8 U22 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 9 mm no path (expanded 29 cells)
+FAILED ESP_IO0 J8 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 3088 cells)
+FAILED ESP_IO0 J8 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 9 mm no path (expanded 3088 cells)
+ROUTED CS_MAX86178 U22 3 tracks 0 vias
+ROUTED MISO_FL U18 6 tracks 2 vias
+ROUTED AFE_N_PAD J5 5 tracks 0 vias
+FAILED +1V8 U22 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 83 cells)
+FAILED +1V8 U22 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 9 mm no path (expanded 83 cells)
+ROUTED MX_VREF U22 6 tracks 2 vias
+FAILED +1V8 U22#2 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 83 cells)
+FAILED +1V8 U22#2 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 9 mm no path (expanded 83 cells)
+FAILED PD_K U22 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 12856 cells)
+ROUTED PD_K U22 15 tracks 4 vias
+ROUTED LED3_K U22 11 tracks 5 vias
+FAILED ESP_TX J8 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 602 cells)
+FAILED ESP_TX J8 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 9 mm no path (expanded 602 cells)
+FAILED ESP_RX J8 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 1317 cells)
+FAILED ESP_RX J8 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 9 mm no path (expanded 1317 cells)
+FAILED BIOZ_SN_PAD R83 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 80329 cells)
+ROUTED BIOZ_SN_PAD R83 24 tracks 5 vias
+FAILED PD_A U22 R2-23 3mm-around-U6 rip; dedicated inner layer per inner ball with reserved exit lanes; corridors first, outer ring, then ripped nets; 60 s budget (wall/other nets), margin 4 mm no path (expanded 85 cells)

@@ -1,0 +1,138 @@
+{
+  "batch": "B1",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_120137_B1_default_artifacts",
+  "source_geometry": "geometry_B0.json.gz",
+  "history_reviewed": [
+    "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/PROGRESS.md",
+    "/Users/deepakdiwan/Downloads/VitalQ_Route_v8/PROGRESS.md",
+    "/Users/deepakdiwan/Downloads/VitalQ_Route_v8/REPORT.md"
+  ],
+  "modify_vias": [
+    {
+      "uuid": "d622aca2-8d9b-4898-bed1-51d5d39bd211",
+      "net": "+3V3",
+      "from": {
+        "xy": [
+          31.250851,
+          59.69
+        ],
+        "diameter": 0.6,
+        "drill": 0.3
+      },
+      "xy": [
+        31.250851,
+        59.69
+      ],
+      "diameter": 0.4,
+      "drill": 0.2,
+      "reason": "Replace user default-rule oversize via at the existing legal site"
+    },
+    {
+      "uuid": "064d0850-e21a-41bb-957d-2808efe641f0",
+      "net": "IOVDD",
+      "from": {
+        "xy": [
+          44.0009,
+          -9.210447
+        ],
+        "diameter": 0.6,
+        "drill": 0.3
+      },
+      "xy": [
+        44.0009,
+        -9.210447
+      ],
+      "diameter": 0.4,
+      "drill": 0.2,
+      "reason": "Replace user default-rule oversize via at the existing legal site"
+    },
+    {
+      "uuid": "1730f0aa-b758-44ee-a5e8-3eda4926ae9f",
+      "net": "IOVDD",
+      "from": {
+        "xy": [
+          38.4556,
+          8.4836
+        ],
+        "diameter": 0.6,
+        "drill": 0.3
+      },
+      "xy": [
+        38.4556,
+        8.4836
+      ],
+      "diameter": 0.4,
+      "drill": 0.2,
+      "reason": "Replace user default-rule oversize via at the existing legal site"
+    },
+    {
+      "uuid": "05c621f5-5c36-44c0-8538-0ec5c3e6ebb5",
+      "net": "LED2_K",
+      "from": {
+        "xy": [
+          1.729158,
+          51.050952
+        ],
+        "diameter": 0.6,
+        "drill": 0.3
+      },
+      "xy": [
+        1.729158,
+        51.050952
+      ],
+      "diameter": 0.4,
+      "drill": 0.2,
+      "reason": "Replace user default-rule oversize via at the existing legal site"
+    },
+    {
+      "uuid": "c4597e39-a925-49d1-8bb9-5e789cae1cff",
+      "net": "LED2_K",
+      "from": {
+        "xy": [
+          36.70803,
+          58.412753
+        ],
+        "diameter": 0.6,
+        "drill": 0.3
+      },
+      "xy": [
+        36.70803,
+        58.412753
+      ],
+      "diameter": 0.4,
+      "drill": 0.2,
+      "reason": "Replace user default-rule oversize via at the existing legal site"
+    }
+  ],
+  "tracks": [],
+  "vias": [],
+  "remove": [],
+  "attempts": [
+    {
+      "net": "IOVDD",
+      "attempt": 1,
+      "approach": "Reduce only the five user-default vias at exact checked coordinates; LED2_K additionally replaces its 10.130743mm In1 segment with a single In2 detour and two legal through-via sites",
+      "status": "candidate"
+    },
+    {
+      "net": "LED2_K",
+      "attempt": 1,
+      "approach": "Reduce only the five user-default vias at exact checked coordinates; LED2_K additionally replaces its 10.130743mm In1 segment with a single In2 detour and two legal through-via sites",
+      "status": "candidate",
+      "routing_outcome": "BLOCKED approach 1: no complete In2 detour in y43.6..47.2 using the nearest legal endpoint stitches; original In1 segment retained"
+    },
+    {
+      "net": "+3V3",
+      "attempt": 1,
+      "approach": "Reduce only the five user-default vias at exact checked coordinates; LED2_K additionally replaces its 10.130743mm In1 segment with a single In2 detour and two legal through-via sites",
+      "status": "candidate"
+    }
+  ],
+  "led_detour": {
+    "sites": [
+      null,
+      null
+    ],
+    "result": "BLOCKED approach 1: no complete In2 detour in y43.6..47.2 using the nearest legal endpoint stitches; original In1 segment retained"
+  }
+}

@@ -1,0 +1,48 @@
+/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_223834_R2-47_C59_move_alt_8L
+10:38:35 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:38:35 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-47/stage1/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 361 violations
+Found 8 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-47/stage1/drc.json
+Saved board
+{"unconnected": 8, "real": 274, "total": 361, "parity": 29, "types": {"items_not_allowed": 201, "hole_clearance": 20, "shorting_items": 26, "clearance": 9, "tracks_crossing": 3, "npth_inside_courtyard": 1, "solder_mask_bridge": 8, "track_dangling": 6, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1, "silk_overlap": 1}}
+10:38:53 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:38:53 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7843, 'vias': 823, 'zones': 6, 'keepouts': 81, 'outline': 1}
+ripped [('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('SWEAT_WE', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('GND', 'tracks'), ('SWEAT_WE', 'tracks'), ('GND', 'vias'), ('SWEAT_WE', 'vias'), ('GND', 'tracks')]
+Traceback (most recent call last):
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_47.py", line 41, in <module>
+    run('R2-47', 'C59_move_alt_8L', plan, moves=MOVES, moved=('C59',), adopt_if_fewer_opens=True, next_step='R2-20 sensor-island +3V3/TMP117 bridge; U6/U22 regional plan')
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_batch.py", line 37, in run
+    plan_fn(b, ledger, stage_opens)
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_47.py", line 32, in plan
+    reconnect(b, ledger, nets, REGION, [(APP + ', margin 3 mm', 3.0, SIGNAL_LAYERS), (APP + ', margin 7 mm', 7.0, SIGNAL_LAYERS), (APP + ', margin 14 mm', 14.0, SIGNAL_LAYERS)])
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_rip.py", line 150, in reconnect
+    route_entries(b, net, src, main, label, approaches, ledger['routes'])
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_common.py", line 92, in route_entries
+    n = record_attempt(key, desc)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+

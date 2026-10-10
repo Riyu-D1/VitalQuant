@@ -1,0 +1,118 @@
+/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_220238_R2-39_inc_with_In4
+10:02:39 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:02:39 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-39/stage1/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 306 violations
+Found 10 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-39/stage1/drc.json
+Saved board
+{"unconnected": 10, "real": 220, "total": 306, "parity": 29, "types": {"items_not_allowed": 201, "hole_clearance": 13, "npth_inside_courtyard": 1, "track_dangling": 5, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+10:02:57 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:02:57 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7819, 'vias': 817, 'zones': 6, 'keepouts': 81, 'outline': 1}
+routing 7 opens
+ROUTED +3V3 U18 1 tracks 0 vias
+OPEN +3V3 U18 ok
+FAILED I2C_SDA U11/U20 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 6 mm no path (expanded 141 cells)
+FAILED I2C_SDA U11/U20 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 14 mm no path (expanded 141 cells)
+FAILED I2C_SDA U11/U20 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 25 mm no path (expanded 141 cells)
+OPEN I2C_SDA U11/U20 FAILED
+FAILED +3V3 C59 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 6 mm no path (expanded 2373 cells)
+BLOCKED +3V3 C59
+OPEN +3V3 C59 FAILED
+FAILED PD_A C5/U22 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 6 mm no path (expanded 36 cells)
+FAILED PD_A C5/U22 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 14 mm no path (expanded 36 cells)
+FAILED PD_A C5/U22 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 25 mm no path (expanded 36 cells)
+OPEN PD_A C5/U22 FAILED
+FAILED PD2_INM B3/U16/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 6 mm no path (expanded 1601 cells)
+FAILED PD2_INM B3/U16/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 14 mm no path (expanded 1601 cells)
+FAILED PD2_INM B3/U16/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 25 mm no path (expanded 1601 cells)
+OPEN PD2_INM B3/U16/U6 FAILED
+FAILED MISO_AFE E2/R90/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 6 mm no path (expanded 12 cells)
+FAILED MISO_AFE E2/R90/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 14 mm no path (expanded 12 cells)
+FAILED MISO_AFE E2/R90/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 25 mm no path (expanded 12 cells)
+OPEN MISO_AFE E2/R90/U6 FAILED
+FAILED AFE_CLK F1/R10/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 6 mm no path (expanded 536753 cells)
+FAILED AFE_CLK F1/R10/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 14 mm no path (expanded 1264887 cells)
+FAILED AFE_CLK F1/R10/U6 R2-39 incremental 8L A* (F/B/In2/In3/In5/In4 local), no rip-up, 60 s budget, margin 25 mm node cap 1500000 reached
+OPEN AFE_CLK F1/R10/U6 FAILED
+10:06:45 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:06:45 PM: Debug: Adding duplicate image handler for 'XPM file'
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-39/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 306 violations
+Found 9 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-39/drc.json
+Saved board
+{"unconnected": 9, "real": 220, "total": 306, "parity": 29, "types": {"items_not_allowed": 201, "hole_clearance": 13, "npth_inside_courtyard": 1, "track_dangling": 5, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+10:07:05 PM: Debug: Adding duplicate image handler for 'PNG file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'JPEG file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'TIFF file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'GIF file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'PNM file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'PCX file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'IFF file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'TGA file'
+10:07:05 PM: Debug: Adding duplicate image handler for 'XPM file'
+{'pads': 1020, 'tracks': 7820, 'vias': 817, 'zones': 6, 'keepouts': 81, 'outline': 1}
+{
+  "invariants": {
+    "footprints_identical": true,
+    "moved_footprints_same_side_same_lock": true,
+    "pad_geometry_and_nets_identical": true,
+    "rule_areas_identical": true,
+    "outline_identical": true,
+    "zone_definitions_identical": true,
+    "copper_layer_count_ok": true,
+    "through_vias_only": true
+  },
+  "preserved_pad_groups_checked": 189,
+  "pad_connectivity_regressions": 0,
+  "keepout_layer_intersections": 399,
+  "new_keepout_hits": 0,
+  "via_hole_copper_gaps": 9,
+  "new_via_hole_copper_gaps": 0,
+  "hole_pairs": 0,
+  "new_hole_pairs": 0,
+  "via_in_pad": 41,
+  "pass": true
+}
+R2-39: ACCEPTED (streak 0); new native faults 0; audit pass
+unconnected 10 -> 9 (candidate 9); real 220 -> 220 (candidate 220)
+next: next incremental batch

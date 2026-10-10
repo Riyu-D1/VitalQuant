@@ -1,0 +1,57 @@
+/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_192015_R2-17a_U6_POFV_sites_notches
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17a/stage1/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 320 violations
+Found 23 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17a/stage1/drc.json
+Saved board
+{"unconnected": 23, "real": 234, "total": 320, "parity": 29, "types": {"items_not_allowed": 200, "hole_clearance": 22, "clearance": 9, "track_dangling": 2, "via_dangling": 1, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+{'pads': 1020, 'tracks': 7938, 'vias': 726, 'zones': 5, 'keepouts': 81, 'outline': 1}
+ripped 11 ['AFE_INM', 'ESP_TX', 'PD_INM', 'PD_INP', 'SPI_MOSI', 'TX2']
+placed ['B2', 'B3', 'C4', 'D2', 'D4', 'E2', 'E3', 'E4']
+FAILED PD_INM U6 R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A3), margin 3 mm no path (expanded 9550 cells)
+ROUTED PD_INM U6 15 tracks 4 vias
+A3 PD_INM ok
+FAILED PD_INP U6 R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A2), margin 3 mm no path (expanded 11152 cells)
+BLOCKED PD_INP U6
+A2 PD_INP FAILED
+FAILED AFE_INM U6 R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A1), margin 3 mm no path (expanded 7607 cells)
+FAILED AFE_INM U6 R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A1), margin 8 mm no path (expanded 13136 cells)
+A1 AFE_INM FAILED
+FAILED TX2 U6 R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (E5), margin 3 mm no path (expanded 4209 cells)
+FAILED TX2 U6 R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (E5), margin 8 mm no path (expanded 5689 cells)
+E5 TX2 FAILED
+ROUTED SPI_MOSI U6 1 tracks 0 vias
+F2 SPI_MOSI ok
+FAILED ESP_TX J8 R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (authorised ripped nets), margin 3 mm no path (expanded 16207 cells)
+BLOCKED ESP_TX J8
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17a/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 337 violations
+Found 27 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17a/drc.json
+Saved board
+{"unconnected": 27, "real": 251, "total": 337, "parity": 29, "types": {"items_not_allowed": 200, "hole_clearance": 22, "clearance": 9, "track_dangling": 8, "via_dangling": 12, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+dangling repair round 1: 9 new items
+{'pads': 1020, 'tracks': 7943, 'vias': 738, 'zones': 5, 'keepouts': 81, 'outline': 1}
+Traceback (most recent call last):
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/kicad_ops.py", line 218, in <module>
+    apply_plan(board, plan, log)
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/kicad_ops.py", line 105, in apply_plan
+    PENDING[rec['uuid']] = items[rec['uuid']]
+KeyError: 'new-42d03e78-7b09-4394-bc7e-b8b63ae53b82'
+Traceback (most recent call last):
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_17a.py", line 64, in <module>
+    run('R2-17a', 'U6_POFV_sites_notches', plan, j8={'original_outline': U.J8_RECT}, real_allowance_fn=allowance, next_step='R2-17b U6 easy escapes E4/C4/E2/B2 (+F3)')
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_batch.py", line 50, in run
+    if not repair(d, _state()['current_drc'], ledger):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_repair.py", line 152, in repair
+    kicad_job({'input': str(pre / 'vitalq_v2.kicad_pcb'), 'output': str(d / 'vitalq_v2.kicad_pcb'), 'plan': str(pre / 'plan.json'), 'log': str(pre / 'apply_log.json')}, pre / 'job.json')
+  File "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/r2_common.py", line 18, in kicad_job
+    subprocess.run([KICAD_PY, '-B', str(SCRIPTS / 'kicad_ops.py'), str(path)], check=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3', '-B', '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/scripts/kicad_ops.py', '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17a/pre_repair1/job.json']' returned non-zero exit status 1.

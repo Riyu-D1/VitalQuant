@@ -1,0 +1,51 @@
+/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_192646_R2-17d_U6_B2_E2_D2_escapes
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17d/stage1/vitalq_v2.kicad_pcb
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 323 violations
+Found 23 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17d/stage1/drc.json
+Saved board
+{"unconnected": 23, "real": 237, "total": 323, "parity": 29, "types": {"items_not_allowed": 200, "hole_clearance": 22, "clearance": 9, "track_dangling": 2, "via_dangling": 4, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+{'pads': 1020, 'tracks': 7938, 'vias': 729, 'zones': 5, 'keepouts': 81, 'outline': 1}
+FAILED AFE_BG U6 R2-17d corridor-constrained escape from J8-notched POFV (#04 topology), 60 s budget, margin 6 mm (D2, layers (10, 0)) no path (expanded 59272 cells)
+D2 AFE_BG FAILED
+FAILED PD2_INP U6 R2-17d corridor-constrained escape from J8-notched POFV (#04 topology), 60 s budget, margin 6 mm (B2, layers (0, 2, 6, 8)) no path (expanded 91 cells)
+B2 PD2_INP FAILED
+FAILED MISO_AFE U6 R2-17d corridor-constrained escape from J8-notched POFV (#04 topology), 60 s budget, margin 6 mm (E2, layers (0, 2, 6, 8)) no path (expanded 4454 cells)
+E2 MISO_AFE FAILED
+kicad_ops done /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17d/vitalq_v2.kicad_pcb
+swig/python detected a memory leak of type 'PCB_VIA *', no destructor found.
+Fontconfig error: Cannot load default config file: No such file: (null)
+Found 320 violations
+Found 23 unconnected items
+Found 29 schematic parity issues
+Saved DRC Report to /Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-17d/drc.json
+Saved board
+{"unconnected": 23, "real": 234, "total": 320, "parity": 29, "types": {"items_not_allowed": 200, "hole_clearance": 22, "clearance": 9, "track_dangling": 2, "via_dangling": 1, "silk_edge_clearance": 14, "lib_footprint_issues": 53, "lib_footprint_mismatch": 3, "text_height": 15, "text_thickness": 1}}
+{'pads': 1020, 'tracks': 7938, 'vias': 726, 'zones': 5, 'keepouts': 81, 'outline': 1}
+{
+  "invariants": {
+    "footprints_identical": true,
+    "moved_footprints_unlocked_same_side_rotation": true,
+    "pad_geometry_and_nets_identical": true,
+    "rule_areas_identical_except_J8_notches": true,
+    "outline_identical": true,
+    "zone_definitions_identical": true,
+    "six_layers": true,
+    "through_vias_only": true
+  },
+  "preserved_pad_groups_checked": 185,
+  "pad_connectivity_regressions": 0,
+  "keepout_layer_intersections": 345,
+  "new_keepout_hits": 0,
+  "via_hole_copper_gaps": 9,
+  "new_via_hole_copper_gaps": 0,
+  "hole_pairs": 0,
+  "new_hole_pairs": 0,
+  "via_in_pad": 30,
+  "pass": true
+}
+R2-17d: ACCEPTED (streak 0); new native faults 0; audit pass
+unconnected 23 -> 23 (candidate 23); real 237 -> 234 (candidate 234)
+next: R2-17e C-channel B3/D4 + E3/E4/C4 after PD_INM in-array removal
