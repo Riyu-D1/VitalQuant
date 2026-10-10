@@ -1,0 +1,191 @@
+{
+  "batch": "R2-12",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_183056_R2-12_U22_B1_B2",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "aa6d4ee5-92fe-4a3e-bb20-d5dfd215cbef",
+      "net": "MISO_FL",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        26.574594,
+        47.60037
+      ],
+      "b": [
+        27.091397,
+        47.083568
+      ],
+      "width": 0.101702,
+      "reason": "SUPERVISOR_R2_01 Q2 authorised local rip-up: blocks U22.B2 POFV (MISO_FL)"
+    },
+    {
+      "uuid": "10c3c502-0876-4c40-9fe8-c102bcb3d838",
+      "net": "TX_5V",
+      "kind": "tracks",
+      "layer": 2,
+      "a": [
+        26.942695,
+        46.992695
+      ],
+      "b": [
+        27.088596,
+        47.138596
+      ],
+      "width": 0.106787,
+      "reason": "SUPERVISOR_R2_01 Q2 authorised local rip-up: blocks U22.B1 POFV (TX_5V)"
+    },
+    {
+      "uuid": "393ef949-b8fe-4673-a2a7-a8535f843766",
+      "net": "TX_5V",
+      "kind": "tracks",
+      "layer": 2,
+      "a": [
+        27.088596,
+        47.138596
+      ],
+      "b": [
+        27.235121,
+        47.285121
+      ],
+      "width": 0.106787,
+      "reason": "SUPERVISOR_R2_01 Q2 authorised local rip-up: blocks U22.B1 POFV (TX_5V)"
+    },
+    {
+      "uuid": "82b47885-7394-406c-a2a5-9aff245d6c6e",
+      "net": "MISO_FL",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        26.574594,
+        47.791238
+      ],
+      "b": [
+        26.574594,
+        47.60037
+      ],
+      "width": 0.101702,
+      "reason": "SUPERVISOR_R2_01 Q2 authorised local rip-up: blocks U22.B2 POFV (MISO_FL)"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "TX_5V U22",
+      "net": "TX_5V",
+      "attempt": 2,
+      "approach": "R2-12 U22 B1/B2 0.25/0.15 POFV without moving U18 (C1/D1 deferred to U18-nudge batch); blockers ripped and re-routed first, then fan-out In3>In2>F and A* (ripped net first), margin 3 mm",
+      "bounds": [
+        23.782306,
+        43.832306,
+        30.197366094078717,
+        50.247366094078714
+      ],
+      "gap_mm": 0.3028454821482196,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 34
+    },
+    {
+      "connection": "MISO_FL U18",
+      "net": "MISO_FL",
+      "attempt": 2,
+      "approach": "R2-12 U22 B1/B2 0.25/0.15 POFV without moving U18 (C1/D1 deferred to U18-nudge batch); blockers ripped and re-routed first, then fan-out In3>In2>F and A* (ripped net first), margin 3 mm",
+      "bounds": [
+        23.324594,
+        44.12953675954462,
+        30.06965539594398,
+        51.442033
+      ],
+      "gap_mm": 0.7452710631316761,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [],
+      "expanded": 723
+    },
+    {
+      "connection": "MAX86178_INT U22",
+      "net": "MAX86178_INT",
+      "attempt": 2,
+      "approach": "R2-12 U22 B1/B2 0.25/0.15 POFV without moving U18 (C1/D1 deferred to U18-nudge batch); blockers ripped and re-routed first, then fan-out In3>In2>F and A*, margin 3 mm",
+      "bounds": [
+        23.375,
+        28.015931,
+        32.507751999999996,
+        50.475
+      ],
+      "gap_mm": 15.830417187754202,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "MAX86178_INT",
+          "xy": [
+            29.9,
+            31.3
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-47f8cec1-d4b6-42ef-8ee6-cfecddc7963f",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 43648
+    },
+    {
+      "connection": "LED3_K U22",
+      "net": "LED3_K",
+      "attempt": 2,
+      "approach": "R2-12 U22 B1/B2 0.25/0.15 POFV without moving U18 (C1/D1 deferred to U18-nudge batch); blockers ripped and re-routed first, then fan-out In3>In2>F and A*, margin 3 mm",
+      "bounds": [
+        23.775,
+        44.225,
+        32.93984276075946,
+        60.892710618832965
+      ],
+      "gap_mm": 10.847221994554124,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "LED3_K",
+          "xy": [
+            29.65,
+            58.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-d9b99c1c-95b7-4195-ab89-0068dd85c437",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 28474
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "aa6d4ee5-92fe-4a3e-bb20-d5dfd215cbef",
+    "10c3c502-0876-4c40-9fe8-c102bcb3d838",
+    "393ef949-b8fe-4673-a2a7-a8535f843766",
+    "82b47885-7394-406c-a2a5-9aff245d6c6e"
+  ],
+  "dangling_repair": []
+}
