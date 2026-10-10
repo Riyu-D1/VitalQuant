@@ -1,0 +1,81 @@
+{
+  "id": "R2-11",
+  "accepted": false,
+  "before": {
+    "unconnected": 30,
+    "real": 235,
+    "total": 321,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 23,
+      "clearance": 9,
+      "track_dangling": 2,
+      "via_dangling": 1,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "candidate": {
+    "unconnected": 29,
+    "real": 238,
+    "total": 324,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 23,
+      "clearance": 9,
+      "track_dangling": 5,
+      "via_dangling": 1,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "current": {
+    "unconnected": 30,
+    "real": 235,
+    "total": 321,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 23,
+      "clearance": 9,
+      "track_dangling": 2,
+      "via_dangling": 1,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "new_native_faults": [
+    [
+      "track_dangling",
+      [
+        "3a9ce858-8e0b-4dc1-a83d-2f78e8c8a815"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "b6858564-4e40-48c3-a869-193f1cb5800a"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "c76d63c7-77de-4722-b342-784f44eb23a5"
+      ]
+    ]
+  ],
+  "audit_pass": false,
+  "streak": 1,
+  "notes": "32 tracks, 9 vias added, 50 segments/vias removed; moves: U18 [27.209594, 44.367033]->[26.899594, 44.367033] rot 90.0; unrouted: +3V3_ANA C79/U6, +3V3_ANA R95, LED2_K U22, MX_SDO_1V8 U22, TX_5V U22"
+}
