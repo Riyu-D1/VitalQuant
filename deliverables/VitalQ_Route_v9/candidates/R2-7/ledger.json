@@ -1,0 +1,225 @@
+{
+  "batch": "R2-7",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_180416_R2-7_repair_R2-6",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "35a19dc6-9f8d-4ac0-b1e1-0e71408b1fe0",
+      "net": "CS_AD5940",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        36.53591,
+        10.180775
+      ],
+      "b": [
+        36.53591,
+        9.530775
+      ],
+      "width": 0.1016,
+      "reason": "supervisor #03 \u00a71: dangling In3 fan-out stub"
+    },
+    {
+      "uuid": "3854008f-ac8a-40fd-9584-732974dc1e14",
+      "net": "VBIAS0",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        36.48591,
+        11.430775
+      ],
+      "b": [
+        35.83591,
+        11.430775
+      ],
+      "width": 0.1016,
+      "reason": "supervisor #03 \u00a71: dangling In3 fan-out stub"
+    },
+    {
+      "uuid": "47792255-c11f-4383-a731-dea00fd2199b",
+      "net": "BIOZ_FP",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        38.13591,
+        11.980775
+      ],
+      "b": [
+        38.13591,
+        12.680775
+      ],
+      "width": 0.1016,
+      "reason": "supervisor #03 \u00a71: dangling In3 fan-out stub"
+    },
+    {
+      "uuid": "adf22370-1629-486d-9c59-dc991ac4a443",
+      "net": "BIOZ_SP",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        37.43591,
+        11.980775
+      ],
+      "b": [
+        37.43591,
+        12.680775
+      ],
+      "width": 0.1016,
+      "reason": "supervisor #03 \u00a71: dangling In3 fan-out stub"
+    },
+    {
+      "uuid": "eec6d8c7-bb3f-4829-875d-be40cc676139",
+      "net": "BIOZ_FN",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        38.68591,
+        11.030775
+      ],
+      "b": [
+        39.38591,
+        11.030775
+      ],
+      "width": 0.1016,
+      "reason": "supervisor #03 \u00a71: dangling In3 fan-out stub (T: dangling part only)"
+    },
+    {
+      "uuid": "1202344b-a7d5-49c0-a111-86333f731415",
+      "net": "GND",
+      "kind": "vias",
+      "xy": [
+        37.38591,
+        11.080775
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "supervisor #03 \u00a72: D5 GND via-in-pad deleted to open SWEAT_WE channel"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "SWEAT_WE U7",
+      "net": "SWEAT_WE",
+      "attempt": 2,
+      "approach": "R2-7 (supervisor #03): D5 GND via deleted, SWEAT_WE from C5 via through via-free ball channel D5-D4-D3-C3-C2-B2-A2 or D4-E4-F4-G4 on In2/In3, margin 3 mm",
+      "bounds": [
+        33.86959404921265,
+        8.355775,
+        40.51091,
+        15.65313506394691
+      ],
+      "gap_mm": 1.156053209659258,
+      "status": "failed",
+      "reason": "no path (expanded 9338 cells)"
+    },
+    {
+      "connection": "SWEAT_WE U7",
+      "net": "SWEAT_WE",
+      "attempt": 3,
+      "approach": "R2-7 (supervisor #03): D5 GND via deleted, SWEAT_WE from C5 via through via-free ball channel D5-D4-D3-C3-C2-B2-A2 or D4-E4-F4-G4 on In2/In3, +B, margin 5 mm",
+      "bounds": [
+        31.86959404921265,
+        6.3557749999999995,
+        42.51091,
+        17.653135063946912
+      ],
+      "gap_mm": 1.156053209659258,
+      "status": "routed",
+      "tracks": 8,
+      "vias": [
+        {
+          "net": "SWEAT_WE",
+          "xy": [
+            39.23591,
+            17.630775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-09bcb258-a5cc-406e-994b-2b5a1c003d2f",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 37502
+    },
+    {
+      "connection": "MISO_AD R91",
+      "net": "MISO_AD",
+      "attempt": 1,
+      "approach": "R2-7 (supervisor #03): MISO_AD via(34.465,10.447) -> via(43.224,11.147), reuse both vias, B/In2/In3 around U7, margin 3 mm",
+      "bounds": [
+        31.264941999999998,
+        7.2466919999999995,
+        46.023700149667725,
+        14.13751965159965
+      ],
+      "gap_mm": 6.746940019614898,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "MISO_AD",
+          "xy": [
+            35.93591,
+            9.530775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-dfce7f04-afbf-450b-b8e6-4db98a0e6aae",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "MISO_AD",
+          "xy": [
+            39.23591,
+            9.530775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-3cecf7fe-eb50-4b2b-9c50-f195e5196c16",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 20171
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "35a19dc6-9f8d-4ac0-b1e1-0e71408b1fe0",
+    "3854008f-ac8a-40fd-9584-732974dc1e14",
+    "47792255-c11f-4383-a731-dea00fd2199b",
+    "adf22370-1629-486d-9c59-dc991ac4a443",
+    "eec6d8c7-bb3f-4829-875d-be40cc676139",
+    "1202344b-a7d5-49c0-a111-86333f731415"
+  ],
+  "extra_check": {
+    "pass": false,
+    "text": "supervisor #03 gate unconnected 30<32, real 239<=245, track_dangling 3<=2, via_dangling 1<=1 -> FAIL"
+  }
+}
