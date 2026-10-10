@@ -1,0 +1,439 @@
+{
+  "batch": "R2-16",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_185009_R2-16_U6_J8_POFV_notches",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "883e84e7-23e7-444f-a6c4-fdd8aabf4068",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        25.26,
+        50.7
+      ],
+      "b": [
+        24.84,
+        50.25
+      ],
+      "width": 0.1017,
+      "reason": "blocks U6.C4 POFV (ESP_TX, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "7c96eead-addb-4435-b752-8329ac0a923b",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        25.26,
+        51.15
+      ],
+      "b": [
+        25.26,
+        50.7
+      ],
+      "width": 0.1017,
+      "reason": "blocks U6.C4 POFV (ESP_TX, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "94937910-a83d-46b3-bdd6-19089865ba08",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        25.25,
+        51.3
+      ],
+      "b": [
+        25.25,
+        51.15
+      ],
+      "width": 0.1016,
+      "reason": "blocks U6.E4 POFV (ESP_TX, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "b3782f2d-9a3b-4c75-a6fa-efe078cf2824",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        24.9,
+        53.5
+      ],
+      "b": [
+        25.25,
+        51.3
+      ],
+      "width": 0.1016,
+      "reason": "blocks U6.E4 POFV (ESP_TX, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "289745c9-c1b3-4da4-801d-3112f698276d",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        26.2,
+        51.45
+      ],
+      "b": [
+        25.55,
+        51.45
+      ],
+      "width": 0.1016,
+      "reason": "blocks U6.E2 POFV (ESP_RX, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "e57dd4a5-01f8-4b45-b508-443e9d807758",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        25.55,
+        51.45
+      ],
+      "b": [
+        24.95,
+        51.95
+      ],
+      "width": 0.1016,
+      "reason": "blocks U6.E4 POFV (ESP_RX, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "6bbdc20a-bfdb-4d6f-ab2f-be45cf1a6921",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        26.45,
+        51.65
+      ],
+      "b": [
+        26.2,
+        51.45
+      ],
+      "width": 0.1016,
+      "reason": "blocks U6.E2 POFV (ESP_RX, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "3c1a2508-b72a-4af3-8752-4b6fa416dcf8",
+      "net": "AFE_INP",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        26.36,
+        51.4
+      ],
+      "b": [
+        26.95,
+        51.2
+      ],
+      "width": 0.1017,
+      "reason": "blocks U6.E2 POFV (AFE_INP, authorised PROMPT_R2 R2-4 / SUPERVISOR_R2_04)"
+    },
+    {
+      "uuid": "new-2df56fc4-2dc9-4b10-99e5-9b8ddf5eb1d3",
+      "net": "AFE_BG",
+      "kind": "vias",
+      "xy": [
+        26.1,
+        51.0
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.D2 (no completed connection)"
+    },
+    {
+      "uuid": "new-8d2ce70b-f5e8-4519-bd76-0e372c0a995d",
+      "net": "MISO_AFE",
+      "kind": "vias",
+      "xy": [
+        26.1,
+        51.4
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.E2 (no completed connection)"
+    },
+    {
+      "uuid": "new-5b6a053d-a510-4059-bdf4-e9cd1438cf6f",
+      "net": "PD2_INP",
+      "kind": "vias",
+      "xy": [
+        26.1,
+        50.2
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.B2 (no completed connection)"
+    },
+    {
+      "uuid": "908ebbe5-404f-4f75-9e42-23423af49bc5",
+      "reason": "in-batch dangling repair"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "U6.B3",
+      "net": "PD2_INM",
+      "status": "failed",
+      "reason": "blocker {'kind': 'tracks', 'net': 'PD_INM', 'uuid': 'a3d179a0-4cee-48b3-8a79-d16c1e61a4a3', 'layer': 8, 'gap_hole_to_copper': -0.07579999999999928}"
+    },
+    {
+      "connection": "U6.B3",
+      "net": "PD2_INM",
+      "status": "failed",
+      "reason": "blocker {'kind': 'tracks', 'net': 'PD_INM', 'uuid': '26fb1e15-6ddd-4860-8f61-146c269267c9', 'layer': 8, 'gap_hole_to_copper': 0.03231388300841784}"
+    },
+    {
+      "connection": "U6.D4",
+      "net": "TX1",
+      "status": "failed",
+      "reason": "blocker {'kind': 'tracks', 'net': 'PD_INM', 'uuid': '26fb1e15-6ddd-4860-8f61-146c269267c9', 'layer': 8, 'gap_hole_to_copper': 0.09184027759919235}"
+    },
+    {
+      "connection": "U6.E3",
+      "net": "CS_AFE4900",
+      "status": "failed",
+      "reason": "blocker {'kind': 'tracks', 'net': 'PD_INM', 'uuid': '26fb1e15-6ddd-4860-8f61-146c269267c9', 'layer': 8, 'gap_hole_to_copper': 0.1263863534085901}"
+    },
+    {
+      "connection": "U6.E4",
+      "net": "TX3",
+      "status": "failed",
+      "reason": "blocker {'kind': 'tracks', 'net': 'PD_INM', 'uuid': '26fb1e15-6ddd-4860-8f61-146c269267c9', 'layer': 8, 'gap_hole_to_copper': 0.014457067786145833}"
+    },
+    {
+      "connection": "U6.C4",
+      "net": "+3V3_ANA",
+      "status": "failed",
+      "reason": "blocker {'kind': 'tracks', 'net': 'PD_INM', 'uuid': '26fb1e15-6ddd-4860-8f61-146c269267c9', 'layer': 8, 'gap_hole_to_copper': 0.1692234874122388}"
+    },
+    {
+      "connection": "AFE_BG U6",
+      "net": "AFE_BG",
+      "attempt": 1,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A*, layers (10, 0), margin 3 mm",
+      "bounds": [
+        22.975,
+        47.265445,
+        31.506216,
+        54.125
+      ],
+      "gap_mm": 2.3908393264050107,
+      "status": "failed",
+      "reason": "no path (expanded 17801 cells)"
+    },
+    {
+      "connection": "AFE_BG U6",
+      "net": "AFE_BG",
+      "attempt": 2,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A*, layers (10, 0)+all, margin 7 mm",
+      "bounds": [
+        18.975,
+        43.265445,
+        35.506215999999995,
+        58.125
+      ],
+      "gap_mm": 2.3908393264050107,
+      "status": "failed",
+      "reason": "no path (expanded 191749 cells)"
+    },
+    {
+      "connection": "MISO_AFE U6",
+      "net": "MISO_AFE",
+      "attempt": 1,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A*, layers (0, 2, 6, 8), margin 3 mm",
+      "bounds": [
+        22.975,
+        46.196869,
+        47.57743,
+        54.525
+      ],
+      "gap_mm": 18.483336560992566,
+      "status": "failed",
+      "reason": "no path (expanded 7753 cells)"
+    },
+    {
+      "connection": "MISO_AFE U6",
+      "net": "MISO_AFE",
+      "attempt": 2,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A*, layers (0, 2, 6, 8)+all, margin 7 mm",
+      "bounds": [
+        18.975,
+        42.196869,
+        48.0,
+        58.525
+      ],
+      "gap_mm": 18.483336560992566,
+      "status": "failed",
+      "reason": "no path (expanded 320406 cells)"
+    },
+    {
+      "connection": "PD2_INP U6",
+      "net": "PD2_INP",
+      "attempt": 1,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A*, layers (0, 2, 6, 8), margin 3 mm",
+      "bounds": [
+        10.243149,
+        47.075,
+        29.225,
+        59.805558
+      ],
+      "gap_mm": 14.329497441769252,
+      "status": "failed",
+      "reason": "no path (expanded 2163 cells)"
+    },
+    {
+      "connection": "PD2_INP U6",
+      "net": "PD2_INP",
+      "attempt": 2,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A*, layers (0, 2, 6, 8)+all, margin 7 mm",
+      "bounds": [
+        6.243149000000001,
+        43.075,
+        33.225,
+        63.805558
+      ],
+      "gap_mm": 14.329497441769252,
+      "status": "failed",
+      "reason": "no path (expanded 2163 cells)"
+    },
+    {
+      "connection": "AFE_INP U6",
+      "net": "AFE_INP",
+      "attempt": 2,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A* (ripped nets after U6), margin 3 mm",
+      "bounds": [
+        23.38721,
+        46.508195,
+        30.167097,
+        54.38055968163585
+      ],
+      "gap_mm": 0.4368757943171739,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 41
+    },
+    {
+      "connection": "ESP_RX J8",
+      "net": "ESP_RX",
+      "attempt": 2,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A* (ripped nets after U6), margin 3 mm",
+      "bounds": [
+        21.973520555561784,
+        48.599199999999996,
+        29.840332,
+        55.955332
+      ],
+      "gap_mm": 1.1926648694028352,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 485
+    },
+    {
+      "connection": "ESP_TX J8",
+      "net": "ESP_TX",
+      "attempt": 2,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A* (ripped nets after U6), margin 3 mm",
+      "bounds": [
+        21.786806,
+        47.30084900062891,
+        29.840332,
+        57.796447
+      ],
+      "gap_mm": 3.154167122519228,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 1491
+    },
+    {
+      "connection": "SPI_SCK U6",
+      "net": "SPI_SCK",
+      "attempt": 3,
+      "approach": "R2-16 U6 J8-covered POFV with per-via notches (#05), B4/D1 normalised, #04 channel layers (B3 In3, D4 In2, D2 In4, E3 via F3 cell), no F track in J8 area, A* SPI_SCK: B escape or F3 POFV, margin 5 mm",
+      "bounds": [
+        20.58721,
+        42.067694,
+        31.476589,
+        56.91279
+      ],
+      "gap_mm": 4.680670500042913,
+      "status": "failed",
+      "reason": "no path (expanded 59 cells)"
+    }
+  ],
+  "issues": [],
+  "modify_vias": [
+    {
+      "uuid": "65166a81-d0a9-4524-af80-829d4b92de9d",
+      "net": "GND",
+      "from": {
+        "xy": [
+          25.3,
+          50.2
+        ],
+        "diameter": 0.3,
+        "drill": 0.15
+      },
+      "xy": [
+        25.3,
+        50.2
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "pad": "U6.B4",
+      "reason": "approved: normalise J8 POFV exception to 0.25/0.15 so neighbouring ball POFVs meet 0.2 hole-to-copper"
+    },
+    {
+      "uuid": "677d1330-867b-4b07-8f11-c8da12183016",
+      "net": "GND",
+      "from": {
+        "xy": [
+          26.5,
+          51.0
+        ],
+        "diameter": 0.3,
+        "drill": 0.15
+      },
+      "xy": [
+        26.5,
+        51.0
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "pad": "U6.D1",
+      "reason": "approved: normalise J8 POFV exception to 0.25/0.15 so neighbouring ball POFVs meet 0.2 hole-to-copper"
+    }
+  ],
+  "modify_tracks": [],
+  "late_remove": [
+    "883e84e7-23e7-444f-a6c4-fdd8aabf4068",
+    "7c96eead-addb-4435-b752-8329ac0a923b",
+    "94937910-a83d-46b3-bdd6-19089865ba08",
+    "b3782f2d-9a3b-4c75-a6fa-efe078cf2824",
+    "289745c9-c1b3-4da4-801d-3112f698276d",
+    "e57dd4a5-01f8-4b45-b508-443e9d807758",
+    "6bbdc20a-bfdb-4d6f-ab2f-be45cf1a6921",
+    "3c1a2508-b72a-4af3-8752-4b6fa416dcf8"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "908ebbe5-404f-4f75-9e42-23423af49bc5",
+          "net": "ESP_RX",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            26.45,
+            52.2
+          ]
+        }
+      ]
+    }
+  ]
+}

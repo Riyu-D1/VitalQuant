@@ -1,0 +1,97 @@
+{
+  "batch": "R2-17d",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_192646_R2-17d_U6_B2_E2_D2_escapes",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "59e0c3a0-b594-4ed3-a6c2-65fc439a2d11",
+      "net": "AFE_BG",
+      "kind": "vias",
+      "xy": [
+        26.1,
+        51.0
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.D2 POFV (escape failed)"
+    },
+    {
+      "uuid": "1dc65617-cb2f-4725-b48a-2b9117fea437",
+      "net": "PD2_INP",
+      "kind": "vias",
+      "xy": [
+        26.1,
+        50.2
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.B2 POFV (escape failed)"
+    },
+    {
+      "uuid": "8d34c85f-6ce3-4885-bd91-ee9b94b01f02",
+      "net": "MISO_AFE",
+      "kind": "vias",
+      "xy": [
+        26.1,
+        51.4
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.E2 POFV (escape failed)"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "AFE_BG U6",
+      "net": "AFE_BG",
+      "attempt": 3,
+      "approach": "R2-17d corridor-constrained escape from J8-notched POFV (#04 topology), 60 s budget, margin 6 mm (D2, layers (10, 0))",
+      "bounds": [
+        19.975,
+        44.265445,
+        34.506215999999995,
+        57.125
+      ],
+      "gap_mm": 2.3908393264050107,
+      "status": "failed",
+      "reason": "no path (expanded 59272 cells)"
+    },
+    {
+      "connection": "PD2_INP U6",
+      "net": "PD2_INP",
+      "attempt": 3,
+      "approach": "R2-17d corridor-constrained escape from J8-notched POFV (#04 topology), 60 s budget, margin 6 mm (B2, layers (0, 2, 6, 8))",
+      "bounds": [
+        7.243149000000001,
+        44.075,
+        32.225,
+        62.805558
+      ],
+      "gap_mm": 14.329497441769252,
+      "status": "failed",
+      "reason": "no path (expanded 91 cells)"
+    },
+    {
+      "connection": "MISO_AFE U6",
+      "net": "MISO_AFE",
+      "attempt": 3,
+      "approach": "R2-17d corridor-constrained escape from J8-notched POFV (#04 topology), 60 s budget, margin 6 mm (E2, layers (0, 2, 6, 8))",
+      "bounds": [
+        19.975,
+        43.196869,
+        48.0,
+        57.525
+      ],
+      "gap_mm": 18.483336560992566,
+      "status": "failed",
+      "reason": "no path (expanded 4454 cells)"
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "59e0c3a0-b594-4ed3-a6c2-65fc439a2d11",
+    "1dc65617-cb2f-4725-b48a-2b9117fea437",
+    "8d34c85f-6ce3-4885-bd91-ee9b94b01f02"
+  ],
+  "dangling_repair": []
+}
