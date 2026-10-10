@@ -1,0 +1,927 @@
+{
+  "batch": "R2-44",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_222431_R2-44_keepout_cleanup",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "3d336550-25a7-48fc-a140-8072064bd2d7",
+      "net": "MX_ECG_INM",
+      "kind": "vias",
+      "xy": [
+        19.04782,
+        41.747101
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "6cb63af7-f60b-4433-bec4-ce437e0fc722",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        22.477917,
+        34.17879
+      ],
+      "b": [
+        22.477917,
+        25.407471
+      ],
+      "width": 0.101702,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "e19adc37-f159-4d65-a802-10c8a94cfd3a",
+      "net": "TMP117_ALERT",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        14.981988,
+        24.072597
+      ],
+      "b": [
+        14.981988,
+        29.460049
+      ],
+      "width": 0.101702,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "480037d8-4ae9-4c65-b9df-88d147d609f4",
+      "net": "SN_SURGE",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        22.716491,
+        34.650177
+      ],
+      "b": [
+        22.716491,
+        19.31525
+      ],
+      "width": 0.101702,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "b83983b2-a953-4545-b256-be390ba0b0b3",
+      "net": "CHG_PG",
+      "kind": "vias",
+      "xy": [
+        31.904733,
+        26.475733
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "2b7a091f-8ae0-4580-ad67-ec0be1b81e4c",
+      "net": "I2C_SCL_1V8",
+      "kind": "vias",
+      "xy": [
+        23.063453,
+        62.246811
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "dc11b3e9-a78a-4c34-8e7b-4fe42b6f4b23",
+      "net": "CS_ADS1292",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        7.062489,
+        30.9073
+      ],
+      "b": [
+        0.418531,
+        24.263341
+      ],
+      "width": 0.101702,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "4f0249ab-52b6-40da-b6f4-b5e5f661fcbe",
+      "net": "BIOZ_FP_PAD",
+      "kind": "vias",
+      "xy": [
+        4.784682,
+        63.807125
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "1153ca67-9773-4741-8d84-e18e11868bcc",
+      "net": "SPI_MOSI",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        24.914875,
+        22.893904
+      ],
+      "b": [
+        24.914875,
+        29.843951
+      ],
+      "width": 0.101702,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "df1ac60a-367e-4e96-904a-5642aa353926",
+      "net": "RE_SURGE",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        16.471035,
+        31.902549
+      ],
+      "b": [
+        16.471035,
+        24.953346
+      ],
+      "width": 0.101702,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "ee799dd3-23d8-4d1e-a289-4a1e75a95c7d",
+      "net": "J13_INP",
+      "kind": "vias",
+      "xy": [
+        38.333404,
+        49.253216
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "7bd8da92-4bc2-46c4-baad-923798b031f8",
+      "net": "J13_INM",
+      "kind": "vias",
+      "xy": [
+        29.691932,
+        63.093654
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "BIOZ_FP_PAD J7",
+      "net": "BIOZ_FP_PAD",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        0.7338310000000003,
+        58.0,
+        15.775,
+        64.5
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 12,
+      "vias": [
+        {
+          "net": "BIOZ_FP_PAD",
+          "xy": [
+            13.5,
+            60.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-9030bca2-dcd3-4c08-ab71-56ea4c780310",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "BIOZ_FP_PAD",
+          "xy": [
+            3.05,
+            61.95
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-c55466ed-5d88-49b9-92cf-b8d2485cfc92",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 37392
+    },
+    {
+      "connection": "CHG_PG R60",
+      "net": "CHG_PG",
+      "attempt": 3,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        27.127138,
+        22.424882000000025,
+        35.95558399999997,
+        33.551088
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "CHG_PG",
+          "xy": [
+            30.15,
+            29.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-6d6393b9-71b2-4286-9d27-a7186e525092",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "CHG_PG",
+          "xy": [
+            31.45,
+            23.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-e0949fce-207d-49af-92ad-4d757394f083",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 30778
+    },
+    {
+      "connection": "I2C_SCL_1V8 TP16/U12",
+      "net": "I2C_SCL_1V8",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        -2.0,
+        47.55,
+        27.114304,
+        64.5
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "I2C_SCL_1V8",
+          "xy": [
+            24.35,
+            62.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f81dfffe-5400-4385-9bcf-5d2b1d4fe98e",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 2903
+    },
+    {
+      "connection": "J13_INM J13",
+      "net": "J13_INM",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        23.925,
+        58.05,
+        33.742783,
+        64.5
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "J13_INM",
+          "xy": [
+            32.5,
+            61.55
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-1eabedba-0a32-459d-a727-1e7f03d4e5dd",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 10345
+    },
+    {
+      "connection": "J13_INP R118",
+      "net": "J13_INP",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        34.05,
+        41.125,
+        43.275,
+        53.304067
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "J13_INP",
+          "xy": [
+            36.8,
+            49.45
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f694e818-3aaa-46e2-ba6b-74c82f9bb818",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "J13_INP",
+          "xy": [
+            37.35,
+            50.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ef520373-f8cd-4416-9005-a34aa10fedfd",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 9073
+    },
+    {
+      "connection": "MX_ECG_INM D30",
+      "net": "MX_ECG_INM",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        14.8,
+        36.75,
+        23.1,
+        45.797952
+      ],
+      "gap_mm": 0.0,
+      "status": "failed",
+      "reason": "no path (expanded 820 cells)"
+    },
+    {
+      "connection": "MX_ECG_INM D30",
+      "net": "MX_ECG_INM",
+      "attempt": 2,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 10 mm",
+      "bounds": [
+        8.8,
+        30.75,
+        29.1,
+        51.797952
+      ],
+      "gap_mm": 0.0,
+      "status": "failed",
+      "reason": "no path (expanded 820 cells)"
+    },
+    {
+      "connection": "TMP117_ALERT U1",
+      "net": "TMP117_ALERT",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        1.0,
+        -3.85,
+        22.059355,
+        33.409198
+      ],
+      "gap_mm": 5.28575,
+      "status": "routed",
+      "tracks": 9,
+      "vias": [
+        {
+          "net": "TMP117_ALERT",
+          "xy": [
+            15.4,
+            24.9
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-842e5e8d-bcde-465e-9d74-4ef5349f1b0b",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "TMP117_ALERT",
+          "xy": [
+            13.2,
+            23.9
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-9b2ce1b6-0c94-40d5-96f3-cacd12a9944a",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "TMP117_ALERT",
+          "xy": [
+            12.75,
+            27.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-fc1bd29c-633d-4330-a2ff-bd836e4b7764",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 112755
+    },
+    {
+      "connection": "RE_SURGE R78",
+      "net": "RE_SURGE",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        11.325,
+        21.004197,
+        22.675,
+        37.6875
+      ],
+      "gap_mm": 6.698152,
+      "status": "failed",
+      "reason": "no path (expanded 118099 cells)"
+    },
+    {
+      "connection": "RE_SURGE R78",
+      "net": "RE_SURGE",
+      "attempt": 2,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 10 mm",
+      "bounds": [
+        5.324999999999999,
+        15.004197000000001,
+        28.675,
+        43.6875
+      ],
+      "gap_mm": 6.698152,
+      "status": "routed",
+      "tracks": 11,
+      "vias": [
+        {
+          "net": "RE_SURGE",
+          "xy": [
+            12.25,
+            27.85
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-4ae417b0-84da-44ef-8518-aa157b7dbcfe",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "RE_SURGE",
+          "xy": [
+            9.3,
+            23.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-30659923-6ab2-43a9-ba69-d7a5966c1e96",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 193529
+    },
+    {
+      "connection": "SPI_MOSI U18/U22/U6",
+      "net": "SPI_MOSI",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        20.558985999999997,
+        18.944755,
+        35.33591,
+        55.925
+      ],
+      "gap_mm": 6.848344999999998,
+      "status": "routed",
+      "tracks": 10,
+      "vias": [
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            25.03591,
+            29.730775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-51c86f19-542d-42d3-9668-9d4e92044cd4",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            27.23591,
+            23.180775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-c5bc6ecc-6147-47c9-9d46-ff645a0f8938",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 226090
+    },
+    {
+      "connection": "ESP_RX R73/U1",
+      "net": "ESP_RX",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        11.87629,
+        -6.4,
+        26.528768,
+        38.12794552059621
+      ],
+      "gap_mm": 8.669623558840968,
+      "status": "failed",
+      "reason": "no path (expanded 606039 cells)"
+    },
+    {
+      "connection": "ESP_RX R73/U1",
+      "net": "ESP_RX",
+      "attempt": 2,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 10 mm",
+      "bounds": [
+        5.876289999999999,
+        -10.5,
+        32.528768,
+        44.12794552059621
+      ],
+      "gap_mm": 8.669623558840968,
+      "status": "routed",
+      "tracks": 13,
+      "vias": [
+        {
+          "net": "ESP_RX",
+          "xy": [
+            19.45,
+            22.05
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ecf9cbd3-75e7-473d-861b-4b236512f1e9",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_RX",
+          "xy": [
+            11.55,
+            23.25
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-5e9d29a0-4c6a-4fe4-bffb-ef5fd442e124",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_RX",
+          "xy": [
+            7.8,
+            29.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-094c3722-561c-4d86-994d-7b6c7c1190f8",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 443172
+    },
+    {
+      "connection": "CS_ADS1292 R98",
+      "net": "CS_ADS1292",
+      "attempt": 3,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        -2.0,
+        20.29929808693012,
+        13.984513999999999,
+        49.664369
+      ],
+      "gap_mm": 9.29427421854403,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "CS_ADS1292",
+          "xy": [
+            0.85,
+            24.7
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-43d48f3e-791f-44e9-b93b-f6d138a02574",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 55988
+    },
+    {
+      "connection": "SN_SURGE R83",
+      "net": "SN_SURGE",
+      "attempt": 1,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        17.775,
+        15.366100999999997,
+        29.125,
+        40.45
+      ],
+      "gap_mm": 15.083876,
+      "status": "failed",
+      "reason": "no path (expanded 128312 cells)"
+    },
+    {
+      "connection": "SN_SURGE R83",
+      "net": "SN_SURGE",
+      "attempt": 2,
+      "approach": "R2-44 keepout cleanup: rip copper inside rule areas, re-route around them, margin 10 mm",
+      "bounds": [
+        11.774999999999999,
+        9.366100999999997,
+        35.125,
+        46.45
+      ],
+      "gap_mm": 15.083876,
+      "status": "routed",
+      "tracks": 10,
+      "vias": [
+        {
+          "net": "SN_SURGE",
+          "xy": [
+            28.85,
+            18.15
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-c4a7b84b-7273-4ce2-92d5-fb5b64b78b2c",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "SN_SURGE",
+          "xy": [
+            22.55,
+            19.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-d69d0693-14af-4829-8ca7-6d09b94d8591",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 321835
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "3d336550-25a7-48fc-a140-8072064bd2d7",
+    "6cb63af7-f60b-4433-bec4-ce437e0fc722",
+    "e19adc37-f159-4d65-a802-10c8a94cfd3a",
+    "480037d8-4ae9-4c65-b9df-88d147d609f4",
+    "b83983b2-a953-4545-b256-be390ba0b0b3",
+    "2b7a091f-8ae0-4580-ad67-ec0be1b81e4c",
+    "dc11b3e9-a78a-4c34-8e7b-4fe42b6f4b23",
+    "4f0249ab-52b6-40da-b6f4-b5e5f661fcbe",
+    "1153ca67-9773-4741-8d84-e18e11868bcc",
+    "df1ac60a-367e-4e96-904a-5642aa353926",
+    "ee799dd3-23d8-4d1e-a289-4a1e75a95c7d",
+    "7bd8da92-4bc2-46c4-baad-923798b031f8"
+  ]
+}
