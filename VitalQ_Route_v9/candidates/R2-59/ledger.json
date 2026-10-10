@@ -1,0 +1,112 @@
+{
+  "batch": "R2-59",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_232015_R2-59_dangling_delete",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "8774e07c-2e73-46b3-a10f-d04dc6c1aa29",
+      "net": "USB_DM",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        10.466331,
+        13.729449
+      ],
+      "b": [
+        10.421234,
+        13.73842
+      ],
+      "width": 0.129007,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    },
+    {
+      "uuid": "5c12b63f-4a06-40ea-95fa-e6f9bfc6e236",
+      "net": "USB_DM",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        13.04715,
+        13.52841
+      ],
+      "b": [
+        13.008919,
+        13.553955
+      ],
+      "width": 0.129007,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    },
+    {
+      "uuid": "57a0a733-1a94-4320-b540-e427490a1559",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "28263f3c-aa33-4a73-9b59-a132d712c2df",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "4509728c-fc8b-40a6-b28e-b7948f2c100b",
+      "reason": "in-batch dangling repair"
+    }
+  ],
+  "routes": [],
+  "issues": [
+    "new dangling items remain after in-batch repair"
+  ],
+  "late_remove": [
+    "8774e07c-2e73-46b3-a10f-d04dc6c1aa29",
+    "5c12b63f-4a06-40ea-95fa-e6f9bfc6e236"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "57a0a733-1a94-4320-b540-e427490a1559",
+          "net": "USB_DM",
+          "action": "removed dangling track",
+          "a": [
+            13.605997,
+            12.969564
+          ],
+          "b": [
+            13.04715,
+            13.52841
+          ]
+        },
+        {
+          "uuid": "28263f3c-aa33-4a73-9b59-a132d712c2df",
+          "net": "USB_DM",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            17.914706,
+            12.969564
+          ]
+        },
+        {
+          "uuid": "4509728c-fc8b-40a6-b28e-b7948f2c100b",
+          "net": "USB_DM",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            7.92332,
+            13.73842
+          ]
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "items": [
+        {
+          "uuid": "fba35c1b-1f7f-4b86-ac7c-5a94e9987231",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        },
+        {
+          "uuid": "0d979b1d-f18e-4c2e-a96b-52ede79421d1",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        }
+      ]
+    }
+  ]
+}
