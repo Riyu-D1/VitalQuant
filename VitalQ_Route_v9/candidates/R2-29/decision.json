@@ -1,0 +1,86 @@
+{
+  "id": "R2-29",
+  "accepted": false,
+  "before": {
+    "unconnected": 20,
+    "real": 233,
+    "total": 319,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 22,
+      "clearance": 9,
+      "track_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "candidate": {
+    "unconnected": 22,
+    "real": 229,
+    "total": 315,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 201,
+      "hole_clearance": 13,
+      "clearance": 9,
+      "npth_inside_courtyard": 1,
+      "track_dangling": 5,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "current": {
+    "unconnected": 20,
+    "real": 233,
+    "total": 319,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 22,
+      "clearance": 9,
+      "track_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "new_native_faults": [
+    [
+      "npth_inside_courtyard",
+      [
+        "7fa23a34-1289-421c-9768-9f1e828523c6",
+        "f6f76075-9769-4d15-bbdf-8817864f2366"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "53e287c4-7c36-45bc-9abf-2a66de5c6879"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "c9682b8e-0f1e-4374-9c48-43e0475ebb0a"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "c9f7c3f4-78c5-44ec-a64d-c05ddfdecc9f"
+      ]
+    ]
+  ],
+  "audit_pass": false,
+  "streak": 9,
+  "notes": "390 tracks, 94 vias added, 669 segments/vias removed; moves: U6 [25.7, 50.8]->[27.2, 50.8] rot 180.0; U18 [27.209594, 44.367033]->[26.899594, 44.367033] rot 90.0; unrouted: +1V8 U22, +1V8 U22#2, +3V3 U20, AFE_CLK U6, ESP_RX J8, ESP_TX J8, I2C_SCL U19, LED2_K U22, MISO_AFE U6, NIR_K D12, PD2_INM U6, PD_A U22"
+}
