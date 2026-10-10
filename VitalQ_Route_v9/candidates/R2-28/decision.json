@@ -1,0 +1,175 @@
+{
+  "id": "R2-28",
+  "accepted": false,
+  "before": {
+    "unconnected": 20,
+    "real": 233,
+    "total": 319,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 22,
+      "clearance": 9,
+      "track_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "candidate": {
+    "unconnected": 21,
+    "real": 241,
+    "total": 329,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 201,
+      "shorting_items": 3,
+      "hole_clearance": 16,
+      "clearance": 10,
+      "npth_inside_courtyard": 1,
+      "courtyards_overlap": 1,
+      "solder_mask_bridge": 5,
+      "track_dangling": 4,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1,
+      "silk_overlap": 2
+    }
+  },
+  "current": {
+    "unconnected": 20,
+    "real": 233,
+    "total": 319,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 22,
+      "clearance": 9,
+      "track_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "new_native_faults": [
+    [
+      "clearance",
+      [
+        "a224727f-118c-45d8-b0f9-b37d107054e1",
+        "aa4b7994-44d9-4246-9e52-a50f32fae48c"
+      ]
+    ],
+    [
+      "courtyards_overlap",
+      [
+        "8e841e2a-eedb-4409-a77d-7c10d3dd444c",
+        "bbed7cc2-138a-4ad4-8164-f4f2e79c8489"
+      ]
+    ],
+    [
+      "hole_clearance",
+      [
+        "01743c1b-a284-4eef-b4f7-c7d5a8a7d281",
+        "7fa23a34-1289-421c-9768-9f1e828523c6"
+      ]
+    ],
+    [
+      "hole_clearance",
+      [
+        "7c4f3549-413d-4770-b78c-35c1c34393a0",
+        "7fa23a34-1289-421c-9768-9f1e828523c6"
+      ]
+    ],
+    [
+      "hole_clearance",
+      [
+        "7fa23a34-1289-421c-9768-9f1e828523c6",
+        "8cf6093f-1d75-48ad-a38f-43bf0852e57c"
+      ]
+    ],
+    [
+      "npth_inside_courtyard",
+      [
+        "7fa23a34-1289-421c-9768-9f1e828523c6",
+        "f6f76075-9769-4d15-bbdf-8817864f2366"
+      ]
+    ],
+    [
+      "shorting_items",
+      [
+        "31ff4138-5a12-45dd-a797-99791e87a697",
+        "7a8ebecd-33a0-496b-ac9e-22f07d73a76f"
+      ]
+    ],
+    [
+      "shorting_items",
+      [
+        "31ff4138-5a12-45dd-a797-99791e87a697",
+        "c37e92bc-e9f9-4f36-94eb-66d809041824"
+      ]
+    ],
+    [
+      "shorting_items",
+      [
+        "aa4b7994-44d9-4246-9e52-a50f32fae48c",
+        "b8d00315-abe8-438a-b816-0ebbab6b61f6"
+      ]
+    ],
+    [
+      "solder_mask_bridge",
+      [
+        "01743c1b-a284-4eef-b4f7-c7d5a8a7d281",
+        "7fa23a34-1289-421c-9768-9f1e828523c6"
+      ]
+    ],
+    [
+      "solder_mask_bridge",
+      [
+        "31ff4138-5a12-45dd-a797-99791e87a697",
+        "7a8ebecd-33a0-496b-ac9e-22f07d73a76f"
+      ]
+    ],
+    [
+      "solder_mask_bridge",
+      [
+        "31ff4138-5a12-45dd-a797-99791e87a697",
+        "c37e92bc-e9f9-4f36-94eb-66d809041824"
+      ]
+    ],
+    [
+      "solder_mask_bridge",
+      [
+        "7fa23a34-1289-421c-9768-9f1e828523c6",
+        "8cf6093f-1d75-48ad-a38f-43bf0852e57c"
+      ]
+    ],
+    [
+      "solder_mask_bridge",
+      [
+        "aa4b7994-44d9-4246-9e52-a50f32fae48c",
+        "b8d00315-abe8-438a-b816-0ebbab6b61f6"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "561dfa85-9798-40df-ab75-1e5e7950aa5f"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "c9682b8e-0f1e-4374-9c48-43e0475ebb0a"
+      ]
+    ]
+  ],
+  "audit_pass": false,
+  "streak": 8,
+  "notes": "428 tracks, 99 vias added, 694 segments/vias removed; moves: U6 [25.7, 50.8]->[28.2, 50.8] rot 180.0; C15 [29.255559, 50.041869]->[31.755559, 50.041869] rot 0.0; C79 [31.59474, 50.920775]->[34.09474, 50.920775] rot 0.0; U18 [27.209594, 44.367033]->[26.899594, 44.367033] rot 90.0; unrouted: +3V3 U20, AFE4900_RESETZ U6, AFE_CLK U6, ESP_RX J8, ESP_TX J8, LED2_K U22, MISO_AFE U6, MX_SDO_1V8 U22, PD2_INM U6, SPI_MOSI U6, TX_5V U22"
+}
