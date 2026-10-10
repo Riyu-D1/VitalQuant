@@ -1,0 +1,98 @@
+{
+  "id": "R2-23",
+  "accepted": false,
+  "before": {
+    "unconnected": 20,
+    "real": 233,
+    "total": 319,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 22,
+      "clearance": 9,
+      "track_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "candidate": {
+    "unconnected": 27,
+    "real": 231,
+    "total": 317,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 201,
+      "clearance": 10,
+      "hole_clearance": 13,
+      "track_dangling": 3,
+      "via_dangling": 4,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "current": {
+    "unconnected": 20,
+    "real": 233,
+    "total": 319,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 22,
+      "clearance": 9,
+      "track_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "new_native_faults": [
+    [
+      "clearance",
+      [
+        "67d7002a-a3e9-4ff1-8de9-ee1731a4db32",
+        "faee1c97-2f3f-4761-8ed6-770e50d47002"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "c9682b8e-0f1e-4374-9c48-43e0475ebb0a"
+      ]
+    ],
+    [
+      "via_dangling",
+      [
+        "33e118ca-f058-47e6-8486-3c26e3fe2a02"
+      ]
+    ],
+    [
+      "via_dangling",
+      [
+        "7c47dcd4-744e-4370-bb50-7b0759c42b73"
+      ]
+    ],
+    [
+      "via_dangling",
+      [
+        "93d333fd-875a-451f-8175-8335a4ed34f0"
+      ]
+    ],
+    [
+      "via_dangling",
+      [
+        "ffd719d0-b3d6-401d-b8cc-d0479bdcd264"
+      ]
+    ]
+  ],
+  "audit_pass": false,
+  "streak": 5,
+  "notes": "271 tracks, 55 vias added, 536 segments/vias removed; moves: none; unrouted: AFE4900_RESETZ U6, AFE_CLK U6, AFE_INP U6, AFE_P_PAD J5, BIOZ_SN_PAD R83, CS_FLASH U18, ESP_RX J8, ESP_TX J8, MISO_AFE U6, MISO_FL U18, MX_SDO_1V8 U22, MX_VREF U22, PD2_INM U6, PD_A U22, PD_K U22, TX4 U6"
+}
