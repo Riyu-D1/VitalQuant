@@ -1,0 +1,933 @@
+{
+  "batch": "R2-61",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_232604_R2-61_R90_MISO_AFE",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "7f437959-07f4-4cd2-8940-4d796a45032b",
+      "net": "SPI_MOSI",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        27.63591,
+        51.680775
+      ],
+      "b": [
+        27.93591,
+        51.380775
+      ],
+      "width": 0.1016,
+      "reason": "R2-61 R90.1 POFV after local In2 rip; MISO_AFE on In3: blocks the U6.E2 POFV site"
+    },
+    {
+      "uuid": "c4bd5448-e673-4e51-a6a2-3582dbe097bf",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "9390e4e0-85ef-4004-9e97-768aee564b11",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "a853968b-0ed9-4abe-9f35-ac68f2513657",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "7058fd81-f00d-40b1-90bd-2618491e3350",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "c24d4d19-4ada-4e60-a598-b63f31f0b8f3",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "c0cad4e1-a0ad-4db5-8394-b7c59f003a6d",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "f77ade88-302f-4235-9b2e-a608e534bae1",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "29b4a4e3-503a-42b0-9f30-6e0de278e829",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "dd29b952-e149-4d10-8078-1ffaa526a4d8",
+      "reason": "in-batch dangling repair"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "MISO_AFE R2-61",
+      "net": "MISO_AFE",
+      "attempt": 1,
+      "approach": "R2-61 R90.1 POFV after local In2 rip; MISO_AFE on In3, margin 10 mm",
+      "bounds": [
+        17.7236470637456,
+        38.791869,
+        48.0,
+        61.38165869069308
+      ],
+      "gap_mm": 16.9948023011431,
+      "status": "failed",
+      "reason": "no path (expanded 413 cells)"
+    },
+    {
+      "connection": "SPI_MOSI U6",
+      "net": "SPI_MOSI",
+      "attempt": 1,
+      "approach": "R2-61 R90.1 POFV after local In2 rip; MISO_AFE on In3 (ripped In2), margin 5 mm",
+      "bounds": [
+        22.475,
+        46.420527931474346,
+        32.90428177780532,
+        56.925
+      ],
+      "gap_mm": 0.3614123726159037,
+      "status": "routed",
+      "tracks": 6,
+      "vias": [
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            25.33591,
+            48.880775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ff4a47bf-9a73-4db1-8c34-3a2ff63a780e",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 5494
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "7f437959-07f4-4cd2-8940-4d796a45032b"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "c4bd5448-e673-4e51-a6a2-3582dbe097bf",
+          "net": "SPI_MOSI",
+          "action": "removed dangling track",
+          "a": [
+            27.93591,
+            51.380775
+          ],
+          "b": [
+            28.33591,
+            51.230775
+          ]
+        },
+        {
+          "uuid": "9390e4e0-85ef-4004-9e97-768aee564b11",
+          "net": "SPI_MOSI",
+          "action": "removed dangling track",
+          "a": [
+            28.33591,
+            51.230775
+          ],
+          "b": [
+            29.68591,
+            50.830775
+          ]
+        },
+        {
+          "uuid": "a853968b-0ed9-4abe-9f35-ac68f2513657",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-600a01bc-4faf-49ae-a61c-bd4a1aeef4db",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-951756b9-d996-4163-a6bb-af385ef6b87b",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-ed991fef-3024-4ddf-94e1-2b451d795ed5",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-3574cf48-665f-456d-aca1-d4a81807079d",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-928895f3-8f81-41fd-a4ce-f79875911d9e",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-76c75d5f-2090-40a9-a202-5c9b4c76dda7",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-6c766223-fa1d-4eaa-834f-7bd0db9ce568",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-d46c0265-32c4-49e8-b6d4-80ea1da33454",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-10610af3-8bc3-4f99-8056-8d99db3e6bdf",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-fedfde13-be59-4402-907f-48a88a6c4a23",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-c5144ae8-aaa6-4dd2-9e12-9637b3226eda",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-2c723585-7d97-4e02-b18b-289727c0cfb4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-bba76d35-a3c8-4bd0-91e5-e910ebbde89c",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-5b2d1e73-2f2a-430a-8691-247c96db79c7",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-114a041c-2b53-438b-9dd6-d436f1bd21f7",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-c2c141b1-7020-4998-872f-39a34c5dff9c",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-07184bb3-182f-48f1-976f-81b5972a13ca",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-e6d85b83-98c9-4f0a-9a64-4a1d6a7ae1f5",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-fb7584de-fa25-4246-a606-23f0fd925a67",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-6755f868-1554-4483-97dc-4a8c8e9584c3",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-0f9f7109-c628-4f7b-85d7-08556962eafb",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-17aa93ec-b61d-4605-b5fa-8f9d79248407",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-9a1c9bf2-85fc-471b-95be-08a736f67e8f",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-beb9bb16-bf6f-4381-9f27-62835f5c16a9",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-1a0261c1-a8e3-453c-a142-b6300e20475b",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-30219af3-38f6-4978-97cb-e046bbc22b8e",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-19a791d8-3d82-4368-b441-b08f29e04a4c",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-1eb2eb8b-78c2-42a2-bed8-9cb0a41ed2b0",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-9d2dc472-92d3-435d-ae82-84dd5c427369",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-972230ac-5199-42ce-b888-d89acfabefd4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-df20ea8f-8bda-4f3a-b2a4-5f0f58e83aa5",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-a24cc8ee-58b2-4703-aff8-144a25d11109",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-3e2ba579-01d7-4ab9-a390-1a9279ce06cb",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-177536d2-2785-46d8-998d-a4e978ada569",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-d9e70d84-0f0f-4f8b-b7f4-c82e71dff7b5",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-2f86d1bd-129e-442c-867c-698a4bb95622",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-8c9347de-f56f-4ac1-a4a6-3e1de1dd04d1",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "new-e943d156-de03-4cb2-b142-84316816e5a0",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "action": "ABORT: cascade exceeded 40 removals; repair stopped (needs manual review)"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "items": [
+        {
+          "uuid": "7058fd81-f00d-40b1-90bd-2618491e3350",
+          "net": "SPI_MOSI",
+          "action": "removed dangling via",
+          "xy": [
+            29.68591,
+            50.830775
+          ]
+        },
+        {
+          "uuid": "c24d4d19-4ada-4e60-a598-b63f31f0b8f3",
+          "net": "SPI_MOSI",
+          "action": "removed dangling track",
+          "a": [
+            29.68591,
+            50.830775
+          ],
+          "b": [
+            30.13591,
+            50.380775
+          ]
+        },
+        {
+          "uuid": "c0cad4e1-a0ad-4db5-8394-b7c59f003a6d",
+          "net": "SPI_MOSI",
+          "action": "removed dangling track",
+          "a": [
+            30.18591,
+            50.380775
+          ],
+          "b": [
+            31.13591,
+            49.380775
+          ]
+        },
+        {
+          "uuid": "f77ade88-302f-4235-9b2e-a608e534bae1",
+          "net": "MISO_AFE",
+          "action": "removed dangling via",
+          "xy": [
+            27.6,
+            51.4
+          ]
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "items": [
+        {
+          "uuid": "29b4a4e3-503a-42b0-9f30-6e0de278e829",
+          "net": "SPI_MOSI",
+          "action": "removed dangling via",
+          "xy": [
+            31.13591,
+            49.380775
+          ]
+        },
+        {
+          "uuid": "dd29b952-e149-4d10-8078-1ffaa526a4d8",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-0cafe323-ae3e-48ad-a577-348b01e5f412",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-e248075d-8c53-4876-aa39-6563e4ceb7a5",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-8c7e3dcb-8ff8-46b4-a902-1eaa497268c7",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-af9c454d-a5cd-42ef-ab5c-6b04ac7a5bdd",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-d82840b1-cc25-4b7d-bfbe-37b5da85f78f",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-f6e45d44-b7b6-4976-883b-c175415a9bd2",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-0f7b4a3e-4f28-4571-b48e-d8286d7f0f90",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-a8d6ed47-3747-43bb-ba94-e322b9191460",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-ec936fcf-30b2-4cc5-b634-4d6562fe0923",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-ffbb504f-709a-4b7c-ad92-b3950920dd8d",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-6073c56e-2eeb-4670-b17d-1848d8b127b4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-92ba0d00-de27-4d02-ba76-816e6111b1d4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-7d804e3f-fff6-4642-80a9-deb7af2a131c",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-945ae74e-551d-4586-87a1-928ceeef3c46",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-3d8f29b0-bd93-4b70-8e5b-9a85573ec293",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-37e8610e-9716-4107-9d4d-7dba82f00582",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-0eb31cf3-54a1-4573-9bbc-2e460d52f4f0",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-cd72cff2-c4ab-4c9a-8ffe-102e2cb37810",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-a239b066-3d1f-434f-8f83-0927be7a8865",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-a192d7fe-e66e-41c2-b4a1-321e2562784c",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-7c6f15e0-20ff-4005-831b-ca4bb2e33c9d",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-cbcbd9f8-470e-4cfd-87e8-136832044d8b",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-138b5807-21b1-4e93-8d7e-86375a448604",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-af619ba4-e5a3-4f58-8b3d-8238bb55a5f6",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-4c59461a-468e-4fe8-9a22-bce9df37d009",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-e79df23a-733d-43c3-bfbc-b0b99fa68e8d",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-9b4d00ed-942e-4c98-b6be-66ddbc8dc570",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-bd6f7d59-4dc1-44f2-a061-2fbdb0a11fb7",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-429e255a-0558-4cb8-9893-1b7350f03d01",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-9aab3920-4829-4f66-aadc-4cd4ec150b34",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-13cdd405-962b-48ff-8d5f-a2fdc979d2b7",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-45505e1c-239a-4c6d-9141-f27d840f4d5f",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-45125697-5dc1-4d4a-8a82-47ba0bc7c0e3",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-e438f86a-8d51-4d07-9245-633db81e3a3a",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-e8f974c9-7784-4a1b-973a-d96213d0e5b4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-ca53841b-1ef9-4dc6-a868-267a2a67c8a4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-d9401961-49fe-4061-b6cc-1c6788ee87a4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-40f391a5-0e88-419c-822f-fa518644fda4",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "uuid": "new-e14e14b0-f520-4116-beab-9d20f4db000d",
+          "net": "SPI_MOSI",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.13591,
+            46.480775
+          ]
+        },
+        {
+          "action": "ABORT: cascade exceeded 40 removals; repair stopped (needs manual review)"
+        }
+      ]
+    }
+  ]
+}
