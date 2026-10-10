@@ -1,0 +1,836 @@
+{
+  "batch": "R2-41",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_221736_R2-41_hole_clearance_cleanup",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "eede82ef-fc14-4144-9e9b-0c36019f7d79",
+      "net": "ESP_EN",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        13.746507,
+        7.905127
+      ],
+      "b": [
+        10.879066,
+        10.772568
+      ],
+      "width": 0.101702,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "33b55bcc-b102-4fe4-a980-95eca58caf6a",
+      "net": "CS_AD5940",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        21.979037,
+        8.882695
+      ],
+      "b": [
+        25.002129,
+        8.882695
+      ],
+      "width": 0.101702,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "475add0d-8646-4984-90f7-bce122c8a34a",
+      "net": "USB_DM",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        12.963822,
+        13.562926
+      ],
+      "b": [
+        10.64554,
+        13.562926
+      ],
+      "width": 0.129007,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "01ebcbe7-ab10-4015-bc61-34976b7381f0",
+      "net": "CS_FLASH",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        10.039171,
+        8.28234
+      ],
+      "b": [
+        14.340707,
+        12.583877
+      ],
+      "width": 0.101702,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "839d6bef-e121-4c9e-8f99-e1f49205f5b9",
+      "net": "CHG_DIS",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        22.536757,
+        11.282176
+      ],
+      "b": [
+        22.536757,
+        8.62721
+      ],
+      "width": 0.101702,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "d71e3eaf-5169-4811-806c-de43def3a8d5",
+      "net": "VBUS",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        28.311616,
+        -5.085691
+      ],
+      "b": [
+        28.311616,
+        -4.709998
+      ],
+      "width": 0.197427,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "49f1c81a-190f-41c2-9100-afb79b951269",
+      "net": "RTC_VBK",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        35.646217,
+        29.125869
+      ],
+      "b": [
+        38.692224,
+        29.125869
+      ],
+      "width": 0.101702,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "e7f1aab7-5491-477f-b5b5-f31bc4526b0c",
+      "net": "+1V8",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        36.436004,
+        30.80639
+      ],
+      "b": [
+        36.436004,
+        27.723377
+      ],
+      "width": 0.106787,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "d127ae1e-468c-42eb-9d32-b0bbc7fae3b5",
+      "net": "VBUS",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        27.500982,
+        -5.896325
+      ],
+      "b": [
+        28.311616,
+        -5.085691
+      ],
+      "width": 0.197427,
+      "reason": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules"
+    },
+    {
+      "uuid": "7f196723-f4d5-4fa9-aa01-4845717a7f6f",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "78ccffdb-16e4-40d5-bb2e-081c6ae36318",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "6cb3b3f7-2232-4d49-b215-f6a33dc1b7a0",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "d377022e-8f72-4838-8277-af0dc1bca837",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "d0558ac6-bb28-4052-b69c-8192157637df",
+      "reason": "in-batch dangling repair"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "CS_AD5940 U7",
+      "net": "CS_AD5940",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        19.48591,
+        4.879975,
+        40.71091,
+        14.405775
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 1824
+    },
+    {
+      "connection": "USB_DM R105/U21",
+      "net": "USB_DM",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        -0.21948800000000013,
+        8.537806,
+        28.59322,
+        25.9810345
+      ],
+      "gap_mm": 0.7150605130547342,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "USB_DM",
+          "xy": [
+            9.6,
+            12.05
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-068ad795-5fce-42d3-a96b-103092560fef",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 43482
+    },
+    {
+      "connection": "VBUS J1",
+      "net": "VBUS",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        19.25,
+        -10.096525,
+        32.25647731362067,
+        0.9700000000000002
+      ],
+      "gap_mm": 1.1379394301189174,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 3571
+    },
+    {
+      "connection": "CHG_DIS Q2",
+      "net": "CHG_DIS",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        18.485906,
+        -3.48291,
+        29.160255,
+        15.231325000000293
+      ],
+      "gap_mm": 2.5532640000002993,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 668
+    },
+    {
+      "connection": "CS_AD5940 U1",
+      "net": "CS_AD5940",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        3.4092080000000005,
+        -0.03619500000000064,
+        27.635171190824778,
+        12.933546
+      ],
+      "gap_mm": 1.6059227006661339,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "CS_AD5940",
+          "xy": [
+            21.08591,
+            8.180775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-8856a13b-c6b0-4a76-871b-8bdfdfe65ed1",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 4519
+    },
+    {
+      "connection": "RTC_VBK R115",
+      "net": "RTC_VBK",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        31.697068,
+        25.075018000000004,
+        48.0,
+        37.833908
+      ],
+      "gap_mm": 2.944305,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 917
+    },
+    {
+      "connection": "+1V8 R21/R97/U9",
+      "net": "+1V8",
+      "attempt": 3,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        29.316729000000002,
+        16.415619,
+        42.49467,
+        34.7529965
+      ],
+      "gap_mm": 2.976226000000004,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 7168
+    },
+    {
+      "connection": "ESP_EN U1",
+      "net": "ESP_EN",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        9.695656,
+        -10.5,
+        23.8,
+        14.519667913069878
+      ],
+      "gap_mm": 3.646668218642764,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "ESP_EN",
+          "xy": [
+            13.35,
+            7.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-45624244-7343-4db6-aa70-7a2122da2f99",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 17774
+    },
+    {
+      "connection": "CS_FLASH U1",
+      "net": "CS_FLASH",
+      "attempt": 1,
+      "approach": "R2-41 hole_clearance cleanup: rip offending track, re-route with JLC 0.2 mm hole rules, margin 4 mm",
+      "bounds": [
+        5.235227,
+        2.0999999999999996,
+        18.304749913069884,
+        16.547919913069883
+      ],
+      "gap_mm": 5.981589257342934,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 2616
+    }
+  ],
+  "issues": [
+    "new dangling items remain after in-batch repair"
+  ],
+  "late_remove": [
+    "eede82ef-fc14-4144-9e9b-0c36019f7d79",
+    "33b55bcc-b102-4fe4-a980-95eca58caf6a",
+    "475add0d-8646-4984-90f7-bce122c8a34a",
+    "01ebcbe7-ab10-4015-bc61-34976b7381f0",
+    "839d6bef-e121-4c9e-8f99-e1f49205f5b9",
+    "d71e3eaf-5169-4811-806c-de43def3a8d5",
+    "49f1c81a-190f-41c2-9100-afb79b951269",
+    "e7f1aab7-5491-477f-b5b5-f31bc4526b0c",
+    "d127ae1e-468c-42eb-9d32-b0bbc7fae3b5"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "7f196723-f4d5-4fa9-aa01-4845717a7f6f",
+          "net": "USB_DM",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            10.504562,
+            13.703904
+          ]
+        },
+        {
+          "uuid": "70001e43-6e05-4c52-9249-bd2163a32dc8",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        },
+        {
+          "uuid": "78ccffdb-16e4-40d5-bb2e-081c6ae36318",
+          "net": "CS_AD5940",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            21.284548,
+            8.188206
+          ]
+        },
+        {
+          "uuid": "6cb3b3f7-2232-4d49-b215-f6a33dc1b7a0",
+          "net": "CS_AD5940",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            21.08591,
+            8.188206
+          ]
+        },
+        {
+          "uuid": "d377022e-8f72-4838-8277-af0dc1bca837",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-74bc38f1-cf83-496e-9762-9aa4343ca5b4",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-2ce0086c-5c4f-4e93-ad38-eb474a8f88d4",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-1e9cf809-b41e-46b0-9dab-d5b56c4dfa1e",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-89eef939-247b-4648-89d0-ff588df036c8",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-dadc668e-bf9a-4064-80e1-b3e10367ac21",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-df89708f-bc93-44c4-82e2-31745539cb59",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-98bf234b-055f-41af-b6db-84b09ecb2310",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-cdd19c72-8436-4785-917b-afae7cb3ee50",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-4dc1878e-eafc-4cbe-ad34-faeb1f1b3c30",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-45835e12-c7bc-40a9-aa66-433186e8d05b",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-d03c4e26-f612-413a-a4ca-dcc11917afa4",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-efb1d784-aeef-4ffd-9a80-fc4700065824",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-132f4ee7-0866-4c71-871a-381196ed314c",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-ccf18098-0427-4b1d-8cbf-a2b57677bde0",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-e7a1576c-d0b5-4e7a-a762-c7e2f667c64f",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-5e974913-9b8e-4184-9669-be043dff3ddb",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-65138c96-4507-443d-afbc-d179f7e4d7b6",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-35be80ff-fc9a-4e45-b00c-a44e2bad7ac0",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-c439af67-98df-4536-af49-565eef08dc03",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-9d531dde-2962-4c63-8740-758a68721bcd",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-e342acfb-2f27-4e84-8005-5997911ae7f9",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-94cd0751-4d0c-4c63-905b-be9638157092",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-e877029f-e9bd-4b2b-bfbf-1e801073ade2",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-81eceb90-4c50-4b9f-ad63-dd62ed8e5377",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-958e0e6d-a059-40b1-85e6-7a1eaf18ac69",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-b4aae07c-c962-49ea-8db9-8926d96c8fcf",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-77d8da1b-9c0d-4443-821e-d3242507e718",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-9e8f16d1-b260-4d9c-8550-50bc3ba18e49",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-473b1ecd-8c8e-4dbf-b9ca-2eb3b5ef9078",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-771534ad-b366-4aba-8455-fef804835634",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-03c1767d-6161-40c0-8b63-2840a8c04bde",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-249b6f54-b764-48ea-ade8-7e73b9980446",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-8706340f-52b8-4f7d-af8d-46ae86436965",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-1983fa29-8029-475a-8998-5f8f4d999b15",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-63324986-dfc1-4d51-baec-57b103e350b3",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-9f3f81d4-93b8-4c5f-a4cc-ba59bae330e8",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "uuid": "new-675cba53-e105-4e64-8cb6-d850a15a320c",
+          "net": "ESP_EN",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            13.746507,
+            7.75
+          ]
+        },
+        {
+          "action": "ABORT: cascade exceeded 40 removals; repair stopped (needs manual review)"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "items": [
+        {
+          "uuid": "d154390f-d621-4ee9-bf70-639743942034",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        },
+        {
+          "uuid": "70001e43-6e05-4c52-9249-bd2163a32dc8",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        },
+        {
+          "uuid": "d0558ac6-bb28-4052-b69c-8192157637df",
+          "net": "ESP_EN",
+          "action": "removed dangling track",
+          "a": [
+            10.879066,
+            10.772568
+          ],
+          "b": [
+            10.660446,
+            10.772568
+          ]
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "items": [
+        {
+          "uuid": "d154390f-d621-4ee9-bf70-639743942034",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        },
+        {
+          "uuid": "70001e43-6e05-4c52-9249-bd2163a32dc8",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        }
+      ]
+    }
+  ]
+}

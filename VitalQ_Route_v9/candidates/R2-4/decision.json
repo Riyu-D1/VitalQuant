@@ -1,0 +1,93 @@
+{
+  "id": "R2-4",
+  "accepted": false,
+  "before": {
+    "unconnected": 42,
+    "real": 252,
+    "total": 338,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 40,
+      "clearance": 9,
+      "track_dangling": 2,
+      "via_dangling": 1,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "candidate": {
+    "unconnected": 45,
+    "real": 257,
+    "total": 343,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 40,
+      "clearance": 9,
+      "track_dangling": 5,
+      "via_dangling": 3,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "current": {
+    "unconnected": 42,
+    "real": 252,
+    "total": 338,
+    "parity": 29,
+    "types": {
+      "items_not_allowed": 200,
+      "hole_clearance": 40,
+      "clearance": 9,
+      "track_dangling": 2,
+      "via_dangling": 1,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "new_native_faults": [
+    [
+      "track_dangling",
+      [
+        "53e287c4-7c36-45bc-9abf-2a66de5c6879"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "a2594f99-f8f5-4750-81e3-259dddbea909"
+      ]
+    ],
+    [
+      "track_dangling",
+      [
+        "e7cc92f8-b383-47d2-a178-076c1cac8bc4"
+      ]
+    ],
+    [
+      "via_dangling",
+      [
+        "17d9f4c1-21ef-4e13-a50c-25582e027eab"
+      ]
+    ],
+    [
+      "via_dangling",
+      [
+        "1b7b4345-3fe7-4a50-acbe-23b6dc3707fd"
+      ]
+    ]
+  ],
+  "audit_pass": false,
+  "streak": 1,
+  "notes": "65 tracks, 14 vias added, 186 segments/vias removed; moves: U19 [17.087664, 43.435463]->[17.087664, 44.435463] rot -90.0; C59 [15.647664, 40.509838]->[15.897664, 39.509838] rot 90.0; unrouted: AD5940_RESET U19, ADS1292_PWDN U19, AFE4900_RESETZ U19, CHG_DIS U19, I2C_SDA U19"
+}

@@ -1,0 +1,2113 @@
+{
+  "batch": "R2-40",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_220807_R2-40_inc_local_rip_In4",
+  "moves": [],
+  "removed": [],
+  "routes": [
+    {
+      "connection": "+3V3 inc2b",
+      "net": "+3V3",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) plain A*, margin 12 mm",
+      "bounds": [
+        3.337664,
+        28.15,
+        27.957664,
+        53.269838
+      ],
+      "gap_mm": 0.5598379999999992,
+      "status": "failed",
+      "reason": "no path (expanded 2373 cells)"
+    },
+    {
+      "connection": "+3V3 inc2b",
+      "net": "+3V3",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) after local blocker rip, margin 12 mm",
+      "bounds": [
+        3.337664,
+        28.15,
+        27.957664,
+        53.269838
+      ],
+      "gap_mm": 0.5598379999999992,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [],
+      "expanded": 2371
+    },
+    {
+      "connection": "RTC_VBK U24",
+      "net": "RTC_VBK",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        6.40832,
+        31.133119,
+        19.898483,
+        43.633119
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "RTC_VBK",
+          "xy": [
+            12.5,
+            36.55
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-5de9adaa-6be1-4ed6-bb82-d2fb9d7013f8",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 4271
+    },
+    {
+      "connection": "SPI_MOSI U18",
+      "net": "SPI_MOSI",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        22.554594,
+        34.2065089963085,
+        35.11887695957124,
+        46.942033
+      ],
+      "gap_mm": 0.15842031518909783,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 678
+    },
+    {
+      "connection": "AFE4900_RESETZ U19",
+      "net": "AFE4900_RESETZ",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        11.069178626712564,
+        36.185463,
+        23.387664,
+        49.398019362877456
+      ],
+      "gap_mm": 0.41570554128544335,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 82
+    },
+    {
+      "connection": "+1V8 U26",
+      "net": "+1V8",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        30.29651974487208,
+        34.898744,
+        43.290296,
+        47.47361586746195
+      ],
+      "gap_mm": 0.44029657061404515,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 122
+    },
+    {
+      "connection": "I2C_SDA U20",
+      "net": "I2C_SDA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        12.392238656304972,
+        43.05,
+        27.55,
+        59.07177703216261
+      ],
+      "gap_mm": 0.6505880089660937,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 978
+    },
+    {
+      "connection": "CS_FLASH R52",
+      "net": "CS_FLASH",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        7.875676,
+        41.37815965648331,
+        20.770907470295256,
+        54.887025
+      ],
+      "gap_mm": 0.9824625601799721,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 393
+    },
+    {
+      "connection": "RTC_INT R112",
+      "net": "RTC_INT",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        5.927934444412925,
+        39.208039105675425,
+        19.096495,
+        52.543275
+      ],
+      "gap_mm": 0.9931046133268829,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 325
+    },
+    {
+      "connection": "RTC_INT U24",
+      "net": "RTC_INT",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        7.93243253728898,
+        29.330811791123026,
+        21.098483,
+        42.733119
+      ],
+      "gap_mm": 0.9972590009528002,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 420
+    },
+    {
+      "connection": "CS_AD5940 R7",
+      "net": "CS_AD5940",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        27.90710858693012,
+        23.7489,
+        41.27591,
+        37.01770141306988
+      ],
+      "gap_mm": 1.0866002611098966,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 714
+    },
+    {
+      "connection": "I2C_SDA_1V8 U12",
+      "net": "I2C_SDA_1V8",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        5.15,
+        45.552882,
+        18.641823584703936,
+        59.38292089723963
+      ],
+      "gap_mm": 1.640252444636697,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 443
+    },
+    {
+      "connection": "TX2 U6",
+      "net": "TX2",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        19.5343117909694,
+        45.275,
+        33.050799999999995,
+        60.35180977492901
+      ],
+      "gap_mm": 1.6597183370843653,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 408
+    },
+    {
+      "connection": "+1V8 C90",
+      "net": "+1V8",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        29.220705000000002,
+        32.952025,
+        42.521162,
+        46.90255
+      ],
+      "gap_mm": 1.59731570620369,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 1629
+    },
+    {
+      "connection": "CS_MAX86178 R117",
+      "net": "CS_MAX86178",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        21.761173,
+        32.579056,
+        34.321598968506024,
+        47.18765301772022
+      ],
+      "gap_mm": 1.9747231324575558,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 911
+    },
+    {
+      "connection": "SW_L2 U3",
+      "net": "SW_L2",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        30.780501,
+        27.969524999999997,
+        45.10717081880601,
+        41.507464123947464
+      ],
+      "gap_mm": 2.2395264975505285,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 2211
+    },
+    {
+      "connection": "MISO_MX U26",
+      "net": "MISO_MX",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        31.040295999999998,
+        32.46055869924502,
+        45.1985076787752,
+        46.348744
+      ],
+      "gap_mm": 2.2587140557290186,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 1890
+    },
+    {
+      "connection": "CHG_PG R60",
+      "net": "CHG_PG",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        25.127138,
+        20.67376613729495,
+        37.875357559014034,
+        35.551088
+      ],
+      "gap_mm": 2.2634948162140285,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 1650
+    },
+    {
+      "connection": "CHG_STAT U19",
+      "net": "CHG_STAT",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        9.437664,
+        27.889702,
+        30.785489,
+        50.697055
+      ],
+      "gap_mm": 2.637788999999998,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "CHG_STAT",
+          "xy": [
+            25.15,
+            34.45
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-250dfefe-349a-4cab-85fd-05f8781af817",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 12480
+    },
+    {
+      "connection": "LSM6_INT1 U14",
+      "net": "LSM6_INT1",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        12.769629407496328,
+        26.367641941590527,
+        25.584438,
+        41.748688
+      ],
+      "gap_mm": 2.6535836436277944,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 2816
+    },
+    {
+      "connection": "SP_SURGE R86",
+      "net": "SP_SURGE",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        24.549877,
+        19.395463,
+        39.827026000000004,
+        38.090365
+      ],
+      "gap_mm": 2.7317760374373634,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 1042
+    },
+    {
+      "connection": "FB_3V3 R23",
+      "net": "FB_3V3",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        28.051115000000003,
+        26.560178863027986,
+        42.08665647833228,
+        41.703431
+      ],
+      "gap_mm": 3.002934204103841,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 2227
+    },
+    {
+      "connection": "SWEAT_RE J12",
+      "net": "SWEAT_RE",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -2.0,
+        25.882202,
+        20.677658343516686,
+        56.4
+      ],
+      "gap_mm": 3.0095390757626284,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "SWEAT_RE",
+          "xy": [
+            5.58591,
+            32.130775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-a17d2f54-79d5-48d5-921c-4a3fb42dd559",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 20592
+    },
+    {
+      "connection": "I2C_SDA U11",
+      "net": "I2C_SDA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        14.343057965067786,
+        44.425862894150164,
+        27.55,
+        57.225
+      ],
+      "gap_mm": 0.7550515039511034,
+      "status": "failed",
+      "reason": "no path (expanded 141 cells)"
+    },
+    {
+      "connection": "I2C_SDA U11",
+      "net": "I2C_SDA",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 14 mm",
+      "bounds": [
+        6.343057965067786,
+        36.425862894150164,
+        35.55,
+        64.5
+      ],
+      "gap_mm": 0.7550515039511034,
+      "status": "failed",
+      "reason": "no path (expanded 141 cells)"
+    },
+    {
+      "connection": "EXP_INT U19",
+      "net": "EXP_INT",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        6.469664906183322,
+        28.891142905332742,
+        23.44369,
+        51.220928
+      ],
+      "gap_mm": 3.3265577898111913,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 19150
+    },
+    {
+      "connection": "PD_K J12",
+      "net": "PD_K",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "SWEAT_CE J12",
+      "net": "SWEAT_CE",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -2.0,
+        24.090206,
+        30.50117435233727,
+        55.9
+      ],
+      "gap_mm": 3.903992529199813,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "SWEAT_CE",
+          "xy": [
+            21.58591,
+            34.180775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-272d30c9-4901-4e9d-84ac-dca75462850d",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 39958
+    },
+    {
+      "connection": "AFE_P_AC R35",
+      "net": "AFE_P_AC",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        15.774999999999999,
+        22.21659275954462,
+        41.04434539594398,
+        39.6875
+      ],
+      "gap_mm": 3.9156635172083054,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "AFE_P_AC",
+          "xy": [
+            35.4,
+            28.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-0389f45d-d66f-48e6-96de-6652b92814f4",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 18075
+    },
+    {
+      "connection": "ESP_RX J8",
+      "net": "ESP_RX",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        15.189018064403225,
+        33.09615705608064,
+        32.840332000000004,
+        58.955332
+      ],
+      "gap_mm": 4.132420468058349,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 7428
+    },
+    {
+      "connection": "I2C_SCL U13/U24",
+      "net": "I2C_SCL",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        6.3008540000000455,
+        23.947127537964843,
+        43.613511087706215,
+        46.02829799999996
+      ],
+      "gap_mm": 4.138545187343077,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [
+        {
+          "net": "I2C_SCL",
+          "xy": [
+            37.65,
+            29.95
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-b5f05ef8-cb97-41e0-a936-48c0ad1153a2",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 14111
+    },
+    {
+      "connection": "SPI_SCK U18/U22/U6",
+      "net": "SPI_SCK",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        20.375,
+        30.16389319810773,
+        36.58670701337881,
+        59.580775
+      ],
+      "gap_mm": 4.1727765127394525,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "SPI_SCK",
+          "xy": [
+            26.33591,
+            35.930775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ccdd4d56-4d5e-480b-8380-feb354035288",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 15386
+    },
+    {
+      "connection": "+1V8 R21/R97/U9",
+      "net": "+1V8",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        27.316729000000002,
+        14.415619,
+        44.49467,
+        44.95802993972631
+      ],
+      "gap_mm": 1.6108936513238756,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 1027
+    },
+    {
+      "connection": "VBUS_DET U19",
+      "net": "VBUS_DET",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        6.584192500000123,
+        34.0900415,
+        22.587664,
+        54.48204092725552
+      ],
+      "gap_mm": 4.292088687200502,
+      "status": "routed",
+      "tracks": 15,
+      "vias": [],
+      "expanded": 15179
+    },
+    {
+      "connection": "ECG1_PAD J5",
+      "net": "ECG1_PAD",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        9.462442747743488,
+        47.31754314030722,
+        28.575,
+        64.5
+      ],
+      "gap_mm": 4.319437692622833,
+      "status": "routed",
+      "tracks": 6,
+      "vias": [
+        {
+          "net": "ECG1_PAD",
+          "xy": [
+            15.6,
+            53.3
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-984ca0e9-2e15-4767-9d79-c110d7d39fae",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 8724
+    },
+    {
+      "connection": "I2C_SDA U14",
+      "net": "I2C_SDA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        12.92404199546434,
+        26.14775457821338,
+        27.756839,
+        42.391689
+      ],
+      "gap_mm": 4.483662074278257,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "I2C_SDA",
+          "xy": [
+            20.7,
+            36.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-d33272f3-d1fa-4864-884d-a2ef634e6cdc",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "I2C_SDA",
+          "xy": [
+            19.6,
+            32.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-9b2ed3fd-cc35-4daf-b198-09577271b0f7",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 31733
+    },
+    {
+      "connection": "GAUGE_ALRT R74",
+      "net": "GAUGE_ALRT",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        22.203161,
+        16.86882223151046,
+        36.40606224542232,
+        33.652181
+      ],
+      "gap_mm": 4.561086756122022,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 1392
+    },
+    {
+      "connection": "+3V3_ANA C79/U6",
+      "net": "+3V3_ANA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        11.977369500000052,
+        26.060084395703576,
+        37.43591,
+        57.230775
+      ],
+      "gap_mm": 4.587271525919991,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 24697
+    },
+    {
+      "connection": "SWEAT_WE J12",
+      "net": "SWEAT_WE",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -2.0,
+        31.874511999999996,
+        21.063519366722808,
+        56.9
+      ],
+      "gap_mm": 4.680497056257126,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 10204
+    },
+    {
+      "connection": "TX5_EN R25",
+      "net": "TX5_EN",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -1.9230369999999999,
+        26.137867999999997,
+        23.779441004535663,
+        46.976869
+      ],
+      "gap_mm": 4.755390020427505,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "TX5_EN",
+          "xy": [
+            16.5,
+            36.9
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-d31e1155-2d39-4251-b332-d0437349a7c3",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "TX5_EN",
+          "xy": [
+            18.1,
+            38.15
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-485d5c60-9833-43f7-b150-4839939071bd",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 9445
+    },
+    {
+      "connection": "I2C_SDA J12",
+      "net": "I2C_SDA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -2.0,
+        47.35645222315949,
+        14.267036317591241,
+        61.4
+      ],
+      "gap_mm": 4.795244760468917,
+      "status": "failed",
+      "reason": "no path (expanded 280 cells)"
+    },
+    {
+      "connection": "I2C_SDA J12",
+      "net": "I2C_SDA",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 14 mm",
+      "bounds": [
+        -2.0,
+        39.35645222315949,
+        22.26703631759124,
+        64.5
+      ],
+      "gap_mm": 4.795244760468917,
+      "status": "failed",
+      "reason": "no path (expanded 280 cells)"
+    },
+    {
+      "connection": "MIC_CLK U25",
+      "net": "MIC_CLK",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        20.531378,
+        24.76402661470822,
+        33.569406608643476,
+        43.354213
+      ],
+      "gap_mm": 5.430017957836562,
+      "status": "failed",
+      "reason": "no path (expanded 2959 cells)"
+    },
+    {
+      "connection": "MIC_CLK U25",
+      "net": "MIC_CLK",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "+1V8_LDO R97",
+      "net": "+1V8_LDO",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        26.881524,
+        15.000931000000001,
+        39.999151,
+        37.4578365
+      ],
+      "gap_mm": 5.511183202680621,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "+1V8_LDO",
+          "xy": [
+            33.6,
+            25.6
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-0ad77686-805e-449f-8540-04f77ded3403",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "+1V8_LDO",
+          "xy": [
+            34.05,
+            31.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-c679c49f-d276-4c01-b7ac-059f4b6e3872",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 21224
+    },
+    {
+      "connection": "VBUS_DET R51",
+      "net": "VBUS_DET",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -2.0,
+        42.9527535,
+        12.410465604296428,
+        64.5
+      ],
+      "gap_mm": 6.176611758185063,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [
+        {
+          "net": "VBUS_DET",
+          "xy": [
+            2.8,
+            57.7
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-75285cb5-4867-4ef7-b761-d43d0d736efe",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "VBUS_DET",
+          "xy": [
+            7.35,
+            53.15
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-74f20824-7bc4-48f2-ab54-a0483ffe9703",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 74483
+    },
+    {
+      "connection": "TX_5V C89/R96/U22/U6",
+      "net": "TX_5V",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        10.850000000000001,
+        40.832306,
+        43.030296,
+        62.2
+      ],
+      "gap_mm": 6.356419121999464,
+      "status": "routed",
+      "tracks": 6,
+      "vias": [
+        {
+          "net": "TX_5V",
+          "xy": [
+            15.15,
+            56.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-2ec9ad35-e850-4c1d-9444-e24f936ef4ae",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 26673
+    },
+    {
+      "connection": "I2C_SCL_1V8 U12",
+      "net": "I2C_SCL_1V8",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        3.1844101403072234,
+        45.55,
+        15.95,
+        64.5
+      ],
+      "gap_mm": 7.077357466244647,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 20720
+    },
+    {
+      "connection": "VBUS R50",
+      "net": "VBUS",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        1.422290500000007,
+        36.28840707541641,
+        19.388892,
+        63.09015
+      ],
+      "gap_mm": 7.194048545363873,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "VBUS",
+          "xy": [
+            7.45,
+            48.15
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-cea4e098-e35c-4274-b6bb-652a356b0f23",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "VBUS",
+          "xy": [
+            8.8,
+            43.55
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-1240dcc8-4b59-4ffa-98e9-e210a66997c6",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 28372
+    },
+    {
+      "connection": "MAX86178_INT R113/U22",
+      "net": "MAX86178_INT",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        20.09920395756266,
+        17.212168912293784,
+        37.04390446203516,
+        53.475
+      ],
+      "gap_mm": 7.3366696676092085,
+      "status": "routed",
+      "tracks": 6,
+      "vias": [],
+      "expanded": 41375
+    },
+    {
+      "connection": "EDA_RE_PAD J6",
+      "net": "EDA_RE_PAD",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        3.5250000000000004,
+        47.94757875954462,
+        18.944463395943977,
+        64.5
+      ],
+      "gap_mm": 7.515435786547429,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "EDA_RE_PAD",
+          "xy": [
+            13.45,
+            60.7
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-b7169334-79fa-4593-8d5f-be5b35d2113f",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "EDA_RE_PAD",
+          "xy": [
+            11.2,
+            53.9
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-58624a71-2e24-440c-afbd-732188ae4bce",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 64183
+    },
+    {
+      "connection": "MIC_DAT U25",
+      "net": "MIC_DAT",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        20.531378,
+        20.69284761470822,
+        33.93489660864347,
+        41.654213
+      ],
+      "gap_mm": 8.294152137070933,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [],
+      "expanded": 54220
+    },
+    {
+      "connection": "AFE4900_ADC_RDY U6",
+      "net": "AFE4900_ADC_RDY",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        20.68721,
+        19.637459740548465,
+        37.05079836451519,
+        61.300000000000004
+      ],
+      "gap_mm": 9.692224994991655,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [],
+      "expanded": 126870
+    },
+    {
+      "connection": "CS_ADS1292 R98",
+      "net": "CS_ADS1292",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        2.7151623913565306,
+        28.54582661470822,
+        15.984513999999999,
+        51.664369
+      ],
+      "gap_mm": 9.794372481384809,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [],
+      "expanded": 36679
+    },
+    {
+      "connection": "+3V3_ANA R95",
+      "net": "+3V3_ANA",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        5.679302,
+        34.629838,
+        23.977626597076963,
+        51.486917595118804
+      ],
+      "gap_mm": 5.112787782667979,
+      "status": "routed",
+      "tracks": 8,
+      "vias": [
+        {
+          "net": "+3V3_ANA",
+          "xy": [
+            12.73591,
+            43.630775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-9d0edc3f-8971-4d28-906c-f0d14bd09e2f",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 186662
+    },
+    {
+      "connection": "+3V3_ESP R94",
+      "net": "+3V3_ESP",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        6.805150798011681,
+        27.50453252828884,
+        29.117811,
+        50.973431
+      ],
+      "gap_mm": 10.984878169400407,
+      "status": "routed",
+      "tracks": 11,
+      "vias": [
+        {
+          "net": "+3V3_ESP",
+          "xy": [
+            23.35,
+            44.25
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f9203f81-1ca4-4511-8772-60ebad7a2b1d",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "+3V3_ESP",
+          "xy": [
+            24.35,
+            43.6
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-d543ee66-b9d0-4042-96b3-4df7cbfe9b53",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "+3V3_ESP",
+          "xy": [
+            24.3,
+            39.55
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-7a1b762c-a0a4-4534-b3e9-a031b1478994",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "+3V3_ESP",
+          "xy": [
+            14.55,
+            33.3
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-4861ee3b-9ad0-4ec5-8225-17e5de6fe42b",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 101085
+    },
+    {
+      "connection": "ESP_TX J8",
+      "net": "ESP_TX",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "I2C_SCL U14",
+      "net": "I2C_SCL",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        14.351054460664102,
+        30.019303224520854,
+        27.756839,
+        42.891688
+      ],
+      "gap_mm": 0.8745279692691723,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "I2C_SCL",
+          "xy": [
+            20.5,
+            36.6
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-cf828b6f-4c40-4cf7-b5a8-182bc749380f",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 1337
+    },
+    {
+      "connection": "I2C_SCL R20",
+      "net": "I2C_SCL",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        6.364060720066794,
+        34.0267740755532,
+        20.515676,
+        55.099966
+      ],
+      "gap_mm": 7.048508919211926,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "I2C_SCL",
+          "xy": [
+            13.15,
+            47.85
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-c4dc3ac9-33f1-4673-a71e-60eb763e20f5",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "I2C_SCL",
+          "xy": [
+            11.35,
+            44.6
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-9be3abaa-e6dc-47b8-97f5-e97be4796f20",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 42461
+    },
+    {
+      "connection": "I2C_SCL U11/U20",
+      "net": "I2C_SCL",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        10.098287000000003,
+        39.049759091241036,
+        25.75,
+        59.150800000000004
+      ],
+      "gap_mm": 3.652809138317513,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 10673
+    },
+    {
+      "connection": "I2C_SCL U19",
+      "net": "I2C_SCL",
+      "attempt": 3,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        11.587664,
+        37.885463,
+        23.961840519031142,
+        51.06611172318339
+      ],
+      "gap_mm": 0.4357153529411745,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 591
+    },
+    {
+      "connection": "I2C_SDA J9/U17/U9",
+      "net": "I2C_SDA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        13.780797858624691,
+        10.998037,
+        48.0,
+        38.11448898131395
+      ],
+      "gap_mm": 13.8022349048592,
+      "status": "routed",
+      "tracks": 8,
+      "vias": [
+        {
+          "net": "I2C_SDA",
+          "xy": [
+            30.65,
+            30.55
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-2c4a17de-8d02-4f3c-8b8b-731735672db1",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 107931
+    },
+    {
+      "connection": "I2C_SDA U13",
+      "net": "I2C_SDA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        25.829691672247627,
+        23.691219468690647,
+        38.893042,
+        37.194682
+      ],
+      "gap_mm": 1.2311806292523415,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 485
+    },
+    {
+      "connection": "I2C_SDA inc2b",
+      "net": "I2C_SDA",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) plain A*, margin 12 mm",
+      "bounds": [
+        8.343057965067782,
+        38.425862894150164,
+        33.55,
+        63.225
+      ],
+      "gap_mm": 0.7550515039511063,
+      "status": "failed",
+      "reason": "no path (expanded 141 cells)"
+    },
+    {
+      "connection": "I2C_SDA inc2b",
+      "net": "I2C_SDA",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) after local blocker rip, margin 12 mm",
+      "bounds": [
+        8.343057965067782,
+        38.425862894150164,
+        33.55,
+        63.225
+      ],
+      "gap_mm": 0.7550515039511063,
+      "status": "failed",
+      "reason": "no path (expanded 141 cells)"
+    },
+    {
+      "connection": "MISO_AFE inc2b",
+      "net": "MISO_AFE",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) plain A*, margin 12 mm",
+      "bounds": [
+        15.477402000000001,
+        37.196869,
+        48.0,
+        63.522598
+      ],
+      "gap_mm": 16.99506668193005,
+      "status": "failed",
+      "reason": "no path (expanded 12 cells)"
+    },
+    {
+      "connection": "MISO_AFE inc2b",
+      "net": "MISO_AFE",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) after local blocker rip, margin 12 mm",
+      "bounds": [
+        15.477402000000001,
+        37.196869,
+        48.0,
+        63.522598
+      ],
+      "gap_mm": 16.99506668193005,
+      "status": "failed",
+      "reason": "no path (expanded 12 cells)"
+    },
+    {
+      "connection": "AFE_CLK inc2b",
+      "net": "AFE_CLK",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) plain A*, margin 12 mm",
+      "bounds": [
+        -2.0,
+        39.822435,
+        39.887209999999996,
+        64.5
+      ],
+      "gap_mm": 21.762760820406953,
+      "status": "failed",
+      "reason": "no path (expanded 1065945 cells)"
+    },
+    {
+      "connection": "AFE_CLK inc2b",
+      "net": "AFE_CLK",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) after local blocker rip, margin 12 mm",
+      "bounds": [
+        -2.0,
+        39.822435,
+        39.887209999999996,
+        64.5
+      ],
+      "gap_mm": 21.762760820406953,
+      "status": "routed",
+      "tracks": 22,
+      "vias": [
+        {
+          "net": "AFE_CLK",
+          "xy": [
+            7.75,
+            54.95
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-440cdc55-55fc-44af-8c8d-dcbb4957be30",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "AFE_CLK",
+          "xy": [
+            19.65,
+            60.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-abb51872-a129-4fe9-af9d-5f28be6bb971",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "AFE_CLK",
+          "xy": [
+            36.8,
+            58.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-4a1c9f37-e0df-4d0a-bfdc-aecbfafc73f4",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "AFE_CLK",
+          "xy": [
+            37.45,
+            55.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-b6f35285-5085-4280-8c95-11183f382d35",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "AFE_CLK",
+          "xy": [
+            34.9,
+            49.15
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-5d80e3f0-13b5-4702-8151-cde32d2bebb5",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 951898
+    },
+    {
+      "connection": "AFE4900_RESETZ U6",
+      "net": "AFE4900_RESETZ",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        21.88721,
+        45.28721,
+        35.14935193088984,
+        57.51279
+      ],
+      "gap_mm": 1.0391743578580575,
+      "status": "failed",
+      "reason": "no path (expanded 189 cells)"
+    },
+    {
+      "connection": "AFE4900_RESETZ U6",
+      "net": "AFE4900_RESETZ",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 14 mm",
+      "bounds": [
+        13.88721,
+        37.28721,
+        43.14935193088984,
+        64.5
+      ],
+      "gap_mm": 1.0391743578580575,
+      "status": "failed",
+      "reason": "no path (expanded 189 cells)"
+    },
+    {
+      "connection": "SPI_SCK U6",
+      "net": "SPI_SCK",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        21.08721,
+        45.68721,
+        34.645200076961146,
+        59.00038845419152
+      ],
+      "gap_mm": 1.4387125515080037,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 372
+    },
+    {
+      "connection": "PD_K J12",
+      "net": "PD_K",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "LED_AN J12/R114",
+      "net": "LED_AN",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -2.0,
+        43.711869,
+        13.540662,
+        61.928176645436054
+      ],
+      "gap_mm": 4.725603427444952,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "LED_AN",
+          "xy": [
+            7.75,
+            56.25
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-2346ac01-e640-4378-bbb8-34fcb9587272",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 44416
+    },
+    {
+      "connection": "ADS1292_DRDY R99",
+      "net": "ADS1292_DRDY",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) (re-route ripped walls), margin 6 mm",
+      "bounds": [
+        -2.0,
+        46.80005034864912,
+        27.240822,
+        64.477902
+      ],
+      "gap_mm": 10.04037611980687,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "ADS1292_DRDY",
+          "xy": [
+            8.6,
+            56.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-1c6fa5ac-f560-47ba-b330-e626f34be235",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 11902
+    },
+    {
+      "connection": "PD2_INM inc2b",
+      "net": "PD2_INM",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) plain A*, margin 12 mm",
+      "bounds": [
+        0.34999999999999964,
+        38.224386,
+        39.077402,
+        64.5
+      ],
+      "gap_mm": 14.423679175633135,
+      "status": "failed",
+      "reason": "no path (expanded 1601 cells)"
+    },
+    {
+      "connection": "PD2_INM inc2b",
+      "net": "PD2_INM",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) after local blocker rip, margin 12 mm",
+      "bounds": [
+        0.34999999999999964,
+        38.224386,
+        39.077402,
+        64.5
+      ],
+      "gap_mm": 14.423679175633135,
+      "status": "failed",
+      "reason": "no path (expanded 1028939 cells)"
+    },
+    {
+      "connection": "PD_A inc2b",
+      "net": "PD_A",
+      "attempt": 1,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) plain A*, margin 12 mm",
+      "bounds": [
+        13.182306,
+        35.632306,
+        40.062101202926186,
+        64.5
+      ],
+      "gap_mm": 10.28152574165982,
+      "status": "failed",
+      "reason": "no path (expanded 36 cells)"
+    },
+    {
+      "connection": "PD_A inc2b",
+      "net": "PD_A",
+      "attempt": 2,
+      "approach": "R2-40 8L local-blocker rip fallback (+In4 local) after local blocker rip, margin 12 mm",
+      "bounds": [
+        13.182306,
+        35.632306,
+        40.062101202926186,
+        64.5
+      ],
+      "gap_mm": 10.28152574165982,
+      "status": "failed",
+      "reason": "no path (expanded 36 cells)"
+    }
+  ],
+  "issues": [],
+  "late_remove": [],
+  "dangling_repair": []
+}
