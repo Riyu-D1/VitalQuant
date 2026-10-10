@@ -1,0 +1,520 @@
+[
+ {
+  "stackup8": {
+   "copper_layers": 8,
+   "stackup": "stackup descriptor not rebuilt: 'swig_runtime_data5.SwigPyObject' object has no attribute 'BuildDefaultStackupList'",
+   "rule_areas_extended_to_In5_In6": 42,
+   "gnd_plane_In6": "GND.LAYER_6 (copy of GND.LAYER_1 outline/settings)"
+  }
+ },
+ {
+  "ref": "U6",
+  "from": [
+   25.7,
+   50.8
+  ],
+  "to": [
+   27.2,
+   50.8
+  ],
+  "rotation": 180.0,
+  "rotation_to": 180.0,
+  "locked": true,
+  "reason": "SUPERVISOR placement order: move U6 east away from U22; +1.5 mm is the largest east shift that keeps the F-row balls >= 0.2 mm (hole-to-copper) from the J8 NPTH at (28.99,52.18); stays in the skin-side cluster, same side",
+  "detached": [
+   {
+    "uuid": "39c92c79-8803-43f5-858c-d239f0d8a063",
+    "net": "GND",
+    "kind": "via",
+    "xy": [
+     24.9,
+     51.0
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   },
+   {
+    "uuid": "65166a81-d0a9-4524-af80-829d4b92de9d",
+    "net": "GND",
+    "kind": "via",
+    "xy": [
+     25.3,
+     50.2
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   },
+   {
+    "uuid": "677d1330-867b-4b07-8f11-c8da12183016",
+    "net": "GND",
+    "kind": "via",
+    "xy": [
+     26.5,
+     51.0
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   },
+   {
+    "uuid": "82f8cf6b-ed9c-4010-8171-e5883dd54c8c",
+    "net": "+3V3_ANA",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     26.5,
+     50.6
+    ],
+    "b": [
+     26.7,
+     50.6
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "b68d92da-baed-449d-962e-5e3c8ae017d9",
+    "net": "+3V3_ANA",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     25.3,
+     49.8
+    ],
+    "b": [
+     25.3,
+     49.6
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "287a86b6-6fe3-410b-9d23-a7d334c7abd7",
+    "net": "AFE_INP",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     26.5,
+     50.2
+    ],
+    "b": [
+     26.7,
+     50.2
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "1ce5e8f3-e525-449f-9a19-f25f7ed3bc2e",
+    "net": "SPI_MOSI",
+    "kind": "via",
+    "xy": [
+     26.1,
+     51.8
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   },
+   {
+    "uuid": "dcefb9e6-40d4-45c4-9755-16ddeda9d58f",
+    "net": "AFE4900_RESETZ",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     26.5,
+     51.4
+    ],
+    "b": [
+     26.7,
+     51.4
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "2c60a194-5701-4802-80f0-b6f7b4931705",
+    "net": "TX_5V",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     24.9,
+     51.8
+    ],
+    "b": [
+     24.7,
+     51.8
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "4d561938-4b0a-434b-9bf6-f3f84eea9805",
+    "net": "AFE4900_ADC_RDY",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     25.3,
+     51.8
+    ],
+    "b": [
+     25.3,
+     52.0
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "9974c40b-37f4-4ff4-8571-47a11a6ab633",
+    "net": "AFE_INM",
+    "kind": "via",
+    "xy": [
+     26.5,
+     49.8
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   },
+   {
+    "uuid": "147ab56f-60f0-42d5-99a2-3e552ca142ac",
+    "net": "AFE_CLK",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     26.5,
+     51.8
+    ],
+    "b": [
+     26.5,
+     52.0
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "fadb6c23-5856-4b27-a8ce-5359e7754d90",
+    "net": "PD_INP",
+    "kind": "via",
+    "xy": [
+     26.1,
+     49.8
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   },
+   {
+    "uuid": "17b03790-64be-436e-b4f3-8c3446060ddd",
+    "net": "PD_INM",
+    "kind": "via",
+    "xy": [
+     25.7,
+     49.8
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   },
+   {
+    "uuid": "06e9c766-f789-49c7-a223-a6bb43e0a5ec",
+    "net": "TX4",
+    "kind": "track",
+    "layer": 2,
+    "a": [
+     24.9,
+     50.6
+    ],
+    "b": [
+     24.7,
+     50.6
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "a1bc59b7-add0-4167-938d-f1b55f5e5f7d",
+    "net": "TX2",
+    "kind": "via",
+    "xy": [
+     24.9,
+     51.4
+    ],
+    "diameter": 0.25,
+    "drill": 0.15
+   }
+  ]
+ },
+ {
+  "ref": "U18",
+  "from": [
+   27.209594,
+   44.367033
+  ],
+  "to": [
+   26.899594,
+   44.367033
+  ],
+  "rotation": 90.0,
+  "reason": "clear U22 C1/D1 for POFV (dx -0.31); a 1.8 mm north move collides with locked D28 and the WSON-8 does not fit between D28 and U22",
+  "detached": [
+   {
+    "uuid": "2f46f81c-ed5b-4839-9576-6e2e55d6664b",
+    "net": "GND",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     29.114594,
+     47.791238
+    ],
+    "b": [
+     29.114594,
+     47.613108
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "572ae388-cafc-4ad4-a2e8-1fba23a2a9b8",
+    "net": "GND",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     25.059594,
+     44.367033
+    ],
+    "b": [
+     27.209594,
+     44.367033
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "6aaf82e8-e925-45fd-b891-4ff77ce5aad9",
+    "net": "GND",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     29.114594,
+     48.117033
+    ],
+    "b": [
+     29.114594,
+     47.791238
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "ed499b9c-56b3-45be-83dc-5b8c83c3af12",
+    "net": "GND",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     24.868726,
+     44.367033
+    ],
+    "b": [
+     25.059594,
+     44.367033
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "118ed63d-7b31-4bd3-9a74-e011f1ff6184",
+    "net": "+3V3",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     27.844594,
+     48.634306
+    ],
+    "b": [
+     27.844594,
+     48.442827
+    ],
+    "width": 0.145123
+   },
+   {
+    "uuid": "13e07d98-cc78-41f2-bc62-7ac21daf15e3",
+    "net": "+3V3",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     26.574594,
+     40.617033
+    ],
+    "b": [
+     26.574594,
+     40.291238
+    ],
+    "width": 0.145123
+   },
+   {
+    "uuid": "2c291189-d910-4869-89da-80725b212105",
+    "net": "+3V3",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     26.574594,
+     40.291238
+    ],
+    "b": [
+     26.574594,
+     40.130663
+    ],
+    "width": 0.145123
+   },
+   {
+    "uuid": "57f1c47a-b36f-43f8-bbca-5f8ffc3ab115",
+    "net": "+3V3",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     27.844594,
+     48.442827
+    ],
+    "b": [
+     27.844594,
+     48.117033
+    ],
+    "width": 0.145123
+   },
+   {
+    "uuid": "399fedf4-f3f0-457f-9af6-d4f90ef2fb41",
+    "net": "CS_FLASH",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     25.304594,
+     47.791238
+    ],
+    "b": [
+     25.304594,
+     47.625846
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "97cb8585-8a80-48b0-9736-a08d9d2841cb",
+    "net": "CS_FLASH",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     25.304594,
+     48.117033
+    ],
+    "b": [
+     25.304594,
+     47.791238
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "0422092d-c74c-43d5-abfa-8428182d07ef",
+    "net": "SPI_MOSI",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     29.114594,
+     41.159171
+    ],
+    "b": [
+     29.114594,
+     40.942827
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "1e998d80-12bd-4ad5-b8df-d7e7e81cf875",
+    "net": "SPI_MOSI",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     29.114594,
+     40.942827
+    ],
+    "b": [
+     29.114594,
+     40.617033
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "c7041465-9af4-41db-91ec-93210d8f8c8a",
+    "net": "SPI_MOSI",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     29.114594,
+     40.291238
+    ],
+    "b": [
+     29.114594,
+     40.176799
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "dd09251c-2600-4387-947b-ebccc2ad5b0a",
+    "net": "SPI_MOSI",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     29.114594,
+     40.617033
+    ],
+    "b": [
+     29.114594,
+     40.291238
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "50b4dbea-916b-4bf6-bebf-591732f6ee1c",
+    "net": "SPI_SCK",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     27.844594,
+     40.291238
+    ],
+    "b": [
+     27.844594,
+     40.617033
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "52de1217-a672-42eb-b02d-4891d45068e0",
+    "net": "SPI_SCK",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     27.844594,
+     40.113108
+    ],
+    "b": [
+     27.844594,
+     40.291238
+    ],
+    "width": 0.101702
+   },
+   {
+    "uuid": "1a329ca3-191c-4586-be2e-9f5affab9146",
+    "net": "MISO_FL",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     26.35,
+     47.85
+    ],
+    "b": [
+     26.15,
+     47.4
+    ],
+    "width": 0.1016
+   },
+   {
+    "uuid": "6300ad33-7d15-4ad1-bd2f-4c10d2052aa1",
+    "net": "MISO_FL",
+    "kind": "track",
+    "layer": 0,
+    "a": [
+     26.574594,
+     48.117033
+    ],
+    "b": [
+     26.574594,
+     47.791238
+    ],
+    "width": 0.101702
+   }
+  ]
+ }
+]

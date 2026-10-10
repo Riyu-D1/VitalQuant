@@ -1,0 +1,37 @@
+{
+  "input": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb",
+  "output": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-29/stage1/vitalq_v2.kicad_pcb",
+  "moves": [
+    {
+      "ref": "U6",
+      "from": [
+        25.7,
+        50.8
+      ],
+      "to": [
+        27.2,
+        50.8
+      ],
+      "rotate_to": 180.0,
+      "allow_locked": true,
+      "detach": true,
+      "reason": "SUPERVISOR placement order: move U6 east away from U22; +1.5 mm is the largest east shift that keeps the F-row balls >= 0.2 mm (hole-to-copper) from the J8 NPTH at (28.99,52.18); stays in the skin-side cluster, same side"
+    },
+    {
+      "ref": "U18",
+      "from": [
+        27.209594,
+        44.367033
+      ],
+      "to": [
+        26.899594,
+        44.367033
+      ],
+      "detach": true,
+      "reason": "clear U22 C1/D1 for POFV (dx -0.31); a 1.8 mm north move collides with locked D28 and the WSON-8 does not fit between D28 and U22"
+    }
+  ],
+  "refill": false,
+  "log": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-29/stage1/ops_log.json",
+  "stackup8": true
+}

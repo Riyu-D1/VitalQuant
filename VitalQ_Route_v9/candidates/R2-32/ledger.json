@@ -1,0 +1,577 @@
+{
+  "batch": "R2-32",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_212808_R2-32_inc_U6_J8",
+  "moves": [],
+  "removed": [],
+  "routes": [
+    {
+      "connection": "I2C_SCL R20/U19",
+      "net": "I2C_SCL",
+      "attempt": 1,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        10.476135,
+        39.885463,
+        21.787664,
+        50.921722
+      ],
+      "gap_mm": 3.8522114032711188,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "I2C_SCL",
+          "xy": [
+            19.4,
+            44.85
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-35c689e1-efb0-4254-9de0-818829c03233",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 8943
+    },
+    {
+      "connection": "PD2_INM B3/U16/U6",
+      "net": "PD2_INM",
+      "attempt": 1,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        8.35,
+        46.224386,
+        31.077402,
+        59.25
+      ],
+      "gap_mm": 14.423679175633135,
+      "status": "failed",
+      "reason": "no path (expanded 1601 cells)"
+    },
+    {
+      "connection": "PD2_INM B3/U16/U6",
+      "net": "PD2_INM",
+      "attempt": 2,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 10 mm",
+      "bounds": [
+        2.3499999999999996,
+        40.224386,
+        37.077402,
+        64.5
+      ],
+      "gap_mm": 14.423679175633135,
+      "status": "failed",
+      "reason": "no path (expanded 1601 cells)"
+    },
+    {
+      "connection": "PD2_INM B3/U16/U6",
+      "net": "PD2_INM",
+      "attempt": 3,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 18 mm",
+      "bounds": [
+        -2.0,
+        32.224386,
+        45.077402,
+        64.5
+      ],
+      "gap_mm": 14.423679175633135,
+      "status": "failed",
+      "reason": "no path (expanded 1601 cells)"
+    },
+    {
+      "connection": "ESP_RX J8",
+      "net": "ESP_RX",
+      "attempt": 1,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        17.662903185934848,
+        34.94787845725862,
+        30.840332,
+        56.955332
+      ],
+      "gap_mm": 14.040971784869527,
+      "status": "routed",
+      "tracks": 10,
+      "vias": [
+        {
+          "net": "ESP_RX",
+          "xy": [
+            24.9,
+            50.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-23820734-f376-4e89-ac9c-af982691e5e4",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_RX",
+          "xy": [
+            24.0,
+            45.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-08e1a76e-4a46-4a92-8dbf-4f8c41cd9e00",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_RX",
+          "xy": [
+            22.2,
+            43.6
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-56840071-9325-4f96-99e6-e10125c43274",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 48654
+    },
+    {
+      "connection": "MISO_AFE E2/R90/U6",
+      "net": "MISO_AFE",
+      "attempt": 1,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        23.477402,
+        45.196869,
+        48.0,
+        55.522598
+      ],
+      "gap_mm": 16.99506668193005,
+      "status": "failed",
+      "reason": "no path (expanded 12 cells)"
+    },
+    {
+      "connection": "MISO_AFE E2/R90/U6",
+      "net": "MISO_AFE",
+      "attempt": 2,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 10 mm",
+      "bounds": [
+        17.477402,
+        39.196869,
+        48.0,
+        61.522598
+      ],
+      "gap_mm": 16.99506668193005,
+      "status": "failed",
+      "reason": "no path (expanded 12 cells)"
+    },
+    {
+      "connection": "MISO_AFE E2/R90/U6",
+      "net": "MISO_AFE",
+      "attempt": 3,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 18 mm",
+      "bounds": [
+        9.477402000000001,
+        31.196869,
+        48.0,
+        64.5
+      ],
+      "gap_mm": 16.99506668193005,
+      "status": "failed",
+      "reason": "no path (expanded 12 cells)"
+    },
+    {
+      "connection": "NIR_K ",
+      "net": "NIR_K",
+      "attempt": 1,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        12.316119137294951,
+        43.954599440985966,
+        40.698559,
+        55.743653
+      ],
+      "gap_mm": 20.39933842406411,
+      "status": "failed",
+      "reason": "no path (expanded 111946 cells)"
+    },
+    {
+      "connection": "NIR_K ",
+      "net": "NIR_K",
+      "attempt": 2,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 10 mm",
+      "bounds": [
+        6.316119137294951,
+        37.954599440985966,
+        46.698559,
+        61.743653
+      ],
+      "gap_mm": 20.39933842406411,
+      "status": "routed",
+      "tracks": 23,
+      "vias": [
+        {
+          "net": "NIR_K",
+          "xy": [
+            36.45,
+            52.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-2a38a0c8-2409-45fc-bb3a-64a82a1321b7",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "NIR_K",
+          "xy": [
+            32.25,
+            56.6
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-8fd4e9a5-0556-4416-af89-940b7d6a1d0c",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "NIR_K",
+          "xy": [
+            28.3,
+            58.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ca785ead-d6b1-41b1-93ad-529f162de93a",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "NIR_K",
+          "xy": [
+            26.25,
+            55.85
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-7f041c1e-caf4-4459-80db-b78d89736c08",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "NIR_K",
+          "xy": [
+            20.5,
+            53.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-fb687812-c57c-4fca-8b31-b3619a4fe938",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 501823
+    },
+    {
+      "connection": "AFE_CLK F1/R10/U6",
+      "net": "AFE_CLK",
+      "attempt": 1,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        1.688542,
+        47.822435,
+        31.88721,
+        58.453431
+      ],
+      "gap_mm": 21.762760820406953,
+      "status": "failed",
+      "reason": "no path (expanded 2423 cells)"
+    },
+    {
+      "connection": "AFE_CLK F1/R10/U6",
+      "net": "AFE_CLK",
+      "attempt": 2,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 10 mm",
+      "bounds": [
+        -2.0,
+        41.822435,
+        37.887209999999996,
+        64.453431
+      ],
+      "gap_mm": 21.762760820406953,
+      "status": "failed",
+      "reason": "no path (expanded 767105 cells)"
+    },
+    {
+      "connection": "AFE_CLK F1/R10/U6",
+      "net": "AFE_CLK",
+      "attempt": 3,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 18 mm",
+      "bounds": [
+        -2.0,
+        33.822435,
+        45.887209999999996,
+        64.5
+      ],
+      "gap_mm": 21.762760820406953,
+      "status": "failed",
+      "reason": "no path (expanded 1403180 cells)"
+    },
+    {
+      "connection": "ESP_TX J8",
+      "net": "ESP_TX",
+      "attempt": 1,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        19.673420160178583,
+        7.049003746767269,
+        30.840332,
+        58.225332
+      ],
+      "gap_mm": 42.48316158240421,
+      "status": "failed",
+      "reason": "no path (expanded 3174 cells)"
+    },
+    {
+      "connection": "ESP_TX J8",
+      "net": "ESP_TX",
+      "attempt": 2,
+      "approach": "R2-32 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 10 mm",
+      "bounds": [
+        13.673420160178583,
+        1.0490037467672693,
+        36.840332000000004,
+        64.22533200000001
+      ],
+      "gap_mm": 42.48316158240421,
+      "status": "routed",
+      "tracks": 44,
+      "vias": [
+        {
+          "net": "ESP_TX",
+          "xy": [
+            15.2,
+            53.65
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-5f69e125-c4a1-4785-9637-5f8f74fdf196",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_TX",
+          "xy": [
+            14.2,
+            51.85
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-a36bcdcc-08ca-44cb-a359-ec6c8caedc3f",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_TX",
+          "xy": [
+            18.4,
+            45.65
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-11af0f71-76d7-4f8b-b7c9-e8b96ffeb029",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_TX",
+          "xy": [
+            23.45,
+            45.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-2e8fea88-15a6-440f-ad38-f612f04c57a3",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_TX",
+          "xy": [
+            22.8,
+            38.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-8fe9e8cf-c011-45ee-b4bc-7cc88151e3a1",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "ESP_TX",
+          "xy": [
+            27.95,
+            34.6
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-05d16cb1-8473-4b12-9a10-5fc93984225d",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 486788
+    }
+  ],
+  "issues": [],
+  "dangling_repair": []
+}

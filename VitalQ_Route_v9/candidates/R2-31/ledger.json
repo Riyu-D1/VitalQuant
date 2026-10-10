@@ -1,0 +1,246 @@
+{
+  "batch": "R2-31",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_212346_R2-31_inc_U18_U22",
+  "moves": [],
+  "removed": [],
+  "routes": [
+    {
+      "connection": "+1V8 C2/D2/U22",
+      "net": "+1V8",
+      "attempt": 1,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        22.382306,
+        43.867694,
+        30.617694,
+        52.267694
+      ],
+      "gap_mm": 0.1646119999999982,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 18
+    },
+    {
+      "connection": "SPI_MOSI U18",
+      "net": "SPI_MOSI",
+      "attempt": 1,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        24.554594,
+        36.2065089963085,
+        33.11887695957124,
+        44.942033
+      ],
+      "gap_mm": 0.15842031518909783,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 480
+    },
+    {
+      "connection": "+3V3 U18",
+      "net": "+3V3",
+      "attempt": 1,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        22.014594,
+        36.292033,
+        30.514594,
+        44.942033
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 323
+    },
+    {
+      "connection": "SPI_SCK U18",
+      "net": "SPI_SCK",
+      "attempt": 1,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        23.284594,
+        36.292033,
+        31.819212066682233,
+        44.942033
+      ],
+      "gap_mm": 0.052237533813548426,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 8
+    },
+    {
+      "connection": "+3V3 U18",
+      "net": "+3V3",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "+1V8 C87/D2/U22",
+      "net": "+1V8",
+      "attempt": 1,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        22.382306,
+        43.632306,
+        36.892181,
+        56.140949
+      ],
+      "gap_mm": 7.415817018440115,
+      "status": "failed",
+      "reason": "no path (expanded 130618 cells)"
+    },
+    {
+      "connection": "+1V8 C87/D2/U22",
+      "net": "+1V8",
+      "attempt": 2,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 10 mm",
+      "bounds": [
+        16.382306,
+        37.632306,
+        42.892181,
+        62.140949
+      ],
+      "gap_mm": 7.415817018440115,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "+1V8",
+          "xy": [
+            26.3,
+            48.9
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-e9e0791a-24e9-4b51-958c-84f9e65666e8",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 18068
+    },
+    {
+      "connection": "PD_A C5/U22",
+      "net": "PD_A",
+      "attempt": 1,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        21.182306,
+        43.632306,
+        32.062101202926186,
+        61.77775694373601
+      ],
+      "gap_mm": 10.28152574165982,
+      "status": "failed",
+      "reason": "no path (expanded 36 cells)"
+    },
+    {
+      "connection": "PD_A C5/U22",
+      "net": "PD_A",
+      "attempt": 2,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 10 mm",
+      "bounds": [
+        15.182306,
+        37.632306,
+        38.062101202926186,
+        64.5
+      ],
+      "gap_mm": 10.28152574165982,
+      "status": "failed",
+      "reason": "no path (expanded 36 cells)"
+    },
+    {
+      "connection": "PD_A C5/U22",
+      "net": "PD_A",
+      "attempt": 3,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 18 mm",
+      "bounds": [
+        7.1823060000000005,
+        29.632306,
+        46.062101202926186,
+        64.5
+      ],
+      "gap_mm": 10.28152574165982,
+      "status": "failed",
+      "reason": "no path (expanded 36 cells)"
+    },
+    {
+      "connection": "LED2_K C1/U22",
+      "net": "LED2_K",
+      "attempt": 1,
+      "approach": "R2-31 incremental 8L A* (F/B/In2/In3/In5), no rip-up, 60 s budget, margin 4 mm",
+      "bounds": [
+        22.782306,
+        43.632306,
+        43.64688180189227,
+        56.730774164780804
+      ],
+      "gap_mm": 13.567307547298766,
+      "status": "routed",
+      "tracks": 8,
+      "vias": [
+        {
+          "net": "LED2_K",
+          "xy": [
+            32.3,
+            50.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-a2bfe063-c937-4c15-8e9c-5a47e84e0a8d",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "LED2_K",
+          "xy": [
+            39.65,
+            52.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-a33d7e16-d677-4c25-9fa2-ee3de3b87460",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 37340
+    }
+  ],
+  "issues": [],
+  "dangling_repair": []
+}
