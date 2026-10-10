@@ -109,6 +109,7 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - As a result I gave the routing to devin and connected freerouter but devin also kept getting stuck on a churn and rip up loop.
 - Therefore i did research and found a physics based simulation tool called quilter therefore I organised all the files and setup a job in quilter which will take anywhere from 4-24 hours to complete
 - Therefore I will let this run overnight and checkup on it tomorrow
+  
 <img width="978" height="1478" alt="image" src="https://github.com/user-attachments/assets/59edd74b-1eb2-4d3d-9360-cc06a918c412" />
 
 ## Riyansh - 8 OCT
@@ -117,6 +118,31 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - The quilter processes had finished so I rechecked over them and suprisiglly it was able to route only 92% as there were constriiction
 - I resubmitted 2 jobs this time the old one to do another pass aswell as resubmitting a larger board which i will wait on the output.
 - This should be able to now finish of the placement and routing
+*Lapse cutoff and lost
 <img width="1680" height="897" alt="image" src="https://github.com/user-attachments/assets/ebb42624-0448-4db9-af0e-cde097524b50" />
+
+## Riyansh - 9 OCT
+1hr 5mins
+- So the 2 jobs ran overnight and there were basicallly very little changes
+- The one that had been resubmitted had only 1 extra route and the one which was new managed to do 4 more making the total unrouted connections 45
+- Therefore I realised that this routing was going to be practically impossible so i did some brainstorming and I came up with an idea to run my devin in cli and produce a pcb by connecting a kicad mcp
+- The run just got stuck in a loop aswell so after more research I found the issue was that these machine learning algorithms use predicative programs and run many iterations as they cant actually see and understand whats on the pcb.
+- To solve this i tried looking for other existiing skills butt there were none so I had to think of something myself
+- I created a system using grok bot and devin. Because grok bot is agentic ai it can take pictures and has access to my computer and does not need my intervention therefore I told it to thoroughly read through the project repo and understand the aim. I set i up with the existiing quilter pcb and told it to take pictures and basicallly decode what the issue is and send over the details to devin.
+- So far this has worked well and im going to let it run overnight
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1b30b9ed-f4ab-415a-abbd-fa0819557b68" />
+
+## Riyansh - 10 OCTt
+1hr 13mins
+- So the grok bot ran overnight and this has absolutely amazing results the unnconectted were now down from 45 to 5
+- I was very surprised that this was even the case but we somehow managed to get through it.
+- Now to diagnose the last 5  opened the file ini kicad and ran DRC
+- turns out that The issue was the sensor island because it was very narrow and cutoff from the rest of the board so it was basically impossible to reconnect
+- the reseason I had included the island ini the first place because most biotech wearables have it for better heat dissipation from high voltage componants.
+- I realised that for this board that wasnt a issue and did not affectt funcitonality so i removed the island and got grok to attempt to finish of routing
+- Devin ran the program and managed to not only route the full board but also make it fab ready by rechecking errors and simulating a sepsis detection test using our existing early detection python script.
+- There were only a few issues concerninig the 3v3 rail which had to be moved to 5v to supply more volts for the leds
+<img width="2030" height="1510" alt="image" src="https://github.com/user-attachments/assets/db3e7733-fa1d-40b0-b3c6-51d726cfff1a" />
+
 
 
