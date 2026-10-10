@@ -1,0 +1,62 @@
+{
+  "input": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb",
+  "output": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-27/stage1/vitalq_v2.kicad_pcb",
+  "moves": [
+    {
+      "ref": "U6",
+      "from": [
+        25.7,
+        50.8
+      ],
+      "to": [
+        28.2,
+        50.8
+      ],
+      "rotate_to": 180.0,
+      "allow_locked": true,
+      "detach": true,
+      "reason": "SUPERVISOR placement order: move U6 2.5 mm east, away from U22, into free space (stays in the skin-side sensor cluster, same side)"
+    },
+    {
+      "ref": "C15",
+      "from": [
+        29.26,
+        50.04
+      ],
+      "to": [
+        31.76,
+        50.04
+      ],
+      "detach": true,
+      "reason": "U6 decoupling (AFE_BG) moved with U6 (+2.5 mm)"
+    },
+    {
+      "ref": "C79",
+      "from": [
+        31.59,
+        50.92
+      ],
+      "to": [
+        34.09,
+        50.92
+      ],
+      "detach": true,
+      "reason": "U6 decoupling (+3V3_ANA) moved with U6 (+2.5 mm)"
+    },
+    {
+      "ref": "U18",
+      "from": [
+        27.209594,
+        44.367033
+      ],
+      "to": [
+        26.899594,
+        44.367033
+      ],
+      "detach": true,
+      "reason": "clear U22 C1/D1 for POFV (dx -0.31); a 1.8 mm north move collides with locked D28 and the WSON-8 does not fit between D28 and U22"
+    }
+  ],
+  "refill": false,
+  "log": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-27/stage1/ops_log.json"
+}
