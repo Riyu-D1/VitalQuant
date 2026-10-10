@@ -1,0 +1,211 @@
+{
+  "batch": "R2-46",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_223414_R2-46_U6_last_balls",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "4c82b2ca-4d99-4e0f-b9b4-5718531cb43d",
+      "net": "SPI_MOSI",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        28.03591,
+        51.530775
+      ],
+      "b": [
+        30.18591,
+        50.380775
+      ],
+      "width": 0.1016,
+      "reason": "R2-46: blocks a U6 POFV site"
+    },
+    {
+      "uuid": "120eb931-c507-4ee8-95a6-ff24d6c90b35",
+      "net": "SPI_MOSI",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        27.68591,
+        51.730775
+      ],
+      "b": [
+        28.03591,
+        51.530775
+      ],
+      "width": 0.1016,
+      "reason": "R2-46: blocks a U6 POFV site"
+    },
+    {
+      "uuid": "new-c0218811-21b6-4ee8-a998-76e16d9b2322",
+      "net": "MISO_AFE",
+      "kind": "vias",
+      "xy": [
+        27.6,
+        51.4
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.E2 POFV"
+    },
+    {
+      "uuid": "new-639e3475-437c-41f8-aa6f-4302ab95e222",
+      "net": "PD2_INM",
+      "kind": "vias",
+      "xy": [
+        27.2,
+        50.2
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.B3 POFV"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "MISO_AFE R2-46",
+      "net": "MISO_AFE",
+      "attempt": 1,
+      "approach": "R2-46 POFV ball escape on In3/In5/In4 (local), 180 s budget, margin 8 mm",
+      "bounds": [
+        19.475,
+        41.196869,
+        48.0,
+        59.525
+      ],
+      "gap_mm": 16.9948023011431,
+      "status": "failed",
+      "reason": "no path (expanded 560950 cells)"
+    },
+    {
+      "connection": "MISO_AFE R2-46",
+      "net": "MISO_AFE",
+      "attempt": 2,
+      "approach": "R2-46 POFV ball escape on In3/In5/In4 (local), 180 s budget, margin 20 mm",
+      "bounds": [
+        7.475000000000001,
+        29.196869,
+        48.0,
+        64.5
+      ],
+      "gap_mm": 16.9948023011431,
+      "status": "failed",
+      "reason": "no path (expanded 1677429 cells)"
+    },
+    {
+      "connection": "AFE_CLK R2-46",
+      "net": "AFE_CLK",
+      "attempt": 1,
+      "approach": "R2-46 POFV ball escape on In3/In5/In4 (local), 180 s budget, margin 8 mm",
+      "bounds": [
+        -1.771458,
+        43.675,
+        36.125,
+        61.948431
+      ],
+      "gap_mm": 21.752205930021784,
+      "status": "routed",
+      "tracks": 16,
+      "vias": [
+        {
+          "net": "AFE_CLK",
+          "xy": [
+            16.1,
+            58.8
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ca033a97-d75f-4d32-ac85-6487640457ce",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 438001
+    },
+    {
+      "connection": "PD2_INM R2-46",
+      "net": "PD2_INM",
+      "attempt": 1,
+      "approach": "R2-46 POFV ball escape on In3/In5/In4 (local), 180 s budget, margin 8 mm",
+      "bounds": [
+        5.243149000000001,
+        42.075,
+        35.325,
+        62.305558
+      ],
+      "gap_mm": 14.423176063627384,
+      "status": "failed",
+      "reason": "no path (expanded 557210 cells)"
+    },
+    {
+      "connection": "PD2_INM R2-46",
+      "net": "PD2_INM",
+      "attempt": 2,
+      "approach": "R2-46 POFV ball escape on In3/In5/In4 (local), 180 s budget, margin 20 mm",
+      "bounds": [
+        -2.0,
+        30.075000000000003,
+        47.325,
+        64.5
+      ],
+      "gap_mm": 14.423176063627384,
+      "status": "failed",
+      "reason": "no path (expanded 2121280 cells)"
+    },
+    {
+      "connection": "SPI_MOSI U6",
+      "net": "SPI_MOSI",
+      "attempt": 1,
+      "approach": "R2-46 POFV ball escape on In3/In5/In4 (local), 180 s budget (ripped blocker, other layer), margin 5 mm",
+      "bounds": [
+        22.475,
+        45.40586246753532,
+        35.14173694291014,
+        56.925
+      ],
+      "gap_mm": 2.7739809319685618,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            29.68591,
+            50.830775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-0ba958eb-0265-4dc1-a7c3-66f59c1dd730",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 5641
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "4c82b2ca-4d99-4e0f-b9b4-5718531cb43d",
+    "120eb931-c507-4ee8-95a6-ff24d6c90b35"
+  ],
+  "dangling_repair": []
+}
