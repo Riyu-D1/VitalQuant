@@ -1,0 +1,84 @@
+{
+  "batch": "R2-62",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_232954_R2-62_R90_MISO_AFE",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "7f437959-07f4-4cd2-8940-4d796a45032b",
+      "net": "SPI_MOSI",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        27.63591,
+        51.680775
+      ],
+      "b": [
+        27.93591,
+        51.380775
+      ],
+      "width": 0.1016,
+      "reason": "R2-62 R90.1 POFV after local In2 rip; MISO_AFE on In3: blocks the U6.E2 POFV site"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "MISO_AFE R2-62",
+      "net": "MISO_AFE",
+      "attempt": 1,
+      "approach": "R2-62 R90.1 POFV after local In2 rip; MISO_AFE on In3 (+In4 local), margin 25 mm",
+      "bounds": [
+        2.7236470637455987,
+        23.791869,
+        48.0,
+        64.5
+      ],
+      "gap_mm": 16.9948023011431,
+      "status": "failed",
+      "reason": "no path (expanded 413 cells)"
+    },
+    {
+      "connection": "SPI_MOSI U6",
+      "net": "SPI_MOSI",
+      "attempt": 2,
+      "approach": "R2-62 R90.1 POFV after local In2 rip; MISO_AFE on In3 (ripped In2), margin 5 mm",
+      "bounds": [
+        22.475,
+        46.420527931474346,
+        32.90428177780532,
+        56.925
+      ],
+      "gap_mm": 0.3614123726159037,
+      "status": "routed",
+      "tracks": 6,
+      "vias": [
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            25.33591,
+            48.880775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-1360af1f-fbef-4ab4-b8f4-b72c32ae4bad",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 5494
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "7f437959-07f4-4cd2-8940-4d796a45032b"
+  ]
+}
