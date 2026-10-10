@@ -1,0 +1,48 @@
+{
+  "input": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb",
+  "output": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-66/stage1/vitalq_v2.kicad_pcb",
+  "moves": [
+    {
+      "ref": "U19",
+      "from": [
+        17.087664,
+        43.435463
+      ],
+      "to": [
+        17.087664,
+        46.435463
+      ],
+      "detach": true,
+      "reason": "SUPERVISOR: U19 3 mm south out of hv_inner, DETACH + re-route all U19 nets from scratch (drag in R2-50/57 sealed the pins); outline growth not used: the new west strip is ~19 mm from U19 and has no planes"
+    },
+    {
+      "ref": "C59",
+      "from": [
+        15.647664,
+        40.509838
+      ],
+      "to": [
+        15.647664,
+        43.509838
+      ],
+      "detach": true,
+      "reason": "SUPERVISOR: C59 moves 3 mm south with U19; C59.1 leaves hv_inner"
+    },
+    {
+      "ref": "R6",
+      "from": [
+        15.657664,
+        46.642181
+      ],
+      "to": [
+        15.657664,
+        49.642181
+      ],
+      "detach": true,
+      "reason": "clear the new U19 footprint (moved 3 mm south with the group)"
+    }
+  ],
+  "refill": false,
+  "log": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/R2-66/stage1/ops_log.json",
+  "stackup8": false
+}
