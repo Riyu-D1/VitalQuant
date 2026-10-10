@@ -1,0 +1,355 @@
+{
+  "batch": "R2-18",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_193427_R2-18_leftovers_A",
+  "moves": [],
+  "removed": [],
+  "routes": [
+    {
+      "connection": "+3V3 U18",
+      "net": "+3V3",
+      "attempt": 3,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 4 mm",
+      "bounds": [
+        21.054594,
+        36.15,
+        29.554594,
+        44.942033
+      ],
+      "gap_mm": 0.14203300000000496,
+      "status": "failed",
+      "reason": "no path (expanded 1727 cells)"
+    },
+    {
+      "connection": "+3V3 U18",
+      "net": "+3V3",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "+3V3 U11/U20",
+      "net": "+3V3",
+      "attempt": 1,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 4 mm",
+      "bounds": [
+        14.850000000000001,
+        46.225,
+        24.858449,
+        54.575
+      ],
+      "gap_mm": 1.408449000000001,
+      "status": "failed",
+      "reason": "no path (expanded 156 cells)"
+    },
+    {
+      "connection": "+3V3 U11/U20",
+      "net": "+3V3",
+      "attempt": 2,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 10 mm",
+      "bounds": [
+        8.850000000000001,
+        40.225,
+        30.858449,
+        60.575
+      ],
+      "gap_mm": 1.408449000000001,
+      "status": "failed",
+      "reason": "no path (expanded 156 cells)"
+    },
+    {
+      "connection": "GND R51",
+      "net": "GND",
+      "attempt": 1,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 4 mm",
+      "bounds": [
+        2.629048,
+        57.05,
+        11.690529999999999,
+        64.5
+      ],
+      "gap_mm": 1.552494000000003,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [
+        {
+          "net": "GND",
+          "xy": [
+            6.78591,
+            59.530775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-e36a848f-839a-45b4-866b-826b51fc5d33",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 4459
+    },
+    {
+      "connection": "unconnected-(J12-PadMP) J12",
+      "net": "unconnected-(J12-PadMP)",
+      "attempt": 1,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 4 mm",
+      "bounds": [
+        -2.0,
+        42.45,
+        5.0,
+        60.75
+      ],
+      "gap_mm": 8.5,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "unconnected-(J12-PadMP)",
+          "xy": [
+            0.65,
+            48.55
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-df9c1eab-9ebf-4d72-9380-138b33056702",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "unconnected-(J12-PadMP)",
+          "xy": [
+            0.65,
+            56.5
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f8d7ad30-f9a6-46af-9d2a-f599fd6cbf1e",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 27934
+    },
+    {
+      "connection": "TMP117_ALERT R65/U11",
+      "net": "TMP117_ALERT",
+      "attempt": 1,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 4 mm",
+      "bounds": [
+        9.847543,
+        29.208312,
+        25.55,
+        55.225
+      ],
+      "gap_mm": 19.040923305506826,
+      "status": "failed",
+      "reason": "no path (expanded 144 cells)"
+    },
+    {
+      "connection": "TMP117_ALERT R65/U11",
+      "net": "TMP117_ALERT",
+      "attempt": 2,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 10 mm",
+      "bounds": [
+        3.847543,
+        23.208312,
+        31.55,
+        61.225
+      ],
+      "gap_mm": 19.040923305506826,
+      "status": "failed",
+      "reason": "no path (expanded 144 cells)"
+    },
+    {
+      "connection": "AFE_N_PAD J5/R36",
+      "net": "AFE_N_PAD",
+      "attempt": 1,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 4 mm",
+      "bounds": [
+        10.625,
+        23.74347,
+        32.379329,
+        64.5
+      ],
+      "gap_mm": 36.597868442585245,
+      "status": "routed",
+      "tracks": 19,
+      "vias": [
+        {
+          "net": "AFE_N_PAD",
+          "xy": [
+            17.15,
+            60.75
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-833ac62c-1ff1-409f-8a91-b400f94c9c50",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "AFE_N_PAD",
+          "xy": [
+            24.9,
+            58.9
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-42616498-e366-4aa9-8753-b0b1f8e09fd0",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "AFE_N_PAD",
+          "xy": [
+            28.9,
+            56.0
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-3d87d31a-dc82-43f1-b6a6-9f567ec8a54a",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "AFE_N_PAD",
+          "xy": [
+            28.45,
+            37.85
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-a2d58eb2-beb1-4d3c-9580-f61231dc2efd",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "AFE_N_PAD",
+          "xy": [
+            27.1,
+            36.0
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-c9798158-b16f-42d8-a553-551714c594a6",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "AFE_N_PAD",
+          "xy": [
+            22.1,
+            30.7
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-9157c5cf-4cf0-4070-b357-d3ff1e884ca3",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 379659
+    },
+    {
+      "connection": "+3V3 zone",
+      "net": "+3V3",
+      "attempt": 1,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 4 mm",
+      "bounds": [
+        16.858449,
+        46.033449,
+        25.559698,
+        55.389698
+      ],
+      "gap_mm": 0.0,
+      "status": "failed",
+      "reason": "no path (expanded 300 cells)"
+    },
+    {
+      "connection": "+3V3 zone",
+      "net": "+3V3",
+      "attempt": 2,
+      "approach": "R2-18 leftover A* F/B/In2/In3 (inner only outside hv_inner), 0.4/0.2 vias, 60 s budget, margin 10 mm",
+      "bounds": [
+        10.858449,
+        40.033449,
+        31.559698,
+        61.389698
+      ],
+      "gap_mm": 0.0,
+      "status": "failed",
+      "reason": "no path (expanded 300 cells)"
+    }
+  ],
+  "issues": [],
+  "dangling_repair": []
+}
