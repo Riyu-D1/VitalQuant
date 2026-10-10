@@ -1,0 +1,557 @@
+{
+  "batch": "R2-54",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_230854_R2-54_R90_MISO_AFE",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "353749ac-80d2-4c5f-b10a-8519b566a837",
+      "net": "SWEAT_CE",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        44.835432,
+        48.108419
+      ],
+      "b": [
+        44.835432,
+        55.377131
+      ],
+      "width": 0.101702,
+      "reason": "R2-54 R90.1 POFV after local In2 rip; MISO_AFE on In3: blocks the R90.1 via site"
+    },
+    {
+      "uuid": "40c61cd0-5a5c-4ea4-8a3c-780fe6149181",
+      "net": "PD_A",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        45.058732,
+        55.48711
+      ],
+      "b": [
+        45.058732,
+        48.032907
+      ],
+      "width": 0.101702,
+      "reason": "R2-54 R90.1 POFV after local In2 rip; MISO_AFE on In3: blocks the R90.1 via site"
+    },
+    {
+      "uuid": "a3db4639-301c-4078-989b-9dcfcb50c11f",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "6fef8a7b-3b3f-4896-9d6f-c98fff361737",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "cf568ebd-00c3-4042-9dd8-d4c5506b9be9",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "20253fe5-d0da-4171-981f-2a650499be80",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "aabe2f32-4e7c-4f3b-8150-b04d4bb416c6",
+      "reason": "in-batch dangling repair"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "MISO_AFE R2-54",
+      "net": "MISO_AFE",
+      "attempt": 1,
+      "approach": "R2-54 R90.1 POFV after local In2 rip; MISO_AFE on In3, margin 10 mm",
+      "bounds": [
+        17.477402,
+        39.196869,
+        48.0,
+        61.522598
+      ],
+      "gap_mm": 16.99506668193005,
+      "status": "failed",
+      "reason": "no path (expanded 12 cells)"
+    },
+    {
+      "connection": "SWEAT_CE R122",
+      "net": "SWEAT_CE",
+      "attempt": 1,
+      "approach": "R2-54 R90.1 POFV after local In2 rip; MISO_AFE on In3 (ripped In2), margin 5 mm",
+      "bounds": [
+        27.975,
+        43.15927,
+        48.0,
+        63.15
+      ],
+      "gap_mm": 7.167009999999998,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 33230
+    },
+    {
+      "connection": "PD_A J10",
+      "net": "PD_A",
+      "attempt": 1,
+      "approach": "R2-54 R90.1 POFV after local In2 rip; MISO_AFE on In3 (ripped In2), margin 5 mm",
+      "bounds": [
+        39.629083,
+        34.043304,
+        48.0,
+        60.436259
+      ],
+      "gap_mm": 7.352500999999997,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "PD_A",
+          "xy": [
+            44.65,
+            45.45
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-44013d18-d2b7-4e3a-9592-13e2ec61191f",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "PD_A",
+          "xy": [
+            43.3,
+            57.05
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-56fcec65-cd6e-4d94-8935-2fc3691c6db7",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 49952
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "353749ac-80d2-4c5f-b10a-8519b566a837",
+    "40c61cd0-5a5c-4ea4-8a3c-780fe6149181"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "a3db4639-301c-4078-989b-9dcfcb50c11f",
+          "net": "PD_A",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            43.480268,
+            57.065574
+          ]
+        },
+        {
+          "uuid": "6fef8a7b-3b3f-4896-9d6f-c98fff361737",
+          "net": "PD_A",
+          "action": "removed dangling track",
+          "a": [
+            45.058732,
+            48.032907
+          ],
+          "b": [
+            44.679934,
+            47.654109
+          ]
+        },
+        {
+          "uuid": "cf568ebd-00c3-4042-9dd8-d4c5506b9be9",
+          "net": "PD_A",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.679934,
+            45.45
+          ]
+        },
+        {
+          "uuid": "20253fe5-d0da-4171-981f-2a650499be80",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-46d139cc-2eec-4a01-acf5-18cabe382dc8",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-2bbb337d-c2e1-4b9a-b07d-cc05f5b79019",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-4a197b03-d8f2-4a7a-87ec-5b060bcbc6ff",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-66b254b9-482a-45e3-a259-a3d4354954a9",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-831eaab6-5ede-4203-87ad-b23ca04ecb1a",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-e08718a8-1683-409b-9641-cc7a4ccdc086",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-a22c150c-e743-4eea-aa8f-3d6d0412912c",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-15af45b6-512a-457b-ad33-9db559ac494e",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-3c77ec03-aa24-401c-9eb7-a901c09e2147",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-89a39bbd-62bb-4333-89ad-d454f1c13f2a",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-a9ee2e8c-1652-4513-b605-91d02baacc4f",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-84b44a6b-d8a0-4688-8324-0231ac3171cd",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-1e72858e-ac9f-4c90-b510-bd6b4ab2af2d",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-eddbcdaf-8e63-4631-90ec-ce7d29f49d71",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-1c402f91-8f06-491c-a15e-6693965cf53f",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-e5525eae-5adb-4dc3-bc49-04b81adb3683",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-2fcad65f-813b-487c-8acf-863993cd393b",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-1c9463a2-f5d4-439c-8304-a3b587f1601d",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-a973d7f0-5870-4677-bdec-3a0ada771460",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-5d17ead4-2851-406b-bafe-b0ea1055c2de",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-6b3fbb42-b0ed-41ca-947f-02d8d8a5cf17",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-e04c8c4f-008d-498b-93d8-b07533b3dfc2",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-e7525a9c-2ced-4d64-bc16-14cc58f228ee",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-76def73a-98fb-418a-981d-8364481498df",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-40db22c2-9bdb-4d62-b052-d2258b6454f9",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-78648501-c5b9-416a-aa17-48d40279919d",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-17ea0ea0-3ecd-4d6c-abef-215a84a450ed",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-47edbe3a-d412-4e1f-b62f-fe1dfa8ac2c7",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-98a5aa02-8cf6-431a-9ba1-bdce078b4ef2",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-b4bef551-c137-43b1-b284-e279cc10f8bb",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-fe62fd3f-8f65-4fb5-8987-92ceef2d682f",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-d06f1eaf-f0de-48d4-8f22-c480de710709",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-6a2bb8d9-f444-4696-8873-7352261338ff",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-7d873dda-a8e0-4655-b048-536df2cb2b95",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-6d579012-4cc8-4992-a765-3da19ec879e1",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-73b0fdb8-d0c0-4fa6-951e-01ba08af9c3c",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "uuid": "new-3793eb4d-8bf5-4042-b603-d8a4b15e5549",
+          "net": "SWEAT_CE",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            44.471849,
+            47.744836
+          ]
+        },
+        {
+          "action": "ABORT: cascade exceeded 40 removals; repair stopped (needs manual review)"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "items": [
+        {
+          "uuid": "aabe2f32-4e7c-4f3b-8150-b04d4bb416c6",
+          "net": "+3V3",
+          "action": "removed dangling via",
+          "xy": [
+            44.9,
+            48.6
+          ]
+        }
+      ]
+    }
+  ]
+}

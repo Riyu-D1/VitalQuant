@@ -1,0 +1,132 @@
+{
+  "batch": "R2-58",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_231746_R2-58_dangling_delete",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "d154390f-d621-4ee9-bf70-639743942034",
+      "net": "USB_DM",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        10.504562,
+        13.703904
+      ],
+      "b": [
+        10.466331,
+        13.729449
+      ],
+      "width": 0.129007,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    },
+    {
+      "uuid": "53e287c4-7c36-45bc-9abf-2a66de5c6879",
+      "net": "I2C_SDA",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        20.558818,
+        37.176105
+      ],
+      "b": [
+        20.558818,
+        37.198097
+      ],
+      "width": 0.101702,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    },
+    {
+      "uuid": "c9682b8e-0f1e-4374-9c48-43e0475ebb0a",
+      "net": "CS_FLASH",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        14.05396,
+        46.592625
+      ],
+      "b": [
+        14.05396,
+        46.642
+      ],
+      "width": 0.101702,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    },
+    {
+      "uuid": "ba73ba52-203c-450f-9856-9148d9488010",
+      "net": "AFE4900_RESETZ",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        10.749866,
+        61.05
+      ],
+      "b": [
+        9.888786,
+        61.05
+      ],
+      "width": 0.101702,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    },
+    {
+      "uuid": "70001e43-6e05-4c52-9249-bd2163a32dc8",
+      "net": "USB_DM",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        13.008919,
+        13.553955
+      ],
+      "b": [
+        12.963822,
+        13.562926
+      ],
+      "width": 0.129007,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    },
+    {
+      "uuid": "c9f7c3f4-78c5-44ec-a64d-c05ddfdecc9f",
+      "net": "GND",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        32.233742,
+        54.270815
+      ],
+      "b": [
+        32.2,
+        54.3
+      ],
+      "width": 0.1016,
+      "reason": "R2-58 cleanup: dangling item reported by refilled DRC"
+    }
+  ],
+  "routes": [],
+  "issues": [
+    "new dangling items remain after in-batch repair"
+  ],
+  "late_remove": [
+    "d154390f-d621-4ee9-bf70-639743942034",
+    "53e287c4-7c36-45bc-9abf-2a66de5c6879",
+    "c9682b8e-0f1e-4374-9c48-43e0475ebb0a",
+    "ba73ba52-203c-450f-9856-9148d9488010",
+    "70001e43-6e05-4c52-9249-bd2163a32dc8",
+    "c9f7c3f4-78c5-44ec-a64d-c05ddfdecc9f"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "8774e07c-2e73-46b3-a10f-d04dc6c1aa29",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        },
+        {
+          "uuid": "5c12b63f-4a06-40ea-95fa-e6f9bfc6e236",
+          "net": "USB_DM",
+          "action": "left (both ends anchored geometrically)"
+        }
+      ]
+    }
+  ]
+}
