@@ -1,0 +1,578 @@
+{
+  "batch": "R2-49",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_224657_R2-49_keepout_cleanup",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "2b7a091f-8ae0-4580-ad67-ec0be1b81e4c",
+      "net": "I2C_SCL_1V8",
+      "kind": "vias",
+      "xy": [
+        23.063453,
+        62.246811
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-49 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "7bd8da92-4bc2-46c4-baad-923798b031f8",
+      "net": "J13_INM",
+      "kind": "vias",
+      "xy": [
+        29.691932,
+        63.093654
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-49 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "b83983b2-a953-4545-b256-be390ba0b0b3",
+      "net": "CHG_PG",
+      "kind": "vias",
+      "xy": [
+        31.904733,
+        26.475733
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-49 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "ee799dd3-23d8-4d1e-a289-4a1e75a95c7d",
+      "net": "J13_INP",
+      "kind": "vias",
+      "xy": [
+        38.333404,
+        49.253216
+      ],
+      "diameter": 0.4004,
+      "drill": 0.2002,
+      "reason": "R2-49 keepout cleanup: rip copper inside rule areas, re-route around them"
+    },
+    {
+      "uuid": "c0404193-1ea7-4bf8-bbc6-6242c9b028ae",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "b2df8ded-5fbf-4480-ad61-22076477db9a",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "2d7f6784-72d8-4e05-8f87-d43524e4b476",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "95081a1c-f25b-44e5-a1d6-e9e17411d429",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "7d8d4a42-b24a-4d77-88cf-7a843b9f13b3",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "8a9c4c25-5d01-4810-af11-519e169025de",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "bff7ba1f-601a-48dc-9364-f5cb60953640",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "b93e0397-d02f-4051-9fb3-4ec12f4d8cdd",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "b7f7055e-2565-47da-93e1-73131e12bf80",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "81b20ace-e564-4c6d-9a4c-e421fdba866e",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "71bfd5ac-1a23-4018-ac8e-2d1d296b7857",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "c19ffc56-3a83-47dc-8ce7-1dfa8445e268",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "1fe1f20d-23bc-465f-8132-f68ede12c050",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "53d2d1ed-379e-46cd-a5cd-60368fe2fd16",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "0664ee34-74a6-475d-b5c3-5d973bf0818f",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "868f264d-6a43-433d-b31c-c0b9d4a7a777",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "4a784c4f-d129-4302-8ee3-95938f33d413",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "07006253-224a-4aa7-9ade-99c66bc507c5",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "4b30b488-4fba-49a4-b576-8da53f24aa41",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "c8f214c2-fcba-4b27-beea-081d610c94a0",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "acd18bdb-9fe5-41e6-8008-3a8b9bd476e1",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "5aa8c3a5-98db-4e48-a72b-a2fcab1c71a1",
+      "reason": "in-batch dangling repair"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "CHG_PG R60",
+      "net": "CHG_PG",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "I2C_SCL_1V8 TP16/U12",
+      "net": "I2C_SCL_1V8",
+      "attempt": 3,
+      "approach": "R2-49 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        -2.0,
+        47.55,
+        27.114304,
+        64.5
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "I2C_SCL_1V8",
+          "xy": [
+            24.35,
+            62.1
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f0924652-3150-4c20-8ceb-232302041c31",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 2903
+    },
+    {
+      "connection": "J13_INM J13",
+      "net": "J13_INM",
+      "attempt": 3,
+      "approach": "R2-49 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        23.925,
+        58.05,
+        33.742783,
+        64.5
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "J13_INM",
+          "xy": [
+            32.5,
+            61.55
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-3959e88f-b7a7-4487-80cf-8ed784b47ed5",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 10345
+    },
+    {
+      "connection": "J13_INP R118",
+      "net": "J13_INP",
+      "attempt": 3,
+      "approach": "R2-49 keepout cleanup: rip copper inside rule areas, re-route around them, margin 4 mm",
+      "bounds": [
+        34.05,
+        41.125,
+        43.275,
+        53.304067
+      ],
+      "gap_mm": 0.0,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "J13_INP",
+          "xy": [
+            36.8,
+            49.45
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ad309066-72b1-4b78-9ff4-6521fbd4bb69",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        },
+        {
+          "net": "J13_INP",
+          "xy": [
+            37.35,
+            50.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-c9204dfb-1508-4804-9e61-57235fceb1d5",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14
+          ]
+        }
+      ],
+      "expanded": 9073
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "2b7a091f-8ae0-4580-ad67-ec0be1b81e4c",
+    "7bd8da92-4bc2-46c4-baad-923798b031f8",
+    "b83983b2-a953-4545-b256-be390ba0b0b3",
+    "ee799dd3-23d8-4d1e-a289-4a1e75a95c7d"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "c0404193-1ea7-4bf8-bbc6-6242c9b028ae",
+          "net": "J13_INM",
+          "action": "removed dangling track",
+          "a": [
+            31.265437,
+            61.520149
+          ],
+          "b": [
+            29.691932,
+            63.093654
+          ]
+        },
+        {
+          "uuid": "b2df8ded-5fbf-4480-ad61-22076477db9a",
+          "net": "J13_INM",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            32.5,
+            61.520149
+          ]
+        },
+        {
+          "uuid": "2d7f6784-72d8-4e05-8f87-d43524e4b476",
+          "net": "J13_INP",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            37.36831,
+            50.21831
+          ]
+        },
+        {
+          "uuid": "95081a1c-f25b-44e5-a1d6-e9e17411d429",
+          "net": "I2C_SCL_1V8",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            24.35,
+            62.246811
+          ]
+        },
+        {
+          "uuid": "7d8d4a42-b24a-4d77-88cf-7a843b9f13b3",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            31.171595,
+            25.742595
+          ],
+          "b": [
+            31.904733,
+            26.475733
+          ]
+        },
+        {
+          "uuid": "8a9c4c25-5d01-4810-af11-519e169025de",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            31.171595,
+            21.918441
+          ],
+          "b": [
+            31.171595,
+            25.742595
+          ]
+        },
+        {
+          "uuid": "bff7ba1f-601a-48dc-9364-f5cb60953640",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            31.104244,
+            21.85109
+          ],
+          "b": [
+            31.171595,
+            21.918441
+          ]
+        },
+        {
+          "uuid": "b93e0397-d02f-4051-9fb3-4ec12f4d8cdd",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            31.104244,
+            21.70383
+          ],
+          "b": [
+            31.104244,
+            21.85109
+          ]
+        },
+        {
+          "uuid": "b7f7055e-2565-47da-93e1-73131e12bf80",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            30.798383,
+            21.397968
+          ],
+          "b": [
+            31.104244,
+            21.70383
+          ]
+        },
+        {
+          "uuid": "81b20ace-e564-4c6d-9a4c-e421fdba866e",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            30.508554,
+            21.397968
+          ],
+          "b": [
+            30.798383,
+            21.397968
+          ]
+        },
+        {
+          "uuid": "71bfd5ac-1a23-4018-ac8e-2d1d296b7857",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            31.904733,
+            26.475733
+          ],
+          "b": [
+            31.397138,
+            26.983327
+          ]
+        },
+        {
+          "uuid": "c19ffc56-3a83-47dc-8ce7-1dfa8445e268",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            31.397138,
+            26.983327
+          ],
+          "b": [
+            31.397138,
+            28.617457
+          ]
+        },
+        {
+          "uuid": "1fe1f20d-23bc-465f-8132-f68ede12c050",
+          "net": "CHG_PG",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            31.397138,
+            28.91023
+          ]
+        },
+        {
+          "uuid": "53d2d1ed-379e-46cd-a5cd-60368fe2fd16",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            31.397138,
+            28.91023
+          ],
+          "b": [
+            31.397138,
+            29.231088
+          ]
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "items": [
+        {
+          "uuid": "0664ee34-74a6-475d-b5c3-5d973bf0818f",
+          "net": "CHG_PG",
+          "action": "removed dangling via",
+          "xy": [
+            30.508554,
+            21.397968
+          ]
+        },
+        {
+          "uuid": "868f264d-6a43-433d-b31c-c0b9d4a7a777",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            30.764001,
+            21.142521
+          ],
+          "b": [
+            30.508554,
+            21.397968
+          ]
+        },
+        {
+          "uuid": "4a784c4f-d129-4302-8ee3-95938f33d413",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            30.764001,
+            19.367873
+          ],
+          "b": [
+            30.764001,
+            21.142521
+          ]
+        },
+        {
+          "uuid": "07006253-224a-4aa7-9ade-99c66bc507c5",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            28.898424,
+            17.502295
+          ],
+          "b": [
+            30.764001,
+            19.367873
+          ]
+        },
+        {
+          "uuid": "4b30b488-4fba-49a4-b576-8da53f24aa41",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            28.898424,
+            11.116337
+          ],
+          "b": [
+            28.898424,
+            17.502295
+          ]
+        },
+        {
+          "uuid": "c8f214c2-fcba-4b27-beea-081d610c94a0",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            26.807242,
+            9.025155
+          ],
+          "b": [
+            28.898424,
+            11.116337
+          ]
+        },
+        {
+          "uuid": "acd18bdb-9fe5-41e6-8008-3a8b9bd476e1",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            26.807242,
+            6.669007
+          ],
+          "b": [
+            26.807242,
+            9.025155
+          ]
+        },
+        {
+          "uuid": "5aa8c3a5-98db-4e48-a72b-a2fcab1c71a1",
+          "net": "CHG_PG",
+          "action": "removed dangling track",
+          "a": [
+            26.290423,
+            6.152188
+          ],
+          "b": [
+            26.807242,
+            6.669007
+          ]
+        }
+      ]
+    }
+  ]
+}
