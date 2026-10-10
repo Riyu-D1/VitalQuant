@@ -1,0 +1,125 @@
+{
+  "batch": "B2",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_120512_B2_local_repairs",
+  "source_geometry": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/candidates/B1/geometry.json.gz",
+  "history_reviewed": [
+    "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/PROGRESS.md",
+    "/Users/deepakdiwan/Downloads/VitalQ_Route_v8/PROGRESS.md",
+    "/Users/deepakdiwan/Downloads/VitalQ_Route_v8/REPORT.md"
+  ],
+  "tracks": [
+    {
+      "net": "+3V3",
+      "layer": 0,
+      "a": [
+        26.574594,
+        40.617033
+      ],
+      "b": [
+        26.65,
+        40.15
+      ],
+      "width": 0.1016,
+      "uuid": "ec79d6f3-c5a0-4275-ad4d-68f7e6278112"
+    }
+  ],
+  "vias": [
+    {
+      "net": "+3V3",
+      "xy": [
+        26.65,
+        40.15
+      ],
+      "diameter": 0.4,
+      "drill": 0.2,
+      "uuid": "9ffd35b3-9346-4476-9268-98284d25ae1e",
+      "layers": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "filled": true,
+      "capped": true,
+      "pofv": true,
+      "pads": [
+        "U18.7"
+      ]
+    }
+  ],
+  "remove": [],
+  "attempts": [
+    {
+      "net": "GND",
+      "attempt": 1,
+      "approach": "F-only connections from each HV-stranded GND branch to existing grounded copper, avoiding I2C_SCL_1V8/TX5_EN; no new via",
+      "status": "evaluated"
+    },
+    {
+      "net": "+3V3",
+      "attempt": 2,
+      "approach": "C59 outside-HV stitch at 14.85,39.85; U18 independent north-side stitches; explicit sensor bridge site 20.05,52.2 on both outer layers",
+      "status": "evaluated"
+    },
+    {
+      "net": "TMP117_ALERT",
+      "attempt": 1,
+      "approach": "Forced bridge via at 19.5,52.2, B connection from U11.3 and F-only connection to existing R65.2 branch",
+      "status": "evaluated"
+    },
+    {
+      "net": "unconnected-(J12-PadMP)",
+      "attempt": 1,
+      "approach": "Exact MP pad-center POFV pair with In2 link instead of shorting B.Cu straight line",
+      "status": "evaluated"
+    }
+  ],
+  "blocked": [
+    {
+      "net": "GND",
+      "connection": "R9.2 to R51.2",
+      "reason": "No continuous F-only detour in the specified local window; original copper retained"
+    },
+    {
+      "net": "GND",
+      "connection": "U19/D30 GND to existing outside-HV via",
+      "reason": "No continuous F-only detour in the specified local window; original copper retained"
+    },
+    {
+      "net": "+3V3",
+      "connection": "C59.1",
+      "reason": "[{\"kind\":\"vias\",\"net\":\"I2C_SCL\",\"uuid\":\"7958787c-9ee9-4aea-94c5-94b0b03579c3\",\"layer\":10,\"gap_from_hole\":0.10136600836190282},{\"kind\":\"drill\",\"uuid\":\"7958787c-9ee9-4aea-94c5-94b0b03579c3\",\"gap\":0.2014528106492013}]"
+    },
+    {
+      "net": "+3V3",
+      "connection": "U18.8",
+      "reason": "[\"No legal via site in the independent north-side search window\"]"
+    },
+    {
+      "net": "+3V3",
+      "connection": "U20.5",
+      "reason": "No legal layer 0 pad-to-stitch path within slot/copper clearance; site [20.05, 52.2]"
+    },
+    {
+      "net": "+3V3",
+      "connection": "U11.5",
+      "reason": "No legal layer 2 pad-to-stitch path within slot/copper clearance; site [20.05, 52.2]"
+    },
+    {
+      "net": "TMP117_ALERT",
+      "connection": "U11.3 bridge",
+      "reason": "[{\"kind\":\"vias\",\"net\":\"I2C_SDA\",\"uuid\":\"a96593a3-3bd8-4397-a7ec-48f3f07e6b00\",\"layer\":10,\"gap_from_hole\":0.06997972952973786},{\"kind\":\"tracks\",\"net\":\"I2C_SCL\",\"uuid\":\"811ad07f-6bc8-4dd8-b59d-39e82dec1987\",\"layer\":6,\"gap_from_hole\":0.021057141746175984},{\"kind\":\"tracks\",\"net\":\"I2C_SCL\",\"uuid\":\"b5fd1c07-0330-4422-a964-b1512e61e27b\",\"layer\":6,\"gap_from_hole\":-0.03696100000000016},{\"kind\":\"drill\",\"uuid\":\"a96593a3-3bd8-4397-a7ec-48f3f07e6b00\",\"gap\":0.17004958128122658}]"
+    },
+    {
+      "net": "unconnected-(J12-PadMP)",
+      "connection": "MP pair",
+      "reason": "[[],[{\"kind\":\"tracks\",\"net\":\"FSR_ADC\",\"uuid\":\"61c3b36d-ae44-41e0-a73c-444f6579d898\",\"layer\":0,\"gap_from_hole\":-0.03186900000000001}]]"
+    }
+  ],
+  "nets_done": [
+    "U18.7 to +3V3 plane stitch [26.65, 40.15]"
+  ],
+  "summary": "Local repairs only; no component moves, no rip-up"
+}
