@@ -1,0 +1,431 @@
+{
+  "batch": "R2-17a",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_192015_R2-17a_U6_POFV_sites_notches",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "26fb1e15-6ddd-4860-8f61-146c269267c9",
+      "net": "PD_INM",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        25.65,
+        50.35
+      ],
+      "b": [
+        24.95,
+        53.9
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "a3d179a0-4cee-48b3-8a79-d16c1e61a4a3",
+      "net": "PD_INM",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        25.65,
+        49.9
+      ],
+      "b": [
+        25.65,
+        50.35
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "0b5df773-021d-456f-a18a-b61167fb8568",
+      "net": "PD_INP",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        26.05,
+        49.4
+      ],
+      "b": [
+        24.0,
+        47.15
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "ffef43f7-88f5-4ccb-bb88-c33a84df41a6",
+      "net": "AFE_INM",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        26.55,
+        49.9
+      ],
+      "b": [
+        27.5,
+        53.5
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "0e94d259-701f-4b29-b705-f848c6d36f28",
+      "net": "SPI_MOSI",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        26.05,
+        51.9
+      ],
+      "b": [
+        26.05,
+        52.2
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "08f73d69-91eb-475b-842f-24ac1af20576",
+      "net": "TX2",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        24.85,
+        51.5
+      ],
+      "b": [
+        24.75,
+        53.55
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "a4fe7c97-c88a-4cbd-a9b3-2ce4df5cd407",
+      "net": "SPI_MOSI",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        26.08591,
+        52.230775
+      ],
+      "b": [
+        26.18591,
+        53.330775
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "e73c6337-dc54-44a9-a7e5-d91cb932619a",
+      "net": "PD_INP",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        26.05,
+        49.7
+      ],
+      "b": [
+        26.05,
+        49.45
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a: own R2-14 inner-layer route crossing the U6 array"
+    },
+    {
+      "uuid": "b6f0a8d8-7e9f-4f89-a5a5-d1072ae9bc6e",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        25.25,
+        50.85
+      ],
+      "b": [
+        24.85,
+        50.25
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a authorised local rip: blocks a U6 POFV site"
+    },
+    {
+      "uuid": "2600e546-896d-4685-afdd-6c689a3bd6f4",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        24.9,
+        53.5
+      ],
+      "b": [
+        25.25,
+        51.3
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a authorised local rip: blocks a U6 POFV site"
+    },
+    {
+      "uuid": "2c74f105-402a-40a7-8102-707b716c18d3",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        25.25,
+        51.3
+      ],
+      "b": [
+        25.25,
+        50.85
+      ],
+      "width": 0.1016,
+      "reason": "R2-17a authorised local rip: blocks a U6 POFV site"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "PD_INM U6",
+      "net": "PD_INM",
+      "attempt": 2,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A3), margin 3 mm",
+      "bounds": [
+        21.95991058835842,
+        46.675,
+        28.825,
+        56.850176107755516
+      ],
+      "gap_mm": 3.9922549384109107,
+      "status": "failed",
+      "reason": "no path (expanded 9550 cells)"
+    },
+    {
+      "connection": "PD_INM U6",
+      "net": "PD_INM",
+      "attempt": 3,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A3), margin 8 mm",
+      "bounds": [
+        16.95991058835842,
+        41.675,
+        33.825,
+        61.850176107755516
+      ],
+      "gap_mm": 3.9922549384109107,
+      "status": "routed",
+      "tracks": 15,
+      "vias": [
+        {
+          "net": "PD_INM",
+          "xy": [
+            21.8,
+            44.35
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-936e9249-d242-4ed8-9df2-1cf5edd57633",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "PD_INM",
+          "xy": [
+            29.0,
+            42.35
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-34960aea-e0b6-4dc0-9cc0-ee2827ddff4a",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "PD_INM",
+          "xy": [
+            30.0,
+            56.0
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-e57a4700-ffdd-4486-9708-5a57ac119f14",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "PD_INM",
+          "xy": [
+            28.35,
+            58.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-db3e4e91-04b4-4a8d-becb-97fed710cd91",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 100741
+    },
+    {
+      "connection": "PD_INP U6",
+      "net": "PD_INP",
+      "attempt": 3,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A2), margin 3 mm",
+      "bounds": [
+        21.032227178835512,
+        44.189268931030824,
+        29.225,
+        52.925
+      ],
+      "gap_mm": 3.205425128573233,
+      "status": "failed",
+      "reason": "no path (expanded 11152 cells)"
+    },
+    {
+      "connection": "PD_INP U6",
+      "net": "PD_INP",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    },
+    {
+      "connection": "AFE_INM U6",
+      "net": "AFE_INM",
+      "attempt": 2,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A1), margin 3 mm",
+      "bounds": [
+        23.375,
+        46.675,
+        30.485619269126655,
+        56.45127798670469
+      ],
+      "gap_mm": 3.6569887001103405,
+      "status": "failed",
+      "reason": "no path (expanded 7607 cells)"
+    },
+    {
+      "connection": "AFE_INM U6",
+      "net": "AFE_INM",
+      "attempt": 3,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (A1), margin 8 mm",
+      "bounds": [
+        18.375,
+        41.675,
+        35.48561926912666,
+        61.45127798670469
+      ],
+      "gap_mm": 3.6569887001103405,
+      "status": "failed",
+      "reason": "no path (expanded 13136 cells)"
+    },
+    {
+      "connection": "TX2 U6",
+      "net": "TX2",
+      "attempt": 2,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (E5), margin 3 mm",
+      "bounds": [
+        21.75449025404617,
+        48.275,
+        28.025,
+        56.49939883777421
+      ],
+      "gap_mm": 1.9794623272560496,
+      "status": "failed",
+      "reason": "no path (expanded 4209 cells)"
+    },
+    {
+      "connection": "TX2 U6",
+      "net": "TX2",
+      "attempt": 3,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (E5), margin 8 mm",
+      "bounds": [
+        16.75449025404617,
+        43.275,
+        33.025,
+        61.49939883777421
+      ],
+      "gap_mm": 1.9794623272560496,
+      "status": "failed",
+      "reason": "no path (expanded 5689 cells)"
+    },
+    {
+      "connection": "SPI_MOSI U6",
+      "net": "SPI_MOSI",
+      "attempt": 3,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (F2), margin 3 mm",
+      "bounds": [
+        22.975,
+        48.675,
+        29.225,
+        56.28004743039974
+      ],
+      "gap_mm": 1.3573874148826446,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [],
+      "expanded": 32
+    },
+    {
+      "connection": "ESP_TX J8",
+      "net": "ESP_TX",
+      "attempt": 3,
+      "approach": "R2-17a corridor re-route of own R2-14 route (exits extended past the array guard), 60 s budget (authorised ripped nets), margin 3 mm",
+      "bounds": [
+        21.786806,
+        47.30084900062891,
+        29.840332,
+        57.796447
+      ],
+      "gap_mm": 3.154167122519228,
+      "status": "failed",
+      "reason": "no path (expanded 16207 cells)"
+    },
+    {
+      "connection": "ESP_TX J8",
+      "net": "ESP_TX",
+      "status": "failed",
+      "reason": "BLOCKED: 3 attempts used or approach repeated"
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "26fb1e15-6ddd-4860-8f61-146c269267c9",
+    "a3d179a0-4cee-48b3-8a79-d16c1e61a4a3",
+    "0b5df773-021d-456f-a18a-b61167fb8568",
+    "ffef43f7-88f5-4ccb-bb88-c33a84df41a6",
+    "0e94d259-701f-4b29-b705-f848c6d36f28",
+    "08f73d69-91eb-475b-842f-24ac1af20576",
+    "a4fe7c97-c88a-4cbd-a9b3-2ce4df5cd407",
+    "e73c6337-dc54-44a9-a7e5-d91cb932619a",
+    "b6f0a8d8-7e9f-4f89-a5a5-d1072ae9bc6e",
+    "2600e546-896d-4685-afdd-6c689a3bd6f4",
+    "2c74f105-402a-40a7-8102-707b716c18d3"
+  ]
+}
