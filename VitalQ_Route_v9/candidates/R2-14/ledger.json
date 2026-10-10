@@ -1,0 +1,617 @@
+{
+  "batch": "R2-14",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_183706_R2-14_U6_batchA_J8_legal",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "86f38cb7-2111-49d1-8fd7-2e7ba803cc58",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        24.84,
+        51.45
+      ],
+      "b": [
+        25.26,
+        51.15
+      ],
+      "width": 0.1017,
+      "reason": "blocks U6.E5 POFV (ESP_TX; authorised SUPERVISOR_R2_04 / PROMPT_R2 R2-4)"
+    },
+    {
+      "uuid": "be81b366-30b0-4dc0-8746-44d6545cc56a",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        24.625616,
+        53.606704
+      ],
+      "b": [
+        24.625616,
+        51.21133
+      ],
+      "width": 0.101702,
+      "reason": "blocks U6.E5 POFV (ESP_RX; authorised SUPERVISOR_R2_04 / PROMPT_R2 R2-4)"
+    },
+    {
+      "uuid": "6fefe383-a38e-4841-9607-8cbfd1fcb277",
+      "net": "ESP_TX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        24.838,
+        53.506
+      ],
+      "b": [
+        24.84,
+        51.45
+      ],
+      "width": 0.1017,
+      "reason": "blocks U6.E5 POFV (ESP_TX; authorised SUPERVISOR_R2_04 / PROMPT_R2 R2-4)"
+    },
+    {
+      "uuid": "d1f64e6f-3dea-4322-84d1-9210fabb74e0",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        25.852,
+        51.967
+      ],
+      "b": [
+        24.926018,
+        51.967
+      ],
+      "width": 0.101702,
+      "reason": "blocks U6.F3 POFV (ESP_RX; authorised SUPERVISOR_R2_04 / PROMPT_R2 R2-4)"
+    },
+    {
+      "uuid": "5e80a1f1-1712-465d-8447-6251d8a8b83a",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        26.079919,
+        52.194919
+      ],
+      "b": [
+        25.852,
+        51.967
+      ],
+      "width": 0.101702,
+      "reason": "blocks U6.F3 POFV (ESP_RX; authorised SUPERVISOR_R2_04 / PROMPT_R2 R2-4)"
+    },
+    {
+      "uuid": "f514cf8c-d075-49e0-abfe-8150da8651f8",
+      "net": "AFE_INP",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        26.361,
+        54.602
+      ],
+      "b": [
+        26.36,
+        51.4
+      ],
+      "width": 0.1017,
+      "reason": "blocks U6.F2 POFV (AFE_INP; authorised SUPERVISOR_R2_04 / PROMPT_R2 R2-4)"
+    },
+    {
+      "uuid": "new-e8a36ad9-86bf-4298-8e74-d33cf441d753",
+      "net": "SPI_SCK",
+      "kind": "tracks",
+      "layer": 8,
+      "a": [
+        25.65,
+        51.9
+      ],
+      "b": [
+        25.65,
+        52.2
+      ],
+      "width": 0.1016,
+      "reason": "rollback U6.F3 fan-out (no completed connection)"
+    },
+    {
+      "uuid": "new-46e474c1-42f9-4442-9554-3e6450f900ab",
+      "net": "SPI_SCK",
+      "kind": "vias",
+      "xy": [
+        25.7,
+        51.8
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "reason": "rollback U6.F3 fan-out (no completed connection)"
+    },
+    {
+      "uuid": "e833f2e9-e4db-4424-a3aa-016f390f4371",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "2df0b215-42cc-43f9-849a-6012e24955bb",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "0a982241-26fc-4a9f-a6e8-767162ce8de9",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "e79fb415-a241-4ff5-ab5b-f3641d1c54af",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "b98c6020-f186-4074-a9bc-ef31b3fc08f8",
+      "reason": "in-batch dangling repair"
+    },
+    {
+      "uuid": "9bd512d0-fe73-4a3e-b170-909aa2fb7904",
+      "reason": "in-batch dangling repair"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "ESP_RX TP12",
+      "net": "ESP_RX",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A* (ripped net first, outside the array), margin 3 mm",
+      "bounds": [
+        3.902208,
+        48.25831019810773,
+        27.97686899999993,
+        62.472284
+      ],
+      "gap_mm": 0.7115002532485403,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "ESP_RX",
+          "xy": [
+            23.75,
+            52.35
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-e6806ec1-bf52-480c-ac2f-9953c94ec2f4",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 3389
+    },
+    {
+      "connection": "ESP_RX J8",
+      "net": "ESP_RX",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A* (ripped net first, outside the array), margin 3 mm",
+      "bounds": [
+        21.97589192870022,
+        48.97692045548376,
+        29.840332,
+        55.955332
+      ],
+      "gap_mm": 1.0744930616121828,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [],
+      "expanded": 859
+    },
+    {
+      "connection": "ESP_TX J8",
+      "net": "ESP_TX",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A* (ripped net first, outside the array), margin 3 mm",
+      "bounds": [
+        21.786806,
+        48.1998729315085,
+        29.840332,
+        57.796447
+      ],
+      "gap_mm": 2.2917420454516875,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 834
+    },
+    {
+      "connection": "AFE_INP U6",
+      "net": "AFE_INP",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A* (ripped net first, outside the array), margin 3 mm",
+      "bounds": [
+        23.309157163012518,
+        46.508195,
+        30.167097,
+        57.551310481805395
+      ],
+      "gap_mm": 3.100468416034933,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [],
+      "expanded": 527
+    },
+    {
+      "connection": "SPI_MOSI U6",
+      "net": "SPI_MOSI",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 3 mm",
+      "bounds": [
+        22.723411,
+        44.067694,
+        29.225,
+        55.250800000000005
+      ],
+      "gap_mm": 4.622289113097235,
+      "status": "failed",
+      "reason": "no path (expanded 15566 cells)"
+    },
+    {
+      "connection": "SPI_MOSI U6",
+      "net": "SPI_MOSI",
+      "attempt": 2,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 7 mm",
+      "bounds": [
+        18.723411,
+        40.067694,
+        33.225,
+        59.250800000000005
+      ],
+      "gap_mm": 4.622289113097235,
+      "status": "routed",
+      "tracks": 10,
+      "vias": [
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            27.23591,
+            55.780775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-20ce2e41-9799-46e0-970a-32849d5c1886",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            28.08591,
+            53.230775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-be6d4420-a7b1-4bb9-b0a6-9547fe81b775",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 34536
+    },
+    {
+      "connection": "SPI_SCK U6",
+      "net": "SPI_SCK",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 3 mm",
+      "bounds": [
+        22.575,
+        44.067694,
+        29.476589,
+        55.250800000000005
+      ],
+      "gap_mm": 4.67061845488998,
+      "status": "failed",
+      "reason": "no path (expanded 15075 cells)"
+    },
+    {
+      "connection": "SPI_SCK U6",
+      "net": "SPI_SCK",
+      "attempt": 2,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 7 mm",
+      "bounds": [
+        18.575,
+        40.067694,
+        33.476589000000004,
+        59.250800000000005
+      ],
+      "gap_mm": 4.67061845488998,
+      "status": "failed",
+      "reason": "no path (expanded 154924 cells)"
+    },
+    {
+      "connection": "TX2 U6",
+      "net": "TX2",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 3 mm",
+      "bounds": [
+        7.843149,
+        48.275,
+        28.025,
+        57.305558
+      ],
+      "gap_mm": 13.922213379520665,
+      "status": "routed",
+      "tracks": 6,
+      "vias": [
+        {
+          "net": "TX2",
+          "xy": [
+            10.95,
+            55.45
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-4d170e39-072e-469f-99cb-7400ec732524",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 24370
+    },
+    {
+      "connection": "PD_INM U6",
+      "net": "PD_INM",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 3 mm",
+      "bounds": [
+        9.043149,
+        46.3992,
+        28.825,
+        59.805558
+      ],
+      "gap_mm": 15.223875360995285,
+      "status": "routed",
+      "tracks": 11,
+      "vias": [
+        {
+          "net": "PD_INM",
+          "xy": [
+            12.45,
+            56.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-bceec62b-8b0d-4fbe-9211-6d5b71773823",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 36266
+    },
+    {
+      "connection": "AFE_INM U6",
+      "net": "AFE_INM",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 3 mm",
+      "bounds": [
+        23.375,
+        46.3992,
+        43.511857,
+        60.414387
+      ],
+      "gap_mm": 15.82213522308883,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "AFE_INM",
+          "xy": [
+            41.6,
+            56.2
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f281c786-b72d-4700-b779-f2a233fd6bea",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 66573
+    },
+    {
+      "connection": "PD_INP U6",
+      "net": "PD_INP",
+      "attempt": 1,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 3 mm",
+      "bounds": [
+        7.843149,
+        46.3992,
+        29.225,
+        59.805558
+      ],
+      "gap_mm": 16.66337742891773,
+      "status": "failed",
+      "reason": "no path (expanded 14972 cells)"
+    },
+    {
+      "connection": "PD_INP U6",
+      "net": "PD_INP",
+      "attempt": 2,
+      "approach": "R2-14 U6 0.25/0.15 POFV at ball centre (J8-legal balls only), D5 GND via normalised, authorised In2 ESP_TX/ESP_RX/AFE_INP + F ESP_RX rip in array window, ripped first, fan-out In3>In2>F, A*, margin 7 mm",
+      "bounds": [
+        3.8431490000000004,
+        42.3992,
+        33.225,
+        63.805558
+      ],
+      "gap_mm": 16.66337742891773,
+      "status": "routed",
+      "tracks": 16,
+      "vias": [
+        {
+          "net": "PD_INP",
+          "xy": [
+            11.2,
+            55.9
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-38d31991-c970-4628-ba74-e31c512d7738",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 67303
+    }
+  ],
+  "issues": [],
+  "modify_vias": [
+    {
+      "uuid": "39c92c79-8803-43f5-858c-d239f0d8a063",
+      "net": "GND",
+      "from": {
+        "xy": [
+          24.9,
+          51.0
+        ],
+        "diameter": 0.3,
+        "drill": 0.15
+      },
+      "xy": [
+        24.9,
+        51.0
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "pad": "U6.D5",
+      "reason": "normalise to 0.25/0.15 POFV so adjacent E5 POFV meets 0.2 hole-to-copper"
+    }
+  ],
+  "modify_tracks": [],
+  "late_remove": [
+    "86f38cb7-2111-49d1-8fd7-2e7ba803cc58",
+    "be81b366-30b0-4dc0-8746-44d6545cc56a",
+    "6fefe383-a38e-4841-9607-8cbfd1fcb277",
+    "d1f64e6f-3dea-4322-84d1-9210fabb74e0",
+    "5e80a1f1-1712-465d-8447-6251d8a8b83a",
+    "f514cf8c-d075-49e0-abfe-8150da8651f8"
+  ],
+  "dangling_repair": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "uuid": "e833f2e9-e4db-4424-a3aa-016f390f4371",
+          "net": "TX2",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            24.8,
+            51.35
+          ]
+        },
+        {
+          "uuid": "2df0b215-42cc-43f9-849a-6012e24955bb",
+          "net": "PD_INM",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            25.65,
+            49.7
+          ]
+        },
+        {
+          "uuid": "0a982241-26fc-4a9f-a6e8-767162ce8de9",
+          "net": "AFE_INM",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            26.45,
+            49.7
+          ]
+        },
+        {
+          "uuid": "e79fb415-a241-4ff5-ab5b-f3641d1c54af",
+          "net": "ESP_RX",
+          "action": "removed dangling track",
+          "a": [
+            22.983188,
+            55.249133
+          ],
+          "b": [
+            24.625616,
+            53.606704
+          ]
+        },
+        {
+          "uuid": "b98c6020-f186-4074-a9bc-ef31b3fc08f8",
+          "net": "ESP_RX",
+          "action": "removed dangling track",
+          "a": [
+            22.983188,
+            55.756652
+          ],
+          "b": [
+            22.983188,
+            55.249133
+          ]
+        },
+        {
+          "uuid": "9bd512d0-fe73-4a3e-b170-909aa2fb7904",
+          "net": "ESP_RX",
+          "action": "shortened dangling track to last landing",
+          "new_end": [
+            26.309924,
+            52.424924
+          ]
+        }
+      ]
+    }
+  ]
+}

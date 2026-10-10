@@ -1,0 +1,102 @@
+{
+  "batch": "R2-15",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_184650_R2-15_adopt_R2-14_fix_ESP_RX_via",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "88621442-a3a2-4ce0-89af-5bb3db071f7e",
+      "net": "ESP_RX",
+      "kind": "vias",
+      "xy": [
+        23.75,
+        52.35
+      ],
+      "diameter": 0.4,
+      "drill": 0.2,
+      "reason": "R2-15 approved: ESP_RX via 0.17 mm from J8 NPTH hole (JLC 0.2) and its two R2-14 segments"
+    },
+    {
+      "uuid": "bb47d9ec-983d-41a9-9f2d-6db95ec442c0",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 0,
+      "a": [
+        24.6,
+        52.3
+      ],
+      "b": [
+        23.75,
+        52.35
+      ],
+      "width": 0.1016,
+      "reason": "R2-15 approved: ESP_RX via 0.17 mm from J8 NPTH hole (JLC 0.2) and its two R2-14 segments"
+    },
+    {
+      "uuid": "3233c28b-ebea-4cd3-8a13-8d041156c128",
+      "net": "ESP_RX",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        23.75,
+        52.35
+      ],
+      "b": [
+        24.55,
+        51.2
+      ],
+      "width": 0.1016,
+      "reason": "R2-15 approved: ESP_RX via 0.17 mm from J8 NPTH hole (JLC 0.2) and its two R2-14 segments"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "ESP_RX J8/TP12",
+      "net": "ESP_RX",
+      "attempt": 1,
+      "approach": "R2-15 ESP_RX re-route avoiding J8 NPTH (via hole/copper to NPTH hole >= 0.2), A*, margin 3 mm",
+      "bounds": [
+        3.902208,
+        48.25063835456395,
+        29.840332,
+        62.472284
+      ],
+      "gap_mm": 0.6734780247604106,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "ESP_RX",
+          "xy": [
+            23.7,
+            52.3
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-26179154-cffc-44bc-89cc-38dd4521f53a",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 4123
+    }
+  ],
+  "issues": [],
+  "late_remove": [
+    "88621442-a3a2-4ce0-89af-5bb3db071f7e",
+    "bb47d9ec-983d-41a9-9f2d-6db95ec442c0",
+    "3233c28b-ebea-4cd3-8a13-8d041156c128"
+  ],
+  "dangling_repair": [],
+  "extra_check": {
+    "pass": true,
+    "text": "approved gate unconnected 23<=23, real 234<=235 -> PASS"
+  }
+}
