@@ -144,5 +144,11 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - There were only a few issues concerninig the 3v3 rail which had to be moved to 5v to supply more volts for the leds
 <img width="2030" height="1510" alt="image" src="https://github.com/user-attachments/assets/db3e7733-fa1d-40b0-b3c6-51d726cfff1a" />
 
+## Riyansh - 11 OCT
+30 mins
+- So now that the board/pcb was completely ready I ran simulations on it and the hardware performed as expected.  
+- There wasnt much to do today and I was busy with school work so i started with the initial case design
+- the current design will host the pcb along with the lipo and then openings for each of the contact and skin facing sensors.
+- So i just quickly mapped out the bottom and will carry on the rest when i get some free time.
 
 
