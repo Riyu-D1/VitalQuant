@@ -1,0 +1,16 @@
+# Design a wearable case fitted EXACTLY to the VitalQ fix_v7 PCB
+Board files: ../fix_v7/vitalq_v2.kicad_pcb (+ .kicad_sch/.kicad_pro). Read-only on everything outside ./case_v3. No commit/push/delete. Do not stop to ask. Make reasonable assumptions and document them.
+Context: VitalQ is a chest-worn sepsis-monitoring wearable. The board is 50 x 75 mm, 8 layers, 1.6 mm thick. B.Cu is the SKIN side (electrodes J5/J6/J11/J13 pads, optical U16 SFH7072, D10/D11/D12 LEDs, U10 AS7341, U11 TMP117, U12 MLX90632, U23 SHT45). F.Cu side has the ESP32-S3-MINI U1 (antenna at the board edge, keep-out area), the J1 USB-C at the edge, SW1 reset and SW2 boot buttons at the edges, J8 Tag-Connect, D25 status LED, U25 PDM mic, U13 BME280, J7 chest-BioZ contact pads (check which face they're on and make them reachable by skin if they're meant to touch skin), J2 LiPo pads, and J9/J10/J12 connectors.
+Disk: ~2 GB free. Keep tools lightweight (<400 MB total), e.g. OpenSCAD or a pure-python mesh lib (trimesh/numpy-stl, manifold3d). Avoid big CAD installs. Log disk use.
+
+## Steps
+1. Extract exact geometry with kicad-cli/pcbnew Python: the board outline, mounting holes H1/H2 and the NPTH, every component's position, side, courtyard and real 3D height (use kicad-cli pcb export step or vrml if needed, or footprint 3D models/datasheet heights). Write geometry.json.
+2. Case design (two-part snap-fit or screw shell, FDM-printable PETG/TPU-friendly, 1.6-2 mm walls, 0.3 mm fit clearance, min radius 2 mm, as thin as possible for a chest wearable):
+   - Skin-side base: openings for every skin electrode pad (flush or 0.2 mm proud so electrodes touch the skin), a clear optical window or aperture over U16/D10/D11/D12/U10 with light barriers between emitters and detectors, a thermal contact window for U11/U12 (MLX90632 needs an unobstructed IR view), and a vent for U23.
+   - Top shell: USB-C cutout aligned exactly to J1, plunger/flex buttons over SW1/SW2, a light pipe or window for D25, an acoustic port for U25, a vent for BME280, access to J8 (removable plug), and NO metal or thick plastic over the ESP32 antenna region (thin wall only).
+   - Battery bay for a LiPo on J2. The design doesn't specify one, so pick a common 300-500 mAh pouch that fits (e.g. 402535/502030) and state it, with wire routing to J2.
+   - Board retention: bosses/pins on H1/H2, standoffs that avoid every component courtyard, and ribs that clamp the board edge.
+   - Strap/adhesive mounting: chest-strap slots or ECG-snap-compatible lugs.
+3. Verify the fit by computation: no intersection between case solids and any component bounding box (with clearance), every cutout centred on its feature within 0.2 mm, the electrode openings and optical windows aligned to their B.Cu positions, the USB-C plug clearance (plug overmould 12 x 6.5 mm), the button travel, and the battery clearance. Write FIT_REPORT.md with a table per feature (PASS/FAIL + numbers). Iterate until all PASS. If something fails twice, document it and move on.
+4. Outputs in ./case_v3: case_top.stl, case_base.stl (plus button/light-pipe parts if separate), the source (.scad or .py), renders (PNG: exploded view, top, bottom, section through the board), geometry.json, FIT_REPORT.md, PRINT_NOTES.md (material, orientation, supports, tolerances), and an ASSEMBLY.md.
+End with CASE COMPLETE.
