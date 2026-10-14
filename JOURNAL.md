@@ -149,6 +149,29 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - So now that the board/pcb was completely ready I ran simulations on it and the hardware performed as expected.  
 - There wasnt much to do today and I was busy with school work so i started with the initial case design
 - the current design will host the pcb along with the lipo and then openings for each of the contact and skin facing sensors.
-- So i just quickly mapped out the bottom and will carry on the rest when i get some free time.
+- So i just quickly mapped out the rough area and will carry on the rest when i get some free time.
+<img width="1600" height="1600" alt="image" src="https://github.com/user-attachments/assets/dc6efab5-cfd8-446e-906a-4141e5011af6" />
+
+## Riyansh - 12 OCT
+1hr
+- I had much more free time today so I spent that time refining the case
+- the main issue was that previously the pcb wasn't fully developed so i was still unsure on sensor placement but now that all the componants were locked i could properly mount the pcb in the case and start building around it
+- So now the main part of the case which had to be developed was the skin facing siide as thats where the optical and touch sensors siit therefore they need exact placement unlike the rest.
+- I traced and initially sketched out a rough idea then transfered it to CAD along with a step file of the pcb
+*There is some glitch with the screen recording so I have started recording myself using my phone as that works
+<img width="512" height="646" alt="image" src="https://github.com/user-attachments/assets/52189d33-4608-4ee8-ae92-195a8d064884" />
+
+## Riyansh - 13 OCT
+1hr
+- Now all that was left was to complete the rest of the case
+- So to do that II wanted to make a easy fit desgin for the first prototype as this would be easier to test and work with
+- I do have a heat set inserts but those are not required for a first prototype case and can be integrated into the next one because I will have to open and close the case many times
+- So All the was left was to create a snap design for the top piece so it could fit with the bottom piece i designed yesterday.
+- Then there was also the battery compartment which I left as a seperate and removable peice on the top of the case so that it could be removed and fit easily this also allows for better waterproofing.
+- The water proofiing is just a concept but I have left grooves for like a simple tpu gasket.
+Exploded render veiw in a graph style interface for size perception:
+<img width="573" height="528" alt="image" src="https://github.com/user-attachments/assets/0dd6ed9a-98a1-4433-a7c1-1db4d1d87df9" />
+
+
 
 
