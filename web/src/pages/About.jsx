@@ -37,8 +37,8 @@ function Chapter({ num, title, children, tint = false }) {
 
 const WHY_NOW = [
   {
-    title: 'Sensing hardware breakthrough',
-    text: 'A measurement capability that once required benchtop lab equipment can now be integrated into a wearable form factor — a breakthrough of the last few years.',
+    title: 'Quantum photonics miniaturization',
+    text: 'Integrated photonic chips can now generate squeezed light on devices smaller than 1 cm² — a breakthrough that occurred in the last 3–5 years.',
   },
   {
     title: 'Advanced AI and machine learning',
@@ -61,15 +61,21 @@ const TEAM = [
     initials: 'MM',
     name: 'Moses Man',
     role: 'Co-Founder & CTO',
-    bio: "Leading VitalQ's technology strategy and development of its proprietary sensing platform.",
+    bio: "Leading VitalQ's technology strategy and development of its quantum-enhanced sensing platform.",
+  },
+  {
+    initials: 'AL',
+    name: 'Andre Law',
+    role: 'CFO',
+    bio: "Guiding VitalQ's financial strategy and sustainable growth.",
   },
 ];
 
 const TIMELINE = [
-  { year: '2026', text: 'VitalQ founded with mission to bring next-generation sensing to clinical care', active: true },
-  { year: 'Current', text: 'Prototype development and hardware partnerships', active: true },
-  { year: '2026–2027', text: 'Prototype validation, tissue phantom testing, initial funding secured' },
-  { year: '2027–2028', text: 'Second-generation sensor integration, pre-clinical studies, clinical partnerships established' },
+  { year: '2026', text: 'VitalQ founded with mission to bring quantum sensing to clinical care', active: true },
+  { year: 'Current', text: 'Developing quantum-enhanced prototype and establishing foundry partnerships for integrated photonic chip fabrication', active: true },
+  { year: '2026–2027', text: 'Classical optical prototype validation, tissue phantom testing, initial funding secured' },
+  { year: '2027–2028', text: 'Quantum enhancement integration, pre-clinical studies, clinical partnerships established' },
   { year: '2028–2029', text: 'Clinical trials, regulatory submissions (CE Mark, FDA)' },
   { year: '2030+', text: 'Commercial launch, transforming post-operative care worldwide' },
 ];
@@ -77,8 +83,8 @@ const TIMELINE = [
 const JOIN = [
   { title: 'Investors', text: "We're raising our seed round to accelerate prototype development and secure key partnerships. Contact us to learn more." },
   { title: 'Clinical Partners', text: "We're seeking hospital partners for future clinical validation. If you're interested in early sepsis detection technology, let's talk." },
-  { title: 'Talent', text: "We're building our founding team. If you're an expert in advanced sensing, biomedical engineering, clinical medicine, or medical device development, explore opportunities with us." },
-  { title: 'Collaborators', text: 'We welcome partnerships with sensing research groups, medical device manufacturers, and healthcare innovators.' },
+  { title: 'Talent', text: "We're building our founding team. If you're an expert in quantum optics, biomedical engineering, clinical medicine, or medical device development, explore opportunities with us." },
+  { title: 'Collaborators', text: 'We welcome partnerships with quantum photonics research groups, medical device manufacturers, and healthcare innovators.' },
 ];
 
 export default function About() {
@@ -109,9 +115,10 @@ export default function About() {
           <FadeContent delay={600} duration={1000}>
             <p className="mt-8 text-xl text-gray-300 leading-relaxed font-light">
               We're building the future of post-operative care. VitalQ is developing
-              a wearable sensor that detects life-threatening complications hours
-              before traditional methods — giving patients and clinicians the
-              critical time needed for life-saving interventions.
+              the world's first quantum-enhanced wearable sensor that detects
+              life-threatening complications hours before traditional methods —
+              giving patients and clinicians the critical time needed for
+              life-saving interventions.
             </p>
           </FadeContent>
         </div>
@@ -138,18 +145,19 @@ export default function About() {
 
       <Chapter num="02" title="Our Solution">
         <p>
-          VitalQ pairs a proprietary optical sensing stack with advanced
-          biosensing to continuously monitor the physiological signals that
-          precede clinical deterioration — non-invasively, at the bedside or on
-          the ward.
+          VitalQ combines quantum photonics with advanced biosensing to continuously
+          monitor inflammatory and metabolic biomarkers in real-time. Using squeezed
+          light — a quantum optics technique that reduces measurement noise below
+          classical limits — our sensor achieves unprecedented sensitivity.
         </p>
         <p className="text-caladan-green font-semibold text-xl">
           The result: detection of sepsis 6–12 hours before clinical symptoms
           appear. That's enough time to save lives.
         </p>
         <p>
-          Our wearable tracks multiple signals simultaneously and transmits them
-          wirelessly, where our models identify early warning patterns. When risk
+          Our wearable sensor tracks multiple biomarkers simultaneously — IL-6,
+          lactate, pH, and tissue perfusion — transmitting data wirelessly to the
+          cloud where our AI algorithms identify early warning patterns. When risk
           is detected, clinicians receive immediate alerts, enabling early
           intervention that can reduce sepsis mortality from 70% to below 20%.
         </p>
@@ -157,19 +165,21 @@ export default function About() {
 
       <Chapter num="03" title="Our Technology" tint>
         <p>
-          We're keeping the specifics under wraps while we're in stealth. What we
-          can say: a novel optical front end achieves sensitivity beyond
-          conventional wearable sensors, and a signal-quality-gated pipeline keeps
-          every score honest.
+          At the heart of VitalQ is quantum-enhanced optical sensing. We leverage
+          integrated photonics — specifically thin-film lithium niobate chips — to
+          generate squeezed light states that improve signal-to-noise ratios by
+          2–5× compared to classical sensors.
         </p>
         <p className="italic text-gray-400">
-          We share the 'what' publicly. The 'how' stays private until launch.
+          This isn't quantum computing hype. It's proven physics applied to an
+          urgent clinical problem.
         </p>
         <p>
-          Our machine learning models, trained on large-scale patient data,
-          correlate multi-signal patterns with deterioration risk in real time —
-          designed for interpretability, low false-alarm rates, and real clinical
-          workflows.
+          Multi-wavelength spectroscopy, including Raman and near-infrared
+          absorption, allows us to measure biomarkers non-invasively through the
+          skin. Our machine learning algorithms, trained on tens of thousands of
+          patient records, correlate biomarker patterns with sepsis risk in
+          real-time.
         </p>
         <p className="text-white font-medium">
           We're not just building a sensor. We're building a clinical decision
@@ -215,7 +225,7 @@ export default function About() {
         <p>
           We envision a future where continuous, non-invasive biomarker monitoring
           is as routine as checking your heart rate — where diseases are detected
-          at their earliest, most treatable stages, and where earlier detection
+          at their earliest, most treatable stages, and where quantum technology
           saves lives every day.
         </p>
       </Chapter>
@@ -228,7 +238,7 @@ export default function About() {
             <div className="mt-2"><Eyebrow /></div>
             <h2 className="mt-4 text-3xl md:text-4xl font-rx100 text-white tracking-tight">Our Team</h2>
           </FadeContent>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
             {TEAM.map((m, i) => (
               <FadeContent key={m.name} delay={i * 120} duration={900}>
                 <SpotlightCard
@@ -256,7 +266,7 @@ export default function About() {
           <FadeContent>
             <h2 className="text-3xl font-rx100 text-white">Our Advisors</h2>
             <p className="mt-6 text-gray-300 text-lg">
-              VitalQ is supported by world-class research in advanced sensing,
+              VitalQ is supported by world-class research in quantum photonics,
               clinical medicine, and medical device development.
             </p>
             <p className="mt-4 text-gray-300 text-lg">
@@ -308,7 +318,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-rx100 text-white">Join Us</h2>
             <p className="mt-6 text-gray-300 text-lg max-w-2xl">
               We're at the beginning of something transformative. If you're
-              passionate about building technology that saves lives, we want to
+              passionate about using quantum technology to save lives, we want to
               hear from you.
             </p>
           </FadeContent>

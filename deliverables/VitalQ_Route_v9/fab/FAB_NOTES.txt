@@ -1,0 +1,10 @@
+VitalQ v2 - JLCPCB fabrication notes (R2)
+STATUS: NOT RELEASED - 8 unconnected, 212 real DRC violations remain (see drc_final_R2.json / REPORT.md).
+Layers: 8 copper (F sig / In1 GND / In2 sig / In3 sig / In4 power +3V3 VBAT_SYS / In5 sig / In6 GND / B sig), 1.6 mm, ENIG.
+Cost note: 8-layer + POFV approx. USD 80 per 5 boards (confirm JLC quote).
+Vias: through only. 0.40/0.20 mm standard; 0.25/0.15 mm via-in-pad. ALL via-in-pad = POFV (epoxy filled + copper capped, planar) - mandatory,
+incl. U6 vias under the Tag-Connect J8 landing.
+Min track / gap: 0.1016 mm netclass; 0.09 mm minimum (JLC) only for pad-to-pad gaps inside one footprint.
+Hole to copper >= 0.20 mm, hole to hole >= 0.20 mm. Board outline 50 x 75 mm.
+Files: vitalq_v2_gerbers.zip (8 copper, masks, paste, silk, Edge.Cuts, Excellon PTH/NPTH + maps), vitalq_v2_BOM.csv, vitalq_v2_CPL.csv.
+BOM/CPL generated from the board (identical reference sets). LCSC numbers missing for most parts - fill before assembly order.

@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-08T21:20:42.131008+01:00",
+  "tag": "C3",
+  "accepted": true,
+  "before": {
+    "unconnected": 43,
+    "real": 214,
+    "total": 300,
+    "types": {
+      "items_not_allowed": 199,
+      "clearance": 9,
+      "track_dangling": 4,
+      "via_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "after": {
+    "unconnected": 43,
+    "real": 212,
+    "total": 298,
+    "types": {
+      "items_not_allowed": 199,
+      "clearance": 9,
+      "track_dangling": 2,
+      "via_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "backup": "backups/20261008_211735_pre_C3",
+  "candidate": "backups/20261008_211735_candidate_C3",
+  "open_regressions": {},
+  "new_real_faults": [],
+  "newly_exposed_dangling": [],
+  "pad_connectivity_passed": true,
+  "removals": [
+    {
+      "uuid": "44c511fa-2278-4546-bc73-a085053d4804",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          24.528128,
+          40.617033
+        ],
+        "end": [
+          24.520481,
+          40.62468
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    },
+    {
+      "uuid": "a324fef8-0467-4e2e-8758-305510f6734b",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          25.304594,
+          40.617033
+        ],
+        "end": [
+          25.053801,
+          40.617033
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    },
+    {
+      "uuid": "aa47bb02-63ae-4444-846a-2191b23dbc58",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          24.676898,
+          40.617033
+        ],
+        "end": [
+          24.528128,
+          40.617033
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    },
+    {
+      "uuid": "c58e88fb-ef98-4341-84f3-74cf252bed1b",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          25.053801,
+          40.617033
+        ],
+        "end": [
+          24.676898,
+          40.617033
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    },
+    {
+      "uuid": "7d31ff3f-6898-4bf3-a288-90a55036338b",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          15.958553,
+          40.989838
+        ],
+        "end": [
+          15.647664,
+          40.989838
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    },
+    {
+      "uuid": "93809e3c-ee62-4861-bba0-ac15dd625e66",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          17.025469,
+          40.553622
+        ],
+        "end": [
+          16.771671,
+          40.553622
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    },
+    {
+      "uuid": "b05435e4-f6b2-45bf-be3f-b962af8595d5",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          16.335456,
+          40.989838
+        ],
+        "end": [
+          15.958553,
+          40.989838
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    },
+    {
+      "uuid": "d9015ce2-bd6a-4384-8f69-4e41d27d9b44",
+      "reason": "Dead tail left after removing a forbidden, nonconducting plane via; component has one retained pad and no other copper access",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          16.771671,
+          40.553622
+        ],
+        "end": [
+          16.335456,
+          40.989838
+        ],
+        "kind": "track",
+        "width": 0.145123
+      }
+    }
+  ],
+  "cumulative_segment_removals": {
+    "GND": 1,
+    "AFE_INP": 2,
+    "ESP_TX": 1,
+    "AFE4900_RESETZ": 2,
+    "USB_DM_S3": 9,
+    "USB_DP": 1,
+    "SPI_MOSI": 1,
+    "SPI_SCK": 1,
+    "USB_DP_S3": 7,
+    "AFE_INM": 1,
+    "BIOZ_SP_PAD": 2,
+    "PD_INP": 1,
+    "PD_INM": 1,
+    "TX2": 1,
+    "+3V3": 8
+  }
+}

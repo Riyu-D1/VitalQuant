@@ -1,0 +1,829 @@
+{
+  "batch": "R2-6",
+  "backup": "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/backups/20261009_175312_R2-6_U7_via_in_pad",
+  "moves": [],
+  "removed": [
+    {
+      "uuid": "a81f634e-c62b-46f9-9999-f1598e83b47e",
+      "net": "SWEAT_WE",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        37.25,
+        11.55
+      ],
+      "b": [
+        37.05,
+        11.75
+      ],
+      "width": 0.1016,
+      "reason": "PROMPT_R2 R2-3/SUPERVISOR_R2_02: blocks U7.B6 POFV (SWEAT_WE)"
+    },
+    {
+      "uuid": "537b036c-795a-4a36-8ad9-39af5b540ba5",
+      "net": "SWEAT_WE",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        37.05,
+        11.75
+      ],
+      "b": [
+        37.05,
+        12.5
+      ],
+      "width": 0.1016,
+      "reason": "PROMPT_R2 R2-3/SUPERVISOR_R2_02: blocks U7.B6 POFV (SWEAT_WE)"
+    },
+    {
+      "uuid": "1addcfb2-a074-438b-8a95-5ae442b91257",
+      "net": "RE0",
+      "kind": "tracks",
+      "layer": 2,
+      "a": [
+        35.652059,
+        11.241981
+      ],
+      "b": [
+        37.171685,
+        12.761607
+      ],
+      "width": 0.101702,
+      "reason": "PROMPT_R2 R2-3/SUPERVISOR_R2_02: blocks U7.B7 POFV (RE0)"
+    },
+    {
+      "uuid": "81f3e2ff-d789-4fbf-9fcd-f88375baf23b",
+      "net": "MISO_AD",
+      "kind": "tracks",
+      "layer": 2,
+      "a": [
+        42.301633,
+        10.225317
+      ],
+      "b": [
+        34.686717,
+        10.225317
+      ],
+      "width": 0.101702,
+      "reason": "PROMPT_R2 R2-3/SUPERVISOR_R2_02: blocks U7.F7 POFV (MISO_AD)"
+    },
+    {
+      "uuid": "fd96e659-863e-4ab5-8192-0753698e9780",
+      "net": "RE0",
+      "kind": "tracks",
+      "layer": 2,
+      "a": [
+        37.171685,
+        12.761607
+      ],
+      "b": [
+        37.171685,
+        12.967301
+      ],
+      "width": 0.101702,
+      "reason": "dangling stub shortened"
+    },
+    {
+      "uuid": "cb4ac104-9a87-41f5-85c6-83b07aaf33d6",
+      "net": "SWEAT_WE",
+      "kind": "tracks",
+      "layer": 6,
+      "a": [
+        37.05,
+        12.5
+      ],
+      "b": [
+        36.85,
+        12.7
+      ],
+      "width": 0.1016,
+      "reason": "dangling stub shortened"
+    },
+    {
+      "uuid": "64dc658e-d62c-4173-bbad-27801fe21f9d",
+      "net": "MISO_AD",
+      "kind": "tracks",
+      "layer": 2,
+      "a": [
+        43.223659,
+        11.147343
+      ],
+      "b": [
+        42.301633,
+        10.225317
+      ],
+      "width": 0.101702,
+      "reason": "dangling stub shortened"
+    },
+    {
+      "uuid": "e88059b3-f258-4f0f-b10f-0f7476fbf454",
+      "net": "MISO_AD",
+      "kind": "tracks",
+      "layer": 2,
+      "a": [
+        34.686717,
+        10.225317
+      ],
+      "b": [
+        34.465142,
+        10.446892
+      ],
+      "width": 0.101702,
+      "reason": "dangling stub shortened"
+    }
+  ],
+  "routes": [
+    {
+      "connection": "+3V3_ANA U7",
+      "net": "+3V3_ANA",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        8.679302,
+        -10.5,
+        48.0,
+        54.230775
+      ],
+      "gap_mm": 1.8076079073163118,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "+3V3_ANA",
+          "xy": [
+            37.78591,
+            7.780775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-385838e6-515f-4b8a-ad8a-d0f5cddf1f69",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 2676
+    },
+    {
+      "connection": "AIN4_LPF0 U7",
+      "net": "AIN4_LPF0",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        34.66091,
+        8.755775,
+        42.06288,
+        17.59553
+      ],
+      "gap_mm": 2.2788289341142285,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "AIN4_LPF0",
+          "xy": [
+            38.73591,
+            15.130775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-31df2447-ef98-4296-8382-3d8b5f6ec31d",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 6042
+    },
+    {
+      "connection": "VZERO0 U7",
+      "net": "VZERO0",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        32.169486,
+        8.755775,
+        39.71091,
+        17.565182
+      ],
+      "gap_mm": 2.76364639584601,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [
+        {
+          "net": "VZERO0",
+          "xy": [
+            34.38591,
+            14.530775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-4eafda6c-d690-4f6b-8be8-ca8289566ac3",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 5813
+    },
+    {
+      "connection": "VREF_2V5 U7",
+      "net": "VREF_2V5",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        30.806072,
+        7.955774999999999,
+        39.71091,
+        15.318293
+      ],
+      "gap_mm": 2.3529503031484396,
+      "status": "routed",
+      "tracks": 4,
+      "vias": [
+        {
+          "net": "VREF_2V5",
+          "xy": [
+            34.28591,
+            13.080775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f7650e81-78e0-4bd5-a385-e806b6f40a8c",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 6446
+    },
+    {
+      "connection": "VBIAS0 U7",
+      "net": "VBIAS0",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        30.775723999999997,
+        6.881176,
+        39.71091,
+        14.605775
+      ],
+      "gap_mm": 2.5271118488236555,
+      "status": "routed",
+      "tracks": 3,
+      "vias": [
+        {
+          "net": "VBIAS0",
+          "xy": [
+            34.28591,
+            9.830775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-efec087f-4837-475a-b3a2-e51d626444e0",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 4539
+    },
+    {
+      "connection": "SPI_MOSI U7",
+      "net": "SPI_MOSI",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        30.209618586930112,
+        5.004483586930121,
+        39.71091,
+        13.805775
+      ],
+      "gap_mm": 3.6633369351074303,
+      "status": "routed",
+      "tracks": 1,
+      "vias": [
+        {
+          "net": "SPI_MOSI",
+          "xy": [
+            34.28591,
+            6.830775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ab727b5b-70a5-4267-8b4e-76580818405a",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 11908
+    },
+    {
+      "connection": "BIOZ_SP U7",
+      "net": "BIOZ_SP",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        33.279077,
+        8.755775,
+        40.51091,
+        21.39487
+      ],
+      "gap_mm": 5.779221245157486,
+      "status": "routed",
+      "tracks": 6,
+      "vias": [
+        {
+          "net": "BIOZ_SP",
+          "xy": [
+            37.33591,
+            15.230775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ef0eec4e-d3dd-451c-a5d9-fb396133b477",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "BIOZ_SP",
+          "xy": [
+            35.58591,
+            18.330775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-701f718a-3375-47e6-b444-13f08c746c82",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 14817
+    },
+    {
+      "connection": "CS_AD5940 U7",
+      "net": "CS_AD5940",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        22.655055,
+        6.479975,
+        39.71091,
+        13.405775
+      ],
+      "gap_mm": 10.805854999999998,
+      "status": "routed",
+      "tracks": 5,
+      "vias": [
+        {
+          "net": "CS_AD5940",
+          "xy": [
+            34.58591,
+            9.380775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-f9aea2be-510b-493b-bc88-de005f036464",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "CS_AD5940",
+          "xy": [
+            23.68591,
+            9.930775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-12a65659-b437-4501-b65d-00e381062995",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 84369
+    },
+    {
+      "connection": "BIOZ_FN U7",
+      "net": "BIOZ_FN",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        28.938531,
+        7.955774999999999,
+        42.436710000000005,
+        22.597093
+      ],
+      "gap_mm": 10.678524074857394,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "BIOZ_FN",
+          "xy": [
+            32.63591,
+            19.230775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-cc67cd62-e2d2-4950-b364-2ed4a039f264",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 37411
+    },
+    {
+      "connection": "BIOZ_FP U7",
+      "net": "BIOZ_FP",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        22.045258,
+        8.755775,
+        41.31091,
+        27.987292
+      ],
+      "gap_mm": 17.91627640046382,
+      "status": "routed",
+      "tracks": 10,
+      "vias": [
+        {
+          "net": "BIOZ_FP",
+          "xy": [
+            35.78591,
+            16.030775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-4f24256e-dd51-425f-b009-d596c953fd2a",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "net": "BIOZ_FP",
+          "xy": [
+            24.28591,
+            24.830775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-abe5e191-a507-4fba-a898-09dd6002a402",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 63361
+    },
+    {
+      "connection": "AD5940_GPIO0 U7",
+      "net": "AD5940_GPIO0",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        5.35,
+        3.9000000000000004,
+        40.51091,
+        13.405775
+      ],
+      "gap_mm": 29.054251839599644,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "AD5940_GPIO0",
+          "xy": [
+            8.18591,
+            7.180775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-ee9e20a1-47f6-4a64-ad01-4c8e05602e7c",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 103048
+    },
+    {
+      "connection": "DE0 U7",
+      "net": "DE0",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, fan-out In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        -2.0,
+        8.755775,
+        40.11091,
+        16.811712999999997
+      ],
+      "gap_mm": 37.10654071073418,
+      "status": "routed",
+      "tracks": 7,
+      "vias": [
+        {
+          "net": "DE0",
+          "xy": [
+            -0.61409,
+            14.580775
+          ],
+          "diameter": 0.4,
+          "drill": 0.2,
+          "pofv": false,
+          "pad": null,
+          "uuid": "new-e1dcfecb-a08e-48aa-80e2-03a6f1c570a2",
+          "layers": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "expanded": 137577
+    },
+    {
+      "connection": "SWEAT_WE U7",
+      "net": "SWEAT_WE",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, ripped-net reconnect In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        34.06711400455232,
+        8.355775,
+        40.51091,
+        15.452169561488702
+      ],
+      "gap_mm": 0.8974046409555376,
+      "status": "failed",
+      "reason": "no path (expanded 225 cells)"
+    },
+    {
+      "connection": "RE0 U7",
+      "net": "RE0",
+      "attempt": 1,
+      "approach": "R2-6 U7 0.25/0.15 POFV at ball centre (existing U7 vias normalised to 0.25/0.15 at ball centre), local rip of blockers, ripped-net reconnect In3>In2>B to field exit, then A* margin 3 mm",
+      "bounds": [
+        32.547419,
+        8.291998808653567,
+        40.371885,
+        16.841867
+      ],
+      "gap_mm": 0.9513486720000915,
+      "status": "routed",
+      "tracks": 2,
+      "vias": [],
+      "expanded": 1661
+    }
+  ],
+  "issues": [],
+  "modify_vias": [
+    {
+      "uuid": "1202344b-a7d5-49c0-a111-86333f731415",
+      "net": "GND",
+      "from": {
+        "xy": [
+          37.3859,
+          11.0808
+        ],
+        "diameter": 0.3,
+        "drill": 0.15
+      },
+      "xy": [
+        37.38591,
+        11.080775
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "pad": "U7.D5",
+      "reason": "normalise to 0.25/0.15 POFV at ball centre so adjacent ball vias meet 0.2 hole-to-copper"
+    },
+    {
+      "uuid": "14e9177f-095f-4f9f-a518-ab46ec4b1629",
+      "net": "GND",
+      "from": {
+        "xy": [
+          36.9859,
+          10.6808
+        ],
+        "diameter": 0.3,
+        "drill": 0.15
+      },
+      "xy": [
+        36.98591,
+        10.680775
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "pad": "U7.E6",
+      "reason": "normalise to 0.25/0.15 POFV at ball centre so adjacent ball vias meet 0.2 hole-to-copper"
+    },
+    {
+      "uuid": "768c7b5d-5bc9-44f9-b413-cd420896d223",
+      "net": "GND",
+      "from": {
+        "xy": [
+          37.7859,
+          11.4808
+        ],
+        "diameter": 0.3,
+        "drill": 0.15
+      },
+      "xy": [
+        37.78591,
+        11.480775
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "pad": "U7.C4",
+      "reason": "normalise to 0.25/0.15 POFV at ball centre so adjacent ball vias meet 0.2 hole-to-copper"
+    },
+    {
+      "uuid": "45c2c533-ae59-4204-90b9-9b0bf394ff14",
+      "net": "SWEAT_WE",
+      "from": {
+        "xy": [
+          37.376454,
+          11.490246
+        ],
+        "diameter": 0.3,
+        "drill": 0.15
+      },
+      "xy": [
+        37.38591,
+        11.480775
+      ],
+      "diameter": 0.25,
+      "drill": 0.15,
+      "pad": "U7.C5",
+      "reason": "normalise to 0.25/0.15 POFV at ball centre so adjacent ball vias meet 0.2 hole-to-copper"
+    }
+  ],
+  "modify_tracks": [],
+  "late_remove": [
+    "a81f634e-c62b-46f9-9999-f1598e83b47e",
+    "537b036c-795a-4a36-8ad9-39af5b540ba5",
+    "1addcfb2-a074-438b-8a95-5ae442b91257",
+    "81f3e2ff-d789-4fbf-9fcd-f88375baf23b",
+    "fd96e659-863e-4ab5-8192-0753698e9780",
+    "cb4ac104-9a87-41f5-85c6-83b07aaf33d6",
+    "64dc658e-d62c-4173-bbad-27801fe21f9d",
+    "e88059b3-f258-4f0f-b10f-0f7476fbf454"
+  ],
+  "fanout": {
+    "B3": [
+      "new-d8eeca17-336e-4354-aefd-d75e43dce874",
+      "new-c80b0ca7-5c13-4239-84ea-e678bd8603e6"
+    ],
+    "B4": [
+      "new-76e764cd-e486-4839-894c-c7590b09064e",
+      "new-265eb7c2-1578-4c78-9896-75fe1b21855e"
+    ],
+    "B5": [
+      "new-9770b2df-e195-4f45-bf9b-76d73f2339f7",
+      "new-f8ebdcca-9e2a-4aca-a8c7-fdd68a002fc9"
+    ],
+    "B6": [
+      "new-2ed99365-a5f1-4a0b-9a9f-fff35d6fa272",
+      "new-29e5e59b-dd1d-4779-8315-a55b393ada5c"
+    ],
+    "B7": [
+      "new-50d6dbcf-15ab-49c2-9580-b4fc77c391ca",
+      "new-17e00a1c-0bed-4e8b-a460-a0bb17aa7d43"
+    ],
+    "C7": [
+      "new-1b085266-95e7-4482-8550-22e66baf31ff",
+      "new-7b43732b-a72c-4fc2-baa2-16903d511cd3"
+    ],
+    "D2": [
+      "new-4f9ee3ae-8ce4-4483-bf7f-5a6852b21589",
+      "new-0924b542-74e4-4cae-96ea-9dda5f55c1f6"
+    ],
+    "D7": [
+      "new-895cf54c-8627-485a-8c4e-21022c74e4d5",
+      "new-7ff477d8-f099-4dfd-8837-bd065db437d6"
+    ],
+    "E7": [
+      "new-71d1bab4-f453-464e-94c2-6889152fa92c",
+      "new-1d319250-13b9-4f7a-ad0a-6e0bc225ee21"
+    ],
+    "F3": [
+      "new-c3266b51-34c4-431d-a396-629f178296d0",
+      "new-3a88f736-afba-4ef2-bf98-083b79102955"
+    ],
+    "F5": [
+      "new-83774365-0759-4809-a89c-ea348e4b0a49",
+      "new-399419d6-f0b2-4d11-a1d3-3c822994c7c8"
+    ],
+    "F7": [
+      "new-f1e6d168-c567-4297-9a21-12d3a46254d5",
+      "new-d1fa85aa-1b95-490a-b781-c8e416ea89f2"
+    ]
+  }
+}

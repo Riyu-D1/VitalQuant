@@ -1,1 +1,1 @@
-"""Entrypoint: vitalquant-worker --all   (batch processing daemon/one-shot)"""
+"""Entrypoint: vitalq-worker --all   (batch processing daemon/one-shot)"""

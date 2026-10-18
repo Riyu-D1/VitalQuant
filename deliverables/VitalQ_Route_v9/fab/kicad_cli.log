@@ -1,0 +1,126 @@
+pcb export gerbers --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --layers F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,In5.Cu,In6.Cu,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts --subtract-soldermask --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Layer.gtl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 2.g1'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Layer 3.g2'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 4.g3'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Power Layer 5.g4'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 6.g5'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 7.g6'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Bottom Layer.gbl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-F_Paste.gtp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-B_Paste.gbp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Overlay.gto'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Overlay.gbo'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Solder.gts'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Solder.gbs'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Edge_Cuts.gm1'.
+
+pcb export drill --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --format excellon --excellon-separate-th --generate-map --map-format gerberx2 /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH-drl_map.gbr'.
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH-drl_map.gbr'.
+Done.
+
+pcb export pos --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv --format csv --units mm --side both /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Wrote position data to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv'.
+
+sch export bom --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv --fields Reference,Value,Footprint,LCSC,${QUANTITY},${DNP} --labels Designator,Comment,Footprint,LCSC,Qty,DNP --group-by Value,Footprint,LCSC --ref-range-delimiter  /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_sch
+Wrote bill of materials to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv'.
+Fontconfig error: Cannot load default config file: No such file: (null)
+
+pcb export gerbers --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --layers F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,In5.Cu,In6.Cu,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts --subtract-soldermask --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Layer.gtl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 2.g1'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Layer 3.g2'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 4.g3'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Power Layer 5.g4'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 6.g5'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 7.g6'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Bottom Layer.gbl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-F_Paste.gtp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-B_Paste.gbp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Overlay.gto'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Overlay.gbo'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Solder.gts'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Solder.gbs'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Edge_Cuts.gm1'.
+
+pcb export drill --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --format excellon --excellon-separate-th --generate-map --map-format gerberx2 /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH-drl_map.gbr'.
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH-drl_map.gbr'.
+Done.
+
+pcb export pos --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv --format csv --units mm --side both --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Wrote position data to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv'.
+
+sch export bom --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv --fields Reference,Value,Footprint,LCSC,${QUANTITY},${DNP} --labels Designator,Comment,Footprint,LCSC,Qty,DNP --group-by Value,Footprint,LCSC --ref-range-delimiter  /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_sch
+Wrote bill of materials to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv'.
+Fontconfig error: Cannot load default config file: No such file: (null)
+
+pcb export gerbers --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --layers F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,In5.Cu,In6.Cu,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts --subtract-soldermask --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+
+pcb export gerbers --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --layers F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,In5.Cu,In6.Cu,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts --subtract-soldermask --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Layer.gtl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 2.g1'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Layer 3.g2'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 4.g3'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Power Layer 5.g4'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 6.g5'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 7.g6'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Bottom Layer.gbl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-F_Paste.gtp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-B_Paste.gbp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Overlay.gto'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Overlay.gbo'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Solder.gts'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Solder.gbs'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Edge_Cuts.gm1'.
+
+pcb export drill --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --format excellon --excellon-separate-th --generate-map --map-format gerberx2 /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH-drl_map.gbr'.
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH-drl_map.gbr'.
+Done.
+
+pcb export pos --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv --format csv --units mm --side both --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Wrote position data to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv'.
+
+sch export bom --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv --fields Reference,Value,Footprint,LCSC,${QUANTITY},${DNP} --labels Designator,Comment,Footprint,LCSC,Qty,DNP --group-by Value,Footprint,LCSC --ref-range-delimiter  /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_sch
+Wrote bill of materials to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv'.
+Fontconfig error: Cannot load default config file: No such file: (null)
+
+pcb export gerbers --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --layers F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,In5.Cu,In6.Cu,B.Cu,F.Mask,B.Mask,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,Edge.Cuts --subtract-soldermask --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Layer.gtl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 2.g1'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Layer 3.g2'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 4.g3'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Power Layer 5.g4'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Signal Layer 6.g5'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Ground Layer 7.g6'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Bottom Layer.gbl'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-F_Paste.gtp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-B_Paste.gbp'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Overlay.gto'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Overlay.gbo'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Top Solder.gts'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Board Layer Stack Bottom Solder.gbs'.
+Plotted to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-Edge_Cuts.gm1'.
+
+pcb export drill --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/ --format excellon --excellon-separate-th --generate-map --map-format gerberx2 /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH.drl'
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-PTH-drl_map.gbr'.
+Created file '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/gerbers/vitalq_v2-NPTH-drl_map.gbr'.
+Done.
+
+pcb export pos --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv --format csv --units mm --side both --use-drill-file-origin /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb
+Wrote position data to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/positions_raw.csv'.
+
+sch export bom --output /Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv --fields Reference,Value,Footprint,LCSC,${QUANTITY},${DNP} --labels Designator,Comment,Footprint,LCSC,Qty,DNP --group-by Value,Footprint,LCSC --ref-range-delimiter  /Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_sch
+Wrote bill of materials to '/Users/deepakdiwan/Downloads/VitalQ_Route_v9/fab/bom_raw.csv'.
+Fontconfig error: Cannot load default config file: No such file: (null)
+

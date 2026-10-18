@@ -1,0 +1,180 @@
+# VitalQ hw_v1 firmware interface
+
+Classic ESP32-WROOM-32E-N8R2. GPIO16 is PSRAM inside the module and is not
+a symbol pin. GPIO6–11 are the module flash bus and are not brought out.
+Do not use them.
+
+`firmware/esp32/profiles/hw_v1.yaml` and `config/hardware.example.yaml`
+were not edited. They still say ESP32-S3, I2C on GPIO 8/9, SPI on
+GPIO 12/11/13, MAX86141, MLX90637 at 0x3B, and ICM-42670-P at 0x68.
+This page is the board that was built. Further drift from that profile:
+GPIO39 is open, GPIO25 is the MAX17048 alert, GPIO27 is BQ25170
+power-good, GPIO17 drives the status LED, GPIO4 (CS_ADS1292) has a
+10 kΩ pull-up, expander P7 is an active-high charge disable (the old
+sense was an active-high charge enable), the charger is a BQ25170
+with a hardware NTC pin, DTR/RTS auto-program the ESP32, chest
+respiration uses the existing AD5940 chip select, the AFE4900 LED
+current must stay at 100–150 mA total, and AS7341 LED_DRIVE must stay
+at or below 40 mA.
+
+## ESP32 GPIO
+
+| GPIO | Module pin | Net | Function |
+| --- | --- | --- | --- |
+| EN | 3 | ESP_EN | R5 10 kΩ to +3V3 and C64 1 µF to GND. TCA6408 /RESET and Q3 collector also sit here |
+| 36 / SENSOR_VP | 4 | FSR_ADC | FSR402 divider, ADC1 only |
+| 39 / SENSOR_VN | 5 | open | Was the NTC divider. The cell NTC is now the charger TS pin. Leave this input open |
+| 34 | 6 | ADS1292_DRDY | input. R99 is 100 kΩ to +3V3 |
+| 35 | 7 | EXP_INT | TCA6408 /INT, 10 kΩ pull-up (R53). Input only |
+| 32 | 8 | LSM6_INT1 | |
+| 33 | 9 | TMP117_ALERT | U11 only. R65 is the 10 kΩ pull-up. U20 ALERT is open |
+| 25 | 10 | GAUGE_ALRT | MAX17048 ALRT, open drain, R74 10 kΩ to +3V3. Not a strap |
+| 26 | 11 | CS_FLASH | W25Q512 chip select, 10 kΩ pull-up (R52). Not a strap |
+| 27 | 12 | CHG_PG | BQ25170 /PG, open drain, R60 10 kΩ to +3V3. Low means USB power is good |
+| 14 | 13 | AD5940_GPIO0 | |
+| 12 | 14 | open | strap. Leave low |
+| 13 | 16 | AFE4900_ADC_RDY | |
+| 15 | 23 | CS_AD5940 | strap. 10 kΩ pull-up (R7) so it is high at reset |
+| 2 | 24 | open | strap. Leave low |
+| 0 | 25 | ESP_IO0 | strap. 10 kΩ pull-up (R6). Q3 also pulls it for auto-program |
+| 4 | 26 | CS_ADS1292 | R98 is 10 kΩ to +3V3 |
+| 17 | 28 | STATUS_LED | R88 1 kΩ to D25 (KT-0603G) to GND. N8R2 datasheet note 3 reserves only IO16 for PSRAM; GPIO17 is free I/O |
+| 5 | 29 | CS_AFE4900 | |
+| 18 | 30 | SPI_SCK | shared |
+| 19 | 31 | SPI_MISO | shared |
+| 21 | 33 | I2C_SDA | 3.3 V bus |
+| 3 / U0RX | 34 | ESP_RX | from CP2102 TXD through R73, 1 kΩ |
+| 1 / U0TX | 35 | ESP_TX | to CP2102 RXD through R72, 1 kΩ |
+| 22 | 36 | I2C_SCL | 3.3 V bus |
+| 23 | 37 | SPI_MOSI | shared |
+
+ADS1292R START (device pin 16) is tied to GND. Start conversions with the
+SPI START opcode (SBAS502). The 3.3 V buck-boost enable is tied to its
+own VIN, not to a GPIO. The rail has to exist before the expander can run.
+
+## SPI
+
+One bus. Each device has its own chip select. Modes are not the same;
+switch the ESP32 SPI mode when changing CS.
+
+| Signal | GPIO | Devices |
+| --- | --- | --- |
+| SCK | 18 | ADS1292R, AFE4900, AD5940, W25Q512 |
+| MISO | 19 | same |
+| MOSI | 23 | same |
+| CS_ADS1292 | 4 | ADS1292R |
+| CS_AFE4900 | 5 | AFE4900. I2C_SPI_SEL is tied to +3V3 |
+| CS_AD5940 | 15 | AD5940. Pull-up holds the GPIO15 strap high |
+| CS_FLASH | 26 | W25Q512. /WP and /HOLD tied to +3V3. Pull-up holds CS high while GPIO26 is an input |
+
+Chest respiration does not add a GPIO. It is the AD5940 high-speed loop, selected by CS_AD5940 and the on-chip switch matrix. Shoulder EDA keeps CE0, SE0, RE0, and DE0. The chest force and sense lines are separate balls: AIN1 (F+), AIN0 (F−), AIN3 (S+), AIN2 (S−). Firmware must not drive D5 (CE0) while the chest measurement is running. J5 and J6 are not paralleled onto these nets.
+
+## I2C
+
+3.3 V bus, GPIO21 SDA and GPIO22 SCL, 4.7 kΩ pull-ups (R19, R20).
+
+| Address | Device | How it is set |
+| --- | --- | --- |
+| 0x20 | TCA6408A U19 | ADDR = GND |
+| 0x36 | MAX17048 U17 | fixed |
+| 0x48 | TMP117 U11 | ADD0 = GND |
+| 0x49 | TMP117 U20 | ADD0 = +3V3 |
+| 0x76 | BME280 U13 | SDO = GND, CSB high |
+| 0x6A | LSM6DSV80X U14 | SDO, SDx, SCx = GND, CS high |
+
+1.8 V bus, behind PCA9306 U9. Pull-ups R21 and R22, 4.7 kΩ to +1V8.
+
+| Address | Device | How it is set |
+| --- | --- | --- |
+| 0x39 | AS7341 U10 | fixed. INT is open; poll the device |
+| 0x3A | MLX90632 U12 | ADDR = GND. VDD is still +3V3. SDA and SCL are 1.8 V |
+
+No two devices on the same bus share an address.
+
+## TCA6408A pins
+
+/RESET is tied to ESP_EN, so an ESP32 reset clears the expander. Both
+VCCI and VCCP are +3V3. Ports power up as inputs (Hi-Z). R9, R14, R11,
+R25 and R48 hold the front ends, the 5 V boost, and the 860 nm LED off.
+Charge does not wait on this port. R59 holds Q2 off, and the charger
+runs whenever USB is present and the NTC is in range.
+
+| Port | Pin | Net | What it drives | Idle |
+| --- | --- | --- | --- | --- |
+| P0 | 2 | AFE4900_RESETZ | AFE4900 RESETZ | R9 10 kΩ to GND |
+| P1 | 3 | ADS1292_PWDN | ADS1292R PWDN | R14 10 kΩ to GND |
+| P2 | 4 | AD5940_RESET | AD5940 RESET | R11 10 kΩ to GND |
+| P3 | 5 | TX5_EN | TPS61240 EN | R25 100 kΩ to GND |
+| P4 | 7 | IR_GATE | CSD13380F3 gate, SFH 4053 | R48 100 kΩ to GND |
+| P5 | 8 | CHG_STAT | BQ25170 STAT | R49 10 kΩ to +3V3. Open drain. Low means charging |
+| P6 | 9 | VBUS_DET | VBUS divider | R50 100 kΩ from VBUS, R51 200 kΩ to GND |
+| P7 | 10 | CHG_DIS | Q2 gate. High shorts the charger TS pin and stops charge | R59 100 kΩ to GND. Low or Hi-Z leaves charge enabled |
+| /INT | 11 | EXP_INT | ESP32 GPIO35 | R53 10 kΩ to +3V3 |
+
+VBUS_DET is about 3.33 V at 5.0 V VBUS (200/300). At 5.25 V it is 3.50 V,
+under the expander absolute maximum of VCC + 0.5 V. At 4.75 V it is 3.17 V,
+above VIH (0.7 × 3.3 V).
+
+## Other fixed pins
+
+| Device | Pin | Tied to |
+| --- | --- | --- |
+| TPS63802 | EN | VBAT_SYS, the same net as VIN (not the expander) |
+| TPS63802 | MODE | GND (power save) |
+| TPS63802 | PG | open |
+| TPS63802 | EP (pad 11) | GND |
+| TPS7A2018 | EN | IN (+3V3) |
+| AFE4900 | I2C_SPI_SEL | +3V3 |
+| AFE4900 | CONTROL1 | GND |
+| AFE4900 | RLD_OUT | open. Bias for the AFE ECG inputs comes from ADS RLDOUT |
+| ADS1292R | START | GND |
+| ADS1292R | GPIO1 (pin 26) | GND through R100, 10 kΩ |
+| ADS1292R | GPIO2 (pin 25) | GND through R101, 10 kΩ |
+| ADS1292R | CLKSEL | DVDD |
+| ADS1292R | CLK | open |
+| CP2102N | ~RSTb | R62 1 kΩ to VDD_CP2102. QFN-28 VDD is VIO. VBUS sense is R63/R64 |
+| CP2102N | DTR, RTS | Q3, the BC847BS auto-program pair, through R70 and R71 (10 kΩ) |
+| BQ25170 | TS | J2 pin 3, or R61 if the cell has no NTC. Not both |
+
+## LED current
+
+TPS61240 (U15) feeds SFH 7072. SLVS806D recommended output current is
+200 mA. Firmware must keep the AFE4900 LED current at 100–150 mA total,
+including the case where two LEDs are on in one slot. The boost switch
+limit is higher than that and is not a reason to program 200 mA. The
+AS7341 white LED (D10) is on +3V3, not on this boost; its datasheet
+current limit is 100 mA. The AS7341 LED_DRIVE register can reach
+258 mA. Firmware must keep LED_DRIVE at or below 40 mA. The 860 nm LED
+(D11) is about 15–20 mA through R47 (100 Ω) when Q1 is on.
+
+## Current-sense links
+
+| Ref | From | To |
+| --- | --- | --- |
+| R93 | VBAT | VBAT_SYS |
+| R94 | +3V3 | +3V3_ESP |
+| R95 | +3V3 | +3V3_ANA |
+| R96 | TX_5V_RAW | TX_5V |
+| R97 | +1V8_LDO | +1V8 |
+| R89 | MISO_ADS | SPI_MISO |
+| R90 | MISO_AFE | SPI_MISO |
+| R91 | MISO_AD | SPI_MISO |
+| R92 | MISO_FL | SPI_MISO |
+
+R93 and R94 are 0603. The others are 0402. The MISO links sit in the
+debug band, not next to the drivers.
+
+## Tag-Connect J8
+
+TC2030-NL, top side. The footprint is not in the JLCPCB BOM.
+
+| Pin | Net |
+| --- | --- |
+| 1 | +3V3 |
+| 2 | GND |
+| 3 | ESP_TX |
+| 4 | ESP_RX |
+| 5 | ESP_EN |
+| 6 | ESP_IO0 |
+
+SW1 shorts ESP_EN to GND. SW2 shorts ESP_IO0 to GND.

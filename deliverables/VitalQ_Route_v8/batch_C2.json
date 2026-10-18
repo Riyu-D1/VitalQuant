@@ -1,0 +1,656 @@
+{
+  "date": "2026-10-08T21:13:50.042026+01:00",
+  "tag": "C2",
+  "accepted": true,
+  "before": {
+    "unconnected": 43,
+    "real": 243,
+    "total": 329,
+    "types": {
+      "items_not_allowed": 199,
+      "clearance": 9,
+      "track_dangling": 27,
+      "via_dangling": 8,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "after": {
+    "unconnected": 43,
+    "real": 214,
+    "total": 300,
+    "types": {
+      "items_not_allowed": 199,
+      "clearance": 9,
+      "track_dangling": 4,
+      "via_dangling": 2,
+      "silk_edge_clearance": 14,
+      "lib_footprint_issues": 53,
+      "lib_footprint_mismatch": 3,
+      "text_height": 15,
+      "text_thickness": 1
+    }
+  },
+  "backup": "backups/20261008_211007_pre_C2",
+  "candidate": "backups/20261008_211008_candidate_C2",
+  "open_regressions": {},
+  "new_real_faults": [],
+  "newly_exposed_dangling": [
+    {
+      "description": "Track has unconnected end",
+      "items": [
+        {
+          "description": "Track [+3V3] on Top Layer, length 0.0108 mm",
+          "pos": {
+            "x": 24.528128,
+            "y": 40.617033
+          },
+          "uuid": "44c511fa-2278-4546-bc73-a085053d4804"
+        }
+      ],
+      "severity": "warning",
+      "type": "track_dangling"
+    },
+    {
+      "description": "Track has unconnected end",
+      "items": [
+        {
+          "description": "Track [+3V3] on Top Layer, length 0.2538 mm",
+          "pos": {
+            "x": 17.025469,
+            "y": 40.553622
+          },
+          "uuid": "93809e3c-ee62-4861-bba0-ac15dd625e66"
+        }
+      ],
+      "severity": "warning",
+      "type": "track_dangling"
+    }
+  ],
+  "pad_connectivity_passed": true,
+  "removals": [
+    {
+      "uuid": "0ed8874c-a49a-417e-a831-b039c0a67773",
+      "reason": "via_dangling",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          17.025469,
+          40.553622
+        ],
+        "end": [
+          17.025469,
+          40.553622
+        ],
+        "kind": "via",
+        "diameter": 0.4004,
+        "drill": 0.2002
+      }
+    },
+    {
+      "uuid": "a6097033-bbce-4df1-8742-dde592198c0f",
+      "reason": "via_dangling",
+      "geometry": {
+        "net": "+3V3",
+        "layer": 0,
+        "start": [
+          24.520481,
+          40.62468
+        ],
+        "end": [
+          24.520481,
+          40.62468
+        ],
+        "kind": "via",
+        "diameter": 0.4004,
+        "drill": 0.2002
+      }
+    },
+    {
+      "uuid": "411b89ac-2d42-4936-9b4a-168fcc6a8e3e",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 0,
+        "start": [
+          6.705221,
+          11.771241
+        ],
+        "end": [
+          6.705221,
+          11.771241
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "7720d849-fbc5-4649-bc95-8ed762c50732",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 0,
+        "start": [
+          12.464859,
+          7.060839
+        ],
+        "end": [
+          12.464859,
+          7.060839
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "8915267f-6fae-43e4-a081-8ae0e1dec70f",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 0,
+        "start": [
+          12.182725,
+          7.310007
+        ],
+        "end": [
+          12.182725,
+          7.310007
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "bf5d4cdc-16e7-4f44-858f-97fa84500b6c",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 0,
+        "start": [
+          6.255782,
+          12.185391
+        ],
+        "end": [
+          6.255782,
+          12.185391
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "c8322cde-94d6-4d25-8314-a9b917af732c",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 0,
+        "start": [
+          11.900592,
+          7.559175
+        ],
+        "end": [
+          11.900592,
+          7.559175
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "e64f37ee-7a52-4602-ab5d-0eb64264b70d",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 0,
+        "start": [
+          9.723605,
+          8.154752
+        ],
+        "end": [
+          9.723605,
+          8.154752
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "3d64ce8f-68bc-451a-8538-781031bfa17d",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 2,
+        "start": [
+          4.976167,
+          8.834665
+        ],
+        "end": [
+          4.976167,
+          8.834665
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "404a7bba-3f77-44f8-92b1-034f0fa318e6",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 2,
+        "start": [
+          5.756384,
+          11.831717
+        ],
+        "end": [
+          5.756384,
+          11.831717
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "61b95526-96c9-4edc-80ce-8bc6c78cbfb8",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DM_S3",
+        "layer": 2,
+        "start": [
+          5.242127,
+          9.236825
+        ],
+        "end": [
+          5.242127,
+          9.236825
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "8ed584d0-53a4-4100-a562-23f5766d2356",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP",
+        "layer": 2,
+        "start": [
+          7.295438,
+          13.320648
+        ],
+        "end": [
+          7.295438,
+          13.320648
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "76881ea1-6925-4a97-83fa-c9e99c6e764a",
+      "reason": "via_dangling",
+      "geometry": {
+        "net": "BIOZ_FP",
+        "layer": 0,
+        "start": [
+          38.186,
+          11.881
+        ],
+        "end": [
+          38.186,
+          11.881
+        ],
+        "kind": "via",
+        "diameter": 0.3,
+        "drill": 0.15
+      }
+    },
+    {
+      "uuid": "e03bab47-b2ad-4128-9962-3133b949b213",
+      "reason": "via_dangling",
+      "geometry": {
+        "net": "BIOZ_SP",
+        "layer": 0,
+        "start": [
+          37.386,
+          11.9
+        ],
+        "end": [
+          37.386,
+          11.9
+        ],
+        "kind": "via",
+        "diameter": 0.3,
+        "drill": 0.15
+      }
+    },
+    {
+      "uuid": "623e0bce-f3c3-4d91-b7e5-1f3b6c3ef33d",
+      "reason": "via_dangling",
+      "geometry": {
+        "net": "BIOZ_FN",
+        "layer": 0,
+        "start": [
+          38.586,
+          11.081
+        ],
+        "end": [
+          38.586,
+          11.081
+        ],
+        "kind": "via",
+        "diameter": 0.3,
+        "drill": 0.15
+      }
+    },
+    {
+      "uuid": "eb4ec25f-6e7c-40cb-9e69-41a5384f4242",
+      "reason": "via_dangling",
+      "geometry": {
+        "net": "VREF_2V5",
+        "layer": 0,
+        "start": [
+          36.62,
+          11.1
+        ],
+        "end": [
+          36.62,
+          11.1
+        ],
+        "kind": "via",
+        "diameter": 0.3,
+        "drill": 0.15
+      }
+    },
+    {
+      "uuid": "6ffe1c79-d947-48d2-bd62-5c6348f57f59",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "SPI_MOSI",
+        "layer": 2,
+        "start": [
+          26.1,
+          51.8
+        ],
+        "end": [
+          26.1,
+          52.0
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    },
+    {
+      "uuid": "e592d200-5b0f-4860-8aa6-880f833dbaa8",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "SPI_SCK",
+        "layer": 2,
+        "start": [
+          25.7,
+          51.8
+        ],
+        "end": [
+          25.7,
+          52.0
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    },
+    {
+      "uuid": "532c3b0b-f976-41e7-9aae-44484249f61b",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP_S3",
+        "layer": 0,
+        "start": [
+          12.056608,
+          7.735832
+        ],
+        "end": [
+          12.056608,
+          7.735832
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "653af4d0-a071-4c66-9e82-c95d46b5f1da",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP_S3",
+        "layer": 0,
+        "start": [
+          12.338741,
+          7.486664
+        ],
+        "end": [
+          12.338741,
+          7.486664
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "8a7141e1-5fe1-4c63-89a6-6b09c5b560c7",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP_S3",
+        "layer": 0,
+        "start": [
+          9.654187,
+          8.379984
+        ],
+        "end": [
+          9.654187,
+          8.379984
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "921e8965-0a06-472d-bea1-d14128d11bb9",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP_S3",
+        "layer": 0,
+        "start": [
+          12.620875,
+          7.237496
+        ],
+        "end": [
+          12.620875,
+          7.237496
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "d74167ab-9e70-41b2-ad45-295497900295",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP_S3",
+        "layer": 0,
+        "start": [
+          6.864934,
+          11.944562
+        ],
+        "end": [
+          6.864934,
+          11.944562
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "1122dbbe-cf2d-44f3-af6b-dc808245d3c4",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP_S3",
+        "layer": 2,
+        "start": [
+          5.438714,
+          9.106817
+        ],
+        "end": [
+          5.438714,
+          9.106817
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "fba92e9b-31ef-4258-8a98-f738e3796656",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "USB_DP_S3",
+        "layer": 2,
+        "start": [
+          5.172754,
+          8.704656
+        ],
+        "end": [
+          5.172754,
+          8.704656
+        ],
+        "kind": "track",
+        "width": 0.129007
+      }
+    },
+    {
+      "uuid": "e6bf2d9c-216d-4816-80f1-abebeb68668d",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "AFE_INM",
+        "layer": 2,
+        "start": [
+          26.5,
+          49.8
+        ],
+        "end": [
+          26.5,
+          49.6
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    },
+    {
+      "uuid": "2e04c57e-ffc6-483b-9b01-352c6fdd5199",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "BIOZ_SP_PAD",
+        "layer": 0,
+        "start": [
+          15.6,
+          61.706127
+        ],
+        "end": [
+          15.6,
+          61.0
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    },
+    {
+      "uuid": "c0dce615-4db0-4ae1-ba65-4294ab78d0c6",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "BIOZ_SP_PAD",
+        "layer": 0,
+        "start": [
+          15.710495,
+          60.569507
+        ],
+        "end": [
+          15.710495,
+          61.0
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    },
+    {
+      "uuid": "ef49a441-5c6e-45bc-8253-ef7259554b4c",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "PD_INP",
+        "layer": 2,
+        "start": [
+          26.1,
+          49.8
+        ],
+        "end": [
+          26.1,
+          49.6
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    },
+    {
+      "uuid": "210ec8cd-5776-435a-9a9a-8537fc993c86",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "PD_INM",
+        "layer": 2,
+        "start": [
+          25.7,
+          49.8
+        ],
+        "end": [
+          25.7,
+          49.6
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    },
+    {
+      "uuid": "730d2f08-555a-4301-94a0-68b09736df5c",
+      "reason": "track_dangling",
+      "geometry": {
+        "net": "TX2",
+        "layer": 2,
+        "start": [
+          24.9,
+          51.4
+        ],
+        "end": [
+          24.7,
+          51.4
+        ],
+        "kind": "track",
+        "width": 0.101702
+      }
+    }
+  ],
+  "cumulative_segment_removals": {
+    "GND": 1,
+    "AFE_INP": 2,
+    "ESP_TX": 1,
+    "AFE4900_RESETZ": 2,
+    "USB_DM_S3": 9,
+    "USB_DP": 1,
+    "SPI_MOSI": 1,
+    "SPI_SCK": 1,
+    "USB_DP_S3": 7,
+    "AFE_INM": 1,
+    "BIOZ_SP_PAD": 2,
+    "PD_INP": 1,
+    "PD_INM": 1,
+    "TX2": 1
+  }
+}

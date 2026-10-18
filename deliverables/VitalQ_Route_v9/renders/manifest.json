@@ -1,0 +1,136 @@
+[
+  {
+    "file": "final_top.png",
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "render",
+      "--side",
+      "top",
+      "--width",
+      "1400",
+      "--height",
+      "1800",
+      "--quality",
+      "basic",
+      "-o",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/renders/final_top.png",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb"
+    ],
+    "exit_code": 0,
+    "success": true,
+    "time": "2026-10-09T12:09:38.127983+01:00"
+  },
+  {
+    "file": "final_bottom.png",
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "render",
+      "--side",
+      "bottom",
+      "--width",
+      "1400",
+      "--height",
+      "1800",
+      "--quality",
+      "basic",
+      "-o",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/renders/final_bottom.png",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb"
+    ],
+    "exit_code": 0,
+    "success": true,
+    "time": "2026-10-09T12:09:54.649663+01:00"
+  },
+  {
+    "file": "final_3d.png",
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "render",
+      "--side",
+      "top",
+      "--rotate=-35,0,25",
+      "--width",
+      "1600",
+      "--height",
+      "1200",
+      "--quality",
+      "basic",
+      "-o",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/renders/final_3d.png",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb"
+    ],
+    "exit_code": 1,
+    "success": false,
+    "time": "2026-10-09T12:09:55.727638+01:00"
+  },
+  {
+    "file": "final_top_copper.svg",
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "svg",
+      "--layers",
+      "F.Cu,Edge.Cuts",
+      "--mode-single",
+      "--page-size-mode",
+      "2",
+      "--exclude-drawing-sheet",
+      "-o",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/renders/final_top_copper.svg",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb"
+    ],
+    "exit_code": 0,
+    "success": true,
+    "time": "2026-10-09T12:10:00.675033+01:00"
+  },
+  {
+    "file": "final_bottom_copper.svg",
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "export",
+      "svg",
+      "--layers",
+      "B.Cu,Edge.Cuts",
+      "--mirror",
+      "--mode-single",
+      "--page-size-mode",
+      "2",
+      "--exclude-drawing-sheet",
+      "-o",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/renders/final_bottom_copper.svg",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb"
+    ],
+    "exit_code": 0,
+    "success": true,
+    "time": "2026-10-09T12:10:05.087258+01:00"
+  },
+  {
+    "file": "final_3d.png",
+    "command": [
+      "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+      "pcb",
+      "render",
+      "--side",
+      "top",
+      "--rotate",
+      "35,0,25",
+      "--width",
+      "1600",
+      "--height",
+      "1200",
+      "--quality",
+      "basic",
+      "-o",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/renders/final_3d.png",
+      "/Users/deepakdiwan/Downloads/VitalQ_Route_v9/vitalq_v2.kicad_pcb"
+    ],
+    "exit_code": 0,
+    "success": true,
+    "time": "2026-10-09T12:11:35.318762+01:00"
+  }
+]

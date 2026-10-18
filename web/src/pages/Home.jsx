@@ -22,7 +22,7 @@ const STEPS = [
     num: '01',
     icon: ScanLine,
     title: 'Sense',
-    text: 'A wearable multi-modal optical array captures tissue perfusion and microvascular dynamics in real time.',
+    text: 'A wearable optical array — multi-wavelength PPG, spectral imaging, thermal — captures tissue perfusion and microvascular dynamics in real time.',
   },
   {
     num: '02',
@@ -41,13 +41,13 @@ const STEPS = [
 const FEATURES = [
   {
     num: '01',
-    tag: 'Optical sensing',
-    title: 'A Proprietary Sensing Stack',
-    text: 'A custom optical front end measures perfusion dynamics below the noise floor of conventional sensors — resolving the microvascular signature that precedes sepsis.',
+    tag: 'Photonic sensing',
+    title: 'Quantum-Enhanced Detection',
+    text: 'Squeezed-light photonics measure perfusion dynamics below the noise floor of conventional LEDs — resolving the microvascular signature that precedes sepsis.',
     img: '/image.png',
-    alt: 'Optical sensing hardware',
+    alt: 'Photonic sensing chip',
     bullets: [
-      'Sensitivity beyond conventional optical wearables',
+      'Sub-shot-noise sensitivity via squeezed light',
       'Microvascular perfusion changes, resolved',
       'Continuous, wearable form factor',
     ],
@@ -56,7 +56,7 @@ const FEATURES = [
     num: '02',
     tag: 'Machine learning',
     title: 'Pattern Recognition at Scale',
-    text: 'Proprietary models capture the nonlinear correlations between physiological signals that linear scoring systems simply cannot see.',
+    text: 'Quantum-inspired classifiers model the nonlinear correlations between physiological signals that linear scoring systems simply cannot see.',
     img: '/image copy.png',
     alt: 'Pattern recognition neural model',
     bullets: [
@@ -93,6 +93,12 @@ const TEAM = [
     name: 'Moses Man',
     role: 'Co-Founder & CTO',
     bio: 'Optics, firmware, and the full-stack platform. Leads engineering and research.',
+  },
+  {
+    initials: 'AL',
+    name: 'Andre Law',
+    role: 'CFO',
+    bio: 'Unit economics, runway, and the numbers that keep the lights on.',
   },
 ];
 
@@ -133,7 +139,7 @@ export default function Home() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-caladan-green" />
               </span>
               <ShinyText
-                text="Stealth Mode · London"
+                text="Quantum-Enhanced Biosensing"
                 className="text-[11px] font-semibold uppercase tracking-[0.25em]"
                 color="#9ca3af"
                 shineColor="#14C871"
@@ -165,9 +171,9 @@ export default function Home() {
 
           <FadeContent delay={900} duration={1000}>
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              VitalQ is a wearable early-warning system that surfaces the
-              physiological signature of sepsis hours before clinical signs —
-              built by a small team operating in stealth.
+              VitalQ combines squeezed-light sensing, continuous optical telemetry,
+              and patient-specific pattern recognition to surface the earliest
+              physiological signature of sepsis.
             </p>
           </FadeContent>
 
@@ -199,7 +205,7 @@ export default function Home() {
       <div className="border-y border-zinc-800/60 bg-black/40 py-5">
         <ScrollVelocity
           texts={[
-            'Continuous Optical Monitoring · Early-Warning Scoring · Signal-Quality Gating · Patient-Specific Baselines · Real-Time Alerting · ',
+            'Squeezed-Light Photonics · Multi-Wavelength Spectroscopy · Continuous PPG · Signal-Quality Index · Patient-Specific Baselines · Real-Time Alerting · ',
           ]}
           velocity={60}
           className="text-sm uppercase tracking-[0.3em] text-zinc-500"
@@ -246,7 +252,7 @@ export default function Home() {
           <FadeContent>
             <Eyebrow>Pipeline</Eyebrow>
             <h2 className="mt-4 text-3xl md:text-5xl font-rx100 text-white leading-tight max-w-2xl">
-              From signals to early warning.
+              From photons to early warning.
             </h2>
           </FadeContent>
 
@@ -335,7 +341,7 @@ export default function Home() {
             </h2>
           </FadeContent>
 
-          <div className="mt-14 grid md:grid-cols-2 gap-5 max-w-3xl">
+          <div className="mt-14 grid md:grid-cols-3 gap-5">
             {TEAM.map((m, i) => (
               <FadeContent key={m.name} delay={i * 120} duration={900}>
                 <SpotlightCard
@@ -376,8 +382,8 @@ export default function Home() {
           />
           <FadeContent delay={500} duration={900}>
             <p className="mt-6 text-gray-400 max-w-xl mx-auto">
-              We're building the first wearable that sees clinical deterioration
-              coming. We're in stealth — details shared under NDA.
+              We're building the first quantum-enhanced wearable for clinical
+              deterioration. Talk to us.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

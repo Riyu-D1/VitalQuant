@@ -1,0 +1,11 @@
+(version 1)
+
+(rule "JLC via hole to foreign copper 0.2mm"
+  (condition "A.Type == 'Via' || B.Type == 'Via'")
+  (constraint hole_clearance (min 0.2mm)))
+
+(rule "JLC mechanically drilled hole separation 0.2mm"
+  (constraint hole_to_hole (min 0.2mm)))
+
+(rule "JLC through vias only"
+  (constraint disallow blind_via buried_via micro_via))

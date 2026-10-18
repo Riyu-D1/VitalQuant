@@ -1,0 +1,34 @@
+Unknown argument: -35,0,25
+Usage: pcb render [--help] [--output OUTPUT_FILE] [--define-var KEY=VALUE]... [--variant VAR]... [--width WIDTH] [--height HEIGHT] [--side SIDE] [--background BG] [--quality QUALITY] [--preset PRESET] [--use-board-stackup-colors VAR] [--floor] [--perspective] [--zoom ZOOM] [--pan VECTOR] [--pivot PIVOT] [--rotate ANGLES] [--light-top COLOR] [--light-bottom COLOR] [--light-side COLOR] [--light-camera COLOR] [--light-side-elevation ANGLE] INPUT_FILE
+
+Renders the PCB in 3D view to PNG or JPEG image
+
+Positional arguments:
+  INPUT_FILE                  Input file 
+
+Optional arguments:
+  -h, --help                  Shows help message and exits 
+  -o, --output                Output file [nargs=0..1] [default: ""]
+  -D, --define-var            Overrides or adds project variables, can be used multiple times to declare multiple variables.
+                              Use in the format of '--define-var key=value' or '-D key=value' [nargs=0..1] [default: {}] [may be repeated]
+  --variant                   The variant name(s) to output, can be used multiple times to specify multiple variants.
+                              When specifying multiple variants, use ${VARIANT} in the output path to generate separate files for each variant.
+                              When no --variant argument is provided, the default variant is output. [nargs=0..1] [default: {}] [may be repeated]
+  -w, --width                 Image width [nargs=0..1] [default: 1600]
+  -h, --height                Image height [nargs=0..1] [default: 900]
+  --side                      Render from side. Options: top, bottom, left, right, front, back [nargs=0..1] [default: "top"]
+  --background                Image background. Options: default, transparent, opaque. Default: transparent for PNG, opaque for JPEG [nargs=0..1] [default: ""]
+  --quality                   Render quality. Options: basic, high, user, job_settings [nargs=0..1] [default: "basic"]
+  --preset                    Appearance preset. Options: follow_pcb_editor, follow_plot_settings, or user-defined preset name [nargs=0..1] [default: "follow_plot_settings"]
+  --use-board-stackup-colors  Colors defined in board stackup override those in preset [nargs=0..1] [default: true]
+  --floor                     Enables floor, shadows and post-processing, even if disabled in quality setting 
+  --perspective               Use perspective projection instead of orthogonal 
+  --zoom                      Camera zoom [nargs=0..1] [default: 1]
+  --pan                       Pan camera, format 'X,Y,Z' e.g.: '3,0,0' [nargs=0..1] [default: ""]
+  --pivot                     Set pivot point relative to the board center in centimeters, format 'X,Y,Z' e.g.: '-10,2,0' [nargs=0..1] [default: ""]
+  --rotate                    Rotate board, format 'X,Y,Z' e.g.: '-45,0,45' for isometric view [nargs=0..1] [default: ""]
+  --light-top                 Top light intensity, format 'R,G,B' or a single number, range: 0-1 [nargs=0..1] [default: ""]
+  --light-bottom              Bottom light intensity, format 'R,G,B' or a single number, range: 0-1 [nargs=0..1] [default: ""]
+  --light-side                Side lights intensity, format 'R,G,B' or a single number, range: 0-1 [nargs=0..1] [default: ""]
+  --light-camera              Camera light intensity, format 'R,G,B' or a single number, range: 0-1 [nargs=0..1] [default: ""]
+  --light-side-elevation      Side lights elevation angle in degrees, range: 0-90 [nargs=0..1] [default: 60]
