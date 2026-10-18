@@ -232,7 +232,7 @@ export default function Product() {
           <FadeContent delay={150}>
             <div className="mt-6 text-gray-300 leading-relaxed space-y-4 text-lg">
               <p>
-                Scoring runs in two tiers. A compact model on the device itself
+                Scoring runs in two tiers. LAT-D-VQt-E1, a compact model on the device itself,
                 watches every epoch and answers with a typed verdict — stable, watch,
                 or deteriorating — without spending a byte on the radio. Only the
                 cases it flags or can't resolve are escalated to a closed-weight
