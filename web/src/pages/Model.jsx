@@ -20,7 +20,7 @@ const TIERS = [
   {
     icon: Cpu,
     tag: 'Tier 1 · On-device',
-    name: 'VQt-E1',
+    name: 'LAT-D-VQt-E1',
     role: 'Continuous monitor',
     text: 'A compact decision model running on the wearable itself — always on, always watching. Every epoch it reads the fused signal stack and returns a typed answer: stable, watch, or deteriorating, with a confidence score.',
     points: [
@@ -34,7 +34,7 @@ const TIERS = [
     tag: 'Tier 2 · Cloud',
     name: 'LAT-D-VQt-1',
     role: 'Verifier & escalation',
-    text: 'The closed-weight clinical decision model, developed with specialist ML partners. It sees the cases VQt-E1 escalates — deeper evaluation over more context, with the confidence calibration needed to act on the answer.',
+    text: 'The closed-weight clinical decision model, developed with specialist ML partners. It sees the cases LAT-D-VQt-E1 escalates — deeper evaluation over more context, with the confidence calibration needed to act on the answer.',
     points: [
       'Beats the incumbent early-warning score on every question it answers',
       'Calibrated confidence — honest enough to act on selectively',
@@ -129,7 +129,7 @@ export default function Model() {
           <FadeContent delay={150}>
             <div className="mt-6 text-gray-300 leading-relaxed space-y-4 text-lg">
               <p>
-                <span className="text-white font-medium">VQt-E1</span> screens every
+                <span className="text-white font-medium">LAT-D-VQt-E1</span> screens every
                 epoch locally. Most of the time the answer is "stable" and nothing
                 leaves the device — no latency, no link dependency, no battery spent
                 on radios.
@@ -153,7 +153,7 @@ export default function Model() {
             <div className="mt-8 flex items-center gap-3 text-sm text-gray-500">
               <ArrowRightLeft className="h-4 w-4 text-caladan-green shrink-0" />
               <span>
-                The escalation threshold is tuned for sensitivity — VQt-E1 passes the
+                The escalation threshold is tuned for sensitivity — LAT-D-VQt-E1 passes the
                 borderline up rather than guessing at the edge.
               </span>
             </div>
