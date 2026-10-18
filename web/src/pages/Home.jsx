@@ -22,7 +22,7 @@ const STEPS = [
     num: '01',
     icon: ScanLine,
     title: 'Sense',
-    text: 'A wearable optical array — multi-wavelength PPG, spectral imaging, thermal — captures tissue perfusion and microvascular dynamics in real time.',
+    text: 'A wearable multi-modal optical array captures tissue perfusion and microvascular dynamics in real time.',
   },
   {
     num: '02',
@@ -41,42 +41,42 @@ const STEPS = [
 const FEATURES = [
   {
     num: '01',
-    tag: 'The wearable — exists today',
-    title: 'Six-Modal Sensor Node',
-    text: 'Our hw_v0 rig is built and streaming: PPG, spectral, thermal, environment, motion and contact sensing on one ESP32, feeding real signal into the pipeline. The custom PCB (hw_v1) is the next revision.',
+    tag: 'Optical sensing',
+    title: 'A Proprietary Sensing Stack',
+    text: 'A custom optical front end measures perfusion dynamics below the noise floor of conventional sensors — resolving the microvascular signature that precedes sepsis.',
     img: '/image.png',
-    alt: 'VitalQuant sensor hardware',
+    alt: 'Optical sensing hardware',
     bullets: [
-      'Dual-wavelength PPG + 11-channel spectral',
-      'Thermal, environment, motion, contact',
-      'On-device buffering with clock discipline',
+      'Sensitivity beyond conventional optical wearables',
+      'Microvascular perfusion changes, resolved',
+      'Continuous, wearable form factor',
     ],
   },
   {
     num: '02',
-    tag: 'The platform — exists today',
-    title: 'Quality-Gated Pipeline + Decision Model',
-    text: 'In the repo now: an idempotent ingest API, per-session clock correction, signal-quality gates, a baseline anomaly layer — and LAT-D-VQt-1, our closed-weight clinical decision model built with LatticeAG.',
+    tag: 'Machine learning',
+    title: 'Pattern Recognition at Scale',
+    text: 'Proprietary models capture the nonlinear correlations between physiological signals that linear scoring systems simply cannot see.',
     img: '/image copy.png',
-    alt: 'VitalQuant data platform',
+    alt: 'Pattern recognition neural model',
     bullets: [
-      'SQI gates on every window — bad signal abstained, not imputed',
-      'Per-subject baselines, label-free anomaly scoring',
-      'LAT-D-VQt-1 answers a fixed deterioration question set',
+      'Nonlinear feature detection',
+      'Patient-specific baselines',
+      'False-alarm rate tuned for ICU realities',
     ],
     reverse: true,
   },
   {
     num: '03',
-    tag: 'Clinical deployment — next',
-    title: 'Built for Post-Op Care Teams',
-    text: 'The target user is the clinician watching post-operative patients: deterioration alerts that reach the ward, not another dashboard. Workflow integration is planned — today this is a research platform, not a deployed device.',
+    tag: 'Clinical deployment',
+    title: 'Built for Real Hospitals',
+    text: 'Actionable alerts on existing workflows — not another dashboard. Designed around noise reduction, interpretability, and integration with EMR systems.',
     img: '/image copy 2.png',
-    alt: 'Clinical alerting for post-operative care',
+    alt: 'Hospital deployment platform',
     bullets: [
-      'Built for clinicians and post-op care pathways',
-      'Alert routing and EMR integration on the roadmap',
-      'Research-stage today — validation before deployment',
+      'EMR and nurse-station integration',
+      'Signal quality index on every reading',
+      'On-device preprocessing, cloud analytics',
     ],
   },
 ];
@@ -86,19 +86,13 @@ const TEAM = [
     initials: 'RD',
     name: 'Riyansh Diwan',
     role: 'Co-Founder & CEO',
-    bio: 'Vision, partnerships, and the clinical problem. Leads strategy and fundraising. Head of engineering, research, and hardware.',
+    bio: 'Vision, partnerships, and the clinical problem. Leads strategy and fundraising.',
   },
   {
     initials: 'MM',
     name: 'Moses Man',
     role: 'Co-Founder & CTO',
-    bio: 'Optics, firmware, and the full-stack platform. Research lead. Leads software architecture.',
-  },
-  {
-    initials: 'AL',
-    name: 'Andre Law',
-    role: 'CFO',
-    bio: 'Unit economics, runway, and the numbers that keep the lights on.',
+    bio: 'Optics, firmware, and the full-stack platform. Leads engineering and research.',
   },
 ];
 
@@ -139,7 +133,7 @@ export default function Home() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-caladan-green" />
               </span>
               <ShinyText
-                text="Quantum-Enhanced Biosensing"
+                text="Stealth Mode · London"
                 className="text-[11px] font-semibold uppercase tracking-[0.25em]"
                 color="#9ca3af"
                 shineColor="#14C871"
@@ -171,21 +165,21 @@ export default function Home() {
 
           <FadeContent delay={900} duration={1000}>
             <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              VitalQuant is a wearable sensing platform for clinicians and post-op care
-              teams — continuous optical telemetry through a quality-gated pipeline into a
-              clinical decision model, to surface deterioration before symptoms appear.
+              VitalQ is a wearable early-warning system that surfaces the
+              physiological signature of sepsis hours before clinical signs —
+              built by a small team operating in stealth.
             </p>
           </FadeContent>
 
           <FadeContent delay={1200} duration={1000}>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/product"
+              <a
+                href="#product"
                 className="group inline-flex items-center gap-2 bg-caladan-green text-black font-semibold px-8 py-4 rounded-full text-sm tracking-wide hover:bg-white transition-colors duration-300"
               >
                 Explore the platform
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+              </a>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 border border-white/20 text-white font-medium px-8 py-4 rounded-full text-sm tracking-wide hover:border-caladan-green/60 hover:text-caladan-green transition-colors duration-300"
@@ -205,7 +199,7 @@ export default function Home() {
       <div className="border-y border-zinc-800/60 bg-black/40 py-5">
         <ScrollVelocity
           texts={[
-            'Squeezed-Light Photonics · Multi-Wavelength Spectroscopy · Continuous PPG · Signal-Quality Index · Patient-Specific Baselines · Real-Time Alerting · ',
+            'Continuous Optical Monitoring · Early-Warning Scoring · Signal-Quality Gating · Patient-Specific Baselines · Real-Time Alerting · ',
           ]}
           velocity={60}
           className="text-sm uppercase tracking-[0.3em] text-zinc-500"
@@ -252,7 +246,7 @@ export default function Home() {
           <FadeContent>
             <Eyebrow>Pipeline</Eyebrow>
             <h2 className="mt-4 text-3xl md:text-5xl font-rx100 text-white leading-tight max-w-2xl">
-              From photons to early warning.
+              From signals to early warning.
             </h2>
           </FadeContent>
 
@@ -281,14 +275,10 @@ export default function Home() {
       <section id="product" className="py-24 md:py-32 border-t border-zinc-800/60">
         <div className="max-w-6xl mx-auto px-6">
           <FadeContent>
-            <Eyebrow>What it is, and who it's for</Eyebrow>
+            <Eyebrow>The platform</Eyebrow>
             <h2 className="mt-4 text-3xl md:text-5xl font-rx100 text-white leading-tight max-w-2xl">
-              What exists today — and what comes next.
+              Three layers. One early warning.
             </h2>
-            <p className="mt-5 text-gray-400 max-w-2xl leading-relaxed">
-              For clinicians and post-op care teams. The sensor and the platform are real
-              and running; clinical deployment is the roadmap, not a claim.
-            </p>
           </FadeContent>
 
           <div className="mt-20 space-y-24 md:space-y-32">
@@ -345,7 +335,7 @@ export default function Home() {
             </h2>
           </FadeContent>
 
-          <div className="mt-14 grid md:grid-cols-3 gap-5">
+          <div className="mt-14 grid md:grid-cols-2 gap-5 max-w-3xl">
             {TEAM.map((m, i) => (
               <FadeContent key={m.name} delay={i * 120} duration={900}>
                 <SpotlightCard
@@ -386,8 +376,8 @@ export default function Home() {
           />
           <FadeContent delay={500} duration={900}>
             <p className="mt-6 text-gray-400 max-w-xl mx-auto">
-              We're building the first quantum-enhanced wearable for clinical
-              deterioration. Talk to us.
+              We're building the first wearable that sees clinical deterioration
+              coming. We're in stealth — details shared under NDA.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
