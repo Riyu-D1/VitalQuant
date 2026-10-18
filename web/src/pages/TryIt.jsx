@@ -8,7 +8,7 @@ export default function TryIt() {
 
   // Simulation Constants
   const MAX_HOURS = 24;
-  const QUANTUM_ALERT_TIME = 10.5;
+  const VQ_ALERT_TIME = 10.5;
   const CLASSICAL_ALERT_TIME = 14.5;
   const CLINICAL_SYMPTOM_TIME = 18.0;
 
@@ -18,13 +18,13 @@ export default function TryIt() {
   const temp = 36.5 + 1.5 / (1 + Math.exp(-(hours - 13) / 2));
   const aggregationFraction = Math.max(0, Math.min(1, hours / 24)); // roughly 0 to 1
 
-  const quantumAlert = hours >= QUANTUM_ALERT_TIME;
+  const vqAlert = hours >= VQ_ALERT_TIME;
   const classicalAlert = hours >= CLASSICAL_ALERT_TIME;
   const symptomatic = hours >= CLINICAL_SYMPTOM_TIME;
 
   // Calculate advantage and stats
-  const hoursSaved = hours >= QUANTUM_ALERT_TIME ? Math.max(0, CLASSICAL_ALERT_TIME - hours) : 0;
-  const totalAdvantage = CLASSICAL_ALERT_TIME - QUANTUM_ALERT_TIME;
+  const hoursSaved = hours >= VQ_ALERT_TIME ? Math.max(0, CLASSICAL_ALERT_TIME - hours) : 0;
+  const totalAdvantage = CLASSICAL_ALERT_TIME - VQ_ALERT_TIME;
   const survivalBoost = (hoursSaved * 7.6).toFixed(1);
 
   return (
@@ -48,9 +48,9 @@ export default function TryIt() {
         </h1>
         <FadeContent delay={500} duration={900}>
           <p className="mt-5 text-xl text-gray-400 max-w-3xl mx-auto">
-            Experience the quantum advantage. Adjust the timeline to see how our
-            quantum-enhanced detection identifies faint biomarker signals earlier
-            than classical methods.
+            See the early-warning advantage. Adjust the timeline to see how
+            VitalQ identifies faint physiological signals hours earlier than
+            conventional monitoring.
           </p>
         </FadeContent>
       </div>
@@ -75,7 +75,7 @@ export default function TryIt() {
           <div className="relative w-full h-8 mb-4 hidden md:block text-xs font-semibold text-gray-500">
             <div className="absolute left-[43.7%] transform -translate-x-1/2 flex flex-col items-center">
               <div className="h-4 w-0.5 bg-caladan-green mb-1"></div>
-              Quantum Alert (10.5h)
+              VitalQ Alert (10.5h)
             </div>
             <div className="absolute left-[60.4%] transform -translate-x-1/2 flex flex-col items-center">
               <div className="h-4 w-0.5 bg-red-500 mb-1"></div>
@@ -136,7 +136,7 @@ export default function TryIt() {
             >
               <div>
                 <h3 className="text-xl font-rx100 text-white mb-2">Classical System</h3>
-                <p className="text-gray-400 text-sm">Standard near-infrared spectroscopy</p>
+                <p className="text-gray-400 text-sm">Standard bedside monitoring</p>
               </div>
               <div className="text-right flex items-center gap-3">
                 {classicalAlert ? (
@@ -153,18 +153,18 @@ export default function TryIt() {
               </div>
             </div>
 
-            {/* Quantum Detection */}
+            {/* VitalQ Detection */}
             <div className={`rounded-2xl p-6 border transition-all duration-500 flex items-center justify-between
-              ${quantumAlert
+              ${vqAlert
                   ? 'bg-caladan-green/10 border-caladan-green/50 shadow-[0_0_40px_rgba(20,200,113,0.15)]'
                   : 'bg-zinc-950/80 border-zinc-800'}`}
             >
               <div>
-                <h3 className="text-xl font-rx100 text-white mb-2 flex items-center gap-2">Quantum System <Zap className="w-5 h-5 text-caladan-green" /></h3>
-                <p className="text-gray-400 text-sm">Squeezed-light enhanced detection</p>
+                <h3 className="text-xl font-rx100 text-white mb-2 flex items-center gap-2">VitalQ <Zap className="w-5 h-5 text-caladan-green" /></h3>
+                <p className="text-gray-400 text-sm">Proprietary early-warning detection</p>
               </div>
               <div className="text-right flex items-center gap-3">
-                {quantumAlert ? (
+                {vqAlert ? (
                   <>
                     <span className="text-caladan-green font-bold text-lg animate-pulse uppercase">Sepsis Detected</span>
                     <AlertTriangle className="text-caladan-green w-8 h-8" />
@@ -215,7 +215,7 @@ export default function TryIt() {
                   Late stage intervention limits effectiveness.
                 </div>
               )}
-              {quantumAlert && hours < CLASSICAL_ALERT_TIME && (
+              {vqAlert && hours < CLASSICAL_ALERT_TIME && (
                 <div className="mt-6 text-center text-sm font-semibold text-caladan-green bg-green-950/30 py-2 rounded-lg border border-green-900/50">
                   Early intervention window open! Administering antibiotics.
                 </div>

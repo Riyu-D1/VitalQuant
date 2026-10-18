@@ -29,8 +29,8 @@ export default function Contact() {
         </h1>
         <FadeContent delay={500} duration={900}>
           <p className="text-gray-400 text-lg mt-4 mb-12">
-            Interested in bringing quantum photonics to your organization? Drop us
-            a line below.
+            We're operating in stealth and share details selectively. Drop us a
+            line below.
           </p>
         </FadeContent>
 
