@@ -12,7 +12,7 @@ export default function Footer() {
               <Logo className="w-9 h-9" />
               <span className="font-rx100 text-xl text-white tracking-wide">VITALQ</span>
             </Link>
-            <p className="text-gray-400 text-sm mb-1">Quantum-enhanced biosensing.</p>
+            <p className="text-gray-400 text-sm mb-1">Earlier warnings. Better outcomes.</p>
             <p className="text-gray-500 text-sm">London, UK</p>
             <Link
               to="/contact"
