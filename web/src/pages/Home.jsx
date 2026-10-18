@@ -60,7 +60,7 @@ const FEATURES = [
     img: '/image copy.png',
     alt: 'Pattern recognition neural model',
     bullets: [
-      'Nonlinear feature detection',
+      'Two-tier scoring: on-device triage, cloud verification',
       'Patient-specific baselines',
       'False-alarm rate tuned for ICU realities',
     ],

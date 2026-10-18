@@ -232,11 +232,16 @@ export default function Product() {
           <FadeContent delay={150}>
             <div className="mt-6 text-gray-300 leading-relaxed space-y-4 text-lg">
               <p>
-                On top of the pipeline sits a closed-weight clinical decision model,
-                developed with specialist ML partners. It answers a fixed set of
-                deterioration questions from wearable channels only — a model that
-                quietly depends on a channel the hardware cannot supply is useless in
-                the setting it was designed for.
+                Scoring runs in two tiers. A compact model on the device itself
+                watches every epoch and answers with a typed verdict — stable, watch,
+                or deteriorating — without spending a byte on the radio. Only the
+                cases it flags or can't resolve are escalated to a closed-weight
+                clinical model in the cloud, developed with specialist ML partners.
+              </p>
+              <p>
+                Every input both tiers see is a channel the device can measure
+                continuously — a model that quietly depends on an invasive-only
+                signal is useless in the setting it was designed for.
               </p>
             </div>
           </FadeContent>
