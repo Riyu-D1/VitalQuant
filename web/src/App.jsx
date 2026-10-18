@@ -4,11 +4,10 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
+import Product from './pages/Product';
 import Model from './pages/Model';
 import TryIt from './pages/TryIt';
 import Contact from './pages/Contact';
-import Paper from './pages/Paper';
-import Product from './pages/Product';
 
 export default function App() {
   return (
@@ -20,11 +19,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/product" element={<Product />} />
             <Route path="/model" element={<Model />} />
             <Route path="/tryit" element={<TryIt />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/paper" element={<Paper />} />
-            <Route path="/product" element={<Product />} />
           </Routes>
         </main>
 

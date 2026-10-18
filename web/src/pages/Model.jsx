@@ -1,14 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Cpu, Cloud, ArrowRightLeft } from 'lucide-react';
 import SplitText from '../components/ui/SplitText';
 import FadeContent from '../components/ui/FadeContent';
 import SpotlightCard from '../components/ui/SpotlightCard';
 
 const GREEN_RGB = '20, 200, 113';
-
-// Full technical writeup lives on the LatticeAG side.
-const LATTICEAG_MODEL_URL = 'https://latticeag.vercel.app/#/products/lat-d-vqt-1';
 
 function Eyebrow({ children }) {
   return (
@@ -19,40 +16,30 @@ function Eyebrow({ children }) {
   );
 }
 
-function Section({ num, title, children, tint = false }) {
-  return (
-    <section className={`py-20 border-t border-zinc-800/60 ${tint ? 'bg-zinc-950/60' : ''}`}>
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <FadeContent>
-          <span className="text-xs font-rx100 text-zinc-600">{num}</span>
-          <div className="mt-2">
-            <Eyebrow />
-          </div>
-          <h2 className="mt-4 text-3xl md:text-4xl font-rx100 text-white tracking-tight">{title}</h2>
-        </FadeContent>
-        <FadeContent delay={150}>
-          <div className="mt-6 text-gray-300 leading-relaxed space-y-4 text-lg">{children}</div>
-        </FadeContent>
-      </div>
-    </section>
-  );
-}
-
-const FACTS = [
+const TIERS = [
   {
-    value: '4/4',
-    label: 'questions',
-    text: 'It beats the incumbent early-warning score on every question it answers.',
+    icon: Cpu,
+    tag: 'Tier 1 · On-device',
+    name: 'LAT-D-VQt-E1',
+    role: 'Continuous monitor',
+    text: 'A compact decision model running on the wearable itself — always on, always watching. Every epoch it reads the fused signal stack and returns a typed answer: stable, watch, or deteriorating, with a confidence score.',
+    points: [
+      'Runs entirely on the device — no link required',
+      'Typed decisions, not text: a distribution over fixed clinical states',
+      'Power-frugal by design — inference is a rounding error next to the sensors',
+    ],
   },
   {
-    value: 'Wearable-only',
-    label: 'input scope',
-    text: 'Built from channels our sensor can supply. No invasive-only signals, ever.',
-  },
-  {
-    value: 'Calibrated',
-    label: 'confidence',
-    text: 'Confidence error in the low single digits, so a score can be trusted selectively.',
+    icon: Cloud,
+    tag: 'Tier 2 · Cloud',
+    name: 'LAT-D-VQt-1',
+    role: 'Verifier & escalation',
+    text: 'The closed-weight clinical decision model, developed with specialist ML partners. It sees the cases LAT-D-VQt-E1 escalates — deeper evaluation over more context, with the confidence calibration needed to act on the answer.',
+    points: [
+      'Beats the incumbent early-warning score on every question it answers',
+      'Calibrated confidence — honest enough to act on selectively',
+      'Wearable-only inputs: nothing it needs that the device cannot measure',
+    ],
   },
 ];
 
@@ -69,11 +56,11 @@ export default function Model() {
         />
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8">
           <FadeContent>
-            <Eyebrow>Model</Eyebrow>
+            <Eyebrow>The decision layer</Eyebrow>
           </FadeContent>
           <h1 className="font-rx100 mt-6">
             <SplitText
-              text="LAT-D-VQt-1"
+              text="Two-tier intelligence."
               className="block text-5xl lg:text-7xl text-white"
               splitType="chars"
               delay={45}
@@ -83,77 +70,43 @@ export default function Model() {
           </h1>
           <FadeContent delay={500} duration={1000}>
             <p className="mt-8 text-xl text-gray-300 leading-relaxed font-light">
-              A closed-weight clinical decision model, built for VitalQuant by LatticeAG.
-              Post-trained on real clinical time-series to answer a fixed set of
-              deterioration questions from the signals a wearable can actually measure.
+              VitalQ doesn't send everything to the cloud. A small model on the
+              device itself watches continuously — and escalates to a larger
+              verifier only when it sees something worth a second opinion.
             </p>
-          </FadeContent>
-          <FadeContent delay={800} duration={1000}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <a
-                href={LATTICEAG_MODEL_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-caladan-green px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
-              >
-                Technical writeup
-                <ArrowUpRight size={16} />
-              </a>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-gray-300 transition-colors hover:border-caladan-green hover:text-caladan-green"
-              >
-                Contact
-              </Link>
-            </div>
           </FadeContent>
         </div>
       </section>
 
-      <Section num="01" title="What it does" tint>
-        <p>
-          LAT-D-VQt-1 answers a fixed set of clinical questions about a patient's
-          current state - whether they are deteriorating, and how far ahead that
-          deterioration can be seen. It is not asked to write anything. Each answer
-          comes with a confidence value, and those values are honest enough to act on
-          selectively rather than read as a raw number.
-        </p>
-        <p>
-          The model is built from the channels our wearable can supply. Every input it
-          sees is something the device can measure continuously at the bedside, which
-          is the whole point: a model that quietly depends on an invasive-only signal
-          is useless in the setting it was designed for.
-        </p>
-        <p className="text-white font-medium">
-          The weights are closed and held by VitalQuant. LatticeAG ran the training and
-          evaluation; the full technical record - protocol, ablation and results - is
-          published on their side.
-        </p>
-      </Section>
-
+      {/* Two tiers */}
       <section className="py-20 border-t border-zinc-800/60">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <FadeContent>
-            <span className="text-xs font-rx100 text-zinc-600">02</span>
-            <div className="mt-2">
-              <Eyebrow />
-            </div>
-            <h2 className="mt-4 text-3xl md:text-4xl font-rx100 text-white tracking-tight">
-              At a glance
-            </h2>
-          </FadeContent>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {FACTS.map((f, i) => (
-              <FadeContent key={f.label} delay={i * 120}>
+          <div className="grid gap-6 md:grid-cols-2">
+            {TIERS.map((t, i) => (
+              <FadeContent key={t.name} delay={i * 150}>
                 <SpotlightCard
-                  className="h-full"
-                  spotlightColor={`rgba(${GREEN_RGB}, 0.18)`}
+                  className="h-full p-8 border-zinc-800/80 bg-zinc-950/80 card-lift"
+                  spotlightColor={`rgba(${GREEN_RGB}, 0.15)`}
                 >
-                  <p className="font-rx100 text-2xl text-white leading-tight">{f.value}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.2em] text-caladan-green">
-                    {f.label}
+                  <div className="flex items-center justify-between">
+                    <t.icon className="h-6 w-6 text-caladan-green" />
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                      {t.tag}
+                    </span>
+                  </div>
+                  <h2 className="mt-6 text-3xl font-rx100 text-white">{t.name}</h2>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-caladan-green">
+                    {t.role}
                   </p>
-                  <p className="mt-4 text-sm text-gray-400 leading-relaxed">{f.text}</p>
+                  <p className="mt-5 text-sm text-gray-400 leading-relaxed">{t.text}</p>
+                  <ul className="mt-6 space-y-3">
+                    {t.points.map((p) => (
+                      <li key={p} className="flex items-start gap-3 text-sm text-gray-300">
+                        <span className="eyebrow-dot mt-1.5 shrink-0" />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
                 </SpotlightCard>
               </FadeContent>
             ))}
@@ -161,26 +114,71 @@ export default function Model() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* The cascade */}
       <section className="py-20 border-t border-zinc-800/60 bg-zinc-950/60">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <FadeContent>
+            <span className="text-xs font-rx100 text-zinc-600">02</span>
+            <div className="mt-2">
+              <Eyebrow />
+            </div>
+            <h2 className="mt-4 text-3xl md:text-4xl font-rx100 text-white tracking-tight">
+              How the cascade works
+            </h2>
+          </FadeContent>
+          <FadeContent delay={150}>
+            <div className="mt-6 text-gray-300 leading-relaxed space-y-4 text-lg">
+              <p>
+                <span className="text-white font-medium">LAT-D-VQt-E1</span> screens every
+                epoch locally. Most of the time the answer is "stable" and nothing
+                leaves the device — no latency, no link dependency, no battery spent
+                on radios.
+              </p>
+              <p>
+                When the local model's confidence drops or its verdict turns
+                suspicious, it escalates: the window is shipped to{' '}
+                <span className="text-white font-medium">LAT-D-VQt-1</span> for a
+                deeper evaluation. The care team sees the cloud verdict, not the raw
+                stream — an alert that has already survived two tiers of scrutiny is
+                an alert worth acting on.
+              </p>
+              <p className="text-caladan-green font-semibold text-xl">
+                The result: continuous coverage with the battery and latency of an
+                edge device, and the judgement of a much larger model exactly where
+                it earns its keep.
+              </p>
+            </div>
+          </FadeContent>
+          <FadeContent delay={250}>
+            <div className="mt-8 flex items-center gap-3 text-sm text-gray-500">
+              <ArrowRightLeft className="h-4 w-4 text-caladan-green shrink-0" />
+              <span>
+                The escalation threshold is tuned for sensitivity — LAT-D-VQt-E1 passes the
+                borderline up rather than guessing at the edge.
+              </span>
+            </div>
+          </FadeContent>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 border-t border-zinc-800/60">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <FadeContent>
             <h2 className="font-rx100 text-3xl md:text-4xl text-white tracking-tight">
-              Read the technical writeup
+              Details under NDA
             </h2>
             <p className="mt-4 text-gray-400 text-lg">
-              Architecture, evaluation protocol, ablations and the data-scale study are
-              documented on the LatticeAG product page.
+              Model architecture, training protocol and evaluation results are
+              shared selectively while we're in stealth. Talk to us.
             </p>
-            <a
-              href={LATTICEAG_MODEL_URL}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/contact"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-caladan-green px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
             >
-              LAT-D-VQt-1 on LatticeAG
+              Contact
               <ArrowUpRight size={16} />
-            </a>
+            </Link>
           </FadeContent>
         </div>
       </section>

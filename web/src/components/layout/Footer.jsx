@@ -10,9 +10,9 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-4">
               <Logo className="w-9 h-9" />
-              <span className="font-rx100 text-xl text-white tracking-wide">VITALQUANT</span>
+              <span className="font-rx100 text-xl text-white tracking-wide">VITALQ</span>
             </Link>
-            <p className="text-gray-400 text-sm mb-1">Quantum-enhanced biosensing.</p>
+            <p className="text-gray-400 text-sm mb-1">Earlier warnings. Better outcomes.</p>
             <p className="text-gray-500 text-sm">London, UK</p>
             <Link
               to="/contact"
@@ -26,8 +26,9 @@ export default function Footer() {
             <h4 className="font-semibold text-white mb-6 uppercase tracking-[0.2em] text-xs">Site</h4>
             <ul className="space-y-4 text-sm font-medium">
               <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/product" className="text-gray-400 hover:text-white transition-colors">Product</Link></li>
               <li><Link to="/model" className="text-gray-400 hover:text-white transition-colors">Model</Link></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
               <li><Link to="/tryit" className="text-gray-400 hover:text-white transition-colors">Try It</Link></li>
               <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
@@ -43,7 +44,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-gray-600">© {new Date().getFullYear()} VitalQuant. All rights reserved.</p>
+          <p className="text-xs text-gray-600">© {new Date().getFullYear()} VitalQ. All rights reserved.</p>
           <p className="text-xs text-gray-600">Detecting sepsis before symptoms appear.</p>
         </div>
       </div>
