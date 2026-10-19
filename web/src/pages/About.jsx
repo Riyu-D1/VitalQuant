@@ -63,12 +63,6 @@ const TEAM = [
     role: 'Co-Founder & CTO',
     bio: "Leading VitalQ's technology strategy and development of its quantum-enhanced sensing platform.",
   },
-  {
-    initials: 'AL',
-    name: 'Andre Law',
-    role: 'CFO',
-    bio: "Guiding VitalQ's financial strategy and sustainable growth.",
-  },
 ];
 
 const TIMELINE = [
@@ -238,7 +232,7 @@ export default function About() {
             <div className="mt-2"><Eyebrow /></div>
             <h2 className="mt-4 text-3xl md:text-4xl font-rx100 text-white tracking-tight">Our Team</h2>
           </FadeContent>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl">
             {TEAM.map((m, i) => (
               <FadeContent key={m.name} delay={i * 120} duration={900}>
                 <SpotlightCard

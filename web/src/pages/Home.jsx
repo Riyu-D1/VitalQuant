@@ -94,12 +94,6 @@ const TEAM = [
     role: 'Co-Founder & CTO',
     bio: 'Optics, firmware, and the full-stack platform. Leads engineering and research.',
   },
-  {
-    initials: 'AL',
-    name: 'Andre Law',
-    role: 'CFO',
-    bio: 'Unit economics, runway, and the numbers that keep the lights on.',
-  },
 ];
 
 function Eyebrow({ children }) {
@@ -341,7 +335,7 @@ export default function Home() {
             </h2>
           </FadeContent>
 
-          <div className="mt-14 grid md:grid-cols-3 gap-5">
+          <div className="mt-14 grid md:grid-cols-2 gap-5 max-w-3xl">
             {TEAM.map((m, i) => (
               <FadeContent key={m.name} delay={i * 120} duration={900}>
                 <SpotlightCard
