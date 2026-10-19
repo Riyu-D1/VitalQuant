@@ -172,6 +172,30 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 Exploded render veiw in a graph style interface for size perception:
 <img width="573" height="528" alt="image" src="https://github.com/user-attachments/assets/0dd6ed9a-98a1-4433-a7c1-1db4d1d87df9" />
 
+## Riyansh - 18th OCT
+1hr 30mins
+- Ok so a lot of work has been done since the last entry
+- The last entry contained the final 3d model render and now some issues came up when i stress tested the pcb
+- The issues weren't that big but they were just mostly to do with the fact that there wasnt a surge protection for the battery and one of the 3v3 rails was missing a capcitor
+- these were all relatively easy fixes so I went ahead and just updated the pcb and schematic.
+- The main issue was ensuring the ecg worked this also meant pogo pins would have to be used to space the pcb but the issues was the least force availble was 0.4N and this had a too high combined force because the chest strap exerts a force of 3.3N and we needed pins for each optical sensor.
+- Therefore I settled on conductive elastomer which is much easier to handle and better for a first prototype.
+- Also the ecg was integrated into the circuit but there were no leads so 3 pads were added so that gel electrodes could be connected to the pcb to take readings.
+- I also researched how blood pressure affected all of this because that was the main factor which the pcb could not have onboard so the mani options were pulse wave analysis which was more based on estimation though as compared to actually having a cuff
+- This would also not be able to work effectivly because the werable is positioned close to the heart so it wouldnt be able to tke viable enough readings but could still be used
+- the other option would be to use a bluetooth cuff which would be easier as the esp32 already has onboard bluetooth and wifi conntectivity
+<img width="1680" height="1050" alt="image" src="https://github.com/user-attachments/assets/254afca6-9f10-4f22-af4b-83b039e29fec" />
+
+## Riyansh - 19 OCT
+30 mins
+- today i didn't have much time again so it was just a quick task to solve but the issue was that the 2 million parameter model that moses had created and trained would not have been able to run on the esp32 mini s3 module
+- So this meant either offloading to another computer but also defeating the purpose of the model because the computer was already set to run a higher computational model
+- This meant we had to switch to an ESP32-S3-WROOM-1-N16R8 this was because this had 8mb psram and would be able to run the model quite easily locally allowing us to process the sensor data and organise it onboard making the workflow much easier and more organised
+- The issue now was that everything would have to be rerouted and organised so I organised the pcb myself and then got devin to run freerouting
+- the only issue now would be the freerouting loops devin gets stuck in. 
+<img width="1568" height="872" alt="image" src="https://github.com/user-attachments/assets/21c73956-c673-432c-955a-bbd1780736c6" />
+
+
 
 
 
