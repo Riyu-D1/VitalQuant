@@ -1,0 +1,2364 @@
+** Drc report for vitalq_v2.kicad_pcb **
+** Created on 2026-10-19T20:43:48 **
+** Report includes: Errors, Warnings **
+
+** Found 541 DRC violations **
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(2.7500 mm, -2.0600 mm): Track [CS_AFE4900] on Top Layer, length 1.0500 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(3.8000 mm, -12.2200 mm): Track [ESP_EN] on Signal Layer 4, length 14.8725 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(19.1000 mm, -13.4900 mm): Track [FSR_ADC] on Signal Layer 6, length 15.5389 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(2.7500 mm, -10.9500 mm): Track [LSM6_INT1] on Top Layer, length 10.6322 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(2.7500 mm, -0.7900 mm): Track [I2C_SDA] on Top Layer, length 1.0500 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(3.8000 mm, -13.4900 mm): Track [+3V3_ESP] on Layer 3, length 8.8514 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(20.2500 mm, -10.9500 mm): Track [ESP_TX] on Top Layer, length 4.2836 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(17.4000 mm, -9.6800 mm): Track [ESP_RX] on Top Layer, length 7.4800 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(20.2500 mm, -9.6800 mm): Track [ESP_RX] on Top Layer, length 2.8500 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(2.7500 mm, -3.3300 mm): Track [STATUS_LED] on Top Layer, length 1.0500 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(19.1000 mm, -12.2200 mm): Track [ADS1292_DRDY] on Bottom Layer, length 10.5847 mm
+[items_not_allowed]: Items not allowed
+    Local override; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+[items_not_allowed]: Items not allowed (keepout area 'antenna_keepout')
+    Rule: keepout area 'antenna_keepout'; error
+    @(2.7500 mm, -9.6800 mm): Pad 5 [TMP117_ALERT] of U1 on Top Layer
+[items_not_allowed]: Items not allowed (keepout area 'antenna_keepout')
+    Rule: keepout area 'antenna_keepout'; error
+    @(20.2500 mm, -9.6800 mm): Pad 36 [ESP_RX] of U1 on Top Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(4.8064 mm, -1.8718 mm): Track [EXP_INT] on Top Layer, length 0.6153 mm
+[shorting_items]: Items shorting two nets (nets CS_AD5940 and EXP_INT)
+    Local override; error
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+    @(2.7643 mm, -5.7422 mm): Track [EXP_INT] on Top Layer, length 1.0073 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0364 mm)
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(4.8064 mm, -2.4871 mm): Track [EXP_INT] on Top Layer, length 0.1950 mm
+[shorting_items]: Items shorting two nets (nets TMP117_ALERT and EXP_INT)
+    Local override; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(5.4000 mm, -1.8428 mm): Track [EXP_INT] on Top Layer, length 0.5646 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(4.8354 mm, -1.8428 mm): Track [EXP_INT] on Top Layer, length 0.0411 mm
+[shorting_items]: Items shorting two nets (nets EXP_INT and CS_AD5940)
+    Local override; error
+    @(6.0634 mm, -6.0250 mm): Track [EXP_INT] on Top Layer, length 2.6163 mm
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets TMP117_ALERT and CS_FLASH)
+    Local override; error
+    @(7.8320 mm, 4.4148 mm): Track [TMP117_ALERT] on Layer 3, length 5.2352 mm
+    @(9.8500 mm, 6.5000 mm): Via [CS_FLASH] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets TMP117_ALERT and I2C_SCL)
+    Local override; error
+    @(6.0070 mm, 0.7570 mm): Track [TMP117_ALERT] on Top Layer, length 2.2239 mm
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets CS_ADS1292 and TMP117_ALERT)
+    Local override; error
+    @(8.3250 mm, 3.0000 mm): Pad 18 [CS_ADS1292] of U1 on Top Layer
+    @(7.8320 mm, 2.9389 mm): Track [TMP117_ALERT] on Top Layer, length 1.4759 mm
+[shorting_items]: Items shorting two nets (nets TMP117_ALERT and CHG_PG)
+    Local override; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(2.7500 mm, -7.1400 mm): Pad 7 [CHG_PG] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets USB_DM and MIC_CLK)
+    Local override; error
+    @(21.0200 mm, 5.0000 mm): Via [USB_DM] on Top Layer - Bottom Layer
+    @(20.4490 mm, 5.1457 mm): Track [MIC_CLK] on Layer 3, length 2.2981 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0491 mm)
+    Rule: netclass 'Default'; error
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+    @(19.6586 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1414 mm
+[shorting_items]: Items shorting two nets (nets MIC_CLK and GND)
+    Local override; error
+    @(20.2500 mm, -5.8700 mm): Track [MIC_CLK] on Top Layer, length 2.2500 mm
+    @(20.1346 mm, -5.7779 mm): Via [GND] on Top Layer - Bottom Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(18.7072 mm, -2.2000 mm): Track [ESP_RX] on Top Layer, length 2.1640 mm
+    @(18.0000 mm, -5.8700 mm): Track [MIC_CLK] on Top Layer, length 7.0700 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0373 mm)
+    Rule: netclass 'Default'; error
+    @(20.1266 mm, 1.4121 mm): Track [MIC_CLK] on Top Layer, length 0.4560 mm
+    @(20.2500 mm, 1.7500 mm): Track [ESP_IO0] on Top Layer, length 1.1500 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0491 mm)
+    Rule: netclass 'Default'; error
+    @(20.1000 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1856 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets MIC_CLK and ESP_IO0)
+    Local override; error
+    @(20.4490 mm, 2.1346 mm): Track [MIC_CLK] on Top Layer, length 3.0112 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and MIC_DAT)
+    Local override; error
+    @(19.1000 mm, 1.7500 mm): Via [ESP_IO0] on Top Layer - Bottom Layer
+    @(18.7607 mm, 1.4768 mm): Track [MIC_DAT] on Top Layer, length 0.2096 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(18.0000 mm, -5.8700 mm): Track [MIC_CLK] on Top Layer, length 7.0700 mm
+    @(17.7000 mm, 0.3500 mm): Track [MIC_DAT] on Top Layer, length 1.4500 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0106 mm)
+    Rule: netclass 'Default'; error
+    @(20.2500 mm, 1.7500 mm): Track [ESP_IO0] on Top Layer, length 1.1500 mm
+    @(18.9089 mm, 1.6250 mm): Track [MIC_DAT] on Top Layer, length 0.4911 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(18.0000 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 1.1500 mm
+    @(18.7607 mm, 0.7893 mm): Track [MIC_DAT] on Top Layer, length 0.6875 mm
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and MIC_DAT)
+    Local override; error
+    @(20.2500 mm, 1.7500 mm): Track [ESP_IO0] on Top Layer, length 1.1500 mm
+    @(20.0828 mm, 1.9078 mm): Track [MIC_DAT] on Top Layer, length 0.1678 mm
+[shorting_items]: Items shorting two nets (nets MIC_DAT and GND)
+    Local override; error
+    @(17.7000 mm, -7.1400 mm): Track [MIC_DAT] on Top Layer, length 7.4900 mm
+    @(17.5942 mm, -5.8433 mm): Via [GND] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets MIC_DAT and ESP_IO0)
+    Local override; error
+    @(19.9642 mm, 2.1892 mm): Track [MIC_DAT] on Top Layer, length 2.7639 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0042 mm)
+    Rule: netclass 'USB_90R'; error
+    @(21.5151 mm, 6.6964 mm): Track [IN1P_AC] on Top Layer, length 6.1655 mm
+    @(21.2600 mm, 4.4000 mm): Via [USB_DP] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0607 mm)
+    Rule: netclass 'USB_90R'; error
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+    @(4.1773 mm, 7.7636 mm): Via [USB_DM_S3] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets GND and ADS1292_DRDY)
+    Local override; error
+    @(22.6769 mm, -2.6289 mm): Via [GND] on Top Layer - Bottom Layer
+    @(19.1000 mm, -12.2200 mm): Track [ADS1292_DRDY] on Bottom Layer, length 10.5847 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(19.1000 mm, -8.4100 mm): Track [SPARE_IN] on Bottom Layer, length 7.6866 mm
+    @(10.0935 mm, -1.0006 mm): Track [ADS1292_DRDY] on Bottom Layer, length 11.5304 mm
+[shorting_items]: Items shorting two nets (nets STATUS_LED and ESP_IO0)
+    Local override; error
+    @(3.8000 mm, -3.3300 mm): Track [STATUS_LED] on Signal Layer 6, length 12.0100 mm
+    @(5.9800 mm, -0.2400 mm): Via [ESP_IO0] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets I2C_SCL and GAUGE_ALRT)
+    Local override; error
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+    @(7.1130 mm, 3.7415 mm): Via [GAUGE_ALRT] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets I2C_SCL and GAUGE_ALRT)
+    Local override; error
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+    @(6.0070 mm, 1.6070 mm): Track [GAUGE_ALRT] on Top Layer, length 1.1641 mm
+[shorting_items]: Items shorting two nets (nets I2C_SCL and GAUGE_ALRT)
+    Local override; error
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+    @(7.1130 mm, 3.1130 mm): Track [GAUGE_ALRT] on Top Layer, length 0.6285 mm
+[shorting_items]: Items shorting two nets (nets ECG_P and GAUGE_ALRT)
+    Local override; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(17.8734 mm, 4.1914 mm): Track [GAUGE_ALRT] on Layer 3, length 7.2353 mm
+[shorting_items]: Items shorting two nets (nets GAUGE_ALRT and GND)
+    Local override; error
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+    @(3.1354 mm, -6.3891 mm): Via [GND] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets AD5940_GPIO0 and SPI_SCK)
+    Local override; error
+    @(13.4050 mm, 1.9500 mm): Via [AD5940_GPIO0] on Top Layer - Bottom Layer
+    @(12.8941 mm, 2.4026 mm): Track [SPI_SCK] on Bottom Layer, length 0.9168 mm
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and SPI_SCK)
+    Local override; error
+    @(19.1000 mm, 1.7500 mm): Via [ESP_IO0] on Top Layer - Bottom Layer
+    @(13.5424 mm, 1.7544 mm): Track [SPI_SCK] on Bottom Layer, length 8.7965 mm
+[shorting_items]: Items shorting two nets (nets GND and AD5940_GPIO0)
+    Local override; error
+    @(11.7686 mm, 3.6839 mm): Via [GND] on Top Layer - Bottom Layer
+    @(13.4050 mm, 1.9500 mm): Track [AD5940_GPIO0] on Signal Layer 4, length 6.8201 mm
+[shorting_items]: Items shorting two nets (nets AD5940_GPIO0 and STATUS_LED)
+    Local override; error
+    @(23.3859 mm, 6.4308 mm): Track [AD5940_GPIO0] on Signal Layer 4, length 14.8041 mm
+    @(10.7000 mm, 6.5000 mm): Via [STATUS_LED] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets SPI_MOSI and AD5940_GPIO0)
+    Local override; error
+    @(13.4275 mm, 3.0692 mm): Via [SPI_MOSI] on Top Layer - Bottom Layer
+    @(13.4050 mm, 3.0000 mm): Track [AD5940_GPIO0] on Top Layer, length 1.0500 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.2273 mm)
+    Rule: netclass 'Default'; error
+    @(13.4275 mm, 3.0692 mm): Via [SPI_MOSI] on Top Layer - Bottom Layer
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets SPI_MOSI and AD5940_GPIO0)
+    Local override; error
+    @(11.3997 mm, 5.4500 mm): Track [SPI_MOSI] on Top Layer, length 2.4677 mm
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets SPI_MOSI and AD5940_GPIO0)
+    Local override; error
+    @(13.4275 mm, 3.0222 mm): Track [SPI_MOSI] on Top Layer, length 0.0470 mm
+    @(13.4050 mm, 3.0000 mm): Track [AD5940_GPIO0] on Top Layer, length 1.0500 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0123 mm)
+    Rule: netclass 'Default'; error
+    @(3.6788 mm, 4.7933 mm): Track [CS_ADS1292] on Layer 3, length 2.5645 mm
+    @(5.2000 mm, 2.9000 mm): Via [I2C_SDA] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0287 mm)
+    Rule: netclass 'Default'; error
+    @(12.8139 mm, 3.1963 mm): Via [CS_ADS1292] on Top Layer - Bottom Layer
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(6.6501 mm, 5.1573 mm): Track [CS_ADS1292] on Top Layer, length 4.7405 mm
+    @(9.5950 mm, 3.0000 mm): Track [SPI_MOSI] on Top Layer, length 3.0431 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0516 mm)
+    Rule: netclass 'Default'; error
+    @(11.3906 mm, 5.1573 mm): Track [CS_ADS1292] on Top Layer, length 1.7540 mm
+    @(9.5950 mm, 3.0000 mm): Track [SPI_MOSI] on Top Layer, length 3.0431 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0903 mm)
+    Rule: netclass 'Default'; error
+    @(12.8139 mm, 3.4751 mm): Track [CS_ADS1292] on Top Layer, length 0.2789 mm
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0733 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(21.6000 mm, -7.1000 mm): Track [ECG_P] on Signal Layer 4, length 12.9161 mm
+    @(17.8950 mm, -0.5941 mm): Via [SPARE_IN] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0969 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7159 mm, 4.2500 mm): Track [ECG_P] on Top Layer, length 0.6426 mm
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and GND)
+    Local override; error
+    @(19.1000 mm, 1.7500 mm): Track [ESP_IO0] on Signal Layer 6, length 13.2701 mm
+    @(8.2440 mm, -0.1589 mm): Via [GND] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets STATUS_LED and ESP_IO0)
+    Local override; error
+    @(2.7500 mm, -3.3300 mm): Pad 10 [STATUS_LED] of U1 on Top Layer
+    @(4.9511 mm, -5.1750 mm): Track [ESP_IO0] on Top Layer, length 2.5750 mm
+[shorting_items]: Items shorting two nets (nets USB_DP_S3 and ESP_IO0)
+    Local override; error
+    @(2.7500 mm, 1.7500 mm): Pad 14 [USB_DP_S3] of U1 on Top Layer
+    @(2.1813 mm, 1.2844 mm): Track [ESP_IO0] on Top Layer, length 2.5973 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+    @(4.5788 mm, -3.2788 mm): Track [ESP_IO0] on Top Layer, length 1.9326 mm
+[shorting_items]: Items shorting two nets (nets GAUGE_ALRT and ESP_IO0)
+    Local override; error
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+    @(4.9670 mm, -0.0658 mm): Track [ESP_IO0] on Top Layer, length 0.9870 mm
+[shorting_items]: Items shorting two nets (nets USB_DM_S3 and ESP_IO0)
+    Local override; error
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+    @(2.3405 mm, 0.7269 mm): Track [ESP_IO0] on Top Layer, length 0.3983 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0186 mm)
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(4.9011 mm, -3.6011 mm): Track [ESP_IO0] on Top Layer, length 0.4558 mm
+[shorting_items]: Items shorting two nets (nets EXP_INT and ESP_IO0)
+    Local override; error
+    @(4.5150 mm, 1.9500 mm): Via [EXP_INT] on Top Layer - Bottom Layer
+    @(4.2690 mm, 0.6322 mm): Track [ESP_IO0] on Top Layer, length 2.8307 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+    @(5.7980 mm, -0.0658 mm): Track [ESP_IO0] on Top Layer, length 0.8311 mm
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and CS_AFE4900)
+    Local override; error
+    @(2.8475 mm, -2.6714 mm): Track [ESP_IO0] on Top Layer, length 2.7007 mm
+    @(2.7500 mm, -2.0600 mm): Pad 11 [CS_AFE4900] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and USB_DM_S3)
+    Local override; error
+    @(2.3453 mm, 0.3220 mm): Track [ESP_IO0] on Top Layer, length 0.0068 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(4.5788 mm, -1.3462 mm): Track [ESP_IO0] on Top Layer, length 0.5957 mm
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and USB_DM_S3)
+    Local override; error
+    @(2.4376 mm, 0.0392 mm): Track [ESP_IO0] on Top Layer, length 0.1906 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0649 mm)
+    Rule: netclass 'Default'; error
+    @(5.0000 mm, -0.9250 mm): Track [ESP_IO0] on Top Layer, length 0.8467 mm
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets ESP_RX and )
+    Local override; error
+    @(17.1771 mm, -0.6698 mm): Track [ESP_RX] on Top Layer, length 3.8010 mm
+    @(17.2150 mm, 3.0000 mm): Pad 25 [<no net>] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0250 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(15.7200 mm, 4.4000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(16.0765 mm, 4.6318 mm): Via [ESP_RX] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets GND and ESP_RX)
+    Local override; error
+    @(17.5942 mm, -5.8433 mm): Via [GND] on Top Layer - Bottom Layer
+    @(17.4000 mm, -9.6800 mm): Track [ESP_RX] on Top Layer, length 7.4800 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0132 mm)
+    Rule: netclass 'Default'; error
+    @(17.2150 mm, 3.0000 mm): Pad 25 [<no net>] of U1 on Top Layer
+    @(16.8942 mm, 3.8140 mm): Track [ESP_RX] on Top Layer, length 1.1564 mm
+[shorting_items]: Items shorting two nets (nets SPARE_IN and ESP_TX)
+    Local override; error
+    @(20.2500 mm, -8.4100 mm): Pad 35 [SPARE_IN] of U1 on Top Layer
+    @(20.2500 mm, -10.9500 mm): Track [ESP_TX] on Top Layer, length 4.2836 mm
+[shorting_items]: Items shorting two nets (nets ESP_TX and )
+    Local override; error
+    @(20.1998 mm, -0.7502 mm): Track [ESP_TX] on Top Layer, length 0.1117 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'ELECTRODE_LV' clearance 0.1016 mm; actual 0.0689 mm)
+    Rule: netclass 'ELECTRODE_LV'; error
+    @(21.6000 mm, -7.1000 mm): Via [ECG_P] on Top Layer - Bottom Layer
+    @(21.4000 mm, -6.7802 mm): Track [ESP_TX] on Top Layer, length 10.1160 mm
+[shorting_items]: Items shorting two nets (nets ESP_TX and )
+    Local override; error
+    @(20.1208 mm, -0.4292 mm): Track [ESP_TX] on Top Layer, length 1.3661 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0591 mm)
+    Rule: netclass 'Default'; error
+    @(19.6513 mm, -1.3500 mm): Track [ESP_TX] on Top Layer, length 0.0513 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_TX and ESP_IO0)
+    Local override; error
+    @(20.3987 mm, 1.2149 mm): Track [ESP_TX] on Top Layer, length 0.5732 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets CS_MAX86178 and ESP_TX)
+    Local override; error
+    @(20.2500 mm, -3.3300 mm): Pad 31 [CS_MAX86178] of U1 on Top Layer
+    @(19.9530 mm, -2.1030 mm): Track [ESP_TX] on Top Layer, length 2.3432 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0591 mm)
+    Rule: netclass 'Default'; error
+    @(19.6513 mm, -1.3500 mm): Track [ESP_TX] on Top Layer, length 0.0513 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_TX and MAX86178_INT)
+    Local override; error
+    @(20.2358 mm, -4.7290 mm): Track [ESP_TX] on Top Layer, length 0.3646 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_TX and )
+    Local override; error
+    @(19.8051 mm, -1.1449 mm): Track [ESP_TX] on Top Layer, length 0.1582 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_TX and MIC_CLK)
+    Local override; error
+    @(20.4936 mm, -5.3868 mm): Track [ESP_TX] on Top Layer, length 0.6586 mm
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_TX and USB_DM)
+    Local override; error
+    @(20.8040 mm, 2.0202 mm): Track [ESP_TX] on Top Layer, length 4.2301 mm
+    @(21.0200 mm, 5.0000 mm): Via [USB_DM] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets ESP_TX and )
+    Local override; error
+    @(19.8051 mm, -1.5551 mm): Track [ESP_TX] on Top Layer, length 0.2092 mm
+    @(20.2500 mm, -2.0600 mm): Pad 30 [<no net>] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets ESP_TX and MIC_CLK)
+    Local override; error
+    @(20.7765 mm, -6.3283 mm): Track [ESP_TX] on Top Layer, length 0.6392 mm
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(23.1706 mm, 2.9864 mm): Track [CS_ADS1292] on Layer 3, length 8.9156 mm
+    @(22.9000 mm, -6.0900 mm): Track [USB_DP] on Layer 3, length 10.6174 mm
+[shorting_items]: Items shorting two nets (nets USB_DM and USB_DP)
+    Local override; error
+    @(21.0200 mm, 5.0000 mm): Via [USB_DM] on Top Layer - Bottom Layer
+    @(21.2578 mm, 4.2500 mm): Track [USB_DP] on Top Layer, length 2.2315 mm
+[shorting_items]: Items shorting two nets (nets USB_DM and USB_DP)
+    Local override; error
+    @(22.1000 mm, -6.3200 mm): Via [USB_DM] on Top Layer - Bottom Layer
+    @(23.7925 mm, -6.0857 mm): Track [USB_DP] on Top Layer, length 2.2925 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(22.9000 mm, -6.0900 mm): Track [USB_DP] on Layer 3, length 10.6174 mm
+    @(21.2953 mm, 3.4925 mm): Track [MAX86178_INT] on Layer 3, length 1.5518 mm
+[shorting_items]: Items shorting two nets (nets MAX86178_INT and USB_DP)
+    Local override; error
+    @(18.8524 mm, 3.4925 mm): Track [MAX86178_INT] on Layer 3, length 2.4430 mm
+    @(22.9000 mm, -6.0900 mm): Track [USB_DP] on Layer 3, length 10.6174 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0573 mm)
+    Rule: netclass 'Default'; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(18.4524 mm, 3.4925 mm): Via [MAX86178_INT] on Top Layer - Bottom Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(18.7072 mm, -3.9000 mm): Track [GND] on Top Layer, length 0.6083 mm
+    @(18.3000 mm, -4.6000 mm): Track [MAX86178_INT] on Top Layer, length 6.6500 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0654 mm)
+    Rule: netclass 'Default'; error
+    @(19.1000 mm, 1.7500 mm): Via [ESP_IO0] on Top Layer - Bottom Layer
+    @(19.2000 mm, 2.0500 mm): Track [MAX86178_INT] on Top Layer, length 0.0482 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0491 mm)
+    Rule: netclass 'Default'; error
+    @(19.1000 mm, 1.7500 mm): Via [ESP_IO0] on Top Layer - Bottom Layer
+    @(19.1000 mm, 2.0500 mm): Track [MAX86178_INT] on Top Layer, length 0.1000 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0365 mm)
+    Rule: netclass 'Default'; error
+    @(19.1000 mm, 1.7500 mm): Via [ESP_IO0] on Top Layer - Bottom Layer
+    @(18.3000 mm, 2.0500 mm): Track [MAX86178_INT] on Top Layer, length 0.8500 mm
+[shorting_items]: Items shorting two nets (nets  and MAX86178_INT)
+    Local override; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(18.6002 mm, 2.6498 mm): Track [MAX86178_INT] on Top Layer, length 0.2091 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0356 mm)
+    Rule: netclass 'Default'; error
+    @(19.7076 mm, -4.8576 mm): Track [GND] on Top Layer, length 0.1522 mm
+    @(20.2500 mm, -4.6000 mm): Track [MAX86178_INT] on Top Layer, length 1.9500 mm
+[shorting_items]: Items shorting two nets (nets MAX86178_INT and )
+    Local override; error
+    @(18.4524 mm, 3.1976 mm): Track [MAX86178_INT] on Top Layer, length 0.2949 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets USB_DP and VBAT)
+    Local override; error
+    @(21.2600 mm, 4.4000 mm): Via [USB_DP] on Top Layer - Bottom Layer
+    @(23.5460 mm, 4.5196 mm): Track [VBAT] on Bottom Layer, length 6.5556 mm
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0919 mm)
+    Rule: netclass 'USB_90R'; error
+    @(20.9463 mm, 4.4416 mm): Track [CHG_PG] on Layer 3, length 0.5271 mm
+    @(21.0200 mm, 5.0000 mm): Via [USB_DM] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets CHG_PG and SPI_MISO)
+    Local override; error
+    @(12.3807 mm, 3.6402 mm): Via [CHG_PG] on Top Layer - Bottom Layer
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0656 mm)
+    Rule: netclass 'USB_90R'; error
+    @(18.8643 mm, 4.4416 mm): Track [CHG_PG] on Layer 3, length 2.0820 mm
+    @(21.2600 mm, 4.4000 mm): Via [USB_DP] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets CHG_PG and )
+    Local override; error
+    @(5.9710 mm, 2.8210 mm): Track [CHG_PG] on Top Layer, length 0.4157 mm
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets  and CHG_PG)
+    Local override; error
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+    @(6.2538 mm, 3.5195 mm): Track [CHG_PG] on Top Layer, length 1.8042 mm
+[shorting_items]: Items shorting two nets (nets  and CHG_PG)
+    Local override; error
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+    @(5.7414 mm, 2.1914 mm): Track [CHG_PG] on Top Layer, length 0.3247 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(7.5296 mm, 4.7952 mm): Track [CHG_PG] on Top Layer, length 3.6961 mm
+    @(9.5950 mm, 3.0000 mm): Track [SPI_MOSI] on Top Layer, length 3.0431 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0376 mm)
+    Rule: netclass 'Default'; error
+    @(4.5788 mm, -1.3462 mm): Track [ESP_IO0] on Top Layer, length 0.5957 mm
+    @(2.7500 mm, -7.1400 mm): Track [CHG_PG] on Top Layer, length 9.5644 mm
+[shorting_items]: Items shorting two nets (nets GND and SPI_MISO)
+    Local override; error
+    @(11.7686 mm, 3.6839 mm): Via [GND] on Top Layer - Bottom Layer
+    @(12.1350 mm, 1.9500 mm): Track [SPI_MISO] on Layer 3, length 4.0275 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(17.1579 mm, 2.1769 mm): Track [SPI_MISO] on Layer 3, length 11.4974 mm
+    @(22.9000 mm, -6.0900 mm): Track [USB_DP] on Layer 3, length 10.6174 mm
+[shorting_items]: Items shorting two nets (nets SPI_MISO and AD5940_GPIO0)
+    Local override; error
+    @(11.2990 mm, 5.8932 mm): Track [SPI_MISO] on Top Layer, length 5.9874 mm
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(11.6977 mm, 2.1709 mm): Track [GND] on Top Layer, length 0.5742 mm
+    @(12.1350 mm, 3.0000 mm): Track [SPI_MISO] on Top Layer, length 1.0500 mm
+[shorting_items]: Items shorting two nets (nets  and CS_MAX86178)
+    Local override; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(18.8066 mm, 3.6934 mm): Track [CS_MAX86178] on Top Layer, length 0.0307 mm
+[shorting_items]: Items shorting two nets (nets  and CS_MAX86178)
+    Local override; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(18.6000 mm, -3.3300 mm): Track [CS_MAX86178] on Top Layer, length 6.2300 mm
+[shorting_items]: Items shorting two nets (nets  and CS_MAX86178)
+    Local override; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(18.5912 mm, 3.5088 mm): Track [CS_MAX86178] on Top Layer, length 0.3046 mm
+[shorting_items]: Items shorting two nets (nets  and CS_MAX86178)
+    Local override; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(18.6000 mm, 2.9000 mm): Track [CS_MAX86178] on Top Layer, length 0.5500 mm
+[shorting_items]: Items shorting two nets (nets  and CS_MAX86178)
+    Local override; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(19.1045 mm, 2.9955 mm): Track [CS_MAX86178] on Top Layer, length 0.3260 mm
+[shorting_items]: Items shorting two nets (nets ESP_EN and +3V3_ESP)
+    Local override; error
+    @(3.8000 mm, -12.2200 mm): Via [ESP_EN] on Top Layer - Bottom Layer
+    @(3.8000 mm, -13.4900 mm): Track [+3V3_ESP] on Layer 3, length 8.8514 mm
+[shorting_items]: Items shorting two nets (nets STATUS_LED and +3V3_ESP)
+    Local override; error
+    @(2.7500 mm, -3.3300 mm): Pad 10 [STATUS_LED] of U1 on Top Layer
+    @(3.2883 mm, -2.8383 mm): Track [+3V3_ESP] on Top Layer, length 2.0902 mm
+[shorting_items]: Items shorting two nets (nets CS_AFE4900 and +3V3_ESP)
+    Local override; error
+    @(2.7500 mm, -2.0600 mm): Pad 11 [CS_AFE4900] of U1 on Top Layer
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(20.2500 mm, -3.3300 mm): Track [CS_MAX86178] on Top Layer, length 1.6500 mm
+    @(19.9530 mm, -2.1030 mm): Track [ESP_TX] on Top Layer, length 2.3432 mm
+[shorting_items]: Items shorting two nets (nets USB_DP_S3 and +3V3_ESP)
+    Local override; error
+    @(2.7500 mm, 1.7500 mm): Track [USB_DP_S3] on Top Layer, length 1.3210 mm
+    @(3.4198 mm, 2.5989 mm): Track [+3V3_ESP] on Top Layer, length 0.3769 mm
+[shorting_items]: Items shorting two nets (nets USB_DP_S3 and +3V3_ESP)
+    Local override; error
+    @(2.7500 mm, 1.7500 mm): Pad 14 [USB_DP_S3] of U1 on Top Layer
+    @(3.4198 mm, 1.3300 mm): Track [+3V3_ESP] on Top Layer, length 0.6471 mm
+[shorting_items]: Items shorting two nets (nets USB_DM_S3 and +3V3_ESP)
+    Local override; error
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+    @(3.1152 mm, -0.1577 mm): Track [+3V3_ESP] on Top Layer, length 0.1313 mm
+[shorting_items]: Items shorting two nets (nets +3V3_ESP and GND)
+    Local override; error
+    @(0.6000 mm, -13.2250 mm): Track [+3V3_ESP] on Top Layer, length 1.4249 mm
+    @(0.6000 mm, -13.0800 mm): Track [GND] on Top Layer, length 0.5500 mm
+[shorting_items]: Items shorting two nets (nets USB_DM_S3 and +3V3_ESP)
+    Local override; error
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+    @(3.1152 mm, 0.3187 mm): Track [+3V3_ESP] on Top Layer, length 0.0764 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0015 mm)
+    Rule: netclass 'Default'; error
+    @(0.6000 mm, -12.1200 mm): Track [+3V3_ESP] on Top Layer, length 1.9588 mm
+    @(0.6000 mm, -13.0800 mm): Track [GND] on Top Layer, length 0.5500 mm
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0154 mm)
+    Rule: netclass 'USB_90R'; error
+    @(2.7500 mm, 1.7500 mm): Pad 14 [USB_DP_S3] of U1 on Top Layer
+    @(3.4198 mm, 2.3771 mm): Track [+3V3_ESP] on Top Layer, length 0.0891 mm
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0288 mm)
+    Rule: netclass 'USB_90R'; error
+    @(3.4198 mm, 2.6000 mm): Track [+3V3_ESP] on Top Layer, length 0.0011 mm
+    @(2.7500 mm, 1.7500 mm): Track [USB_DP_S3] on Top Layer, length 1.3210 mm
+[shorting_items]: Items shorting two nets (nets +3V3_ESP and USB_DM_S3)
+    Local override; error
+    @(3.3980 mm, 1.0015 mm): Track [+3V3_ESP] on Top Layer, length 0.0308 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets +3V3_ESP and USB_DP_S3)
+    Local override; error
+    @(3.4198 mm, 2.9758 mm): Track [+3V3_ESP] on Top Layer, length 0.9321 mm
+    @(2.7500 mm, 1.7500 mm): Track [USB_DP_S3] on Top Layer, length 1.3210 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(3.8000 mm, -0.7900 mm): Track [I2C_SDA] on Layer 3, length 3.9467 mm
+    @(7.4301 mm, -3.2266 mm): Track [FSR_ADC] on Layer 3, length 5.1698 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0350 mm)
+    Rule: netclass 'Default'; error
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+    @(5.2000 mm, 2.9000 mm): Via [I2C_SDA] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets EXP_INT and I2C_SDA)
+    Local override; error
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+    @(4.5732 mm, 3.5268 mm): Track [I2C_SDA] on Top Layer, length 0.0591 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -0.7900 mm): Track [I2C_SDA] on Top Layer, length 1.0500 mm
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+[shorting_items]: Items shorting two nets (nets EXP_INT and I2C_SDA)
+    Local override; error
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+    @(5.0000 mm, 2.9000 mm): Track [I2C_SDA] on Top Layer, length 0.2000 mm
+[shorting_items]: Items shorting two nets (nets I2C_SDA and EXP_INT)
+    Local override; error
+    @(5.0126 mm, 3.0874 mm): Track [I2C_SDA] on Top Layer, length 0.2214 mm
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets I2C_SCL and CS_FLASH)
+    Local override; error
+    @(8.5361 mm, 6.4903 mm): Track [I2C_SCL] on Bottom Layer, length 4.1208 mm
+    @(9.8500 mm, 6.5000 mm): Via [CS_FLASH] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets  and I2C_SCL)
+    Local override; error
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+    @(5.6928 mm, 3.7500 mm): Track [I2C_SCL] on Top Layer, length 0.1072 mm
+[shorting_items]: Items shorting two nets (nets  and I2C_SCL)
+    Local override; error
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+    @(5.4000 mm, 3.7500 mm): Track [I2C_SCL] on Top Layer, length 1.000e-06 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(7.0550 mm, 3.0000 mm): Track [I2C_SCL] on Top Layer, length 1.2222 mm
+    @(6.2538 mm, 3.5195 mm): Track [CHG_PG] on Top Layer, length 1.8042 mm
+[shorting_items]: Items shorting two nets (nets GAUGE_ALRT and LSM6_INT1)
+    Local override; error
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+    @(5.0000 mm, -0.5000 mm): Track [LSM6_INT1] on Top Layer, length 0.4000 mm
+[shorting_items]: Items shorting two nets (nets ESP_IO0 and LSM6_INT1)
+    Local override; error
+    @(4.5788 mm, -1.3462 mm): Track [ESP_IO0] on Top Layer, length 0.5957 mm
+    @(2.7500 mm, -10.9500 mm): Track [LSM6_INT1] on Top Layer, length 10.6322 mm
+[shorting_items]: Items shorting two nets (nets CHG_PG and LSM6_INT1)
+    Local override; error
+    @(2.7500 mm, -7.1400 mm): Track [CHG_PG] on Top Layer, length 9.5644 mm
+    @(4.7072 mm, -0.5000 mm): Track [LSM6_INT1] on Top Layer, length 0.2928 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(3.0952 mm, 3.8236 mm): Track [LSM6_INT1] on Top Layer, length 0.9058 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(2.7500 mm, -7.1400 mm): Track [CHG_PG] on Top Layer, length 9.5644 mm
+    @(3.9064 mm, 0.3008 mm): Track [LSM6_INT1] on Top Layer, length 1.1325 mm
+[shorting_items]: Items shorting two nets (nets USB_DP_S3 and USB_DM_S3)
+    Local override; error
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+    @(4.4600 mm, 7.7182 mm): Track [USB_DM_S3] on Top Layer, length 0.0418 mm
+[shorting_items]: Items shorting two nets (nets USB_DM_S3 and USB_DP_S3)
+    Local override; error
+    @(4.4211 mm, 7.7337 mm): Track [USB_DM_S3] on Top Layer, length 0.0613 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0504 mm)
+    Rule: netclass 'USB_90R'; error
+    @(4.7210 mm, 7.7267 mm): Track [USB_DM_S3] on Top Layer, length 0.0418 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[shorting_items]: Items shorting two nets (nets USB_DM_S3 and USB_DP_S3)
+    Local override; error
+    @(4.5912 mm, 7.6990 mm): Track [USB_DM_S3] on Top Layer, length 0.0418 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0099 mm)
+    Rule: netclass 'USB_90R'; error
+    @(4.3692 mm, 7.7662 mm): Track [USB_DM_S3] on Top Layer, length 0.1919 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(2.7500 mm, 0.4800 mm): Track [USB_DM_S3] on Top Layer, length 2.1487 mm
+    @(2.7500 mm, 1.7500 mm): Track [USB_DP_S3] on Top Layer, length 1.3210 mm
+[shorting_items]: Items shorting two nets (nets USB_DM_S3 and USB_DP_S3)
+    Local override; error
+    @(4.6815 mm, 7.7130 mm): Track [USB_DM_S3] on Top Layer, length 0.0914 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(4.5495 mm, 7.6999 mm): Track [USB_DM_S3] on Top Layer, length 0.0914 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(23.1706 mm, 2.9864 mm): Track [CS_ADS1292] on Layer 3, length 8.9156 mm
+    @(22.1000 mm, -6.3200 mm): Track [USB_DM] on Layer 3, length 11.3714 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'USB_90R'; error
+    @(3.1000 mm, 2.6000 mm): Track [USB_DM_S3] on Top Layer, length 5.2718 mm
+    @(3.0952 mm, 3.8236 mm): Track [LSM6_INT1] on Top Layer, length 0.9058 mm
+[clearance]: Clearance violation (netclass 'USB_90R' clearance 0.1016 mm; actual 0.0858 mm)
+    Rule: netclass 'USB_90R'; error
+    @(4.8007 mm, 7.7714 mm): Track [USB_DM_S3] on Top Layer, length 0.0914 mm
+    @(3.4000 mm, 2.9000 mm): Track [USB_DP_S3] on Top Layer, length 5.3030 mm
+[shorting_items]: Items shorting two nets (nets USB_DM and USB_DP)
+    Local override; error
+    @(23.8414 mm, -6.3213 mm): Track [USB_DM] on Top Layer, length 2.3414 mm
+    @(22.9000 mm, -6.0900 mm): Via [USB_DP] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets USB_DM and USB_DP)
+    Local override; error
+    @(21.0222 mm, 4.2500 mm): Track [USB_DM] on Top Layer, length 2.1827 mm
+    @(21.2600 mm, 4.4000 mm): Via [USB_DP] on Top Layer - Bottom Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(6.1750 mm, 2.6971 mm): Track [CS_ADS1292] on Layer 3, length 7.5635 mm
+    @(3.8000 mm, -5.8700 mm): Track [CS_AD5940] on Layer 3, length 10.6036 mm
+[shorting_items]: Items shorting two nets (nets SPI_MISO and CS_AD5940)
+    Local override; error
+    @(11.3000 mm, 5.8900 mm): Via [SPI_MISO] on Top Layer - Bottom Layer
+    @(9.8530 mm, 4.1104 mm): Track [CS_AD5940] on Layer 3, length 3.6426 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0135 mm)
+    Rule: netclass 'Default'; error
+    @(2.7643 mm, -5.7422 mm): Track [EXP_INT] on Top Layer, length 1.0073 mm
+    @(2.7500 mm, -5.8700 mm): Track [CS_AD5940] on Top Layer, length 1.0500 mm
+[shorting_items]: Items shorting two nets (nets CS_FLASH and ESP_IO0)
+    Local override; error
+    @(3.8000 mm, -4.6000 mm): Track [CS_FLASH] on Signal Layer 6, length 12.6417 mm
+    @(5.9800 mm, -0.2400 mm): Via [ESP_IO0] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets CS_FLASH and GAUGE_ALRT)
+    Local override; error
+    @(2.7500 mm, -4.6000 mm): Track [CS_FLASH] on Top Layer, length 1.0500 mm
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+[shorting_items]: Items shorting two nets (nets GND and FSR_ADC)
+    Local override; error
+    @(8.0670 mm, -4.0318 mm): Via [GND] on Top Layer - Bottom Layer
+    @(19.1000 mm, -13.4900 mm): Track [FSR_ADC] on Signal Layer 6, length 15.5389 mm
+[shorting_items]: Items shorting two nets (nets FSR_ADC and EXP_INT)
+    Local override; error
+    @(7.4301 mm, -3.2266 mm): Track [FSR_ADC] on Layer 3, length 5.1698 mm
+    @(5.4000 mm, -1.3500 mm): Via [EXP_INT] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets ESP_EN and GND)
+    Local override; error
+    @(3.8000 mm, -12.2200 mm): Track [ESP_EN] on Signal Layer 4, length 14.8725 mm
+    @(12.6458 mm, -6.2109 mm): Via [GND] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets  and ESP_EN)
+    Local override; error
+    @(15.9450 mm, 3.0000 mm): Pad 24 [<no net>] of U1 on Top Layer
+    @(15.8015 mm, 2.5398 mm): Track [ESP_EN] on Top Layer, length 2.9062 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(18.7072 mm, -6.4500 mm): Track [ESP_EN] on Top Layer, length 3.7093 mm
+    @(20.2500 mm, -5.8700 mm): Track [MIC_CLK] on Top Layer, length 2.2500 mm
+[shorting_items]: Items shorting two nets (nets ESP_EN and GND)
+    Local override; error
+    @(0.6000 mm, -10.8200 mm): Track [ESP_EN] on Top Layer, length 1.9799 mm
+    @(0.6000 mm, -11.7800 mm): Track [GND] on Top Layer, length 0.5500 mm
+[shorting_items]: Items shorting two nets (nets ESP_EN and IN1P_AC)
+    Local override; error
+    @(21.7252 mm, -0.6573 mm): Track [ESP_EN] on Top Layer, length 8.7430 mm
+    @(21.6000 mm, 0.5200 mm): Via [IN1P_AC] on Top Layer - Bottom Layer
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(3.8000 mm, -2.0600 mm): Track [CS_AFE4900] on Bottom Layer, length 11.2173 mm
+    @(7.2824 mm, 0.2029 mm): Track [ADS1292_DRDY] on Bottom Layer, length 6.9831 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+    @(2.7500 mm, -2.0600 mm): Track [CS_AFE4900] on Top Layer, length 1.0500 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.1577 mm)
+    Rule: netclass 'Default'; error
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+    @(20.1346 mm, -5.7779 mm): Via [GND] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0894 mm)
+    Rule: netclass 'Default'; error
+    @(1.1500 mm, -11.7800 mm): Via [GND] on Top Layer - Bottom Layer
+    @(0.6000 mm, -12.1200 mm): Pad 1 [+3V3_ESP] of C8 on Top Layer
+[shorting_items]: Items shorting two nets (nets SPARE_IN and GND)
+    Local override; error
+    @(20.2500 mm, -8.4100 mm): Pad 35 [SPARE_IN] of U1 on Top Layer
+    @(20.7843 mm, -7.7600 mm): Via [GND] on Top Layer - Bottom Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.1007 mm)
+    Rule: netclass 'Default'; error
+    @(3.1354 mm, -6.3891 mm): Via [GND] on Top Layer - Bottom Layer
+    @(2.7500 mm, -7.1400 mm): Pad 7 [CHG_PG] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets GND and +3V3_ESP)
+    Local override; error
+    @(1.1500 mm, -13.0800 mm): Via [GND] on Top Layer - Bottom Layer
+    @(0.6000 mm, -13.2250 mm): Pad 1 [+3V3_ESP] of C7 on Top Layer
+[shorting_items]: Items shorting two nets (nets GND and SPI_MISO)
+    Local override; error
+    @(11.7686 mm, 3.6839 mm): Via [GND] on Top Layer - Bottom Layer
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets GND and SPI_SCK)
+    Local override; error
+    @(11.4875 mm, 2.1709 mm): Via [GND] on Top Layer - Bottom Layer
+    @(10.8650 mm, 3.0000 mm): Pad 20 [SPI_SCK] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0798 mm)
+    Rule: netclass 'Default'; error
+    @(17.4000 mm, -9.6800 mm): Track [ESP_RX] on Top Layer, length 7.4800 mm
+    @(18.3500 mm, -6.8072 mm): Track [GND] on Top Layer, length 1.0689 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(17.4000 mm, -9.6800 mm): Track [ESP_RX] on Top Layer, length 7.4800 mm
+    @(17.5000 mm, -6.8582 mm): Track [GND] on Top Layer, length 0.9156 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(17.7000 mm, -7.1400 mm): Track [MIC_DAT] on Top Layer, length 7.4900 mm
+    @(18.0990 mm, -3.9000 mm): Track [GND] on Top Layer, length 0.6811 mm
+[shorting_items]: Items shorting two nets (nets MIC_DAT and GND)
+    Local override; error
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+    @(19.7000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.1000 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0811 mm)
+    Rule: netclass 'Default'; error
+    @(12.1350 mm, 1.9500 mm): Via [SPI_MISO] on Top Layer - Bottom Layer
+    @(12.4000 mm, 1.7500 mm): Track [GND] on Top Layer, length 0.6000 mm
+[shorting_items]: Items shorting two nets (nets MIC_DAT and GND)
+    Local override; error
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+    @(20.2000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.1072 mm
+[tracks_crossing]: Tracks crossing
+    Rule: netclass 'Default'; error
+    @(20.2500 mm, -7.1400 mm): Track [MIC_DAT] on Top Layer, length 2.5500 mm
+    @(18.3500 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[shorting_items]: Items shorting two nets (nets MIC_CLK and GND)
+    Local override; error
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+    @(20.1346 mm, -5.3779 mm): Track [GND] on Top Layer, length 0.0933 mm
+[shorting_items]: Items shorting two nets (nets GND and MAX86178_INT)
+    Local override; error
+    @(19.9475 mm, -5.0975 mm): Track [GND] on Top Layer, length 0.0077 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0491 mm)
+    Rule: netclass 'Default'; error
+    @(19.2000 mm, -4.7500 mm): Track [GND] on Top Layer, length 0.2000 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets GND and +3V3_ESP)
+    Local override; error
+    @(0.6000 mm, -11.7800 mm): Track [GND] on Top Layer, length 0.5500 mm
+    @(0.6000 mm, -12.1200 mm): Pad 1 [+3V3_ESP] of C8 on Top Layer
+[shorting_items]: Items shorting two nets (nets GND and +3V3_ESP)
+    Local override; error
+    @(0.6000 mm, -13.0800 mm): Track [GND] on Top Layer, length 0.5500 mm
+    @(0.6000 mm, -13.2250 mm): Pad 1 [+3V3_ESP] of C7 on Top Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0678 mm)
+    Rule: netclass 'Default'; error
+    @(20.8072 mm, -7.7828 mm): Track [GND] on Top Layer, length 0.0324 mm
+    @(20.2500 mm, -10.9500 mm): Track [ESP_TX] on Top Layer, length 4.2836 mm
+[shorting_items]: Items shorting two nets (nets GND and MIC_DAT)
+    Local override; error
+    @(20.4928 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.0316 mm
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0798 mm)
+    Rule: netclass 'Default'; error
+    @(17.5942 mm, -6.0514 mm): Track [GND] on Top Layer, length 0.2081 mm
+    @(17.4000 mm, -9.6800 mm): Track [ESP_RX] on Top Layer, length 7.4800 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0182 mm)
+    Rule: netclass 'Default'; error
+    @(3.3148 mm, -6.3891 mm): Track [GND] on Top Layer, length 0.1794 mm
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+[shorting_items]: Items shorting two nets (nets GND and MIC_CLK)
+    Local override; error
+    @(18.7072 mm, -3.9000 mm): Track [GND] on Top Layer, length 0.6083 mm
+    @(18.0000 mm, -5.8700 mm): Track [MIC_CLK] on Top Layer, length 7.0700 mm
+[shorting_items]: Items shorting two nets (nets GND and MAX86178_INT)
+    Local override; error
+    @(19.7076 mm, -4.8576 mm): Track [GND] on Top Layer, length 0.1522 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0896 mm)
+    Rule: netclass 'Default'; error
+    @(20.2500 mm, -7.1400 mm): Track [MIC_DAT] on Top Layer, length 2.5500 mm
+    @(17.5000 mm, -7.1000 mm): Track [GND] on Top Layer, length 0.2418 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0324 mm)
+    Rule: netclass 'Default'; error
+    @(12.1350 mm, 1.9500 mm): Via [SPI_MISO] on Top Layer - Bottom Layer
+    @(12.4000 mm, 1.8500 mm): Track [GND] on Top Layer, length 0.1000 mm
+[shorting_items]: Items shorting two nets (nets GND and MIC_DAT)
+    Local override; error
+    @(18.3500 mm, -7.1000 mm): Track [GND] on Top Layer, length 0.2928 mm
+    @(20.2500 mm, -7.1400 mm): Track [MIC_DAT] on Top Layer, length 2.5500 mm
+[shorting_items]: Items shorting two nets (nets SPI_MISO and GND)
+    Local override; error
+    @(12.1350 mm, 1.9500 mm): Via [SPI_MISO] on Top Layer - Bottom Layer
+    @(11.6977 mm, 2.1709 mm): Track [GND] on Top Layer, length 0.5742 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0299 mm)
+    Rule: netclass 'Default'; error
+    @(12.1350 mm, 1.9500 mm): Via [SPI_MISO] on Top Layer - Bottom Layer
+    @(12.4988 mm, 1.9440 mm): Track [GND] on Top Layer, length 0.1397 mm
+[clearance]: Clearance violation (netclass 'Default' clearance 0.1016 mm; actual 0.0856 mm)
+    Rule: netclass 'Default'; error
+    @(17.5000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+    @(20.2500 mm, -7.1400 mm): Track [MIC_DAT] on Top Layer, length 2.5500 mm
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+    @(3.1354 mm, -6.3891 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1350 mm)
+    Rule: board setup constraints hole; error
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+    @(5.2000 mm, 2.9000 mm): Via [I2C_SDA] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0350 mm)
+    Rule: board setup constraints hole; error
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+    @(5.2000 mm, 2.9000 mm): Via [I2C_SDA] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+    @(7.1130 mm, 3.7415 mm): Via [GAUGE_ALRT] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0897 mm)
+    Rule: board setup constraints hole; error
+    @(10.8650 mm, 3.0000 mm): Pad 20 [SPI_SCK] of U1 on Top Layer
+    @(11.4875 mm, 2.1709 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1126 mm)
+    Rule: board setup constraints hole; error
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+    @(11.4875 mm, 2.1709 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1288 mm)
+    Rule: board setup constraints hole; error
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+    @(12.8139 mm, 3.1963 mm): Via [CS_ADS1292] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+    @(11.7686 mm, 3.6839 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+    @(12.3807 mm, 3.6402 mm): Via [CHG_PG] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(0.6000 mm, -13.2250 mm): Pad 1 [+3V3_ESP] of C7 on Top Layer
+    @(1.1500 mm, -13.0800 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0410 mm)
+    Rule: board setup constraints hole; error
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+    @(12.8139 mm, 3.1963 mm): Via [CS_ADS1292] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+    @(13.4275 mm, 3.0692 mm): Via [SPI_MOSI] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+    @(18.4524 mm, 3.4925 mm): Via [MAX86178_INT] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.1894 mm)
+    Rule: board setup constraints hole; error
+    @(0.6000 mm, -12.1200 mm): Pad 1 [+3V3_ESP] of C8 on Top Layer
+    @(1.1500 mm, -11.7800 mm): Via [GND] on Top Layer - Bottom Layer
+[shorting_items]: Items shorting two nets (nets +3V3_ESP and GND)
+    Local override; error
+    @(0.6000 mm, -12.1200 mm): Pad 1 [+3V3_ESP] of C8 on Top Layer
+    @(0.6000 mm, -11.7800 mm): Pad 2 [GND] of C64 on Top Layer
+[shorting_items]: Items shorting two nets (nets GND and +3V3_ESP)
+    Local override; error
+    @(0.6000 mm, -13.0800 mm): Pad 2 [GND] of C8 on Top Layer
+    @(0.6000 mm, -13.2250 mm): Pad 1 [+3V3_ESP] of C7 on Top Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+    @(20.1346 mm, -5.7779 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0699 mm)
+    Rule: board setup constraints hole; error
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+    @(20.7843 mm, -7.7600 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0999 mm)
+    Rule: board setup constraints hole; error
+    @(20.2500 mm, -8.4100 mm): Pad 35 [SPARE_IN] of U1 on Top Layer
+    @(20.7843 mm, -7.7600 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_clearance]: Hole clearance violation (board setup constraints hole clearance 0.2000 mm; actual 0.0000 mm)
+    Rule: board setup constraints hole; error
+    @(0.8000 mm, -8.0000 mm): Pad 1 [unconnected-(FID4-FID-Pad1)] of FID4 on Bottom Layer
+    @(-0.1500 mm, -7.1844 mm): NPTH pad of H2
+[courtyards_overlap]: Courtyards overlap
+    Rule: board setup constraints courtyard; error
+    @(0.6000 mm, -11.3000 mm): Footprint C64
+    @(0.6000 mm, -12.6000 mm): Footprint C8
+[courtyards_overlap]: Courtyards overlap
+    Rule: board setup constraints courtyard; error
+    @(0.6000 mm, -12.6000 mm): Footprint C8
+    @(0.6000 mm, -14.0000 mm): Footprint C7
+[courtyards_overlap]: Courtyards overlap
+    Rule: board setup constraints courtyard; error
+    @(26.0000 mm, -7.8000 mm): Footprint J1
+    @(11.5000 mm, -6.5000 mm): Footprint U1
+[courtyards_overlap]: Courtyards overlap
+    Rule: board setup constraints courtyard; error
+    @(11.5000 mm, -6.5000 mm): Footprint U1
+    @(-0.1500 mm, -7.1844 mm): Footprint H2
+[npth_inside_courtyard]: NPTH inside courtyard
+    Local override; error
+    @(-0.1500 mm, -7.1844 mm): NPTH pad of H2
+    @(0.8000 mm, -8.0000 mm): Footprint FID4
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(12.8139 mm, 3.1963 mm): Via [CS_ADS1292] on Top Layer - Bottom Layer
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -7.1400 mm): Track [CHG_PG] on Top Layer, length 9.5644 mm
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -7.1400 mm): Track [CHG_PG] on Top Layer, length 9.5644 mm
+    @(2.7500 mm, -4.6000 mm): Pad 9 [CS_FLASH] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.9710 mm, 2.8210 mm): Track [CHG_PG] on Top Layer, length 0.4157 mm
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.7414 mm, 2.1914 mm): Track [CHG_PG] on Top Layer, length 0.3247 mm
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(6.2538 mm, 3.5195 mm): Track [CHG_PG] on Top Layer, length 1.8042 mm
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.0126 mm, 3.0874 mm): Track [I2C_SDA] on Top Layer, length 0.2214 mm
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(12.3807 mm, 3.6402 mm): Via [CHG_PG] on Top Layer - Bottom Layer
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.0000 mm, 2.9000 mm): Track [I2C_SDA] on Top Layer, length 0.2000 mm
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.9642 mm, 2.1892 mm): Track [MIC_DAT] on Top Layer, length 2.7639 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.1000 mm, -12.2200 mm): Track [ADS1292_DRDY] on Bottom Layer, length 10.5847 mm
+    @(21.6800 mm, -4.6700 mm): PTH pad SH [GND] of J1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(11.4875 mm, 2.1709 mm): Via [GND] on Top Layer - Bottom Layer
+    @(10.8650 mm, 3.0000 mm): Pad 20 [SPI_SCK] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.0828 mm, 1.9078 mm): Track [MIC_DAT] on Top Layer, length 0.1678 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(11.7686 mm, 3.6839 mm): Via [GND] on Top Layer - Bottom Layer
+    @(12.1350 mm, 3.0000 mm): Pad 21 [SPI_MISO] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(1.1500 mm, -13.0800 mm): Via [GND] on Top Layer - Bottom Layer
+    @(0.6000 mm, -13.2250 mm): Pad 1 [+3V3_ESP] of C7 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.1266 mm, 1.4121 mm): Track [MIC_CLK] on Top Layer, length 0.4560 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(4.5732 mm, 3.5268 mm): Track [I2C_SDA] on Top Layer, length 0.0591 mm
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.4490 mm, 2.1346 mm): Track [MIC_CLK] on Top Layer, length 3.0112 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.1354 mm, -6.3891 mm): Via [GND] on Top Layer - Bottom Layer
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.2000 mm, 2.9000 mm): Via [I2C_SDA] on Top Layer - Bottom Layer
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.7843 mm, -7.7600 mm): Via [GND] on Top Layer - Bottom Layer
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.7843 mm, -7.7600 mm): Via [GND] on Top Layer - Bottom Layer
+    @(20.2500 mm, -8.4100 mm): Pad 35 [SPARE_IN] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.7076 mm, -4.8576 mm): Track [GND] on Top Layer, length 0.1522 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(2.7500 mm, -8.4100 mm): Pad 6 [GAUGE_ALRT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -9.6800 mm): Track [TMP117_ALERT] on Top Layer, length 10.3742 mm
+    @(2.7500 mm, -7.1400 mm): Pad 7 [CHG_PG] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(6.0070 mm, 0.7570 mm): Track [TMP117_ALERT] on Top Layer, length 2.2239 mm
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(7.8320 mm, 2.9389 mm): Track [TMP117_ALERT] on Top Layer, length 1.4759 mm
+    @(8.3250 mm, 3.0000 mm): Pad 18 [CS_ADS1292] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.3980 mm, 1.0015 mm): Track [+3V3_ESP] on Top Layer, length 0.0308 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(0.6000 mm, -12.1200 mm): Track [+3V3_ESP] on Top Layer, length 1.9588 mm
+    @(0.6000 mm, -11.7800 mm): Pad 2 [GND] of C64 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(0.6000 mm, -13.2250 mm): Track [+3V3_ESP] on Top Layer, length 1.4249 mm
+    @(0.6000 mm, -13.0800 mm): Pad 2 [GND] of C8 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.1152 mm, 0.3187 mm): Track [+3V3_ESP] on Top Layer, length 0.0764 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.1152 mm, -0.1577 mm): Track [+3V3_ESP] on Top Layer, length 0.1313 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.4198 mm, 1.3300 mm): Track [+3V3_ESP] on Top Layer, length 0.6471 mm
+    @(2.7500 mm, 1.7500 mm): Pad 14 [USB_DP_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(6.0634 mm, -6.0250 mm): Track [EXP_INT] on Top Layer, length 2.6163 mm
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+    @(2.7500 mm, -2.0600 mm): Pad 11 [CS_AFE4900] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+    @(2.7500 mm, -0.7900 mm): Pad 12 [I2C_SDA] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(3.2883 mm, -2.8383 mm): Track [+3V3_ESP] on Top Layer, length 2.0902 mm
+    @(2.7500 mm, -3.3300 mm): Pad 10 [STATUS_LED] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7643 mm, -5.7422 mm): Track [EXP_INT] on Top Layer, length 1.0073 mm
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7643 mm, -5.7422 mm): Track [EXP_INT] on Top Layer, length 1.0073 mm
+    @(2.7500 mm, -4.6000 mm): Pad 9 [CS_FLASH] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.1045 mm, 2.9955 mm): Track [CS_MAX86178] on Top Layer, length 0.3260 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.6000 mm, 2.9000 mm): Track [CS_MAX86178] on Top Layer, length 0.5500 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.5912 mm, 3.5088 mm): Track [CS_MAX86178] on Top Layer, length 0.3046 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.6000 mm, -3.3300 mm): Track [CS_MAX86178] on Top Layer, length 6.2300 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.4524 mm, 3.1976 mm): Track [MAX86178_INT] on Top Layer, length 0.2949 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.8066 mm, 3.6934 mm): Track [CS_MAX86178] on Top Layer, length 0.0307 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.1346 mm, -5.7779 mm): Via [GND] on Top Layer - Bottom Layer
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.6002 mm, 2.6498 mm): Track [MAX86178_INT] on Top Layer, length 0.2091 mm
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.4928 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.0316 mm
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.4524 mm, 3.4925 mm): Via [MAX86178_INT] on Top Layer - Bottom Layer
+    @(18.4850 mm, 3.0000 mm): Pad 26 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+    @(2.7500 mm, -7.1400 mm): Pad 7 [CHG_PG] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -8.4100 mm): Track [GAUGE_ALRT] on Top Layer, length 9.9687 mm
+    @(2.7500 mm, -5.8700 mm): Pad 8 [CS_AD5940] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(7.1130 mm, 3.1130 mm): Track [GAUGE_ALRT] on Top Layer, length 0.6285 mm
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(6.0070 mm, 1.6070 mm): Track [GAUGE_ALRT] on Top Layer, length 1.1641 mm
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(7.1130 mm, 3.7415 mm): Via [GAUGE_ALRT] on Top Layer - Bottom Layer
+    @(7.0550 mm, 3.0000 mm): Pad 17 [I2C_SCL] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(0.6000 mm, -11.7800 mm): Pad 2 [GND] of C64 on Top Layer
+    @(0.6000 mm, -12.1200 mm): Pad 1 [+3V3_ESP] of C8 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, 0.4800 mm): Track [USB_DM_S3] on Top Layer, length 2.1487 mm
+    @(2.7500 mm, 1.7500 mm): Pad 14 [USB_DP_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(0.6000 mm, -13.0800 mm): Track [GND] on Top Layer, length 0.5500 mm
+    @(0.6000 mm, -13.2250 mm): Pad 1 [+3V3_ESP] of C7 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(0.6000 mm, -11.7800 mm): Track [GND] on Top Layer, length 0.5500 mm
+    @(0.6000 mm, -12.1200 mm): Pad 1 [+3V3_ESP] of C8 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -10.9500 mm): Track [LSM6_INT1] on Top Layer, length 10.6322 mm
+    @(2.7500 mm, -9.6800 mm): Pad 5 [TMP117_ALERT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -10.9500 mm): Track [LSM6_INT1] on Top Layer, length 10.6322 mm
+    @(2.7500 mm, -8.4100 mm): Pad 6 [GAUGE_ALRT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.7500 mm, -10.9500 mm): Track [LSM6_INT1] on Top Layer, length 10.6322 mm
+    @(2.7500 mm, -7.1400 mm): Pad 7 [CHG_PG] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(0.6000 mm, -13.0800 mm): Pad 2 [GND] of C8 on Top Layer
+    @(0.6000 mm, -13.2250 mm): Pad 1 [+3V3_ESP] of C7 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(7.0550 mm, 3.0000 mm): Track [I2C_SCL] on Top Layer, length 1.2222 mm
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.9475 mm, -5.0975 mm): Track [GND] on Top Layer, length 0.0077 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.4000 mm, 3.7500 mm): Track [I2C_SCL] on Top Layer, length 1.000e-06 mm
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.1346 mm, -5.3779 mm): Track [GND] on Top Layer, length 0.0933 mm
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(15.8015 mm, 2.5398 mm): Track [ESP_EN] on Top Layer, length 2.9062 mm
+    @(14.6750 mm, 3.0000 mm): Pad 23 [AFE4900_ADC_RDY] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(15.8015 mm, 2.5398 mm): Track [ESP_EN] on Top Layer, length 2.9062 mm
+    @(15.9450 mm, 3.0000 mm): Pad 24 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(11.2990 mm, 5.8932 mm): Track [SPI_MISO] on Top Layer, length 5.9874 mm
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(11.2990 mm, 5.8932 mm): Track [SPI_MISO] on Top Layer, length 5.9874 mm
+    @(14.6750 mm, 3.0000 mm): Pad 23 [AFE4900_ADC_RDY] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.8051 mm, -1.5551 mm): Track [ESP_TX] on Top Layer, length 0.2092 mm
+    @(20.2500 mm, -2.0600 mm): Pad 30 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.8040 mm, 2.0202 mm): Track [ESP_TX] on Top Layer, length 4.2301 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.7765 mm, -6.3283 mm): Track [ESP_TX] on Top Layer, length 0.6392 mm
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.8051 mm, -1.1449 mm): Track [ESP_TX] on Top Layer, length 0.1582 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.4936 mm, -5.3868 mm): Track [ESP_TX] on Top Layer, length 0.6586 mm
+    @(20.2500 mm, -5.8700 mm): Pad 33 [MIC_CLK] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.9530 mm, -2.1030 mm): Track [ESP_TX] on Top Layer, length 2.3432 mm
+    @(20.2500 mm, -2.0600 mm): Pad 30 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.9530 mm, -2.1030 mm): Track [ESP_TX] on Top Layer, length 2.3432 mm
+    @(20.2500 mm, -3.3300 mm): Pad 31 [CS_MAX86178] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.9530 mm, -2.1030 mm): Track [ESP_TX] on Top Layer, length 2.3432 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.2358 mm, -4.7290 mm): Track [ESP_TX] on Top Layer, length 0.3646 mm
+    @(20.2500 mm, -4.6000 mm): Pad 32 [MAX86178_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.3987 mm, 1.2149 mm): Track [ESP_TX] on Top Layer, length 0.5732 mm
+    @(20.2500 mm, 1.7500 mm): Pad 27 [ESP_IO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.1208 mm, -0.4292 mm): Track [ESP_TX] on Top Layer, length 1.3661 mm
+    @(20.2500 mm, 0.4800 mm): Pad 28 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.1208 mm, -0.4292 mm): Track [ESP_TX] on Top Layer, length 1.3661 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.1998 mm, -0.7502 mm): Track [ESP_TX] on Top Layer, length 0.1117 mm
+    @(20.2500 mm, -0.7900 mm): Pad 29 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.6928 mm, 3.7500 mm): Track [I2C_SCL] on Top Layer, length 0.1072 mm
+    @(5.7850 mm, 3.0000 mm): Pad 16 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.2500 mm, -10.9500 mm): Track [ESP_TX] on Top Layer, length 4.2836 mm
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.2500 mm, -10.9500 mm): Track [ESP_TX] on Top Layer, length 4.2836 mm
+    @(20.2500 mm, -8.4100 mm): Pad 35 [SPARE_IN] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.2500 mm, -10.9500 mm): Track [ESP_TX] on Top Layer, length 4.2836 mm
+    @(20.2500 mm, -9.6800 mm): Pad 36 [ESP_RX] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(20.2000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.1072 mm
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(17.1771 mm, -0.6698 mm): Track [ESP_RX] on Top Layer, length 3.8010 mm
+    @(17.2150 mm, 3.0000 mm): Pad 25 [<no net>] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(19.7000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.1000 mm
+    @(20.2500 mm, -7.1400 mm): Pad 34 [MIC_DAT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.4376 mm, 0.0392 mm): Track [ESP_IO0] on Top Layer, length 0.1906 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.3453 mm, 0.3220 mm): Track [ESP_IO0] on Top Layer, length 0.0068 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.8475 mm, -2.6714 mm): Track [ESP_IO0] on Top Layer, length 2.7007 mm
+    @(2.7500 mm, -2.0600 mm): Pad 11 [CS_AFE4900] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.8475 mm, -2.6714 mm): Track [ESP_IO0] on Top Layer, length 2.7007 mm
+    @(2.7500 mm, -0.7900 mm): Pad 12 [I2C_SDA] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.8475 mm, -2.6714 mm): Track [ESP_IO0] on Top Layer, length 2.7007 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(4.2690 mm, 0.6322 mm): Track [ESP_IO0] on Top Layer, length 2.8307 mm
+    @(4.5150 mm, 3.0000 mm): Pad 15 [EXP_INT] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.3405 mm, 0.7269 mm): Track [ESP_IO0] on Top Layer, length 0.3983 mm
+    @(2.7500 mm, 0.4800 mm): Pad 13 [USB_DM_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(2.1813 mm, 1.2844 mm): Track [ESP_IO0] on Top Layer, length 2.5973 mm
+    @(2.7500 mm, 1.7500 mm): Pad 14 [USB_DP_S3] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(4.9511 mm, -5.1750 mm): Track [ESP_IO0] on Top Layer, length 2.5750 mm
+    @(2.7500 mm, -3.3300 mm): Pad 10 [STATUS_LED] of U1 on Top Layer
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(-0.1500 mm, -7.1844 mm): NPTH pad of H2
+    @(0.8000 mm, -8.0000 mm): Pad 1 [unconnected-(FID4-FID-Pad1)] of FID4 on Bottom Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(13.4275 mm, 3.0222 mm): Track [SPI_MOSI] on Top Layer, length 0.0470 mm
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(11.3997 mm, 5.4500 mm): Track [SPI_MOSI] on Top Layer, length 2.4677 mm
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(13.4275 mm, 3.0692 mm): Via [SPI_MOSI] on Top Layer - Bottom Layer
+    @(13.4050 mm, 3.0000 mm): Pad 22 [AD5940_GPIO0] of U1 on Top Layer
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(16.6500 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4988 mm, 1.9440 mm): Track [GND] on Top Layer, length 0.1397 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.6977 mm, 2.1709 mm): Track [GND] on Top Layer, length 0.5742 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.5500 mm, -6.4072 mm): Track [GND] on Top Layer, length 0.1788 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.8490 mm, -2.4500 mm): Track [GND] on Top Layer, length 0.3159 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(8.0204 mm, -5.7493 mm): Track [GND] on Top Layer, length 1.2657 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4000 mm, 1.8500 mm): Track [GND] on Top Layer, length 0.1000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(13.2500 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(1.5652 mm, 0.7187 mm): Track [GND] on Top Layer, length 0.4514 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4000 mm, -2.1500 mm): Track [GND] on Top Layer, length 0.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.8000 mm, -6.4500 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.4172 mm, -6.2081 mm): Track [GND] on Top Layer, length 0.3731 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(22.4256 mm, -1.5206 mm): Track [GND] on Top Layer, length 0.2809 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.7000 mm, -7.1000 mm): Track [GND] on Top Layer, length 0.0000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.4000 mm, 6.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.4000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(7.8672 mm, -6.2832 mm): Track [GND] on Top Layer, length 0.2540 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(2.4598 mm, 2.5989 mm): Track [GND] on Top Layer, length 0.0011 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.1500 mm, 1.1500 mm): Track [GND] on Top Layer, length 0.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.0500 mm, -2.1500 mm): Track [GND] on Top Layer, length 0.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.1000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.7000 mm, -6.4964 mm): Track [GND] on Top Layer, length 0.0055 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.2000 mm, -4.7500 mm): Track [GND] on Top Layer, length 0.2000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.9475 mm, -5.0975 mm): Track [GND] on Top Layer, length 0.0077 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(4.7072 mm, -7.5000 mm): Track [GND] on Top Layer, length 1.2896 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(20.1346 mm, -5.3779 mm): Track [GND] on Top Layer, length 0.0933 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4000 mm, -0.5000 mm): Track [GND] on Top Layer, length 0.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.4000 mm, 6.5000 mm): Track [GND] on Top Layer, length 0.2828 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(7.3000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(18.3500 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.4500 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4000 mm, 1.7500 mm): Track [GND] on Top Layer, length 0.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(9.8500 mm, -6.4072 mm): Track [GND] on Top Layer, length 0.0970 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.8000 mm, -5.6000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.9500 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.0500 mm, 1.1500 mm): Track [GND] on Top Layer, length 0.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.7000 mm, -6.7000 mm): Track [GND] on Top Layer, length 0.1964 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.6500 mm, -0.5000 mm): Track [GND] on Top Layer, length 0.6000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(15.8000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.1562 mm, -3.9000 mm): Track [GND] on Top Layer, length 0.1562 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(1.1500 mm, -13.0800 mm): Via [GND] on Top Layer - Bottom Layer
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(20.2500 mm, -14.7600 mm): Via [GND] on Top Layer - Bottom Layer
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(2.7500 mm, -14.7600 mm): Via [GND] on Top Layer - Bottom Layer
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(1.1500 mm, -11.7800 mm): Via [GND] on Top Layer - Bottom Layer
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4000 mm, 4.7281 mm): Track [GND] on Bottom Layer, length 0.8726 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.9622 mm, 3.4904 mm): Track [GND] on Bottom Layer, length 0.2737 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.5500 mm, 6.5000 mm): Track [CS_AFE4900] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(16.0844 mm, -3.8271 mm): Track [ESP_EN] on Top Layer, length 5.6841 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(21.4656 mm, -1.5206 mm): Track [ESP_EN] on Top Layer, length 0.3109 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.6121 mm, 45.4682 mm): Track [ESP_EN] on Top Layer, length 0.0126 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.1640 mm, -6.4500 mm): Track [ESP_EN] on Top Layer, length 0.1640 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(18.1263 mm, 40.8394 mm): Track [ESP_EN] on Bottom Layer, length 2.3091 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.6121 mm, 45.4807 mm): Track [ESP_EN] on Layer 3, length 6.1326 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.4000 mm, -3.0500 mm): Track [FSR_ADC] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(7.4301 mm, -3.2266 mm): Track [FSR_ADC] on Layer 3, length 5.1698 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.4917 mm, 1.1118 mm): Track [FSR_ADC] on Layer 3, length 3.5977 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(9.0000 mm, 6.9000 mm): Track [CS_AD5940] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(9.8530 mm, 4.1104 mm): Track [CS_AD5940] on Layer 3, length 3.6426 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(7.6519 mm, 4.0147 mm): Track [CS_AD5940] on Layer 3, length 1.9701 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(21.0222 mm, 4.2500 mm): Track [USB_DM] on Top Layer, length 2.1827 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(23.8414 mm, -6.3213 mm): Track [USB_DM] on Top Layer, length 2.3414 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.4212 mm, 13.7384 mm): Track [USB_DM] on Top Layer, length 2.4979 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(13.6060 mm, 12.9696 mm): Track [USB_DM] on Top Layer, length 0.7903 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.4000 mm, 6.5000 mm): Track [USB_DM_S3] on Top Layer, length 0.1373 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.0952 mm, 3.8236 mm): Track [LSM6_INT1] on Top Layer, length 0.9058 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.9064 mm, 2.7711 mm): Track [LSM6_INT1] on Top Layer, length 2.4702 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.0000 mm, -0.5000 mm): Track [LSM6_INT1] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.7788 mm, 4.4360 mm): Track [I2C_SCL] on Top Layer, length 0.5702 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(4.5314 mm, 3.9686 mm): Track [I2C_SDA] on Top Layer, length 0.4923 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.3980 mm, 1.0015 mm): Track [+3V3_ESP] on Top Layer, length 0.0308 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.4198 mm, 2.6000 mm): Track [+3V3_ESP] on Top Layer, length 0.0011 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.4198 mm, 2.3771 mm): Track [+3V3_ESP] on Top Layer, length 0.0891 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.1152 mm, -0.1577 mm): Track [+3V3_ESP] on Top Layer, length 0.1313 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(18.5237 mm, 4.0070 mm): Track [CS_MAX86178] on Top Layer, length 2.7408 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.4000 mm, 2.9000 mm): Track [CS_MAX86178] on Top Layer, length 0.0650 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(7.3000 mm, 6.5000 mm): Track [SPI_MISO] on Top Layer, length 0.2000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(15.5327 mm, 0.8786 mm): Track [SPI_MISO] on Layer 3, length 1.5092 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(17.1579 mm, 2.1769 mm): Track [SPI_MISO] on Layer 3, length 11.4974 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(2.7500 mm, -7.1400 mm): Track [CHG_PG] on Top Layer, length 9.5644 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.2257 mm, 4.7952 mm): Track [CHG_PG] on Top Layer, length 1.2335 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(31.9047 mm, 26.4757 mm): Track [CHG_PG] on Top Layer, length 0.7178 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.7414 mm, 2.1914 mm): Track [CHG_PG] on Top Layer, length 0.3247 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.6000 mm, 2.0500 mm): Track [CHG_PG] on Top Layer, length 1.000e-06 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(31.1716 mm, 25.7426 mm): Track [CHG_PG] on Bottom Layer, length 1.0368 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.6636 mm, 3.9230 mm): Track [CHG_PG] on Layer 3, length 0.2085 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(18.4631 mm, 4.0403 mm): Track [CHG_PG] on Layer 3, length 0.5674 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.8905 mm, 3.7756 mm): Track [CHG_PG] on Layer 3, length 5.3078 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.1000 mm, 2.0500 mm): Track [MAX86178_INT] on Top Layer, length 0.1000 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(18.4524 mm, 3.4925 mm): Via [MAX86178_INT] on Top Layer - Bottom Layer
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(18.8524 mm, 3.4925 mm): Track [MAX86178_INT] on Layer 3, length 2.4430 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(23.7925 mm, -6.0857 mm): Track [USB_DP] on Top Layer, length 2.2925 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.8051 mm, -1.5551 mm): Track [ESP_TX] on Top Layer, length 0.2092 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.6513 mm, -1.3500 mm): Track [ESP_TX] on Top Layer, length 0.0513 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(20.3987 mm, 1.2149 mm): Track [ESP_TX] on Top Layer, length 0.5732 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.6513 mm, -1.3500 mm): Track [ESP_TX] on Top Layer, length 0.0513 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(21.4000 mm, -6.7802 mm): Track [ESP_TX] on Top Layer, length 10.1160 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(16.8942 mm, 3.8140 mm): Track [ESP_RX] on Top Layer, length 1.1564 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(4.0261 mm, 4.0494 mm): Track [ESP_IO0] on Top Layer, length 0.8701 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(2.8475 mm, -2.6714 mm): Track [ESP_IO0] on Top Layer, length 2.7007 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(2.3405 mm, 0.7269 mm): Track [ESP_IO0] on Top Layer, length 0.3983 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.4000 mm, 4.6000 mm): Track [CS_ADS1292] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(11.3906 mm, 5.1573 mm): Track [CS_ADS1292] on Top Layer, length 1.7540 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.8139 mm, 3.4751 mm): Track [CS_ADS1292] on Top Layer, length 0.2789 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(12.8139 mm, 3.1963 mm): Via [CS_ADS1292] on Top Layer - Bottom Layer
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(23.1706 mm, 2.9864 mm): Track [CS_ADS1292] on Layer 3, length 8.9156 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(13.7713 mm, 3.2265 mm): Track [CS_ADS1292] on Layer 3, length 0.3214 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(8.3250 mm, 1.9500 mm): Track [CS_ADS1292] on Layer 3, length 2.6532 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.1750 mm, 2.6971 mm): Track [CS_ADS1292] on Layer 3, length 7.5635 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(3.6788 mm, 4.7933 mm): Track [CS_ADS1292] on Layer 3, length 2.5645 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(13.5270 mm, 3.5093 mm): Track [CS_ADS1292] on Layer 3, length 0.0385 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.9969 mm, 3.3793 mm): Track [CS_ADS1292] on Layer 3, length 0.1839 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.0214 mm, 2.9799 mm): Track [CS_ADS1292] on Layer 3, length 0.0322 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(32.0739 mm, 27.0346 mm): Track [SWEAT_RE] on Bottom Layer, length 1.1285 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(33.1128 mm, 25.9957 mm): Track [SWEAT_RE] on Layer 3, length 1.4692 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(34.3000 mm, 46.3296 mm): Track [SWEAT_WE] on Bottom Layer, length 0.1170 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.4000 mm, 5.4500 mm): Track [SPI_MOSI] on Top Layer, length 0.4000 mm
+[via_dangling]: Via is not connected or connected on only one layer
+    Local override; warning
+    @(13.4275 mm, 3.0692 mm): Via [SPI_MOSI] on Top Layer - Bottom Layer
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.5698 mm, 3.0692 mm): Track [SPI_MOSI] on Bottom Layer, length 5.7424 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(8.1859 mm, 7.1808 mm): Track [AD5940_GPIO0] on Top Layer, length 0.3000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.4500 mm, 6.5000 mm): Track [SPI_SCK] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.8650 mm, 1.9500 mm): Track [SPI_SCK] on Bottom Layer, length 1.9253 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(7.3804 mm, 4.3050 mm): Track [SPI_SCK] on Bottom Layer, length 2.0617 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.8941 mm, 2.4026 mm): Track [SPI_SCK] on Bottom Layer, length 0.9168 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(9.3820 mm, 2.6220 mm): Track [SPI_SCK] on Bottom Layer, length 3.2928 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(10.6382 mm, 4.1914 mm): Track [GAUGE_ALRT] on Layer 3, length 0.3795 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(9.9315 mm, 3.7415 mm): Track [GAUGE_ALRT] on Layer 3, length 2.8185 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.2819 mm, 62.1403 mm): Track [AFE4900_RESETZ] on Top Layer, length 0.0970 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.2819 mm, 62.0909 mm): Track [AFE4900_RESETZ] on Bottom Layer, length 0.0495 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(5.4000 mm, -2.2000 mm): Track [ADS1292_DRDY] on Top Layer, length 0.4000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(14.1000 mm, 6.5000 mm): Track [AFE4900_ADC_RDY] on Top Layer, length 0.2000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(13.2500 mm, 6.5000 mm): Track [USB_DP_S3] on Top Layer, length 0.1373 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.0478 mm, 41.7471 mm): Track [MX_ECG_INM] on Top Layer, length 0.1383 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.0478 mm, 41.7471 mm): Track [MX_ECG_INM] on Bottom Layer, length 0.5425 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.1000 mm, 0.3500 mm): Track [MIC_DAT] on Top Layer, length 0.1000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(18.9089 mm, 1.6250 mm): Track [MIC_DAT] on Top Layer, length 0.4911 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(20.1000 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1856 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(18.0000 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 1.1500 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.6586 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1414 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(6.0070 mm, 0.7570 mm): Track [TMP117_ALERT] on Top Layer, length 2.2239 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(1.6520 mm, -5.0299 mm): Track [EXP_INT] on Top Layer, length 2.7688 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(12.7515 mm, 36.5922 mm): Track [EXP_INT] on Top Layer, length 0.7945 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(19.1000 mm, -0.5000 mm): Track [SPARE_IN] on Top Layer, length 0.1000 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(31.2654 mm, 61.5201 mm): Track [J13_INM] on Top Layer, length 2.2253 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.6552 mm, 46.4466 mm): Track [J11_RE] on Bottom Layer, length 1.6638 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(39.6552 mm, 49.0405 mm): Track [J11_RE] on Layer 3, length 2.5939 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(46.8000 mm, 56.2885 mm): Track [J11_CE] on Bottom Layer, length 0.1700 mm
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(30.3793 mm, 57.5339 mm): Track [RLD_PAD] on Bottom Layer, length 3.6211 mm
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(22.5000 mm, -15.5500 mm): Segment on Edge.Cuts
+    @(30.7000 mm, -11.7000 mm): Segment of J1 on Top Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(22.5000 mm, -10.5000 mm): Segment on Edge.Cuts
+    @(30.7000 mm, -9.8000 mm): Segment of J1 on Top Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(-1.0500 mm, -16.5500 mm): Segment on Edge.Cuts
+    @(2.5000 mm, -22.2500 mm): Segment of U1 on Top Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(-1.0500 mm, -16.5500 mm): Segment on Edge.Cuts
+    @(20.5000 mm, -22.2500 mm): Segment of U1 on Top Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(53.6000 mm, 20.0000 mm): Segment on Edge.Cuts
+    @(52.9000 mm, 22.9000 mm): Reference field of Q6
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, 29.9000 mm): Segment on Edge.Cuts
+    @(45.1000 mm, 60.4750 mm): Segment of J11 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, 29.9000 mm): Segment on Edge.Cuts
+    @(48.5000 mm, 54.5250 mm): Segment of J11 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, 64.5000 mm): Segment on Edge.Cuts
+    @(27.8000 mm, 61.2000 mm): Segment of J13 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, 64.5000 mm): Segment on Edge.Cuts
+    @(31.4000 mm, 64.6000 mm): Segment of J13 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, 29.9000 mm): Segment on Edge.Cuts
+    @(45.1000 mm, 52.1750 mm): Segment of J10 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, 29.9000 mm): Segment on Edge.Cuts
+    @(48.5000 mm, 39.6250 mm): Segment of J10 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, -10.5000 mm): Segment on Edge.Cuts
+    @(48.5000 mm, 13.4250 mm): Segment of J9 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(48.0000 mm, 20.0000 mm): Segment on Edge.Cuts
+    @(48.5000 mm, 21.5750 mm): Segment of J9 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(-2.0000 mm, -10.5000 mm): Segment on Edge.Cuts
+    @(-3.2000 mm, 47.3500 mm): Segment of J12 on Board Layer Stack Bottom Overlay
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(-2.0000 mm, -10.5000 mm): Segment on Edge.Cuts
+    @(-1.4600 mm, 57.6500 mm): Segment of J12 on Board Layer Stack Bottom Overlay
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.1995 mm; actual 0.1406 mm)
+    Rule: board setup constraints; warning
+    @(10.0000 mm, -5.6400 mm): Via [GND] on Top Layer - Bottom Layer
+    @(10.1533 mm, -5.9442 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.1995 mm; actual 0.0101 mm)
+    Rule: board setup constraints; warning
+    @(8.6000 mm, -5.6400 mm): Via [GND] on Top Layer - Bottom Layer
+    @(8.4204 mm, -5.7493 mm): Via [GND] on Top Layer - Bottom Layer
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.1995 mm; actual 0.0000 mm)
+    Rule: board setup constraints; warning
+    @(7.4300 mm, -3.2300 mm): Via [FSR_ADC] on Top Layer - Bottom Layer
+    @(7.4301 mm, -3.2266 mm): Via [FSR_ADC] on Top Layer - Bottom Layer
+[lib_footprint_mismatch]: Footprint 'Texas_RSW0010A_UQFN-10_1.4x1.8mm_P0.4mm' does not match copy in library 'Package_DFN_QFN'
+    Local override; warning
+    @(37.5403 mm, 40.7987 mm): Footprint U26
+[lib_footprint_mismatch]: Footprint 'Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical' does not match copy in library 'Connector'
+    Local override; warning
+    @(26.4500 mm, 53.2000 mm): Footprint J8
+[lib_footprint_mismatch]: Footprint 'C_0603_1608Metric' does not match copy in library 'Capacitor_SMD'
+    Local override; warning
+    @(31.4147 mm, 53.4164 mm): Footprint C89
+[lib_footprint_mismatch]: Footprint 'SOT-23' does not match copy in library 'Package_TO_SOT_SMD'
+    Local override; warning
+    @(50.5000 mm, 22.9000 mm): Footprint Q6
+[lib_footprint_mismatch]: Footprint 'LED_0603_1608Metric' does not match copy in library 'LED_SMD'
+    Local override; warning
+    @(15.9400 mm, 50.6000 mm): Footprint D12
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(21.9574 mm, 35.0147 mm): Footprint text of U14 (*)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(10.2000 mm, 3.3531 mm): Footprint text of J2 (NTC)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(12.4000 mm, 3.3531 mm): Footprint text of J2 (BAT-)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(14.6000 mm, 3.3531 mm): Footprint text of J2 (+)
+[text_thickness]: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0700 mm)
+    Rule: board setup constraints silk text thickness; warning
+    @(23.2000 mm, 55.9500 mm): Footprint text of D10 (K)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.3500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(23.2000 mm, 55.9500 mm): Footprint text of D10 (K)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(5.7000 mm, 61.2500 mm): Footprint text of J6 (DE)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(7.9000 mm, 61.2500 mm): Footprint text of J6 (SE)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(10.1000 mm, 61.2500 mm): Footprint text of J6 (RE)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.4500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(12.3000 mm, 61.2500 mm): Footprint text of J6 (CE)
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(48.9400 mm, 22.1400 mm): Segment of Q6 on Top Overlay
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(48.9400 mm, 23.6600 mm): Segment of Q6 on Top Overlay
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(49.9400 mm, 23.6600 mm): Segment of Q6 on Top Overlay
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(50.1100 mm, 22.1400 mm): Segment of Q6 on Top Overlay
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(52.0100 mm, 22.1400 mm): Segment of Q6 on Top Overlay
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(52.0600 mm, 22.1400 mm): Segment of Q6 on Top Overlay
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(52.0600 mm, 23.6600 mm): Segment of Q6 on Top Overlay
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(50.8800 mm, 21.6000 mm): Polygon of Q6 on Top Overlay
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(50.5000 mm, 27.7300 mm): Reference field of R123
+    @(48.6900 mm, 25.8500 mm): Segment of D33 on Top Overlay
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(50.5000 mm, 27.7300 mm): Reference field of R123
+    @(48.6900 mm, 27.5500 mm): Segment of D33 on Top Overlay
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(52.9000 mm, 22.9000 mm): Reference field of Q6
+    @(52.0600 mm, 22.1400 mm): Segment of Q6 on Top Overlay
+
+** Found 92 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(0.6000 mm, -14.7750 mm): Track [GND] on Top Layer, length 1.4001 mm
+    @(0.6000 mm, -13.0800 mm): Track [GND] on Top Layer, length 0.5500 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(0.6000 mm, -11.7800 mm): Track [GND] on Top Layer, length 0.5500 mm
+    @(0.6000 mm, -13.0800 mm): Track [GND] on Top Layer, length 0.5500 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(1.1500 mm, -11.7800 mm): Via [GND] on Top Layer - Bottom Layer
+    @(4.7072 mm, -7.5000 mm): Track [GND] on Top Layer, length 1.2896 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.3148 mm, -6.3891 mm): Track [GND] on Top Layer, length 0.1794 mm
+    @(4.7072 mm, -7.5000 mm): Track [GND] on Top Layer, length 1.2896 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(6.1684 mm, -6.3356 mm): Track [GND] on Top Layer, length 0.1141 mm
+    @(6.3146 mm, -6.5691 mm): Via [GND] on Top Layer - Bottom Layer
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(9.8500 mm, -6.7000 mm): Track [GND] on Top Layer, length 0.1072 mm
+    @(9.8500 mm, -6.4072 mm): Track [GND] on Top Layer, length 0.0970 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(10.4172 mm, -6.2081 mm): Track [GND] on Top Layer, length 0.3731 mm
+    @(10.7000 mm, -6.4964 mm): Track [GND] on Top Layer, length 0.0055 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(10.7000 mm, -6.7000 mm): Track [GND] on Top Layer, length 0.1964 mm
+    @(10.7000 mm, -7.1000 mm): Track [GND] on Top Layer, length 0.0000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(10.7000 mm, -6.4964 mm): Track [GND] on Top Layer, length 0.0055 mm
+    @(10.7000 mm, -6.7000 mm): Track [GND] on Top Layer, length 0.1964 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.7484 mm, -6.0300 mm): Via [GND] on Top Layer - Bottom Layer
+    @(11.5500 mm, -6.4072 mm): Track [GND] on Top Layer, length 0.1788 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.4000 mm, 4.7281 mm): Track [GND] on Bottom Layer, length 0.8726 mm
+    @(11.6889 mm, 3.8841 mm): Track [GND] on Bottom Layer, length 0.1205 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.6977 mm, 2.1709 mm): Track [GND] on Top Layer, length 0.5742 mm
+    @(12.4988 mm, 1.9440 mm): Track [GND] on Top Layer, length 0.1397 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.4000 mm, 1.8500 mm): Track [GND] on Top Layer, length 0.1000 mm
+    @(12.4988 mm, 1.9440 mm): Track [GND] on Top Layer, length 0.1397 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.7076 mm, -4.8576 mm): Track [GND] on Top Layer, length 0.1522 mm
+    @(19.2000 mm, -4.7500 mm): Track [GND] on Top Layer, length 0.2000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.7076 mm, -4.8576 mm): Track [GND] on Top Layer, length 0.1522 mm
+    @(19.9475 mm, -5.0975 mm): Track [GND] on Top Layer, length 0.0077 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.2000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.1072 mm
+    @(19.7000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.1000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.1346 mm, -5.3779 mm): Track [GND] on Top Layer, length 0.0933 mm
+    @(20.1346 mm, -5.7779 mm): Via [GND] on Top Layer - Bottom Layer
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.1346 mm, -5.3779 mm): Track [GND] on Top Layer, length 0.0933 mm
+    @(19.9475 mm, -5.0975 mm): Track [GND] on Top Layer, length 0.0077 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.4928 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.0316 mm
+    @(20.2000 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.1072 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.7843 mm, -7.7600 mm): Via [GND] on Top Layer - Bottom Layer
+    @(20.4928 mm, -7.5000 mm): Track [GND] on Top Layer, length 0.0316 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(21.6800 mm, -8.8500 mm): PTH pad SH [GND] of J1
+    @(20.2500 mm, -14.7600 mm): Via [GND] on Top Layer - Bottom Layer
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(15.8015 mm, 2.5398 mm): Track [ESP_EN] on Top Layer, length 2.9062 mm
+    @(16.0844 mm, -3.8271 mm): Track [ESP_EN] on Top Layer, length 5.6841 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(7.4301 mm, -3.2266 mm): Track [FSR_ADC] on Layer 3, length 5.1698 mm
+    @(3.4917 mm, 1.1118 mm): Track [FSR_ADC] on Layer 3, length 3.5977 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(9.8530 mm, 4.1104 mm): Track [CS_AD5940] on Layer 3, length 3.6426 mm
+    @(7.6519 mm, 4.0147 mm): Track [CS_AD5940] on Layer 3, length 1.9701 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.0952 mm, 3.8236 mm): Track [LSM6_INT1] on Top Layer, length 0.9058 mm
+    @(3.9064 mm, 2.7711 mm): Track [LSM6_INT1] on Top Layer, length 2.4702 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(5.4000 mm, 3.7500 mm): Track [I2C_SCL] on Top Layer, length 1.000e-06 mm
+    @(5.6928 mm, 3.7500 mm): Track [I2C_SCL] on Top Layer, length 0.1072 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(7.0550 mm, 3.0000 mm): Track [I2C_SCL] on Top Layer, length 1.2222 mm
+    @(5.6928 mm, 3.7500 mm): Track [I2C_SCL] on Top Layer, length 0.1072 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(6.7788 mm, 4.4360 mm): Track [I2C_SCL] on Top Layer, length 0.5702 mm
+    @(7.0550 mm, 3.0000 mm): Track [I2C_SCL] on Top Layer, length 1.2222 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(4.5314 mm, 3.9686 mm): Track [I2C_SDA] on Top Layer, length 0.4923 mm
+    @(4.5732 mm, 3.5268 mm): Track [I2C_SDA] on Top Layer, length 0.0591 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(4.5732 mm, 3.5268 mm): Track [I2C_SDA] on Top Layer, length 0.0591 mm
+    @(5.0126 mm, 3.0874 mm): Track [I2C_SDA] on Top Layer, length 0.2214 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(5.0126 mm, 3.0874 mm): Track [I2C_SDA] on Top Layer, length 0.2214 mm
+    @(5.0000 mm, 2.9000 mm): Track [I2C_SDA] on Top Layer, length 0.2000 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+    @(3.2883 mm, -2.8383 mm): Track [+3V3_ESP] on Top Layer, length 2.0902 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.1152 mm, -0.3700 mm): Track [+3V3_ESP] on Top Layer, length 2.2952 mm
+    @(3.1152 mm, -0.1577 mm): Track [+3V3_ESP] on Top Layer, length 0.1313 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.1152 mm, -0.1577 mm): Track [+3V3_ESP] on Top Layer, length 0.1313 mm
+    @(3.1152 mm, 0.3187 mm): Track [+3V3_ESP] on Top Layer, length 0.0764 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.1152 mm, 0.3187 mm): Track [+3V3_ESP] on Top Layer, length 0.0764 mm
+    @(3.3980 mm, 1.0015 mm): Track [+3V3_ESP] on Top Layer, length 0.0308 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.4198 mm, 1.3300 mm): Track [+3V3_ESP] on Top Layer, length 0.6471 mm
+    @(3.3980 mm, 1.0015 mm): Track [+3V3_ESP] on Top Layer, length 0.0308 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.4198 mm, 1.3300 mm): Track [+3V3_ESP] on Top Layer, length 0.6471 mm
+    @(3.4198 mm, 2.3771 mm): Track [+3V3_ESP] on Top Layer, length 0.0891 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(3.4198 mm, 2.5989 mm): Track [+3V3_ESP] on Top Layer, length 0.3769 mm
+    @(3.4198 mm, 2.3771 mm): Track [+3V3_ESP] on Top Layer, length 0.0891 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.5912 mm, 3.5088 mm): Track [CS_MAX86178] on Top Layer, length 0.3046 mm
+    @(18.8066 mm, 3.6934 mm): Track [CS_MAX86178] on Top Layer, length 0.0307 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.8066 mm, 3.6934 mm): Track [CS_MAX86178] on Top Layer, length 0.0307 mm
+    @(18.5237 mm, 4.0070 mm): Track [CS_MAX86178] on Top Layer, length 2.7408 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.4000 mm, 2.9000 mm): Track [CS_MAX86178] on Top Layer, length 0.0650 mm
+    @(18.6000 mm, 2.9000 mm): Track [CS_MAX86178] on Top Layer, length 0.5500 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(15.5327 mm, 0.8786 mm): Track [SPI_MISO] on Layer 3, length 1.5092 mm
+    @(17.1579 mm, 2.1769 mm): Track [SPI_MISO] on Layer 3, length 11.4974 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(5.6000 mm, 2.0500 mm): Track [CHG_PG] on Top Layer, length 1.000e-06 mm
+    @(5.7414 mm, 2.1914 mm): Track [CHG_PG] on Top Layer, length 0.3247 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(5.6000 mm, 2.0500 mm): Track [CHG_PG] on Top Layer, length 1.000e-06 mm
+    @(2.7500 mm, -7.1400 mm): Track [CHG_PG] on Top Layer, length 9.5644 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(5.7414 mm, 2.1914 mm): Track [CHG_PG] on Top Layer, length 0.3247 mm
+    @(5.9710 mm, 2.8210 mm): Track [CHG_PG] on Top Layer, length 0.4157 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(5.9710 mm, 2.8210 mm): Track [CHG_PG] on Top Layer, length 0.4157 mm
+    @(6.2538 mm, 3.5195 mm): Track [CHG_PG] on Top Layer, length 1.8042 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.2257 mm, 4.7952 mm): Track [CHG_PG] on Top Layer, length 1.2335 mm
+    @(12.3807 mm, 3.6402 mm): Via [CHG_PG] on Top Layer - Bottom Layer
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.8905 mm, 3.7756 mm): Track [CHG_PG] on Layer 3, length 5.3078 mm
+    @(12.6636 mm, 3.9230 mm): Track [CHG_PG] on Layer 3, length 0.2085 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.8905 mm, 3.7756 mm): Track [CHG_PG] on Layer 3, length 5.3078 mm
+    @(18.4631 mm, 4.0403 mm): Track [CHG_PG] on Layer 3, length 0.5674 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.3000 mm, -4.6000 mm): Track [MAX86178_INT] on Top Layer, length 6.6500 mm
+    @(18.6002 mm, 2.6498 mm): Track [MAX86178_INT] on Top Layer, length 0.2091 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.4524 mm, 3.1976 mm): Track [MAX86178_INT] on Top Layer, length 0.2949 mm
+    @(18.6002 mm, 2.6498 mm): Track [MAX86178_INT] on Top Layer, length 0.2091 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(18.4524 mm, 3.1976 mm): Track [MAX86178_INT] on Top Layer, length 0.2949 mm
+    @(18.8524 mm, 3.4925 mm): Track [MAX86178_INT] on Layer 3, length 2.4430 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.6513 mm, -1.3500 mm): Track [ESP_TX] on Top Layer, length 0.0513 mm
+    @(19.8051 mm, -1.1449 mm): Track [ESP_TX] on Top Layer, length 0.1582 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.8051 mm, -1.5551 mm): Track [ESP_TX] on Top Layer, length 0.2092 mm
+    @(19.6513 mm, -1.3500 mm): Track [ESP_TX] on Top Layer, length 0.0513 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.9530 mm, -2.1030 mm): Track [ESP_TX] on Top Layer, length 2.3432 mm
+    @(20.2358 mm, -4.7290 mm): Track [ESP_TX] on Top Layer, length 0.3646 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.8051 mm, -1.5551 mm): Track [ESP_TX] on Top Layer, length 0.2092 mm
+    @(19.9530 mm, -2.1030 mm): Track [ESP_TX] on Top Layer, length 2.3432 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.1998 mm, -0.7502 mm): Track [ESP_TX] on Top Layer, length 0.1117 mm
+    @(19.8051 mm, -1.1449 mm): Track [ESP_TX] on Top Layer, length 0.1582 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.1208 mm, -0.4292 mm): Track [ESP_TX] on Top Layer, length 1.3661 mm
+    @(20.3987 mm, 1.2149 mm): Track [ESP_TX] on Top Layer, length 0.5732 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.1998 mm, -0.7502 mm): Track [ESP_TX] on Top Layer, length 0.1117 mm
+    @(20.1208 mm, -0.4292 mm): Track [ESP_TX] on Top Layer, length 1.3661 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.4936 mm, -5.3868 mm): Track [ESP_TX] on Top Layer, length 0.6586 mm
+    @(20.7765 mm, -6.3283 mm): Track [ESP_TX] on Top Layer, length 0.6392 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.4936 mm, -5.3868 mm): Track [ESP_TX] on Top Layer, length 0.6586 mm
+    @(20.2358 mm, -4.7290 mm): Track [ESP_TX] on Top Layer, length 0.3646 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.3987 mm, 1.2149 mm): Track [ESP_TX] on Top Layer, length 0.5732 mm
+    @(20.8040 mm, 2.0202 mm): Track [ESP_TX] on Top Layer, length 4.2301 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.2500 mm, -10.9500 mm): Track [ESP_TX] on Top Layer, length 4.2836 mm
+    @(21.4000 mm, -6.7802 mm): Track [ESP_TX] on Top Layer, length 10.1160 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(16.8942 mm, 3.8140 mm): Track [ESP_RX] on Top Layer, length 1.1564 mm
+    @(17.1771 mm, -0.6698 mm): Track [ESP_RX] on Top Layer, length 3.8010 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(2.1813 mm, 1.2844 mm): Track [ESP_IO0] on Top Layer, length 2.5973 mm
+    @(2.3405 mm, 0.7269 mm): Track [ESP_IO0] on Top Layer, length 0.3983 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(2.3405 mm, 0.7269 mm): Track [ESP_IO0] on Top Layer, length 0.3983 mm
+    @(2.3453 mm, 0.3220 mm): Track [ESP_IO0] on Top Layer, length 0.0068 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(2.3453 mm, 0.3220 mm): Track [ESP_IO0] on Top Layer, length 0.0068 mm
+    @(2.4376 mm, 0.0392 mm): Track [ESP_IO0] on Top Layer, length 0.1906 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(2.4376 mm, 0.0392 mm): Track [ESP_IO0] on Top Layer, length 0.1906 mm
+    @(2.8475 mm, -2.6714 mm): Track [ESP_IO0] on Top Layer, length 2.7007 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(4.9511 mm, -5.1750 mm): Track [ESP_IO0] on Top Layer, length 2.5750 mm
+    @(2.8475 mm, -2.6714 mm): Track [ESP_IO0] on Top Layer, length 2.7007 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(4.2690 mm, 0.6322 mm): Track [ESP_IO0] on Top Layer, length 2.8307 mm
+    @(4.0261 mm, 4.0494 mm): Track [ESP_IO0] on Top Layer, length 0.8701 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(8.3250 mm, 1.9500 mm): Track [CS_ADS1292] on Layer 3, length 2.6532 mm
+    @(3.6788 mm, 4.7933 mm): Track [CS_ADS1292] on Layer 3, length 2.5645 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.8139 mm, 3.4751 mm): Track [CS_ADS1292] on Top Layer, length 0.2789 mm
+    @(12.9969 mm, 3.3793 mm): Track [CS_ADS1292] on Layer 3, length 0.1839 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.8139 mm, 3.4751 mm): Track [CS_ADS1292] on Top Layer, length 0.2789 mm
+    @(11.3906 mm, 5.1573 mm): Track [CS_ADS1292] on Top Layer, length 1.7540 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(13.5270 mm, 3.5093 mm): Track [CS_ADS1292] on Layer 3, length 0.0385 mm
+    @(12.9969 mm, 3.3793 mm): Track [CS_ADS1292] on Layer 3, length 0.1839 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(6.1750 mm, 2.6971 mm): Track [CS_ADS1292] on Layer 3, length 7.5635 mm
+    @(14.0214 mm, 2.9799 mm): Track [CS_ADS1292] on Layer 3, length 0.0322 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(13.7713 mm, 3.2265 mm): Track [CS_ADS1292] on Layer 3, length 0.3214 mm
+    @(13.5270 mm, 3.5093 mm): Track [CS_ADS1292] on Layer 3, length 0.0385 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(14.0214 mm, 2.9799 mm): Track [CS_ADS1292] on Layer 3, length 0.0322 mm
+    @(23.1706 mm, 2.9864 mm): Track [CS_ADS1292] on Layer 3, length 8.9156 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(11.3997 mm, 5.4500 mm): Track [SPI_MOSI] on Top Layer, length 2.4677 mm
+    @(13.4275 mm, 3.0222 mm): Track [SPI_MOSI] on Top Layer, length 0.0470 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.5698 mm, 3.0692 mm): Track [SPI_MOSI] on Bottom Layer, length 5.7424 mm
+    @(13.4275 mm, 3.0222 mm): Track [SPI_MOSI] on Top Layer, length 0.0470 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(7.3804 mm, 4.3050 mm): Track [SPI_SCK] on Bottom Layer, length 2.0617 mm
+    @(10.8650 mm, 1.9500 mm): Track [SPI_SCK] on Bottom Layer, length 1.9253 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(12.8941 mm, 2.4026 mm): Track [SPI_SCK] on Bottom Layer, length 0.9168 mm
+    @(9.3820 mm, 2.6220 mm): Track [SPI_SCK] on Bottom Layer, length 3.2928 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(6.0070 mm, 1.6070 mm): Track [GAUGE_ALRT] on Top Layer, length 1.1641 mm
+    @(7.1130 mm, 3.1130 mm): Track [GAUGE_ALRT] on Top Layer, length 0.6285 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(10.6382 mm, 4.1914 mm): Track [GAUGE_ALRT] on Layer 3, length 0.3795 mm
+    @(9.9315 mm, 3.7415 mm): Track [GAUGE_ALRT] on Layer 3, length 2.8185 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.0828 mm, 1.9078 mm): Track [MIC_DAT] on Top Layer, length 0.1678 mm
+    @(18.9089 mm, 1.6250 mm): Track [MIC_DAT] on Top Layer, length 0.4911 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.0828 mm, 1.9078 mm): Track [MIC_DAT] on Top Layer, length 0.1678 mm
+    @(19.9642 mm, 2.1892 mm): Track [MIC_DAT] on Top Layer, length 2.7639 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(19.6586 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1414 mm
+    @(18.0000 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 1.1500 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.1000 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1856 mm
+    @(19.6586 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1414 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.1000 mm, 1.2000 mm): Track [MIC_CLK] on Top Layer, length 0.1856 mm
+    @(20.1266 mm, 1.4121 mm): Track [MIC_CLK] on Top Layer, length 0.4560 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(20.4490 mm, 2.1346 mm): Track [MIC_CLK] on Top Layer, length 3.0112 mm
+    @(20.1266 mm, 1.4121 mm): Track [MIC_CLK] on Top Layer, length 0.4560 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(7.8320 mm, 2.9389 mm): Track [TMP117_ALERT] on Top Layer, length 1.4759 mm
+    @(6.0070 mm, 0.7570 mm): Track [TMP117_ALERT] on Top Layer, length 2.2239 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(2.7643 mm, -5.7422 mm): Track [EXP_INT] on Top Layer, length 1.0073 mm
+    @(1.6520 mm, -5.0299 mm): Track [EXP_INT] on Top Layer, length 2.7688 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(2.7643 mm, -5.7422 mm): Track [EXP_INT] on Top Layer, length 1.0073 mm
+    @(6.0634 mm, -6.0250 mm): Track [EXP_INT] on Top Layer, length 2.6163 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

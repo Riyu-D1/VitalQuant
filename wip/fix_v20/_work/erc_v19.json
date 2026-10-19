@@ -1,0 +1,273 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-10-19T13:09:51",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.4",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/cbbdfd44-951c-4f0b-9fac-a13ab1eca057",
+            "violations": [
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U5 Pin 2 [~{RI}/CLK, Bidirectional, Line]",
+                            "pos": {
+                                "x": 6.8707,
+                                "y": 1.0287
+                            },
+                            "uuid": "5da01ca9-5120-424b-98bf-7342a71f14cf"
+                        },
+                        {
+                            "description": "Symbol #FLG052 Pin 1 [Power output, Line]",
+                            "pos": {
+                                "x": 6.1722,
+                                "y": 0.4572
+                            },
+                            "uuid": "5e28ffb7-bddf-4f20-a44b-f43f8878e554"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Symbol 'AD5940BCBZ-RL7' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U7 [AD5940BCBZ-RL7]",
+                            "pos": {
+                                "x": 7.2517,
+                                "y": 4.5593
+                            },
+                            "uuid": "12bc6928-02a8-4d24-854d-1b410a8d3cc7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U18 Pin 3 [~{WP}/IO_{2}, Bidirectional, Line]",
+                            "pos": {
+                                "x": 10.9474,
+                                "y": 2.3622
+                            },
+                            "uuid": "a4a85c90-221a-488a-b5a7-cb1ce6f3b461"
+                        },
+                        {
+                            "description": "Symbol U3 Pin 6 [VOUT, Power output, Line]",
+                            "pos": {
+                                "x": 2.6289,
+                                "y": 0.7239
+                            },
+                            "uuid": "112f2010-65bb-4ce0-94db-75dce01d4cd0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U18 Pin 7 [~{HOLD}/~{RESET}/IO_{3}, Bidirectional, Line]",
+                            "pos": {
+                                "x": 10.9474,
+                                "y": 2.3876
+                            },
+                            "uuid": "91d7cee8-27dd-402b-8930-44f60ce25226"
+                        },
+                        {
+                            "description": "Symbol U3 Pin 6 [VOUT, Power output, Line]",
+                            "pos": {
+                                "x": 2.6289,
+                                "y": 0.7239
+                            },
+                            "uuid": "112f2010-65bb-4ce0-94db-75dce01d4cd0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Symbol 'ADS1292RIRSMT' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U8 [ADS1292RIRSMT]",
+                            "pos": {
+                                "x": 12.3444,
+                                "y": 5.2705
+                            },
+                            "uuid": "9179ee74-5d09-4623-8e92-e250ed8ebe2b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'AS7341-DLGM' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U10 [AS7341-DLGM]",
+                            "pos": {
+                                "x": 16.4973,
+                                "y": 6.1595
+                            },
+                            "uuid": "d18adcbc-faf9-4603-a598-56b9cf17da77"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U6 Pin B4 [CONTROL1, Bidirectional, Line]",
+                            "pos": {
+                                "x": 18.2245,
+                                "y": 1.2319
+                            },
+                            "uuid": "1b52f3ea-b7b9-4021-915f-a4859ccd9f7e"
+                        },
+                        {
+                            "description": "Symbol #FLG039 Pin 1 [Power output, Line]",
+                            "pos": {
+                                "x": 3.9243,
+                                "y": 1.4224
+                            },
+                            "uuid": "432682f5-2935-448b-9f96-f940a06d3e79"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Symbol 'AFE4900YZR' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U6 [AFE4900YZR]",
+                            "pos": {
+                                "x": 18.4531,
+                                "y": 1.1303
+                            },
+                            "uuid": "6f83c736-1a0d-40b7-bf23-df58f9544ddb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'TMP117AIDRVR' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U11 [TMP117AIDRVR]",
+                            "pos": {
+                                "x": 18.4531,
+                                "y": 4.8641
+                            },
+                            "uuid": "38943f0f-a545-4925-87a3-dd47aa51b1b9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U13 Pin 5 [SDO, Bidirectional, Line]",
+                            "pos": {
+                                "x": 18.4531,
+                                "y": 5.842
+                            },
+                            "uuid": "9c9c98f1-89b4-4fcb-a40b-f4b76e390a78"
+                        },
+                        {
+                            "description": "Symbol #FLG039 Pin 1 [Power output, Line]",
+                            "pos": {
+                                "x": 3.9243,
+                                "y": 1.4224
+                            },
+                            "uuid": "432682f5-2935-448b-9f96-f940a06d3e79"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Symbol 'LSM6DSV80XTR' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U14 [LSM6DSV80XTR]",
+                            "pos": {
+                                "x": 18.7452,
+                                "y": 6.1595
+                            },
+                            "uuid": "1e9e974a-5643-4f77-ba43-1f114c7db2da"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'MLX90632SLD-DCB-100-SP' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U12 [MLX90632SLD-DCB-100-SP]",
+                            "pos": {
+                                "x": 18.9484,
+                                "y": 5.461
+                            },
+                            "uuid": "f7e2139f-a243-4d22-9e3c-6b78ee246d6c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'TMP117AIDRVR' doesn't match copy in library 'vitalq'",
+                    "items": [
+                        {
+                            "description": "Symbol U20 [TMP117AIDRVR]",
+                            "pos": {
+                                "x": 19.6469,
+                                "y": 4.9657
+                            },
+                            "uuid": "e62ccffd-0429-4def-b4ad-38206a32b8c7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "vitalq_v2.kicad_sch"
+}

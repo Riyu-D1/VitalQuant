@@ -1,0 +1,54 @@
+{
+ "zip": "fab/VitalQ_v2_fixv18_fabrication.zip",
+ "pth_holes": 875,
+ "npth_holes": 8,
+ "board_vias": 871,
+ "th_pads": 4,
+ "note_counts": "PTH hits=871 (863 vias + 8 new power-path vias); TH pads counted in drl hits. v16 had 863.",
+ "outline_mm": [
+  55.6,
+  75.0
+ ],
+ "outline_change": "east edge extended +5.6 mm tab, x 48->53.6, y 20->29.9 only; all other edge geometry identical",
+ "bom_rows": 266,
+ "cpl_rows": 270,
+ "board_footprints": 302,
+ "new_parts": {
+  "Q6": "AO3401A SOT-23 LCSC C15127 @50.5,22.9 rot270",
+  "D33": "1N5819WS D_SOD-323 LCSC C191023 @50.3,26.7 rot0",
+  "R123": "100k R_0402 LCSC C25741 @50.5,28.9 rot0"
+ },
+ "dnp": "R93 now DNP (removed from CPL; flagged DNP in BOM.csv; absent from BOM_JLC/CPL_JLC)",
+ "reconcile": "BOM+CPL identical refs except 6 fiducials (place-only); J8/TP1-28/H1/H2 excluded intentionally; R93 excluded (DNP)",
+ "gerber_checks": {
+  "edge_cuts_size_mm": [
+   55.6,
+   75.0
+  ],
+  "in3_vbus_route_draws_in_tab": true,
+  "in3_via_flashes": [
+   [
+    53.0,
+    -26.8
+   ],
+   [
+    27.93,
+    2.23
+   ]
+  ],
+  "top_layer_new_pads_verified": 7
+ },
+ "drc": {
+  "errors": 0,
+  "unconnected": 0,
+  "violations": 61,
+  "parity": 4,
+  "violations_note": "61 warnings vs v16 baseline 48: +1 lib_footprint_mismatch (Q6), +8 silk_over_copper, +1 silk_edge_clearance, +3 silk_overlap \u2014 all cosmetic on added footprints; parity issues are the 4 pre-existing LCSC/description field diffs (C9,C63,C79,U12)"
+ },
+ "erc": {
+  "violations": 13,
+  "note": "identical to v16 baseline; no new ERC findings"
+ },
+ "freeze": "object diff vs fix_v16: only R93 footprint (dnp attr) and east-edge gr_line changed; +26 segments +8 vias +4 edge lines +3 footprints purely additive",
+ "zone_fill_note": "zones refilled and board SAVED (kicad-cli pcb drc --refill-zones --save-board); DRC without --refill-zones on saved file: 0 errors / 0 unconnected (was 18 stale-fill errors before refill). Gerber-level pour check: no foreign-net pour touches the 26 new segments / 8 new vias on any layer; GND tap via correctly lands in In1/In6 GND pour, VBAT_SYS tap in In4 VBAT_SYS pour, +3V3 pour clears all new copper."
+}
