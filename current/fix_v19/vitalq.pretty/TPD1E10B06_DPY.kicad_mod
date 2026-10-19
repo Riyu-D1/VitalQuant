@@ -1,0 +1,183 @@
+	(footprint "vitalq:TPD1E10B06_DPY"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "10.0")
+		(locked yes)
+		(layer "F.Cu")
+		(uuid "ee9c0e67-b5e0-401e-9b79-3a5db9ab14d7")
+		(at 13.6 22.5)
+		(descr "X1SON 2 pin 0.6x1mm 0.375mm height package, https://www.ti.com/lit/ml/mpss034c/mpss034c.pdf, https://www.ti.com/lit/ds/symlink/tpd6e05u06.pdf")
+		(tags "X1SON")
+		(property "Reference" "D7"
+			(at 0 -1.25 0)
+			(unlocked yes)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "b6dac99f-1dd9-4e90-9c06-e9a53419bd8a")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "TPD1E10B06"
+			(at 0 1.25 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f20759f0-d924-4c92-b980-d716b8451a0e")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "1e56889e-ff23-4982-94ec-d1e39c8619d0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c5082b4a-e492-4bee-84b6-7435c9a7b0db")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC" "C48260"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "15274564-de3d-4d89-8802-4cfeadbfab8f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/be9eb1ba-d2be-414e-bfa8-339b4d5d95ae")
+		(sheetname "/")
+		(sheetfile "vitalq_v2.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center -0.72 0)
+			(end -0.61 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill yes)
+			(layer "F.SilkS")
+			(uuid "5b7a0ef0-d026-4c19-9188-2d613d5e7cdd")
+		)
+		(fp_rect
+			(start -0.65 -0.45)
+			(end 0.65 0.45)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "58aa6c47-750c-488f-8a7c-2329f2442dba")
+		)
+		(fp_line
+			(start -0.4 0.3)
+			(end -0.4 -0.3)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "fc8223cb-0574-40dc-b41e-4ae4695fbd72")
+		)
+		(fp_line
+			(start -0.3 0.3)
+			(end -0.3 -0.3)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "c32157fe-444a-4fcc-9c4b-e1c7abc3c34f")
+		)
+		(fp_line
+			(start -0.2 0.3)
+			(end -0.2 -0.3)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "ff0acd30-fcaa-4a7c-b108-f7847a798e87")
+		)
+		(fp_rect
+			(start -0.5 -0.3)
+			(end 0.5 0.3)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "44cb62eb-6048-4e22-8ab2-a87fa080b1f3")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "3866eaf2-0bdb-47bd-bf17-c4c1114fc3ed")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -0.35 0)
+			(size 0.3 0.5)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.25)
+			(net "SE_ISO")
+			(uuid "bf5c88c2-4128-4b1a-a6a6-e5e19b475eb5")
+		)
+		(pad "2" smd roundrect
+			(at 0.35 0)
+			(size 0.3 0.5)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.25)
+			(net "GND")
+			(uuid "5ab2f609-7c51-4b32-a91c-fb6d413d3c8a")
+		)
+		(embedded_fonts no)
+		(model "${KIPRJMOD}/lib/vitalq.3d/TPD1E10B06_DPY.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
