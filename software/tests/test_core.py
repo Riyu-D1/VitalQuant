@@ -30,8 +30,9 @@ def test_window_rejects_scalar_channel():
 
 
 def test_profiles_validate():
-    for p in ("config/hardware.example.yaml", "firmware/esp32/profiles/hw_v0.yaml"):
-        prof = load_profile(str(ROOT / p))
+    for p in (ROOT / "config/hardware.example.yaml",
+              ROOT.parent / "firmware/esp32/profiles/hw_v0.yaml"):
+        prof = load_profile(str(p))
         assert prof.hardware_revision.startswith("hw_")
         assert prof.profile_hash.startswith("sha256:")
         assert prof.enabled_sensors()

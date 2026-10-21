@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 WORKDIR /app
-COPY pyproject.toml README.md ./
+COPY pyproject.toml ./
 COPY src ./src
 COPY supabase ./supabase
 RUN pip install --no-cache-dir ".[ingest]"

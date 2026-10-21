@@ -4,7 +4,7 @@ Reads Postgres directly (DATABASE_URL). Waveforms, per-channel SQI, trends,
 experimental model output — research terminology only: "anomaly score",
 never a diagnosis.
 
-Run:  streamlit run apps/dashboard/app.py
+Run:  streamlit run software/apps/dashboard/app.py
 """
 
 from __future__ import annotations
