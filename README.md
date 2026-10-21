@@ -17,21 +17,21 @@ earlier than conventional approaches.
 This is the VitalQuant monorepo — all VitalQ work in one place:
 
 ```
-src/vitalq/          core Python platform: ingest, processing, ml, quantum, synth, datasets
-apps/api|worker|dashboard   service entrypoints (FastAPI, pipeline worker, Streamlit)
+hardware/pcb/        order-ready fix_v19 board (ESP32-S3-MINI-1-N4R2);
+                     fab zip in hardware/pcb/fab/ — see hardware/README.md
 firmware/esp32/      sensor driver contract + hw_v0/hw_v1 profiles
-hardware/pcb/        hw_v1 schematic and unrouted wearable PCB (see hardware/pcb/README.md)
-supabase/migrations/ Postgres DDL (native partitioning; no TimescaleDB)
-config/              hardware profile examples
+web/                 VitalQ website (Vite + React 19 + Tailwind + three.js)
+software/            Python platform + services:
+                     src/vitalq/    core: ingest, processing, ml, quantum, synth, datasets
+                     apps/          service entrypoints (FastAPI, pipeline worker, Streamlit)
+                     tests/         unit and ingestion test suite
+                     supabase/      Postgres DDL migrations (native partitioning)
+                     config/        hardware profile examples
+                     simulations/   standalone research simulations
+                     pyproject.toml, docker-compose.yml, .env.example
 docs/                design rationale: spec audit → research → architecture → schema
                      → API → pipeline → ML plan → quantum-sim design → roadmap
-tests/               unit and ingestion test suite
-web/                 VitalQ website (Vite + React 19 + Tailwind + three.js)
-web/react-bits-repo/ vendored react-bits component library the site draws from
-simulations/         standalone research simulations (quantum-enhanced detection)
-archive/             legacy single-file site (pre-React)
 JOURNAL.md           hardware/sensor research log
-docker-compose.yml   local Postgres 17
 .github/workflows/   CI
 ```
 
