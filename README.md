@@ -17,8 +17,10 @@ earlier than conventional approaches.
 This is the VitalQuant monorepo — all VitalQ work in one place:
 
 ```
-hardware/pcb/        order-ready fix_v19 board (ESP32-S3-MINI-1-N4R2);
-                     fab zip in hardware/pcb/fab/ — see hardware/README.md
+hardware/pcb/        order-ready V22 board (ESP32-S3-WROOM-1-N16R8, USB-C
+                     moved to x29.5); fab zip in hardware/pcb/fab/
+hardware/case/       print-ready V10 enclosure (141/141 fit checks)
+                     — layout detail in hardware/README.md
 firmware/esp32/      sensor driver contract + hw_v0/hw_v1 profiles
 web/                 VitalQ website (Vite + React 19 + Tailwind + three.js)
 software/            Python platform + services:
