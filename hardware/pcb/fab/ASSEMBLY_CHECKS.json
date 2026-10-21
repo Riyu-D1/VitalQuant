@@ -1,32 +1,70 @@
 {
- "placed_components": 251,
- "bom_groups": 82,
- "cpl_rows": 251,
- "consigned": [
-  "D10",
-  "D12"
- ],
- "missing_lcsc_groups": [
-  "D10",
-  "D12"
- ],
- "missing_positions": [],
- "excluded": {
-  "dnp_not_placed": [
-   "R93"
+  "placed_components": 251,
+  "bom_groups": 82,
+  "cpl_rows": 251,
+  "consigned": [
+    "D12",
+    "U12"
   ],
-  "no_place_items": "FID1-6, H1, H2, J8, TP1-TP28 (mechanical/test/fiducials)"
- },
- "new_power_path": {
-  "Q6": "C15127 AO3401A SOT-23",
-  "D33": "C191023 1N5819WS SOD-323",
-  "R123": "C25741 100k 0402"
- },
- "fix_v19_changes": {
-  "R61": "fitted (was DNP): Murata NCP15XH103F03RC 10k NTC B=3380, LCSC C77131 - board-side TS sensing for BQ25170 with 2-wire packs",
-  "D10": "NF2W757G-F1 consigned (Nichia Optisolis, no LCSC line; only exact land fit)",
-  "D12": "XL0603NRC730 consigned (Sealand 0603 730 nm; no LCSC 700-770 nm emitter in <=0603)",
-  "bom_corrections": "22 BOM_JLC LCSC-code defects fixed: invalid codes (C23677/C15115/C23692/C23691/C22299/C22314/C17275), codes resolving to wrong values (C23124->88.7ohm, C18009->4.3k/1206, C25840->0201/1.8k, C1528->160pF, C23230->681ohm, C1525-row->100nF, C23733-row->4.7uF, C22879->147ohm, C25513->68ohm array, C25797->681k, C26015->1.5k, C17413->107ohm, C25084->18ohm, C25779->33k), connector code on cap row (C49240->WJ2EDGRM), low-stock unify (C146900->C6669155). All replacements verified by JLCPCB partdetail meta + wmsc detail API: value/package/tolerance/voltage match.",
-  "U12": "MLX90632SLD-DCB-100-SP = JLC extended part C5349491 (was wrongly listed as consigned)"
- }
+  "missing_lcsc_references": [],
+  "missing_positions": [],
+  "excluded": {
+    "board_exclude_from_bom": [
+      "FID1",
+      "FID2",
+      "FID3",
+      "FID4",
+      "FID5",
+      "FID6",
+      "H1",
+      "H2",
+      "J8",
+      "TP1",
+      "TP2",
+      "TP3",
+      "TP4",
+      "TP5",
+      "TP6",
+      "TP7",
+      "TP8",
+      "TP9",
+      "TP10",
+      "TP11",
+      "TP12",
+      "TP13",
+      "TP14",
+      "TP15",
+      "TP16",
+      "TP17",
+      "TP18",
+      "TP19",
+      "TP20",
+      "TP21",
+      "TP22",
+      "TP23",
+      "TP24",
+      "TP25",
+      "TP26",
+      "TP27",
+      "TP28"
+    ],
+    "do_not_populate": [
+      "J13",
+      "R93",
+      "R104",
+      "R105",
+      "R107",
+      "R108"
+    ],
+    "integral_pcb_contact_pads": [
+      "J2",
+      "J3",
+      "J5",
+      "J6",
+      "J7",
+      "J9",
+      "J10",
+      "J11"
+    ]
+  }
 }
