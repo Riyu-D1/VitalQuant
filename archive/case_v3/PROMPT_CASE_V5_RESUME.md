@@ -1,3 +1,0 @@
-# Resume case_v5 (continue, don't restart)
-Read case_v3/PROMPT_CASE_V5.md (the goal) and case_v5/PROGRESS.md + case_v5/FIT_REPORT.md (where you got to). Continue in case_v5/ from that point. Don't redo finished work. fix_v9 board is READ-ONLY. No questions, no loops (if something fails twice, change approach), no deletes, no commit/push.
-Remaining: fix the 2 failing print-overhang checks (case_top, pin_plate), keeping all fit checks passing; then export STEP if feasible; make the renders (assembled, top, bottom/skin face, exploded, sections through J7, J3, USB-C); update ASSEMBLY/PRINT_NOTES/CONTACTS_BOM; re-run the full fit check. End FIT_REPORT.md with CASE5 COMPLETE only when all checks pass and the renders exist.

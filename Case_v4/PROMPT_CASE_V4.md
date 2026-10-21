@@ -1,5 +1,0 @@
-# case_v4: update the case for fix_v8
-Copy case_v3/ to case_v4/ and work only there. Board = fix_v8/vitalq_v2.kicad_pcb (read-only). No changes to any board file.
-1. Move the J7 skin contact window and its 4 conductive contacts (same pogo/insert approach as the other electrodes) from the old spot (14.6, 62.9) to J7's new B.Cu pads at (1.1–3.6, 60.7–62.9), flush with skin level like J5/J6/J11/J13. Check the wall/strap lug clearance at the west edge.
-2. Re-run the full fit check against fix_v8: every skin-side part (J5/J6/J7/J11/J13, the optical sensors D10–D12, TMP117 U11) must reach skin level through its window; the outward parts (USB-C J1, SW1/SW2, Tag-Connect J8) must be reachable; no component may collide. Also check every part's board side against the case's skin/outer faces, and list any mismatch (note J3 Pads_FSR, which is on F.Cu at the skin edge).
-3. Re-export the STLs, write renders (exploded, top, bottom, section through J7) and FIT_REPORT.md. End with CASE4 COMPLETE. Never loop: if something fails twice, try a different approach.
