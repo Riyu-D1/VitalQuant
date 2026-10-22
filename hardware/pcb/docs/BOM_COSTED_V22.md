@@ -73,7 +73,9 @@ R118/R119). Saves ~$10 vs blindly ordering the full schematic BOM.
 | Optics & discretes | ~6 |
 | Connectors & passives | ~6 |
 | **Parts total** | **~$95–107 (~£75–85)** |
-| JLC 6-layer PCB + SMT assembly + UK ship | ~$80–140 (order-dependent) |
+| JLC 8-layer PCB (5×, ~56×81 mm) | ~$100–140 |
+| JLC SMT assembly + stencil + extended-part fees | ~$70–130 |
+| UK shipping (DHL/FedEx) | ~$25–45 |
 
 ## Case-side extras (not in PCB BOM)
 
