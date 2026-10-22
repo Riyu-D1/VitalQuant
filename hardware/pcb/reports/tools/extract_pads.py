@@ -86,8 +86,9 @@ for ch in doc[1:]:
         else:
             netn = ''
             noname += 1
-        wx = fx + px * cr - py * sr
-        wy = fy + px * sr + py * cr
+        # KiCad file coords are y-down: world = fp_at + R(-fr) * pad_local
+        wx = fx + px * cr + py * sr
+        wy = fy - px * sr + py * cr
         rows.append([ref, lib, num, f"{ptype}/{prole}", netn,
                      f"{wx:.3f}", f"{wy:.3f}", side])
 
