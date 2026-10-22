@@ -1,0 +1,1294 @@
+CONNECTIVITY SWEEP -- shipped fix_v19 gerbers (X2-attributed)
+gerbers: /home/ubuntu/repos/partners/vitalquant-riyu/hardware/pcb/reports/../fab/gerbers
+method: %TO.P/%TO.C/%TO.N tags; same-layer polygon touch (eps=0.002mm)
+        + plated-barrel unions (same (x,y) flash across layers)
+
+objects per layer:
+  F.Cu  {'pad': 814, 'flash': 1754, 'track': 4922, 'region': 2}
+  L2    {'thpad': 4, 'flash': 1754, 'track': 23, 'region': 1}
+  L3    {'thpad': 4, 'flash': 1754, 'track': 1036}
+  L4    {'thpad': 4, 'flash': 1754, 'track': 295}
+  L5    {'thpad': 4, 'flash': 1754, 'track': 19, 'region': 2}
+  L6    {'thpad': 4, 'flash': 1754, 'track': 172}
+  L7    {'thpad': 4, 'flash': 1754, 'region': 2}
+  B.Cu  {'pad': 172, 'flash': 1754, 'track': 1549}
+
+pads parsed: 970   pinmap pads: 970   components: 321
+
+=== PER-PAD TABLE (all 970 pad entities) ===
+REF.PAD  LAYER  #OBJ  GERBER_NET                 EXPECTED_NET               STATE         DETAIL
+C1.1     F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x4}; comp=252 objects; +VBUS:252
+C1.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C10.1    F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x2}; comp=252 objects; +VBUS:252
+C10.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C11.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x4}; comp=375 objects; ++3V3_ANA:375
+C11.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C13.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x3}; comp=375 objects; ++3V3_ANA:375
+C13.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C14.1    F.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x4}; comp=158 objects; +TX_5V:158
+C14.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C15.1    F.Cu   1     AFE_BG                     AFE_BG                     CONNECTED     pad touches {track(AFE_BG)x1}; comp=37 objects; +AFE_BG:37
+C15.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+C16.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x4}; comp=375 objects; ++3V3_ANA:375
+C16.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C18.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x7}; comp=375 objects; ++3V3_ANA:375
+C18.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C19.1    F.Cu   1     IOVDD                      IOVDD                      CONNECTED     pad touches {track(IOVDD)x4}; comp=100 objects; +IOVDD:100
+C19.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C2.1     F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x4}; comp=153 objects; +VBAT:153
+C2.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C20.1    F.Cu   1     VREF_1V82                  VREF_1V82                  CONNECTED     pad touches {track(VREF_1V82)x2}; comp=10 objects; +VREF_1V82:10
+C20.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C21.1    F.Cu   1     VREF_2V5                   VREF_2V5                   CONNECTED     pad touches {track(VREF_2V5)x1}; comp=38 objects; +VREF_2V5:38
+C21.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C22.1    F.Cu   1     VBIAS_CAP                  VBIAS_CAP                  CONNECTED     pad touches {track(VBIAS_CAP)x2}; comp=10 objects; +VBIAS_CAP:10
+C22.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C23.1    F.Cu   1     DVDD_REG                   DVDD_REG                   CONNECTED     pad touches {track(DVDD_REG)x2}; comp=7 objects; +DVDD_REG:7
+C23.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C24.1    F.Cu   1     VZERO0                     VZERO0                     CONNECTED     pad touches {track(VZERO0)x1}; comp=36 objects; +VZERO0:36
+C24.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C25.1    F.Cu   1     VBIAS0                     VBIAS0                     CONNECTED     pad touches {track(VBIAS0)x1}; comp=36 objects; +VBIAS0:36
+C25.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C26.1    F.Cu   1     AIN4_LPF0                  AIN4_LPF0                  CONNECTED     pad touches {track(AIN4_LPF0)x1}; comp=36 objects; +AIN4_LPF0:36
+C26.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C27.1    F.Cu   1     RC0_0                      RC0_0                      CONNECTED     pad touches {track(RC0_0)x2}; comp=44 objects; +RC0_0:44
+C27.2    F.Cu   1     RC0_1                      RC0_1                      CONNECTED     pad touches {track(RC0_1)x2}; comp=48 objects; +RC0_1:48
+C28.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x6}; comp=375 objects; ++3V3_ANA:375
+C28.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C29.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+C29.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C3.1     F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x5}; comp=153 objects; +VBAT:153
+C3.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C30.1    F.Cu   1     VREFP                      VREFP                      CONNECTED     pad touches {track(VREFP)x3}; comp=6 objects; +VREFP:6
+C30.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C32.1    F.Cu   1     VCAP1                      VCAP1                      CONNECTED     pad touches {track(VCAP1)x2}; comp=8 objects; +VCAP1:8
+C32.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C33.1    F.Cu   1     VCAP2                      VCAP2                      CONNECTED     pad touches {track(VCAP2)x2}; comp=4 objects; +VCAP2:4
+C33.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C34.1    F.Cu   1     PGA1N                      PGA1N                      CONNECTED     pad touches {track(PGA1N)x2}; comp=48 objects; +PGA1N:48
+C34.2    F.Cu   1     PGA1P                      PGA1P                      CONNECTED     pad touches {track(PGA1P)x2}; comp=46 objects; +PGA1P:46
+C35.1    F.Cu   1     PGA2N                      PGA2N                      CONNECTED     pad touches {track(PGA2N)x2}; comp=24 objects; +PGA2N:24
+C35.2    F.Cu   1     PGA2P                      PGA2P                      CONNECTED     pad touches {track(PGA2P)x2}; comp=43 objects; +PGA2P:43
+C36.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x2}; comp=234 objects; ++1V8:234
+C36.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C37.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C37.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C38.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C38.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C39.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C39.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C4.1     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C4.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C40.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C40.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C41.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C41.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+C42.1    F.Cu   1     AVDD_REG                   AVDD_REG                   CONNECTED     pad touches {track(AVDD_REG)x2}; comp=10 objects; +AVDD_REG:10
+C42.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C43.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x7}; comp=375 objects; ++3V3_ANA:375
+C43.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x3}; comp=4239 objects; +GND:4237; nonet:2
+C44.1    F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x2}; comp=185 objects; +VBAT_SYS:185
+C44.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C45.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C45.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C46.1    F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x2}; comp=185 objects; +VBAT_SYS:185
+C46.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C47.1    F.Cu   1     TX_5V_RAW                  TX_5V_RAW                  CONNECTED     pad touches {track(TX_5V_RAW)x2}; comp=31 objects; +TX_5V_RAW:31
+C47.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C48.1    F.Cu   1     IN1P                       IN1P                       CONNECTED     pad touches {track(IN1P)x4}; comp=101 objects; +IN1P:101
+C48.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+C49.1    F.Cu   1     IN1N                       IN1N                       CONNECTED     pad touches {track(IN1N)x4}; comp=112 objects; +IN1N:112
+C49.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C50.1    F.Cu   1     ECG_P                      ECG_P                      CONNECTED     pad touches {track(ECG_P)x2}; comp=161 objects; +ECG_P:161
+C50.2    F.Cu   1     IN1P_AC                    IN1P_AC                    CONNECTED     pad touches {track(IN1P_AC)x2}; comp=19 objects; +IN1P_AC:19
+C51.1    F.Cu   1     ECG_N                      ECG_N                      CONNECTED     pad touches {track(ECG_N)x2}; comp=191 objects; +ECG_N:191
+C51.2    F.Cu   1     IN1N_AC                    IN1N_AC                    CONNECTED     pad touches {track(IN1N_AC)x2}; comp=52 objects; +IN1N_AC:52
+C52.1    F.Cu   1     ECG_P                      ECG_P                      CONNECTED     pad touches {track(ECG_P)x4}; comp=161 objects; +ECG_P:161
+C52.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C53.1    F.Cu   1     ECG_N                      ECG_N                      CONNECTED     pad touches {track(ECG_N)x2}; comp=191 objects; +ECG_N:191
+C53.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C54.1    F.Cu   1     CE_SURGE                   CE_SURGE                   CONNECTED     pad touches {track(CE_SURGE)x2}; comp=7 objects; +CE_SURGE:7
+C54.2    F.Cu   1     CE_ISO                     CE_ISO                     CONNECTED     pad touches {track(CE_ISO)x2}; comp=111 objects; +CE_ISO:111
+C55.1    F.Cu   1     SE_ISO                     SE_ISO                     CONNECTED     pad touches {track(SE_ISO)x5}; comp=68 objects; +SE_ISO:68
+C55.2    F.Cu   1     SE0                        SE0                        CONNECTED     pad touches {track(SE0)x2}; comp=47 objects; +SE0:47
+C56.1    F.Cu   1     AFE_P_SER                  AFE_P_SER                  CONNECTED     pad touches {track(AFE_P_SER)x2}; comp=49 objects; +AFE_P_SER:49
+C56.2    F.Cu   1     AFE_INP                    AFE_INP                    CONNECTED     pad touches {track(AFE_INP)x2}; comp=65 objects; +AFE_INP:65
+C57.1    F.Cu   1     AFE_N_SER                  AFE_N_SER                  CONNECTED     pad touches {track(AFE_N_SER)x2}; comp=4 objects; +AFE_N_SER:4
+C57.2    F.Cu   1     AFE_INM                    AFE_INM                    CONNECTED     pad touches {track(AFE_INM)x2}; comp=67 objects; +AFE_INM:67
+C58.1    F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x4}; comp=153 objects; +VBAT:153
+C58.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C59.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C59.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+C6.1     F.Cu   1     +1V8_LDO                   +1V8_LDO                   CONNECTED     pad touches {track(+1V8_LDO)x4}; comp=22 objects; ++1V8_LDO:22
+C6.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C60.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C60.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C61.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {region(+3V3)x1}; comp=1429 objects; ++3V3:1429
+C61.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C62.1    F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x2}; comp=123 objects; +VDD_CP2102:123
+C62.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C63.1    F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x1}; comp=252 objects; +VBUS:252
+C63.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C64.1    F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x2}; comp=378 objects; +ESP_EN:378
+C64.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C65.1    F.Cu   1     RLDOUT                     RLDOUT                     CONNECTED     pad touches {track(RLDOUT)x2}; comp=120 objects; +RLDOUT:120
+C65.2    F.Cu   1     RLDINV                     RLDINV                     CONNECTED     pad touches {track(RLDINV)x5}; comp=78 objects; +RLDINV:78
+C66.1    F.Cu   1     RLDREF                     RLDREF                     CONNECTED     pad touches {track(RLDREF)x4}; comp=59 objects; +RLDREF:59
+C66.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C67.1    F.Cu   1     FP_SURGE                   FP_SURGE                   CONNECTED     pad touches {track(FP_SURGE)x2}; comp=25 objects; +FP_SURGE:25
+C67.2    F.Cu   1     FP_ISO                     FP_ISO                     CONNECTED     pad touches {track(FP_ISO)x2}; comp=57 objects; +FP_ISO:57
+C68.1    F.Cu   1     FN_ISO                     FN_ISO                     CONNECTED     pad touches {track(FN_ISO)x2}; comp=73 objects; +FN_ISO:73
+C68.2    F.Cu   1     BIOZ_FN                    BIOZ_FN                    CONNECTED     pad touches {track(BIOZ_FN)x1}; comp=41 objects; +BIOZ_FN:41
+C69.1    F.Cu   1     SP_ISO                     SP_ISO                     CONNECTED     pad touches {track(SP_ISO)x2}; comp=62 objects; +SP_ISO:62
+C69.2    F.Cu   1     BIOZ_SP                    BIOZ_SP                    CONNECTED     pad touches {track(BIOZ_SP)x1}; comp=55 objects; +BIOZ_SP:55
+C7.1     F.Cu   1     +3V3_ESP                   +3V3_ESP                   CONNECTED     pad touches {track(+3V3_ESP)x4}; comp=41 objects; ++3V3_ESP:41
+C7.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C70.1    F.Cu   1     SN_ISO                     SN_ISO                     CONNECTED     pad touches {track(SN_ISO)x2}; comp=68 objects; +SN_ISO:68
+C70.2    F.Cu   1     BIOZ_SN                    BIOZ_SN                    CONNECTED     pad touches {track(BIOZ_SN)x2}; comp=57 objects; +BIOZ_SN:57
+C76.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C76.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C77.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C77.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C78.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x15}; comp=1429 objects; ++3V3:1429
+C78.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C79.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x1}; comp=375 objects; ++3V3_ANA:375
+C79.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+C8.1     F.Cu   1     +3V3_ESP                   +3V3_ESP                   CONNECTED     pad touches {track(+3V3_ESP)x4}; comp=41 objects; ++3V3_ESP:41
+C8.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C80.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x4}; comp=375 objects; ++3V3_ANA:375
+C80.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C81.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C81.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C82.1    F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x6}; comp=153 objects; +VBAT:153
+C82.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C83.1    F.Cu   1     MX_VREF                    MX_VREF                    CONNECTED     pad touches {track(MX_VREF)x2}; comp=60 objects; +MX_VREF:60
+C83.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C84.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C84.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C85.1    F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x4}; comp=153 objects; +VBAT:153
+C85.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C86.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x2}; comp=234 objects; ++1V8:234
+C86.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C87.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x2}; comp=234 objects; ++1V8:234
+C87.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C88.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x2}; comp=234 objects; ++1V8:234
+C88.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C89.1    F.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x3}; comp=158 objects; +TX_5V:158
+C89.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1, flash(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C9.1     F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x2}; comp=123 objects; +VDD_CP2102:123
+C9.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C90.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+C90.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+C91.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+C91.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D1.1     F.Cu   1     ECG_P                      ECG_P                      CONNECTED     pad touches {track(ECG_P)x2}; comp=161 objects; +ECG_P:161
+D1.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D10.1    B.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+D10.2    B.Cu   1     LDR                        LDR                        CONNECTED     pad touches {track(LDR)x2}; comp=47 objects; +LDR:47
+D11.1    B.Cu   1     IR_AN                      IR_AN                      CONNECTED     pad touches {track(IR_AN)x2}; comp=26 objects; +IR_AN:26
+D11.2    B.Cu   1     IR_K                       IR_K                       CONNECTED     pad touches {track(IR_K)x2}; comp=70 objects; +IR_K:70
+D12.1    B.Cu   1     NIR_AN                     NIR_AN                     CONNECTED     pad touches {track(NIR_AN)x2}; comp=35 objects; +NIR_AN:35
+D12.2    B.Cu   1     NIR_K                      NIR_K                      CONNECTED     pad touches {track(NIR_K)x2}; comp=129 objects; +NIR_K:129
+D2.1     F.Cu   1     ECG_N                      ECG_N                      CONNECTED     pad touches {track(ECG_N)x2}; comp=191 objects; +ECG_N:191
+D2.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D21.1    F.Cu   1     FP_ISO                     FP_ISO                     CONNECTED     pad touches {track(FP_ISO)x2}; comp=57 objects; +FP_ISO:57
+D21.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D22.1    F.Cu   1     FN_ISO                     FN_ISO                     CONNECTED     pad touches {track(FN_ISO)x2}; comp=73 objects; +FN_ISO:73
+D22.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D23.1    F.Cu   1     SP_ISO                     SP_ISO                     CONNECTED     pad touches {track(SP_ISO)x2}; comp=62 objects; +SP_ISO:62
+D23.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D24.1    F.Cu   1     SN_ISO                     SN_ISO                     CONNECTED     pad touches {track(SN_ISO)x4}; comp=68 objects; +SN_ISO:68
+D24.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D25.1    F.Cu   1     LED_A                      LED_A                      CONNECTED     pad touches {track(LED_A)x2}; comp=12 objects; +LED_A:12
+D25.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D26.1    F.Cu   1     SWEAT_WE                   SWEAT_WE                   CONNECTED     pad touches {track(SWEAT_WE)x2}; comp=331 objects; +SWEAT_WE:331
+D26.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D27.1    F.Cu   1     SWEAT_RE                   SWEAT_RE                   CONNECTED     pad touches {track(SWEAT_RE)x2}; comp=174 objects; +SWEAT_RE:174
+D27.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D28.1    F.Cu   1     SWEAT_CE                   SWEAT_CE                   CONNECTED     pad touches {track(SWEAT_CE)x4}; comp=207 objects; +SWEAT_CE:207
+D28.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D29.1    F.Cu   1     MX_ECG_INP                 MX_ECG_INP                 CONNECTED     pad touches {track(MX_ECG_INP)x2}; comp=4 objects; +MX_ECG_INP:4
+D29.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D3.1     F.Cu   1     RLD_CLAMP                  RLD_CLAMP                  CONNECTED     pad touches {track(RLD_CLAMP)x2}; comp=84 objects; +RLD_CLAMP:84
+D3.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D30.1    F.Cu   1     MX_ECG_INM                 MX_ECG_INM                 CONNECTED     pad touches {track(MX_ECG_INM)x3}; comp=84 objects; +MX_ECG_INM:84
+D30.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+D33.1    F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x1}; comp=185 objects; +VBAT_SYS:185
+D33.2    F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x1}; comp=252 objects; +VBUS:252
+D4.1     F.Cu   1     AFE_P_AC                   AFE_P_AC                   CONNECTED     pad touches {track(AFE_P_AC)x2}; comp=98 objects; +AFE_P_AC:98
+D4.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D5.1     F.Cu   1     AFE_N_AC                   AFE_N_AC                   CONNECTED     pad touches {track(AFE_N_AC)x2}; comp=74 objects; +AFE_N_AC:74
+D5.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D6.1     F.Cu   1     CE_ISO                     CE_ISO                     CONNECTED     pad touches {track(CE_ISO)x4}; comp=111 objects; +CE_ISO:111
+D6.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D7.1     F.Cu   1     SE_ISO                     SE_ISO                     CONNECTED     pad touches {track(SE_ISO)x2}; comp=68 objects; +SE_ISO:68
+D7.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D8.1     F.Cu   1     RE_SURGE                   RE_SURGE                   CONNECTED     pad touches {track(RE_SURGE)x4}; comp=104 objects; +RE_SURGE:104
+D8.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+D9.1     F.Cu   1     DE_SURGE                   DE_SURGE                   CONNECTED     pad touches {track(DE_SURGE)x4}; comp=64 objects; +DE_SURGE:64
+D9.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+FID1.1   F.Cu   1     unconnected-(FID1-FID-Pad1) unconnected-(FID1-FID-Pad1) NC-ISO        touches NOTHING; nearest copper 0.856mm (track ESP_IO0)
+FID2.1   F.Cu   1     unconnected-(FID2-FID-Pad1) unconnected-(FID2-FID-Pad1) NC-ISO        touches NOTHING; nearest copper 0.610mm (track SP_ISO)
+FID3.1   F.Cu   1     unconnected-(FID3-FID-Pad1) unconnected-(FID3-FID-Pad1) NC-ISO        touches NOTHING; nearest copper 0.611mm (flash AFE_P_SER)
+FID4.1   B.Cu   1     unconnected-(FID4-FID-Pad1) unconnected-(FID4-FID-Pad1) NC-ISO        touches NOTHING
+FID5.1   F.Cu   1     unconnected-(FID5-FID-Pad1) unconnected-(FID5-FID-Pad1) NC-ISO        touches NOTHING; nearest copper 0.648mm (track ESP_IO0)
+FID6.1   B.Cu   1     unconnected-(FID6-FID-Pad1) unconnected-(FID6-FID-Pad1) NC-ISO        touches NOTHING
+J1.A1    F.Cu   1     GND                        GND                        MERGED-SAME   pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; MERGED:J1.B12(GND); nonet:2
+J1.A12   F.Cu   1     GND                        GND                        MERGED-SAME   pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; MERGED:J1.B1(GND); nonet:2
+J1.A4    F.Cu   1     VBUS                       VBUS                       MERGED-SAME   pad touches {track(VBUS)x8}; comp=252 objects; +VBUS:252; MERGED:J1.B9(VBUS)
+J1.A5    F.Cu   1     USB_CC1                    USB_CC1                    CONNECTED     pad touches {track(USB_CC1)x2}; comp=17 objects; +USB_CC1:17
+J1.A6    F.Cu   1     USB_DP                     USB_DP                     CONNECTED     pad touches {track(USB_DP)x2}; comp=203 objects; +USB_DP:203
+J1.A7    F.Cu   1     USB_DM                     USB_DM                     CONNECTED     pad touches {track(USB_DM)x10}; comp=228 objects; +USB_DM:228
+J1.A8    F.Cu   1     unconnected-(J1-SBU1-PadA8) unconnected-(J1-SBU1-PadA8) NC-ISO        touches NOTHING; nearest copper 0.200mm (pad USB_CC2)
+J1.A9    F.Cu   1     VBUS                       VBUS                       MERGED-SAME   pad touches {track(VBUS)x4}; comp=252 objects; +VBUS:252; MERGED:J1.B4(VBUS)
+J1.B1    F.Cu   1     GND                        GND                        MERGED-SAME   pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; MERGED:J1.A12(GND); nonet:2
+J1.B12   F.Cu   1     GND                        GND                        MERGED-SAME   pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; MERGED:J1.A1(GND); nonet:2
+J1.B4    F.Cu   1     VBUS                       VBUS                       MERGED-SAME   pad touches {track(VBUS)x4}; comp=252 objects; +VBUS:252; MERGED:J1.A9(VBUS)
+J1.B5    F.Cu   1     USB_CC2                    USB_CC2                    CONNECTED     pad touches {track(USB_CC2)x2}; comp=45 objects; +USB_CC2:45
+J1.B6    F.Cu   1     USB_DP                     USB_DP                     CONNECTED     pad touches {track(USB_DP)x7}; comp=203 objects; +USB_DP:203
+J1.B7    F.Cu   1     USB_DM                     USB_DM                     CONNECTED     pad touches {track(USB_DM)x2}; comp=228 objects; +USB_DM:228
+J1.B8    F.Cu   1     unconnected-(J1-SBU2-PadB8) unconnected-(J1-SBU2-PadB8) NC-ISO        touches NOTHING; nearest copper 0.200mm (pad USB_CC1)
+J1.B9    F.Cu   1     VBUS                       VBUS                       MERGED-SAME   pad touches {track(VBUS)x8}; comp=252 objects; +VBUS:252; MERGED:J1.A4(VBUS)
+J1.SH    B.Cu/F.Cu 8     GND                        GND                        CONNECTED     pad touches {track(GND)x3, flash(GND)x8}; comp=4232 objects; +GND:4230; nonet:2
+J10.1    B.Cu   1     LED1_K                     LED1_K                     CONNECTED     pad touches {track(LED1_K)x2}; comp=107 objects; +LED1_K:107
+J10.2    B.Cu   1     LED2_K                     LED2_K                     CONNECTED     pad touches {track(LED2_K)x2}; comp=94 objects; +LED2_K:94
+J10.3    B.Cu   1     LED3_K                     LED3_K                     CONNECTED     pad touches {track(LED3_K)x2}; comp=123 objects; +LED3_K:123
+J10.4    B.Cu   1     LED_AN                     LED_AN                     CONNECTED     pad touches {track(LED_AN)x2}; comp=128 objects; +LED_AN:128
+J10.5    B.Cu   1     PD_K                       PD_K                       CONNECTED     pad touches {track(PD_K)x2}; comp=187 objects; +PD_K:187
+J10.6    B.Cu   1     PD_A                       PD_A                       CONNECTED     pad touches {track(PD_A)x2}; comp=158 objects; +PD_A:158
+J11.1    B.Cu   1     J11_WE                     J11_WE                     CONNECTED     pad touches {track(J11_WE)x2}; comp=18 objects; +J11_WE:18
+J11.2    B.Cu   1     J11_RE                     J11_RE                     CONNECTED     pad touches {track(J11_RE)x2}; comp=52 objects; +J11_RE:52
+J11.3    B.Cu   1     J11_CE                     J11_CE                     CONNECTED     pad touches {track(J11_CE)x2, flash(J11_CE)x2}; comp=46 objects; +J11_CE:46
+J12.1    B.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+J12.10   B.Cu   1     PD_A                       PD_A                       CONNECTED     pad touches {track(PD_A)x2}; comp=158 objects; +PD_A:158
+J12.11   B.Cu   1     SWEAT_WE                   SWEAT_WE                   CONNECTED     pad touches {track(SWEAT_WE)x2}; comp=331 objects; +SWEAT_WE:331
+J12.12   B.Cu   1     SWEAT_RE                   SWEAT_RE                   CONNECTED     pad touches {track(SWEAT_RE)x2}; comp=174 objects; +SWEAT_RE:174
+J12.13   B.Cu   1     SWEAT_CE                   SWEAT_CE                   CONNECTED     pad touches {track(SWEAT_CE)x2}; comp=207 objects; +SWEAT_CE:207
+J12.14   B.Cu   1     unconnected-(J12-Pin_14-Pad14) unconnected-(J12-Pin_14-Pad14) NC-ISO        touches NOTHING; nearest copper 0.200mm (pad SWEAT_CE)
+J12.2    B.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+J12.3    B.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x5}; comp=458 objects; +I2C_SCL:458
+J12.4    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+J12.5    B.Cu   1     LED1_K                     LED1_K                     CONNECTED     pad touches {track(LED1_K)x2}; comp=107 objects; +LED1_K:107
+J12.6    B.Cu   1     LED2_K                     LED2_K                     CONNECTED     pad touches {track(LED2_K)x2}; comp=94 objects; +LED2_K:94
+J12.7    B.Cu   1     LED3_K                     LED3_K                     CONNECTED     pad touches {track(LED3_K)x2}; comp=123 objects; +LED3_K:123
+J12.8    B.Cu   1     LED_AN                     LED_AN                     CONNECTED     pad touches {track(LED_AN)x4}; comp=128 objects; +LED_AN:128
+J12.9    B.Cu   1     PD_K                       PD_K                       CONNECTED     pad touches {track(PD_K)x2}; comp=187 objects; +PD_K:187
+J12.MP   B.Cu   2     unconnected-(J12-PadMP)    unconnected-(J12-PadMP)    CONNECTED     pad touches {track(unconnected-(J12-PadMP))x2}; comp=35 objects; +unconnected-(J12-PadMP):35
+J13.1    B.Cu   1     J13_INP                    J13_INP                    CONNECTED     pad touches {track(J13_INP)x2}; comp=29 objects; +J13_INP:29
+J13.2    B.Cu   1     J13_INM                    J13_INM                    CONNECTED     pad touches {track(J13_INM)x2}; comp=34 objects; +J13_INM:34
+J2.1     B.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x2}; comp=153 objects; +VBAT:153
+J2.2     B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+J2.3     B.Cu   1     TS                         TS                         CONNECTED     pad touches {track(TS)x2}; comp=96 objects; +TS:96
+J3.1     B.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {flash(+3V3)x2}; comp=1429 objects; ++3V3:1429
+J3.2     B.Cu   1     FSR_ADC                    FSR_ADC                    CONNECTED     pad touches {flash(FSR_ADC)x2}; comp=106 objects; +FSR_ADC:106
+J5.1     B.Cu   1     ECG1_PAD                   ECG1_PAD                   CONNECTED     pad touches {track(ECG1_PAD)x2}; comp=110 objects; +ECG1_PAD:110
+J5.2     B.Cu   1     ECG2_PAD                   ECG2_PAD                   CONNECTED     pad touches {track(ECG2_PAD)x2}; comp=73 objects; +ECG2_PAD:73
+J5.3     B.Cu   1     RLD_PAD                    RLD_PAD                    CONNECTED     pad touches {track(RLD_PAD)x2}; comp=107 objects; +RLD_PAD:107
+J5.4     B.Cu   1     AFE_P_PAD                  AFE_P_PAD                  CONNECTED     pad touches {track(AFE_P_PAD)x2}; comp=116 objects; +AFE_P_PAD:116
+J5.5     B.Cu   1     AFE_N_PAD                  AFE_N_PAD                  CONNECTED     pad touches {track(AFE_N_PAD)x1}; comp=122 objects; +AFE_N_PAD:122
+J6.1     B.Cu   1     EDA_CE_PAD                 EDA_CE_PAD                 CONNECTED     pad touches {track(EDA_CE_PAD)x2}; comp=51 objects; +EDA_CE_PAD:51
+J6.2     B.Cu   1     EDA_RE_PAD                 EDA_RE_PAD                 CONNECTED     pad touches {track(EDA_RE_PAD)x2}; comp=64 objects; +EDA_RE_PAD:64
+J6.3     B.Cu   1     EDA_SE_PAD                 EDA_SE_PAD                 CONNECTED     pad touches {track(EDA_SE_PAD)x2}; comp=78 objects; +EDA_SE_PAD:78
+J6.4     B.Cu   1     EDA_DE_PAD                 EDA_DE_PAD                 CONNECTED     pad touches {track(EDA_DE_PAD)x2}; comp=49 objects; +EDA_DE_PAD:49
+J7.1     B.Cu   1     BIOZ_FP_PAD                BIOZ_FP_PAD                CONNECTED     pad touches {track(BIOZ_FP_PAD)x1}; comp=9 objects; +BIOZ_FP_PAD:9
+J7.2     B.Cu   1     BIOZ_FN_PAD                BIOZ_FN_PAD                CONNECTED     pad touches {track(BIOZ_FN_PAD)x2}; comp=68 objects; +BIOZ_FN_PAD:68
+J7.3     B.Cu   1     BIOZ_SP_PAD                BIOZ_SP_PAD                CONNECTED     pad touches {track(BIOZ_SP_PAD)x1}; comp=49 objects; +BIOZ_SP_PAD:49
+J7.4     B.Cu   1     BIOZ_SN_PAD                BIOZ_SN_PAD                CONNECTED     pad touches {track(BIOZ_SN_PAD)x1}; comp=145 objects; +BIOZ_SN_PAD:145
+J8.1     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x1}; comp=1429 objects; ++3V3:1429
+J8.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+J8.3     F.Cu   1     ESP_TX                     ESP_TX                     CONNECTED     pad touches {track(ESP_TX)x1}; comp=208 objects; +ESP_TX:208
+J8.4     F.Cu   1     ESP_RX                     ESP_RX                     CONNECTED     pad touches {track(ESP_RX)x1}; comp=206 objects; +ESP_RX:206
+J8.5     F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x1}; comp=378 objects; +ESP_EN:378
+J8.6     F.Cu   1     ESP_IO0                    ESP_IO0                    CONNECTED     pad touches {track(ESP_IO0)x1}; comp=160 objects; +ESP_IO0:160
+J9.1     B.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+J9.2     B.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x4}; comp=498 objects; +I2C_SDA:498
+J9.3     B.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x4}; comp=458 objects; +I2C_SCL:458
+J9.4     B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+L1.1     F.Cu   1     SW_L1                      SW_L1                      CONNECTED     pad touches {track(SW_L1)x2}; comp=26 objects; +SW_L1:26
+L1.2     F.Cu   1     SW_L2                      SW_L2                      CONNECTED     pad touches {track(SW_L2)x2}; comp=22 objects; +SW_L2:22
+L2.1     F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x2}; comp=185 objects; +VBAT_SYS:185
+L2.2     F.Cu   1     TX_SW                      TX_SW                      CONNECTED     pad touches {track(TX_SW)x2}; comp=49 objects; +TX_SW:49
+Q1.1     F.Cu   1     IR_GATE                    IR_GATE                    CONNECTED     pad touches {track(IR_GATE)x2}; comp=120 objects; +IR_GATE:120
+Q1.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+Q1.3     F.Cu   1     IR_K                       IR_K                       CONNECTED     pad touches {track(IR_K)x2}; comp=70 objects; +IR_K:70
+Q2.1     F.Cu   1     CHG_DIS                    CHG_DIS                    CONNECTED     pad touches {track(CHG_DIS)x2}; comp=119 objects; +CHG_DIS:119
+Q2.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+Q2.3     F.Cu   1     TS                         TS                         CONNECTED     pad touches {track(TS)x2}; comp=96 objects; +TS:96
+Q3.1     F.Cu   1     CP_RTS                     CP_RTS                     CONNECTED     pad touches {track(CP_RTS)x2}; comp=57 objects; +CP_RTS:57
+Q3.2     F.Cu   1     Q3_B1                      Q3_B1                      CONNECTED     pad touches {track(Q3_B1)x2}; comp=48 objects; +Q3_B1:48
+Q3.3     F.Cu   1     ESP_IO0                    ESP_IO0                    CONNECTED     pad touches {track(ESP_IO0)x2}; comp=160 objects; +ESP_IO0:160
+Q3.4     F.Cu   1     CP_DTR                     CP_DTR                     CONNECTED     pad touches {track(CP_DTR)x2}; comp=81 objects; +CP_DTR:81
+Q3.5     F.Cu   1     Q3_B2                      Q3_B2                      CONNECTED     pad touches {track(Q3_B2)x2}; comp=43 objects; +Q3_B2:43
+Q3.6     F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x2}; comp=378 objects; +ESP_EN:378
+Q4.1     F.Cu   1     NIR730_GATE                NIR730_GATE                CONNECTED     pad touches {track(NIR730_GATE)x2}; comp=92 objects; +NIR730_GATE:92
+Q4.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+Q4.3     F.Cu   1     NIR_K                      NIR_K                      CONNECTED     pad touches {track(NIR_K)x2}; comp=129 objects; +NIR_K:129
+Q6.1     F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x1}; comp=252 objects; +VBUS:252
+Q6.2     F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x1}; comp=185 objects; +VBAT_SYS:185
+Q6.3     F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x1}; comp=153 objects; +VBAT:153
+R1.1     F.Cu   1     USB_CC1                    USB_CC1                    CONNECTED     pad touches {track(USB_CC1)x2}; comp=17 objects; +USB_CC1:17
+R1.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R10.1    F.Cu   1     AFE_CLK                    AFE_CLK                    CONNECTED     pad touches {track(AFE_CLK)x1}; comp=49 objects; +AFE_CLK:49
+R10.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R100.1   F.Cu   1     ADS_GPIO1                  ADS_GPIO1                  CONNECTED     pad touches {track(ADS_GPIO1)x2}; comp=46 objects; +ADS_GPIO1:46
+R100.2   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R101.1   F.Cu   1     ADS_GPIO2                  ADS_GPIO2                  CONNECTED     pad touches {track(ADS_GPIO2)x2}; comp=12 objects; +ADS_GPIO2:12
+R101.2   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R102.1   F.Cu   1     USB_DP                     USB_DP                     CONNECTED     pad touches {track(USB_DP)x3}; comp=203 objects; +USB_DP:203
+R102.2   F.Cu   1     USB_DP_S3                  USB_DP_S3                  CONNECTED     pad touches {track(USB_DP_S3)x5}; comp=105 objects; +USB_DP_S3:105
+R103.1   F.Cu   1     USB_DM                     USB_DM                     CONNECTED     pad touches {track(USB_DM)x5}; comp=228 objects; +USB_DM:228
+R103.2   F.Cu   1     USB_DM_S3                  USB_DM_S3                  CONNECTED     pad touches {track(USB_DM_S3)x3}; comp=126 objects; +USB_DM_S3:126
+R104.1   F.Cu   1     USB_DP                     USB_DP                     CONNECTED     pad touches {track(USB_DP)x5}; comp=203 objects; +USB_DP:203
+R104.2   F.Cu   1     USB_DP_CP                  USB_DP_CP                  CONNECTED     pad touches {track(USB_DP_CP)x3}; comp=16 objects; +USB_DP_CP:16
+R105.1   F.Cu   1     USB_DM                     USB_DM                     CONNECTED     pad touches {track(USB_DM)x5}; comp=228 objects; +USB_DM:228
+R105.2   F.Cu   1     USB_DM_CP                  USB_DM_CP                  CONNECTED     pad touches {track(USB_DM_CP)x3}; comp=19 objects; +USB_DM_CP:19
+R106.1   F.Cu   1     MISO_MX                    MISO_MX                    CONNECTED     pad touches {track(MISO_MX)x2}; comp=17 objects; +MISO_MX:17
+R106.2   F.Cu   1     SPI_MISO                   SPI_MISO                   CONNECTED     pad touches {track(SPI_MISO)x2}; comp=174 objects; +SPI_MISO:174
+R107.1   F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x4}; comp=153 objects; +VBAT:153
+R107.2   F.Cu   1     SPARE_IN                   SPARE_IN                   CONNECTED     pad touches {track(SPARE_IN)x4}; comp=110 objects; +SPARE_IN:110
+R108.1   F.Cu   1     SPARE_IN                   SPARE_IN                   CONNECTED     pad touches {track(SPARE_IN)x2}; comp=110 objects; +SPARE_IN:110
+R108.2   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R109.1   F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R109.2   F.Cu   1     NIR_AN                     NIR_AN                     CONNECTED     pad touches {track(NIR_AN)x2}; comp=35 objects; +NIR_AN:35
+R11.1    F.Cu   1     AD5940_RESET               AD5940_RESET               CONNECTED     pad touches {track(AD5940_RESET)x2}; comp=95 objects; +AD5940_RESET:95
+R11.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R110.1   F.Cu   1     NIR730_GATE                NIR730_GATE                CONNECTED     pad touches {track(NIR730_GATE)x2}; comp=92 objects; +NIR730_GATE:92
+R110.2   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R112.1   F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R112.2   F.Cu   1     RTC_INT                    RTC_INT                    CONNECTED     pad touches {track(RTC_INT)x2}; comp=82 objects; +RTC_INT:82
+R113.1   F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R113.2   F.Cu   1     MAX86178_INT               MAX86178_INT               CONNECTED     pad touches {track(MAX86178_INT)x3}; comp=116 objects; +MAX86178_INT:116
+R114.1   F.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x4}; comp=158 objects; +TX_5V:158
+R114.2   F.Cu   1     LED_AN                     LED_AN                     CONNECTED     pad touches {track(LED_AN)x2}; comp=128 objects; +LED_AN:128
+R115.1   F.Cu   1     RTC_VBK                    RTC_VBK                    CONNECTED     pad touches {track(RTC_VBK)x2}; comp=102 objects; +RTC_VBK:102
+R115.2   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R116.1   F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x4}; comp=375 objects; ++3V3_ANA:375
+R116.2   F.Cu   1     CS_AFE4900                 CS_AFE4900                 CONNECTED     pad touches {track(CS_AFE4900)x2}; comp=154 objects; +CS_AFE4900:154
+R117.1   F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R117.2   F.Cu   1     CS_MAX86178                CS_MAX86178                CONNECTED     pad touches {track(CS_MAX86178)x2}; comp=104 objects; +CS_MAX86178:104
+R118.1   F.Cu   1     J13_INP                    J13_INP                    CONNECTED     pad touches {track(J13_INP)x2}; comp=29 objects; +J13_INP:29
+R118.2   F.Cu   1     MX_ECG_INP                 MX_ECG_INP                 CONNECTED     pad touches {track(MX_ECG_INP)x2}; comp=4 objects; +MX_ECG_INP:4
+R119.1   F.Cu   1     J13_INM                    J13_INM                    CONNECTED     pad touches {track(J13_INM)x2}; comp=34 objects; +J13_INM:34
+R119.2   F.Cu   1     MX_ECG_INM                 MX_ECG_INM                 CONNECTED     pad touches {track(MX_ECG_INM)x2}; comp=84 objects; +MX_ECG_INM:84
+R12.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+R12.2    F.Cu   1     IOVDD                      IOVDD                      CONNECTED     pad touches {track(IOVDD)x2}; comp=100 objects; +IOVDD:100
+R120.1   B.Cu   1     J11_WE                     J11_WE                     CONNECTED     pad touches {track(J11_WE)x2}; comp=18 objects; +J11_WE:18
+R120.2   B.Cu   1     SWEAT_WE                   SWEAT_WE                   CONNECTED     pad touches {track(SWEAT_WE)x2}; comp=331 objects; +SWEAT_WE:331
+R121.1   B.Cu   1     J11_RE                     J11_RE                     CONNECTED     pad touches {track(J11_RE)x3}; comp=52 objects; +J11_RE:52
+R121.2   B.Cu   1     SWEAT_RE                   SWEAT_RE                   CONNECTED     pad touches {track(SWEAT_RE)x4}; comp=174 objects; +SWEAT_RE:174
+R122.1   B.Cu   1     J11_CE                     J11_CE                     CONNECTED     pad touches {track(J11_CE)x2}; comp=46 objects; +J11_CE:46
+R122.2   B.Cu   1     SWEAT_CE                   SWEAT_CE                   CONNECTED     pad touches {track(SWEAT_CE)x2}; comp=207 objects; +SWEAT_CE:207
+R123.1   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1, flash(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+R123.2   F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x1}; comp=252 objects; +VBUS:252
+R13.1    F.Cu   1     RCAL0                      RCAL0                      CONNECTED     pad touches {track(RCAL0)x2}; comp=52 objects; +RCAL0:52
+R13.2    F.Cu   1     RCAL1                      RCAL1                      CONNECTED     pad touches {track(RCAL1)x2}; comp=47 objects; +RCAL1:47
+R14.1    F.Cu   1     ADS1292_PWDN               ADS1292_PWDN               CONNECTED     pad touches {track(ADS1292_PWDN)x2, flash(ADS1292_PWDN)x2}; comp=165 objects; +ADS1292_PWDN:165
+R14.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R15.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x4}; comp=375 objects; ++3V3_ANA:375
+R15.2    F.Cu   1     RLDREF                     RLDREF                     CONNECTED     pad touches {track(RLDREF)x2}; comp=59 objects; +RLDREF:59
+R16.1    F.Cu   1     RLDREF                     RLDREF                     CONNECTED     pad touches {track(RLDREF)x4}; comp=59 objects; +RLDREF:59
+R16.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R17.1    F.Cu   1     RLDOUT                     RLDOUT                     CONNECTED     pad touches {track(RLDOUT)x4}; comp=120 objects; +RLDOUT:120
+R17.2    F.Cu   1     RLDINV                     RLDINV                     CONNECTED     pad touches {track(RLDINV)x2}; comp=78 objects; +RLDINV:78
+R18.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R18.2    F.Cu   1     VREF2                      VREF2                      CONNECTED     pad touches {track(VREF2)x2}; comp=32 objects; +VREF2:32
+R19.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x4, flash(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R19.2    F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+R2.1     F.Cu   1     USB_CC2                    USB_CC2                    CONNECTED     pad touches {track(USB_CC2)x2}; comp=45 objects; +USB_CC2:45
+R2.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R20.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R20.2    F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x4}; comp=458 objects; +I2C_SCL:458
+R21.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+R21.2    F.Cu   1     I2C_SDA_1V8                I2C_SDA_1V8                CONNECTED     pad touches {track(I2C_SDA_1V8)x2}; comp=205 objects; +I2C_SDA_1V8:205
+R22.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+R22.2    F.Cu   1     I2C_SCL_1V8                I2C_SCL_1V8                CONNECTED     pad touches {track(I2C_SCL_1V8)x4}; comp=193 objects; +I2C_SCL_1V8:193
+R23.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R23.2    F.Cu   1     FB_3V3                     FB_3V3                     CONNECTED     pad touches {track(FB_3V3)x2}; comp=21 objects; +FB_3V3:21
+R24.1    F.Cu   1     FB_3V3                     FB_3V3                     CONNECTED     pad touches {track(FB_3V3)x2}; comp=21 objects; +FB_3V3:21
+R24.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R25.1    F.Cu   1     TX5_EN                     TX5_EN                     CONNECTED     pad touches {track(TX5_EN)x2}; comp=126 objects; +TX5_EN:126
+R25.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R26.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+R26.2    F.Cu   1     IN1P                       IN1P                       CONNECTED     pad touches {track(IN1P)x2}; comp=101 objects; +IN1P:101
+R27.1    F.Cu   1     IN1P                       IN1P                       CONNECTED     pad touches {track(IN1P)x2}; comp=101 objects; +IN1P:101
+R27.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R28.1    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+R28.2    F.Cu   1     IN1N                       IN1N                       CONNECTED     pad touches {track(IN1N)x4}; comp=112 objects; +IN1N:112
+R29.1    F.Cu   1     IN1N                       IN1N                       CONNECTED     pad touches {track(IN1N)x2}; comp=112 objects; +IN1N:112
+R29.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R3.1     F.Cu   1     CHG_ISET                   CHG_ISET                   CONNECTED     pad touches {track(CHG_ISET)x2}; comp=56 objects; +CHG_ISET:56
+R3.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R30.1    F.Cu   1     RESP_MODP                  RESP_MODP                  CONNECTED     pad touches {track(RESP_MODP)x2}; comp=46 objects; +RESP_MODP:46
+R30.2    F.Cu   1     ECG_P                      ECG_P                      CONNECTED     pad touches {track(ECG_P)x1}; comp=161 objects; +ECG_P:161
+R31.1    F.Cu   1     RESP_MODN                  RESP_MODN                  CONNECTED     pad touches {track(RESP_MODN)x2}; comp=43 objects; +RESP_MODN:43
+R31.2    F.Cu   1     ECG_N                      ECG_N                      CONNECTED     pad touches {track(ECG_N)x4}; comp=191 objects; +ECG_N:191
+R32.1    B.Cu   1     ECG1_PAD                   ECG1_PAD                   CONNECTED     pad touches {track(ECG1_PAD)x2}; comp=110 objects; +ECG1_PAD:110
+R32.2    B.Cu   1     ECG_P                      ECG_P                      CONNECTED     pad touches {track(ECG_P)x2}; comp=161 objects; +ECG_P:161
+R33.1    B.Cu   1     ECG2_PAD                   ECG2_PAD                   CONNECTED     pad touches {track(ECG2_PAD)x2}; comp=73 objects; +ECG2_PAD:73
+R33.2    B.Cu   1     ECG_N                      ECG_N                      CONNECTED     pad touches {track(ECG_N)x4}; comp=191 objects; +ECG_N:191
+R34.1    B.Cu   1     RLD_PAD                    RLD_PAD                    CONNECTED     pad touches {track(RLD_PAD)x2}; comp=107 objects; +RLD_PAD:107
+R34.2    B.Cu   1     RLD_CLAMP                  RLD_CLAMP                  CONNECTED     pad touches {track(RLD_CLAMP)x2}; comp=84 objects; +RLD_CLAMP:84
+R35.1    B.Cu   1     AFE_P_PAD                  AFE_P_PAD                  CONNECTED     pad touches {track(AFE_P_PAD)x2}; comp=116 objects; +AFE_P_PAD:116
+R35.2    B.Cu   1     AFE_P_AC                   AFE_P_AC                   CONNECTED     pad touches {track(AFE_P_AC)x2}; comp=98 objects; +AFE_P_AC:98
+R36.1    B.Cu   1     AFE_N_PAD                  AFE_N_PAD                  CONNECTED     pad touches {track(AFE_N_PAD)x1}; comp=122 objects; +AFE_N_PAD:122
+R36.2    B.Cu   1     AFE_N_AC                   AFE_N_AC                   CONNECTED     pad touches {track(AFE_N_AC)x2}; comp=74 objects; +AFE_N_AC:74
+R39.1    F.Cu   1     CE_ISO                     CE_ISO                     CONNECTED     pad touches {track(CE_ISO)x2}; comp=111 objects; +CE_ISO:111
+R39.2    F.Cu   1     CE0                        CE0                        CONNECTED     pad touches {track(CE0)x2}; comp=47 objects; +CE0:47
+R40.1    F.Cu   1     SE_SURGE                   SE_SURGE                   CONNECTED     pad touches {track(SE_SURGE)x2}; comp=57 objects; +SE_SURGE:57
+R40.2    F.Cu   1     SE_ISO                     SE_ISO                     CONNECTED     pad touches {track(SE_ISO)x2}; comp=68 objects; +SE_ISO:68
+R41.1    F.Cu   1     RE_SURGE                   RE_SURGE                   CONNECTED     pad touches {track(RE_SURGE)x2}; comp=104 objects; +RE_SURGE:104
+R41.2    F.Cu   1     RE0                        RE0                        CONNECTED     pad touches {track(RE0)x2}; comp=57 objects; +RE0:57
+R42.1    F.Cu   1     DE_SURGE                   DE_SURGE                   CONNECTED     pad touches {track(DE_SURGE)x2}; comp=64 objects; +DE_SURGE:64
+R42.2    F.Cu   1     DE0                        DE0                        CONNECTED     pad touches {track(DE0)x1}; comp=41 objects; +DE0:41
+R43.1    F.Cu   1     RLDOUT                     RLDOUT                     CONNECTED     pad touches {track(RLDOUT)x2}; comp=120 objects; +RLDOUT:120
+R43.2    F.Cu   1     AFE_INP                    AFE_INP                    CONNECTED     pad touches {track(AFE_INP)x4}; comp=65 objects; +AFE_INP:65
+R44.1    F.Cu   1     AFE_P_AC                   AFE_P_AC                   CONNECTED     pad touches {track(AFE_P_AC)x4}; comp=98 objects; +AFE_P_AC:98
+R44.2    F.Cu   1     AFE_P_SER                  AFE_P_SER                  CONNECTED     pad touches {track(AFE_P_SER)x2}; comp=49 objects; +AFE_P_SER:49
+R45.1    F.Cu   1     RLDOUT                     RLDOUT                     CONNECTED     pad touches {track(RLDOUT)x2}; comp=120 objects; +RLDOUT:120
+R45.2    F.Cu   1     AFE_INM                    AFE_INM                    CONNECTED     pad touches {track(AFE_INM)x2}; comp=67 objects; +AFE_INM:67
+R46.1    F.Cu   1     AFE_N_AC                   AFE_N_AC                   CONNECTED     pad touches {track(AFE_N_AC)x2}; comp=74 objects; +AFE_N_AC:74
+R46.2    F.Cu   1     AFE_N_SER                  AFE_N_SER                  CONNECTED     pad touches {track(AFE_N_SER)x2}; comp=4 objects; +AFE_N_SER:4
+R47.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R47.2    F.Cu   1     IR_AN                      IR_AN                      CONNECTED     pad touches {track(IR_AN)x2}; comp=26 objects; +IR_AN:26
+R48.1    F.Cu   1     IR_GATE                    IR_GATE                    CONNECTED     pad touches {track(IR_GATE)x2}; comp=120 objects; +IR_GATE:120
+R48.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x3}; comp=4239 objects; +GND:4237; nonet:2
+R49.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R49.2    F.Cu   1     CHG_STAT                   CHG_STAT                   CONNECTED     pad touches {track(CHG_STAT)x4}; comp=234 objects; +CHG_STAT:234
+R5.1     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R5.2     F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x4}; comp=378 objects; +ESP_EN:378
+R50.1    F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x2}; comp=252 objects; +VBUS:252
+R50.2    F.Cu   1     VBUS_DET                   VBUS_DET                   CONNECTED     pad touches {track(VBUS_DET)x4}; comp=50 objects; +VBUS_DET:50
+R51.1    F.Cu   1     VBUS_DET                   VBUS_DET                   CONNECTED     pad touches {track(VBUS_DET)x2}; comp=50 objects; +VBUS_DET:50
+R51.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R52.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R52.2    F.Cu   1     CS_FLASH                   CS_FLASH                   CONNECTED     pad touches {track(CS_FLASH)x2}; comp=157 objects; +CS_FLASH:157
+R53.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R53.2    F.Cu   1     EXP_INT                    EXP_INT                    CONNECTED     pad touches {track(EXP_INT)x4}; comp=163 objects; +EXP_INT:163
+R59.1    F.Cu   1     CHG_DIS                    CHG_DIS                    CONNECTED     pad touches {track(CHG_DIS)x4}; comp=119 objects; +CHG_DIS:119
+R59.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R6.1     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R6.2     F.Cu   1     ESP_IO0                    ESP_IO0                    CONNECTED     pad touches {track(ESP_IO0)x2}; comp=160 objects; +ESP_IO0:160
+R60.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R60.2    F.Cu   1     CHG_PG                     CHG_PG                     CONNECTED     pad touches {track(CHG_PG)x2, flash(CHG_PG)x2}; comp=118 objects; +CHG_PG:118
+R61.1    F.Cu   1     TS                         TS                         CONNECTED     pad touches {track(TS)x2}; comp=96 objects; +TS:96
+R61.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R62.1    F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x2}; comp=123 objects; +VDD_CP2102:123
+R62.2    F.Cu   1     CP_RST                     CP_RST                     CONNECTED     pad touches {track(CP_RST)x2}; comp=47 objects; +CP_RST:47
+R63.1    F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x4}; comp=252 objects; +VBUS:252
+R63.2    F.Cu   1     CP_VBUS                    CP_VBUS                    CONNECTED     pad touches {track(CP_VBUS)x2}; comp=89 objects; +CP_VBUS:89
+R64.1    F.Cu   1     CP_VBUS                    CP_VBUS                    CONNECTED     pad touches {track(CP_VBUS)x4}; comp=89 objects; +CP_VBUS:89
+R64.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R65.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R65.2    F.Cu   1     TMP117_ALERT               TMP117_ALERT               CONNECTED     pad touches {track(TMP117_ALERT)x2}; comp=162 objects; +TMP117_ALERT:162
+R66.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+R66.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R67.1    F.Cu   1     IN1P_AC                    IN1P_AC                    CONNECTED     pad touches {track(IN1P_AC)x2}; comp=19 objects; +IN1P_AC:19
+R67.2    F.Cu   1     IN1P                       IN1P                       CONNECTED     pad touches {track(IN1P)x2}; comp=101 objects; +IN1P:101
+R68.1    F.Cu   1     IN1N_AC                    IN1N_AC                    CONNECTED     pad touches {track(IN1N_AC)x2}; comp=52 objects; +IN1N_AC:52
+R68.2    F.Cu   1     IN1N                       IN1N                       CONNECTED     pad touches {track(IN1N)x2}; comp=112 objects; +IN1N:112
+R69.1    F.Cu   1     RLD_CLAMP                  RLD_CLAMP                  CONNECTED     pad touches {track(RLD_CLAMP)x2}; comp=84 objects; +RLD_CLAMP:84
+R69.2    F.Cu   1     RLDOUT                     RLDOUT                     CONNECTED     pad touches {track(RLDOUT)x2}; comp=120 objects; +RLDOUT:120
+R7.1     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R7.2     F.Cu   1     CS_AD5940                  CS_AD5940                  CONNECTED     pad touches {track(CS_AD5940)x2}; comp=165 objects; +CS_AD5940:165
+R70.1    F.Cu   1     CP_DTR                     CP_DTR                     CONNECTED     pad touches {track(CP_DTR)x2}; comp=81 objects; +CP_DTR:81
+R70.2    F.Cu   1     Q3_B1                      Q3_B1                      CONNECTED     pad touches {track(Q3_B1)x2}; comp=48 objects; +Q3_B1:48
+R71.1    F.Cu   1     CP_RTS                     CP_RTS                     CONNECTED     pad touches {track(CP_RTS)x4}; comp=57 objects; +CP_RTS:57
+R71.2    F.Cu   1     Q3_B2                      Q3_B2                      CONNECTED     pad touches {track(Q3_B2)x2}; comp=43 objects; +Q3_B2:43
+R72.1    F.Cu   1     ESP_TX                     ESP_TX                     CONNECTED     pad touches {track(ESP_TX)x2}; comp=208 objects; +ESP_TX:208
+R72.2    F.Cu   1     CP_RX                      CP_RX                      CONNECTED     pad touches {track(CP_RX)x1}; comp=91 objects; +CP_RX:91
+R73.1    F.Cu   1     CP_TX                      CP_TX                      CONNECTED     pad touches {track(CP_TX)x1}; comp=113 objects; +CP_TX:113
+R73.2    F.Cu   1     ESP_RX                     ESP_RX                     CONNECTED     pad touches {track(ESP_RX)x4}; comp=206 objects; +ESP_RX:206
+R74.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R74.2    F.Cu   1     GAUGE_ALRT                 GAUGE_ALRT                 CONNECTED     pad touches {track(GAUGE_ALRT)x2}; comp=92 objects; +GAUGE_ALRT:92
+R75.1    F.Cu   1     CHG_VSET                   CHG_VSET                   CONNECTED     pad touches {track(CHG_VSET)x2}; comp=61 objects; +CHG_VSET:61
+R75.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R76.1    F.Cu   1     EDA_CE_PAD                 EDA_CE_PAD                 CONNECTED     pad touches {track(EDA_CE_PAD)x2}; comp=51 objects; +EDA_CE_PAD:51
+R76.2    F.Cu   1     CE_SURGE                   CE_SURGE                   CONNECTED     pad touches {track(CE_SURGE)x2}; comp=7 objects; +CE_SURGE:7
+R77.1    F.Cu   1     EDA_SE_PAD                 EDA_SE_PAD                 CONNECTED     pad touches {track(EDA_SE_PAD)x2}; comp=78 objects; +EDA_SE_PAD:78
+R77.2    F.Cu   1     SE_SURGE                   SE_SURGE                   CONNECTED     pad touches {track(SE_SURGE)x2}; comp=57 objects; +SE_SURGE:57
+R78.1    F.Cu   1     EDA_RE_PAD                 EDA_RE_PAD                 CONNECTED     pad touches {track(EDA_RE_PAD)x2}; comp=64 objects; +EDA_RE_PAD:64
+R78.2    F.Cu   1     RE_SURGE                   RE_SURGE                   CONNECTED     pad touches {track(RE_SURGE)x2}; comp=104 objects; +RE_SURGE:104
+R79.1    F.Cu   1     EDA_DE_PAD                 EDA_DE_PAD                 CONNECTED     pad touches {track(EDA_DE_PAD)x2}; comp=49 objects; +EDA_DE_PAD:49
+R79.2    F.Cu   1     DE_SURGE                   DE_SURGE                   CONNECTED     pad touches {track(DE_SURGE)x2}; comp=64 objects; +DE_SURGE:64
+R8.1     F.Cu   1     FSR_ADC                    FSR_ADC                    CONNECTED     pad touches {track(FSR_ADC)x4}; comp=106 objects; +FSR_ADC:106
+R8.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R80.1    B.Cu   1     BIOZ_FP_PAD                BIOZ_FP_PAD                CONNECTED     pad touches {track(BIOZ_FP_PAD)x2}; comp=9 objects; +BIOZ_FP_PAD:9
+R80.2    B.Cu   1     FP_SURGE                   FP_SURGE                   CONNECTED     pad touches {track(FP_SURGE)x2}; comp=25 objects; +FP_SURGE:25
+R81.1    B.Cu   1     BIOZ_FN_PAD                BIOZ_FN_PAD                CONNECTED     pad touches {track(BIOZ_FN_PAD)x2}; comp=68 objects; +BIOZ_FN_PAD:68
+R81.2    B.Cu   1     FN_SURGE                   FN_SURGE                   CONNECTED     pad touches {track(FN_SURGE)x2}; comp=46 objects; +FN_SURGE:46
+R82.1    B.Cu   1     BIOZ_SP_PAD                BIOZ_SP_PAD                CONNECTED     pad touches {track(BIOZ_SP_PAD)x1}; comp=49 objects; +BIOZ_SP_PAD:49
+R82.2    B.Cu   1     SP_SURGE                   SP_SURGE                   CONNECTED     pad touches {track(SP_SURGE)x2}; comp=75 objects; +SP_SURGE:75
+R83.1    B.Cu   1     BIOZ_SN_PAD                BIOZ_SN_PAD                CONNECTED     pad touches {track(BIOZ_SN_PAD)x2}; comp=145 objects; +BIOZ_SN_PAD:145
+R83.2    B.Cu   1     SN_SURGE                   SN_SURGE                   CONNECTED     pad touches {track(SN_SURGE)x2}; comp=42 objects; +SN_SURGE:42
+R84.1    F.Cu   1     FP_ISO                     FP_ISO                     CONNECTED     pad touches {track(FP_ISO)x2}; comp=57 objects; +FP_ISO:57
+R84.2    F.Cu   1     BIOZ_FP                    BIOZ_FP                    CONNECTED     pad touches {track(BIOZ_FP)x1}; comp=59 objects; +BIOZ_FP:59
+R85.1    F.Cu   1     FN_SURGE                   FN_SURGE                   CONNECTED     pad touches {track(FN_SURGE)x2}; comp=46 objects; +FN_SURGE:46
+R85.2    F.Cu   1     FN_ISO                     FN_ISO                     CONNECTED     pad touches {track(FN_ISO)x2}; comp=73 objects; +FN_ISO:73
+R86.1    F.Cu   1     SP_SURGE                   SP_SURGE                   CONNECTED     pad touches {track(SP_SURGE)x2}; comp=75 objects; +SP_SURGE:75
+R86.2    F.Cu   1     SP_ISO                     SP_ISO                     CONNECTED     pad touches {track(SP_ISO)x2}; comp=62 objects; +SP_ISO:62
+R87.1    F.Cu   1     SN_SURGE                   SN_SURGE                   CONNECTED     pad touches {track(SN_SURGE)x2}; comp=42 objects; +SN_SURGE:42
+R87.2    F.Cu   1     SN_ISO                     SN_ISO                     CONNECTED     pad touches {track(SN_ISO)x2}; comp=68 objects; +SN_ISO:68
+R88.1    F.Cu   1     STATUS_LED                 STATUS_LED                 CONNECTED     pad touches {track(STATUS_LED)x2}; comp=46 objects; +STATUS_LED:46
+R88.2    F.Cu   1     LED_A                      LED_A                      CONNECTED     pad touches {track(LED_A)x2}; comp=12 objects; +LED_A:12
+R89.1    F.Cu   1     MISO_ADS                   MISO_ADS                   CONNECTED     pad touches {track(MISO_ADS)x2}; comp=46 objects; +MISO_ADS:46
+R89.2    F.Cu   1     SPI_MISO                   SPI_MISO                   CONNECTED     pad touches {track(SPI_MISO)x2}; comp=174 objects; +SPI_MISO:174
+R9.1     F.Cu   1     AFE4900_RESETZ             AFE4900_RESETZ             CONNECTED     pad touches {track(AFE4900_RESETZ)x2}; comp=114 objects; +AFE4900_RESETZ:114
+R9.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+R90.1    F.Cu   1     MISO_AFE                   MISO_AFE                   CONNECTED     pad touches {flash(MISO_AFE)x2}; comp=60 objects; +MISO_AFE:60
+R90.2    F.Cu   1     SPI_MISO                   SPI_MISO                   CONNECTED     pad touches {track(SPI_MISO)x2}; comp=174 objects; +SPI_MISO:174
+R91.1    F.Cu   1     MISO_AD                    MISO_AD                    CONNECTED     pad touches {track(MISO_AD)x2}; comp=81 objects; +MISO_AD:81
+R91.2    F.Cu   1     SPI_MISO                   SPI_MISO                   CONNECTED     pad touches {track(SPI_MISO)x4}; comp=174 objects; +SPI_MISO:174
+R92.1    F.Cu   1     MISO_FL                    MISO_FL                    CONNECTED     pad touches {track(MISO_FL)x2}; comp=50 objects; +MISO_FL:50
+R92.2    F.Cu   1     SPI_MISO                   SPI_MISO                   CONNECTED     pad touches {track(SPI_MISO)x2}; comp=174 objects; +SPI_MISO:174
+R93.1    F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x2}; comp=153 objects; +VBAT:153
+R93.2    F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x2}; comp=185 objects; +VBAT_SYS:185
+R94.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R94.2    F.Cu   1     +3V3_ESP                   +3V3_ESP                   CONNECTED     pad touches {track(+3V3_ESP)x1}; comp=41 objects; ++3V3_ESP:41
+R95.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R95.2    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+R96.1    F.Cu   1     TX_5V_RAW                  TX_5V_RAW                  CONNECTED     pad touches {track(TX_5V_RAW)x2}; comp=31 objects; +TX_5V_RAW:31
+R96.2    F.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x2}; comp=158 objects; +TX_5V:158
+R97.1    F.Cu   1     +1V8_LDO                   +1V8_LDO                   CONNECTED     pad touches {track(+1V8_LDO)x2}; comp=22 objects; ++1V8_LDO:22
+R97.2    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+R98.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R98.2    F.Cu   1     CS_ADS1292                 CS_ADS1292                 CONNECTED     pad touches {track(CS_ADS1292)x2}; comp=117 objects; +CS_ADS1292:117
+R99.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+R99.2    F.Cu   1     ADS1292_DRDY               ADS1292_DRDY               CONNECTED     pad touches {track(ADS1292_DRDY)x2}; comp=133 objects; +ADS1292_DRDY:133
+SW1.1    F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x2}; comp=378 objects; +ESP_EN:378
+SW1.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+SW2.1    F.Cu   1     ESP_IO0                    ESP_IO0                    CONNECTED     pad touches {track(ESP_IO0)x2}; comp=160 objects; +ESP_IO0:160
+SW2.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x3}; comp=4239 objects; +GND:4237; nonet:2
+TP1.1    F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x4}; comp=252 objects; +VBUS:252
+TP10.1   F.Cu   1     ESP_IO0                    ESP_IO0                    CONNECTED     pad touches {track(ESP_IO0)x4}; comp=160 objects; +ESP_IO0:160
+TP11.1   F.Cu   1     ESP_TX                     ESP_TX                     CONNECTED     pad touches {track(ESP_TX)x2}; comp=208 objects; +ESP_TX:208
+TP12.1   F.Cu   1     ESP_RX                     ESP_RX                     CONNECTED     pad touches {track(ESP_RX)x3}; comp=206 objects; +ESP_RX:206
+TP13.1   F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x4}; comp=498 objects; +I2C_SDA:498
+TP14.1   F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x2}; comp=458 objects; +I2C_SCL:458
+TP15.1   F.Cu   1     I2C_SDA_1V8                I2C_SDA_1V8                CONNECTED     pad touches {track(I2C_SDA_1V8)x4}; comp=205 objects; +I2C_SDA_1V8:205
+TP16.1   F.Cu   1     I2C_SCL_1V8                I2C_SCL_1V8                CONNECTED     pad touches {track(I2C_SCL_1V8)x1}; comp=193 objects; +I2C_SCL_1V8:193
+TP17.1   F.Cu   1     SPI_SCK                    SPI_SCK                    CONNECTED     pad touches {track(SPI_SCK)x4}; comp=225 objects; +SPI_SCK:225
+TP18.1   F.Cu   1     SPI_MOSI                   SPI_MOSI                   CONNECTED     pad touches {track(SPI_MOSI)x2}; comp=252 objects; +SPI_MOSI:252
+TP19.1   F.Cu   1     SPI_MISO                   SPI_MISO                   CONNECTED     pad touches {track(SPI_MISO)x2}; comp=174 objects; +SPI_MISO:174
+TP2.1    F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x4}; comp=153 objects; +VBAT:153
+TP20.1   F.Cu   1     CS_ADS1292                 CS_ADS1292                 CONNECTED     pad touches {track(CS_ADS1292)x2}; comp=117 objects; +CS_ADS1292:117
+TP21.1   F.Cu   1     CS_AFE4900                 CS_AFE4900                 CONNECTED     pad touches {track(CS_AFE4900)x2}; comp=154 objects; +CS_AFE4900:154
+TP22.1   F.Cu   1     CS_AD5940                  CS_AD5940                  CONNECTED     pad touches {track(CS_AD5940)x2}; comp=165 objects; +CS_AD5940:165
+TP23.1   F.Cu   1     CS_FLASH                   CS_FLASH                   CONNECTED     pad touches {track(CS_FLASH)x2}; comp=157 objects; +CS_FLASH:157
+TP24.1   F.Cu   1     ADS1292_DRDY               ADS1292_DRDY               CONNECTED     pad touches {track(ADS1292_DRDY)x2}; comp=133 objects; +ADS1292_DRDY:133
+TP25.1   F.Cu   1     AFE4900_ADC_RDY            AFE4900_ADC_RDY            CONNECTED     pad touches {track(AFE4900_ADC_RDY)x4}; comp=110 objects; +AFE4900_ADC_RDY:110
+TP26.1   F.Cu   1     EXP_INT                    EXP_INT                    CONNECTED     pad touches {track(EXP_INT)x4}; comp=163 objects; +EXP_INT:163
+TP27.1   F.Cu   1     CHG_STAT                   CHG_STAT                   CONNECTED     pad touches {track(CHG_STAT)x2}; comp=234 objects; +CHG_STAT:234
+TP28.1   F.Cu   1     RTC_INT                    RTC_INT                    CONNECTED     pad touches {track(RTC_INT)x2}; comp=82 objects; +RTC_INT:82
+TP3.1    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+TP4.1    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+TP5.1    F.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x2}; comp=158 objects; +TX_5V:158
+TP6.1    F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x2}; comp=123 objects; +VDD_CP2102:123
+TP7.1    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+TP8.1    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+TP9.1    F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x4}; comp=378 objects; +ESP_EN:378
+U1.1     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.10    F.Cu   1     GAUGE_ALRT                 GAUGE_ALRT                 CONNECTED     pad touches {track(GAUGE_ALRT)x2}; comp=92 objects; +GAUGE_ALRT:92
+U1.11    F.Cu   1     CHG_PG                     CHG_PG                     CONNECTED     pad touches {track(CHG_PG)x2}; comp=118 objects; +CHG_PG:118
+U1.12    F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+U1.13    F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x2}; comp=458 objects; +I2C_SCL:458
+U1.14    F.Cu   1     CS_ADS1292                 CS_ADS1292                 CONNECTED     pad touches {track(CS_ADS1292)x2}; comp=117 objects; +CS_ADS1292:117
+U1.15    F.Cu   1     SPI_MOSI                   SPI_MOSI                   CONNECTED     pad touches {track(SPI_MOSI)x2}; comp=252 objects; +SPI_MOSI:252
+U1.16    F.Cu   1     SPI_SCK                    SPI_SCK                    CONNECTED     pad touches {track(SPI_SCK)x2}; comp=225 objects; +SPI_SCK:225
+U1.17    F.Cu   1     SPI_MISO                   SPI_MISO                   CONNECTED     pad touches {track(SPI_MISO)x2}; comp=174 objects; +SPI_MISO:174
+U1.18    F.Cu   1     AD5940_GPIO0               AD5940_GPIO0               CONNECTED     pad touches {track(AD5940_GPIO0)x1}; comp=41 objects; +AD5940_GPIO0:41
+U1.19    F.Cu   1     CS_AD5940                  CS_AD5940                  CONNECTED     pad touches {track(CS_AD5940)x2}; comp=165 objects; +CS_AD5940:165
+U1.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.20    F.Cu   1     CS_FLASH                   CS_FLASH                   CONNECTED     pad touches {track(CS_FLASH)x2}; comp=157 objects; +CS_FLASH:157
+U1.21    F.Cu   1     STATUS_LED                 STATUS_LED                 CONNECTED     pad touches {track(STATUS_LED)x2}; comp=46 objects; +STATUS_LED:46
+U1.22    F.Cu   1     CS_AFE4900                 CS_AFE4900                 CONNECTED     pad touches {track(CS_AFE4900)x2}; comp=154 objects; +CS_AFE4900:154
+U1.23    F.Cu   1     USB_DM_S3                  USB_DM_S3                  CONNECTED     pad touches {track(USB_DM_S3)x4}; comp=126 objects; +USB_DM_S3:126
+U1.24    F.Cu   1     USB_DP_S3                  USB_DP_S3                  CONNECTED     pad touches {track(USB_DP_S3)x3}; comp=105 objects; +USB_DP_S3:105
+U1.25    F.Cu   1     AFE4900_ADC_RDY            AFE4900_ADC_RDY            CONNECTED     pad touches {track(AFE4900_ADC_RDY)x2}; comp=110 objects; +AFE4900_ADC_RDY:110
+U1.26    F.Cu   1     unconnected-(U1-IO26-Pad26) unconnected-(U1-IO26-Pad26) NC-ISO        touches NOTHING; nearest copper 0.108mm (track ECG_P)
+U1.27    F.Cu   1     unconnected-(U1-IO47-Pad27) unconnected-(U1-IO47-Pad27) NC-ISO        touches NOTHING; nearest copper 0.130mm (track CS_MAX86178)
+U1.28    F.Cu   1     unconnected-(U1-IO33-Pad28) unconnected-(U1-IO33-Pad28) NC-ISO        touches NOTHING; nearest copper 0.104mm (track CS_MAX86178)
+U1.29    F.Cu   1     unconnected-(U1-IO34-Pad29) unconnected-(U1-IO34-Pad29) NC-ISO        touches NOTHING; nearest copper 0.146mm (track ESP_TX)
+U1.3     F.Cu   1     +3V3_ESP                   +3V3_ESP                   CONNECTED     pad touches {track(+3V3_ESP)x2}; comp=41 objects; ++3V3_ESP:41
+U1.30    F.Cu   1     unconnected-(U1-IO48-Pad30) unconnected-(U1-IO48-Pad30) NC-ISO        touches NOTHING; nearest copper 0.146mm (track ESP_TX)
+U1.31    F.Cu   1     unconnected-(U1-IO35-Pad31) unconnected-(U1-IO35-Pad31) NC-ISO        touches NOTHING; nearest copper 0.135mm (flash MIC_DAT)
+U1.32    F.Cu   1     unconnected-(U1-IO36-Pad32) unconnected-(U1-IO36-Pad32) NC-ISO        touches NOTHING; nearest copper 0.113mm (track MIC_DAT)
+U1.33    F.Cu   1     unconnected-(U1-IO37-Pad33) unconnected-(U1-IO37-Pad33) NC-ISO        touches NOTHING; nearest copper 0.113mm (track MIC_DAT)
+U1.34    F.Cu   1     CS_MAX86178                CS_MAX86178                CONNECTED     pad touches {track(CS_MAX86178)x2}; comp=104 objects; +CS_MAX86178:104
+U1.35    F.Cu   1     MAX86178_INT               MAX86178_INT               CONNECTED     pad touches {track(MAX86178_INT)x2}; comp=116 objects; +MAX86178_INT:116
+U1.36    F.Cu   1     MIC_CLK                    MIC_CLK                    CONNECTED     pad touches {track(MIC_CLK)x2}; comp=52 objects; +MIC_CLK:52
+U1.37    F.Cu   1     MIC_DAT                    MIC_DAT                    CONNECTED     pad touches {track(MIC_DAT)x2}; comp=73 objects; +MIC_DAT:73
+U1.38    F.Cu   1     SPARE_IN                   SPARE_IN                   CONNECTED     pad touches {track(SPARE_IN)x2}; comp=110 objects; +SPARE_IN:110
+U1.39    F.Cu   1     ESP_TX                     ESP_TX                     CONNECTED     pad touches {track(ESP_TX)x4}; comp=208 objects; +ESP_TX:208
+U1.4     F.Cu   1     ESP_IO0                    ESP_IO0                    CONNECTED     pad touches {track(ESP_IO0)x4}; comp=160 objects; +ESP_IO0:160
+U1.40    F.Cu   1     ESP_RX                     ESP_RX                     CONNECTED     pad touches {track(ESP_RX)x2}; comp=206 objects; +ESP_RX:206
+U1.41    F.Cu   1     unconnected-(U1-IO45-Pad41) unconnected-(U1-IO45-Pad41) NC-ISO        touches NOTHING; nearest copper 0.102mm (track ESP_TX)
+U1.42    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.43    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.44    F.Cu   1     unconnected-(U1-IO46-Pad44) unconnected-(U1-IO46-Pad44) NC-ISO        touches NOTHING; nearest copper 0.107mm (track ECG_P)
+U1.45    F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x2}; comp=378 objects; +ESP_EN:378
+U1.46    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.47    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.48    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.49    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.5     F.Cu   1     FSR_ADC                    FSR_ADC                    CONNECTED     pad touches {track(FSR_ADC)x2}; comp=106 objects; +FSR_ADC:106
+U1.50    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.51    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.52    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.53    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.54    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.55    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.56    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.57    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.58    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.59    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.6     F.Cu   1     ADS1292_DRDY               ADS1292_DRDY               CONNECTED     pad touches {track(ADS1292_DRDY)x2}; comp=133 objects; +ADS1292_DRDY:133
+U1.60    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.61    F.Cu   9     GND                        GND                        CONNECTED     pad touches {track(GND)x20}; comp=4231 objects; +GND:4229; nonet:2
+U1.62    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.63    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.64    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.65    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U1.7     F.Cu   1     EXP_INT                    EXP_INT                    CONNECTED     pad touches {track(EXP_INT)x2}; comp=163 objects; +EXP_INT:163
+U1.8     F.Cu   1     LSM6_INT1                  LSM6_INT1                  CONNECTED     pad touches {track(LSM6_INT1)x2}; comp=25 objects; +LSM6_INT1:25
+U1.9     F.Cu   1     TMP117_ALERT               TMP117_ALERT               CONNECTED     pad touches {track(TMP117_ALERT)x2}; comp=162 objects; +TMP117_ALERT:162
+U10.1    B.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+U10.2    B.Cu   1     I2C_SCL_1V8                I2C_SCL_1V8                CONNECTED     pad touches {track(I2C_SCL_1V8)x2}; comp=193 objects; +I2C_SCL_1V8:193
+U10.3    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U10.4    B.Cu   1     LDR                        LDR                        CONNECTED     pad touches {track(LDR)x2}; comp=47 objects; +LDR:47
+U10.5    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U10.6    B.Cu   1     unconnected-(U10-GPIO-Pad6) unconnected-(U10-GPIO-Pad6) NC-ISO        touches NOTHING; nearest copper 0.103mm (track +1V8)
+U10.7    B.Cu   1     unconnected-(U10-INT-Pad7) unconnected-(U10-INT-Pad7) NC-ISO        touches NOTHING; nearest copper 0.103mm (track +1V8)
+U10.8    B.Cu   1     I2C_SDA_1V8                I2C_SDA_1V8                CONNECTED     pad touches {track(I2C_SDA_1V8)x2}; comp=205 objects; +I2C_SDA_1V8:205
+U11.1    B.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x1}; comp=458 objects; +I2C_SCL:458
+U11.2    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+U11.3    B.Cu   1     TMP117_ALERT               TMP117_ALERT               CONNECTED     pad touches {track(TMP117_ALERT)x1}; comp=162 objects; +TMP117_ALERT:162
+U11.4    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+U11.5    B.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {flash(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U11.6    B.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x1}; comp=498 objects; +I2C_SDA:498
+U11.7    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x3}; comp=4239 objects; +GND:4237; nonet:2
+U12.1    B.Cu   1     I2C_SDA_1V8                I2C_SDA_1V8                CONNECTED     pad touches {track(I2C_SDA_1V8)x2}; comp=205 objects; +I2C_SDA_1V8:205
+U12.2    B.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U12.3    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U12.4    B.Cu   1     I2C_SCL_1V8                I2C_SCL_1V8                CONNECTED     pad touches {track(I2C_SCL_1V8)x2}; comp=193 objects; +I2C_SCL_1V8:193
+U12.5    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U12.6    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x7}; comp=4239 objects; +GND:4237; nonet:2
+U13.1    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U13.2    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U13.3    F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x4}; comp=498 objects; +I2C_SDA:498
+U13.4    F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x2}; comp=458 objects; +I2C_SCL:458
+U13.5    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U13.6    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U13.7    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U13.8    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U14.1    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U14.10   F.Cu   1     unconnected-(U14-Pad10)    unconnected-(U14-Pad10)    NC-ISO        touches NOTHING; nearest copper 0.215mm (track I2C_SDA)
+U14.11   F.Cu   1     unconnected-(U14-Pad11)    unconnected-(U14-Pad11)    NC-ISO        touches NOTHING; nearest copper 0.138mm (flash ESP_RX)
+U14.12   F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U14.13   F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x3}; comp=458 objects; +I2C_SCL:458
+U14.14   F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x4}; comp=498 objects; +I2C_SDA:498
+U14.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U14.3    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U14.4    F.Cu   1     LSM6_INT1                  LSM6_INT1                  CONNECTED     pad touches {track(LSM6_INT1)x2}; comp=25 objects; +LSM6_INT1:25
+U14.5    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U14.6    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U14.7    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x5}; comp=4239 objects; +GND:4237; nonet:2
+U14.8    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x3}; comp=1429 objects; ++3V3:1429
+U14.9    F.Cu   1     unconnected-(U14-Pad9)     unconnected-(U14-Pad9)     NC-ISO        touches NOTHING; nearest copper 0.143mm (track I2C_SDA)
+U15.A1   F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x2}; comp=185 objects; +VBAT_SYS:185
+U15.A2   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U15.B1   F.Cu   1     TX_SW                      TX_SW                      CONNECTED     pad touches {track(TX_SW)x2}; comp=49 objects; +TX_SW:49
+U15.B2   F.Cu   1     TX_5V_RAW                  TX_5V_RAW                  CONNECTED     pad touches {track(TX_5V_RAW)x4}; comp=31 objects; +TX_5V_RAW:31
+U15.C1   F.Cu   1     TX5_EN                     TX5_EN                     CONNECTED     pad touches {track(TX5_EN)x2}; comp=126 objects; +TX5_EN:126
+U15.C2   F.Cu   1     TX_5V_RAW                  TX_5V_RAW                  CONNECTED     pad touches {track(TX_5V_RAW)x4}; comp=31 objects; +TX_5V_RAW:31
+U16.1    B.Cu   1     PD_INP                     PD_INP                     CONNECTED     pad touches {track(PD_INP)x1}; comp=67 objects; +PD_INP:67
+U16.10   B.Cu   1     PD2_INM                    PD2_INM                    CONNECTED     pad touches {track(PD2_INM)x1}; comp=82 objects; +PD2_INM:82
+U16.11   B.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x2}; comp=158 objects; +TX_5V:158
+U16.12   B.Cu   1     TX2                        TX2                        CONNECTED     pad touches {track(TX2)x1}; comp=79 objects; +TX2:79
+U16.2    B.Cu   1     PD_INM                     PD_INM                     CONNECTED     pad touches {track(PD_INM)x1}; comp=77 objects; +PD_INM:77
+U16.3    B.Cu   1     PD2_INP                    PD2_INP                    CONNECTED     pad touches {track(PD2_INP)x1}; comp=49 objects; +PD2_INP:49
+U16.4    B.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x5}; comp=158 objects; +TX_5V:158
+U16.5    B.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x3}; comp=158 objects; +TX_5V:158
+U16.6    B.Cu   1     TX1                        TX1                        CONNECTED     pad touches {track(TX1)x1}; comp=65 objects; +TX1:65
+U16.7    B.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x2}; comp=158 objects; +TX_5V:158
+U16.8    B.Cu   1     TX3                        TX3                        CONNECTED     pad touches {track(TX3)x1}; comp=57 objects; +TX3:57
+U16.9    B.Cu   1     TX4                        TX4                        CONNECTED     pad touches {track(TX4)x1}; comp=41 objects; +TX4:41
+U17.1    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U17.2    F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x4}; comp=153 objects; +VBAT:153
+U17.3    F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x4}; comp=153 objects; +VBAT:153
+U17.4    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U17.5    F.Cu   1     GAUGE_ALRT                 GAUGE_ALRT                 CONNECTED     pad touches {track(GAUGE_ALRT)x2}; comp=92 objects; +GAUGE_ALRT:92
+U17.6    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U17.7    F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x2}; comp=458 objects; +I2C_SCL:458
+U17.8    F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+U17.9    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U18.1    F.Cu   1     CS_FLASH                   CS_FLASH                   CONNECTED     pad touches {track(CS_FLASH)x1}; comp=157 objects; +CS_FLASH:157
+U18.2    F.Cu   1     MISO_FL                    MISO_FL                    CONNECTED     pad touches {track(MISO_FL)x1}; comp=50 objects; +MISO_FL:50
+U18.3    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x1}; comp=1429 objects; ++3V3:1429
+U18.4    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+U18.5    F.Cu   1     SPI_MOSI                   SPI_MOSI                   CONNECTED     pad touches {track(SPI_MOSI)x1}; comp=252 objects; +SPI_MOSI:252
+U18.6    F.Cu   1     SPI_SCK                    SPI_SCK                    CONNECTED     pad touches {track(SPI_SCK)x1}; comp=225 objects; +SPI_SCK:225
+U18.7    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U18.8    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x1}; comp=1429 objects; ++3V3:1429
+U18.9    F.Cu   1     GND                        GND                        CONNECTED     pad touches {flash(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U19.1    F.Cu   1     ESP_EN                     ESP_EN                     CONNECTED     pad touches {track(ESP_EN)x2}; comp=378 objects; +ESP_EN:378
+U19.10   F.Cu   1     CHG_DIS                    CHG_DIS                    CONNECTED     pad touches {track(CHG_DIS)x3}; comp=119 objects; +CHG_DIS:119
+U19.11   F.Cu   1     EXP_INT                    EXP_INT                    CONNECTED     pad touches {track(EXP_INT)x2}; comp=163 objects; +EXP_INT:163
+U19.12   F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x1}; comp=458 objects; +I2C_SCL:458
+U19.13   F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+U19.14   F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U19.15   F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U19.16   F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U19.2    F.Cu   1     AFE4900_RESETZ             AFE4900_RESETZ             CONNECTED     pad touches {track(AFE4900_RESETZ)x2}; comp=114 objects; +AFE4900_RESETZ:114
+U19.3    F.Cu   1     ADS1292_PWDN               ADS1292_PWDN               CONNECTED     pad touches {track(ADS1292_PWDN)x2}; comp=165 objects; +ADS1292_PWDN:165
+U19.4    F.Cu   1     AD5940_RESET               AD5940_RESET               CONNECTED     pad touches {track(AD5940_RESET)x2}; comp=95 objects; +AD5940_RESET:95
+U19.5    F.Cu   1     TX5_EN                     TX5_EN                     CONNECTED     pad touches {track(TX5_EN)x2}; comp=126 objects; +TX5_EN:126
+U19.6    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U19.7    F.Cu   1     IR_GATE                    IR_GATE                    CONNECTED     pad touches {flash(IR_GATE)x2}; comp=120 objects; +IR_GATE:120
+U19.8    F.Cu   1     CHG_STAT                   CHG_STAT                   CONNECTED     pad touches {track(CHG_STAT)x2}; comp=234 objects; +CHG_STAT:234
+U19.9    F.Cu   1     VBUS_DET                   VBUS_DET                   CONNECTED     pad touches {track(VBUS_DET)x2}; comp=50 objects; +VBUS_DET:50
+U2.1     F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x3}; comp=252 objects; +VBUS:252
+U2.2     F.Cu   1     CHG_ISET                   CHG_ISET                   CONNECTED     pad touches {track(CHG_ISET)x2}; comp=56 objects; +CHG_ISET:56
+U2.3     F.Cu   1     TS                         TS                         CONNECTED     pad touches {track(TS)x2}; comp=96 objects; +TS:96
+U2.4     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U2.5     F.Cu   1     CHG_STAT                   CHG_STAT                   CONNECTED     pad touches {track(CHG_STAT)x2}; comp=234 objects; +CHG_STAT:234
+U2.6     F.Cu   1     CHG_PG                     CHG_PG                     CONNECTED     pad touches {track(CHG_PG)x2}; comp=118 objects; +CHG_PG:118
+U2.7     F.Cu   1     CHG_VSET                   CHG_VSET                   CONNECTED     pad touches {track(CHG_VSET)x2}; comp=61 objects; +CHG_VSET:61
+U2.8     F.Cu   1     VBAT                       VBAT                       CONNECTED     pad touches {track(VBAT)x2}; comp=153 objects; +VBAT:153
+U2.9     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x5}; comp=4239 objects; +GND:4237; nonet:2
+U20.1    F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x1}; comp=458 objects; +I2C_SCL:458
+U20.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U20.3    F.Cu   1     unconnected-(U20-ALERT-Pad3) unconnected-(U20-ALERT-Pad3) NC-ISO        touches NOTHING; nearest copper 0.200mm (pad GND)
+U20.4    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {region(+3V3)x1}; comp=1429 objects; ++3V3:1429
+U20.5    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {region(+3V3)x1, flash(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U20.6    F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+U20.7    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U21.1    F.Cu   1     USB_DP                     USB_DP                     CONNECTED     pad touches {track(USB_DP)x2}; comp=203 objects; +USB_DP:203
+U21.2    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U21.3    F.Cu   1     USB_DM                     USB_DM                     CONNECTED     pad touches {track(USB_DM)x2}; comp=228 objects; +USB_DM:228
+U21.4    F.Cu   1     USB_DM                     USB_DM                     CONNECTED     pad touches {track(USB_DM)x2}; comp=228 objects; +USB_DM:228
+U21.5    F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x4}; comp=252 objects; +VBUS:252
+U21.6    F.Cu   1     USB_DP                     USB_DP                     CONNECTED     pad touches {track(USB_DP)x4}; comp=203 objects; +USB_DP:203
+U22.A1   B.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x1}; comp=158 objects; +TX_5V:158
+U22.A2   B.Cu   1     SPI_SCK                    SPI_SCK                    CONNECTED     pad touches {flash(SPI_SCK)x2}; comp=225 objects; +SPI_SCK:225
+U22.A3   B.Cu   1     MX_SDO_1V8                 MX_SDO_1V8                 CONNECTED     pad touches {track(MX_SDO_1V8)x1}; comp=25 objects; +MX_SDO_1V8:25
+U22.A4   B.Cu   1     SPI_MOSI                   SPI_MOSI                   CONNECTED     pad touches {flash(SPI_MOSI)x2}; comp=252 objects; +SPI_MOSI:252
+U22.A5   B.Cu   1     CS_MAX86178                CS_MAX86178                CONNECTED     pad touches {track(CS_MAX86178)x1}; comp=104 objects; +CS_MAX86178:104
+U22.B1   B.Cu   1     LED3_K                     LED3_K                     CONNECTED     pad touches {flash(LED3_K)x2}; comp=123 objects; +LED3_K:123
+U22.B2   B.Cu   1     MAX86178_INT               MAX86178_INT               CONNECTED     pad touches {flash(MAX86178_INT)x2}; comp=116 objects; +MAX86178_INT:116
+U22.B3   B.Cu   1     unconnected-(U22-GPIO1-PadB3) unconnected-(U22-GPIO1-PadB3) NC-ISO        touches NOTHING; nearest copper 0.155mm (flash MAX86178_INT)
+U22.B4   B.Cu   1     unconnected-(U22-GPIO2-PadB4) unconnected-(U22-GPIO2-PadB4) NC-ISO        touches NOTHING; nearest copper 0.155mm (flash SPI_MOSI)
+U22.B5   B.Cu   1     MX_VREF                    MX_VREF                    CONNECTED     pad touches {track(MX_VREF)x1}; comp=60 objects; +MX_VREF:60
+U22.C1   B.Cu   1     LED2_K                     LED2_K                     CONNECTED     pad touches {track(LED2_K)x1}; comp=94 objects; +LED2_K:94
+U22.C2   B.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x1}; comp=234 objects; ++1V8:234
+U22.C3   B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U22.C4   B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+U22.C5   B.Cu   1     PD_A                       PD_A                       CONNECTED     pad touches {track(PD_A)x2}; comp=158 objects; +PD_A:158
+U22.D1   B.Cu   1     LED1_K                     LED1_K                     CONNECTED     pad touches {flash(LED1_K)x2}; comp=107 objects; +LED1_K:107
+U22.D2   B.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x2}; comp=234 objects; ++1V8:234
+U22.D3   B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+U22.D4   B.Cu   1     unconnected-(U22-PD2_IN-PadD4) unconnected-(U22-PD2_IN-PadD4) NC-ISO        touches NOTHING; nearest copper 0.103mm (track GND)
+U22.D5   B.Cu   1     PD_K                       PD_K                       CONNECTED     pad touches {track(PD_K)x2}; comp=187 objects; +PD_K:187
+U23.1    B.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+U23.2    B.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x6}; comp=458 objects; +I2C_SCL:458
+U23.3    B.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U23.4    B.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U24.1    F.Cu   1     unconnected-(U24-CLKOUT-Pad1) unconnected-(U24-CLKOUT-Pad1) NC-ISO        touches NOTHING; nearest copper 0.128mm (track TX5_EN)
+U24.2    F.Cu   1     RTC_INT                    RTC_INT                    CONNECTED     pad touches {track(RTC_INT)x2}; comp=82 objects; +RTC_INT:82
+U24.3    F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x2}; comp=458 objects; +I2C_SCL:458
+U24.4    F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x2}; comp=498 objects; +I2C_SDA:498
+U24.5    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U24.6    F.Cu   1     RTC_VBK                    RTC_VBK                    CONNECTED     pad touches {track(RTC_VBK)x2}; comp=102 objects; +RTC_VBK:102
+U24.7    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U24.8    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U25.1    F.Cu   1     MIC_DAT                    MIC_DAT                    CONNECTED     pad touches {track(MIC_DAT)x2}; comp=73 objects; +MIC_DAT:73
+U25.2    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U25.3    F.Cu   1     MIC_CLK                    MIC_CLK                    CONNECTED     pad touches {track(MIC_CLK)x2}; comp=52 objects; +MIC_CLK:52
+U25.4    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U25.5    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x3, flash(<unattributed>)x1}; comp=4239 objects; +GND:4237; nonet:2
+U26.1    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U26.10   F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x4}; comp=234 objects; ++1V8:234
+U26.2    F.Cu   1     CS_MAX86178                CS_MAX86178                CONNECTED     pad touches {track(CS_MAX86178)x2}; comp=104 objects; +CS_MAX86178:104
+U26.3    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U26.4    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U26.5    F.Cu   1     MISO_MX                    MISO_MX                    CONNECTED     pad touches {track(MISO_MX)x2}; comp=17 objects; +MISO_MX:17
+U26.6    F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U26.7    F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x2}; comp=234 objects; ++1V8:234
+U26.8    F.Cu   1     MX_SDO_1V8                 MX_SDO_1V8                 CONNECTED     pad touches {track(MX_SDO_1V8)x2}; comp=25 objects; +MX_SDO_1V8:25
+U26.9    F.Cu   1     unconnected-(U26-A2-Pad9)  unconnected-(U26-A2-Pad9)  NC-ISO        touches NOTHING; nearest copper 0.192mm (pad GND)
+U3.1     F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x2}; comp=185 objects; +VBAT_SYS:185
+U3.10    F.Cu   1     VBAT_SYS                   VBAT_SYS                   CONNECTED     pad touches {track(VBAT_SYS)x2}; comp=185 objects; +VBAT_SYS:185
+U3.11    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x10}; comp=4239 objects; +GND:4237; nonet:2
+U3.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U3.3     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U3.4     F.Cu   1     FB_3V3                     FB_3V3                     CONNECTED     pad touches {track(FB_3V3)x2}; comp=21 objects; +FB_3V3:21
+U3.5     F.Cu   1     unconnected-(U3-PG-Pad5)   unconnected-(U3-PG-Pad5)   NC-ISO        touches NOTHING; nearest copper 0.115mm (track FB_3V3)
+U3.6     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U3.7     F.Cu   1     SW_L2                      SW_L2                      CONNECTED     pad touches {track(SW_L2)x2}; comp=22 objects; +SW_L2:22
+U3.8     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U3.9     F.Cu   1     SW_L1                      SW_L1                      CONNECTED     pad touches {track(SW_L1)x2}; comp=26 objects; +SW_L1:26
+U4.1     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U4.2     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U4.3     F.Cu   1     +3V3                       +3V3                       CONNECTED     pad touches {track(+3V3)x2}; comp=1429 objects; ++3V3:1429
+U4.4     F.Cu   1     unconnected-(U4-NC-Pad4)   unconnected-(U4-NC-Pad4)   NC-ISO        touches NOTHING; nearest copper 0.263mm (track PD_K)
+U4.5     F.Cu   1     +1V8_LDO                   +1V8_LDO                   CONNECTED     pad touches {track(+1V8_LDO)x2}; comp=22 objects; ++1V8_LDO:22
+U5.1     F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x8}; comp=123 objects; +VDD_CP2102:123
+U5.10    F.Cu   1     unconnected-(U5-NC-Pad10)  unconnected-(U5-NC-Pad10)  NC-ISO        touches NOTHING; nearest copper 0.130mm (track CP_VBUS)
+U5.11    F.Cu   1     unconnected-(U5-~{SUSPEND}-Pad11) unconnected-(U5-~{SUSPEND}-Pad11) NC-ISO        touches NOTHING; nearest copper 0.130mm (track CP_VBUS)
+U5.12    F.Cu   1     unconnected-(U5-SUSPEND-Pad12) unconnected-(U5-SUSPEND-Pad12) NC-ISO        touches NOTHING; nearest copper 0.130mm (track CP_VBUS)
+U5.13    F.Cu   1     unconnected-(U5-CHREN-Pad13) unconnected-(U5-CHREN-Pad13) NC-ISO        touches NOTHING; nearest copper 0.130mm (track CP_VBUS)
+U5.14    F.Cu   1     unconnected-(U5-CHR1-Pad14) unconnected-(U5-CHR1-Pad14) NC-ISO        touches NOTHING; nearest copper 0.130mm (track CP_VBUS)
+U5.15    F.Cu   1     unconnected-(U5-CHR0-Pad15) unconnected-(U5-CHR0-Pad15) NC-ISO        touches NOTHING; nearest copper 0.168mm (track RE_SURGE)
+U5.16    F.Cu   1     unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16) unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16) NC-ISO        touches NOTHING; nearest copper 0.250mm (pad unconnected-(U5-CHR0-Pad15))
+U5.17    F.Cu   1     unconnected-(U5-RS485{slash}GPIO.2-Pad17) unconnected-(U5-RS485{slash}GPIO.2-Pad17) NC-ISO        touches NOTHING; nearest copper 0.250mm (pad unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16))
+U5.18    F.Cu   1     unconnected-(U5-~{RXT}{slash}GPIO.1-Pad18) unconnected-(U5-~{RXT}{slash}GPIO.1-Pad18) NC-ISO        touches NOTHING; nearest copper 0.250mm (pad unconnected-(U5-RS485{slash}GPIO.2-Pad17))
+U5.19    F.Cu   1     unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19) unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19) NC-ISO        touches NOTHING; nearest copper 0.250mm (pad unconnected-(U5-GPIO.6-Pad20))
+U5.2     F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x4}; comp=123 objects; +VDD_CP2102:123
+U5.20    F.Cu   1     unconnected-(U5-GPIO.6-Pad20) unconnected-(U5-GPIO.6-Pad20) NC-ISO        touches NOTHING; nearest copper 0.250mm (pad unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19))
+U5.21    F.Cu   1     unconnected-(U5-GPIO.5-Pad21) unconnected-(U5-GPIO.5-Pad21) NC-ISO        touches NOTHING; nearest copper 0.250mm (pad unconnected-(U5-GPIO.6-Pad20))
+U5.22    F.Cu   1     unconnected-(U5-GPIO.4-Pad22) unconnected-(U5-GPIO.4-Pad22) NC-ISO        touches NOTHING; nearest copper 0.178mm (flash CP_RTS)
+U5.23    F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x2}; comp=123 objects; +VDD_CP2102:123
+U5.24    F.Cu   1     CP_RTS                     CP_RTS                     CONNECTED     pad touches {track(CP_RTS)x2}; comp=57 objects; +CP_RTS:57
+U5.25    F.Cu   1     CP_RX                      CP_RX                      CONNECTED     pad touches {flash(CP_RX)x2}; comp=91 objects; +CP_RX:91
+U5.26    F.Cu   1     CP_TX                      CP_TX                      CONNECTED     pad touches {flash(CP_TX)x2}; comp=113 objects; +CP_TX:113
+U5.27    F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x2}; comp=123 objects; +VDD_CP2102:123
+U5.28    F.Cu   1     CP_DTR                     CP_DTR                     CONNECTED     pad touches {track(CP_DTR)x2}; comp=81 objects; +CP_DTR:81
+U5.29    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U5.3     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U5.4     F.Cu   1     USB_DP_CP                  USB_DP_CP                  CONNECTED     pad touches {track(USB_DP_CP)x6}; comp=16 objects; +USB_DP_CP:16
+U5.5     F.Cu   1     USB_DM_CP                  USB_DM_CP                  CONNECTED     pad touches {track(USB_DM_CP)x9}; comp=19 objects; +USB_DM_CP:19
+U5.6     F.Cu   1     VDD_CP2102                 VDD_CP2102                 CONNECTED     pad touches {track(VDD_CP2102)x4}; comp=123 objects; +VDD_CP2102:123
+U5.7     F.Cu   1     VBUS                       VBUS                       CONNECTED     pad touches {track(VBUS)x5}; comp=252 objects; +VBUS:252
+U5.8     F.Cu   1     CP_VBUS                    CP_VBUS                    CONNECTED     pad touches {track(CP_VBUS)x2}; comp=89 objects; +CP_VBUS:89
+U5.9     F.Cu   1     CP_RST                     CP_RST                     CONNECTED     pad touches {track(CP_RST)x2}; comp=47 objects; +CP_RST:47
+U6.A1    B.Cu   1     AFE_INM                    AFE_INM                    CONNECTED     pad touches {flash(AFE_INM)x2}; comp=67 objects; +AFE_INM:67
+U6.A2    B.Cu   1     PD_INP                     PD_INP                     CONNECTED     pad touches {track(PD_INP)x1}; comp=67 objects; +PD_INP:67
+U6.A3    B.Cu   1     PD_INM                     PD_INM                     CONNECTED     pad touches {flash(PD_INM)x2}; comp=77 objects; +PD_INM:77
+U6.A4    B.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x1}; comp=375 objects; ++3V3_ANA:375
+U6.A5    B.Cu   1     unconnected-(U6-INM3-PadA5) unconnected-(U6-INM3-PadA5) NC-ISO        touches NOTHING; nearest copper 0.170mm (pad unconnected-(U6-INP3-PadB5))
+U6.B1    B.Cu   1     AFE_INP                    AFE_INP                    CONNECTED     pad touches {track(AFE_INP)x1}; comp=65 objects; +AFE_INP:65
+U6.B2    B.Cu   1     PD2_INP                    PD2_INP                    CONNECTED     pad touches {flash(PD2_INP)x2}; comp=49 objects; +PD2_INP:49
+U6.B3    B.Cu   1     PD2_INM                    PD2_INM                    CONNECTED     pad touches {flash(PD2_INM)x2}; comp=82 objects; +PD2_INM:82
+U6.B4    B.Cu   1     GND                        GND                        CONNECTED     pad touches {flash(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U6.B5    B.Cu   1     unconnected-(U6-INP3-PadB5) unconnected-(U6-INP3-PadB5) NC-ISO        touches NOTHING; nearest copper 0.160mm (pad GND)
+U6.C1    B.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x1}; comp=375 objects; ++3V3_ANA:375
+U6.C2    B.Cu   1     unconnected-(U6-RLD_OUT-PadC2) unconnected-(U6-RLD_OUT-PadC2) NC-ISO        touches NOTHING; nearest copper 0.160mm (pad PD2_INP)
+U6.C3    B.Cu   1     unconnected-(U6-DNC-PadC3) unconnected-(U6-DNC-PadC3) NC-ISO        touches NOTHING; nearest copper 0.160mm (pad PD2_INM)
+U6.C4    B.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {flash(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+U6.C5    B.Cu   1     TX4                        TX4                        CONNECTED     pad touches {track(TX4)x1}; comp=41 objects; +TX4:41
+U6.D1    B.Cu   1     GND                        GND                        CONNECTED     pad touches {flash(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U6.D2    B.Cu   1     AFE_BG                     AFE_BG                     CONNECTED     pad touches {flash(AFE_BG)x2}; comp=37 objects; +AFE_BG:37
+U6.D3    B.Cu   1     unconnected-(U6-PROG_OUT1-PadD3) unconnected-(U6-PROG_OUT1-PadD3) NC-ISO        touches NOTHING; nearest copper 0.160mm (pad CS_AFE4900)
+U6.D4    B.Cu   1     TX1                        TX1                        CONNECTED     pad touches {flash(TX1)x2}; comp=65 objects; +TX1:65
+U6.D5    B.Cu   1     GND                        GND                        CONNECTED     pad touches {flash(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U6.E1    B.Cu   1     AFE4900_RESETZ             AFE4900_RESETZ             CONNECTED     pad touches {track(AFE4900_RESETZ)x1}; comp=114 objects; +AFE4900_RESETZ:114
+U6.E2    B.Cu   1     MISO_AFE                   MISO_AFE                   CONNECTED     pad touches {flash(MISO_AFE)x2}; comp=60 objects; +MISO_AFE:60
+U6.E3    B.Cu   1     CS_AFE4900                 CS_AFE4900                 CONNECTED     pad touches {flash(CS_AFE4900)x2}; comp=154 objects; +CS_AFE4900:154
+U6.E4    B.Cu   1     TX3                        TX3                        CONNECTED     pad touches {flash(TX3)x2}; comp=57 objects; +TX3:57
+U6.E5    B.Cu   1     TX2                        TX2                        CONNECTED     pad touches {flash(TX2)x2}; comp=79 objects; +TX2:79
+U6.F1    B.Cu   1     AFE_CLK                    AFE_CLK                    CONNECTED     pad touches {flash(AFE_CLK)x2}; comp=49 objects; +AFE_CLK:49
+U6.F2    B.Cu   1     SPI_MOSI                   SPI_MOSI                   CONNECTED     pad touches {flash(SPI_MOSI)x2}; comp=252 objects; +SPI_MOSI:252
+U6.F3    B.Cu   1     SPI_SCK                    SPI_SCK                    CONNECTED     pad touches {track(SPI_SCK)x1}; comp=225 objects; +SPI_SCK:225
+U6.F4    B.Cu   1     AFE4900_ADC_RDY            AFE4900_ADC_RDY            CONNECTED     pad touches {track(AFE4900_ADC_RDY)x1}; comp=110 objects; +AFE4900_ADC_RDY:110
+U6.F5    B.Cu   1     TX_5V                      TX_5V                      CONNECTED     pad touches {track(TX_5V)x1}; comp=158 objects; +TX_5V:158
+U7.A1    F.Cu   1     SWEAT_CE                   SWEAT_CE                   CONNECTED     pad touches {track(SWEAT_CE)x1}; comp=207 objects; +SWEAT_CE:207
+U7.A2    F.Cu   1     SWEAT_RE                   SWEAT_RE                   CONNECTED     pad touches {track(SWEAT_RE)x1}; comp=174 objects; +SWEAT_RE:174
+U7.A3    F.Cu   1     BIOZ_SN                    BIOZ_SN                    CONNECTED     pad touches {track(BIOZ_SN)x1}; comp=57 objects; +BIOZ_SN:57
+U7.A4    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x1}; comp=375 objects; ++3V3_ANA:375
+U7.A5    F.Cu   1     VREF_1V82                  VREF_1V82                  CONNECTED     pad touches {track(VREF_1V82)x1}; comp=10 objects; +VREF_1V82:10
+U7.A6    F.Cu   1     SE0                        SE0                        CONNECTED     pad touches {track(SE0)x1}; comp=47 objects; +SE0:47
+U7.A7    F.Cu   1     CE0                        CE0                        CONNECTED     pad touches {track(CE0)x1}; comp=47 objects; +CE0:47
+U7.A8    F.Cu   1     RE0                        RE0                        CONNECTED     pad touches {track(RE0)x1}; comp=57 objects; +RE0:57
+U7.B1    F.Cu   1     RCAL1                      RCAL1                      CONNECTED     pad touches {track(RCAL1)x1}; comp=47 objects; +RCAL1:47
+U7.B2    F.Cu   1     unconnected-(U7-AFE1-PadB2) unconnected-(U7-AFE1-PadB2) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad BIOZ_FP)
+U7.B3    F.Cu   1     BIOZ_FP                    BIOZ_FP                    CONNECTED     pad touches {flash(BIOZ_FP)x2}; comp=59 objects; +BIOZ_FP:59
+U7.B4    F.Cu   1     AIN4_LPF0                  AIN4_LPF0                  CONNECTED     pad touches {flash(AIN4_LPF0)x2}; comp=36 objects; +AIN4_LPF0:36
+U7.B5    F.Cu   1     BIOZ_SP                    BIOZ_SP                    CONNECTED     pad touches {flash(BIOZ_SP)x2}; comp=55 objects; +BIOZ_SP:55
+U7.B6    F.Cu   1     DE0                        DE0                        CONNECTED     pad touches {flash(DE0)x2}; comp=41 objects; +DE0:41
+U7.B7    F.Cu   1     VZERO0                     VZERO0                     CONNECTED     pad touches {flash(VZERO0)x2}; comp=36 objects; +VZERO0:36
+U7.B8    F.Cu   1     RC0_1                      RC0_1                      CONNECTED     pad touches {track(RC0_1)x1}; comp=48 objects; +RC0_1:48
+U7.C1    F.Cu   1     RCAL0                      RCAL0                      CONNECTED     pad touches {track(RCAL0)x1}; comp=52 objects; +RCAL0:52
+U7.C2    F.Cu   1     unconnected-(U7-AFE2-PadC2) unconnected-(U7-AFE2-PadC2) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad BIOZ_FN)
+U7.C3    F.Cu   1     unconnected-(U7-DNC_1-PadC3) unconnected-(U7-DNC_1-PadC3) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad GND)
+U7.C4    F.Cu   1     GND                        GND                        CONNECTED     pad touches {flash(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U7.C5    F.Cu   1     SWEAT_WE                   SWEAT_WE                   CONNECTED     pad touches {flash(SWEAT_WE)x2}; comp=331 objects; +SWEAT_WE:331
+U7.C6    F.Cu   1     unconnected-(U7-RC0_2-PadC6) unconnected-(U7-RC0_2-PadC6) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad VBIAS0)
+U7.C7    F.Cu   1     VBIAS0                     VBIAS0                     CONNECTED     pad touches {flash(VBIAS0)x2}; comp=36 objects; +VBIAS0:36
+U7.C8    F.Cu   1     RC0_0                      RC0_0                      CONNECTED     pad touches {track(RC0_0)x1}; comp=44 objects; +RC0_0:44
+U7.D1    F.Cu   1     VBIAS_CAP                  VBIAS_CAP                  CONNECTED     pad touches {track(VBIAS_CAP)x1}; comp=10 objects; +VBIAS_CAP:10
+U7.D2    F.Cu   1     BIOZ_FN                    BIOZ_FN                    CONNECTED     pad touches {flash(BIOZ_FN)x2}; comp=41 objects; +BIOZ_FN:41
+U7.D3    F.Cu   1     unconnected-(U7-DNC_2-PadD3) unconnected-(U7-DNC_2-PadD3) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad BIOZ_FN)
+U7.D4    F.Cu   1     unconnected-(U7-DNC_3-PadD4) unconnected-(U7-DNC_3-PadD4) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad GND)
+U7.D5    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+U7.D6    F.Cu   1     unconnected-(U7-GPIO1-PadD6) unconnected-(U7-GPIO1-PadD6) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad VREF_2V5)
+U7.D7    F.Cu   1     VREF_2V5                   VREF_2V5                   CONNECTED     pad touches {flash(VREF_2V5)x2}; comp=38 objects; +VREF_2V5:38
+U7.D8    F.Cu   1     AVDD_REG                   AVDD_REG                   CONNECTED     pad touches {track(AVDD_REG)x1}; comp=10 objects; +AVDD_REG:10
+U7.E1    F.Cu   1     NIR730_GATE                NIR730_GATE                CONNECTED     pad touches {track(NIR730_GATE)x1}; comp=92 objects; +NIR730_GATE:92
+U7.E2    F.Cu   1     unconnected-(U7-GPIO3-PadE2) unconnected-(U7-GPIO3-PadE2) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad BIOZ_FN)
+U7.E3    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1}; comp=4239 objects; +GND:4237; nonet:2
+U7.E4    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U7.E5    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x3}; comp=4239 objects; +GND:4237; nonet:2
+U7.E6    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x1, flash(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U7.E7    F.Cu   1     SPI_MOSI                   SPI_MOSI                   CONNECTED     pad touches {flash(SPI_MOSI)x2}; comp=252 objects; +SPI_MOSI:252
+U7.E8    F.Cu   1     MISO_AD                    MISO_AD                    CONNECTED     pad touches {track(MISO_AD)x1}; comp=81 objects; +MISO_AD:81
+U7.F1    F.Cu   1     AD5940_RESET               AD5940_RESET               CONNECTED     pad touches {track(AD5940_RESET)x1}; comp=95 objects; +AD5940_RESET:95
+U7.F2    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x1}; comp=375 objects; ++3V3_ANA:375
+U7.F3    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x1, flash(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+U7.F4    F.Cu   1     unconnected-(U7-GPIO6-PadF4) unconnected-(U7-GPIO6-PadF4) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad +3V3_ANA)
+U7.F5    F.Cu   1     AD5940_GPIO0               AD5940_GPIO0               CONNECTED     pad touches {flash(AD5940_GPIO0)x2}; comp=41 objects; +AD5940_GPIO0:41
+U7.F6    F.Cu   1     unconnected-(U7-GPIO5-PadF6) unconnected-(U7-GPIO5-PadF6) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad CS_AD5940)
+U7.F7    F.Cu   1     CS_AD5940                  CS_AD5940                  CONNECTED     pad touches {flash(CS_AD5940)x2}; comp=165 objects; +CS_AD5940:165
+U7.F8    F.Cu   1     SPI_SCK                    SPI_SCK                    CONNECTED     pad touches {track(SPI_SCK)x1}; comp=225 objects; +SPI_SCK:225
+U7.G1    F.Cu   1     unconnected-(U7-DNC_4-PadG1) unconnected-(U7-DNC_4-PadG1) NC-ISO        touches NOTHING; nearest copper 0.124mm (flash MISO_AD)
+U7.G2    F.Cu   1     IOVDD                      IOVDD                      CONNECTED     pad touches {track(IOVDD)x1}; comp=100 objects; +IOVDD:100
+U7.G3    F.Cu   1     DVDD_REG                   DVDD_REG                   CONNECTED     pad touches {track(DVDD_REG)x1}; comp=7 objects; +DVDD_REG:7
+U7.G4    F.Cu   1     unconnected-(U7-GPIO7-PadG4) unconnected-(U7-GPIO7-PadG4) NC-ISO        touches NOTHING; nearest copper 0.186mm (pad DVDD_REG)
+U7.G5    F.Cu   1     unconnected-(U7-XTALI-PadG5) unconnected-(U7-XTALI-PadG5) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad AD5940_GPIO0)
+U7.G6    F.Cu   1     unconnected-(U7-XTALO-PadG6) unconnected-(U7-XTALO-PadG6) NC-ISO        touches NOTHING; nearest copper 0.186mm (pad unconnected-(U7-GPIO4-PadG7))
+U7.G7    F.Cu   1     unconnected-(U7-GPIO4-PadG7) unconnected-(U7-GPIO4-PadG7) NC-ISO        touches NOTHING; nearest copper 0.168mm (pad CS_AD5940)
+U7.G8    F.Cu   1     unconnected-(U7-DNC_5-PadG8) unconnected-(U7-DNC_5-PadG8) NC-ISO        touches NOTHING; nearest copper 0.124mm (flash MISO_AD)
+U8.1     F.Cu   1     PGA1N                      PGA1N                      CONNECTED     pad touches {track(PGA1N)x2}; comp=48 objects; +PGA1N:48
+U8.10    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U8.11    F.Cu   1     VCAP1                      VCAP1                      CONNECTED     pad touches {track(VCAP1)x2}; comp=8 objects; +VCAP1:8
+U8.12    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+U8.13    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U8.14    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+U8.15    F.Cu   1     ADS1292_PWDN               ADS1292_PWDN               CONNECTED     pad touches {track(ADS1292_PWDN)x2}; comp=165 objects; +ADS1292_PWDN:165
+U8.16    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U8.17    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x4}; comp=4239 objects; +GND:4237; nonet:2
+U8.18    F.Cu   1     CS_ADS1292                 CS_ADS1292                 CONNECTED     pad touches {track(CS_ADS1292)x2}; comp=117 objects; +CS_ADS1292:117
+U8.19    F.Cu   1     SPI_MOSI                   SPI_MOSI                   CONNECTED     pad touches {track(SPI_MOSI)x3}; comp=252 objects; +SPI_MOSI:252
+U8.2     F.Cu   1     PGA1P                      PGA1P                      CONNECTED     pad touches {track(PGA1P)x2}; comp=46 objects; +PGA1P:46
+U8.20    F.Cu   1     SPI_SCK                    SPI_SCK                    CONNECTED     pad touches {track(SPI_SCK)x4}; comp=225 objects; +SPI_SCK:225
+U8.21    F.Cu   1     MISO_ADS                   MISO_ADS                   CONNECTED     pad touches {track(MISO_ADS)x2}; comp=46 objects; +MISO_ADS:46
+U8.22    F.Cu   1     ADS1292_DRDY               ADS1292_DRDY               CONNECTED     pad touches {track(ADS1292_DRDY)x2}; comp=133 objects; +ADS1292_DRDY:133
+U8.23    F.Cu   1     +3V3_ANA                   +3V3_ANA                   CONNECTED     pad touches {track(+3V3_ANA)x2}; comp=375 objects; ++3V3_ANA:375
+U8.24    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U8.25    F.Cu   1     ADS_GPIO2                  ADS_GPIO2                  CONNECTED     pad touches {track(ADS_GPIO2)x2}; comp=12 objects; +ADS_GPIO2:12
+U8.26    F.Cu   1     ADS_GPIO1                  ADS_GPIO1                  CONNECTED     pad touches {track(ADS_GPIO1)x2}; comp=46 objects; +ADS_GPIO1:46
+U8.27    F.Cu   1     VCAP2                      VCAP2                      CONNECTED     pad touches {track(VCAP2)x2}; comp=4 objects; +VCAP2:4
+U8.28    F.Cu   1     RLDINV                     RLDINV                     CONNECTED     pad touches {track(RLDINV)x2}; comp=78 objects; +RLDINV:78
+U8.29    F.Cu   1     RLDREF                     RLDREF                     CONNECTED     pad touches {track(RLDREF)x2}; comp=59 objects; +RLDREF:59
+U8.3     F.Cu   1     IN1N                       IN1N                       CONNECTED     pad touches {track(IN1N)x2}; comp=112 objects; +IN1N:112
+U8.30    F.Cu   1     RLDOUT                     RLDOUT                     CONNECTED     pad touches {track(RLDOUT)x2}; comp=120 objects; +RLDOUT:120
+U8.31    F.Cu   1     RESP_MODP                  RESP_MODP                  CONNECTED     pad touches {track(RESP_MODP)x3}; comp=46 objects; +RESP_MODP:46
+U8.32    F.Cu   1     RESP_MODN                  RESP_MODN                  CONNECTED     pad touches {track(RESP_MODN)x2}; comp=43 objects; +RESP_MODN:43
+U8.33    F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x8}; comp=4239 objects; +GND:4237; nonet:2
+U8.4     F.Cu   1     IN1P                       IN1P                       CONNECTED     pad touches {track(IN1P)x2}; comp=101 objects; +IN1P:101
+U8.5     F.Cu   1     ECG_N                      ECG_N                      CONNECTED     pad touches {track(ECG_N)x2}; comp=191 objects; +ECG_N:191
+U8.6     F.Cu   1     ECG_P                      ECG_P                      CONNECTED     pad touches {track(ECG_P)x2}; comp=161 objects; +ECG_P:161
+U8.7     F.Cu   1     PGA2N                      PGA2N                      CONNECTED     pad touches {track(PGA2N)x2}; comp=24 objects; +PGA2N:24
+U8.8     F.Cu   1     PGA2P                      PGA2P                      CONNECTED     pad touches {track(PGA2P)x2}; comp=43 objects; +PGA2P:43
+U8.9     F.Cu   1     VREFP                      VREFP                      CONNECTED     pad touches {track(VREFP)x2}; comp=6 objects; +VREFP:6
+U9.1     F.Cu   1     GND                        GND                        CONNECTED     pad touches {track(GND)x2}; comp=4239 objects; +GND:4237; nonet:2
+U9.2     F.Cu   1     +1V8                       +1V8                       CONNECTED     pad touches {track(+1V8)x2}; comp=234 objects; ++1V8:234
+U9.3     F.Cu   1     I2C_SCL_1V8                I2C_SCL_1V8                CONNECTED     pad touches {track(I2C_SCL_1V8)x2}; comp=193 objects; +I2C_SCL_1V8:193
+U9.4     F.Cu   1     I2C_SDA_1V8                I2C_SDA_1V8                CONNECTED     pad touches {track(I2C_SDA_1V8)x2}; comp=205 objects; +I2C_SDA_1V8:205
+U9.5     F.Cu   1     I2C_SDA                    I2C_SDA                    CONNECTED     pad touches {track(I2C_SDA)x5}; comp=498 objects; +I2C_SDA:498
+U9.6     F.Cu   1     I2C_SCL                    I2C_SCL                    CONNECTED     pad touches {track(I2C_SCL)x5}; comp=458 objects; +I2C_SCL:458
+U9.7     F.Cu   1     VREF2                      VREF2                      CONNECTED     pad touches {track(VREF2)x2}; comp=32 objects; +VREF2:32
+U9.8     F.Cu   1     VREF2                      VREF2                      CONNECTED     pad touches {track(VREF2)x4}; comp=32 objects; +VREF2:32
+
+=== ISOLATED PADS (touches nothing) ===
+FID1.1  net=unconnected-(FID1-FID-Pad1) expected=unconnected-(FID1-FID-Pad1) layer=F.Cu cls=NC-ISO near_same=- near_any=0.856mm(ESP_IO0)
+FID2.1  net=unconnected-(FID2-FID-Pad1) expected=unconnected-(FID2-FID-Pad1) layer=F.Cu cls=NC-ISO near_same=- near_any=0.610mm(SP_ISO)
+FID3.1  net=unconnected-(FID3-FID-Pad1) expected=unconnected-(FID3-FID-Pad1) layer=F.Cu cls=NC-ISO near_same=- near_any=0.611mm(AFE_P_SER)
+FID4.1  net=unconnected-(FID4-FID-Pad1) expected=unconnected-(FID4-FID-Pad1) layer=B.Cu cls=NC-ISO near_same=- near_any=-
+FID5.1  net=unconnected-(FID5-FID-Pad1) expected=unconnected-(FID5-FID-Pad1) layer=F.Cu cls=NC-ISO near_same=- near_any=0.648mm(ESP_IO0)
+FID6.1  net=unconnected-(FID6-FID-Pad1) expected=unconnected-(FID6-FID-Pad1) layer=B.Cu cls=NC-ISO near_same=- near_any=-
+J1.A8  net=unconnected-(J1-SBU1-PadA8) expected=unconnected-(J1-SBU1-PadA8) layer=F.Cu cls=NC-ISO near_same=- near_any=0.200mm(USB_CC2)
+J1.B8  net=unconnected-(J1-SBU2-PadB8) expected=unconnected-(J1-SBU2-PadB8) layer=F.Cu cls=NC-ISO near_same=- near_any=0.200mm(USB_CC1)
+J12.14  net=unconnected-(J12-Pin_14-Pad14) expected=unconnected-(J12-Pin_14-Pad14) layer=B.Cu cls=NC-ISO near_same=- near_any=0.200mm(SWEAT_CE)
+U1.26  net=unconnected-(U1-IO26-Pad26) expected=unconnected-(U1-IO26-Pad26) layer=F.Cu cls=NC-ISO near_same=- near_any=0.108mm(ECG_P)
+U1.27  net=unconnected-(U1-IO47-Pad27) expected=unconnected-(U1-IO47-Pad27) layer=F.Cu cls=NC-ISO near_same=- near_any=0.130mm(CS_MAX86178)
+U1.28  net=unconnected-(U1-IO33-Pad28) expected=unconnected-(U1-IO33-Pad28) layer=F.Cu cls=NC-ISO near_same=- near_any=0.104mm(CS_MAX86178)
+U1.29  net=unconnected-(U1-IO34-Pad29) expected=unconnected-(U1-IO34-Pad29) layer=F.Cu cls=NC-ISO near_same=- near_any=0.146mm(ESP_TX)
+U1.30  net=unconnected-(U1-IO48-Pad30) expected=unconnected-(U1-IO48-Pad30) layer=F.Cu cls=NC-ISO near_same=- near_any=0.146mm(ESP_TX)
+U1.31  net=unconnected-(U1-IO35-Pad31) expected=unconnected-(U1-IO35-Pad31) layer=F.Cu cls=NC-ISO near_same=- near_any=0.135mm(MIC_DAT)
+U1.32  net=unconnected-(U1-IO36-Pad32) expected=unconnected-(U1-IO36-Pad32) layer=F.Cu cls=NC-ISO near_same=- near_any=0.113mm(MIC_DAT)
+U1.33  net=unconnected-(U1-IO37-Pad33) expected=unconnected-(U1-IO37-Pad33) layer=F.Cu cls=NC-ISO near_same=- near_any=0.113mm(MIC_DAT)
+U1.41  net=unconnected-(U1-IO45-Pad41) expected=unconnected-(U1-IO45-Pad41) layer=F.Cu cls=NC-ISO near_same=- near_any=0.102mm(ESP_TX)
+U1.44  net=unconnected-(U1-IO46-Pad44) expected=unconnected-(U1-IO46-Pad44) layer=F.Cu cls=NC-ISO near_same=- near_any=0.107mm(ECG_P)
+U10.6  net=unconnected-(U10-GPIO-Pad6) expected=unconnected-(U10-GPIO-Pad6) layer=B.Cu cls=NC-ISO near_same=- near_any=0.103mm(+1V8)
+U10.7  net=unconnected-(U10-INT-Pad7) expected=unconnected-(U10-INT-Pad7) layer=B.Cu cls=NC-ISO near_same=- near_any=0.103mm(+1V8)
+U14.10  net=unconnected-(U14-Pad10) expected=unconnected-(U14-Pad10) layer=F.Cu cls=NC-ISO near_same=- near_any=0.215mm(I2C_SDA)
+U14.11  net=unconnected-(U14-Pad11) expected=unconnected-(U14-Pad11) layer=F.Cu cls=NC-ISO near_same=- near_any=0.138mm(ESP_RX)
+U14.9  net=unconnected-(U14-Pad9) expected=unconnected-(U14-Pad9) layer=F.Cu cls=NC-ISO near_same=- near_any=0.143mm(I2C_SDA)
+U20.3  net=unconnected-(U20-ALERT-Pad3) expected=unconnected-(U20-ALERT-Pad3) layer=F.Cu cls=NC-ISO near_same=- near_any=0.200mm(GND)
+U22.B3  net=unconnected-(U22-GPIO1-PadB3) expected=unconnected-(U22-GPIO1-PadB3) layer=B.Cu cls=NC-ISO near_same=- near_any=0.155mm(MAX86178_INT)
+U22.B4  net=unconnected-(U22-GPIO2-PadB4) expected=unconnected-(U22-GPIO2-PadB4) layer=B.Cu cls=NC-ISO near_same=- near_any=0.155mm(SPI_MOSI)
+U22.D4  net=unconnected-(U22-PD2_IN-PadD4) expected=unconnected-(U22-PD2_IN-PadD4) layer=B.Cu cls=NC-ISO near_same=- near_any=0.103mm(GND)
+U24.1  net=unconnected-(U24-CLKOUT-Pad1) expected=unconnected-(U24-CLKOUT-Pad1) layer=F.Cu cls=NC-ISO near_same=- near_any=0.128mm(TX5_EN)
+U26.9  net=unconnected-(U26-A2-Pad9) expected=unconnected-(U26-A2-Pad9) layer=F.Cu cls=NC-ISO near_same=- near_any=0.192mm(GND)
+U3.5  net=unconnected-(U3-PG-Pad5) expected=unconnected-(U3-PG-Pad5) layer=F.Cu cls=NC-ISO near_same=- near_any=0.115mm(FB_3V3)
+U4.4  net=unconnected-(U4-NC-Pad4) expected=unconnected-(U4-NC-Pad4) layer=F.Cu cls=NC-ISO near_same=- near_any=0.263mm(PD_K)
+U5.10  net=unconnected-(U5-NC-Pad10) expected=unconnected-(U5-NC-Pad10) layer=F.Cu cls=NC-ISO near_same=- near_any=0.130mm(CP_VBUS)
+U5.11  net=unconnected-(U5-~{SUSPEND}-Pad11) expected=unconnected-(U5-~{SUSPEND}-Pad11) layer=F.Cu cls=NC-ISO near_same=- near_any=0.130mm(CP_VBUS)
+U5.12  net=unconnected-(U5-SUSPEND-Pad12) expected=unconnected-(U5-SUSPEND-Pad12) layer=F.Cu cls=NC-ISO near_same=- near_any=0.130mm(CP_VBUS)
+U5.13  net=unconnected-(U5-CHREN-Pad13) expected=unconnected-(U5-CHREN-Pad13) layer=F.Cu cls=NC-ISO near_same=- near_any=0.130mm(CP_VBUS)
+U5.14  net=unconnected-(U5-CHR1-Pad14) expected=unconnected-(U5-CHR1-Pad14) layer=F.Cu cls=NC-ISO near_same=- near_any=0.130mm(CP_VBUS)
+U5.15  net=unconnected-(U5-CHR0-Pad15) expected=unconnected-(U5-CHR0-Pad15) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(RE_SURGE)
+U5.16  net=unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16) expected=unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16) layer=F.Cu cls=NC-ISO near_same=- near_any=0.250mm(unconnected-(U5-CHR0-Pad15))
+U5.17  net=unconnected-(U5-RS485{slash}GPIO.2-Pad17) expected=unconnected-(U5-RS485{slash}GPIO.2-Pad17) layer=F.Cu cls=NC-ISO near_same=- near_any=0.250mm(unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16))
+U5.18  net=unconnected-(U5-~{RXT}{slash}GPIO.1-Pad18) expected=unconnected-(U5-~{RXT}{slash}GPIO.1-Pad18) layer=F.Cu cls=NC-ISO near_same=- near_any=0.250mm(unconnected-(U5-RS485{slash}GPIO.2-Pad17))
+U5.19  net=unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19) expected=unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19) layer=F.Cu cls=NC-ISO near_same=- near_any=0.250mm(unconnected-(U5-GPIO.6-Pad20))
+U5.20  net=unconnected-(U5-GPIO.6-Pad20) expected=unconnected-(U5-GPIO.6-Pad20) layer=F.Cu cls=NC-ISO near_same=- near_any=0.250mm(unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19))
+U5.21  net=unconnected-(U5-GPIO.5-Pad21) expected=unconnected-(U5-GPIO.5-Pad21) layer=F.Cu cls=NC-ISO near_same=- near_any=0.250mm(unconnected-(U5-GPIO.6-Pad20))
+U5.22  net=unconnected-(U5-GPIO.4-Pad22) expected=unconnected-(U5-GPIO.4-Pad22) layer=F.Cu cls=NC-ISO near_same=- near_any=0.178mm(CP_RTS)
+U6.A5  net=unconnected-(U6-INM3-PadA5) expected=unconnected-(U6-INM3-PadA5) layer=B.Cu cls=NC-ISO near_same=- near_any=0.170mm(unconnected-(U6-INP3-PadB5))
+U6.B5  net=unconnected-(U6-INP3-PadB5) expected=unconnected-(U6-INP3-PadB5) layer=B.Cu cls=NC-ISO near_same=- near_any=0.160mm(GND)
+U6.C2  net=unconnected-(U6-RLD_OUT-PadC2) expected=unconnected-(U6-RLD_OUT-PadC2) layer=B.Cu cls=NC-ISO near_same=- near_any=0.160mm(PD2_INP)
+U6.C3  net=unconnected-(U6-DNC-PadC3) expected=unconnected-(U6-DNC-PadC3) layer=B.Cu cls=NC-ISO near_same=- near_any=0.160mm(PD2_INM)
+U6.D3  net=unconnected-(U6-PROG_OUT1-PadD3) expected=unconnected-(U6-PROG_OUT1-PadD3) layer=B.Cu cls=NC-ISO near_same=- near_any=0.160mm(CS_AFE4900)
+U7.B2  net=unconnected-(U7-AFE1-PadB2) expected=unconnected-(U7-AFE1-PadB2) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(BIOZ_FP)
+U7.C2  net=unconnected-(U7-AFE2-PadC2) expected=unconnected-(U7-AFE2-PadC2) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(BIOZ_FN)
+U7.C3  net=unconnected-(U7-DNC_1-PadC3) expected=unconnected-(U7-DNC_1-PadC3) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(GND)
+U7.C6  net=unconnected-(U7-RC0_2-PadC6) expected=unconnected-(U7-RC0_2-PadC6) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(VBIAS0)
+U7.D3  net=unconnected-(U7-DNC_2-PadD3) expected=unconnected-(U7-DNC_2-PadD3) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(BIOZ_FN)
+U7.D4  net=unconnected-(U7-DNC_3-PadD4) expected=unconnected-(U7-DNC_3-PadD4) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(GND)
+U7.D6  net=unconnected-(U7-GPIO1-PadD6) expected=unconnected-(U7-GPIO1-PadD6) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(VREF_2V5)
+U7.E2  net=unconnected-(U7-GPIO3-PadE2) expected=unconnected-(U7-GPIO3-PadE2) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(BIOZ_FN)
+U7.F4  net=unconnected-(U7-GPIO6-PadF4) expected=unconnected-(U7-GPIO6-PadF4) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(+3V3_ANA)
+U7.F6  net=unconnected-(U7-GPIO5-PadF6) expected=unconnected-(U7-GPIO5-PadF6) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(CS_AD5940)
+U7.G1  net=unconnected-(U7-DNC_4-PadG1) expected=unconnected-(U7-DNC_4-PadG1) layer=F.Cu cls=NC-ISO near_same=- near_any=0.124mm(MISO_AD)
+U7.G4  net=unconnected-(U7-GPIO7-PadG4) expected=unconnected-(U7-GPIO7-PadG4) layer=F.Cu cls=NC-ISO near_same=- near_any=0.186mm(DVDD_REG)
+U7.G5  net=unconnected-(U7-XTALI-PadG5) expected=unconnected-(U7-XTALI-PadG5) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(AD5940_GPIO0)
+U7.G6  net=unconnected-(U7-XTALO-PadG6) expected=unconnected-(U7-XTALO-PadG6) layer=F.Cu cls=NC-ISO near_same=- near_any=0.186mm(unconnected-(U7-GPIO4-PadG7))
+U7.G7  net=unconnected-(U7-GPIO4-PadG7) expected=unconnected-(U7-GPIO4-PadG7) layer=F.Cu cls=NC-ISO near_same=- near_any=0.168mm(CS_AD5940)
+U7.G8  net=unconnected-(U7-DNC_5-PadG8) expected=unconnected-(U7-DNC_5-PadG8) layer=F.Cu cls=NC-ISO near_same=- near_any=0.124mm(MISO_AD)
+
+=== ALL PAD-TO-PAD MERGES (direct pad-shape contact) ===
+J1.A1  <->  J1.B12   nets GND | GND   same-net  layer=F.Cu
+J1.A12  <->  J1.B1   nets GND | GND   same-net  layer=F.Cu
+J1.A4  <->  J1.B9   nets VBUS | VBUS   same-net  layer=F.Cu
+J1.A9  <->  J1.B4   nets VBUS | VBUS   same-net  layer=F.Cu
+
+=== PADS TOUCHING FOREIGN-NET COPPER (non-pad objects) ===
+
+=== MISSING PADS (in pinmap, no gerber pad object) ===
+
+=== EXTRA PADS (in gerber, not in pinmap) ===
+
+=== NET ATTRIBUTE vs PINMAP MISMATCHES ===
+
+=== UNATTRIBUTED COPPER OBJECTS (advisory; no .N attr) ===
+2 distinct unattributed objects, riding in components of 217 pads
+  F.Cu  flash  (  28.936,   36.154)  0.35x 0.35  [NPTH mounting-hole annular ring]
+  L7    region (   2.150,   63.372)  0.50x 1.65
+affected pads (all connected; object shares their net component):
+  C1.2 (GND)
+  C10.2 (GND)
+  C11.2 (GND)
+  C13.2 (GND)
+  C14.2 (GND)
+  C15.2 (GND)
+  C16.2 (GND)
+  C18.2 (GND)
+  C19.2 (GND)
+  C2.2 (GND)
+  C20.2 (GND)
+  C21.2 (GND)
+  C22.2 (GND)
+  C23.2 (GND)
+  C24.2 (GND)
+  C25.2 (GND)
+  C26.2 (GND)
+  C28.2 (GND)
+  C29.2 (GND)
+  C3.2 (GND)
+  C30.2 (GND)
+  C32.2 (GND)
+  C33.2 (GND)
+  C36.2 (GND)
+  C37.2 (GND)
+  C38.2 (GND)
+  C39.2 (GND)
+  C4.2 (GND)
+  C40.2 (GND)
+  C41.2 (GND)
+  C42.2 (GND)
+  C43.2 (GND)
+  C44.2 (GND)
+  C45.2 (GND)
+  C46.2 (GND)
+  C47.2 (GND)
+  C48.2 (GND)
+  C49.2 (GND)
+  C52.2 (GND)
+  C53.2 (GND)
+  C58.2 (GND)
+  C59.2 (GND)
+  C6.2 (GND)
+  C60.2 (GND)
+  C61.2 (GND)
+  C62.2 (GND)
+  C63.2 (GND)
+  C64.2 (GND)
+  C66.2 (GND)
+  C7.2 (GND)
+  C76.2 (GND)
+  C77.2 (GND)
+  C78.2 (GND)
+  C79.2 (GND)
+  C8.2 (GND)
+  C80.2 (GND)
+  C81.2 (GND)
+  C82.2 (GND)
+  C83.2 (GND)
+  C84.2 (GND)
+  C85.2 (GND)
+  C86.2 (GND)
+  C87.2 (GND)
+  C88.2 (GND)
+  C89.2 (GND)
+  C9.2 (GND)
+  C90.2 (GND)
+  C91.2 (GND)
+  D1.2 (GND)
+  D2.2 (GND)
+  D21.2 (GND)
+  D22.2 (GND)
+  D23.2 (GND)
+  D24.2 (GND)
+  D25.2 (GND)
+  D26.2 (GND)
+  D27.2 (GND)
+  D28.2 (GND)
+  D29.2 (GND)
+  D3.2 (GND)
+  D30.2 (GND)
+  D4.2 (GND)
+  D5.2 (GND)
+  D6.2 (GND)
+  D7.2 (GND)
+  D8.2 (GND)
+  D9.2 (GND)
+  J1.A1 (GND)
+  J1.A12 (GND)
+  J1.B1 (GND)
+  J1.B12 (GND)
+  J1.SH (GND)
+  J12.4 (GND)
+  J2.2 (GND)
+  J8.2 (GND)
+  J9.4 (GND)
+  Q1.2 (GND)
+  Q2.2 (GND)
+  Q4.2 (GND)
+  R1.2 (GND)
+  R10.2 (GND)
+  R100.2 (GND)
+  R101.2 (GND)
+  R108.2 (GND)
+  R11.2 (GND)
+  R110.2 (GND)
+  R115.2 (GND)
+  R123.1 (GND)
+  R14.2 (GND)
+  R16.2 (GND)
+  R2.2 (GND)
+  R24.2 (GND)
+  R25.2 (GND)
+  R27.2 (GND)
+  R29.2 (GND)
+  R3.2 (GND)
+  R48.2 (GND)
+  R51.2 (GND)
+  R59.2 (GND)
+  R61.2 (GND)
+  R64.2 (GND)
+  R66.2 (GND)
+  R75.2 (GND)
+  R8.2 (GND)
+  R9.2 (GND)
+  SW1.2 (GND)
+  SW2.2 (GND)
+  TP7.1 (GND)
+  TP8.1 (GND)
+  U1.1 (GND)
+  U1.2 (GND)
+  U1.42 (GND)
+  U1.43 (GND)
+  U1.46 (GND)
+  U1.47 (GND)
+  U1.48 (GND)
+  U1.49 (GND)
+  U1.50 (GND)
+  U1.51 (GND)
+  U1.52 (GND)
+  U1.53 (GND)
+  U1.54 (GND)
+  U1.55 (GND)
+  U1.56 (GND)
+  U1.57 (GND)
+  U1.58 (GND)
+  U1.59 (GND)
+  U1.60 (GND)
+  U1.61 (GND)
+  U1.62 (GND)
+  U1.63 (GND)
+  U1.64 (GND)
+  U1.65 (GND)
+  U10.3 (GND)
+  U10.5 (GND)
+  U11.2 (GND)
+  U11.4 (GND)
+  U11.7 (GND)
+  U12.3 (GND)
+  U12.5 (GND)
+  U12.6 (GND)
+  U13.1 (GND)
+  U13.5 (GND)
+  U13.7 (GND)
+  U14.1 (GND)
+  U14.2 (GND)
+  U14.3 (GND)
+  U14.6 (GND)
+  U14.7 (GND)
+  U15.A2 (GND)
+  U17.1 (GND)
+  U17.4 (GND)
+  U17.6 (GND)
+  U17.9 (GND)
+  U18.4 (GND)
+  U18.9 (GND)
+  U19.16 (GND)
+  U19.6 (GND)
+  U2.4 (GND)
+  U2.9 (GND)
+  U20.2 (GND)
+  U20.7 (GND)
+  U21.2 (GND)
+  U22.C3 (GND)
+  U22.C4 (GND)
+  U22.D3 (GND)
+  U23.4 (GND)
+  U24.5 (GND)
+  U24.8 (GND)
+  U25.4 (GND)
+  U25.5 (GND)
+  U26.1 (GND)
+  U26.3 (GND)
+  U26.4 (GND)
+  U3.11 (GND)
+  U3.2 (GND)
+  U3.3 (GND)
+  U3.8 (GND)
+  U4.2 (GND)
+  U5.29 (GND)
+  U5.3 (GND)
+  U6.B4 (GND)
+  U6.D1 (GND)
+  U6.D5 (GND)
+  U7.C4 (GND)
+  U7.D5 (GND)
+  U7.E3 (GND)
+  U7.E4 (GND)
+  U7.E5 (GND)
+  U7.E6 (GND)
+  U8.10 (GND)
+  U8.13 (GND)
+  U8.16 (GND)
+  U8.17 (GND)
+  U8.24 (GND)
+  U8.33 (GND)
+  U9.1 (GND)

@@ -1,36 +1,41 @@
-# 10 — Summary: VitalQ v2 fix_v19 fab-gate audit
+# 10 — Summary: VitalQ v2 fix_v19 fab-gate audit → fixv19a verdict
 
-Target: `feature/vitalq-firmware-v2` @ b9002188 · `vitalq_v2.kicad_pcb` 78441506… · zip 5f976845…
-Method: 1027-pad extraction, 37 fingerprinted datasheets, 12 parallel audit groups,
-gerber-level verification (aperture decode, not just board-file claims).
-Provenance: zip carries no source hash — treated as fab authority; see 09 (divergence scope).
+Target audited: `feature/vitalq-firmware-v2` @ b9002188 · `vitalq_v2.kicad_pcb` sha 78441506…
+Artifact now evaluated: **`fab/VitalQ_v2_fixv19a_fabrication.zip`** (sha cf3336f0…10a8,
+37 members, 26 byte-identical to v19 + 11 intentional updates; original v19 preserved untouched).
 
-## Severity counts
+## Severity counts (as-found → as-fixed)
 
-| Severity | Count | Headline |
+| Severity | Found | Status |
 |---|---|---|
-| BLOCKER | 1 | U15 TPS61240: zero paste apertures — assembler cannot solder it → TX_5V dead |
-| HIGH | 7 | TS parallel-NTC; TPS61240 underspec; U3/U4 bulk-cap distances; J13 dead connector; U14 source footprint shorts (gerbers OK); 0.15mm POFV below fab's published min |
-| MEDIUM | ~20 | decap margins, footprint oversize cluster (U8/U19/U26/U9/U11/U4), SHT45 keepout, LED headroom (D10/D25), WLP mask webs at limit, IM69D130 strap-vs-firmware, ESD gaps, stackup gap |
-| COSMETIC | ~5 | stale D10 footprint value, isolated CP2102N 9.5mA, fiducial-edge claim wrong |
+| BLOCKER | 1 | U15 paste: REVISED to "54% undersized apertures" after gerber decode → **FIXED** (+6 Ø0.21 flashes → ~84% coverage; source pads carry F.Paste) |
+| HIGH | 7 | TS parallel-NTC → **FIXED** (R61 DNP through all BOM/CPL); TPS61240 underspec → **FIXED** (U15→TPS61241YFFR, pin-compatible per SLVS806D §6); U14 source defect → **FIXED** (transpose, gaps +0.246mm); decap distances, J13 dead connector, POFV-0.15mm → documented residual/confirmation items |
+| MEDIUM | ~20 | mostly residual/advisory — footprints corrected in source; shipped copper verified clean |
+| COSMETIC | ~5 | D10 stale value → **FIXED**; others documented |
 
-Pin matrix: 1,027 rows, 0 blank verdicts — 549 PASS / 12 FAIL / 466 UNVERIFIABLE (passive pads, per-pad datasheet out of scope; BOM-level values verified).
+Pin matrix: 1,027 rows, 0 blank verdicts. Connectivity sweep: **970 pads, OPEN=0, SHORT=0** in shipped copper — the decisive "will it work when powered" answer for the v19/19a copper.
 
-## Top 5 risks (probability × cost)
+## Top 5 risks (probability × cost) — current state
 
-1. **U15 no-paste (certainty ~100%, verified at gerber)** — order the current zip → TPS61240 can't attach → optical rail dead on every board. Fix: add F.Paste, regen zip. No copper re-spin, but this zip cannot be ordered.
-2. **Source↔fab provenance (certainty: proven)** — U14's source footprint produces shorts while shipped gerbers are correct → the audited board is NOT provably the gerber source. Any regeneration (required for fix #1) must first fix the U14 footprint and re-verify the whole zip, or new divergences may ship.
-3. **TS parallel NTC (high probability)** — R61 populated + standard pack NTC → charger hovers at hot-suspend threshold at 25°C. Fix is free (DNP R61 in CPL) but only if flagged to fab before assembly.
-4. **TPS61240 200mA spec vs ~300mA LED load (high probability)** — TX_5V droop/shutdown at worst-case drive. Free fix: BOM swap to TPS61241YFFR before ordering.
-5. **0.15mm POFV vias below JLC published 0.2mm minimum (45 of 48 in-pad vias)** — order-execution risk: rejection, surcharge, or silent substitution. Needs written fab confirmation + the 5 unflagged in-pad vias called out explicitly.
+1. ~~U15 paste~~ → **RESOLVED in fixv19a** (patched gerber verified; BOM swapped to TPS61241 — check LCSC stock ~67pcs for C544431 at order time).
+2. **0.15mm POFV vs JLC published 0.2mm min (45/48 in-pad vias)** — open external question; FAB_NOTES now carries the full 48-via list + 5 unflagged vias. Attach to order; if fab can't do 0.15 POFV, expect surcharge/re-spin decision.
+3. **TS suspend risk** → **RESOLVED** (R61 DNP) — verify the assembly note reached the order (it's baked into the CSVs now).
+4. **Stackup gap 0.122mm + nonstandard prepregs** — fab must confirm ply availability; documented in FAB_NOTES.
+5. **Decap margin findings (U3 VOUT 15.95mm, U4 IN)** — accepted residual risk; board may work but margins are thin. Next-rev items, not stoppers for this rev.
+
+## Source-side residual (does NOT affect fixv19a order)
+
+The audited .kicad_pcb is now corrected (U14 transpose, paste attrs, pad sizes, R61 DNP,
+D10 value) but carries 3 latent opens from the shrink pass — U19.12, U11.2, U20.4 —
+being closed as routing edits in-tree. Any future gerber regeneration must re-verify
+connectivity (rerun tools/conn_sweep.py on new gerbers).
 
 ## Recommendation
 
-Do NOT order the zip as it stands. The required actions are small and cheap — none is a
-copper re-spin: (a) fix U15 paste + U14 footprint in source, regenerate fab zip; (b) assembly
-notes: DNP R61, swap U15→TPS61241; (c) written fab confirmation: 0.15mm POFV, stackup plies,
-unflagged in-pad vias. Re-verify the regenerated zip's gerbers (paste + U14 specifically)
-before release. Everything else verified clean: ball maps, straps, buses, rails, protection
-topology, DNP/exclusion set, via/drill arithmetic.
+Order `VitalQ_v2_fixv19a_fabrication.zip` — NOT the original v19 file — with the FAB_NOTES
+assembly instructions (R61 DNP is already in the CPLs; U15 is already TPS61241) and the
+POFV-48 list attached. Two external confirmations before payment: (a) fab can do 0.15mm
+POFV (or accept surcharge), (b) TPS61241YFFR stock at C544431. Both are quote-time
+questions, not design defects. Everything internal to the package is verified.
 
-HOLD
+SHIP

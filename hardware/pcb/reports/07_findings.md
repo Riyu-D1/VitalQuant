@@ -4,27 +4,35 @@ Sources: findings_power/mcu/afe/sensa/sensb/disc/elec/footprints.md, fab_mech.md
 Severity: BLOCKER = dead/damaged board at power-up; HIGH = function/spec fails in plausible use;
 MEDIUM = degraded/marginal; COSMETIC = docs/silk.
 
-## BLOCKER
+## BLOCKER (v19 zip) — RESOLVED in fixv19a
 
-**B1 — U15 TPS61240YFFR has zero stencil apertures (no solder paste).**
-All 6 pads `(layers "F.Cu" "F.Mask")` — no F.Paste (board file, U15 footprint pads A1..C2).
-F_Paste gerber shows 0 flashes at (40.80,-38.82) ±2mm; B_Paste also 0 (independently decoded).
-Consequence: DSBGA-6 part cannot be soldered by the assembler → TX_5V never rises →
-entire optical chain (SFH7072, AFE4900 TX, MAX86141 VLED) dead; board otherwise boots.
-Smallest fix: add F.Paste to the footprint pads and regenerate the fab zip. Classification:
-**fab-file regeneration** (no copper re-spin). The current zip must NOT be ordered as-is.
+**B1 — U15 TPS61240YFFR stencil apertures severely undersized (~54% coverage).**
+All 6 pads `(layers "F.Cu" "F.Mask")` — no F.Paste at pad level; shipped gerber carried only
+six 0.15×0.15mm G36 square fills (fp_rect primitives) on Ø0.23 pads ≈54% area — a marginal
+BGA attach, not literally zero paste (severity revised after full gerber decode).
+FIXED: `fixv19a` F_Paste.gbr adds Ø0.21mm flashes at all 6 pads (~84% union coverage,
+copper-layer cross-verified); source + library pads now carry F.Paste.
+
+## Post-audit connectivity sweep (gerber-authoritative)
+
+`tools/conn_sweep.py` decoded all 8 shipped copper layers via X2 `%TO.C/%TO.N` attributes:
+**970/970 pads accounted for — OPEN=0, SHORT=0**, 4 benign same-net merges (USB-C mirrored
+pairs), zero gerber-vs-pinmap net mismatches. The shipped v19 copper is clean; suspects
+U20.4/U19.12/U11.2 do NOT reproduce in shipped copper (they are source-side defects only —
+the zip predates the broken source edits, confirmed again here).
 
 ## HIGH
 
-**H1 — F-PWR-01: charger TS pin sees two parallel NTC paths.**
-R61 "NTC 10k B3380" is POPULATED (BOM_JLC, no DNP; pinmap R61.1=TS, R61.2=GND) and J2.3
-pack-NTC terminal shares TS. With a standard 10k pack NTC: R_TS=5k → 38µA×5k=190mV ≈
-VHOT 188mV typ (BQ25170 EC p.7, §8.2.1.2.1). Charger can suspend at 25°C with a protected pack.
-Smallest fix: **BOM/CPL note — do not place R61** when pack NTC is used (no copper change).
+**H1 — F-PWR-01: charger TS pin sees two parallel NTC paths. — FIXED in fixv19a**
+R61 "NTC 10k B3380" was POPULATED (pinmap R61.1=TS, R61.2=GND) parallel to J2.3 pack-NTC:
+R_TS=5k → 38µA×5k=190mV ≈ VHOT 188mV typ (BQ25170 EC p.7, §8.2.1.2.1) → suspend risk at 25°C.
+FIXED: R61 marked DNP in board attr + BOM.csv DNP flag; removed from BOM_JLC/CPL/CPL_JLC/
+positions_kicad; ASSEMBLY_CHECKS.json updated.
 
-**H2 — F-PWR-02: TPS61240 underspec'd for the LED load.**
-Guaranteed IOUT=200mA (EC p.5; "up to 250mA @3.2Vin" p.3) vs ~300mA optical LED worst case.
-Smallest fix: **BOM swap to TPS61241YFFR** (same DSBGA-6, 300mA spec — drop-in, verify pinout).
+**H2 — F-PWR-02: TPS61240 underspec'd for the LED load. — FIXED in fixv19a**
+Guaranteed IOUT=200mA (EC p.5) vs ~300mA optical worst case.
+FIXED: U15→TPS61241YFFR (same DSBGA-6 YFF pin map verified vs SLVS806D §6; 600mA valley
+limit, 300mA @3.2V) in all BOM files; LCSC C544431. ⚠ stock ~67pcs — confirm before ordering.
 
 **H3 — U3 (TPS63802) VOUT bulk cap 15.95mm away; only 100nF local.**
 Datasheet requires CO,eff ≥7µF "as close as possible"; C45 22µF at 15.95mm (decap_distances.csv).
@@ -40,8 +48,11 @@ Smallest fix: **re-spin** to wire to an AFE channel, or remove/relabel next rev.
 **H6 — U14 source footprint has all 14 pads transposed (0.254×0.7874 in 0.5mm pitch columns)
 → −0.287mm overlaps: +3V3×GND, SCL×SDA shorts IF gerbers are regenerated.** Shipped zip
 gerbers are CORRECT (aperture decode: pads render radially). The ordered board is safe; the
-source is broken → must fix `vitalq:QFN_LSM6DSV80XTR_STM` (and lib copies) before ANY
-re-export — which B1 already requires. Classification: **source defect** (no impact on this order).
+source was broken. FIXED in source + both library copies (all in-column gaps now +0.246mm).
+Also fixed in the same pass: oversized pads on U8/U19/U26/U9/U11/U20/U4/U21 to datasheet
+land dims; U15 pads gained F.Paste; R61 marked DNP; D10 stale Value corrected.
+NEW source-side residual from the shrink pass (shipped copper unaffected — gerbers predate it):
+U19.12 stub gap 0.37mm, U11.2 stub gap 0.06mm, U20.4 unrouted — being closed as routing edits.
 
 **H7 — POFV: 48 vias in SMD lands (49 pad contacts), 45 of them 0.150mm drill — below
 JLCPCB's published 0.2mm POFV minimum; 5 in-pad vias carry no explicit cap/fill flag**
