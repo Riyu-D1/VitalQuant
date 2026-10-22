@@ -1,0 +1,1582 @@
+                                                                                                                           SN74AXC2T245
+                                                                                               SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+         SN74AXC2T245 2-Bit Dual-Supply Bus Transceiver with Configurable Voltage
+                            Translation and Tri-State Outputs
+
+   1 Features                                                             3 Description
+   •   Fully configurable dual-rail design allows each port               The SN74AXC2T245 is a two-bit noninverting bus
+       to operate with a power supply range from 0.65V                    transceiver that uses two individually configurable
+       to 3.6V                                                            power-supply rails. The device is operational with both
+   •   Operating temperature from –40°C to +125°C                         VCCA and VCCB supplies as low as 0.65V. The A port
+   •   DIR control input for each channel                                 is designed to track VCCA, which accepts any supply
+   •   Glitch-free power supply sequencing                                voltage from 0.65V to 3.6V. The B port is designed
+   •   Up to 380-Mbps support when translating from                       to track VCCB, which also accepts any supply voltage
+       1.8V to 3.3V                                                       from 0.65V to 3.6V. Additionally the SN74AXC2T245
+   •   VCC isolation feature                                              is compatible with a single-supply system.
+       – If either VCC input is below 100mV, all                          The SN74AXC2T245 device is designed for
+            I/O outputs are disabled and become high-                     asynchronous communication between data buses.
+            impedance                                                     The device transmits data from the A bus to the B
+   •   Ioff supports partial-power-down mode operation                    bus or from the B bus to the A bus, depending on the
+   •   Compatible with AVC-family level shifters                          logic level of the direction-control inputs (DIRx). The
+   •   Latch-up performance exceeds 100 mA per JESD                       SN74AXC2T245 device is designed so the control pin
+       78, class II                                                       (DIR) is referenced to VCCA.
+   •   ESD protection exceeds JEDEC JS-001
+       – 8000-V Human-body model                                          This device is fully specified for partial-power-down
+       – 1000-V Charged-device model                                      applications using the Ioff current. The Ioff protection
+                                                                          circuitry is designed so that no excessive current is
+   2 Applications                                                         drawn from or to an input, output, or combined I/O
+   •   Industrial                                                         that is biased to a specific voltage while the device is
+   •   Personal electronics                                               powered down.
+   •   Wireless infrastructure                                            The VCC isolation feature is designed so that if either
+   •   Building automation                                                VCCA or VCCB is less than 100mV, both I/O ports enter
+   •   Point of sale                                                      a high-impedance state by disabling their outputs.
+   •   Enterprise and communications
+                                                                          Glitch-free power supply sequencing allows either
+                    One of Two Transceivers                               supply rail to be powered on or off in any order while
+                                                                          providing robust power sequencing performance.
+                  VCCA                          VCCB
+                                                                                              Package Information
+DIRx
+                                                                                PART NUMBER          PACKAGE(1)          PACKAGE SIZE(2)
+ OE                                                                         SN74AXC2T245         RSW (UQFN, 10)         1.8mm × 1.4mm
+
+                                                                          (1)    For more information, see Section 11.
+                                                                          (2)    The package size (length × width) is a nominal value and
+                                                                                 includes pins, where applicable.
+ Ax                                                                    Bx
+
+
+
+
+                  Functional Block Diagram
+
+
+
+
+        An IMPORTANT NOTICE at the end of this data sheet addresses availability, warranty, changes, use in safety-critical applications,
+        intellectual property matters and other important disclaimers. PRODUCTION DATA.
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                                                        www.ti.com
+
+
+                                                                        Table of Contents
+1 Features............................................................................1     7 Detailed Description......................................................18
+2 Applications..................................................................... 1         7.1 Overview................................................................... 18
+3 Description.......................................................................1         7.2 Functional Block Diagram......................................... 18
+4 Pin Configuration and Functions...................................2                         7.3 Feature Description...................................................18
+5 Specifications.................................................................. 3          7.4 Device Functional Modes..........................................20
+  5.1 Absolute Maximum Ratings........................................ 3                    8 Application and Implementation.................................. 21
+  5.2 ESD Ratings............................................................... 3            8.1 Application Information............................................. 21
+  5.3 Thermal Information....................................................3                8.2 Typical Application.................................................... 21
+  5.4 Recommended Operating Conditions.........................4                              8.3 Power Supply Recommendations.............................23
+  5.5 Electrical Characteristics.............................................5                8.4 Layout....................................................................... 23
+  5.6 Switching Characteristics, VCCA = 0.7 ± 0.05V........... 6                            9 Device and Documentation Support............................24
+  5.7 Switching Characteristics, VCCA = 0.8 ± 0.04V........... 7                              9.1 Documentation Support............................................ 24
+  5.8 Switching Characteristics, VCCA = 0.9 ± 0.045V......... 8                               9.2 Receiving Notification of Documentation Updates....24
+  5.9 Switching Characteristics, VCCA = 1.2 ± 0.1V............. 9                             9.3 Support Resources................................................... 24
+  5.10 Switching Characteristics, VCCA = 1.5 ± 0.1V......... 10                               9.4 Trademarks............................................................... 24
+  5.11 Switching Characteristics, VCCA = 1.8 ± 0.15V........11                                9.5 Electrostatic Discharge Caution................................24
+  5.12 Switching Characteristics, VCCA = 2.5 ± 0.2V......... 12                               9.6 Glossary....................................................................24
+  5.13 Switching Characteristics, VCCA = 3.3 ± 0.3V......... 13                             10 Revision History.......................................................... 24
+  5.14 Operating Characteristics: TA = 25°C..................... 14                         11 Mechanical, Packaging, and Orderable
+6 Parameter Measurement Information.......................... 16                              Information.................................................................... 24
+  6.1 Load Circuit and Voltage Waveforms........................16
+
+
+4 Pin Configuration and Functions
+                                                                                    VCCA
+                                                                                           VCCB
+
+
+
+
+                                                                    A1 8             7     6       5 B1
+                                                                    A2 9                           4 B2
+                                                                DIR1 10                            3 GND
+                                                                                     1     2
+                                                                                           OE
+                                                                                    DIR2
+
+
+
+
+                                    Figure 4-1. RSW Package, 10-Pin UQFN (Transparent Top View)
+
+                                                                     Table 4-1. Pin Functions
+               PIN
+                                   TYPE(1)                                                             DESCRIPTION
+    NAME              NO.
+    DIR2               1                I         Direction Pin for channel A2/B2, Connect to GND or to VCCA
+    OE                 2                I         Tri-state output-mode enable. Pull OE high to place all outputs in tri-state mode. Referenced to VCCA.
+    GND                3               G          Ground
+    B2                 4               I/O        Output or input depending on state of DIR2. Output level depends on VCCB.
+    B1                 5               I/O        Output or input depending on state of DIR1. Output level depends on VCCB.
+    VCCB               6                P         Supply Voltage B
+    VCCA               7                P         Supply Voltage A
+    A1                 8               I/O        Output or input depending on state of DIR1. Output level depends on VCCA.
+    A2                 9               I/O        Output or input depending on state of DIR2. Output level depends on VCCA.
+    DIR1               10               I         Direction Pin for channel A1/B1, Connect to GND or to VCCA
+
+(1)        I = input, O = output, P = power, G = ground
+
+
+2          Submit Document Feedback                                                                                        Copyright © 2024 Texas Instruments Incorporated
+
+                                                                 Product Folder Links: SN74AXC2T245
+                                                                                                                              SN74AXC2T245
+www.ti.com                                                                                       SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+5 Specifications
+5.1 Absolute Maximum Ratings
+over operating free-air temperature range (unless otherwise noted)(1)
+                                                                                                                       MIN        MAX UNIT
+ VCCA     Supply voltage A                                                                                             –0.5         4.2       V
+ VCCB     Supply voltage B                                                                                             –0.5         4.2       V
+                                                                                        I/O Ports (A Port)             –0.5         4.2
+ VI       Input Voltage(2)                                                              I/O Ports (B Port)             –0.5         4.2       V
+                                                                                        Control Inputs                 –0.5         4.2
+                                                                                        A Port                         –0.5         4.2
+ VO       Voltage applied to any output in the high-impedance or power-off state(2)                                                           V
+                                                                                        B Port                         –0.5         4.2
+                                                                                        A Port                         –0.5 VCCA + 0.2
+ VO       Voltage applied to any output in the high or low state(2) (3)                                                                       V
+                                                                                        B Port                         –0.5 VCCB + 0.2
+ IIK      Input clamp current                                                           VI < 0                          –50                   mA
+ IOK      Output clamp current                                                          VO < 0                          –50                   mA
+ IO       Continuous output current                                                                                     –50          50       mA
+          Continuous current through VCC or GND                                                                        –100        100        mA
+ Tj       Junction Temperature                                                                                                     150        °C
+ Tstg     Storage temperature                                                                                           –65        150        °C
+
+(1)     Stresses beyond those listed under Absolute Maximum Ratings may cause permanent damage to the device. These are stress
+        ratings only, which do not imply functional operation of the device at these or any other conditions beyond those indicated under
+        Recommended Operating Conditions. Exposure to absolute-maximum-rated conditions for extended periods may affect device
+        reliability.
+(2)     The input voltage and output negative-voltage ratings may be exceeded if the input and output current ratings are observed.
+(3)     The output positive-voltage rating may be exceeded up to 4.2V maximum if the output current rating is observed.
+
+5.2 ESD Ratings
+                                                                                                                       VALUE          UNIT
+                                        Human body model (HBM), per ANSI/ESDA/JEDEC JS-001(1)                           ±8000
+ V(ESD)      Electrostatic discharge                                                                                                      V
+                                        Charged device model (CDM), per JEDEC specification JESD22-C101(2)              ±1000
+
+(1)     JEDEC document JEP155 states that 500-V HBM allows safe manufacturing with a standard ESD control process.
+(2)     JEDEC document JEP157 states that 250-V CDM allows safe manufacturing with a standard ESD control process.
+
+5.3 Thermal Information
+                                                                                                      SN74AXC2T245
+                                       THERMAL METRIC(1)                                                 RSW (UQFN)                  UNIT
+                                                                                                             10 PINS
+ RθJA               Junction-to-ambient thermal resistance                                                    209.0                  °C/W
+ RθJC(top)          Junction-to-case (top) thermal resistance                                                 129.1                  °C/W
+ RθJB               Junction-to-board thermal resistance                                                      122.9                  °C/W
+ ψJT                Junction-to-top characterization parameter                                                18.4                   °C/W
+ ψJB                Junction-to-board characterization parameter                                              122.5                  °C/W
+
+(1)     For more information about traditional and new thermal metrics, see the Semiconductor and IC Package Thermal Metrics application
+        report.
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                Submit Document Feedback            3
+                                                       Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                              www.ti.com
+
+
+5.4 Recommended Operating Conditions
+over operating free-air temperature range (unless otherwise noted)(1) (2) (3)
+                                                                                                                      MIN             MAX UNIT
+    VCCA       Supply voltage A                                                                                      0.65                3.6    V
+    VCCB       Supply voltage B                                                                                      0.65                3.6    V
+                                                                            VCCI = 0.65V - 0.75V              VCCI x 0.70
+                                                                            VCCI = 0.76V - 1V                 VCCI x 0.70
+                                          Data Inputs                       VCCI = 1.1V - 1.95V               VCCI x 0.65
+                                                                            VCCI = 2.3V - 2.7V                         1.6
+                                                                            VCCI = 3V - 3.6V                             2
+    VIH        High-level input voltage                                                                                                         V
+                                                                            VCCA = 0.65V - 0.75V             VCCA x 0.70
+                                                                            VCCA = 0.76V - 1V                VCCA x 0.70
+                                          Control Inputs(DIRx, OE)
+                                                                            VCCA = 1.1V - 1.95V              VCCA x 0.65
+                                          Referenced to VCCA
+                                                                            VCCA = 2.3V - 2.7V                         1.6
+                                                                            VCCA = 3V - 3.6V                             2
+                                                                            VCCI = 0.65V - 0.75V                               VCCI x 0.30
+                                                                            VCCI = 0.76V - 1V                                  VCCI x 0.30
+                                          Data Inputs                       VCCI = 1.1V - 1.95V                                VCCI x 0.35
+                                                                            VCCI = 2.3V - 2.7V                                           0.7
+                                                                            VCCI = 3V - 3.6V                                             0.8
+    VIL        Low-level input voltage                                                                                                          V
+                                                                            VCCA = 0.65V - 0.75V                               VCCA x 0.30
+                                                                            VCCA = 0.76V - 1V                                  VCCA x 0.30
+                                          Control Inputs(DIRx, OE)
+                                                                            VCCA = 1.1V - 1.95V                                VCCA x 0.35
+                                          Referenced to VCCA
+                                                                            VCCA = 2.3V - 2.7V                                           0.7
+                                                                            VCCA = 3V - 3.6V                                             0.8
+    VI         Input voltage (3)                                                                                         0               3.6    V
+                                          Active State                                                                   0            VCCO
+    VO         Output voltage                                                                                                                   V
+                                          Tri-State                                                                      0               3.6
+    Δt/Δv      Input transition rate                                                                                                      10   ns/V
+    TA         Operating free-air temperature                                                                         –40                125   °C
+
+(1)        VCCI is the VCC associated with the input port.
+(2)        VCCO is the VCC associated with the output port.
+(3)        All unused inputs of the device must be held at VCC or GND for proper device operation. Refer to the TI application report,
+           Implications of Slow or Floating CMOS Inputs.
+
+
+
+
+4           Submit Document Feedback                                                                   Copyright © 2024 Texas Instruments Incorporated
+
+                                                         Product Folder Links: SN74AXC2T245
+                                                                                                                         SN74AXC2T245
+www.ti.com                                                                                    SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+
+5.5 Electrical Characteristics
+over operating free-air temperature range (unless otherwise noted) (1) (2)
+                                                                                           Operating free-air temperature (TA)
+        PARAMETER             TEST CONDITIONS                 VCCA             VCCB     -40°C to 85°C           -40°C to 125°C          UNIT
+                                                                                       MIN TYP(4)      MAX     MIN TYP(4)     MAX
+                                                                                      VCCO                    VCCO
+                                      IOH = -100 µA    0.7V - 3.6V      0.7V - 3.6V
+                                                                                      – 0.1                   – 0.1
+                                      IOH = -50 µA     0.65V            0.65V         0.55                     0.55
+                                      IOH = -200 µA    0.76V            0.76V         0.58                     0.58
+                                      IOH = -500 µA    0.85V            0.85V         0.65                     0.65
+          High-level
+ VOH                     VI = VIH                                                                                                        V
+          output voltage              IOH = -3 mA      1.1V             1.1V          0.85                     0.85
+                                      IOH = -6 mA      1.4V             1.4V          1.05                     1.05
+                                      IOH = -8 mA      1.65V            1.65V           1.2                     1.2
+                                      IOH = -9 mA      2.3V             2.3V          1.75                     1.75
+                                      IOH = -12 mA     3V               3V              2.3                     2.3
+                                      IOL = 100 µA     0.7V - 3.6V      0.7V - 3.6V                     0.1                       0.1
+                                      IOL = 50 µA      0.65V            0.65V                           0.1                       0.1
+                                      IOL = 200 µA     0.76V            0.76V                          0.18                      0.18
+                                      IOL = 500 µA     0.85V            0.85V                           0.2                       0.2
+          Low-level
+ VOL                     VI = VIL     IOL = 3 mA       1.1V             1.1V                           0.25                      0.25    V
+          output voltage
+                                      IOL = 6 mA       1.4V             1.4V                           0.35                      0.35
+                                      IOL = 8 mA       1.65V            1.65V                          0.45                      0.45
+                                      IOL = 9 mA       2.3V             2.3V                           0.55                      0.55
+                                      IOL = 12 mA      3V               3V                              0.7                       0.7
+                           Control inputs (DIRx, OE):
+                                                      0.65V- 3.6V       0.65V- 3.6V   –0.5              0.5      –1                1    µA
+          Input leakage    VI = VCCA or GND
+ II
+          current          Data Inputs (Ax, Bx)
+                                                       0.65V- 3.6V      0.65V- 3.6V     –4                4      –8                8    µA
+                           VI = VCCI or GND
+
+          Partial power    A or B Port                 0V               0V - 3.6V       –4                4      –8                8
+ Ioff                                                                                                                                   µA
+          down current     VI or VO = 0V - 3.6V        0V - 3.6V        0V              –4                4      –8                8
+          Tri-state      A or B Port
+ IOZ      output current VI = VCCI or GND, VO =        3.6V             3.6V            –4                4      –8                8    µA
+          (3)            VCCO or GND, OE = VIH
+                                                       0.65V- 3.6V      0.65V- 3.6V                      10                       14
+          VCCA supply      VI = VCCI
+ ICCA                                I =0              0V               3.6V            –2                     –12                      µA
+          current          or GND O
+                                                       3.6V             0V                                5                       10
+                                                       0.65V- 3.6V      0.65V- 3.6V                      10                       14
+          VCCB supply      VI = VCCI
+ ICCB                                I =0              0V               3.6V                              5                       10    µA
+          current          or GND O
+                                                       3.6V             0V              –2                     –12
+ ICCA + Combined       VI = VCCI
+                                 I =0                  0.65V- 3.6V      0.65V- 3.6V                      16                       23    µA
+ ICCB   supply current or GND O
+          Control input
+ Ci                        VI = 3.3V or GND            3.3V             3.3V                     3.0                    3.0             pF
+          capacitance
+                           OE = VCCA, VO = 1.65V
+          Data I/O
+ Cio                       DC +1MHz -16 dBm sine       3.3V             3.3V                     5.1                    5.1             pF
+          capacitance
+                           wave
+
+(1)     VCCI is the VCC associated with the input port.
+(2)     VCCO is the VCC associated with the output port.
+(3)     For I/O ports, the parameter IOZ includes the input leakage current.
+(4)     All typical data is taken at 25°C.
+
+Copyright © 2024 Texas Instruments Incorporated                                                          Submit Document Feedback              5
+                                                      Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                                          www.ti.com
+
+
+5.6 Switching Characteristics, VCCA = 0.7 ± 0.05V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                       B-Port Supply Voltage (VCCB)
+                                       Test                                    0.9 ±                                                                        UNI
+     PARAMETER          FROM   TO                   0.7 ± 0.05V 0.8 ± 0.04V               1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V      3.3 ± 0.3V
+                                     Conditions                               0.045V                                                                         T
+                                                    MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX      MIN MAX       MIN MAX     MIN MAX
+                                    -40°C to 85°C    0.5   169    0.5   115   0.5    84    0.5    50    0.5    51     0.5    56   0.5    72    0.5    106
+                        A      B    -40°C to
+                                                     0.5   169    0.5   115   0.5    84    0.5    50    0.5    51     0.5    56   0.5    72    0.5    106
+           Propagatio               125°C
+    tpd                                                                                                                                                     ns
+           n delay                  -40°C to 85°C    0.5   169    0.5   149   0.5   122    0.5    84    0.5    79     0.5    78   0.5    77    0.5     76
+                        B      A    -40°C to
+                                                     0.5   169    0.5   149   0.5   122    0.5    84    0.5    79     0.5    78   0.5    77    0.5     76
+                                    125°C
+                                    -40°C to 85°C    0.5   132    0.5   132   0.5   132    0.5   132    0.5   132     0.5   132   0.5   132    0.5    132
+                        OE     A    -40°C to
+                                                     0.5   132    0.5   132   0.5   132    0.5   132    0.5   132     0.5   132   0.5   132    0.5    132
+           Disable                  125°C
+    tdis                                                                                                                                                    ns
+           time                     -40°C to 85°C    0.5   129    0.5   102   0.5    88    0.5    48    0.5    43     0.5    43   0.5    53    0.5     98
+                        OE     B    -40°C to
+                                                     0.5   129    0.5   102   0.5    88    0.5    48    0.5    43     0.5    43   0.5    53    0.5     98
+                                    125°C
+                                    -40°C to 85°C    0.5   196    0.5   196   0.5   196    0.5   196    0.5   196     0.5   196   0.5   196    0.5    196
+                        OE     A    -40°C to
+                                                     0.5   196    0.5   196   0.5   196    0.5   196    0.5   196     0.5   196   0.5   196    0.5    196
+           Enable                   125°C
+    ten                                                                                                                                                     ns
+           time                     -40°C to 85°C    0.5   212    0.5   131   0.5    94    0.5    54    0.5    42     0.5    43   0.5    60    0.5    128
+                        OE     B    -40°C to
+                                                     0.5   212    0.5   136   0.5   102    0.5    59    0.5    43     0.5    43   0.5    60    0.5    128
+                                    125°C
+
+
+
+
+6           Submit Document Feedback                                                                          Copyright © 2024 Texas Instruments Incorporated
+
+                                                           Product Folder Links: SN74AXC2T245
+                                                                                                                                         SN74AXC2T245
+www.ti.com                                                                                             SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+
+5.7 Switching Characteristics, VCCA = 0.8 ± 0.04V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                     B-Port Supply Voltage (VCCB)
+                                     Test                                    0.9 ±                                                                       UNI
+  PARAMETER          FROM   TO                    0.7 ± 0.05V 0.8 ± 0.04V               1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V      3.3 ± 0.3V
+                                   Conditions                               0.045V                                                                        T
+                                                  MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX      MIN MAX       MIN MAX     MIN MAX
+                                 -40°C to 85°C     0.5   149    0.5    94   0.5    63    0.5    34    0.5    28     0.5    27   0.5    28    0.5    34
+                     A      B    -40°C to
+                                                   0.5   149    0.5    94   0.5    63    0.5    34    0.5    28     0.5    27   0.5    28    0.5    34
+        Propagatio               125°C
+ tpd                                                                                                                                                     ns
+        n delay                  -40°C to 85°C     0.5   115    0.5    94   0.5    76    0.5    50    0.5    41     0.5    40   0.5    39    0.5    38
+                     B      A    -40°C to
+                                                   0.5   115    0.5    94   0.5    76    0.5    50    0.5    41     0.5    40   0.5    39    0.5    38
+                                 125°C
+                                 -40°C to 85°C     0.5    91    0.5    91   0.5    91    0.5    91    0.5    91     0.5    91   0.5    91    0.5    91
+                     OE     A    -40°C to
+                                                   0.5    91    0.5    91   0.5    91    0.5    91    0.5    91     0.5    91   0.5    91    0.5    91
+        Disable                  125°C
+ tdis                                                                                                                                                    ns
+        time                     -40°C to 85°C     0.5   121    0.5    94   0.5    79    0.5    38    0.5    32     0.5    31   0.5    30    0.5    35
+                     OE     B    -40°C to
+                                                   0.5   121    0.5    94   0.5    79    0.5    38    0.5    32     0.5    31   0.5    30    0.5    35
+                                 125°C
+                                 -40°C to 85°C     0.5   109    0.5   109   0.5   109    0.5   109    0.5   109     0.5   109   0.5   109    0.5   109
+                     OE     A    -40°C to
+                                                   0.5   109    0.5   109   0.5   109    0.5   109    0.5   109     0.5   109   0.5   109    0.5   109
+        Enable                   125°C
+ ten                                                                                                                                                     ns
+        time                     -40°C to 85°C     0.5   198    0.5   121   0.5    84    0.5    46    0.5    33     0.5    28   0.5    28    0.5    35
+                     OE     B    -40°C to
+                                                   0.5   198    0.5   128   0.5    95    0.5    52    0.5    35     0.5    30   0.5    28    0.5    35
+                                 125°C
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                       Submit Document Feedback                 7
+                                                         Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                                        www.ti.com
+
+
+5.8 Switching Characteristics, VCCA = 0.9 ± 0.045V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                       B-Port Supply Voltage (VCCB)
+                                       Test                                    0.9 ±                                                                      UNI
+     PARAMETER          FROM   TO                   0.7 ± 0.05V 0.8 ± 0.04V               1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V    3.3 ± 0.3V
+                                     Conditions                               0.045V                                                                       T
+                                                    MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX     MIN MAX       MIN MAX    MIN MAX
+                                    -40°C to 85°C    0.5   122    0.5    76   0.5   51     0.5    23    0.5   18      0.5   16   0.5   15    0.5     17
+                        A      B    -40°C to
+                                                     0.5   122    0.5    76   0.5   51     0.5    23    0.5   18      0.5   16   0.5   15    0.5     17
+           Propagatio               125°C
+    tpd                                                                                                                                                   ns
+           n delay                  -40°C to 85°C    0.5    84    0.5    63   0.5   51     0.5    39    0.5   28      0.5   24   0.5   21    0.5     21
+                        B      A    -40°C to
+                                                     0.5    84    0.5    63   0.5   51     0.5    39    0.5   28      0.5   24   0.5   21    0.5     21
+                                    125°C
+                                    -40°C to 85°C    0.5    70    0.5    70   0.5   70     0.5    70    0.5   70      0.5   70   0.5   70    0.5     70
+                        OE     A    -40°C to
+                                                     0.5    70    0.5    70   0.5   70     0.5    70    0.5   70      0.5   70   0.5   70    0.5     70
+           Disable                  125°C
+    tdis                                                                                                                                                  ns
+           time                     -40°C to 85°C    0.5   116    0.5    89   0.5   74     0.5    33    0.5   26      0.5   25   0.5   22    0.5     25
+                        OE     B    -40°C to
+                                                     0.5   116    0.5    89   0.5   75     0.5    33    0.5   27      0.5   25   0.5   23    0.5     26
+                                    125°C
+                                    -40°C to 85°C    0.5    65    0.5    65   0.5   65     0.5    65    0.5   65      0.5   65   0.5   65    0.5     65
+                        OE     A    -40°C to
+                                                     0.5    65    0.5    65   0.5   65     0.5    65    0.5   65      0.5   65   0.5   65    0.5     65
+           Enable                   125°C
+    ten                                                                                                                                                   ns
+           time                     -40°C to 85°C    0.5   184    0.5   115   0.5   78     0.5    42    0.5   29      0.5   25   0.5   20    0.5     21
+                        OE     B    -40°C to
+                                                     0.5   184    0.5   123   0.5   91     0.5    48    0.5   32      0.5   26   0.5   21    0.5     22
+                                    125°C
+
+
+
+
+8           Submit Document Feedback                                                                          Copyright © 2024 Texas Instruments Incorporated
+
+                                                           Product Folder Links: SN74AXC2T245
+                                                                                                                                         SN74AXC2T245
+www.ti.com                                                                                             SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+
+5.9 Switching Characteristics, VCCA = 1.2 ± 0.1V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                     B-Port Supply Voltage (VCCB)
+                                     Test                                    0.9 ±                                                                     UNI
+  PARAMETER          FROM   TO                    0.7 ± 0.05V 0.8 ± 0.04V               1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V    3.3 ± 0.3V
+                                   Conditions                               0.045V                                                                      T
+                                                  MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX     MIN MAX       MIN MAX    MIN MAX
+                                 -40°C to 85°C     0.5    84    0.5    50   0.5   39     0.5    15    0.5   10      0.5    9   0.5    7    0.5     8
+                     A      B    -40°C to
+                                                   0.5    84    0.5    50   0.5   39     0.5    15    0.5   11      0.5    9   0.5    8    0.5     8
+        Propagatio               125°C
+ tpd                                                                                                                                                   ns
+        n delay                  -40°C to 85°C     0.5    50    0.5    33   0.5   23     0.5    15    0.5   12      0.5   10   0.5    8    0.5     7
+                     B      A    -40°C to
+                                                   0.5    50    0.5    33   0.5   23     0.5    15    0.5   12      0.5   10   0.5    8    0.5     7
+                                 125°C
+                                 -40°C to 85°C     0.5    25    0.5    25   0.5   25     0.5    25    0.5   25      0.5   25   0.5   25    0.5    25
+                     OE     A    -40°C to
+                                                   0.5    26    0.5    26   0.5   26     0.5    26    0.5   26      0.5   26   0.5   26    0.5    26
+        Disable                  125°C
+ tdis                                                                                                                                                  ns
+        time                     -40°C to 85°C     0.5   110    0.5    83   0.5   69     0.5    27    0.5   20      0.5   18   0.5   15    0.5    15
+                     OE     B    -40°C to
+                                                   0.5   110    0.5    84   0.5   70     0.5    28    0.5   22      0.5   20   0.5   16    0.5    16
+                                 125°C
+                                 -40°C to 85°C     0.5    29    0.5    29   0.5   29     0.5    29    0.5   29      0.5   29   0.5   29    0.5    29
+                     OE     A    -40°C to
+                                                   0.5    30    0.5    30   0.5   30     0.5    30    0.5   30      0.5   30   0.5   30    0.5    30
+        Enable                   125°C
+ ten                                                                                                                                                   ns
+        time                     -40°C to 85°C     0.5   154    0.5   102   0.5   70     0.5    37    0.5   25      0.5   20   0.5   15    0.5    13
+                     OE     B    -40°C to
+                                                   0.5   165    0.5   112   0.5   83     0.5    43    0.5   28      0.5   22   0.5   17    0.5    15
+                                 125°C
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                       Submit Document Feedback               9
+                                                         Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                                     www.ti.com
+
+
+5.10 Switching Characteristics, VCCA = 1.5 ± 0.1V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                    B-Port Supply Voltage (VCCB)
+                                    Test                                    0.9 ±                                                                      UNI
+  PARAMETER          FROM   TO                   0.7 ± 0.05V 0.8 ± 0.04V               1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V    3.3 ± 0.3V
+                                  Conditions                               0.045V                                                                       T
+                                                 MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX     MIN MAX       MIN MAX    MIN MAX
+                                 -40°C to 85°C    0.5    79    0.5    41   0.5   28     0.5    12    0.5    9      0.5    7   0.5    6    0.5      6
+                     A      B    -40°C to
+                                                  0.5    79    0.5    41   0.5   28     0.5    12    0.5    9      0.5    8   0.5    6    0.5      6
+        Propagatio               125°C
+ tpd                                                                                                                                                   ns
+        n delay                  -40°C to 85°C    0.5    50    0.5    28   0.5   18     0.5    10    0.5    9      0.5    8   0.5    6    0.5      5
+                     B      A    -40°C to
+                                                  0.5    50    0.5    28   0.5   18     0.5    11    0.5    9      0.5    8   0.5    6    0.5      5
+                                 125°C
+                                 -40°C to 85°C    0.5    17    0.5    17   0.5   17     0.5    17    0.5   17      0.5   17   0.5   17    0.5     17
+                     OE     A    -40°C to
+                                                  0.5    18    0.5    18   0.5   18     0.5    18    0.5   18      0.5   18   0.5   18    0.5     18
+        Disable                  125°C
+ tdis                                                                                                                                                  ns
+        time                     -40°C to 85°C    0.5   108    0.5    82   0.5   67     0.5    25    0.5   18      0.5   16   0.5   13    0.5     13
+                     OE     B    -40°C to
+                                                  0.5   108    0.5    82   0.5   68     0.5    26    0.5   20      0.5   18   0.5   14    0.5     14
+                                 125°C
+                                 -40°C to 85°C    0.5    18    0.5    18   0.5   18     0.5    18    0.5   18      0.5   18   0.5   18    0.5     18
+                     OE     A    -40°C to
+                                                  0.5    19    0.5    19   0.5   19     0.5    19    0.5   19      0.5   19   0.5   19    0.5     19
+        Enable                   125°C
+ ten                                                                                                                                                   ns
+        time                     -40°C to 85°C    0.5   148    0.5    92   0.5   65     0.5    34    0.5   22      0.5   18   0.5   13    0.5     11
+                     OE     B    -40°C to
+                                                  0.5   157    0.5   106   0.5   78     0.5    40    0.5   25      0.5   20   0.5   15    0.5     13
+                                 125°C
+
+
+
+
+10       Submit Document Feedback                                                                          Copyright © 2024 Texas Instruments Incorporated
+
+                                                        Product Folder Links: SN74AXC2T245
+                                                                                                                                         SN74AXC2T245
+www.ti.com                                                                                             SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+
+5.11 Switching Characteristics, VCCA = 1.8 ± 0.15V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                     B-Port Supply Voltage (VCCB)
+                                     Test                                    0.9 ±                                                                     UNI
+  PARAMETER          FROM   TO                    0.7 ± 0.05V 0.8 ± 0.04V               1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V    3.3 ± 0.3V
+                                   Conditions                               0.045V                                                                      T
+                                                  MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX     MIN MAX       MIN MAX    MIN MAX
+                                 -40°C to 85°C     0.5    78    0.5    40   0.5   24     0.5    10    0.5    8      0.5    7   0.5    6    0.5     5
+                     A      B    -40°C to
+                                                   0.5    78    0.5    40   0.5   24     0.5    10    0.5    8      0.5    7   0.5    6    0.5     5
+        Propagatio               125°C
+ tpd                                                                                                                                                   ns
+        n delay                  -40°C to 85°C     0.5    56    0.5    27   0.5   16     0.5     9    0.5    7      0.5    7   0.5    5    0.5     4
+                     B      A    -40°C to
+                                                   0.5    56    0.5    27   0.5   16     0.5     9    0.5    8      0.5    7   0.5    6    0.5     5
+                                 125°C
+                                 -40°C to 85°C     0.5    15    0.5    15   0.5   15     0.5    15    0.5   15      0.5   15   0.5   15    0.5    15
+                     OE     A    -40°C to
+                                                   0.5    16    0.5    16   0.5   16     0.5    16    0.5   16      0.5   16   0.5   16    0.5    16
+        Disable                  125°C
+ tdis                                                                                                                                                  ns
+        time                     -40°C to 85°C     0.5   108    0.5    81   0.5   67     0.5    24    0.5   18      0.5   16   0.5   12    0.5    12
+                     OE     B    -40°C to
+                                                   0.5   108    0.5    82   0.5   67     0.5    26    0.5   19      0.5   17   0.5   13    0.5    13
+                                 125°C
+                                 -40°C to 85°C     0.5    14    0.5    14   0.5   14     0.5    14    0.5   14      0.5   14   0.5   14    0.5    14
+                     OE     A    -40°C to
+                                                   0.5    15    0.5    15   0.5   15     0.5    15    0.5   15      0.5   15   0.5   15    0.5    15
+        Enable                   125°C
+ ten                                                                                                                                                   ns
+        time                     -40°C to 85°C     0.5   147    0.5    88   0.5   62     0.5    32    0.5   21      0.5   17   0.5   13    0.5    11
+                     OE     B    -40°C to
+                                                   0.5   155    0.5   103   0.5   74     0.5    38    0.5   24      0.5   19   0.5   14    0.5    12
+                                 125°C
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                       Submit Document Feedback              11
+                                                         Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                                     www.ti.com
+
+
+5.12 Switching Characteristics, VCCA = 2.5 ± 0.2V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                    B-Port Supply Voltage (VCCB)
+                                    Test                                    0.9 ±                                                                      UNI
+  PARAMETER          FROM   TO                   0.7 ± 0.05V 0.8 ± 0.04V               1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V    3.3 ± 0.3V
+                                  Conditions                               0.045V                                                                       T
+                                                 MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX     MIN MAX       MIN MAX    MIN MAX
+                                 -40°C to 85°C    0.5    77    0.5    39   0.5   22     0.5     8    0.5    6      0.5    5   0.5    5    0.5      4
+                     A      B    -40°C to
+                                                  0.5    77    0.5    39   0.5   22     0.5     8    0.5    6      0.5    5   0.5    5    0.5      5
+        Propagatio               125°C
+ tpd                                                                                                                                                   ns
+        n delay                  -40°C to 85°C    0.5    71    0.5    28   0.5   15     0.5     7    0.5    6      0.5    5   0.5    5    0.5      4
+                     B      A    -40°C to
+                                                  0.5    71    0.5    28   0.5   15     0.5     8    0.5    6      0.5    6   0.5    5    0.5      4
+                                 125°C
+                                 -40°C to 85°C    0.5    11    0.5    11   0.5   11     0.5    11    0.5   11      0.5   11   0.5   11    0.5     11
+                     OE     A    -40°C to
+                                                  0.5    12    0.5    12   0.5   12     0.5    12    0.5   12      0.5   12   0.5   12    0.5     12
+        Disable                  125°C
+ tdis                                                                                                                                                  ns
+        time                     -40°C to 85°C    0.5   108    0.5    81   0.5   66     0.5    24    0.5   17      0.5   15   0.5   11    0.5     11
+                     OE     B    -40°C to
+                                                  0.5   108    0.5    81   0.5   67     0.5    25    0.5   18      0.5   16   0.5   12    0.5     12
+                                 125°C
+                                 -40°C to 85°C    0.5    10    0.5    10   0.5   10     0.5    10    0.5   10      0.5   10   0.5   10    0.5     10
+                     OE     A    -40°C to
+                                                  0.5    11    0.5    11   0.5   11     0.5    11    0.5   11      0.5   11   0.5   11    0.5     11
+        Enable                   125°C
+ ten                                                                                                                                                   ns
+        time                     -40°C to 85°C    0.5   146    0.5    86   0.5   59     0.5    29    0.5   19      0.5   15   0.5   12    0.5     10
+                     OE     B    -40°C to
+                                                  0.5   153    0.5   101   0.5   72     0.5    35    0.5   21      0.5   17   0.5   13    0.5     11
+                                 125°C
+
+
+
+
+12       Submit Document Feedback                                                                          Copyright © 2024 Texas Instruments Incorporated
+
+                                                        Product Folder Links: SN74AXC2T245
+                                                                                                                                          SN74AXC2T245
+www.ti.com                                                                                              SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+
+5.13 Switching Characteristics, VCCA = 3.3 ± 0.3V
+See Figure 1 and Table 1 for test circuit and loading. See Figure 2, Figure 3, and Figure 4 for measurement waveforms.
+                                                                                     B-Port Supply Voltage (VCCB)
+                                     Test                                    0.9 ±                                                                      UNI
+  PARAMETER          FROM   TO                    0.7 ± 0.05V 0.8 ± 0.04V                1.2 ± 0.1V   1.5 ± 0.1V 1.8 ± 0.15V 2.5 ± 0.2V    3.3 ± 0.3V
+                                   Conditions                               0.045V                                                                       T
+                                                  MIN MAX      MIN MAX      MIN MAX      MIN MAX      MIN MAX     MIN MAX      MIN MAX     MIN MAX
+                                 -40°C to 85°C     0.5    76    0.5    38   0.5   21      0.5     7    0.5    5     0.5    4   0.5    4     0.5     4
+                     A      B    -40°C to
+                                                   0.5    76    0.5    38   0.5   21      0.5     8    0.5    5     0.5    5   0.5    4     0.5     4
+        Propagatio               125°C
+ tpd                                                                                                                                                    ns
+        n delay                  -40°C to 85°C     0.5   106    0.5    34   0.5   17      0.5     8    0.5    6     0.5    5   0.5    4     0.5     4
+                     B      A    -40°C to
+                                                   0.5   106    0.5    34   0.5   17      0.5     8    0.5    6     0.5    5   0.5    5     0.5     4
+                                 125°C
+                                 -40°C to 85°C     0.5    10    0.5    10   0.5   10      0.5    10    0.5   10     0.5   10   0.5   10     0.5    10
+                     OE     A    -40°C to
+                                                   0.5    11    0.5    11   0.5   11      0.5    11    0.5   11     0.5   11   0.5   11     0.5    11
+        Disable                  125°C
+ tdis                                                                                                                                                   ns
+        time                     -40°C to 85°C     0.5   108    0.5    81   0.5   66      0.5    24    0.5   17     0.5   15   0.5   11     0.5    11
+                     OE     B    -40°C to
+                                                   0.5   108    0.5    81   0.5   67      0.5    25    0.5   18     0.5   16   0.5   12     0.5    11
+                                 125°C
+                                 -40°C to 85°C     0.5     8    0.5     8   0.5      8    0.5     8    0.5    8     0.5    8   0.5    8     0.5     8
+                     OE     A    -40°C to
+                                                   0.5     9    0.5     9   0.5      9    0.5     9    0.5    9     0.5    9   0.5    9     0.5     9
+        Enable                   125°C
+ ten                                                                                                                                                    ns
+        time                     -40°C to 85°C     0.5   146    0.5    85   0.5   58      0.5    28    0.5   18     0.5   14   0.5   11     0.5     9
+                     OE     B    -40°C to
+                                                   0.5   153    0.5   101   0.5   72      0.5    34    0.5   21     0.5   16   0.5   12     0.5    10
+                                 125°C
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                       Submit Document Feedback               13
+                                                         Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                 www.ti.com
+
+
+5.14 Operating Characteristics: TA = 25°C
+               PARAMETER                        TEST CONDITIONS          VCCA       VCCB         MIN          TYP       MAX     UNIT
+                                                                      0.7V      0.7V                           2.1
+                                                                      0.8V      0.8V                           2.0
+                                                                      0.9V      0.9V                           2.0
+           Power Dissipation Capacitance                              1.2V      1.2V                           2.0
+                                              CL = 0, RL = Open f =
+           per transceiver (A to B: outputs                                                                                       pF
+                                              1MHz, tr = tf = 1 ns    1.5V      1.5V                           2.1
+           enabled)
+                                                                      1.8V      1.8V                           2.1
+                                                                      2.5V      2.5V                           2.5
+                                                                      3.3V      3.3V                           3.1
+                                                                      0.7V      0.7V                           1.6
+                                                                      0.8V      0.8V                           1.6
+                                                                      0.9V      0.9V                           1.6
+           Power Dissipation Capacitance                              1.2V      1.2V                           1.6
+                                              CL = 0, RL = Open f =
+           per transceiver (A to B: outputs                                                                                       pF
+                                              1MHz, tr = tf = 1 ns    1.5V      1.5V                           1.6
+           disabled)
+                                                                      1.8V      1.8V                           1.7
+                                                                      2.5V      2.5V                           2.1
+                                                                      3.3V      3.3V                           2.6
+ CpdA
+                                                                      0.7V      0.7V                          10.5
+                                                                      0.8V      0.8V                          10.6
+                                                                      0.9V      0.9V                          10.6
+           Power Dissipation Capacitance                              1.2V      1.2V                          10.8
+                                              CL = 0, RL = Open f =
+           per transceiver (B to A: outputs                                                                                       pF
+                                              1MHz, tr = tf = 1 ns    1.5V      1.5V                          11.2
+           enabled)
+                                                                      1.8V      1.8V                          12.5
+                                                                      2.5V      2.5V                          16.3
+                                                                      3.3V      3.3V                          20.0
+                                                                      0.7V      0.7V                           1.0
+                                                                      0.8V      0.8V                           0.9
+                                                                      0.9V      0.9V                           0.9
+           Power Dissipation Capacitance                              1.2V      1.2V                           0.9
+                                              CL = 0, RL = Open f =
+           per transceiver (B to A: outputs                                                                                       pF
+                                              1MHz, tr = tf = 1 ns    1.5V      1.5V                           0.9
+           disabled)
+                                                                      1.8V      1.8V                           0.9
+                                                                      2.5V      2.5V                           0.9
+                                                                      3.3V      3.3V                           0.9
+
+
+
+
+14      Submit Document Feedback                                                           Copyright © 2024 Texas Instruments Incorporated
+
+                                                   Product Folder Links: SN74AXC2T245
+                                                                                                                       SN74AXC2T245
+www.ti.com                                                                                  SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+5.14 Operating Characteristics: TA = 25°C (continued)
+                 PARAMETER                          TEST CONDITIONS          VCCA       VCCB         MIN        TYP     MAX    UNIT
+                                                                          0.7V      0.7V                        10.9
+                                                                          0.8V      0.8V                        10.9
+                                                                          0.9V      0.9V                        10.9
+            Power Dissipation Capacitance                                 1.2V      1.2V                        11.1
+                                                  CL = 0, RL = Open f =
+            per transceiver (A to B: outputs                                                                                      pF
+                                                  1MHz, tr = tf = 1 ns    1.5V      1.5V                        11.4
+            enabled)
+                                                                          1.8V      1.8V                        12.6
+                                                                          2.5V      2.5V                        16.3
+                                                                          3.3V      3.3V                        20.0
+                                                                          0.7V      0.7V                         1.3
+                                                                          0.8V      0.8V                         1.2
+                                                                          0.9V      0.9V                         1.2
+            Power Dissipation Capacitance                                 1.2V      1.2V                         1.1
+                                                  CL = 0, RL = Open f =
+            per transceiver (A to B: outputs                                                                                      pF
+                                                  1MHz, tr = tf = 1 ns    1.5V      1.5V                         1.1
+            disabled)
+                                                                          1.8V      1.8V                         1.1
+                                                                          2.5V      2.5V                         1.1
+                                                                          3.3V      3.3V                         1.2
+ CpdB
+                                                                          0.7V      0.7V                         2.1
+                                                                          0.8V      0.8V                         2.1
+                                                                          0.9V      0.9V                         2.0
+            Power Dissipation Capacitance                                 1.2V      1.2V                         2.0
+                                                  CL = 0, RL = Open f =
+            per transceiver (B to A: outputs                                                                                      pF
+                                                  1MHz, tr = tf = 1 ns    1.5V      1.5V                         2.1
+            enabled)
+                                                                          1.8V      1.8V                         2.2
+                                                                          2.5V      2.5V                         2.5
+                                                                          3.3V      3.3V                         3.1
+                                                                          0.7V      0.7V                         1.6
+                                                                          0.8V      0.8V                         1.6
+                                                                          0.9V      0.9V                         1.6
+            Power Dissipation Capacitance                                 1.2V      1.2V                         1.6
+                                                  CL = 0, RL = Open f =
+            per transceiver (B to A: outputs                                                                                      pF
+                                                  1MHz, tr = tf = 1 ns    1.5V      1.5V                         1.6
+            disabled)
+                                                                          1.8V      1.8V                         1.7
+                                                                          2.5V      2.5V                         2.1
+                                                                          3.3V      3.3V                         2.6
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                        Submit Document Feedback        15
+                                                       Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                                                 www.ti.com
+
+
+6 Parameter Measurement Information
+6.1 Load Circuit and Voltage Waveforms
+Unless otherwise noted, all input pulses are supplied by generators having the following characteristics:
+• f = 1MHz
+• ZO = 50Ω
+• dv/dt ≤ 1ns/V
+                                                               Measurement Point
+                                                                                                                        2 x VCCO
+                                                                                                                 S1
+                                                                                                    RL                   Open
+                                                 Output Pin
+                                                 Under Test                                                            GND
+
+
+                                                                          CL(1)         RL
+
+
+
+
+A.     CL includes probe and jig capacitance.
+
+                                                                      Figure 6-1. Load Circuit
+
+                                                          Table 6-1. Load Circuit Conditions
+                       Parameter                                    VCCO                     RL                  CL                    S1                  VTP
+ Δt/Δv      Input transition rise or fall rate                0.65V – 3.6V                  1MΩ                 15pF                 Open                  N/A
+                                                               1.1V – 3.6V                   2kΩ                15pF                 Open                  N/A
+ tpd        Propagation (delay) time
+                                                              0.65V – 0.95V                 20kΩ                15pF                 Open                  N/A
+                                                               3V – 3.6V                     2kΩ                15pF                2 × VCCO               0.3V
+                                                              1.65V – 2.7V                   2kΩ                15pF                2 × VCCO              0.15V
+ ten, tdis Enable time, disable time
+                                                               1.1V – 1.6V                   2kΩ                15pF                2 × VCCO               0.1V
+                                                              0.65V – 0.95V                 20kΩ                15pF                2 × VCCO               0.1V
+                                                               3V – 3.6V                     2kΩ                15pF                 GND                   0.3V
+                                                              1.65V – 2.7V                   2kΩ                15pF                 GND                  0.15V
+ ten, tdis Enable time, disable time
+                                                               1.1V – 1.6V                   2kΩ                15pF                 GND                   0.1V
+                                                              0.65V – 0.95V                 20kΩ                15pF                 GND                   0.1V
+
+
+
+                                                                                                                                                               VCCI(1)
+                                                                                  VCCI(1)
+                                                                                                   Input A, B             100 kHz
+     Input A, B                 VCCI / 2                 VCCI / 2
+                                                                                                                          500 ps/V ± 100 ns/V                  0V
+                                                                                  0V
+                                           tpd                      tpd                                                                                        VOH(2)
+
+                                                                                  VOH(2)           Output B, A                Ensure Monotonic
+                                                                                                                           Rising and Falling Edge
+     Output B, A                     VCCI / 2                  VCCI / 2                                                                                        VOL(2)
+
+                                                                                  VOL(2)             1.    VCCI is the supply pin associated with the input port.
+                                                                                                     2.    VOH and VOL are typical output voltage levels that occur
+       1.     VCCI is the supply pin associated with the input port.                                       with specified RL, CL, and S1
+       2.     VOH and VOL are typical output voltage levels that occur
+                                                                                                     Figure 6-3. Input Transition Rise or Fall Rate
+              with specified RL, CL, and S1
+                   Figure 6-2. Propagation Delay
+
+
+
+
+16       Submit Document Feedback                                                                                          Copyright © 2024 Texas Instruments Incorporated
+
+                                                               Product Folder Links: SN74AXC2T245
+                                                                                                                            SN74AXC2T245
+www.ti.com                                                                                        SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+                                                                                                   VCCA
+
+                                                  OE          VCCA / 2               VCCA / 2
+
+                                                                                                   GND
+
+                                                                    tdis                ten
+
+                                                                                                   VCCO(3)
+
+                                           Output(1)                                   VCCO / 2
+                                                                  VOL + VTP
+                                                                                                   VOL(4)
+
+                                                                                                   VOH(4)
+                                                                  VOH - VTP
+                                           Output(2)                                   VCCO / 2
+
+                                                                                                   GND
+
+A.    Output waveform on the condition that input is driven to a valid Logic Low.
+B.    Output waveform on the condition that input is driven to a valid Logic High.
+C.    VCCO is the supply pin associated with the output port.
+D.    VOH and VOL are typical output voltage levels with specified RL, CL, and S1.
+
+                                              Figure 6-4. Enable Time And Disable Time
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                              Submit Document Feedback     17
+                                                       Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                         www.ti.com
+
+
+7 Detailed Description
+7.1 Overview
+The SN74AXC2T245 is a 2-bit, dual-supply noninverting bidirectional voltage level translation device. Ax pins
+and control pins (DIRx and OE) are reference to VCCA logic levels, and Bx pins are referenced to VCCB logic
+levels. The A port is able to accept I/O voltages ranging from 0.65V to 3.6V, while the B port can accept I/O
+voltages from 0.65V to 3.6V. A high on DIR enables data transmission from A to B and a low on DIR enables
+data transmission from B to A. See Section 7.4 for a summary of the operation of the control logic.
+7.2 Functional Block Diagram
+
+                                                  One of Two Transceivers
+                                                 VCCA                     VCCB
+                              DIRx
+                                 OE
+
+
+
+
+                                 Ax                                                       Bx
+
+
+
+
+7.3 Feature Description
+7.3.1 Standard CMOS Inputs
+Standard CMOS inputs are high impedance and are typically modeled as a resistor in parallel with the input
+capacitance given in the Section 5.5. The worst case resistance is calculated with the maximum input voltage,
+given in the Section 5.1, and the maximum input leakage current, given in the Section 5.5, using Ohm's law (R =
+V ÷ I).
+Signals applied to the inputs need to have fast edge rates, as defined by Δt/Δv in Section 5.4 to avoid excessive
+current consumption and oscillations. If a slow or noisy input signal is required, a device with a Schmitt-trigger
+input should be used to condition the input signal prior to the standard CMOS input.
+7.3.2 Balanced High-Drive CMOS Push-Pull Outputs
+A balanced output allows the device to sink and source similar currents. The high drive capability of this device
+creates fast edges into light loads so routing and load conditions should be considered to prevent ringing.
+Additionally, the outputs of this device are capable of driving larger currents than the device can sustain without
+being damaged. The electrical and thermal limits defined in the Section 5.1 must be followed at all times.
+7.3.3 Partial Power Down (Ioff)
+The inputs and outputs for this device enter a high-impedance state when the device is powered down, inhibiting
+current backflow into the device. The maximum leakage into or out of any input or output pin on the device is
+specified by Ioff in the Section 5.5.
+7.3.4 VCC Isolation
+The inputs and outputs for this device enter a high-impedance state when either supply is < 100mV.
+7.3.5 Over-voltage Tolerant Inputs
+Input signals to this device can be driven above the supply voltage so long as they remain below the maximum
+input voltage value specified in the Section 5.4.
+
+
+
+
+18    Submit Document Feedback                                                     Copyright © 2024 Texas Instruments Incorporated
+
+                                              Product Folder Links: SN74AXC2T245
+                                                                                                                       SN74AXC2T245
+www.ti.com                                                                                   SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+7.3.6 Glitch-free Power Supply Sequencing
+Either supply rail may be powered on or off in any order without producing a glitch on the I/Os (that is,
+where the output erroneously transitions to VCC when it should be held low). Glitches of this nature can be
+misinterpreted by a peripheral as a valid data bit, which could trigger a false device reset of the peripheral,
+a false device configuration of the peripheral, or even a false data initialization by the peripheral. For more
+information regarding the power up glitch performance of the AXC family of level translators, see the Glitch Free
+Power Sequencing With AXC Level Translators application report
+7.3.7 Negative Clamping Diodes
+The inputs and outputs to this device have negative clamping diodes as depicted in Figure 7-1.
+
+                                                                  CAUTION
+        Voltages beyond the values specified in the Section 5.1 table can cause damage to the device.
+        The input negative-voltage and output voltage ratings may be exceeded if the input and output
+        clamp-current ratings are observed.
+
+                                                                     VCC
+                                                     Device
+
+
+
+
+                                            Input                  Logic                     Output
+
+                                                    -IIK                              -IOK
+
+
+
+                                                                    GND
+
+                   Figure 7-1. Electrical Placement of Clamping Diodes for Each Input and Output
+
+7.3.8 Fully Configurable Dual-Rail Design
+Both the VCCA and VCCB pins can be supplied at any voltage from 0.65V to 3.6V, making the device suitable for
+translating between any of the voltage nodes (0.7V, 0.8V, 0.9V, 1.2V, 1.8V, 2.5V and 3.3V).
+7.3.9 I/Os with Integrated Static Pull-Down Resistors
+To help avoid floating inputs on the I/Os, this device has 71kΩ typical integrated weak pull-downs on all data
+I/Os. This feature allows all inputs to be left floating without the concern for unstable outputs or increased
+current consumption. This also helps to reduce external component count for applications where not all channels
+are used or need to be fixed low. If an external pull-up is required, it should be no larger than 7kΩ to avoid
+contention with the 71kΩ internal pull-down.
+7.3.10 Supports High-Speed Translation
+The SN74AXC2T245 device can support high data-rate applications. The translated signal data rate can be up
+to 380 Mbps when the signal is translated from 1.8V to 3.3V.
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                         Submit Document Feedback     19
+                                                       Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                    www.ti.com
+
+7.4 Device Functional Modes
+                                                     Table 7-1. Function Table
+                                                      (Each Transceiver)(1) (2)
+                CONTROL INPUTS                     Port Status
+                                                                                                OPERATION
+                OE               DIRx              A PORT                B PORT
+                       L                 L          Output (Enabled)           Input (Hi-Z)    B data to A bus
+                       L                 H             Input (Hi-Z)      Output (Enabled)      A data to B bus
+                       H                 X             Input (Hi-Z)            Input (Hi-Z)        Isolation
+
+                (1)   Input circuits of the data I/Os are always active.
+                (2)   Pins configured as inputs should not be left floating.
+
+
+
+
+20    Submit Document Feedback                                                                Copyright © 2024 Texas Instruments Incorporated
+
+                                                  Product Folder Links: SN74AXC2T245
+                                                                                                                     SN74AXC2T245
+www.ti.com                                                                                 SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+8 Application and Implementation
+                                                                    Note
+       Information in the following applications sections is not part of the TI component specification,
+       and TI does not warrant its accuracy or completeness. TI’s customers are responsible for
+       determining suitability of components for their purposes, as well as validating and testing their design
+       implementation to confirm system functionality.
+
+8.1 Application Information
+The SN74AXC2T245 device can be used in level-translation applications for interfacing devices or systems
+operating at different interface voltages with one another. The SN74AXC2T245 device is ideal for use in
+applications where a push-pull driver is connected to the data I/Os. The max data rate can be up to 380 Mbps
+when device translates a signal from 1.8V to 3.3V.
+One example application is shown in Figure 8-1, where the SN74AXC2T245 device is used to translate low
+voltage UART signals from a CPU to a higher voltage signal to properly drive the inputs of a bluetooth module.
+8.2 Typical Application
+       Pullup Resistors keep device disabled
+       during power up. OE input may also be       0.7 V                             3.3 V
+        tied to GND to keep device enabled
+
+
+
+                                                  0.1 µF                             0.1 µF
+
+
+                                                             VCCA        VCCB
+
+
+                                                      DIR1
+                                                      DIR2                                                       Bluetooth
+                SoC                                          SN74AXC2T245
+                                                                                                                  Module
+                        GPIO1                         OE
+                            RX                        A1                           B1                       TX
+
+                            TX                        A2                           B2                       RX
+
+                                                                    GND
+
+
+                                                   Figure 8-1. 2-Pin UART Application
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                       Submit Document Feedback     21
+                                                      Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                          www.ti.com
+
+8.2.1 Design Requirements
+For this design example, use the parameters listed in Table 8-1.
+                                              Table 8-1. Design Parameters
+                    DESIGN PARAMETERS                                              EXAMPLE VALUES
+                       Input voltage range                                           0.65V to 3.6V
+                      Output voltage range                                           0.65V to 3.6V
+
+
+8.2.2 Detailed Design Procedure
+To begin the design process, determine the following:
+• Input voltage range
+   – Use the supply voltage of the device that is driving the SN74AXC2T245 device to determine the input
+      voltage range. For a valid logic high, the value must exceed the high-level input voltage (VIH) of the input
+      port. For a valid logic low the value must be less than the low-level input voltage (VIL) of the input port.
+• Output voltage range
+   – Use the supply voltage of the device being driven by the SN74AXC2T245 determine the output voltage
+      range of the SN74AXC2T245.
+8.2.3 Application Curves
+
+
+
+
+                                  Figure 8-2. Up Translation at 2.5MHz (0.7V to 3.3V)
+
+
+
+
+22    Submit Document Feedback                                                      Copyright © 2024 Texas Instruments Incorporated
+
+                                              Product Folder Links: SN74AXC2T245
+                                                                                                                                SN74AXC2T245
+www.ti.com                                                                                          SCES879A – MAY 2020 – REVISED FEBRUARY 2024
+
+
+8.3 Power Supply Recommendations
+Always apply a ground reference to the GND pins first. This device is designed for glitch-free power sequencing
+without any supply sequencing requirements such as ramp order or ramp rate.
+This device is designed with various power supply sequencing methods in mind to help prevent unintended
+triggering of downstream devices. For more information regarding the power-up glitch performance of the AXC
+family of level translators, see the Glitch Free Power Sequencing With AXC Level Translators application report
+8.4 Layout
+8.4.1 Layout Guidelines
+For device reliability, following common printed-circuit board layout guidelines are recommended:
+• Use bypass capacitors on the power supply pins and place them as close to the device as possible. A
+   0.1µF capacitor is recommended, but transient performance can be improved by having both 1µF and 0.1µF
+   capacitors in parallel as bypass capacitors.
+• Use short trace lengths to avoid excessive loading.
+8.4.2 Layout Example
+
+                                                                        Legend
+                                         Via to VCCA                    A    Via to GND    G
+                                         Via to VCCB                    B    Copper Traces
+
+                                                            SN74AXC2T245RSW
+
+                                                                0201                 0201
+                                                                0.1µF        G       0.1µF
+
+
+                                           8 mil
+                                                            A       VCCA VCCB                B
+
+                                         RX to SoC     A1       8        7       6       5 B1 TX from Module
+                                         TX from Soc   A2       9                        4 B2      RX to Module
+
+
+
+                                                     DIR1 10                            3 GND
+                                                                      1 2
+                                                                    DIR2 OE
+                                                            G                                G
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                   Submit Document Feedback   23
+                                                       Product Folder Links: SN74AXC2T245
+SN74AXC2T245
+SCES879A – MAY 2020 – REVISED FEBRUARY 2024                                                                                    www.ti.com
+
+
+9 Device and Documentation Support
+9.1 Documentation Support
+9.1.1 Related Documentation
+For related documentation see the following:
+•    Texas Instruments, Implications of Slow or Floating CMOS Inputs application report
+•    Texas Instruments, Power Sequencing for AXC Family of Devices application report
+9.2 Receiving Notification of Documentation Updates
+To receive notification of documentation updates, navigate to the device product folder on ti.com. Click on
+Notifications to register and receive a weekly digest of any product information that has changed. For change
+details, review the revision history included in any revised document.
+9.3 Support Resources
+TI E2E™ support forums are an engineer's go-to source for fast, verified answers and design help — straight
+from the experts. Search existing answers or ask your own question to get the quick design help you need.
+Linked content is provided "AS IS" by the respective contributors. They do not constitute TI specifications and do
+not necessarily reflect TI's views; see TI's Terms of Use.
+9.4 Trademarks
+TI E2E™ is a trademark of Texas Instruments.
+All trademarks are the property of their respective owners.
+9.5 Electrostatic Discharge Caution
+                 This integrated circuit can be damaged by ESD. Texas Instruments recommends that all integrated circuits be handled
+                 with appropriate precautions. Failure to observe proper handling and installation procedures can cause damage.
+                 ESD damage can range from subtle performance degradation to complete device failure. Precision integrated circuits may
+                 be more susceptible to damage because very small parametric changes could cause the device not to meet its published
+                 specifications.
+
+
+9.6 Glossary
+ TI Glossary          This glossary lists and explains terms, acronyms, and definitions.
+
+
+10 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+
+Changes from Revision * (May 2020) to Revision A (February 2024)                                                                Page
+• Updated the numbering format for tables, figures, and cross-references throughout the document................. 1
+• Added the I/Os with Integrated Static Pull-Down Resistors section................................................................. 18
+
+
+
+11 Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most
+current data available for the designated devices. This data is subject to change without notice and revision of
+this document. For browser-based versions of this data sheet, refer to the left-hand navigation.
+
+
+
+
+24    Submit Document Feedback                                                                Copyright © 2024 Texas Instruments Incorporated
+
+                                                 Product Folder Links: SN74AXC2T245
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                    9-Nov-2025
+
+
+
+
+PACKAGING INFORMATION
+
+       Orderable part number          Status     Material type      Package | Pins      Package qty | Carrier        RoHS             Lead finish/              MSL rating/               Op temp (°C)          Part marking
+                                        (1)            (2)                                                             (3)            Ball material             Peak reflow                                           (6)
+                                                                                                                                            (4)                      (5)
+
+       SN74AXC2T245RSWR               Active      Production       UQFN (RSW) | 10       3000 | LARGE T&R             Yes                NIPDAU            Level-1-260C-UNLIM              -40 to 125                1HN
+      SN74AXC2T245RSWR.A              Active      Production       UQFN (RSW) | 10       3000 | LARGE T&R             Yes                NIPDAU            Level-1-260C-UNLIM              -40 to 125                1HN
+  SN74AXC2T245RSWRG4.A                Active      Production       UQFN (RSW) | 10       3000 | LARGE T&R             Yes                NIPDAU            Level-1-260C-UNLIM              -40 to 125                1HN
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+OTHER QUALIFIED VERSIONS OF SN74AXC2T245 :
+
+• Automotive : SN74AXC2T245-Q1
+
+
+                                                                                                          Addendum-Page 1
+                                                                                                                          PACKAGE OPTION ADDENDUM
+
+   www.ti.com                                                                                                                               9-Nov-2025
+
+
+
+
+NOTE: Qualified Version Definitions:
+
+       • Automotive - Q100 devices qualified for high-reliability automotive applications targeting zero defects
+
+
+
+
+                                                                                                        Addendum-Page 2
+                                                                               PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                                                         6-Dec-2023
+
+
+
+TAPE AND REEL INFORMATION
+
+       REEL DIMENSIONS                                                                      TAPE DIMENSIONS
+                                                                                       K0         P1
+
+
+
+                                                                                                                        B0 W
+                                        Reel
+                                      Diameter
+                                                                                    Cavity             A0
+                                                                A0   Dimension designed to accommodate the component width
+                                                                B0   Dimension designed to accommodate the component length
+                                                                K0   Dimension designed to accommodate the component thickness
+                                                                W    Overall width of the carrier tape
+                                                                P1   Pitch between successive cavity centers
+
+
+                                       Reel Width (W1)
+                              QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+
+                                                                                                       Sprocket Holes
+
+
+                                                 Q1        Q2          Q1    Q2
+
+                                                 Q3        Q4          Q3    Q4                    User Direction of Feed
+
+
+
+                                                            Pocket Quadrants
+
+
+*All dimensions are nominal
+             Device           Package Package Pins              SPQ       Reel   Reel   A0                    B0         K0     P1     W     Pin1
+                               Type Drawing                             Diameter Width (mm)                  (mm)       (mm)   (mm)   (mm) Quadrant
+                                                                          (mm) W1 (mm)
+  SN74AXC2T245RSWR             UQFN     RSW           10        3000        180.0           9.5        1.6    2.0       0.8    4.0    8.0     Q1
+
+
+
+
+                                                                      Pack Materials-Page 1
+                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                              6-Dec-2023
+
+
+
+ TAPE AND REEL BOX DIMENSIONS
+
+
+
+
+                                                               Width (mm)
+                                                                              H
+                      W
+
+
+
+
+                                                          L
+
+
+
+
+*All dimensions are nominal
+             Device           Package Type   Package Drawing   Pins         SPQ    Length (mm)   Width (mm)   Height (mm)
+  SN74AXC2T245RSWR               UQFN             RSW           10          3000      189.0        185.0         36.0
+
+
+
+
+                                                        Pack Materials-Page 2
+                                                                                                                    PACKAGE OUTLINE
+ RSW0010A                                                      SCALE 7.000
+                                                                                                            UQFN - 0.55 mm max height
+                                                                                                                    PLASTIC QUAD FLATPACK - NO LEAD
+
+
+                                                             1.45
+                                         B                                                       A
+                                                             1.35
+
+
+
+
+                       PIN 1 INDEX AREA
+
+
+
+
+                                                                                                1.85
+                                                                                                1.75
+
+
+
+
+                               0.55
+                               0.45                                                                     C
+                              NOTE 3
+                                                                                                              SEATING PLANE
+                                  0.05
+                                  0.00                                                                       0.05 C
+
+                                                            2X 0.8
+                                                            SYMM                                                                        (0.13) TYP
+                                                   3                             5
+
+                                                                                                     0.45
+                                                                                                9X
+                                                                                                     0.35
+
+
+                                             2
+                                                                                           6
+                                         SYMM
+                            6X 0.4
+
+                                                                                           7
+                                             1
+
+
+
+                                                                                                            0.25
+                                                                                                      10X
+                                                                                                            0.15
+                                                                                                             0.07     C A B
+                                                    10                           8
+                                                                                                             0.05
+                                                   0.55                              PIN 1 ID
+                                                   0.45
+
+                                                                                                                                   4224897/A 03/2019
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. This package complies to JEDEC MO-288 variation UDEE, except minimum package height.
+
+
+
+
+                                                                             www.ti.com
+                                                                                        EXAMPLE BOARD LAYOUT
+ RSW0010A                                                                                          UQFN - 0.55 mm max height
+                                                                                                       PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                                      SYMM
+
+                                                                 10              8
+                                                                                            SEE SOLDER MASK
+                                                                                            DETAIL
+
+
+
+
+                              10X (0.2)
+                                               1         (0.7)
+                                                                                               7
+                                                                                                SYMM
+                              6X (0.4)
+
+                                                                                               6        (1.6)
+                                               2
+                               (R0.05) TYP
+
+
+                                              9X (0.6)
+
+
+                                                                 3               5
+
+
+                                                                      (1.2)
+
+
+                                                     LAND PATTERN EXAMPLE
+                                                          EXPOSED METAL SHOWN
+                                                               SCALE: 30X
+
+
+
+
+                                                                                          0.05 MIN
+                         0.05 MAX                                                     ALL AROUND
+                     ALL AROUND
+                                                                                                                     METAL UNDER
+                                                          METAL EDGE                                                 SOLDER MASK
+
+
+                 EXPOSED METAL                             SOLDER MASK            EXPOSED                           SOLDER MASK
+                                                           OPENING                  METAL                           OPENING
+
+                                  NON SOLDER MASK
+                                      DEFINED                                             SOLDER MASK DEFINED
+                                    (PREFERRED)
+
+                                                           SOLDER MASK DETAILS
+                                                                                                                             4224897/A 03/2019
+NOTES: (continued)
+
+4. This package is designed to be soldered to a thermal pad on the board. For more information, see Texas Instruments literature
+   number SLUA271 (www.ti.com/lit/slua271).
+5. Vias are optional depending on application, refer to device data sheet. If any vias are implemented, refer to their locations shown
+   on this view. It is recommended that vias under paste be filled, plugged or tented.
+
+
+
+
+                                                                        www.ti.com
+                                                                                  EXAMPLE STENCIL DESIGN
+ RSW0010A                                                                                  UQFN - 0.55 mm max height
+                                                                                               PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                                   SYMM
+
+
+                                                              10           8
+
+
+
+
+                            10X (0.2)
+                                           1          (0.7)
+
+                                                                                       7
+                                                                                           SYMM
+                            6X (0.4)
+
+                                                                                       6          (1.6)
+                                           2
+                            (R0.05) TYP
+
+
+                                           9X (0.6)
+
+
+
+                                                              3             5
+
+                                                                   (1.2)
+
+
+
+                                                 SOLDER PASTE EXAMPLE
+                                               BASED ON 0.125 MM THICK STENCIL
+                                                         SCALE: 30X
+
+
+
+
+                                                                                                                   4224897/A 03/2019
+
+NOTES: (continued)
+
+6. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+  design recommendations.
+
+
+
+
+                                                                     www.ti.com
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2025, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

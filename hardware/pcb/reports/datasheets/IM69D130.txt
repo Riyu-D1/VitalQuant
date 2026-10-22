@@ -1,0 +1,627 @@
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Description
+The IM69D130 is designed for applications where low self-noise (high SNR), wide dynamic range, low distortions
+and a high acoustic overload point is required.
+Infineon's Dual Backplate MEMS technology is based on a miniaturized symmetrical microphone design, similar
+as utilized in studio condenser microphones, and results in high linearity of the output signal within a dynamic
+range of 105dB. The microphone distortion does not exceed 1% even at sound pressure levels of 128dBSPL. The
+flat frequency response ( 28Hz low-frequency roll-off) and tight manufacturing tolerance result in close phase
+matching of the microphones, which is important for multi-microphone (array) applications.
+With its low equivalent noise floor of 25dBSPL (SNR 69dB(A)) the microphone is no longer the limiting factor in
+the audio signal chain and enables higher performance of voice recognition algorithms.
+The digital microphone ASIC contains an extremely low-noise preamplifier and a high-performance sigma-delta
+ADC. Different power modes can be selected in order to suit specific current consumption requirements.
+Each IM69D130 microphone is calibrated with an advanced Infineon calibration algorithm, resulting in small
+sensitivity tolerances (± 1dB). The phase response is tightly matched (± 2°) between microphones, in order to
+support beamforming applications.
+
+
+Features
+•   Dynamic range of 105dB                              •         Very fast analog to digital conversion speed (6µs
+    - Signal to noise ratio of 69dB(A) SNR                        latency @1kHz
+    - <1% total harmonic distortions up to              •         Power optimized modes determined by PDM
+         128dBSPL                                                 clock frequency
+    - Acoustic overload point at 130dBSPL               •         Package dimensions: 4mm x 3mm x 1.2mm
+•   Sensitivity (± 1dB) and phase (± 2° @1kHz)          •         PDM output
+    matched                                             •         Omnidirectional pickup pattern
+•   Flat frequency response with low frequency roll off
+    at 28Hz
+
+
+Typical applications
+•   Devices with Voice User Interface (VUI)                  •    High quality audio capturing
+    - Smart speakers                                              - Conference systems
+    - Home automation                                             - Cameras and camcorders
+    - IOT devices                                            •    Industrial or home monitoring with audio pattern
+•   Active Noise Cancellation (ANC) headphones and                detection
+    earphones
+
+
+
+
+Datasheet                   Please read the Important Notice and Warnings at the end of this document              1.0
+www.infineon.com                                                                                            2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Use cases
+
+
+Use cases
+•   Below 1% total harmonic distortion                      •     Sensitivity and phase matching
+    - Voice command during music from the loud                    - Full utilization of voice algorithms capability
+        speaker                                                   - Audio beam forming
+    - Effective active noise cancellation even close              - High and precise attenuation of background
+        to loud noise source                                          noise
+    - Recordings in a discotheque or at a rock              •     Power optimized modes
+        concert
+                                                                  - Low current consumption for always on
+•   High Signal to noise ratio                                        applications
+    - Far field audio signal pick-up                              - Long operating time of battery powered
+    - Low volume audio and whispered voice                            devices
+        capturing
+    - Microphone noise is no longer limiting the
+        audio chain
+
+
+Block diagram
+
+                                                                        GROUND        VDD
+
+
+                                           MEMS BIAS
+                                                                         VOLTAGE REGULATORS
+                                          CHARGE PUMP
+
+
+
+              BACKPLATE 1                                                                                   DATA
+                                                                                                  1-BIT
+              MEMBRANE                                                       DIGITAL SIGNAL
+                                          AMP               ADC
+                                                                              PROCESSING
+                                                                                                  PDM       SELECT
+              BACKPLATE 2                                                                      INTERFACE
+                                                                                                            CLOCK
+    MEMS                                                                                         POWER
+                                                                              DIGITAL CORE       MODE
+                                                                                                DETECTOR
+
+
+
+                                                                              CALIBRATION
+                                                                              COEFFICIENTS
+                                      ASIC
+Figure 1    IM69D130 block diagram
+
+
+
+Product validation
+Technology qualified for industrial applications.
+Ready for validation in industrial applications according to the relevant tests of IEC 60747 and 60749 or
+alternatively JEDEC47/20/22.
+
+
+
+
+Datasheet                                               2                                                          1.0
+                                                                                                            2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Table of contents
+
+
+Table of contents
+
+             Description . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .1
+             Features . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+             Typical applications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+             Use cases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .2
+             Block diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+             Product validation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+             Table of contents . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+1            Typical performance characteristics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2            Acoustic characteristics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.1          Free field frequency response . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .6
+3            Electrical parameters and characteristics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .7
+3.1          Absolute maximum ratings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+3.2          Electrical parameters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+3.3          Electrical characteristics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+4            Typical stereo application circuit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+5            Reliability specifications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .11
+6            Package information . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+7            Footprint and stencil recommendation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+8            Packing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+             Revision history . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+             Disclaimer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+
+
+
+
+Datasheet                                                                          3                                                                                        1.0
+                                                                                                                                                                     2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Typical performance characteristics
+
+
+1                   Typical performance characteristics
+Test conditions: VDD = 1.8V, fCLK = 3.072MHz, no load on DATA
+
+
+
+
+Figure 2    Typical freefield frequency response            Figure 3   Typical THD vs SPL
+
+
+
+
+Figure 4    Typical phase response vs frequency             Figure 5   Typical group delay vs frequency
+
+
+
+
+Figure 6    Typical IDD vs VDD                              Figure 7   Typical noise floor (unweighted)
+
+
+
+
+Datasheet                                               4                                                   1.0
+                                                                                                     2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Acoustic characteristics
+
+
+2                   Acoustic characteristics
+Test conditions ( unless otherwise specified in the table): VDD = 1.8V, fCLK = 3.072MHz, TA = 25°C, 55% R.H., audio
+bandwidth 20Hz to 20kHz, select pin grounded, no load on DATA, Tedge = 9ns
+
+Table 1       IM69D130 acoustic specifications
+Parameter                         Symbol                  Values               Unit    Note or Test condition
+                                               Min.        Typ.     Max.
+Sensitivity                                     -37         -36         -35    dBFS    1kHz, 94 dBSPL, all
+                                                                                       operating modes
+Acoustic Overload Point             AOP                    130                dBSPL    THD = 10%, all operating
+                                                                                       modes
+Signal to       fclock=3.072MHz     SNR                     69                 dB(A)   A-Weighted
+Noise Ratio
+                fclock=2.4MHz                               68
+                fclock=1.536MHz                             66
+                fclock=768kHz                               64                         20Hz to 8kHz bandwidth,
+                                                                                       A-Weighted
+Noise Floor     fclock=3.072MHz                            -105               dBFS(A) A-Weighted
+                fclock=2.4MHz                              -104
+                fclock=1.536MHz                            -102
+                fclock=768kHz                              -101                        20Hz to 8kHz bandwidth,
+                                                                                       A-Weighted
+Total           94dBSPL             THD                     0.5                 %      Measuring 2nd to 5th
+Harmonic                                                                               harmonics; 1kHz, all
+                128dBSPL                                    1.0
+Distortion                                                                             operating modes
+                129dBSPL                                    2.0
+                130dBSPL                                   10.0
+Low Frequency Cutoff Point          fC LP                   28                  Hz     -3dB point relative to 1kHz
+Group Delay     250Hz                                       70                  µs
+                600Hz                                       15
+                1kHz                                           6
+                4kHz                                           1
+Phase           75Hz                                        19                   °
+Response
+                1kHz                                           2
+                3kHz                                           -1
+Directivity                                           Omnidirectional                  Pickup pattern
+Polarity                                     Positive pressure increases
+                                               density of 1's, negative
+                                             pressure decreases density
+                                                of 1's in data output
+
+
+
+Datasheet                                                  5                                                      1.0
+                                                                                                           2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Acoustic characteristics
+
+
+2.1                   Free field frequency response
+
+
+
+
+Figure 8     IM69D130 free field frequency response
+
+
+Table 2      IM69D130 free field frequency response, normalized to 1kHz sensitivity value
+            Frequency (Hz)                   Upper Limit (dB)                   Lower Limit (dB)
+                 25                                   -2                               -5
+                 60                                +0.5                               -1.5
+                 800                                  +1                               -1
+                1000                                  0                                0
+                1200                                  +1                               -1
+                6000                                  +1                               -2
+                8000                                  +4                               -2
+                15000                                 +9                               -2
+
+
+
+
+Datasheet                                             6                                                   1.0
+                                                                                                   2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Electrical parameters and characteristics
+
+
+3                    Electrical parameters and characteristics
+
+3.1                  Absolute maximum ratings
+Stresses at or above the listed maximum ratings may affect device reliability or cause permanent device
+damage. Functional device operation at these conditions is not guaranteed.
+
+Table 3     Absolute maximum ratings
+Parameter                   Symbol                    Values                  Unit        Note / Test Condition
+                                              Min.             Max.
+Voltage on any Pin            Vmax                               4             V
+Storage Temperature            TS              -40             125             °C
+Ambient Temperature            TA              -40              70             °C         VDD>3.0V
+                                               -40             100             °C
+
+
+3.2                  Electrical parameters
+
+Table 4     Electrical parameters and digital interface input
+Parameter                       Symbol                   Values                      Unit     Note / Test Condition
+                                              Min.        Typ.         Max.
+Supply Voltage                      VDD        1.62                     3.6           V       A 100nF bypass capacitor
+                                                                                              should be placed close to
+                                                                                              the microphone's VDD pin
+                                                                                              to ensure best SNR
+                                                                                              performance
+Clock         Operating             fclock     2.9        3.072         3.3          MHz
+Frequency     Modes
+                                               2.1         2.4          2.65
+Range
+                                               1.05       1.536         1.9
+                                               400        768           950          kHz
+              Standby Mode                                              250                   DATA = high-Z
+VDD Ramp-up Time                                                        50           ms       Time until VDD ≥ VDD_min
+PDM Clock Frequency                 fclock     0.4                      3.3          MHz
+Clock Duty Cycle                               40                       60            %       fclock<2.65MHz
+                                               48                       52            %       fclock≥2.9MHz
+Clock Rise/Fall Time                                                    13           ns
+Input Logic Low Level                VIL       -0.3                   0.35xVDD        V
+Input Logic High Level               VIH     0.65xVDD                 VDD+0.3         V
+Output Load Capacitance on          Cload                               200          pF
+DATA
+
+
+
+
+Datasheet                                                  7                                                             1.0
+                                                                                                                  2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Electrical parameters and characteristics
+
+
+3.3                  Electrical characteristics
+Test conditions (unless otherwise specified in the table): VDD= 1.8V, TA=25°C, 55% R.H.
+
+Table 5      General electrical characteristics
+Parameter                            Symbol                      Values               Unit   Note / Test Condition
+                                                    Min.         Typ.      Max.
+Current     fclock=3.072MHz              IDD                     980       1300        μA    No load on DATA
+Consumption
+            fclock=2.4MHz                                        800       1050
+                fclock=1.536MHz                                  620        800
+                fclock=768kHz                                    300        380
+                Standby Mode          Istandby                    25        50
+                Clock Off Mode        Iclock_off                             1               CLOCK pulled low
+Short Circuit Current                                1                      20         mA    Grounded DATA pin
+Power Supply Rejection               PSR1k_NM                    -80                  dBFS   100mVpp sine wave on
+                                                                                             VDD swept from 200Hz to
+                                                                                             20kHz
+                                     PSR217_NM                   -86                 dBFS(A) 100mVrms, 217Hz square
+                                                                                             wave on VDD. A-
+                                                                                             weighted
+Startup Time ±0.5dB sensitivity                                             20         ms    Time to start up in all
+             accuracy                                                                        operating modes after
+                                                                                             VDD_min and CLOCK have
+                ±0.2dB sensitivity                                          50
+                                                                                             been applied
+                accuracy
+Mode Switch ±0.5dB sensitivity                                              20         ms    Time to switch between
+Time        accuracy                                                                         operating modes. VDD
+                                                                                             remains on during the
+                ±0.2dB sensitivity                                          50
+                                                                                             mode switch
+                accuracy
+Hysteresis Width                        Vhys       0.1xVDD                0.29xVDD     V
+Output Logic Low Level                  VOL                               0.3xVDD      V     Iout= 2mA
+Output Logic High Level                 VOH        0.7xVDD                                   Iout= 2mA
+Delay Time for DATA Driven              tDD          40                     80         ns    Delay time from CLOCK
+                                                                                             edge (0.5xVDD) to DATA
+                                                                                             driven
+Delay Time for DATA High-Z1)             tHZ         5                      30         ns    Delay time from CLOCK
+                                                                                             edge (0.5xVDD) to DATA
+                                                                                             high impedance state
+
+
+
+
+1     thold is depended on Cload
+Datasheet                                                    8                                                     1.0
+                                                                                                            2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Electrical parameters and characteristics
+
+
+Table 5     General electrical characteristics (continued)
+Parameter                         Symbol                 Values          Unit   Note / Test Condition
+                                              Min.       Typ.     Max.
+Delay Time for DATA Valid2)          tDV                          100    ns     Delay time from CLOCK
+                                                                                edge (0.5xVDD) to DATA
+                                                                                valid    (<0.3xVDD  or
+                                                                                >0.7xVDD)
+
+
+
+
+Figure 9    Timing diagram
+
+
+
+
+2    Load on data: Cload=100pF, Rload=100kΩ
+Datasheet                                            9                                                1.0
+                                                                                               2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Typical stereo application circuit
+
+
+4                  Typical stereo application circuit
+
+
+                                                       VDD
+
+
+
+
+                  MIC 1                                                                     MIC 2
+                                            CVDD                   CVDD
+                             VDD                                                      VDD
+                                   LR                                            LR
+                                 GND                                            GND
+                           DATA CLK                                              CLK DATA
+                   RTERM
+
+
+
+
+                                                                                              RTERM
+                                               DATA          CLK
+
+                                                      CODEC
+
+
+
+
+Figure 10   IM69D130 stereo mode configuration
+
+Note:       For best performance it is strongly recommended to place a 100nF (CVDD_typical) capacitor between
+            VDD and ground. The capacitor should be placed as close to VDD as possible. A termination
+            resistor(RTERM) of about 100Ω may be added to reduce the ringing and overshoot on the output
+            signal.
+
+
+
+
+Datasheet                                               10                                                    1.0
+                                                                                                       2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Reliability specifications
+
+
+5                  Reliability specifications
+The microphone sensitivity after stress must deviate by no more than 3dB from the initial value.
+
+Table 6     Reliability tests
+Test                                  Test Condition                        Standard
+Vibration                             20Hz to 2000Hz with a peak             MIL-STD-883J
+                                      acceleration of 20g in X, Y, and Z for
+                                      4 minutes each, total 4 cycles
+High Temperature Storage              Ta=+125°C, 1000 hours                 JESD22 A-103E
+
+Low Temperature Storage               Ta=-40°C, 1000 hours                  JESD22-A119A
+High Temperature Operation            Ta=+125°C, VDD=2.5V, 1000 hours       JESD22 A-108D
+Cold Temperature Operation            Ta=-40°C, VDD=3.2V, 1000 hours        JESD22 A-108D
+Temperature/Humidity Bias             Ta=+85°C, R.H = 85%, VDD=3.2V,        JESD22-A101D
+                                      1000 hours
+Mechanical Shock                      10000g/0.1msec direction ±x,y,z, 5 IEC 60068-2-27
+                                      shocks in each direction, 30 shocks
+                                      in total
+Thermal cycle                         1000 cycles, -40°C to +125°C, 30      JESD22.A104E
+                                      minutes per cycle
+Reflow Solder                         3 reflow cycles, peak temperature = IPC-JEDEC J-STD-020D-01
+                                      +260°C
+ESD-SLT                               3 contact discharges of ±8kV to lid   IEC-61000-4-2
+                                      while Vdd and fclock are supplied
+                                      according to the operational
+                                      modes; (Vdd and fclock ground is
+                                      separated from earth ground)
+ESD-HBM                               1 pulse of ±2kV between all I/O pin   JS001
+                                      combinations
+Latch up                              Trigger current from ±150mA           JESD 78E
+
+
+
+
+Datasheet                                              11                                                  1.0
+                                                                                                    2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Package information
+
+
+6                       Package information
+
+
+                       3.000 ±0.1                           1.200 ±0.1                         0.700   0.850
+                                                                                                                   0.300
+                                                                         0.250 ±0.04
+                                                                                                                           0.300
+                                                                                                 1             3
+                                                                                       0.700
+                                           Pin 1
+                                                                                                 2             4           0.400
+                       XXXXXX
+                                          Type code
+       4.000                                                                                           5
+        ±0.1                               Date Code (YW)
+                          2-D
+                        Barcode
+                                                                                       1.320                                 0.600 thru
+                                                                                                                             0.850
+                                                                                                                             1.200
+                                                                                                                             2.000
+                                                                                                          1.500
+                       Top view                              Side view                            Bottom view
+
+                  All dimensions in mm
+
+
+
+
+Figure 11       IM69D130 package drawing
+
+Table 7         IM69D130 pin configuration
+    Pin Number                           Name                Description
+            1                            DATA                PDM data output
+            2                             VDD                Power supply
+            3                            CLOCK               PDM clock input
+            4                            SELECT              PDM left/right select
+            5                             GND                Ground
+
+
+
+
+Datasheet                                                            12                                                                    1.0
+                                                                                                                                    2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Footprint and stencil recommendation
+
+
+7                  Footprint and stencil recommendation
+The acoustic port hole diameter in the PCB should be larger than the acoustic port hole diameter of the MEMS
+Microphone to ensure optimal performance. A PCB sound port size of radius 0.4 mm (diameter 0.8mm) is
+recommended.
+The board pad and stencil aperture recommendations shown in Figure 12 are based on Solder Mask Defined
+(SMD) pads. The specific design rules of the board manufacturer should be considered for individual design
+optimizations or adaptations.
+
+
+
+
+Figure 12   IM69D130 footprint and stencil recommendation
+
+
+Note:       Dimensions are in millimeters unless otherwise specified
+
+
+
+
+Datasheet                                              13                                                   1.0
+                                                                                                     2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Packing
+
+
+8                  Packing
+For shipping and assembly the Infineon microphones are packed in product specific tape-and-reel carriers. A
+detailed drawing of the carrier can be seen in Figure 13
+
+
+
+
+Figure 13   IM69D130 tape dimensions
+
+
+Note:       For further information about Packing, please confer the Packing document which is available on the
+            Infineon Technologies web page or contact your local sales, application, or quality engineer.
+
+
+
+
+Datasheet                                             14                                                     1.0
+                                                                                                      2017-12-19
+IM69D130
+High performance digital XENSIVTM MEMS microphone
+
+Revision history
+
+
+Revision history
+Major changes since previous revision
+Document        Date of        Description of changes
+version         release
+1.0             19.12.2017     Initial Datasheet
+
+
+
+
+Datasheet                                          15          1.0
+                                                        2017-12-19
+Trademarks
+All referenced product or service names and trademarks are the property of their respective owners.
+
+
+
+
+Edition 2017-12-19                     IMPORTANT NOTICE                                               WARNINGS
+Published by                           The information given in this document shall in no             Due to technical requirements products may contain
+                                       event be regarded as a guarantee of conditions or              dangerous substances. For information on the types
+Infineon Technologies AG
+                                       characteristics (“Beschaffenheitsgarantie”) .                  in question please contact your nearest Infineon
+81726 Munich, Germany                  With respect to any examples, hints or any typical values      Technologies office.
+                                       stated herein and/or any information regarding the             Except as otherwise explicitly approved by Infineon
+© 2017 Infineon Technologies AG        application of the product, Infineon Technologies              Technologies in a written document signed by
+                                       hereby disclaims any and all warranties and liabilities of     authorized representatives of Infineon Technologies,
+All Rights Reserved.
+                                       any kind, including without limitation warranties of           Infineon Technologies’ products may not be used in
+                                       non-infringement of intellectual property rights of any        any applications where a failure of the product or
+Do you have a question about any       third party.                                                   any consequences of the use thereof can reasonably
+aspect of this document?               In addition, any information given in this document is         be expected to result in personal injury
+Email: erratum@infineon.com            subject to customer’s compliance with its obligations
+                                       stated in this document and any applicable legal
+                                       requirements, norms and standards concerning
+Document reference                     customer’s products and any use of the product of
+IFX-qko1485967505603                   Infineon Technologies in customer’s applications.
+                                       The data contained in this document is exclusively
+                                       intended for technically trained staff. It is the
+                                       responsibility of customer’s technical departments to
+                                       evaluate the suitability of the product for the intended
+                                       application and the completeness of the product
+                                       information given in this document with respect to such
+                                       application.
+
