@@ -1,0 +1,273 @@
+# VitalQ hardware profile — spec §34 pattern.
+# One file per hardware_revision; validated by vitalq-core's HardwareProfile schema.
+# Sensor presence, model, bus, rates and optics are CONFIG, never compiled code.
+#
+# hw_v3 — authoritative source: board fix_v22 (branch hw_v3).
+# Module: ESP32-S3-WROOM-1-N16R8 — 16 MB QUAD flash + 8 MB OCTAL PSRAM, PCB
+# antenna. NOT the S3-MINI-1U-N4R2 (4 MB/2 MB, U.FL) of hw_v2.
+#
+# GPIO map (same assignments as hw_v2):
+#   GPIO1  FSR_ADC (ADC1_CH0)          GPIO2  ADS1292_DRDY  (timestamped input)
+#   GPIO3  EXP_INT (TCA6408, strap)    GPIO4  LSM6_INT1
+#   GPIO5  TMP117_ALERT                GPIO6  GAUGE_ALRT
+#   GPIO7  CHG_PG                      GPIO8/9  I2C_SDA / I2C_SCL (I2C3V3)
+#   GPIO10 CS_ADS1292                  GPIO11/12/13  SPI_MOSI / SPI_SCK / SPI_MISO
+#   GPIO14 AD5940_GPIO0 (AD5940 ball F5)  GPIO15 CS_AD5940
+#   GPIO16 CS_FLASH (W25Q512)          GPIO17 STATUS_LED
+#   GPIO18 CS_AFE4900                  GPIO19/20 USB_D- / USB_D+ (native USB)
+#   GPIO21 AFE4900_ADC_RDY (timestamped input)
+#   GPIO38 CS_MAX86141 — net name stays the legacy label `CS_MAX86178`
+#   GPIO39 MAX86141_INT — legacy net `MAX86178_INT` (timestamped input)
+#   GPIO40/41 MIC_CLK / MIC_DAT (IM69D130 FITTED — see `mic:`)
+#   GPIO42 SPARE_IN — floating as built (R107/R108 DNP); digital-only, no ADC
+#   GPIO43/44 UART0_TX / UART0_RX (header pads only — CP2102N link DNP)
+#
+#   FORBIDDEN GPIOs (module internals + straps — never assign):
+#     GPIO26-32   internal flash/PSRAM
+#     GPIO35/36/37  OCTAL PSRAM lines
+#     GPIO45      VDD_SPI strap — MUST read 0 (= 3.3 V flash/PSRAM rail)
+#     GPIO46/47/48  NC as built
+#     IO0/IO3/IO46 are strap pins — input-only.
+#
+# USB routing reality: the CP2102N data links R104/R105 are DNP as built →
+# native USB-Serial/JTAG on GPIO19/20 is THE console + flashing path. hw_v2's
+# "either transport" strap option no longer exists — there is no populated
+# UART-bridge path; UART0 (GPIO43/44) is pads/debug only.
+#
+# Timestamped-input contract: unchanged — DRDY/ADC_RDY/INT edges must be
+# stamped in the ISR/driver task, NOT at FIFO pop (sensor_driver.h).
+#
+# TCA6408 expander (0x20, INT=GPIO3) P0-P7 — unchanged:
+#   P0 AFE4900_RESETZ, P1 ADS1292_PWDN, P2 AD5940_RESET, P3 TX5_EN,
+#   P4 IR_GATE, P5 CHG_STAT (input), P6 VBUS_DET (input), P7 CHG_DIS
+#
+# NIR730_GATE: AD5940 GPIO2 (ball E1) → Q4 → D12 730 nm LED cathode — NOT
+# GPIO0/ball F5 (that is the net AD5940_GPIO0 → ESP GPIO14 input link).
+# Pairs with the AS7341 nir channel for the derived tissue.sto2 ratio.
+#
+# Tail connectors:
+#   J9  distal-temp tail — 4 pads (3V3/SDA/SCL/GND), flex TMP117/TMP119 @ 0x4A
+#       (probe-optional)
+#   J10 satellite-PPG tail — MAX86141 LED1/LED2/LED3 cathodes, LED_AN (TX_5V),
+#       PD cathode/anode → off-board SFH7050A (same-site sync w/ main PPG)
+#   J11 sweat-electrode site — SWEAT_WE/RE/CE → AD5940 spare mux channel;
+#       RESEARCH-GRADE (see `sweat:` entry)
+#   J12 unified FFC tail (DNP) — assembly option carrying J9+J10+J11
+#   J13 ECG pad pair (DNP) — MX_ECG_INP / MX_ECG_INM
+#
+# D1–D9 discrepancy resolutions encoded in this profile:
+#   D1 `CS_MAX86178`/`MAX86178_INT` are legacy net names — fitted part is
+#      MAX86141ENP+ (U22); pins/CS unchanged.
+#   D2 I2C1V8 island behind the PCA9306 holds ONLY AS7341 (0x39) + MLX90632
+#      (0x3A); hw_v2-era notes claiming IMU/TMP117 on 1V8 are stale.
+#   D3 Native USB is the ONLY built data path (R104/R105 DNP) — no CP2102N
+#      console fallback exists.
+#   D4 i2c0 runs at 100 kHz: 2.2k pull-ups → ~503 ns rise fails 400 kHz spec.
+#   D5 RV-3028-C7 is FITTED (BOM DNP column empty), not DNP — but INT is not
+#      wired to the ESP (poll flag registers) and VBACKUP has 10k to GND
+#      (no backup cell).
+#   D6 IM69D130 is FITTED per fab BOM (U25), not DNP — enabled, probe-optional.
+#   D7 SPARE_IN (GPIO42) floats — R107/R108 DNP; digital input only, no ADC.
+#   D8 No PMIC: standby is summed rail draw (~110 µA total); fix_v10 PMIC
+#      notes are stale.
+#   D9 Cell 402535 ~300 mAh is ASSUMED UNPROTECTED — over-discharge cutoff is
+#      a firmware duty (~3.2 V VALRT / 5% SOC; emergency 3.0 V).
+
+hardware_revision: hw_v3
+description: "Custom-PCB rev3 (fix_v22): ESP32-S3-WROOM-1-N16R8, ADS1292R+AFE4900+AD5940+MAX86141 AFE set, SHT45+TMP117x3, J9-J13 tails"
+
+compute:
+  soc: esp32s3                            # ESP32-S3-WROOM-1-N16R8 (16 MB quad flash + 8 MB octal PSRAM, PCB antenna)
+  buses:
+    i2c0: { sda: 8, scl: 9, hz: 100000 }  # I2C3V3: 2.2k pull-ups → ~503 ns rise fails 400 kHz; PCA9306 → I2C1V8 island (AS7341, MLX90632 only)
+    spi1: { miso: 13, mosi: 11, sclk: 12 }# shared SPI2 host, 5 chip-selects; per-device modes/max clocks noted below
+
+clock:
+  ntp_sync_interval_s: 3600
+  drift_estimate_window_batches: 20
+  max_unsynced_s: 7200            # flag clock.unreliable beyond this
+  # RV-3028-C7 RTC is now FITTED (not DNP — see `rtc:`): probe at boot and
+  # treat as optional; poll its flag registers since INT is unwired; no
+  # backup cell (VBACKUP 10k→GND) so it anchors wall-clock only within a
+  # powered session — re-anchor via SNTP after any power loss.
+
+sensors:
+  ecg:
+    enabled: true
+    model: ADS1292R             # SPI mode1, <=4 MHz; START pin tied low → START opcode required; CLKSEL tied high → internal osc
+    bus: spi1
+    cs: 10                      # CS_ADS1292
+    int_pin: 2                  # ADS1292_DRDY — timestamped input
+    outputs: [ecg.ii, resp.waveform]
+    sample_rate_hz: 500
+
+  ppg:
+    enabled: true
+    model: AFE4900              # SPI mode0, <=8 MHz; I/O on +3V3_ANA rail; I2C_SPI_SEL tied high; RESETZ via expander P0
+    bus: spi1
+    cs: 18                      # CS_AFE4900
+    int_pin: 21                 # AFE4900_ADC_RDY — timestamped input
+    channels:
+      - { id: ppg.red, wavelength_nm: 660, led_driver: 1, pd: 0 }
+      - { id: ppg.ir,  wavelength_nm: 940, led_driver: 2, pd: 1 }
+    sample_rate_hz: 200
+    ambient_cancellation: true
+
+  ppg_satellite:
+    enabled: true
+    model: MAX86141ENP+         # U22 — `CS_MAX86178`/`MAX86178_INT` net names are legacy labels (D1)
+    bus: spi1
+    cs: 38                      # legacy net CS_MAX86178
+    int_pin: 39                 # legacy net MAX86178_INT — timestamped input
+    # SPI <=8 MHz. Part runs on the 1.8 V rail; MISO returns through U26
+    # SN74AXC2T245 level shifter gated by its own CS (hi-Z when unselected).
+    channels:
+      # SFH7050A emitters on J10 time-mux onto the single ppg.satellite stream;
+      # led_driver = LED1/2/3 cathode pad. VERIFY wavelength set vs BOM.
+      - { id: ppg.satellite, wavelength_nm: 530,  led_driver: 1, pd: 0 }
+      - { id: ppg.satellite, wavelength_nm: 660,  led_driver: 2, pd: 0 }
+      - { id: ppg.satellite, wavelength_nm: 940,  led_driver: 3, pd: 0 }
+    sample_rate_hz: 200
+    ambient_cancellation: true
+
+  eda:
+    enabled: true
+    model: AD5940               # SPI <=8 MHz; internal HFOSC (no XTAL); reset via expander P2
+    bus: spi1
+    cs: 15                      # CS_AD5940
+    int_pin: 14                 # AD5940 GPIO0 (ball F5) → ESP IO14 interrupt input
+    # GPIO2 (ball E1) drives NIR730_GATE (D12 730 nm LED) — NOT GPIO0.
+    # Subtract the 51k series R from measured |Z| before reporting impedance.
+    outputs: []                 # EDA/bioZ waveform channel ids pending registration
+
+  sweat:
+    enabled: true
+    model: AD5940               # same physical device as `eda:` — logical split for J11
+    bus: spi1
+    cs: 15                      # shares CS_AD5940; J11 SWEAT_WE/RE/CE → spare mux channel
+    research_grade: true        # RESEARCH-GRADE — never a clinical output
+    outputs: [sweat.lactate]    # amperometric sweat lactate, mmol/L
+    rate_hz: 1
+
+  spectral:
+    enabled: true
+    model: AS7341               # I2C1V8 island via PCA9306 — one of only TWO devices there (D2)
+    bus: i2c0
+    address: "0x39"
+    channels: [f1, f2, f3, f4, f5, f6, f7, f8, clear, nir, flicker]
+    parallel_groups: 2          # 6-ch ADC + mux — frames are NOT simultaneous (audit C2)
+    gain: 64
+    integ_time_ms: 27.8
+    illumination: emitter_on    # nir channel pairs w/ NIR730_GATE (730 nm); capture dark_frame per sequence
+    frame_rate_hz: 2            # derived tissue.sto2 = nir ratio gated vs dark_frame
+
+  temperature:
+    enabled: true
+    model: MLX90632             # non-contact IR — I2C1V8 island (second of two)
+    bus: i2c0
+    address: "0x3A"
+    outputs: [temp.object, temp.ambient]
+    rate_hz: 1
+
+  temperature_contact:
+    enabled: true
+    model: TMP117               # ×3 on I2C3V3 — 1 Hz burst mode, conversion period >=1 s
+    bus: i2c0
+    address: "0x48"             # 0x48 U11 skin, 0x49 U20 under the insulation
+                                # dome (ZHF pair → core.temp_est); optional 0x4A
+                                # on the J9 tail (probe) → skin.temp_distal.
+                                # TMP117_ALERT = GPIO5
+    outputs: [core.temp_est, skin.temp_distal]
+    rate_hz: 1
+
+  skin:
+    enabled: true
+    model: SHT45                # skin-face RH + temp, bottom side
+    bus: i2c0
+    address: "0x44"
+    outputs: [skin.rh, skin.temp]
+    rate_hz: 1
+
+  environment:
+    enabled: true
+    model: BME280               # kept
+    bus: i2c0
+    address: "0x76"
+    outputs: [env.temperature, env.humidity, env.pressure]
+    rate_hz: 0.5
+
+  motion:
+    enabled: true
+    model: LSM6DSV80X           # kept — high-g (±80 g) accel + gyro; INT1 = GPIO4
+    bus: i2c0
+    address: "0x6A"
+    outputs: [motion.accel_x, motion.accel_y, motion.accel_z,
+              motion.gyro_x,  motion.gyro_y,  motion.gyro_z]
+    rate_hz: 52
+
+  contact:
+    enabled: true
+    model: FSR402               # kept — FSR pads
+    input: adc1_ch0             # FSR_ADC = GPIO1 — ordinal level, no SI units
+    outputs: [contact.level]
+    rate_hz: 20
+
+  gauge:
+    enabled: true
+    model: MAX17048             # fuel gauge; GAUGE_ALRT = GPIO6
+    bus: i2c0
+    address: "0x36"
+    int_pin: 6
+    outputs: [sys.battery_v]
+    rate_hz: 0.2
+
+  expander:
+    enabled: true
+    model: TCA6408              # P0-P7 map in header comment; EXP_INT = GPIO3
+    bus: i2c0
+    address: "0x20"
+    int_pin: 3
+    outputs: []                 # GPIO only — owns resets/PWDN/TX5_EN/IR_GATE/charge ctl
+
+  flash:
+    enabled: true
+    model: W25Q512              # 64 MB logging store; SPI <=40 MHz; REQUIRES 4-byte addressing
+    bus: spi1
+    cs: 16                      # CS_FLASH
+    outputs: []                 # storage media, not a measurement channel
+
+  rtc:
+    enabled: true               # FITTED per fab BOM (DNP column empty) — probe at boot, probe-optional
+    model: RV-3028-C7           # absolute wall-clock anchor for the clock model
+    bus: i2c0
+    address: "0x52"
+    # INT pad not wired to the ESP → poll flag registers; VBACKUP has 10k to
+    # GND → no backup cell, so RTC time must be re-anchored after power loss.
+    outputs: []
+
+  mic:
+    enabled: true               # FITTED per fab BOM (U25) — enabled, still probe-optional
+    model: IM69D130             # chest acoustic channel, PDM clk/dat on GPIO40/41
+    # channel is OPTIONAL: tolerate absence at probe; rate firmware-defined.
+    outputs: []
+
+# Power: charger BQ25170 — 200 mA charge (R_ISET 1.5k), CV 4.20 V (R_VSET 27k),
+# TS = 10k B3380 NTC (~0-45C charge window). Cell 402535 ~300 mAh ASSUMED
+# UNPROTECTED → firmware cutoff ~3.2 V (VALRT) / 5% SOC, emergency 3.0 V;
+# never enable TX_5V below 3.3 V. TX_5V boost = TPS61240 via TX5_EN (P3):
+# LED chains must interleave (all-together ~900 mA demand vs ~400 mA
+# capability); <=1% duty for 400 mA-class pulses. Standby ~110 µA total
+# (no PMIC — fix_v10 notes are stale). USB budget 500 mA: charge+system can
+# exceed it → assert CHG_DIS (P7) during heavy bursts.
+power_profile: battery            # gates duty cycling + wifi burst strategy
+
+storage:
+  offline_buffer: flash_ring      # W25Q512 (CS_FLASH = GPIO16)
+  buffer_capacity_s: 1800
+
+model:
+  partition: model                # dedicated 'model' partition in the 16 MB flash map
+  size_mb: 4                      # 4 MB model image budget
+  weights: int8                   # int8-quantized weights only
+  max_params: 2000000             # ~2M parameters max
+  arena: psram_arena              # tensor/working arena lives in the 8 MB octal PSRAM
