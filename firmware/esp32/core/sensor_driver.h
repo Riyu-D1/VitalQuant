@@ -2,7 +2,7 @@
 // See firmware/esp32/README.md. All timestamps are esp_timer monotonic µs.
 //
 // ============================================================================
-// FIFO TIMESTAMP CONTRACT (hw_v2 fix — see hardware/pcb/HW_V2_SPEC.md)
+// FIFO TIMESTAMP CONTRACT (hw_v2 fix — see hardware/pcb/docs/HW_V2_SPEC.md)
 // ============================================================================
 // Every Sample MUST carry a device-clock timestamp taken at ACQUISITION time —
 // never at FIFO pop, and never at transmit/batch-assembly time.

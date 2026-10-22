@@ -2,7 +2,7 @@
 # One file per hardware_revision; validated by vitalq-core's HardwareProfile schema.
 # Sensor presence, model, bus, rates and optics are CONFIG, never compiled code.
 #
-# hw_v2 — authoritative source: hardware/pcb/HW_V2_SPEC.md (branch hw_v2).
+# hw_v2 — authoritative source: hardware/pcb/docs/HW_V2_SPEC.md (branch hw_v2).
 # ESP32-WROOM-32E → ESP32-S3-MINI-1U-N4R2 (4 MB flash + 2 MB PSRAM, U.FL antenna).
 #
 # GPIO map (S3-MINI-1U, per spec interface table):
@@ -29,7 +29,7 @@
 # Timestamped-input contract: DRDY/ADC_RDY/INT edges must be stamped in the ISR/
 # driver task, NOT at FIFO pop — see sensor_driver.h "FIFO timestamp contract".
 #
-# TCA6408 expander P0-P7 — UNCHANGED from hw_v1 (ground truth: PINMAP.md):
+# TCA6408 expander P0-P7 — UNCHANGED from hw_v1 (ground truth: hardware/pcb/docs/PINMAP.md):
 #   P0 AFE4900_RESETZ, P1 ADS1292_PWDN, P2 AD5940_RESET, P3 TX5_EN,
 #   P4 IR_GATE, P5 CHG_STAT, P6 VBUS_DET, P7 CHG_DIS
 #
@@ -86,7 +86,7 @@ sensors:
       - { id: ppg.red, wavelength_nm: 660, led_driver: 1, pd: 0 }
       - { id: ppg.ir,  wavelength_nm: 940, led_driver: 2, pd: 1 }
       # SFH7072 IR peak is ~940 nm; its green emitters are not in the channel
-      # set. VERIFY emitter set/wavelengths vs SFH7072 datasheet + PINMAP.md
+      # set. VERIFY emitter set/wavelengths vs SFH7072 datasheet + hardware/pcb/docs/PINMAP.md
     sample_rate_hz: 200
     ambient_cancellation: true
 

@@ -2,13 +2,13 @@
 
 Scope: design record for the second VitalQ board revision, `hw_v2`, carried on
 branch `hw_v2`. The authoritative coordination spec is
-`hardware/pcb/HW_V2_SPEC.md`; where this doc and that file disagree, the spec
+`hardware/pcb/docs/HW_V2_SPEC.md`; where this doc and that file disagree, the spec
 wins. Research prototype. This is not a medical device; nothing here is a
-clinical claim (same posture as docs 01/08 and `hardware/pcb/README.md`).
+clinical claim (same posture as docs 01/08 and `hardware/README.md`).
 
 **Status: specification only.** Schematic edits, placement, and routing are
 pending on this branch; nothing described below has been placed, routed, or
-DRC-checked. See the hw_v2 section of `hardware/pcb/VERIFICATION.md`.
+DRC-checked. See the hw_v2 section of `hardware/pcb/docs/VERIFICATION.md`.
 
 ## 1. Motivation — the early-sepsis feature set
 
@@ -37,7 +37,8 @@ The W25Q512 logger stays; nothing about the storage plan changes.
 
 ## 2. BOM delta
 
-Full orderable detail is in `hardware/pcb/BOM_V2_ADDENDUM.md`. Delta summary:
+Full orderable detail is in `hardware/pcb/docs/BOM_V22.md` (design-addendum
+history: `hardware/pcb/docs/BOM_V2_ADDENDUM.md`). Delta summary:
 
 | Ref | Action | Part | Package | Interface | Role |
 |---|---|---|---|---|---|
@@ -89,7 +90,7 @@ removed:
 
 ## 4. Interface summary
 
-The authoritative pin/net map is `hardware/pcb/PINMAP.md` (hw_v2 update
+The authoritative pin/net map is `hardware/pcb/docs/PINMAP.md` (hw_v2 update
 owned by the pin/power agent — verify it has landed before schematic
 review). Headline deltas from hw_v1:
 
@@ -189,4 +190,4 @@ Placement, routing, ERC/DRC against hw_v2 content, the regenerated
 schematic and board, PINMAP/power budgets, and the firmware profile are all
 owned by their respective agents and are **pending** at the time this doc
 was written. The fab gate list lives in
-`hardware/pcb/VERIFICATION.md` §hw_v2.
+`hardware/pcb/docs/VERIFICATION.md` §hw_v2.
