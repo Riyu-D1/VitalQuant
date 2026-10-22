@@ -1,0 +1,1260 @@
+                                                                                              EVALUATION KIT AVAILABLE
+
+
+
+
+MAX17048/MAX17049                               3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+
+General Description                                            Features and Benefits
+The MAX17048/MAX17049 ICs are tiny, micropower cur-            ●● MAX17048: 1 Cell, MAX17049: 2 Cells
+rent fuel gauges for lithium-ion (Li+) batteries in handheld   ●● Precision ±7.5mV/Cell Voltage Measurement
+and portable equipment. The MAX17048 operates with
+a single lithium cell and the MAX17049 with two lithium        ●● ModelGauge Algorithm
+cells in series.                                                  • Provides Accurate State-of-Charge
+                                                                  • Compensates for Temperature/Load Variation
+The ICs use the sophisticated Li+ battery-modeling algo-          • Does Not Accumulate Errors, Unlike Coulomb
+rithm ModelGauge™ to track the battery relative state-of-           Counters
+charge (SOC) continuously over widely varying charge              • Eliminates Learning
+and discharge conditions. The ModelGauge algorithm                • Eliminates Current-Sense Resistor
+eliminates current-sense resistor and battery-learn cycles
+                                                               ●● Ultra-Low Quiescent Current
+required in traditional fuel gauges. Temperature compen-
+                                                                  • 3μA Hibernate, 23μA Active
+sation is implemented using the system microcontroller.
+                                                                  • Fuel Gauges in Hibernate Mode
+The ICs automatically detect when the battery enters a            • Automatically Enters and Exits Hibernate Mode
+low-current state and enters low-power 3µA hibernate
+                                                               ●● Reports Charge and Discharge Rate
+mode, while still providing accurate fuel gauging. The
+ICs automatically exit hibernate mode when the system          ●● Battery-Insertion Debounce
+returns to active state.                                          • Best of 16 Samples to Estimate Initial SOC
+On battery insertion, the ICs debounce initial voltage         ●● Programmable Reset for Battery Swap
+measurements to improve the initial SOC estimate,                 • 2.28V to 3.48V Range
+thus allowing them to be located on system side. SOC,          ●● Configurable Alert Indicator
+voltage, and rate information is accessed using the I2C           • Low SOC
+interface. The ICs are available in a tiny 0.9mm x 1.7mm,         • 1% Change in SOC
+8-bump wafer-level package (WLP), or a 2mm x 2mm,                 • Battery Undervoltage/Overvoltage
+8-pin TDFN package.                                               • VRESET Alert
+                                                               ●● I2C Interface
+Applications
+●● Smartphones, Tablets                                        ●● 8-Bit OTP ID Register (Contact Factory)
+●● Smartwatches, Wearables
+●● Bluetooth Headsets                                          Simple Fuel-Gauge Circuit Diagram
+●● Health and Fitness Monitors
+●● Digital Still, Video, and Action Cameras
+●● Medical Devices
+●● Handheld Computers and Terminals
+●● Wireless Speakers                                                                    MAX17048
+●● Home and Building Automation, Sensors                                               VDD      ALRT
+
+                                                                                       CELL     SDA         SYSTEM
+                                                                     ONLY ONE                                 µP
+                                                                      EXTERNAL         CTG       SCL
+                                                                    COMPONENT
+                                                                                       GND     QSTRT
+Ordering Information appears at end of data sheet.
+
+
+ModelGauge is a trademark of Maxim Integrated Products, Inc.
+
+
+
+
+19-6171; Rev 7; 11/16
+MAX17048/MAX17049                                                       3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Absolute Maximum Ratings
+CELL to GND.........................................................-0.3V to +12V                  Storage Temperature Range............................. -55°C to +125°C
+All Other Pins to GND..............................................-0.3V to +6V                    Lead Temperature (TDFN only) (soldering, 10s) ............+300°C
+Continuous Sink Current, SDA, ALRT................................20mA                             Soldering Temperature (reflow).......................................+260°C
+Operating Temperature Range............................ -40°C to +85°C
+
+Stresses beyond those listed under “Absolute Maximum Ratings” may cause permanent damage to the device. These are stress ratings only, and functional operation of the device at these
+or any other conditions beyond those indicated in the operational sections of the specifications is not implied. Exposure to absolute maximum rating conditions for extended periods may affect
+device reliability.
+
+
+
+Electrical Characteristics
+(VDD = 2.5V to 4.5V, TA= -20°C to +70°C, unless otherwise noted. Typical values are at TA = +25°C.) (Note 1)
+
+                PARAMETER                              SYMBOL                                CONDITIONS                                  MIN          TYP         MAX            UNITS
+  Supply Voltage                                           VDD             (Note 2)                                                      2.5                        4.5              V
+  Fuel-Gauge SOC Reset                                                     Configuration range, in 40mV steps                           2.28                       3.48              V
+                                                          VRST
+  (VRESET Register)                                                        Trimmed at 3V                                                2.85           3.0         3.15              V
+                                                      SCL, SDA,
+  Data I/O Pins                                                            (Note 2)                                                      -0.3                      +5.5              V
+                                                        ALRT
+                                                                           Sleep mode, TA ≤ +50°C                                                      0.5           2
+                                                                           Hibernate mode, reset comparator
+                                                                                                                                                        3            5
+                                                           IDD0            disabled (VRESET.Dis = 1)
+  Supply Current                                                                                                                                                                    µA
+                                                                           Hibernate mode, reset comparator
+                                                                                                                                                        4
+                                                                           enabled (VRESET.Dis = 0)
+                                                           IDD1            Active mode                                                                 23           40
+  Time Base Accuracy                                       tERR            Active, hibernate modes (Note 3)                              -3.5          ±1          +3.5             %
+                                                                           Active mode                                                                250                          ms
+  ADC Sample Period
+                                                                           Hibernate mode                                                              45                            s
+                                                                           VCELL = 3.6V, TA = +25°C (Note 4)                             -7.5                      +7.5
+  Voltage Error                                           VERR                                                                                                                  mV/cell
+                                                                                                                                         -20                       +20
+  Voltage-Measurement Resolution                                                                                                                      1.25                      mV/cell
+                                                                           MAX17048: VDD pin                                             2.5                         5
+  Voltage-Measurement Range                                                                                                                                                          V
+                                                                           MAX17049: CELL pin                                              5                        10
+  SDA, SCL, QSTRT Input
+                                                            VIH                                                                          1.4                                         V
+  Logic-High
+  SDA, SCL, QSTRT Input
+                                                            VIL                                                                                                     0.5              V
+  Logic-Low
+  SDA, ALRT Output
+                                                           VOL             IOL = 4mA                                                                                0.4              V
+  Logic-Low
+  SDA, SCL Bus
+                                                            IPD            VSDA = VSCL = 0.4V (Note 5)                                                 0.2          0.4             µA
+  Low-Detection Current
+  Bus Low-Detection Timeout                              tSLEEP            (Note 6)                                                     1.75                        2.5              s
+
+
+
+
+www.maximintegrated.com                                                                                                                                         Maxim Integrated │ 2
+MAX17048/MAX17049                                  3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Electrical Characteristics (I2C INTERFACE)
+(2.5V < VDD < 4.5V, TA = -20°C to +70°C, unless otherwise noted.) (Note 1)
+
+          PARAMETER                  SYMBOL                       CONDITIONS                       MIN      TYP      MAX       UNITS
+ SCL Clock Frequency                    fSCL      (Note 7)                                          0                 400       kHz
+ Bus Free Time Between a
+                                        tBUF                                                       1.3                           µs
+ STOP and START Condition
+ START Condition (Repeated)
+                                      tHD:STA     (Note 8)                                         0.6                           µs
+ Hold Time
+ Low Period of SCL Clock               tLOW                                                        1.3                           µs
+ High Period of SCL Clock              tHIGH                                                       0.6                           µs
+ Setup Time for a Repeated
+                                      tSU:STA                                                      0.6                           µs
+ START Condition
+ Data Hold Time                       tHD:DAT     (Notes 9, 10)                                     0                 0.9        µs
+ Data Setup Time                      tSU:DAT     (Note 9)                                         100                           ns
+ Rise Time of Both SDA and
+                                         tR                                                       20 + 0.1CB          300        ns
+ SCL Signals
+ Fall Time of Both SDA and SCL
+                                         tF                                                       20 + 0.1CB          300        ns
+ Signals
+ Setup Time for STOP Condition        tSU:STO                                                      0.6                           µs
+ Spike Pulse Widths Suppressed
+                                        tSP       (Note 11)                                         0                 50         ns
+ by Input Filter
+ Capacitive Load for Each Bus
+                                        CB        (Note 12)                                                           400        pF
+ Line
+ SCL, SDA Input Capacitance            CB,IN                                                                          60         pF
+Note 1: Specifications are 100% tested at TA = +25°C. Limits over the operating range are guaranteed by design and
+         characterization.
+Note 2: All voltages are referenced to GND.
+Note 3: Test is performed on unmounted/unsoldered parts.
+Note 4: The voltage is trimmed and verified with 16x averaging.
+Note 5: This current is always present.
+Note 6: The IC enters shutdown mode after SCL < VIL and SDA < VIL for longer than 2.5s.
+Note 7: Timing must be fast enough to prevent the IC from entering sleep mode due to bus low for period > tSLEEP.
+Note 8: fSCL must meet the minimum clock low time plus the rise/fall times.
+Note 9: The maximum tHD:DAT has to be met only if the device does not stretch the low period (tLOW) of the SCL signal.
+Note 10: This device internally provides a hold time of at least 100ns for the SDA signal (referred to the VIH,MIN of the SCL signal) to
+         bridge the undefined region of the falling edge of SCL.
+Note 11: Filters on SDA and SCL suppress noise spikes at the input buffers and delay the sampling instance.
+Note 12: CB is total capacitance of one bus line in pF.
+
+
+
+
+www.maximintegrated.com                                                                                           Maxim Integrated │ 3
+MAX17048/MAX17049                                                                                                                             3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+
+                                                     SDA
+
+
+
+                                                              tF
+                                                                                                                                                                        tF                                                                                                                   tSP       tR                tBUF
+                                                                                tLOW                                    tSU:DAT
+                                                                                              tR                                                                                                                                tHD:STA
+
+
+
+                                                     SCL
+
+
+                                                                                 tHD:STA                                                                                tSU:STA                                                                              tSU:STO
+                                                                                                  tHD:DAT
+                                                                     S                                                                                                                      Sr                                                                                                                   P                  S
+
+
+Figure 1. I2C Bus Timing Diagram
+
+Typical Operating Characteristics
+(TA = +25°C, battery is Sanyo UF504553F, unless otherwise noted.)
+
+
+                                   QUIESCENT CURRENT vs. SUPPLY                                                                                                     QUIESCENT CURRENT vs. SUPPLY
+                                    VOLTAGE (HIBERNATE MODE)                                                                                                           VOLTAGE (ACTIVE MODE)                                                                                                           VOLTAGE ADC ERROR vs. TEMPERATURE
+                         5                                                                                                                   40                                                                                                                                                20
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                       MAX17048 toc03
+                                                                                                   MAX17048 toc01
+
+
+
+
+                                                                                                                                                                                                                                            MAX17048 toc02
+
+
+
+
+                                                                         TA = +70°C                                                          35                                                                                                                VOLTAGE ADC ERROR (mV/CELL)     15
+                         4
+QUIESCENT CURRENT (µA)
+
+
+
+
+                                                                                                                    QUIESCENT CURRENT (µA)
+
+
+
+
+                                                                                                                                             30                                        TA = +70°C                                                                                              10
+                                                                                                                                                                                                                                                                                                                                        VCELL = 4.5V
+                                                                                                                                             25                                                                                                                                                    5
+                         3
+                                                                         TA = -20°C                                                          20                                                                                                                                                    0
+                         2                      TA = +25°C                                                                                                                                                                                                                                     -5
+                                                                                                                                             15                                                                                                                                                                                          VCELL = 3.6V
+                                                                                                                                                                         TA = +25°C     TA = -20°C
+                                                                                                                                                                                                                                                                                                                 VCELL = 2.5V
+                                                                                                                                             10                                                                                                                                               -10
+                         1
+                                                                                                                                              5                                                                                                                                               -15
+
+                         0                                                                                                                    0                                                                                                                                               -20
+                             2.5                    3.0               3.5           4.0           4.5                                             2.5                    3.0          3.5                       4.0                        4.5                                                         -20        -5       10            25         40           55   70
+                                                                   VCELL (V)                                                                                                      VCELL (V)                                                                                                                              TEMPERATURE (°C)
+
+
+                                                                                                                                                                                                                                                             ENTER HIBERNATE MODE
+                                                                               CRATE ACCURACY                                                                                                                                                                   AUTOMATICALLY
+                                                    1.00                                                                                                                                                                        600
+                                                                                                                                                                                                                                                                                                                               MAX17048 toc05
+                                                                                                                                                                                                                                                                                                                                                   4.00
+                                                                                                                                                   MAX17048 toc04
+
+
+
+
+                                                                      MAX17048 CRATE
+                                                    0.75                                                                                                                                                                        500                                                                                                                3.95
+                                                                                                                                                                                                 CURRENT (I_BATT mA, I_DD uA)
+
+
+
+
+                                                    0.50
+                                                                                                                                                                                                                                400                                                                              VBATT                             3.90
+                                                    0.25
+                                     CRATE (%/Hr)
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                          VBATT (V)
+
+
+
+
+                                                                                                                                                                                                                                300                                                                                                                3.85
+                                                          0
+                                                                                                                                                                                                                                200        IBATT                                                                                                   3.80
+                                                -0.25
+                                                                                                                                                                                                                                100                                                                                                                3.75
+                                                -0.50
+
+                                                -0.75                                                                                                                                                                             0                                                                                                                3.70
+                                                                   MEASURED CRATE                                                                                                                                                                            IDD1                                                        IDD0
+                                                -1.00                                                                                                                                                                           -100                                                                                                               3.65
+                                                              -4         -2     0         2           4                           6               8                                                                                    0                                5                                   10            15                  20
+                                                                                      TIME (Hr)                                                                                                                                                                                                    TIME (min)
+
+
+
+
+www.maximintegrated.com                                                                                                                                                                                                                                                                                                                 Maxim Integrated │ 4
+MAX17048/MAX17049                                                                                        3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Typical Operating Characteristics (continued)
+(TA = +25°C, battery is Sanyo UF504553F, unless otherwise noted.)
+
+
+                                                            EXIT HIBERNATE MODE                                                             SOC ACCURACY TA = 20°C, HIBERNATE MODE
+                                                               AUTOMATICALLY                                                               REFERENCE SOC              MODELGAUGE                 ERROR
+                                                                                        MAX17048 toc06                                                                                      MAX17048 toc07
+                                        600                                                               4.00                             100                                                               10
+                                                            VBATT
+                                        500                                                               3.95
+         CURRENT (I_BATT mA, I_DD uA)
+
+
+
+
+                                                                                                                                            75                                                               5
+                                        400                                                               3.90
+
+
+
+
+                                                                                                                                                                                                                   ERROR (%)
+                                                                                                                     VBATT (V)
+                                        300                                                               3.85
+
+
+
+
+                                                                                                                                 SOC (%)
+                                                                                                                                            50                                                               0
+                                        200                                                               3.80
+                                                    IBATT
+                                        100                                                               3.75
+                                                                                                                                            25                                                               -5
+                                          0                                                               3.70
+                                                                IDD1                 IDD0
+                                        -100                                                              3.65                               0                                                               -10
+                                               0            2          4        6       8           10                                           -4     -2        0       2     4       6        8      10
+                                                                       TIME (min)                                                                                     TIME (Hr)
+
+
+                                               ZIGZAG PATTERN SOC ACCURACY (1/3)                                                                 ZIGZAG PATTERN SOC ACCURACY (2/3)
+                                        REFERENCE SOC                  MODELGAUGE            ERROR                                         REFERENCE SOC              MODELGAUGE                 ERROR
+                                                                                        MAX17048 toc08                                                                                      MAX17048 toc09
+                                        100                                                               10                               100                                                               10
+
+
+
+                                          75                                                              5                                 75                                                               5
+                                                                                                                ERROR (%)
+
+
+
+
+                                                                                                                                                                                                                   ERROR (%)
+           SOC (%)
+
+
+
+
+                                                                                                                                 SOC (%)
+
+
+
+
+                                          50                                                              0                                 50                                                               0
+
+
+
+                                          25                                                              -5                                25                                                               -5
+
+
+
+                                           0                                                              -10                                0                                                               -10
+                                               0            20         40     60      80         100                                             0           2        4             6        8          10
+                                                                        TIME (Hr)                                                                                     TIME (Hr)
+
+
+                                               ZIGZAG PATTERN SOC ACCURACY (3/3)                                                                      BATTERY-INSERTION DEBOUNCE/
+                                        REFERENCE SOC                  MODELGAUGE            ERROR
+                                                                                        MAX17048 toc10
+                                                                                                                                                            OCV ACQUISITION
+                                                                                                                                                                                            MAX17048 toc11
+                                        100                                                               10
+                                                                                                                                                             VCELL
+
+
+                                          75                                                              5
+                                                                                                                                           0V                                           OCV
+                                                                                                                ERROR (%)
+           SOC (%)
+
+
+
+
+                                          50                                                              0
+                                                                                                                                           0V
+
+
+                                                                                                                                           0V
+                                          25                                                              -5
+
+                                                                                                                                                                 DEBOUNCE               DEBOUNCE
+                                                                                                                                           0A
+                                                                                                                                                                 BEGINS                 COMPLETED
+                                           0                                                              -10
+                                               95           97         99      101     103          105                                                                   4ms/div
+                                                                        TIME (Hr)
+
+
+
+
+www.maximintegrated.com                                                                                                                                                                          Maxim Integrated │ 5
+MAX17048/MAX17049                                 3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Pin/Bump Configurations
+
+                      TOP VIEW                                         TOP VIEW
+                   (PAD SIDE DOWN)                                 (BUMP SIDE DOWN)
+                                 SDA     SCL    QSTRT   ALRT
+                                     8    7       6      5
+                                                                                        MAX17048
+                                                                                        MAX17049
+
+
+
+
+                                                                              +
+                                                                                  CTG   CELL     VDD     GND
+                                         MAX17048                                 A1     A2         A3    A4
+                                         MAX17049
+                                                                                  SDA    SCL    QSTRT    ALRT
+                                     +
+                                                                                  B1     B2         B3    B4
+
+
+                                     1    2       3      4
+                                                                                              WLP
+                                 CTG     CELL    VDD    GND
+                                              TDFN
+
+
+
+
+Pin/Bump Descriptions
+     PIN/BUMP
+                          NAME                                               FUNCTION
+  TDFN       WLP
+    1         A1          CTG    Connect to Ground
+                                 Connect to the Positive Battery Terminal.
+    2         A2          CELL   MAX17048: Not internally connected.
+                                 MAX17049: Voltage sense input.
+                                 Power-Supply Input. Bypass with 0.1µF to GND.
+    3         A3          VDD    MAX17048: Voltage sense input. Connect to positive battery terminal.
+                                 MAX17049: Connect to regulated power-supply voltage.
+    4         A4          GND    Ground. Connect to negative battery terminal.
+                                 Open-Drain, Active-Low Alert Output. Optionally connect to interrupt input of the system
+    5         B4          ALRT
+                                 microcontroller.
+    6         B3       QSTRT     Quick-Start Input. Allows reset of the device through hardware. Connect to GND if not used.
+    7         B2          SCL    I2C Clock Input. SCL has an internal pulldown (IPD) for sensing disconnection.
+                                 Open-Drain I2C Data Input/Output. SDA has an internal pulldown (IPD) for sensing
+    8         B1          SDA
+                                 disconnection.
+    —         —            EP    Exposed Pad (TDFN Only). Connect to GND.
+
+
+
+
+www.maximintegrated.com                                                                                         Maxim Integrated │ 6
+MAX17048/MAX17049                                     3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Detailed Description                                            ModelGauge requires no correction events because it
+                                                                uses only voltage, which is stable over time. As TOCs 8,
+ModelGauge Theory of Operation                                  9, and 10 show, ModelGauge remains accurate despite
+The MAX17048/MAX17049 ICs simulate the internal,                the absence of any of the above events; it neither drifts
+nonlinear dynamics of a Li+ battery to determine its SOC.       nor accumulates error over time.
+The sophisticated battery model considers impedance
+                                                                To correctly measure performance of a fuel gauge as
+and the slow rate of chemical reactions in the battery
+                                                                experienced by end-users, exercise the battery dynami-
+(Figure 2).
+                                                                cally. Accuracy cannot be fully determined from only
+ModelGauge performs best with a custom model, obtained          simple cycles.
+by characterizing the battery at multiple discharge cur-
+rents and temperatures to precisely model it. At power-on       Battery Voltage and State-Of-Charge
+reset (POR), the ICs have a preloaded ROM model that            Open-circuit voltage (OCV) of a Li+ battery uniquely
+performs well for some batteries. Contact Maxim if you          determines its SOC; one SOC can have only one value of
+need a custom model.                                            OCV. In contrast, a given VCELL can occur at many differ-
+                                                                ent values of OCV because VCELL is a function of time,
+Fuel-Gauge Performance                                          OCV, load, temperature, age, and impedance, etc.; one
+In coulomb counter-based fuel gauges, SOC drifts                value of OCV can have many values of VCELL. Therefore,
+because offset error in the current-sense ADC measure-          one SOC can have many values of VCELL, so VCELL can-
+ment accumulates over time. Instantaneous error can be          not uniquely determine SOC.
+very small, but never precisely zero. Error accumulates         Figure 3 shows that VCELL = 3.81V occurs at 2%, 50%,
+over time in such systems (typically 0.5%–2% per day)           and 72% SOC.
+and requires periodic corrections. Some algorithms cor-
+rect drift using occasional events, and until such an event     Even the use of sophisticated tables to consider both
+occurs the algorithm’s error is boundless:                      voltage and load results in significant error due to the
+                                                                load transients typically experienced in a system. During
+•    Reaching predefined SOC levels near full or empty          charging or discharging, and for approximately 30min
+•    Measuring the relaxed battery voltage after a long         after, VCELL and OCV differ substantially, and VCELL has
+     period of inactivity                                       been affected by the preceding hours of battery activity.
+•    Completing a full charge/discharge cycle                   ModelGauge uses voltage comprehensively.
+
+
+
+
+                                                                                                                                        4.2V
+                             MAX17048                                                       VCELL
+    VDD                                                                                                                                 4.0V
+                             MAX17049
+                                        TIME BASE                                                       3.81V                           3.8V
+                                                                                                                                               VCELL
+
+                  BIAS
+                                          (32kHz)                                                                                       3.6V
+                                                                                       3.81V = 2%               3.81V = 72%
+               VOLTAGE                                                   100%                                                           3.4V
+              REFERENCE
+                                                        CTG                  80%                                          3.81V = 50%   3.2V
+                                           STATE
+               ADC (VCELL)                MACHINE       QSTRT                60%                                       SOC
+                                                                       SOC
+
+
+
+
+                                        (SOC, RATE)     ALRT                 40%
+    CELL
+                        IC                                                   20%
+    GND               GROUND              2-WIRE        SDA
+                                                                             0%
+                                        INTERFACE       SCL
+                                                                                   0    1    2      3     4      5    6     7    8
+                                                                                                    TIME (HOURS)
+
+
+Figure 2. Block Diagram                                         Figure 3. Instantaneous Voltage Does Not Translate Directly to
+                                                                SOC
+
+
+
+
+www.maximintegrated.com                                                                                                         Maxim Integrated │ 7
+MAX17048/MAX17049                                                                                           3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Temperature Compensation                                                                                                                   Impact of Empty-Voltage Selection
+For best performance, the host microcontroller must mea-                                                                                   Most applications have a minimum operating voltage
+sure battery temperature periodically, and compensate                                                                                      below which the system immediately powers off (empty
+the RCOMP ModelGauge parameter accordingly, at least                                                                                       voltage). When characterizing the battery to create a cus-
+once per minute. Each custom model defines constants                                                                                       tom model, choose empty voltage carefully. As shown in
+RCOMP0 (default is 0x97), TempCoUp (default is -0.5),                                                                                      Figure 4, capacity unavailable to the system increases at
+and TempCoDown (default is -5.0). To calculate the new                                                                                     an accelerating rate as empty voltage increases.
+value of CONFIG.RCOMP:                                                                                                                     To ensure a controlled shutdown, consider including
+// T is battery temperature (degrees Celsius)                                                                                              operating margin into the fuel gauge based on some low
+if (T > 20) {                                                                                                                              threshold of SOC, for example shutting down at 3% or
+                                                                                                                                           5%. This utilizes the battery more effectively than adding
+    RCOMP = RCOMP0 + (T - 20) x TempCoUp;                                                                                                  error margin to empty voltage.
+}
+                                                                                                                                           Battery Insertion
+else {
+                                                                                                                                           When the battery is first inserted into the system, the
+    RCOMP = RCOMP0 + (T - 20) x TempCoDown;                                                                                                fuel-gauge IC has no previous knowledge about the bat-
+}                                                                                                                                          tery’s SOC. Assuming that the battery is relaxed, the IC
+                                                                                                                                           translates its first VCELL measurement into the best initial
+                                                                                                                                           estimate of SOC. Initial error caused by the battery not
+                              60
+                                                                                                                                           being in a relaxed state diminishes over time, regardless
+                                                                                               C/3 LOAD
+                              50
+                                                                                                                                           of loading following this initial conversion. While SOC esti-
+                                                                                                                                           mated by a coulomb counter diverges, ModelGauge SOC
+                                                                                                                                           converges, correcting error automatically as illustrated in
+          CAPACITY LOST (%)
+
+
+
+
+                              40
+                                                                                                                                           Figure 5; initial error has no long-lasting impact.
+                              30
+                                                                                                                                           Battery Insertion Debounce
+                              20                                                                                                           Any time the IC powers on or resets (see the VRESET/
+                                                                                                                                           ID Register (0x18) section), it estimates that OCV is the
+                              10                                                                                                           maximum of 16 VCELL samples (1ms each, full 12-bit
+                                                                                                C/10 LOAD                                  resolution). OCV is ready 17ms after battery insertion,
+                               0
+                                          3.0                     3.1         3.2        3.3        3.4    3.5                             and SOC is ready 175ms after that.
+                                                                      TARGET EMPTY VOLTAGE (V)
+
+Figure 4. Increasing Empty Voltage Reduces Battery Capacity
+
+
+                                                                            LONGER BATTERY RELAXATION                                                    MODELGAUGE HEALS ERROR
+                                                                             IMPROVES INITIAL ACCURACY                                                   AUTOMATICALLY OVER TIME
+                                                                                                                                                                                               45
+                                                                                                                                                       RELAXED ERROR
+                                                                                                                                                                  UNRELAXED ERROR
+                                   INITIAL VOLTAGE ERROR (mV)
+
+
+
+
+                                                                              SOC ERROR
+                                                                 0                                                   0                        0                                                30
+                                                                                                                           SOC ERROR (%)
+
+
+
+
+                                                                                                                                                                                                     SOC (%)
+
+
+
+
+                                                                                                                                                                         REFERENCE SOC
+                                                                                                                                                               RELAXED SOC
+                                                                -10                     VOLTAGE ERROR                -5                       -5                                               15
+
+
+
+
+                                                                                                                                                       UNRELAXED SOC
+                                                                -20                                                  -10                     -10                                               0
+                                                                      0.1           1          10         100    1000                              0         20        40       60        80
+                                                                  RELAXATION TIME BEFORE INSERTION (MINUTES)                                             TIME AFTER INSERTION (MINUTES)
+
+Figure 5. ModelGauge Heals Error Automatically
+
+
+www.maximintegrated.com                                                                                                                                                                             Maxim Integrated │ 8
+MAX17048/MAX17049                                3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Battery Swap Detection                                          quick-start. A quick-start is initiated by a rising edge on
+If VCELL falls below VRST, the IC quick-starts when             the QSTRT pin, or by writing 1 to the quick-start bit in the
+VCELL returns above VRST. This handles battery swap;            MODE register.
+the SOC of the previous battery does not affect that of the     Power-On Reset (POR)
+new one. See the Quick-Start and VRESET/ID Register
+                                                                POR includes a quick-start, so only use it when the bat-
+(0x18) sections.
+                                                                tery is fully relaxed. See the Quick-Start section. This
+Quick-Start                                                     command restores all registers to their default values.
+If the IC generates an erroneous initial SOC, the battery       After this command, reload the custom model. See the
+insertion and system powerup voltage waveforms must             CMD Register (0xFE) section.
+be examined to determine if a quick-start is necessary,         Hibernate Mode
+as well as the best time to execute the command. The IC
+                                                                The ICs have a low-power hibernate mode that can accu-
+samples the maximum VCELL during the first 17ms. See
+                                                                rately fuel gauge the battery when the charge/discharge
+the Battery Insertion Debounce section. Unless VCELL is
+                                                                rate is low. By default, the device automatically enters
+fully relaxed, even the best sampled voltage can appear
+                                                                and exits the hibernate mode according to the charge/
+greater or less than OCV. Therefore, quick-start must be
+                                                                discharge rate, which minimizes quiescent current (below
+used cautiously.
+                                                                5µA) without compromising fuel-gauge accuracy. The ICs
+Most systems should not use quick-start because the             can be forced into hibernate or active modes. Force the
+ICs handle most startup problems transparently, such as         IC into hibernate mode to reduce power consumption in
+intermittent battery-terminal connection during insertion. If   applications with less than C/4-rate maximum loading.
+battery voltage stabilizes faster than 17ms, as illustrated     For applications with higher loading, Maxim recommends
+in Figure 6, then do not use quick-start.                       the default configuration of automatic control of hibernate
+The quick-start command restarts fuel-gauge calcula-            mode.
+tions in the same manner as initial power-up of the IC. If      In hibernate mode, the device reduces its ADC conver-
+the system power-up sequence is so noisy that the initial       sion period and SOC update to once per 45s. See the
+estimate of SOC has unacceptable error, the system              HIBRT Register (0x0A) section for details on how the IC
+microcontroller might be able to reduce the error by using      automatically enters and exits hibernate mode.
+
+
+
+
+        VCELL
+
+                                        STEADY SYSTEM
+                                        LOAD BEGINS             VCELL                                             STEADY
+                                                                                                                  SYSTEM
+                                                                                                                  LOAD BEGINS
+
+                                                                                                 BEST TIME TO
+                                                                                                 QUICK-START
+                                                                                                    VCELL HAS
+                                                                                               FULLY RELAXED
+
+                                                                                                                        TIME
+                                                 TIME
+              VCELL HAS                                             INITIAL SAMPLE           QUICK-START DURING
+            FULLY RELAXED                                         DEBOUNCE WINDOW              THIS TIME SPAN
+
+
+                  INITIAL SAMPLE
+                DEBOUNCE WINDOW
+
+
+Figure 6. Insertion Waveform Not Requiring Quick-Start          Figure 7. Insertion Waveform Requiring Quick-Start Command
+Command
+
+
+
+
+www.maximintegrated.com                                                                                  Maxim Integrated │ 9
+MAX17048/MAX17049                               3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Alert Interrupt                                                  Register Summary
+The ICs can interrupt a system microcontroller with              All registers must be written and read as 16-bit words;
+five configurable alerts (see Table 1). All alerts can be        8-bit writes cause no effect. Any bits marked X (don’t
+disabled or enabled with software. When the interrupt            care) or read only must be written with the rest of the
+occurs, the system microcontroller can determine the             register, but the value written is ignored by the IC. The
+cause from the STATUS register.                                  values read from don’t care bits are undefined. Calculate
+When an alert is triggered, the IC drives the ALRT               the register’s value by multiplying the 16-bit word by the
+pin logic-low and sets CONFIG.ALRT = 1. The ALRT                 register’s LSb value, as shown in Table 2.
+pin remains logic-low until the system software writes           VCELL Register (0x02)
+CONFIG.ALRT = 0 to clear the alert. The alert function
+                                                                 The MAX17048 measures VCELL between the VDD and
+is enabled by default, so any alert can occur immediately
+                                                                 GND pins. The MAX17049 measures VCELL between the
+upon power-up. Entering sleep mode clears no alerts.
+                                                                 CELL and GND pins. VCELL is the average of four ADC
+Sleep Mode                                                       conversions. The value updates every 250ms in active
+In sleep mode, the IC halts all operations, reducing cur-        mode and every 45s in hibernate mode.
+rent consumption to below 1µA. After exiting sleep mode,         SOC Register (0x04)
+the IC continues normal operation. In sleep mode, the
+                                                                 The ICs calculate SOC using the ModelGauge algorithm.
+IC does not detect self-discharge. If the battery changes
+                                                                 This register automatically adapts to variation in battery
+state while the IC sleeps, the IC cannot detect it, causing
+                                                                 size since ModelGauge naturally recognizes relative SOC.
+SOC error. Wake up the IC before charging or discharg-
+ing. To enter sleep mode, write MODE.EnSleep = 1 and             The upper byte least-significant bit has units of 1%. The
+either:                                                          lower byte provides additional resolution.
+•   Hold SDA and SCL logic-low for a period for tSLEEP.          The first update is available approximately 1s after POR
+    A rising edge on SDA or SCL wakes up the IC.                 of the IC. Subsequent updates occur at variable intervals
+•   Write CONFIG.SLEEP = 1. To wake up the IC, write             depending on application conditions.
+    CONFIG.SLEEP = 0. Other communication does not
+    wake up the IC. POR does wake up the IC.
+Applications which can tolerate 4µA should use hibernate
+rather than sleep mode.
+
+
+Table 1. Alert Interrupt Summary
+            ALERT FUNCTION                        WHERE CONFIGURED                               INDICATOR BIT
+                Low SOC                                CONFIG.ATHD                                STATUS.HD
+              SOC 1% change                            CONFIG.ALSC                                STATUS.SC
+                  Reset                            VRESET, STATUS.RI                              STATUS.VR
+               Overvoltage                              VALRT.MAX                                 STATUS.VH
+               Undervoltage                             VALRT.MIN                                 STATUS.VL
+
+Table 2. Register Summary
+                  REGISTER
+    ADDRESS                      16-BIT LSb                      DESCRIPTION                     READ/WRITE      DEFAULT
+                    NAME
+     0x02           VCELL       78.125µV/cell   ADC measurement of VCELL.                             R             —
+     0x04            SOC           1%/256       Battery state of charge.                              R             —
+                                                Initiates quick-start, reports hibernate mode,
+     0x06           MODE              —                                                               W          0x0000
+                                                and enables sleep mode.
+     0x08         VERSION             —         IC production version.                                R          0x001_
+                                                Controls thresholds for entering and exiting
+     0x0A           HIBRT             —                                                              R/W         0x8030
+                                                hibernate mode.
+
+
+www.maximintegrated.com                                                                                Maxim Integrated │ 10
+MAX17048/MAX17049                                   3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Table 2. Register Summary (continued)
+                   REGISTER
+    ADDRESS                         16-BIT LSb                         DESCRIPTION                        READ/WRITE    DEFAULT
+                     NAME
+                                                    Compensation to optimize performance, sleep
+       0x0C         CONFIG              —                                                                     R/W        0x971C
+                                                    mode, alert indicators, and configuration.
+                                                    Configures the VCELL range outside of which
+       0x14             VALRT           —                                                                     R/W        0x00FF
+                                                    alerts are generated.
+                                                    Approximate charge or discharge rate of the
+       0x16             CRATE       0.208%/hr                                                                 R               —
+                                                    battery.
+                                                    Configures VCELL threshold below which
+       0x18        VRESET/ID            —           the IC resets itself, ID is a one-time factory-           R/W        0x96__
+                                                    programmable identifier.
+                                                    Indicates overvoltage, undervoltage, SOC
+       0x1A         STATUS              —                                                                     R/W        0x01__
+                                                    change, SOC low, and reset alerts.
+    0x40 to 0x7F        TABLE           —           Configures battery parameters.                            W               —
+       0xFE             CMD             —           Sends POR command.                                        R/W        0xFFFF
+
+
+
+
+                           MSB—ADDRESS 0x06                                                  LSB—ADDRESS 0x07
+               Quick-
+          X               EnSleep   HibStat     X    X      X      X             X      X      X      X   X    X    X     X
+                Start
+        MSb                                                      LSb           MSb                                      LSb
+
+
+Figure 8. MODE Register Format
+
+
+
+MODE Register (0x06)                                                   •   EnSleep enables sleep mode. See the Sleep Mode
+The MODE register allows the system processor to send                      section.
+special commands to the IC (see Figure 8).                             •   HibStat indicates when the IC is in hibernate mode
+•    Quick-Start generates a first estimate of OCV and                     (read only).
+     SOC based on the immediate cell voltage. Use with                 VERSION Register (0x08)
+     caution; see the Quick-Start section.
+                                                                       The value of this read-only register indicates the produc-
+                                                                       tion version of the IC.
+
+
+
+
+www.maximintegrated.com                                                                                        Maxim Integrated │ 11
+MAX17048/MAX17049                             3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+HIBRT Register (0x0A)                                          •    ALSC (SOC change alert) enables alerting when
+To disable hibernate mode, set HIBRT = 0x0000. To                   SOC changes by at least 1%. Each alert remains until
+always use hibernate mode, set HIBRT = 0xFFFF (see                  STATUS.SC is cleared, after which the alert automati-
+Figure 9).                                                          cally clears until SOC again changes by 1%. Do not
+                                                                    use this alert to accumulate changes in SOC.
+•   ActThr (active threshold): If at any ADC sample |OCV-
+    CELL| is greater than ActThr, the IC exits hibernate       •    ALRT (alert status bit) is set by the IC when an alert
+    mode. 1 LSb = 1.25mV.                                           occurs. When this bit is set, the ALRT pin asserts
+                                                                    low. Clear this bit to service and deassert the ALRT
+•   HibThr (hibernate threshold). If the absolute value of          pin. The power-up default value for ALRT is 0. The
+    CRATE is less than HibThr for longer than 6min, the IC          STATUS register specifies why the ALRT pin was
+    enters hibernate mode. 1 LSb = 0.208%/hr.                       asserted.
+CONFIG Register (0x0C)                                         •    ATHD (empty alert threshold) sets the SOC threshold,
+•   RCOMP is an 8-bit value that can be adjusted to opti-           where an interrupt is generated on the ALRT pin and
+    mize IC performance for different lithium chemistries           can be programmed from 1% up to 32%. The value is
+    or different operating temperatures. Contact Maxim              (32 - ATHD)% (e.g., 00000b → 32%, 00001b → 31%,
+    for instructions for optimization. The POR value of             00010b → 30%, 11111b → 1%). The POR value of
+    RCOMP is 0x97.                                                  ATHD is 0x1C, or 4%. The alert only occurs on a falling
+•   SLEEP forces the IC in or out of sleep mode if Mode.            edge past this threshold.
+    EnSleep is set. Writing 1 forces the IC to enter sleep
+    mode, and 0 forces the IC to exit. The POR value of
+    SLEEP is 0.
+
+
+
+                 MSB (HibThr)—ADDRESS 0x0A                                     LSB (ActThr)—ADDRESS 0x0B
+
+          27    26     25   24      23   22    21    20            27      26     25    24     23    22      21     20
+
+          MSb                                       LSb            MSb                                            LSb
+                                                                                             HibThr 20 UNIT: 0.208%/hr
+                                                                                               ActThr 20 UNIT: 1.25mV
+
+
+Figure 9. HIBRT Register Format
+
+
+
+
+                     MSB (RCOMP)—ADDRESS 0x0C                                          LSB—ADDRESS 0x0D
+    RCOMP RCOMP RCOMP RCOMP RCOMP RCOMP RCOMP RCOMP                                          ATHD ATHD ATHD ATHD ATHD
+                                                                         SLEEP ALSC ALRT
+      7     6     5     4     3     2     1     0                                              4    3    2    1    0
+    MSb                                                      LSb         MSb                                             LSb
+
+
+Figure 10. CONFIG Register Format
+
+
+
+
+www.maximintegrated.com                                                                                   Maxim Integrated │ 12
+MAX17048/MAX17049                              3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+VALRT Register (0x14)                                               to distinguish multiple cell types in production. Writes
+This register is divided into two thresholds: Voltage alert         to these bits are ignored.
+maximum (VALRT.MAX) and minimum (VALRT. MIN).                  •    VRESET[7:1] adjusts a fast analog comparator and a
+Both registers have 1 LSb = 20mV. The IC alerts while               slower digital ADC threshold to detect battery removal
+VCELL > VALRT.MAX or VCELL < VALRT.MIN (see                         and reinsertion. For captive batteries, set to 2.5V. For
+Figure 11).                                                         removable batteries, set to at least 300mV below the
+                                                                    application’s empty voltage, according to the desired
+CRATE Register (0x16)                                               reset threshold for your application. If the comparator
+The IC calculates an approximate value for the average              is enabled, the IC resets 1ms after VCELL rises above
+SOC rate of change. 1 LSb = 0.208% per hour (not for                the threshold. Otherwise, the IC resets 250ms after the
+conversion to ampere).                                              VCELL register rises above the threshold.
+VRESET/ID Register (0x18)                                      •    Dis. Set Dis = 1 to disable the analog comparator in
+See Figure 12.                                                      hibernate mode to save approximately 0.5µA.
+•   ID is an 8-bit read-only value that is one-time program-
+    mable at the factory, which can be used as an identifier
+
+
+
+               MSB (VALRT.MIN)—ADDRESS 0x14                              LSB (VALRT.MAX)—ADDRESS 0x15
+
+       MIN7 MIN6 MIN5 MIN4 MIN3 MIN2 MIN1 MIN0                 MAX7 MAX6 MAX5 MAX4 MAX3 MAX2 MAX1 MAX0
+
+       MSb                                           LSb       MSb                                               LSb
+
+                                                                                                           UNIT: 20mV
+
+
+Figure 11. VALRT Register Format
+
+
+
+
+                 MSB (VRESET)—ADDRESS 0x18                                     LSB (ID)—ADDRESS 0x19
+
+         27     26    25     24    23     22    21    Dis          ID6   ID5    ID4   ID3    ID2   ID1     ID0     ID
+
+       MSb                                           LSb           MSb                                           LSb
+
+                                                                                            VRESET 20 UNITS: 40mV
+
+
+Figure 12. VRESET/ID Register Format
+
+
+
+
+www.maximintegrated.com                                                                                  Maxim Integrated │ 13
+MAX17048/MAX17049                                3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+STATUS Register (0x1A)                                           To unlock the TABLE registers, write 0x57 to address
+An alert can indicate many different conditions. The             0x3F, and 0x4A to address 0x3E. While TABLE is
+STATUS register identifies which alert condition was met.        unlocked, no ModelGauge registers are updated, so
+Clear the corresponding bit after servicing the alert (see       relock as soon as possible by writing 0x00 to address
+Figure 13).                                                      0x3F, and 0x00 to address 0x3E.
+Reset Indicator:                                                 CMD Register (0xFE)
+•   RI (reset indicator) is set when the device powers up.       Writing a value of 0x5400 to this register causes
+    Any time this bit is set, the IC is not configured, so the   the device to completely reset as if power had been
+    model should be loaded and the bit should be cleared.        removed (see the Power-On Reset (POR) section). The
+                                                                 reset occurs when the last bit has been clocked in. The
+Alert Descriptors:
+                                                                 IC does not respond with an I2C ACK after this com-
+These bits are set only when they cause an alert (e.g., if       mand sequence.
+CONFIG.ALSC = 0, then SC is never set).
+•   VH (voltage high) is set when VCELL has been above           Application Examples
+    ALRT.VALRTMAX.                                               The ICs have a variety of configurations, depending on
+•   VL (voltage low) is set when VCELL has been below            the application. Table 3 shows the most common system
+    ALRT.VALRTMIN.                                               configurations and the proper pin connections for each.
+•   VR (voltage reset) is set after the device has been          In all cases, the system must provide pullup circuits for
+    reset if EnVr is set.                                        ALRT (if used), SDA, and SDL.
+•   HD (SOC low) is set when SOC crosses the value in            Figure 14 shows an example application for a 1S cell
+    CONFIG.ATHD.                                                 pack. In this example, the ALRT pin is connected to the
+                                                                 microcontroller’s interrupt input to allow the MAX17048 to
+•   SC (1% SOC change) is set when SOC changes by at
+                                                                 signal when the battery is low. The QSTRT pin is unused
+    least 1% if CONFIG.ALSC is set.
+                                                                 in this application and is connected to GND.
+Enable or Disable VRESET Alert:
+                                                                 Figure 15 shows a MAX17049 example application using
+•   EnVr (enable voltage reset alert) when set to 1 asserts      a 2S cell pack. The MAX17049 is mounted on the system
+    the ALRT pin when a voltage-reset event occurs under         side and powered from a 3.3V supply generated by the
+    the conditions described by the VRESET/ ID register.         system. The CELL pin is still connected directly to PACK+.
+TABLE Registers (0x40 to 0x7F)
+Contact Maxim for details on how to configure these
+registers. The default value is appropriate for some Li+
+batteries.
+
+
+
+                      MSB—ADDRESS 0x1A                                          LSB—ADDRESS 0x1B
+
+         X    EnVR    SC     HD     VR     VL    VH     RI         X      X     X     X     X      X     X      X
+
+       MSb                                             LSb       MSb                                          LSb
+
+
+Figure 13. STATUS Register Format
+
+
+
+
+www.maximintegrated.com                                                                                Maxim Integrated │ 14
+MAX17048/MAX17049                                3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+
+                                                                                           SYSTEM
+                                                                                     2.5V TO 4.5V OUTPUT
+  BATTERY PACK                                  SYSTEM µP
+                               MAX17048
+                                                 I2C MASTER           BATTERY PACK                                            SYSTEM µP
+                                                                                                           MAX17049            I2C MASTER
+                              VDD       ALRT    INTERRUPT
+                                                                                                       VDD       ALRT         INTERRUPT
+                              CELL      SDA     SDA
+                 0.1µF
+                                                                                                       CELL      SDA          SDA
+                              CTG        SCL    SCL
+                                                                                       0.1µF
+                                                                                                       CTG        SCL         SCL
+    PROTECTION                GND      QSTRT
+                                                                        PROTECTION                     GND      QSTRT
+
+
+
+
+Figure 14. MAX17048 Application Circuit (1S Cell Pack)              Figure 15. MAX17049 Application Circuit (2S Cell Pack)
+
+
+
+
+Table 3. Possible Application Configurations
+ SYSTEM CONFIGURATION                   IC                    VDD                              ALRT                        QSTRT
+     1S pack-side location           MAX17048    Power directly from battery         Leave unconnected                  Connect to GND
+     1S host-side location           MAX17048    Power directly from battery         Leave unconnected                  Connect to GND
+     1S host-side location,                                                          Connect to system
+                                     MAX17048    Power directly from battery                                            Connect to GND
+       low-cell interrupt                                                                interrupt
+     1S host-side location,                                                                                      Connect to rising-edge
+                                     MAX17048    Power directly from battery         Leave unconnected
+     hardware quick-start                                                                                            reset signal
+                                                 Power from +2.5V to +4.5V
+     2S pack-side location           MAX17049                                        Leave unconnected                  Connect to GND
+                                                        LDO in pack
+                                                 Power from +2.5V to +4.5V
+     2S host-side location           MAX17049                                        Leave unconnected                  Connect to GND
+                                                       LDO or PMIC
+     2S host-side location,                      Power from +2.5V to +4.5V           Connect to system
+                                     MAX17049                                                                           Connect to GND
+       low-cell interrupt                              LDO or PMIC                       interrupt
+     2S host-side location,                      Power from +2.5V to +4.5V                                       Connect to rising-edge
+                                     MAX17049                                        Leave unconnected
+     hardware quick-start                              LDO or PMIC                                                   reset signal
+
+
+
+
+www.maximintegrated.com                                                                                               Maxim Integrated │ 15
+MAX17048/MAX17049                             3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+I2C Bus System                                                Acknowledge Bits
+The I2C bus system supports operation as a slave-only         Each byte of a data transfer is acknowledged with an
+device in a single or multislave, and single or multimaster   acknowledge bit (A) or a no-acknowledge bit (N). Both
+system. Slave devices can share the bus by uniquely set-      the master and the MAX17048 slave generate acknowl-
+ting the 7-bit slave address. The I2C interface consists of   edge bits. To generate an acknowledge, the receiving
+a serial-data line (SDA) and serial-clock line (SCL). SDA     device must pull SDA low before the rising edge of the
+and SCL provide bidirectional communication between           acknowledge-related clock pulse (ninth pulse) and keep it
+the IC’s slave device and a master device at speeds up to     low until SCL returns low. To generate a no- acknowledge
+400kHz. The IC’s SDA pin operates bidirectionally; that is,   (also called NAK), the receiver releases SDA before the
+when the IC receives data, SDA operates as an input, and      rising edge of the acknowledge-related clock pulse and
+when the IC returns data, SDA operates as an open-drain       leaves SDA high until SCL returns low. Monitoring the
+output, with the host system providing a resistive pullup.    acknowledge bits allows for detection of unsuccessful
+The IC always operates as a slave device, receiving and       data transfers. An unsuccessful data transfer can occur
+transmitting data under the control of a master device.       if a receiving device is busy or if a system fault has
+The master initiates all transactions on the bus and gener-   occurred. In the event of an unsuccessful data transfer,
+ates the SCL signal, as well as the START and STOP bits,      the bus master should reattempt communication.
+which begin and end each transaction.
+                                                              Data Order
+Bit Transfer                                                  A byte of data consists of 8 bits ordered most significant
+One data bit is transferred during each SCL clock cycle,      bit (MSb) first. The least significant bit (LSb) of each
+with the cycle defined by SCL transitioning low-to-high       byte is followed by the acknowledge bit. The IC registers
+and then high-to-low. The SDA logic level must remain         composed of multibyte values are ordered MSB first.
+stable during the high period of the SCL clock pulse.         The MSB of multibyte registers is stored on even data-
+Any change in SDA when SCL is high is interpreted as a        memory addresses.
+START or STOP control signal.
+                                                              Slave Address
+Bus Idle                                                      A bus master initiates communication with a slave device
+The bus is defined to be idle, or not busy, when no master    by issuing a START condition followed by a slave address
+device has control. Both SDA and SCL remain high when         (SAddr) and the read/write (R/W) bit. When the bus is
+the bus is idle. The STOP condition is the proper method      idle, the ICs continuously monitor for a START condition
+to return the bus to the idle state.                          followed by its slave address. When the ICs receive a
+                                                              slave address that matches the value in the slave address
+START and STOP Conditions                                     register, they respond with an acknowledge bit during the
+The master initiates transactions with a START condition      clock period following the R/W bit. The 7-bit slave address
+(S) by forcing a high-to-low transition on SDA while SCL      is fixed to 0x6C (write)/0x6D (read):
+is high. The master terminates a transaction with a STOP
+condition (P), a low-to-high transition on SDA while SCL
+                                                                   MAX17048 /MAX17049                 0110110
+is high. A Repeated START condition (Sr) can be used in             SLAVE ADDRESS
+place of a STOP then START sequence to terminate one
+transaction and begin another without returning the bus to
+the idle state. In multimaster systems, a Repeated START      Read/Write Bit
+allows the master to retain control of the bus. The START     The R/W bit following the slave address determines the
+and STOP conditions are the only bus activities in which      data direction of subsequent bytes in the transfer. R/W =
+the SDA transitions when SCL is high.                         0 selects a write transaction with the following bytes being
+                                                              written by the master to the slave. R/W = 1 selects a read
+                                                              transaction with the following bytes being read from the
+                                                              slave by the master (Table 4).
+
+
+
+
+www.maximintegrated.com                                                                              Maxim Integrated │ 16
+MAX17048/MAX17049                              3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Table 4. I2C Protocol Key
+     KEY                         DESCRIPTION                     KEY                           DESCRIPTION
+       S         START bit                                         Sr        Repeated START
+     SAddr       Slave address (7 bit)                             W         R/W bit = 0
+     MAddr       Memory address byte                               P         STOP bit
+     Data        Data byte written by master                     Data        Data byte returned by slave
+       A         Acknowledge bit—master                            A         Acknowledge bit—slave
+       N         No acknowledge—master                             N         No acknowledge bit—slave
+                                                                   R         R/W bit = 1
+
+
+Bus Timing                                                    the end of a read transaction by responding to the last
+The ICs are compatible with any bus timing up to 400kHz.      byte it requires with a no acknowledge. This signals the
+No special configuration is required to operate at any        ICs that control of SDA is to remain with the master fol-
+speed.                                                        lowing the acknowledge clock.
+
+I2C Command Protocols                                           Write: S. SAddr W. A. MAddr. A. Data0. A. Data1. A. P
+The command protocols involve several transaction
+formats. The simplest format consists of the master           Read: S. SAddr W. A. MAddr. A. Sr. SAddr R. A. Data0. A. Data1. N. P
+writing the START bit, slave address, R/W bit, and then
+                                                                          Write Portion                  Read Portion
+monitoring the acknowledge bit for presence of the ICs.
+More complex formats, such as the Write Data and Read
+                                                              Write Data Protocol
+Data, read data and execute device-specific operations.
+All bytes in each command format require the slave or         The write data protocol is used to write to register to the
+host to return an acknowledge bit before continuing with      ICs starting at memory address MAddr. Data0 represents
+the next byte. Table 4 shows the key that applies to the      the data written to MAddr, Data1 represents the data
+transaction formats.                                          written to MAddr + 1, and DataN represents the last data
+                                                              byte, written to MAddr + N. The master indicates the end
+Basic Transaction Formats                                     of a write transaction by sending a STOP or Repeated
+A write transaction transfers 2 or more data bytes to the     START after receiving the last acknowledge bit:
+ICs. The data transfer begins at the memory address
+supplied in the MAddr byte. Control of the SDA signal is      S. SAddr W. A. MAddr. A. Data0. A. Data1. A... DataN. A. P
+retained by the master throughout the transaction, except
+                                                              The MSb of the data to be stored at address MAddr can
+for the acknowledge cycles:
+                                                              be written immediately after the MAddr byte is acknowl-
+A read transaction transfers 2 or more bytes from the         edged. Because the address is automatically incremented
+ICs. Read transactions are composed of two parts, a           after the LSb of each byte is received by the ICs, the MSb
+write portion followed by a read portion, and are therefore   of the data at address MAddr + 1 can be written imme-
+inherently longer than a write transaction. The write por-    diately after the acknowledgment of the data at address
+tion communicates the starting point for the read opera-      MAddr. If the bus master continues an autoincremented
+tion. The read portion follows immediately, beginning with    write transaction beyond address 4Fh, the ICs ignore
+a Repeated START, slave address with R/W set to a 1.          the data. A valid write must include both register bytes.
+Control of SDA is assumed by the ICs, beginning with the      Data is also ignored on writes to read-only addresses.
+slave address acknowledge cycle. Control of the SDA           Incomplete bytes and bytes that are not acknowledged by
+signal is retained by the ICs throughout the transaction,     the ICs are not written to memory.
+except for the acknowledge cycles. The master indicates
+
+
+
+
+www.maximintegrated.com                                                                                   Maxim Integrated │ 17
+MAX17048/MAX17049                                  3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Read Data Protocol                                                  Data is returned beginning with the MSb of the data in
+The read data protocol is used to read to register from the         MAddr. Because the address is automatically incremented
+ICs starting at the memory address specified by MAddr.              after the LSb of each byte is returned, the MSb of the data
+Both register bytes must be read in the same transaction            at address MAddr + 1 is available to the host immediately
+for the register data to be valid. Data0 represents the data        after the acknowledgment of the data at address MAddr.
+byte in memory location MAddr, Data1 represents the                 If the bus master continues to read beyond address FFh,
+data from MAddr + 1, and DataN represents the last byte             the ICs output data values of FFh. Addresses labeled
+read by the master:                                                 Reserved in the memory map return undefined data. The
+                                                                    bus master terminates the read transaction at any byte
+        S. SAddr W. A. MAddr. A. Sr. SAddr R. A.                    boundary by issuing a no acknowledge followed by a
+            Data0. A. Data1. A... DataN. N. P                       STOP or Repeated START.
+
+
+
+Ordering Information
+        PART                      TEMP RANGE                       PIN-PACKAGE                         DESCRIPTION
+MAX17048G+                        -40°C to +85°C                   8 TDFN-EP*                       1-Cell ModelGauge IC
+MAX17048G+T10                     -40°C to +85°C                   8 TDFN-EP*                       1-Cell ModelGauge IC
+MAX17048X+                        -40°C to +85°C                   8 WLP                            1-Cell ModelGauge IC
+MAX17048X+T10                     -40°C to +85°C                   8 WLP                            1-Cell ModelGauge IC
+MAX17049G+                        -40°C to +85°C                   8 TDFN-EP*                       2-Cell ModelGauge IC
+MAX17049G+T10                     -40°C to +85°C                   8 TDFN-EP*                       2-Cell ModelGauge IC
+MAX17049X+                        -40°C to +85°C                   8 WLP                            2-Cell ModelGauge IC
+MAX17049X+T10                     -40°C to +85°C                   8 WLP                            2-Cell ModelGauge IC
++Denotes a lead(Pb)-free/RoHS-compliant package.
+*EP = Exposed pad.
+T = Tape and reel.
+
+
+
+Package Information
+For the latest package outline information and land patterns (footprints), go to www.maximintegrated.com/packages. Note that a “+”,
+“#”, or “-” in the package code indicates RoHS status only. Package drawings may show a different suffix character, but the drawing
+pertains to the package regardless of RoHS status.
+
+       PACKAGE TYPE                     PACKAGE CODE                       OUTLINE NO.                 LAND PATTERN NO.
+                                                                                                              Refer to
+             8 WLP                          W80B1+1                          21-0555
+                                                                                                       Application Note 1891
+          8 TDFN-EP                          T822+3                          21-0168                          90-0065
+
+
+
+
+www.maximintegrated.com                                                                                      Maxim Integrated │ 18
+MAX17048/MAX17049                                              3μA 1-Cell/2-Cell Fuel Gauge with ModelGauge
+
+
+
+Revision History
+  REVISION          REVISION                                                                                                                          PAGES
+                                                                                 DESCRIPTION
+  NUMBER              DATE                                                                                                                           CHANGED
+        0               2/12         Initial release                                                                                                      —
+        1               4/12         Corrected byte-order errors                                                                                     10, 11, 13
+                                     Updated soldering temperature in Absolute Maximum Ratings; corrected Hibernate
+        2               8/12                                                                                                                          2, 12, 14
+                                     register names that were switched
+                                     Corrected VDD pin names in Absolute Maximum Ratings and Electrical
+        3              10/12                                                                                                                             2, 3
+                                     Characteristics
+        4               8/13         Corrected version number                                                                                             10
+        5              10/13         Corrected conditions for Supply Current in Electrical Charateristics                                                  2
+                                     Updated VRESET recommendation from 40mV–80mV below 300mW empty voltage
+        6              10/14                                                                                                                            13, 14
+                                     and corrected VR bit of Status register
+        7               11/16        Updated front page title, description, applications, and features                                                     1
+
+
+
+
+For pricing, delivery, and ordering information, please contact Maxim Direct at 1-888-629-4642, or visit Maxim Integrated’s website at www.maximintegrated.com.
+
+Maxim Integrated cannot assume responsibility for use of any circuitry other than circuitry entirely embodied in a Maxim Integrated product. No circuit patent licenses
+are implied. Maxim Integrated reserves the right to change the circuitry and specifications without notice at any time. The parametric values (min and max limits)
+shown in the Electrical Characteristics table are guaranteed. Other parametric values quoted in this data sheet are provided for guidance.
+
+
+Maxim Integrated and the Maxim Integrated logo are trademarks of Maxim Integrated Products, Inc.                © 2016 Maxim Integrated Products, Inc. │ 19
+

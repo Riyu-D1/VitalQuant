@@ -1,0 +1,188 @@
+                         RV-3028-C7
+                         Extreme Low Power RTC Module
+
+                       DIMENSIONS
+                                            Package:                               Recommended Solder Pad:
+
+                                              3,2                                            0,9     0,9         0,9
+                                              0,9                                                           0,5
+
+
+
+
+                                                                                                                           0,8
+                                                                               0,4
+                              1,5
+
+
+
+
+                                                                  0,5
+
+
+
+
+                                                                                                                           0,8
+                                                0,4                                                  3,2
+
+
+
+
+                                                                  0,15
+                              0,8 max
+                                                                                   Metal lid is connected to VSS (pin #5)
+
+                                                                                   All dimensions in mm typical
+
+
+APPLICATIONS           DESCRIPTION
+IoT                    The RV-3028-C7 is a SMT Real-Time Clock Module that incorporates
+Metering               an integrated CMOS circuit together with an XTAL. It operates under
+Industrial             vacuum in a hermetically sealed ceramic package with metal lid.
+Automotive
+Health Care            FEATURES
+Wearables, Portables
+                       Extreme low power consumption: 40 nA @ 3 V.
+                       Wide operating voltage range: 1.2 V to 5.5 V.
+                       Time accuracy: Factory calibrated to ±1 ppm @ 25°C
+                       User progr. password for write protection of time and configuration.
+                       Non-volatile configuration settings with user programmable offset value.
+                       Automatic Backup Switchover and Trickle Charger function.
+                       Provides year, month, date, weekday, hours, minutes, seconds, UNIX.
+                       Timer, Alarm and External event input with Time Stamp function.
+                       Clock output: 32.768 kHz, 8192 Hz, 1024 Hz, 64 Hz, 32 Hz, 1 Hz.
+                       43 bytes non-volatile user memory, 2 bytes user RAM.
+                       I2C-bus interface: 400 kHz.
+                       100% Pb-free, RoHS-compliant.
+                       Automotive qualification according to AEC-Q200 available.
+
+BLOCK DIAGRAM
+                                        6
+                        VBACKUP                         POWER
+                                        7              CONTROL                                RAM                      RAM
+                        VDD                                                                 Seconds        00       User RAM 2     20
+                                        5                                                    Minutes                   PW 0
+                        VSS                                                                   Hours                    PW 1
+                                                                                            Weekday                    PW 2
+                                                                                              Date                     PW 3
+                                                                                             Month                    EEaddr
+                                        3                                                     Year                    EEdata
+                        SCL                   I2C-BUS                                    Minutes Alarm                EEcmd
+                                        4   INTERFACE
+                        SDA                                                               Hours Alarm                   ID         28
+                                                                                        Weekday Alarm /
+                                                                                           Date Alarm
+                                                                                         Timer Value 0          Configuration EEPROM
+                                                                                         Timer Value 1             with RAM mirror
+                                               FREQUENCY                                                                               30
+                                                                                         Timer Status 0               EEPWE
+                                                 OFFSET
+                                                                                         Timer Status 1               EEPW 0
+                                              COMPENSATION
+                                                                          SYSTEM             Status                   EEPW 1
+                                                                         CONTROL            Control 1      0F         EEPW 2
+                                                      DIVIDER                               Control 2      10         EEPW 3
+                                                                           LOGIC
+                                                                                             GP Bits              EEPROM Clkout
+                                                        XTAL                                 CLKIM                 EEPROM Offset
+                                                     OSCILLATOR                          Event Control            EEPROM Backup        37
+                                                                                            Count TS
+                                                                                          Seconds TS
+                                                                                           Minutes TS              User EEPROM
+                                        1
+                        CLKOUT                                                              Hours TS
+                                                INPUT                                       Date TS
+                                        2                                                  Month TS
+                        INT                    OUTPUT
+                                              CONTROL                                       Year TS                 43 Bytes of
+                                        8                                                 UNIX Time 0              user EEPROM
+                        EVI
+                                                                                          UNIX Time 1               (00h – 2Ah)
+                                                                                          UNIX Time 2
+                                                                                          UNIX Time 3
+                                                                                          User RAM 1       1F
+                                             RESET
+ELECTRICAL CHARACTERISTICS                                                            Symbol              Condition              Min. Typ. Max Unit
+AT 25°C
+More detailed information can be found in the
+                                                 Supply voltage                         VDD             I2C-bus active           1.2             5.5        V
+Application Manual.                              Supply voltage                         VDD             Time keeping             1.1             5.5        V
+                                                 Current consumption                                  I2C-bus inactive,
+                                                                                        IDDO                                             40       60       nA
+                                                 Time keeping mode                                        VDD = 3 V
+                                                 CLKOUT frequency                     FCLKOUT          Programmable                32768...to...1          Hz
+                                                 Time accuracy                          Δt/t               @ 25°C                        ±1               ppm
+                                                 Aging first year max.                 ΔF/F                @ 25°C                        ±3               ppm
+
+ENVIRONMENTAL
+                                                                                                                          Conditions              Max. Dev.
+CHARACTERISTICS
+                                                 Storage temp. range                                                    –55 to +125°C
+                                                 TA Operating temperature range                                          –40 to +85°C
+                                                 Shock resistance                                       ΔF/F 5000 g, 0.3 ms, ½ sine                   ±5 ppm
+                                                 Vibration resistance                                   ΔF/F           20 g / 10–2000 Hz              ±5 ppm
+
+TERMINATIONS AND
+                                                       Package                              Termination                                Processing
+PROCESSING
+                                                                                                                                IPC/JEDEC J-STD-020C
+                                                        SON-8                           Au flashed pads
+                                                                                                                                   260°C / 20 - 40 s
+
+
+FREQUENCY TEMPERATURE                                                   20                           T0 = 25°C ±5°C
+                                                                         0
+CHARACTERISTICS                                                        -20
+                                                         ΔF/F [ppm]
+
+
+
+
+                                                                       -40
+                                                                       -60
+                                                                       -80                   –0.035*(T-T0)2 ppm ±10%
+                                                                      -100
+                                                                      -120
+                                                                      -140                           Tuning Fork Crystal
+                                                                      -160
+                                                                          -60   -40   -20        0        20      40       60     80    100   T[°C]
+
+
+PIN CONNECTIONS
+TOP VIEW                                                               Product Date Code                Pin        Connection
+                                                       #8                                   #5          1          CLKOUT Clock Output
+                                                                                                        2          INT      Interrupt Output
+                                                                          M742A1                        3          SCL      Serial Clock Input
+                                                                                                        4          SDA      Serial Data
+                                                                            3028                        5          VSS      Ground
+                                                                                                        6          VBACKUP Backup Supply Voltage
+                                                       #1                                   #4
+                                                                                                        7          VDD      Power Supply Voltage
+                                                                Part Designation                        8          EVI      Event Input
+                                                     Pin 1 Index
+
+ORDERING INFORMATION
+                                                                       RV - 3028 - C7 TA QC
+
+                                                   RTC module                                                  Qualification
+                                                                                                               QC = Commercial Grade (Standard)
+                                                   Product type                                                QA = Automotive Grade AEC-Q200
+
+                                                   Package size                                                Temperature range
+                                                   C7 = 3.2 x 1.5 x 0.8 mm                                     TA = -40 to +85°C (Standard)
+
+
+                                                      A unique part number will be generated for each product specification, i.e:
+                                                      20xxxx-MG01         1'000 pcs (in 12 mm tape on 7" reel)
+                                                      20xxxx-MG03         3'000 pcs (in 12 mm tape on 7" reel)
+
+                                                All specifications subject to change without notice.
+
+
+                                                Micro Crystal AG                                        Phone +41 32 655 82 82
+                                                Muehlestrasse 14                                        Fax    +41 32 655 82 83
+                                                CH-2540 Grenchen                                        sales@microcrystal.com
+                                                Switzerland                                             www.microcrystal.com
+
+                                                                                                                                               Version 1.0/08.2018
+

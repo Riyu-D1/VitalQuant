@@ -1,0 +1,882 @@
+       www.osram-os.com
+    SFH 4053
+    DATASHEET
+
+
+
+
+                                        SFH 4053
+    Datasheet
+
+
+                                    ﻿
+
+
+
+
+    Published by ams-OSRAM AG
+    Tobelbader Strasse 30, 8141 Premstaetten, Austria
+﻿
+
+
+
+
+    Phone +43 3136 500-0
+    ams-osram.com
+          | Version
+      1 rights
+    © All           1.13 | 2026-05-13
+               reserved
+    SFH 4053
+    DATASHEET
+
+
+
+
+    Chip LED
+
+    SFH 4053
+    Infrared Emitter (850 nm)
+
+
+
+
+    Applications
+    - Access control & security                       - Eye, face and hand tracking
+    - Appliances & tools                              - Factory automation
+
+
+
+    Features
+    - Package: clear epoxy
+
+                                  ﻿
+    - ESD: 2 kV acc. to ANSI/ESDA/JEDEC JS-001 (HBM, Class 2)
+    - Very small package: (LxWxH) 1.0 mm x 0.5 mm x 0.45 mm
+﻿
+
+
+
+
+     2 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Ordering Information
+    Type               Radiant intensity 1)2)     Radiant intensity 1)     Ordering Code
+                                                  typ.
+                       IF = 70 mA; tp = 20 ms     IF = 70 mA; tp = 20 ms
+                       Ie                         Ie
+
+    SFH 4053                 4.5 ... 11.2 mW/sr        7 mW/sr             Q65111A0651
+
+
+
+
+                               ﻿
+﻿
+
+
+
+
+     3 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Maximum Ratings
+    TA = 25 °C
+    Parameter                                       Symbol             Values
+
+    Operating temperature                           Top        min.    -40 °C
+                                                               max.     85 °C
+    Storage temperature                             Tstg       min.    -40 °C
+                                                               max.     85 °C
+    Junction temperature                            Tj         max.    85 °C
+    Forward current                                 IF         max.    70 mA
+    Forward current pulsed                          IF pulse   max.     0.7 A
+    tp ≤ 400 µs; D ≤ 0.005
+    Reverse voltage 3)                              VR         max.      5V
+    Power consumption                               Ptot       max.   140 mW
+    ESD withstand voltage                           VESD       max.     2 kV
+    acc. to ANSI/ESDA/JEDEC JS-001 (HBM, Class 2)
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+     4 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Characteristics
+    IF = 70 mA; tp = 20 ms; TA = 25 °C
+    Parameter                                          Symbol                  Values
+
+    Peak wavelength                                    λpeak        typ.      860 nm
+    Centroid wavelength                                λcentroid    typ.      850 nm
+    Spectral bandwidth at 50% Irel,max (FWHM)          ∆λ           typ.       30 nm
+    Half angle                                         φ            typ.          70 °
+    Dimensions of active chip area                     LxW          typ.     0.2 x 0.2
+                                                                            mm x mm
+    Rise time (10% / 90%)                              tr           typ.        12 ns
+    IF = 70 mA; RL = 50 Ω
+    Fall time (10% / 90%)                              tf           typ.        12 ns
+    IF = 70 mA; RL = 50 Ω
+    Forward voltage 4)                                 VF           typ.        1.6 V
+                                                                    max.        1.9 V
+    Forward voltage                                    VF           typ.        2.4 V
+    IF = 500 mA; tp = 100 µs
+    Reverse current 3)                                 IR           typ.      0.01 µA
+    VR = 5 V                                                        max.        10 µA
+    Radiant intensity 1)                               Ie           typ.    42 mW/sr
+    IF = 500 mA; tp = 25 µs
+    Total radiant flux 5)                              Φe           typ.       35 mW
+    IF = 70 mA; tp = 20 ms
+    Temperature coefficient of voltage                 TCV          typ.   -0.7 mV / K
+
+
+                                  ﻿
+    Temperature coefficient of brightness              TCI          typ.    -0.5 % / K
+    Temperature coefficient of wavelength              TCλ          typ.   0.3 nm / K
+    Thermal resistance junction solder point real 6)   RthJS real   typ.    290 K / W
+                                                                    max.    350 K / W
+    Thermal resistance junction ambient real 7)        RthJA        typ.    400 K / W
+                                                                    max.    450 K / W
+﻿
+
+
+
+
+     5 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Brightness Groups
+    TA = 25 °C
+
+    Group                        Radiant intensity 1)2)              Radiant intensity 1)2)
+                                 IF = 70 mA; tp = 20 ms              IF = 70 mA; tp = 20 ms
+                                 min.                                max.
+                                 Ie                                  Ie
+
+    P                                    4.5 mW/sr                        7.1 mW/sr
+    Q                                    7.1 mW/sr                      11.2 mW/sr
+
+    Note: Only one group in one packing unit (variation lower 2:1)
+
+
+
+
+                                     ﻿
+﻿
+
+
+
+
+        6 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Relative Spectral Emission 8),                            9)
+
+    Ie,rel = f (λ); IF = 70 mA; tp = 20 ms
+                                                                                             OHF04132
+                                                      100
+                                                   I rel %
+
+                                                       80
+
+
+
+                                                       60
+
+
+
+                                                       40
+
+
+
+                                                       20
+
+
+
+                                                        0
+                                                        700        750       800     850      nm 950
+                                                                                              λ
+
+
+
+
+    Radiation Characteristics 8),                        9)
+
+    Ie,rel = f (φ)
+                             40˚             30˚        20˚            10˚     0˚                                    OHF05523
+
+                                                                   ϕ           1.0
+                     50˚
+
+                                         ﻿                                     0.8     long axis
+                                                                                      short axis
+                     60˚
+                                                                               0.6
+
+
+                     70˚                                                       0.4
+
+
+                     80˚                                                       0.2
+
+                                                                               0
+                     90˚
+
+
+                 100˚
+                           1.0     0.8         0.6           0.4               0˚      20˚     40˚      60˚   80˚   100˚   120˚
+﻿
+
+
+
+
+      7 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Forward current 8),                       9)                        Relative Radiant Intensity 8),                          9)
+
+    IF = f (VF); single pulse; tp = 100 µs                              Ie/Ie(70mA) = f (IF); single pulse; tp = 25 µs
+                                                      OHF03826                                                           OHF04406
+         100                                                                     101
+          A
+    IF                                                                      Ie
+                                                                        I e (70 mA)
+
+         10-1                                                                    100
+          5                                                                       5
+
+
+         10-2                                                                    10-1
+          5                                                                       5
+
+
+         10-3                                                                    10-2
+          5                                                                       5
+
+
+         10-4                                                                    10-3 0
+                0   0.5            1   1.5    2       2.5 V 3                        10             5 10 1   5 10 2 mA          10 3
+                                                        VF                                                                IF
+
+
+
+
+    Max. Permissible Forward Current                                    Permissible Pulse Handling Capability
+    IF = f (TA); Rthja = 450 K / W                                      IF = f (tp); duty cycle D = parameter; TA = 25°C
+
+                    [     ]                                                           [   ]
+
+
+
+
+                                                  ﻿
+                              60                                                              600
+
+
+
+                                                                                                                           :D=1
+                                                                                                                           : D = 0.5
+                              40                                                              400
+                                                                                                                           : D = 0.2
+                                                                                                                           : D = 0.1
+                                                                                                                           : D = 0.05
+                                                                                                                           : D = 0.02
+                                                                                                                           : D = 0.01
+                                                                                                                           : D = 0.005
+
+                              20                                                              200
+
+
+
+
+                               0                                                               0
+                                   0     20        40        60   80                           10-5 10-4 10-3 0.01 0.1     1    10
+                                                                  [ ]                                                                    [ ]
+﻿
+
+
+
+
+     8 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Dimensional Drawing 10)
+
+
+
+
+    Further Information:
+    Approximate Weight:              0.6 mg
+
+    Package marking:                 Anode
+
+
+    Pin                                       Description
+
+    1                                         anode
+
+
+
+                                 ﻿
+    2                                         cathode
+﻿
+
+
+
+
+        9 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Recommended Solder Pad 10)
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+    10 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Reflow Soldering Profile
+    Product complies to MSL Level 3 acc. to JEDEC J-STD-020E
+                                                                                                            OHA04525
+                     300
+                      ˚C
+                  T 250
+                               240 ˚C                                                                 Tp 245 ˚C
+                               217 ˚C                                                      tP
+                     200
+                                                                                           tL
+
+                     150
+                                                          tS
+
+                     100
+
+
+                      50
+                               25 ˚C
+                       0
+                           0           50           100           150            200            250      s 300
+                                                                                                        t
+
+    Profile Feature                                Symbol              Pb-Free (SnAgCu) Assembly                       Unit
+                                                                 Minimum   Recommendation Maximum
+    Ramp-up rate to preheat*)                                                          2                    3          K/s
+    25 °C to 150 °C
+    Time tS                                        tS                 60          100                 120              s
+    TSmin to TSmax
+    Ramp-up rate to peak*)                                                             2                    3          K/s
+
+
+                                    ﻿
+    TSmax to TP
+    Liquidus temperature                           TL                             217                                  °C
+    Time above liquidus temperature                tL                               80                100              s
+    Peak temperature                               TP                             245                 260              °C
+    Time within 5 °C of the specified peak         tP                 10            20                  30             s
+    temperature TP - 5 K
+    Ramp-down rate*                                                                    3                    6          K/s
+    TP to 100 °C
+    Time                                                                                              480              s
+    25 °C to TP
+
+    All temperatures refer to the center of the package, measured on the top of the component
+    * slope calculation DT/Dt: Dt max. 5 s; fulfillment for the whole T-range
+﻿
+
+
+
+
+    11 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Taping 10)
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+    12 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Tape and Reel 11)
+
+
+
+
+    Reel Dimensions
+    A             W                         Nmin           W1                W2 max        Pieces per PU
+
+    180 mm             8 + 0.3 / - 0.1 mm          60 mm        8.4 + 2 mm       14.4 mm    3000
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+    13 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Barcode-Product-Label (BPL)
+
+
+
+
+    Dry Packing Process and Materials 10)
+                                                                                                                                                                                                     0RLVWXUHVHQVLWLYHODEHORUSULQW
+
+                                                                          1Q V ,9(256       U
+                                                                                               HO IUD DF
+                                                                                                          ND
+                                                                                                            /
+
+
+
+
+                                                                                                             DW
+                                                                                                                (
+                                                                                                                 9
+
+
+
+
+                                                                                                                
+                                                                                                                  (
+                                                                                                                   /
+
+
+
+
+                                                                                                                  LY
+                                                                                                                    H
+                                                                                                                   ə
+                                                                                                                      KX
+
+                                                                                                                     UH
+                                                                                                                          EOD
+                                                                                                                         ED
+
+                                                                                                                           P
+
+                                                                                                                        G JH
+                                                                                                                             QN
+
+                                                                                                                       ,I UF
+                                                                                                                              RG
+
+
+                                                                                                                              LG
+                                                                                                                                V
+                                                                                                                                  H
+
+
+                                                                                                                                 LW\
+                                                                                                                                    HH
+
+
+                                                                                                                                    
+                                                                                                                                     ODE
+
+                                                                                                                                        5
+                                                                                                                                           HO
+
+
+
+
+                                                                                                                                           &
+                                                                                                                                            +
+                                                                                                                                                
+
+
+
+
+                                                                                                                                                
+                                                                                                                                                     
+                                                                                                                                                       5
+                                                                                                                                                            +
+                                                                                                                                                                
+                                                                                                                                                                                                        %DUFRGHODEHO
+                                                                 7F,2
+                                                                                                LQ S                          
+                                                                                                                                B
+                                                                          DL ,7 7          WR DN           RI                                                                           UV
+                                                                            6 &          G
+                                                                     R QW
+                                                                                                           V            U                                                                  UV
+                                                                                              SH
+                                                                       (1'8
+                                                                                       WH                                                                                            RX
+                                                       8 6 1
+
+
+
+
+                                                                                                                                                                     ﻿
+                                                                                                        RQ           R                                              GH              + RX      UV
+                                                                                   QG HF J          LWL          &                                                                  +    RX UV
+                                                   $LV E8DJ50(,&2 ə&HDVXFHEMVV \FRQG
+                                                                                   LQ                                              ə                              FR
+                                                                                                                                                                 H                  + RX
+                                                                                                                                 
+                                                  &7K ,6                                                                                                       DW              H   +
+                                                                                                                               s                                            P    H  
+                                                         7 (             E UR     RU                                   ə&
+                                                                                                                                                            G
+                                                                                                                                                                          WL P H 
+                                                         6           LOO S   FW                                                                   LWK            RU WL    P H
+                                                          2                                                                                           Z
+                                                        0 72              V
+                                                                              DW    Z QW
+                                                                                 DW OH ə& DWID                        D
+                                                                                                                          W                     DO
+                                                                                                                                                                     OR
+                                                                                                                                                                    ) ORRURUWL WLP
+                                                          3            WK WK YD            O                                         UH       WLF                    ) OR       U
+                                                      2            RQ          XL       EH                        DG             GX        HQ                           )    RR
+                                                                                                 Z          LI UH
+                                                                 P LFHV     HT       OD       OR        J Q                  FH       LG
+                                                                                                                                                             O            )O
+                                                                       U       H                 LQ                    UR        LV                  YH O D
+                                                                  HY                     EH
+                                                           
+                                                                G R        RG      H           QW KH                S         H                 /H YH O
+                                                        J                                                                                         H /H YH HO
+                                                             G ORZ DUF          VH           RX Z                 NH         DW
+                                                    ED                         H           P                   ED        OG                XU H /H HY
+                                                 G      QH HI       E                                        U                            VW    XU   H
+                                                                                         H                                                                 /
+                                             OH      SH U       HH      WL
+                                                                             P
+                                                                                     RU !                IR         V
+                                                                                                                        HD                 RL   VW    XU UH
+                                          HD      R VH        V                 HI LV                            N                  0 RL        VW
+                                        V   LV KD         N        RU 
+                                                                   OR +        E G                                                     0    RL LVWX
+                                     LQ DJ S                                                                DQ                             0 R
+                                                        DQ LQ ) 5           J DU               '          EO                                  0
+                                   H E RU          EO LWK              LQ   &                7        LI                  U
+                               OLI                               
+                            OI WKLV DSS ,IZ                       DNWRUHW            6                            HD U NV
+                                                              E                      -                             < HD
+                        KH      U ZY P       HG        
+                                                          B
+                                                                UH FD P G &
+                                                                                  
+                                                                                                                     <        HH RX
+                                                                                                                                        UV
+                     6    IWHIOR WH        QW       DW     XL GL RW             (                               !  :
+                       $UH G\          RX       G HT ,Q Q XLUH         (
+                                                                               '                              H            +
+                            ER      0
+                                               UH      U LW\ LV          -                               P H         
+                                            WR HV LG E UHT            &                             WL    P     H 
+                                   D      6    LF XPRU LV ,3                            HG ORRU WL P H
+                                       E                     J H                                     RU
+                                            HY+ D
+                                                          LQ QF          H             HQ       ) OR RUWL WLP
+                                         'D       DN               DW          RS              ) OR RU
+                                            E            UH                  H                    ) OR
+                                                    E IH         OG                 O               )
+                                                 ,I UH        HD         WLP YH         O D
+                                                          V         G                    O
+                                                                              /H YH
+                                                        DJ          DQ    H /H          YH O
+                                                      %          H     XU H /H YH
+                                                              DW     VW    XU    H /H
+                                                            '     RL VW       XU H
+                                                                0 RL       VW XU
+                                                                  0     RL VW
+                                                                      0 RL
+                                                                        0
+
+
+
+
+                                                                                                                                                       0
+                                                                                                                                                     5$
+                                                                                                                                26
+
+
+
+
+                                                                                                                                                                                                                                                                       +XPLGLW\LQGLFDWRU
+                                                                                                                                                                                                                                                                                 %DUFRGHODEHO
+                                                                                                                                                                                                                                  'RQRWHDW
+                                                                                                                                                                                                                              $YRLGPHWDOFRQWDFW
+                                                                                                                                                                                                                           'LVFDUGLIFLUFOHVRYHUUXQ
+                                                                                                                                                                                                                                 EDJRSHQLQJ
+                                                                                                                                                                                                                     3OHDVHFKHFNWKH+,&LPPLGLDWHO\DIWHU
+
+
+
+                                                                                                                                                                                                                                 FKHFNGRW
+                                                                                                                                                                                                                                 &RPSDUDWRU
+                                                                                                                                                                                                                                                 :(7
+
+
+                                                                                                                                                                                                                 EDNHXQLWV
+                                                                                                                                                                                                                 H[DPLQHXQLWVLIQHFHVVDU\        
+                                                                                                                                                                                                                 ,IZHW
+
+
+
+                                                                                                                                                                                                                 EDNHXQLWV
+                                                                                                                                                                                                                 H[DPLQHXQLWVLIQHFHVVDU\        
+                                                                                                                                                                                                                 ,IZHW
+
+
+
+                                                                                                                                                                                                                   FKDQJHGHVLFFDQW
+                                                                                                                                                                                                                   SDUWVVWLOODGHTXDWHO\GU\      
+                                                                                                                                                                                                                   ,IZHW
+
+
+                                                                                                                                                                                                                                 0,/,
+                                                                                                                                                                                                                               +XPLGLW\,QGLFDWRU
+
+
+
+
+                  'HVLFFDQW
+                                                                                                                                                                                                                                                                  $0
+                                                                                                                                                                                                                                                              265
+
+
+
+
+                                                                                                                                                                                                                                                                                      2+$
+    Moisture-sensitive product is packed in a dry bag containing desiccant and a humidity card according JEDEC-STD-033.
+﻿
+
+
+
+
+    14 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Notes
+    The evaluation of eye safety occurs according to the standard IEC 62471:2006 (photo biological safety of
+    lamps and lamp systems). Within the risk grouping system of this IEC standard, the device specified in this
+    data sheet falls into exempt risk group - Exempt.
+    Subcomponents of this device contain, in addition to other substances, metal filled materials including silver.
+    Metal filled materials can be affected by environments that contain traces of aggressive substances. There-
+    fore, we recommend that customers minimize device exposure to aggressive substances during storage,
+    production, and use. Devices that showed visible discoloration when tested using the described tests above
+    did show no performance deviations within failure limits during the stated test duration. Respective failure
+    limits are described in the IEC60810.
+    For further application related information please visit https://ams-osram.com/support/application-notes
+
+
+
+
+                                 ﻿
+﻿
+
+
+
+
+    15 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Disclaimer
+    Attention please!
+    The information describes the type of component and shall not be considered as assured characteristics.
+    Terms of delivery and rights to change design reserved. Due to technical requirements components may
+    contain dangerous substances.
+    For information on the types in question please contact our Sales Organization.
+    If printed or downloaded, please find the latest version on our website.
+
+    Packing
+    Please use the recycling operators known to you. We can also help you – get in touch with your nearest
+    sales office. By agreement we will take packing material back, if it is sorted. You must bear the costs of
+    transport. For packing material that is returned to us unsorted or which we are not obliged to accept, we
+    shall have to invoice you for any costs incurred.
+
+    Product and functional safety devices/applications or medical devices/applications
+    Our components are not developed, constructed or tested for the application as safety relevant component
+    or for the application in medical devices.
+    Our products are not qualified at module and system level for such application.
+
+    In case buyer – or customer supplied by buyer – considers using our components in product safety devices/
+    applications or medical devices/applications, buyer and/or customer has to inform our local sales partner
+    immediately and we and buyer and /or customer will analyze and coordinate the customer-specific request
+    between us and buyer and/or customer.
+
+
+
+
+                                 ﻿
+﻿
+
+
+
+
+    16 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Glossary
+    1)
+          Radiant intensity: Measured at a solid angle of Ω = 0.01 sr
+    2)
+          Brightness: The brightness values are measured with a tolerance of ±11%.
+    3)
+          Reverse Operation: This product is intended to be operated applying a forward current within the
+          specified range. Applying any continuous reverse bias or forward bias below the voltage range of light
+          emission shall be avoided because it may cause migration which can change the electro-optical char-
+          acteristics or damage the LED.
+    4)
+          Forward Voltage: The forward voltages are measured with a tolerance of ±0.1 V.
+    5)
+          Total radiant flux: Measured with integrating sphere.
+    6)
+          Thermal resistance: junction - soldering point, of the device only, mounted on an ideal heatsink (e.g.
+          metal block)
+    7)
+          Thermal resistance: junction ‐ ambient, mounted on PC‐board (FR4), padsize 5 mm² each
+    8)
+          Typical Values: Due to the special conditions of the manufacturing processes of semiconductor devic-
+          es, the typical data or calculated correlations of technical parameters can only reflect statistical figures.
+          These do not necessarily correspond to the actual parameters of each single product, which could dif-
+          fer from the typical data and calculated correlations or the typical characteristic line. If requested, e.g.
+          because of technical improvements, these typ. data will be changed without any further notice.
+    9)
+          Testing temperature: TA = 25°C (unless otherwise specified)
+    10)
+          Tolerance of Measure: Unless otherwise noted in drawing, tolerances are specified with ±0.1 and
+          dimensions are specified in mm.
+    11)
+          Tape and Reel: All dimensions and tolerances are specified acc. IEC 60286-3 and specified in mm.
+
+
+
+
+                                  ﻿
+﻿
+
+
+
+
+    17 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+    Revision History
+    Version       Date               Change
+
+    1.6           2019-11-22         Ordering Information
+                                     Characteristics
+                                     Brightness Groups
+                                     Electro - Optical Characteristics (Diagrams)
+    1.7           2019-11-25         Dimensional Drawing
+    1.8           2019-12-09         Dimensional Drawing
+    1.9           2020-08-03         Schematic Transportation Box
+                                     Dimensions of Transportation Box
+    1.10          2021-09-29         Brand
+    1.11          2021-12-06         Notes
+    1.12          2024-08-02         Derating (Diagrams)
+                                     Dimensional Drawing
+                                     Applications
+                                     New Layout
+    1.13          2026-05-13         Taping
+
+
+
+
+                               ﻿
+﻿
+
+
+
+
+    18 | Version 1.13 | 2026-05-13
+    SFH 4053
+    DATASHEET
+
+
+
+
+                                    ﻿
+
+
+
+
+    Published by ams-OSRAM AG
+    Tobelbader Strasse 30, 8141 Premstaetten, Austria
+    Phone +43 3136 500-0
+﻿
+
+
+
+
+    ams-osram.com
+    © All rights reserved
+    19 | Version 1.13 | 2026-05-13
+

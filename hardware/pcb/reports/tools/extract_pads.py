@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Extract every pad from vitalq_v2.kicad_pcb -> 01_netlist_pinmap.csv.
+"""Extract every pad from vitalq_v2.kicad_pcb -> pinmap CSV.
+v2 fix: this board stores pad nets as (net "NAME") -- name-only, no numeric id --
+and has no top-level (net id "name") table. v1 read net[2] and emitted ''.
 Pure s-expression parse (no pcbnew). One CSV row per PAD."""
 import re, sys, csv, math
 
@@ -8,7 +10,6 @@ OUT  = sys.argv[2] if len(sys.argv) > 2 else "hardware/pcb/reports/01_netlist_pi
 
 src = open(PATH, encoding="utf-8").read()
 
-# --- tokenize: ( ) "string" atom ---
 TOK = re.compile(r'\s*([()]|"(?:[^"\\]|\\.)*"|[^\s()]+)')
 toks = TOK.findall(src)
 pos = 0
@@ -41,7 +42,7 @@ def tree():
             root.append(t)
     return root
 
-doc = tree()[0]            # (kicad_pcb ...)
+doc = tree()[0]
 assert doc[0] == 'kicad_pcb', doc[0]
 
 def child(node, name):
@@ -50,18 +51,9 @@ def child(node, name):
             return ch
     return None
 
-def attr(node, name):
-    ch = child(node, name)
-    return ch[1:] if ch else None
-
-# net id -> name
-netname = {}
-for ch in doc[1:]:
-    if isinstance(ch, list) and ch[0] == 'net' and len(ch) >= 3:
-        netname[ch[1]] = tstr(ch[2])
-
 rows = []
 fp_total = 0
+noname = 0
 for ch in doc[1:]:
     if not (isinstance(ch, list) and ch[0] == 'footprint'):
         continue
@@ -88,8 +80,12 @@ for ch in doc[1:]:
         pat  = child(p, 'at') or []
         px, py = (float(pat[1]), float(pat[2])) if len(pat) >= 3 else (0.0, 0.0)
         net  = child(p, 'net')
-        netn = tstr(net[2]) if net and len(net) >= 3 else ''
-        # pad 'at' is footprint-local; rotate into board coords
+        # fix_v19 board: (net "NAME") single-arg form
+        if net and len(net) >= 2:
+            netn = tstr(net[-1])
+        else:
+            netn = ''
+            noname += 1
         wx = fx + px * cr - py * sr
         wy = fy + px * sr + py * cr
         rows.append([ref, lib, num, f"{ptype}/{prole}", netn,
@@ -101,4 +97,4 @@ with open(OUT, 'w', newline='') as f:
     w.writerows(rows)
 
 mech = sum(1 for r in rows if 'np_thru_hole' in r[3])
-print(f"footprints={fp_total} pads={len(rows)} np_th={mech} -> {OUT}")
+print(f"footprints={fp_total} pads={len(rows)} np_th={mech} no_net={noname} -> {OUT}")
