@@ -13,8 +13,8 @@ Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit
 
 ### F-PWR-01 — TS pin sees two parallel NTC paths; charger can sit at the hot-suspend threshold at 25 °C
 - **Where:** U2 (BQ25170DSGR) pin 3 → net `TS` → R61 (NCP15XH103F03RC, 10 kΩ β=3380, →GND) **and** J2-3 (battery-pack NTC terminal) **and** Q2 drain (CHG_DIS switch).
-- **Datasheet:** ITS_BIAS = 38 µA nom (36.5–39.5, EC §6.5 p.6–7); VHOT = 188 mV typ (176–200) ≈ 45 °C; VCOLD = 1.04 V ≈ 0 °C; "Use a 10-kΩ NTC thermistor in the battery pack (recommend: 103AT-2)" (§8.2.1.2.1 p.21). Temperature window can be modified "by adding resistors in parallel and in series" — i.e., the IC tolerates/expects a deliberate network, but here the parallel is *incidental*.
-- **Evidence:** V_TS = ITS_BIAS × R_TS. With only R61: 38 µA × 10 kΩ = 380 mV — mid-window, correct. With a standard 10 kΩ pack NTC on J2-3: R_TS = 5 kΩ → **V_TS ≈ 190 mV ≈ VHOT (188 mV typ)** at room temperature → charge suspends/intermittently faults (STAT 1 Hz blink, Table 7-3 p.18) as if the battery were hot. Whether a given unit charges at all depends on ITS_BIAS/NTC spread.
+- **Datasheet:** ITS_BIAS = 38 µA nom (36.5–39.5, EC p.7); VHOT = 188 mV typ (176–200) ≈ 45 °C; VCOLD = 1.04 V ≈ 0 °C; "Use a 10-kΩ NTC thermistor in the battery pack (recommend: 103AT-2)" (§8.2.1.2.1 p.21). Temperature window can be modified "by adding resistors in parallel and in series" — i.e., the IC tolerates/expects a deliberate network, but here the parallel is *incidental*.
+- **Evidence:** V_TS = ITS_BIAS × R_TS. With only R61: 38 µA × 10 kΩ = 380 mV — mid-window, correct. With a standard 10 kΩ pack NTC on J2-3: R_TS = 5 kΩ → **V_TS ≈ 190 mV ≈ VHOT (188 mV typ)** at room temperature → charge suspends/intermittently faults (STAT 1 Hz blink, Table 7-3 p.17) as if the battery were hot. Whether a given unit charges at all depends on ITS_BIAS/NTC spread.
 - **Consequence:** with a 3-wire NTC pack the product may never finish a charge cycle; with a 2-wire pack the pack temperature is unmonitored (safety trade).
 - **Smallest fix:** BOM — mark R61 DNP when building with NTC-equipped packs (or specify 2-wire packs and accept losing pack temp sense). Re-spin: route TS exclusively to J2-3 and keep R61 on a stuffing option keyed to pack choice. β mismatch of R61 (3380 vs recommended 3435) is a secondary ~1–2 °C window shift — acceptable once the parallel issue is resolved.
 
@@ -28,7 +28,7 @@ Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit
 
 ### F-PWR-03 — U3 VOUT has only 0.1 µF within 5 mm; the recommended 22 µF bulk is 15.9 mm away
 - **Where:** U3 (TPS63802DLAR) pin 6 `+3V3` → nearest same-net cap C38 (100 nF) @ 4.96 mm; C45 (22 µF 0603) @ 15.9 mm.
-- **Datasheet:** §10.2.2.3 p.18 — "recommended nominal output capacitor value is a single 22 µF … placed as close as possible to the VOUT and PGND pins"; §8.3 p.5 — effective CO ≥ 7 µF (VO>2.3 V).
+- **Datasheet:** §10.2.2.3 p.19 — "recommended nominal output capacitor value is a single 22 µF … placed as close as possible to the VOUT and PGND pins"; §8.3 p.5 — effective CO ≥ 7 µF (VO>2.3 V).
 - **Assessment:** rail-level effective capacitance is probably still ≥7 µF (C45 ~22 µF derated + sprinkles), so the converter will likely *function*; the violation is placement — loop inductance between VOUT and its bulk degrades load-transient response and EMI on a 1.4–2 MHz converter.
 - **Smallest fix:** rework/bottom-side 22 µF (or ≥10 µF) 0603 near pin 6–8; better: re-spin placement.
 
@@ -40,13 +40,13 @@ Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit
 
 ### F-PWR-05 — no thermal vias under U2 (DSG0008A) or U3 (DLA0010A) exposed pads
 - **Where:** U2 pad 9 EP (0.9×1.6 mm, F.Cu only) — zero vias inside pad area; nearest GND via (29.16, 4.49) is 2.0 mm outside pad edge. U3 pad 11 EP (0.84×2.4 mm) — nearest GND via (38.95, 33.42) 1.1 mm outside pad edge.
-- **Datasheet:** BQ25170 Table 5-1 p.3 — "Solder thermal pad to the board **with vias connecting to solid GND plane**"; DSG0008A land-pattern example p.33 shows (0.2) TYP via. TPS63802 DLA0010A land pattern p.31 — EP segments to ground plane.
-- **Evidence:** BQ25170 worst-case dissipation ≈ (5 V − 2.8 V) × 0.2 A ≈ 0.44 W in a 2×2 mm WSON; without vias, heat exits only through the F.Cu pour → elevated junction temperature, earlier TREG (125 °C current foldback, §6.5 p.7) during low-battery charging.
+- **Datasheet:** BQ25170 Table 5-1 p.3 — "Solder thermal pad to the board **with vias connecting to solid GND plane**"; DSG0008A land-pattern example (pkg dwg 4218900/E) shows (0.2) TYP via. TPS63802 DLA0010A land pattern (pkg dwg 4223750/D) — EP segments to ground plane.
+- **Evidence:** BQ25170 worst-case dissipation ≈ (5 V − 2.8 V) × 0.2 A ≈ 0.44 W in a 2×2 mm WSON; without vias, heat exits only through the F.Cu pour → elevated junction temperature, earlier TREG (125 °C current foldback, p.7) during low-battery charging.
 - **Smallest fix:** re-spin — add the datasheet-recommended ~0.2 mm thermal vias under both EPs (filled/tented). Rework cannot add vias; accept TREG derating as interim.
 
 ### F-PWR-06 — U3↔L1 switch-node loop ~14–16 mm
 - **Where:** U3 pin 9 `SW_L1` → L1 pad 1 (44.956, 46.168): 16.0 mm; pin 7 `SW_L2` → L1 pad 2: 14.2 mm. (U15↔L2 ~8 mm — noted, less severe.)
-- **Datasheet:** §12.1 p.28 — "the inductor should be placed as close as possible to the IC"; Table 10-2 p.18 lists the DFE201612E series itself (0.47 µH, Isat 5.5 A) — part choice correct, placement is not.
+- **Datasheet:** §12.1 p.28 — "the inductor should be placed as close as possible to the IC"; Table 10-2 p.19 lists the DFE201612E series itself (0.47 µH, Isat 5.5 A) — part choice correct, placement is not.
 - **Consequence:** long hot loop at ~2 MHz switching → radiated EMI and ground bounce on a sensor-laden board.
 - **Smallest fix:** re-spin placement; no electrical defect.
 
@@ -54,7 +54,7 @@ Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit
 
 - **C-PWR-07 — U2 OUT bypass at 4.59 mm.** C82 (1 µF) satisfies "at least 1-µF…placed close" (Table 5-1 p.3) loosely; plus C85 47 µF bulk at 24 mm. Cosmetic.
 - **C-PWR-08 — R24 = 100 kΩ sits exactly at the TPS63802 R2 limit.** §10.2.2.5 p.19: "the low-side resistor R2…must not exceed 100 kΩ". Nominal 100 kΩ complies; the +1 % tail (101 kΩ) technically exceeds — the limit exists vs IFB (5–100 nA) error; impact <0.1 % VOUT. Note only; consider 97.6 kΩ on re-spin.
-- **C-PWR-09 — land-pattern deltas (all benign).** U2 signal pads 0.60×0.25 mm vs TI example 0.50×0.25 (+0.1 mm toe); U3 pads 0.75×0.25 vs example 0.6×0.25; U4 pads 1.325×0.6 vs DBV example 1.1×0.6 (KiCad/IPC-7351 style, aids fillet). U15 lands Ø0.23 mm @ 0.4 mm pitch = exact YFF0006 match (p.28). U2 EP 0.9×1.6 = package EP exactly; split F.Paste apertures mirror the "87 % coverage" stencil example (p.34). No action.
+- **C-PWR-09 — land-pattern deltas (all benign).** U2 signal pads 0.60×0.25 mm vs TI example 0.50×0.25 (+0.1 mm toe); U3 pads 0.75×0.25 vs example 0.6×0.25; U4 pads 1.325×0.6 vs DBV example 1.1×0.6 (KiCad/IPC-7351 style, aids fillet). U15 lands Ø0.23 mm @ 0.4 mm pitch = exact YFF0006 match (pkg dwg 4223785). U2 EP 0.9×1.6 = package EP exactly; split F.Paste apertures mirror the "87 % coverage" stencil example (pkg dwg 4218900/E). No action.
 - **C-PWR-10 — R61 β=3380 vs recommended 103AT-2 β=3435** (§8.2.1.2.1 p.21): ~1–2 °C window shift. Superseded by F-PWR-01.
 
 ## Verified good (explicitly checked, no defect)
@@ -71,3 +71,5 @@ Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit
 ## Audit-trail note
 
 `01_netlist_pinmap.csv` has an **empty net column on all 1,027 pads** — `extract_pads.py` reads `net[2]` (numeric net-id format) but this KiCad file stores `(net "NAME")`. All net assignments here were re-extracted from the `.kicad_pcb` s-expressions directly (positions unchanged — coordinates match the CSV). Flag for whoever owns `extract_pads.py`; a fixed CSV was generated to `/tmp/pinmap_full.csv` for this audit.
+
+Datasheet-corpus integrity: `reports/datasheets/1N5819WS.txt` actually contains a **Diodes Inc. DDTC-series NPN pre-biased-transistor datasheet (SOT-323)**, not the Hottech 1N5819WS Schottky — the PDF/txt pair is mislabeled. D33/Q6 pin polarities were therefore verified from the project symbol descriptions in `vitalq.kicad_sym` ("Schottky 40V 1A SOD-323. Pin1=K pin2=A"; "P-ch MOSFET … Pins: 1=G 2=S 3=D (rev-polarity/load-share)") instead of the corpus text.
