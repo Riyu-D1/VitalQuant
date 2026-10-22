@@ -3,7 +3,8 @@
 Supersedes `BOM_V2_ADDENDUM.md` (design-intent record) and the archived
 `FULL_BOM_V2.md`. The authoritative machine-readable list is
 `hardware/pcb/fab/assembly/BOM_JLC.csv` (83 grouped lines, 251 placements
-per `CPL_JLC.csv`); this page is the readable summary.
+per `CPL_JLC.csv`); this page is the readable summary. For prices and
+UK sourcing see `docs/BOM_COSTED_V22.md`.
 
 Research prototype — not a medical device; no sourcing/claim warranty.
 
@@ -11,7 +12,7 @@ Research prototype — not a medical device; no sourcing/claim warranty.
 
 | Ref | Part | Package | LCSC | Notes |
 |---|---|---|---|---|
-| U1 | ESP32-S3-WROOM-1-N16R8 | Module | C3013941 | 16 MB flash + 8 MB PSRAM, integrated antenna (north tab) |
+| U1 | ESP32-S3-WROOM-1-N16R8 | Module | **C2913202** | 16 MB flash + 8 MB PSRAM, integrated antenna (north tab). Was wrongly C3013941 (MINI-1-N4R2) |
 | U2 | BQ25170DSGR | WSON-8 | C5208201 | LiPo charger; VSET 27k → 4.2 V, ISET 1.5k → 200 mA |
 | U3 | TPS63802DLAR | WSON-10 | C2845237 | Buck-boost +3V3 |
 | U4 | TPS7A2018PDBVR | SOT-23-5 | C963430 | 1.8 V LDO |
