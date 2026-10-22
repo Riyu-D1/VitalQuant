@@ -1,0 +1,119 @@
+ref,pin_number,pin_name,ds_function,ds_io_type,ds_cite,board_net,connected_to,net_intent_ok,verdict,severity,note
+U1,1,GND,Ground,P,"ESP32-S3-MINI-1 DS v1.7 §3.2 Table 3-1 p.11",GND,U1-gnd-pads+all GND,YES,OK,none,
+U1,2,GND,Ground,P,"ESP32-S3-MINI-1 DS v1.7 §3.2 Table 3-1 p.11",GND,,YES,OK,none,
+U1,3,3V3,Power supply 3.0-3.6V,P,"ESP32-S3-MINI-1 DS v1.7 §3.2 Table 3-1 p.11",+3V3_ESP,"R94.2(0R->+3V3) C7(22u) C8(100n)",YES,OK,none,"module 3V3 tapped off +3V3 via 0R R94, decoupled"
+U1,4,IO0,"RTC_GPIO0, GPIO0; strapping pin (boot mode)",I/O/T,"§3.2 Table 3-1 + §4 Table 4-1 (weak pull-up=1)",ESP_IO0,"R6.2(10k->+3V3) SW2(boot btn->GND) Q3.3(C2 oc) J8.6 TP10",YES,OK,none,"strapping OK: external 10k pull-up to +3V3 + auto-reset collector + button; default 1 = SPI boot"
+U1,5,IO1,"RTC_GPIO1, GPIO1, TOUCH1, ADC1_CH0",I/O/T,"§3.2 Table 3-1 p.11",FSR_ADC,"R8.1 J3.2",YES,OK,none,"ADC input use appropriate for ADC1 pin"
+U1,6,IO2,"RTC_GPIO2, GPIO2, TOUCH2, ADC1_CH1",I/O/T,"§3.2 Table 3-1",ADS1292_DRDY,"U8.22 R99.2(10k->+3V3) TP24",YES,OK,none,
+U1,7,IO3,"RTC_GPIO3, GPIO3, TOUCH3, ADC1_CH2; strapping pin (JTAG source)",I/O/T,"§3.2 Table 3-1 + §4 (JTAG signal source strapping)",EXP_INT,"U19.11(TCA6408A INT od) R53.2(10k->+3V3) TP26",YES,INFO,low,"strapping GPIO3 held high at reset -> selects USB-JTAG source; consistent w/ native-USB debug intent; no boot-mode impact"
+U1,8,IO4,"RTC_GPIO4, GPIO4, TOUCH4, ADC1_CH3",I/O/T,"§3.2 Table 3-1",LSM6_INT1,U14.4,YES,OK,none,
+U1,9,IO5,"RTC_GPIO5, GPIO5, TOUCH5, ADC1_CH4",I/O/T,"§3.2 Table 3-1",TMP117_ALERT,"U11.3 R65.2(10k->+3V3)",YES,OK,none,"open-drain alert, pull-up correct"
+U1,10,IO6,"RTC_GPIO6, GPIO6, TOUCH6, ADC1_CH5",I/O/T,"§3.2 Table 3-1",GAUGE_ALRT,"U17.5(MAX17048 ALRT od) R74.2(10k->+3V3)",YES,OK,none,
+U1,11,IO7,"RTC_GPIO7, GPIO7, TOUCH7, ADC1_CH6",I/O/T,"§3.2 Table 3-1",CHG_PG,"U2.6 R60.2(10k->+3V3)",YES,OK,none,
+U1,12,IO8,"RTC_GPIO8, GPIO8, TOUCH8, ADC1_CH7",I/O/T,"§3.2 Table 3-1",I2C_SDA,"3V3 I2C bus + U9.5(PCA9306)",YES,OK,none,"3V3 I2C side; level-shifted to 1V8 devices via U9"
+U1,13,IO9,"RTC_GPIO9, GPIO9, TOUCH9, ADC1_CH8",I/O/T,"§3.2 Table 3-1",I2C_SCL,"3V3 I2C bus + U9.6(PCA9306)",YES,OK,none,
+U1,14,IO10,"RTC_GPIO10, GPIO10, FSPICS0",I/O/T,"§3.2 Table 3-1",CS_ADS1292,"U8.18 R98.2(10k->+3V3) TP20",YES,OK,none,
+U1,15,IO11,"RTC_GPIO11, GPIO11, FSPID",I/O/T,"§3.2 Table 3-1",SPI_MOSI,"U7.E7 U8.19 U18.5 U22.A4 U6.F2 TP18",YES,OK,none,"shared 3V3 SPI; U22 inputs 6V-tolerant"
+U1,16,IO12,"RTC_GPIO12, GPIO12, FSPICLK",I/O/T,"§3.2 Table 3-1",SPI_SCK,"U7.F8 U8.20 U18.6 U22.A2 U6.F3 TP17",YES,OK,none,
+U1,17,IO13,"RTC_GPIO13, GPIO13, FSPIQ",I/O/T,"§3.2 Table 3-1",SPI_MISO,"U26.B1-via-R106 + U7/U8/U18 MISO TP19",YES,OK,none,"1V8 MISO branch returns via U26 translator"
+U1,18,IO14,"RTC_GPIO14, GPIO14, FSPIWP/FSPIDQS",I/O/T,"§3.2 Table 3-1",AD5940_GPIO0,U7.F5,YES,OK,none,
+U1,19,IO15,"RTC_GPIO15, GPIO15, U0RTS, XTAL_32K_P",I/O/T,"§3.2 Table 3-1",CS_AD5940,"U7.F7 R7.2(10k->+3V3) TP22",YES,OK,none,"32k xtal pin used as GPIO - acceptable if no 32k xtal fitted (none on BOM)"
+U1,20,IO16,"RTC_GPIO16, GPIO16, U0CTS, XTAL_32K_N",I/O/T,"§3.2 Table 3-1",CS_FLASH,"U18.1(W25Q512) R52.2(10k->+3V3) TP23",YES,OK,none,
+U1,21,IO17,"RTC_GPIO17, GPIO17, U1TXD, ADC2_CH6",I/O/T,"§3.2 Table 3-1",STATUS_LED,"R88(150R)->D25 LED->GND",YES,OK,none,"~9mA LED drive, within GPIO limits"
+U1,22,IO18,"RTC_GPIO18, GPIO18, U1RXD, ADC2_CH7",I/O/T,"§3.2 Table 3-1",CS_AFE4900,"U6.E3 R116.2(10k->+3V3) TP21",YES,OK,none,
+U1,23,IO19,"RTC_GPIO19, GPIO19, USB_D-",I/O/T,"§3.2 Table 3-1 (USB_D- in bold=default)",USB_DM_S3,"R103.2(0R)->USB_DM->J1.A7/B7",YES,OK,none,"native USB D- correct pin (GPIO19=USB D-)"
+U1,24,IO20,"RTC_GPIO20, GPIO20, USB_D+",I/O/T,"§3.2 Table 3-1 (USB_D+ default)",USB_DP_S3,"R102.2(0R)->USB_DP->J1.A6/B6",YES,OK,none,"native USB D+ correct pin (GPIO20=USB D+)"
+U1,25,IO21,"RTC_GPIO21, GPIO21",I/O/T,"§3.2 Table 3-1",AFE4900_ADC_RDY,"U6.F4 TP25",YES,OK,none,
+U1,26,IO26,"SPICS1, GPIO26 - on -N4R2 connects embedded PSRAM CS, NOT available",I/O/T,"§3.2 Table 3-1 footnote b p.12",unconnected-(U1-IO26-Pad26),none,YES,OK,none,"RESERVED PSRAM pin correctly unconnected per footnote b"
+U1,27,IO47,"SPICLK_P_DIFF, GPIO47 (octal-PSRAM diff clk)",I/O/T,"§3.2 Table 3-1 + note a (eFuse default fn)",unconnected-(U1-IO47-Pad27),none,YES,OK,none,"octal-only pin, correctly NC on quad-PSRAM N4R2"
+U1,28,IO33,"SPIIO4, GPIO33 (in-package flash/PSRAM bus)",I/O/T,"§3.2 Table 3-1 note a",unconnected-(U1-IO33-Pad28),none,YES,OK,none,"internal SPI bus pin correctly NC"
+U1,29,IO34,"SPIIO5, GPIO34 (in-package flash/PSRAM bus)",I/O/T,"§3.2 Table 3-1 note a",unconnected-(U1-IO34-Pad29),none,YES,OK,none,
+U1,30,IO48,"SPICLK_N_DIFF, GPIO48 (octal-PSRAM diff clk)",I/O/T,"§3.2 Table 3-1 note a",unconnected-(U1-IO48-Pad30),none,YES,OK,none,
+U1,31,IO35,"SPIIO6, GPIO35 (in-package flash/PSRAM bus)",I/O/T,"§3.2 Table 3-1 note a",unconnected-(U1-IO35-Pad31),none,YES,OK,none,
+U1,32,IO36,"SPIIO7, GPIO36 (in-package flash/PSRAM bus)",I/O/T,"§3.2 Table 3-1 note a",unconnected-(U1-IO36-Pad32),none,YES,OK,none,
+U1,33,IO37,"SPIDQS, GPIO37 (in-package flash/PSRAM bus)",I/O/T,"§3.2 Table 3-1 note a",unconnected-(U1-IO37-Pad33),none,YES,OK,none,"all 8 reserved/PSRAM pins verified NC"
+U1,34,IO38,"GPIO38, FSPIWP",I/O/T,"§3.2 Table 3-1",CS_MAX86178,"U22.A5 U26.2(OE) R117.2(10k->+3V3)",YES,OK,none,"CS also gates translator OE - intentional"
+U1,35,IO39,"MTCK, GPIO39, CLK_OUT3",I/O/T,"§3.2 Table 3-1",MAX86178_INT,"U22.B2(od) R113.2(10k->+3V3)",YES,OK,none,"JTAG pin reused as GPIO OK; 1V8-dev INT pulled to 3V3 (pin 6V-tolerant)"
+U1,36,IO40,"MTDO, GPIO40, CLK_OUT2",I/O/T,"§3.2 Table 3-1",MIC_CLK,U25.3(IM69D130),YES,OK,none,
+U1,37,IO41,"MTDI, GPIO41, CLK_OUT1",I/O/T,"§3.2 Table 3-1",MIC_DAT,U25.1(IM69D130),YES,OK,none,
+U1,38,IO42,"MTMS, GPIO42",I/O/T,"§3.2 Table 3-1",SPARE_IN,"R107/R108 100k both DNP",YES,COSMETIC,cosmetic,"input floating (both bias resistors DNP) - recommend fw internal pull or fit"
+U1,39,TXD0,"U0TXD, GPIO43, CLK_OUT1",I/O/T,"§3.2 Table 3-1 p.12",ESP_TX,"R72.1(10k)->U5.25 CP_RX; J8.3 TP11",YES,OK,none,"UART0 TX -> bridge RX, direction correct"
+U1,40,RXD0,"U0RXD, GPIO44, CLK_OUT2",I/O/T,"§3.2 Table 3-1 p.12",ESP_RX,"R73.2(10k)<-U5.26 CP_TX; J8.4 TP12",YES,INFO,low,"no pull on ESP_RX; floats when CP2102N unpowered (battery op) - noise only, non-bricking"
+U1,41,IO45,"GPIO45; strapping pin (VDD_SPI voltage)",I/O/T,"§3.2 Table 3-1 + §4 Table 4-1 (weak pull-down=0)",unconnected-(U1-IO45-Pad41),none,YES,OK,none,"floating -> internal pull-down -> VDD_SPI=3.3V, correct for N4R2 3.3V flash"
+U1,42,GND,Ground,P,"§3.2 Table 3-1",GND,,YES,OK,none,
+U1,43,GND,Ground,P,"§3.2 Table 3-1",GND,,YES,OK,none,
+U1,44,IO46,"GPIO46; strapping pin (boot mode/ROM print)",I/O/T,"§3.2 Table 3-1 + §4 Table 4-1 (weak pull-down=0)",unconnected-(U1-IO46-Pad44),none,YES,OK,none,"floating -> 0; with GPIO0=1 gives normal SPI boot"
+U1,45,EN,"Chip enable, high=on. Do not leave floating",I,"§3.2 Table 3-1 p.12 + HW design guidelines (EN RC)",ESP_EN,"R5.2(10k->+3V3) C64(1uF->GND) SW1(rst btn) Q3.6(C1 oc) U19.1(TCA6408A RESET-in) J8.5 TP9",YES,OK,none,"RC 10k*1uF=10ms delay; auto-reset collector; supervisor/expander reset input - all compatible"
+U1,46..60,GND,Ground,P,"§3.2 Table 3-1 (pins 46-65 = GND)",GND,,YES,OK,none,"antenna-side pad row all GND per module layout"
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,"§3.2 Table 3-1 + Fig 10-1 bottom view",GND,,YES,OK,none,"9x 1.2x1.2mm EP pads all GND"
+U1,62..65,GND,"Ground (corner pads)",P,"§3.2 Table 3-1",GND,,YES,OK,none,
+U5,1,DCD,"Data Carrier Detect input (active low)",DI,"CP2102N DS Rev1.3 §5.1 Table 5.1 p.27",VDD_CP2102,"U5.1/2/6/23/27 C9 C62 R62 TP6",YES,INFO,none,"unused modem input tied high (deasserted) - legal"
+U5,2,RI/CLK,"Ring Indicator input / Clock output",DI/O,"§5.1 Table 5.1 p.27",VDD_CP2102,same net,YES,INFO,low,"tied high; if ever configured as CLK output would contend w/ VDD - cannot happen while R104/105 DNP"
+U5,3,GND,Ground,G,"§5.1 Table 5.1",GND,,YES,OK,none,
+U5,4,D+,"USB Data Positive",USB,"§5.1 Table 5.1 + Fig 5.1",USB_DP_CP,"R104.2 (R104 DNP)->USB_DP",YES,OK,none,"isolated from J1 by DNP R104 - intended disconnect topology"
+U5,5,D-,"USB Data Negative",USB,"§5.1 Table 5.1 + Fig 5.1",USB_DM_CP,"R105.2 (R105 DNP)->USB_DM",YES,OK,none,
+U5,6,VDD,"Supply/regulator output 3.0-3.6V",P,"§5.1 Table 5.1 + §2.1 (4.7u+0.1u bypass)",VDD_CP2102,"C9(10u) C62(100n)",YES,OK,none,"regulator output, decoupled >= datasheet requirement"
+U5,7,VREGIN,"5V Regulator Input",P,"§5.1 Table 5.1 + §2.1 Fig 2.1 (bus-powered)",VBUS,"J1 VBUS rail",YES,OK,none,"canonical bus-powered hookup"
+U5,8,VBUS,"VBUS sense input (needs divider when VIO absent)",DI,"§5.1 Table 5.1 + §2.3 note (22.1k/47.5k divider)",CP_VBUS,"R63(22.1k)->VBUS; R64(47.5k)->GND",YES,OK,none,"divider = exact datasheet-recommended values -> 3.41V sense"
+U5,9,RSTb,"Active-low reset, needs 1k pull-up to VDD",I,"§5.1 Table 5.1 + §2.1 (1k pull-up required)",CP_RST,"R62(1k)->VDD_CP2102",YES,OK,none,"exact datasheet-recommended pull-up"
+U5,10,NC,"No Connect - leave floating",NC,"§5.1 Table 5.1",unconnected-(U5-NC-Pad10),none,YES,OK,none,
+U5,11,SUSPENDb,"Suspend output (active low)",DO,"§5.1 Table 5.1",unconnected-(U5-~{SUSPEND}-Pad11),none,YES,OK,none,
+U5,12,SUSPEND,"Suspend output",DO,"§5.1 Table 5.1",unconnected-(U5-SUSPEND-Pad12),none,YES,OK,none,
+U5,13,CHREN,"Charge enable 100mA",DO,"§5.1 Table 5.1",unconnected-(U5-CHREN-Pad13),none,YES,OK,none,
+U5,14,CHR1,"Charge enable 1.5A",DO,"§5.1 Table 5.1",unconnected-(U5-CHR1-Pad14),none,YES,OK,none,
+U5,15,CHR0,"Charge enable 500mA",DO,"§5.1 Table 5.1",unconnected-(U5-CHR0-Pad15),none,YES,OK,none,
+U5,16,GPIO.3/WAKEUP,"GPIO / remote wakeup input",DIO,"§5.1 Table 5.1",unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16),none,YES,OK,none,
+U5,17,GPIO.2/RS485,"GPIO / RS485 control",DIO,"§5.1 Table 5.1",unconnected-(U5-RS485{slash}GPIO.2-Pad17),none,YES,OK,none,
+U5,18,GPIO.1/RXT,"GPIO / RX LED toggle",DIO,"§5.1 Table 5.1",unconnected-(U5-~{RXT}{slash}GPIO.1-Pad18),none,YES,OK,none,
+U5,19,GPIO.0/TXT,"GPIO / TX LED toggle",DIO,"§5.1 Table 5.1",unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19),none,YES,OK,none,
+U5,20,GPIO.6,"GPIO",DIO,"§5.1 Table 5.1",unconnected-(U5-GPIO.6-Pad20),none,YES,OK,none,
+U5,21,GPIO.5,"GPIO",DIO,"§5.1 Table 5.1",unconnected-(U5-GPIO.5-Pad21),none,YES,OK,none,
+U5,22,GPIO.4,"GPIO",DIO,"§5.1 Table 5.1",unconnected-(U5-GPIO.4-Pad22),none,YES,OK,none,
+U5,23,CTS,"Clear To Send input (active low)",DI,"§5.1 Table 5.1",VDD_CP2102,same net,YES,INFO,none,"unused input tied high (deasserted) - legal"
+U5,24,RTS,"Ready To Send output (active low)",DO,"§5.1 Table 5.1",CP_RTS,"R71.1(10k)->Q3.5 B2; also feeds Q3.1 E1",YES,OK,none,"auto-reset: RTS drives TR2 base via R71 and TR1 emitter"
+U5,25,RXD,"UART receive input",DI,"§5.1 Table 5.1",CP_RX,"R72.2(10k)<-ESP_TX U1.39",YES,OK,none,"bridge RX <- MCU TX, direction correct"
+U5,26,TXD,"UART transmit output",DO,"§5.1 Table 5.1",CP_TX,"R73.1(10k)->ESP_RX U1.40",YES,OK,none,"bridge TX -> MCU RX, direction correct"
+U5,27,DSR,"Data Set Ready input (active low)",DI,"§5.1 Table 5.1",VDD_CP2102,same net,YES,INFO,none,"unused input tied high (deasserted) - legal"
+U5,28,DTR,"Data Terminal Ready output (active low)",DO,"§5.1 Table 5.1",CP_DTR,"R70.1(10k)->Q3.2 B1; also feeds Q3.4 E2",YES,OK,none,"auto-reset: DTR drives TR1 base via R70 and TR2 emitter"
+U5,29(EP),GND,"Exposed pad = Ground",G,"§5.1 Table 5.1 (Center GND) + §6.1/6.2",GND,,YES,OK,none,"EP 3.35x3.35mm = datasheet land X2/Y2"
+U21,1,IO1,"ESD data line 1",I/O,"ST USBLC6-2 DS (CD00050750) Fig.1 functional diagram",USB_DP,"J1.A6/B6 R102.1 R104.1",YES,OK,none,"clamps connector-side D+; symmetric I/O channels"
+U21,2,GND,Ground,G,"Fig.1",GND,,YES,OK,none,
+U21,3,IO2,"ESD data line 2",I/O,"Fig.1",USB_DM,"J1.A7/B7 R103.1 R105.1",YES,OK,none,
+U21,4,IO2,"ESD data line 2",I/O,"Fig.1",USB_DM,same net,YES,OK,none,"pins 3&4 both I/O2 - same net correct"
+U21,5,VBUS,"VBUS ESD clamp (VBR 6V typ)",I/O,"Fig.1 + Table 2 (VBR 6V@1mA)",VBUS,"J1 VBUS rail",YES,OK,none,"VBUS clamp present"
+U21,6,IO1,"ESD data line 1",I/O,"Fig.1",USB_DP,same net,YES,OK,none,"pins 1&6 both I/O1 - same net correct"
+U26,1,DIR2,"Direction ch2, referenced to VCCA; tie GND or VCCA",I,"SN74AXC2T245 DS SCES879A §4 Table 4-1 + §5.1",GND,,YES,OK,none,"DIR2=0 -> B2->A2; ch2 unused, B2 grounded"
+U26,2,OE,"Output enable, referenced to VCCA; high=tri-state",I,"§4 Table 4-1 + §5.1 (control inputs 4.2V max)",CS_MAX86178,"U1.34 U22.A5 R117.2",YES,OK,none,"3.3V CS legal (4.2V-rated input); OE gates MISO onto shared bus only while CS asserted - clever and correct"
+U26,3,GND,Ground,G,"§4 Table 4-1",GND,,YES,OK,none,
+U26,4,B2,"I/O port B ch2",I/O,"§4 Table 4-1",GND,,YES,OK,none,"unused B-port input tied to GND (defined state) - correct practice"
+U26,5,B1,"I/O port B ch1 (VCCB=3.3V side)",I/O,"§4 Table 4-1",MISO_MX,"R106.1(0R)->SPI_MISO",YES,OK,none,"3V3-side MISO output onto shared bus"
+U26,6,VCCB,"Supply B",P,"§4 Table 4-1 + §5.4",+3V3,,YES,OK,none,"B port = 3.3V domain - correct"
+U26,7,VCCA,"Supply A",P,"§4 Table 4-1 + §5.4",+1V8,,YES,OK,none,"A port = 1.8V domain - correct"
+U26,8,A1,"I/O port A ch1 (VCCA=1.8V side)",I/O,"§4 Table 4-1",MX_SDO_1V8,U22.A3,YES,OK,none,"1V8 SDO in; DIR1=1 -> A->B up-translation"
+U26,9,A2,"I/O port A ch2",I/O,"§4 Table 4-1",unconnected-(U26-A2-Pad9),none,YES,OK,none,"A2 is output (DIR2=B->A) - NC allowed"
+U26,10,DIR1,"Direction ch1, referenced to VCCA",I,"§4 Table 4-1",+1V8,,YES,OK,none,"tied to VCCA=high -> A->B (1V8->3V3) correct"
+U9,1,GND,Ground,G,"PCA9306 DS (local) pin map DCU-8",GND,,YES,OK,none,"context: I2C translator in domain-crossing inventory"
+U9,2,VREF1,"Low-voltage-side reference",P,"PCA9306 DS",+1V8,,YES,OK,none,"VREF1=1V8 < VREF2 - correct ordering"
+U9,3,SCL1,"1V8-side SCL",I/O,"PCA9306 DS",I2C_SCL_1V8,"U10.2 U12.4 R22.2(2.2k->+1V8) TP16",YES,OK,none,
+U9,4,SDA1,"1V8-side SDA",I/O,"PCA9306 DS",I2C_SDA_1V8,"U10.8 U12.1 R21.2(2.2k->+1V8) TP15",YES,OK,none,
+U9,5,SDA2,"3V3-side SDA",I/O,"PCA9306 DS",I2C_SDA,"U1.12 + 3V3 I2C devices",YES,OK,none,
+U9,6,SCL2,"3V3-side SCL",I/O,"PCA9306 DS",I2C_SCL,"U1.13 + 3V3 I2C devices",YES,OK,none,
+U9,7,VREF2,"High-side reference",P,"PCA9306 DS",VREF2,"R18.2(200k)->+3V3; U9.8",YES,OK,none,"canonical PCA9306 hookup (VREF2+EN via 200k to 3V3)"
+U9,8,EN,"Enable - pull to VREF2",I,"PCA9306 DS",VREF2,"same net as pin7",YES,OK,none,"EN tied to VREF2 net = enabled when 3V3 up"
+Q3,1,E1,"TR1 emitter (BC847BS)",E,"Diodes/Nexperia BC847BS DS pinning: 1=E1 2=B1 3=C2 4=E2 5=B2 6=C1",CP_RTS,"U5.24 R71.1",YES,INFO,none,"auto-reset: emitter referenced to RTS (cross-wired mutual-exclusion topology)"
+Q3,2,B1,"TR1 base",B,"BC847BS pinning",Q3_B1,"R70.2<-CP_DTR(10k)",YES,OK,none,"DTR-driven base via 10k"
+Q3,3,C2,"TR2 collector",C,"BC847BS pinning",ESP_IO0,"U1.4 pull-up R6",YES,OK,none,"pulls IO0 low when RTS=1,DTR=0"
+Q3,4,E2,"TR2 emitter",E,"BC847BS pinning",CP_DTR,"U5.28 R70.1",YES,INFO,none,"emitter referenced to DTR"
+Q3,5,B2,"TR2 base",B,"BC847BS pinning",Q3_B2,"R71.2<-CP_RTS(10k)",YES,OK,none,"RTS-driven base via 10k"
+Q3,6,C1,"TR1 collector",C,"BC847BS pinning",ESP_EN,"U1.45 pull-up R5",YES,OK,none,"pulls EN low when DTR=1,RTS=0 - esptool-compatible"
+J1,A1/B12,GND,"USB-C receptacle GND",P,"USB-C spec contact assignment + HRO TYPE-C-31-M-12 footprint",GND,"U21 GND, system GND",YES,OK,none,
+J1,A4/A9/B4/B9,VBUS,"USB-C VBUS",P,"USB-C spec + TYPE-C-31-M-12",VBUS,"U2.1(charger IN) U5.7(REGIN) U21.5 C1/C10/C63 R50/R63/R123 D33.2 Q6.1",YES,OK,none,"all 4 VBUS contacts on one net; feeds charger+bridge+ESD+sense"
+J1,A5,CC1,"Configuration Channel 1",I/O,"USB-C spec: UFP needs 5.1k Rd",USB_CC1,"R1.1(5.1k)->GND",YES,OK,none,"5.1k Rd to GND - correct UFP/device termination"
+J1,B5,CC2,"Configuration Channel 2",I/O,"USB-C spec: UFP needs 5.1k Rd",USB_CC2,"R2.1(5.1k)->GND",YES,OK,none,"independent 5.1k Rd - correct; no Rp(2.2k) anywhere on CC nets"
+J1,A6/B6,DP,"USB 2.0 D+ (A6/B6 tied on receptacle)",I/O,"USB-C spec + TYPE-C-31-M-12",USB_DP,"U21.1/6 R102.1(0R->ESP) R104.1(DNP->CP2102)",YES,OK,none,"D+ A/B contacts commoned per spec; ESD on connector side"
+J1,A7/B7,DM,"USB 2.0 D- (A7/B7 tied on receptacle)",I/O,"USB-C spec",USB_DM,"U21.3/4 R103.1(0R->ESP) R105.1(DNP->CP2102)",YES,OK,none,
+J1,A8,SBU1,"Sideband use",-,"USB-C spec (SBU open allowed for 2.0 device)",unconnected-(J1-SBU1-PadA8),none,YES,OK,none,"SBU open - correct for USB 2.0 UFP"
+J1,B8,SBU2,"Sideband use",-,"USB-C spec",unconnected-(J1-SBU2-PadB8),none,YES,OK,none,
+J1,A12/B1,GND,"USB-C receptacle GND",P,"USB-C spec",GND,,YES,OK,none,
+J1,SH x4,SHELL,"Connector shell stakes",P,"mechanical",GND,"4x oval TH stakes",YES,OK,none,"shell grounded - standard"
+J1,NPTH x2,-,"Mid-mount locating/mounting holes",-,"mechanical",none,"2x 0.99mm NPTH",YES,OK,none,"mid-mount board cutout per M-12 package"

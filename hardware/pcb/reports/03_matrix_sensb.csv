@@ -1,0 +1,43 @@
+ref,mpn,footprint,pad,ds_pin_name,ds_pin_type,board_net,board_pad_mm,check,result,citation
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,1,SDO/TA0,SPI SDO out / I2C addr LSB,GND,0.254x0.7874(pinmap;see F-01),strap: TA0=GND -> I2C addr 0x6A (1101010b); firmware uses 0x6A,PASS,DS14764 Rev1 Table2 p11; sec I2C addr p45
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,2,SDx,I2C controller data (Mode2),GND,0.254x0.7874,Mode1 strap: DS says Connect to VDDIO or GND -> GND ok,PASS,DS14764 Rev1 Table2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,3,SCx,I2C controller clock (Mode2),GND,0.254x0.7874,Mode1 strap: Connect to VDDIO or GND -> GND ok,PASS,DS14764 Rev1 Table2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,4,INT1,programmable interrupt out,LSM6_INT1,0.254x0.7874,routed to U1 pin8 (GPIO4 per firmware),PASS,DS14764 Rev1 Table2 p11; pinmap row 45
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,5,VDDIO,IO supply,+3V3,0.254x0.7874,1.62-3.6V (I2C mode) -> 3.3V ok; 100nF decoupling: nearest C4/C84 1uF ~3mm; C59 100nF ~5mm,PASS,DS14764 Rev1 Table2 note1 p11 + Table VDDIO p13
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,6,GND,ground,GND,0.254x0.7874,gnd,PASS,DS14764 Rev1 Table2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,7,GND,ground,GND,0.254x0.7874,gnd,PASS,DS14764 Rev1 Table2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,8,VDD,supply,+3V3,0.254x0.7874,1.71-3.6V -> 3.3V ok; same decoupling as pad5,PASS,DS14764 Rev1 Table2 p11 + VDD spec p13
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,9,INT2,programmable interrupt out,unconnected-(U14-Pad9),0.254x0.7874,output left NC - acceptable (firmware polls INT1 only),PASS,DS14764 Rev1 Table2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,10,NC,no connect,unconnected-(U14-Pad10),0.254x0.7874,DS: leave electrically unconnected + soldered to PCB -> NC ok,PASS,DS14764 Rev1 Table2 note2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,11,NC,no connect,unconnected-(U14-Pad11),0.254x0.7874,same as pad10,PASS,DS14764 Rev1 Table2 note2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,12,CS,mode select,+3V3,0.254x0.7874,CS=1 -> I2C/I3C enabled; not floating; hard tie to VDDIO ok,PASS,DS14764 Rev1 Table2 p11
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,13,SCL,I2C clock,I2C_SCL,0.254x0.7874,bus pulled to +3V3 via R20 2.2k,PASS,DS14764 Rev1 Table2 p11; BOM R20
+U14,LSM6DSV80XTR,vitalq:QFN_LSM6DSV80XTR_STM,14,SDA,I2C data,I2C_SDA,0.254x0.7874,bus pulled to +3V3 via R19 2.2k,PASS,DS14764 Rev1 Table2 p11; BOM R19
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,1,/CS,chip select in,CS_FLASH,0.65x0.5,CS pullup R52 10k -> +3V3 (no spurious select during reset),PASS,W25Q512JV RevB sec3.1 Fig1a p6; BOM R52
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,2,DO(IO1),data out,MISO_FL,0.65x0.5,-> R92 0ohm series -> SPI_MISO -> U1-17,PASS,W25Q512JV RevB sec3.2 p6
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,3,/WP(IO2),write protect in,+3V3,0.65x0.5,/WP tied high = protection deasserted; firmware confirms std SPI use,PASS,W25Q512JV RevB sec3.2 p6; fw w25q512.c p1
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,4,GND,ground,GND,0.65x0.5,gnd,PASS,W25Q512JV RevB sec3.2 p6
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,5,DI(IO0),data in,SPI_MOSI,0.65x0.5,-> U1-15,PASS,W25Q512JV RevB sec3.2 p6
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,6,CLK,serial clock,SPI_SCK,0.65x0.5,-> U1-16,PASS,W25Q512JV RevB sec3.2 p6
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,7,/HOLD or /RESET(IO3),hold in,+3V3,0.65x0.5,/HOLD tied high - REQUIRED (floating /HOLD corrupts transfers),PASS,W25Q512JV RevB sec3.2 p6 + sec4.4
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,8,VCC,supply,+3V3,0.65x0.5,2.7-3.6V ok; nearest 100nF C78 ~9.7mm / C91 ~8.6mm - weak local bypass,MARGINAL,W25Q512JV RevB p5 supply; pinmap caps
+U18,W25Q512JVEIQ,vitalq:W25Q512_WSON8,9,EP (bottom metal pad),not internally connected,GND,3.4x4.3,DS: may be left floating or tied to GND -> GND ok; no vias under EP (nearest GND via 0.018mm outside EP edge); 4 unnumbered F.Paste pads = stencil splitting,PASS,W25Q512JV RevB sec9.1 p86 note
+U23,SHT45-AD1B-R3,vitalq:SHT45_DFN4,1,SDA,serial data,I2C_SDA,0.5x0.3,pinout match (DS Table 5.4: 1=SDA),PASS,SHT4x DS V3 sec5.4 p14
+U23,SHT45-AD1B-R3,vitalq:SHT45_DFN4,2,SCL,serial clock in,I2C_SCL,0.5x0.3,pinout match (2=SCL),PASS,SHT4x DS V3 sec5.4 p14
+U23,SHT45-AD1B-R3,vitalq:SHT45_DFN4,3,VDD,supply,+3V3,0.5x0.3,1.08-3.6V ok; C77 100nF ~1.6mm,PASS,SHT4x DS V3 sec3 p7 + Table
+U23,SHT45-AD1B-R3,vitalq:SHT45_DFN4,4,VSS,ground,GND,0.5x0.3,pinout match (4=VSS),PASS,SHT4x DS V3 sec5.4 p14
+U23,SHT45-AD1B-R3,vitalq:SHT45_DFN4,center,die pad,not connected to any pin,(no pad),n/a,"DS recommends NOT soldering die pad + no copper under sensor; board has GND via (7.715,46.461) + GND trace under package",FAIL,SHT4x DS V3 sec5.3 Fig13 p13
+U24,RV-3028-C7,vitalq:RV3028C7,1,CLKOUT,push-pull clock out,unconnected-(U24-CLKOUT-Pad1),0.5x0.8,NC ok electrically; default CLKOE=1 drives 32.768kHz (waste nA); fw parks LOW via EEPROM FD=111,PASS,RV-3028-C7 AppMan sec2.2 p9 + EEPROM 35h
+U24,RV-3028-C7,vitalq:RV3028C7,2,INT,open-drain int out,RTC_INT,0.5x0.8,requires pullup -> R112 10k +3V3; net goes to TP28 only (no MCU route - by design),PASS,AppMan sec2.2 p9; pinmap TP28
+U24,RV-3028-C7,vitalq:RV3028C7,3,SCL,I2C clock in,I2C_SCL,0.5x0.8,requires pullup -> shared R20 2.2k,PASS,AppMan sec2.2 p9
+U24,RV-3028-C7,vitalq:RV3028C7,4,SDA,I2C data,I2C_SDA,0.5x0.8,requires pullup -> shared R19 2.2k,PASS,AppMan sec2.2 p9
+U24,RV-3028-C7,vitalq:RV3028C7,5,VSS,ground,GND,0.5x0.8,gnd; metal lid internally tied to VSS,PASS,RV-3028-C7 DS pin table p1
+U24,RV-3028-C7,vitalq:RV3028C7,6,VBACKUP,backup supply,RTC_VBK,0.5x0.8,AppMan: when backup not needed VBACKUP MUST be tied to VSS with 10k -> R115 10k to GND exactly per spec,PASS,AppMan sec2.2 p9
+U24,RV-3028-C7,vitalq:RV3028C7,7,VDD,supply,+3V3,0.5x0.8,1.2-5.5V (I2C active) ok; C37 100nF ~1.8mm,PASS,RV-3028-C7 DS elec char p1
+U24,RV-3028-C7,vitalq:RV3028C7,8,EVI,event input,GND,0.5x0.8,DS: must not float -> tied GND ok (no timestamp events by design),PASS,AppMan sec2.2 p9
+U25,IM69D130V01,vitalq:IM69D130,1,DATA,PDM data out,MIC_DAT,0.45x0.7,-> U1-37 (GPIO41); single mic on line - no contention,PASS,IM69D130 DS Table7 p12
+U25,IM69D130V01,vitalq:IM69D130,2,VDD,supply,+3V3,0.45x0.7,1.62-3.6V ok; C39 100nF ~2.9mm (DS wants close to VDD),PASS,IM69D130 DS Table4 p7
+U25,IM69D130V01,vitalq:IM69D130,3,CLOCK,PDM clock in,MIC_CLK,0.45x0.7,<- U1-36 (GPIO40); fw clock 2.048MHz sits in DS operating-mode band GAP (bands 0.4-0.95/1.05-1.9/2.1-2.65/2.9-3.3MHz); PDM iface accepts 0.4-3.3MHz but acoustic specs unguaranteed,WARN,IM69D130 DS Table4 p7; fw board_pins.h:106
+U25,IM69D130V01,vitalq:IM69D130,4,SELECT,L/R select in,GND,0.45x0.7,Infineon convention: SELECT=GND -> RIGHT slot; fw decodes LEFT slot - mismatch (mono capture still plausible via bus hold but off-strap),WARN,IM69D130 DS Fig10 p10 + Infineon support note; fw vq_drv_mic.c:5
+U25,IM69D130V01,vitalq:IM69D130,5,GND,ground,GND,custom 0.4x0.4 ring seg,gnd ring around acoustic port,PASS,IM69D130 DS Table7 p12
+U25,IM69D130V01,vitalq:IM69D130,NPTH,acoustic port hole,-,n/a,drill 0.8mm,"DS recommends PCB sound port dia 0.8mm -> exact match",PASS,IM69D130 DS sec7 p13

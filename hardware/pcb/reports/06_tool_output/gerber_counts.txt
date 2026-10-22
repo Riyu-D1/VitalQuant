@@ -1,0 +1,42 @@
+Gerber object counts — VitalQ_v2_fixv19_fabrication.zip (KiCad 10.0.4 export, units mm)
+Board object reference: 871 vias, 1027 pads (1009 SMD + 12 TH/NPTH + 6 other), 8016 segments, 107 zones, 302 footprints
+layer                  flashes pad-tag  @via  D01tot  in-reg G36reg  aper
+F.Cu  (Top Layer)         2568     814  1753    5080     158      2    93
+In1.Cu (Ground L2)        1758       0  1736   31419   31396      1    15
+In2.Cu (Layer 3)          1758       0  1736    1036       0      0    15
+In3.Cu (Signal L4)        1758       0  1736     295       0      0    14
+In4.Cu (Power L5)         1758       0  1736   50118   50099      2    13
+In5.Cu (Signal L6)        1758       0  1736     172       0      0    14
+In6.Cu (Ground L7)        1758       0  1736   30895   30895      2    12
+B.Cu  (Bottom Layer)      1926     172  1760    1549       0      0    45
+
+Notes:
+- '@via' = flashes whose (x,y) matches one of the 871 board-file via centers (gerber y = -board y).
+  ~1753-1760 per layer ~= 2 x 871 via flashes (annular pad + thermal/antipad entry) + a few pad/TH objects;
+  consistent across all 8 copper layers -> no missing via sites in the export.
+- 'pad-tag' = flashes carrying a %TO.P component-pad attribute: F=814, B=172 (board SMD pads F=841, B=168;
+  remainder drawn as regions/multi-primitive, e.g. custom pads).
+- 'in-reg' = D01 draws inside G36 region blocks (zone-pour outline segments), not tracks.
+  Standalone track draws: F=5080-158=4922, In1=31419-31396=23, In2=1036, In3=295, In4=50118-50099=19,
+  In5=172, In6=30895-30895=0, B=1549. Routed-signal layers carry most standalone strokes; the three
+  pour-heavy layers (In1/In4/In6 = GND L2/L7, Power L5) store their plane fills as huge region outlines.
+- Orders of magnitude match board contents (871 vias, 1027 pads, ~8k segments): no gross mismatch ->
+  no evidence of stale exports.
+
+Full zip gerber inventory (16 .gbr + 1 .gbrjob):
+   gerbers/vitalq_v2-B_Paste.gbr
+   gerbers/vitalq_v2-Board Layer Stack Bottom Overlay.gbr
+   gerbers/vitalq_v2-Board Layer Stack Bottom Solder.gbr
+   gerbers/vitalq_v2-Bottom Layer.gbr
+   gerbers/vitalq_v2-Edge_Cuts.gbr
+   gerbers/vitalq_v2-F_Paste.gbr
+   gerbers/vitalq_v2-Ground Layer 2.gbr
+   gerbers/vitalq_v2-Ground Layer 7.gbr
+   gerbers/vitalq_v2-Layer 3.gbr
+   gerbers/vitalq_v2-Power Layer 5.gbr
+   gerbers/vitalq_v2-Signal Layer 4.gbr
+   gerbers/vitalq_v2-Signal Layer 6.gbr
+   gerbers/vitalq_v2-Top Layer.gbr
+   gerbers/vitalq_v2-Top Overlay.gbr
+   gerbers/vitalq_v2-Top Solder.gbr
+   gerbers/vitalq_v2-job.gbrjob

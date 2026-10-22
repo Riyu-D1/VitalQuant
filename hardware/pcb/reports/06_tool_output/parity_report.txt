@@ -1,0 +1,48 @@
+=== ref-des set parity: BOM.csv / BOM_JLC.csv / CPL.csv / CPL_JLC.csv / positions_kicad.csv ===
+counts: BOM=265  BOM_JLC=251  CPL=270  CPL_JLC=251  positions=271
+
+--- BOM vs positions ---
+BOM not in positions: (none)
+positions not in BOM: ['FID1', 'FID2', 'FID3', 'FID4', 'FID5', 'FID6']
+
+--- CPL vs BOM ---
+CPL not in BOM: ['FID1', 'FID2', 'FID3', 'FID4', 'FID5', 'FID6']
+BOM not in CPL: ['R93']
+
+--- positions vs CPL ---
+positions not in CPL: ['R93']
+CPL not in positions: (none)
+
+--- CPL_JLC vs CPL ---
+CPL_JLC not in CPL: (none)
+CPL not in CPL_JLC: ['FID1', 'FID2', 'FID3', 'FID4', 'FID5', 'FID6', 'J10', 'J11', 'J13', 'J2', 'J3', 'J5', 'J6', 'J7', 'J9', 'R104', 'R105', 'R107', 'R108']
+
+--- BOM_JLC vs BOM ---
+BOM_JLC not in BOM: (none)
+BOM not in BOM_JLC: ['J10', 'J11', 'J13', 'J2', 'J3', 'J5', 'J6', 'J7', 'J9', 'R104', 'R105', 'R107', 'R108', 'R93']
+
+--- BOM_JLC vs CPL_JLC ---
+BOM_JLC not in CPL_JLC: (none)
+CPL_JLC not in BOM_JLC: (none)
+
+=== DNP flags (BOM.csv 'DNP' column) ===
+['J13', 'R104', 'R105', 'R107', 'R108', 'R93']
+R61 DNP flag: '' | R61 value: NTC 10k B3380
+R93 DNP flag: 'DNP' | R93 in CPL: False | R93 in positions: True
+R104 DNP flag: 'DNP' | in CPL.csv: True | in CPL_JLC: False | in BOM_JLC: False
+R105 DNP flag: 'DNP' | in CPL.csv: True | in CPL_JLC: False | in BOM_JLC: False
+R107 DNP flag: 'DNP' | in CPL.csv: True | in CPL_JLC: False | in BOM_JLC: False
+R108 DNP flag: 'DNP' | in CPL.csv: True | in CPL_JLC: False | in BOM_JLC: False
+J13 DNP flag: 'DNP' | in CPL.csv: True | in CPL_JLC: False | in BOM_JLC: False
+
+=== exclusions present in positions/CPL but absent from JLC sets ===
+pads/connectors absent from JLC: ['FID1', 'FID2', 'FID3', 'FID4', 'FID5', 'FID6', 'J10', 'J11', 'J13', 'J2', 'J3', 'J5', 'J6', 'J7', 'J9', 'R104', 'R105', 'R107', 'R108']
+fiducials in positions+CPL but not BOM/JLC: ['FID1', 'FID2', 'FID3', 'FID4', 'FID5', 'FID6']
+
+=== J8 / TP1-28 / H1 / H2 presence ===
+(any row above = unexpected; silence = fully excluded from all CSVs)
+
+=== LCSC blanks in BOM_JLC ===
+['D10', 'D12']
+
+=== BOM_JLC == CPL_JLC ref set: True

@@ -1,0 +1,196 @@
+ref,pin_number,pin_name,ds_function,ds_io_type,ds_cite,board_net,connected_to,net_intent_ok,verdict,severity,note
+U6,A1,INM_ECG,ECG channel input (negative),analog in,SBAS857 sec5 PinFunctions,AFE_INM,J5.5 via R36 51k->AFE_N_AC(D5 TVS)->R46 100k->AFE_N_SER->C57 100n; R45 5.11M bias to RLDOUT(U8.30),yes,PASS,INFO,AC-coupled electrode input; DC bias via 5.11M to ADS1292R RLDOUT (shared-RLD design)
+U6,A2,INP,PD1 cathode input,analog in,SBAS857 sec5 PinFunctions,PD_INP,U16.1 (SFH7072 PD1 cathode),yes,PASS,INFO,cathode->INP per DS and SFH7072 pin1
+U6,A3,INM,PD1 anode input,analog in,SBAS857 sec5 PinFunctions,PD_INM,U16.2 (PD1 anode),yes,PASS,INFO,
+U6,A4,I2C_SPI_SEL,interface select 0=I2C 1=SPI; levels 0..RX_SUP,digital in,SBAS857 sec5 PinFunctions,+3V3_ANA,tied high = SPI mode,yes,PASS,INFO,Levels referenced to RX_SUP=3.3V; tie to RX_SUP legal
+U6,A5,INM3,PD3 anode (unused),analog in,SBAS857 sec5 PinFunctions,NC,unconnected,n/a,PASS,INFO,3rd PD channel unused; NC allowed
+U6,B1,INP_ECG,ECG channel input (positive),analog in,SBAS857 sec5 PinFunctions,AFE_INP,J5.4 via R35 51k->AFE_P_AC(D4)->R44 100k->C56 100n; R43 5.11M to RLDOUT,yes,PASS,INFO,same topology as A1
+U6,B2,INP2,PD2 cathode input,analog in,SBAS857 sec5 PinFunctions,PD2_INP,U16.3,yes,PASS,INFO,
+U6,B3,INM2,PD2 anode input,analog in,SBAS857 sec5 PinFunctions,PD2_INM,U16.10,yes,PASS,INFO,
+U6,B4,CONTROL1,LDO ctrl: 0=LDO on (RX>=2.0V) 1=bypass (RX 1.8-1.9V),digital in,SBAS857 sec5 PinFunctions,GND,tied low,yes,PASS,INFO,RX_SUP=3.3V requires CONTROL1=0 - correct
+U6,B5,INP3,PD3 cathode (unused),analog in,SBAS857 sec5 PinFunctions,NC,unconnected,n/a,PASS,INFO,
+U6,C1,RX_SUP,receiver supply 2.0-3.6V (LDO on) <=TX_SUP; 1uF decap,supply,SBAS857 sec5 PinFunctions,+3V3_ANA,rail; local C79 100n @3.1mm; nearest 1uF C43 @37mm,yes,DEVIATION,MEDIUM,DS asks 1uF local decap; board has 100n local + 4x1u elsewhere on rail (R6 documented/accepted)
+U6,C2,RLD_OUT,RLD common-mode bias out; 100pF to GND if used (typ 0.9V),analog out,SBAS857 sec5 PinFunctions,NC,unconnected,yes,DEVIATION,INFO,AFE RLD unused - ECG inputs biased from U8 RLDOUT instead; intentional
+U6,C3,DNC,do-not-connect (leave floating),n/a,SBAS857 sec5 PinFunctions,NC,unconnected,yes,PASS,INFO,DS DNC honored
+U6,C4,IO_SUP,digital I/O supply 1.7V..RX_SUP,supply,SBAS857 sec5 PinFunctions,+3V3_ANA,rail (same as RX_SUP - DS max allowed),yes,PASS,INFO,IO_SUP=RX_SUP at boundary - legal
+U6,C5,TX4,LED4 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX4,U16.9 LED4 cathode (IR),yes,PASS,INFO,common-anode topology
+U6,D1,RX_GND,receiver ground,gnd,SBAS857 sec5 PinFunctions,GND,plane,yes,PASS,INFO,
+U6,D2,BG,bandgap out; optional 0.1uF decap,analog out,SBAS857 sec5 PinFunctions,AFE_BG,C15 100n @1.5mm,yes,PASS,INFO,optional cap fitted
+U6,D3,PROG_OUT1,programmable interrupt out (0..IO_SUP),digital out,SBAS857 sec5 PinFunctions,NC,unconnected,yes,PASS,INFO,output NC acceptable
+U6,D4,TX1,LED1 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX1,U16.6 LED1 cathode (G1),yes,PASS,INFO,
+U6,D5,TX_GND,transmitter ground,gnd,SBAS857 sec5 PinFunctions,GND,plane,yes,PASS,INFO,
+U6,E1,RESETZ,reset/PWDN: 25-50us low=reset >200us=PWDN; 0..IO_SUP; do not float,digital in,SBAS857 sec5 PinFunctions,AFE4900_RESETZ,R9 10k pull-down + U19(TCA6408) drive,yes,PASS,INFO,held in PWDN until expander drives - satisfies no-float
+U6,E2,SDOUT,SPI-mode serial data out,digital out,SBAS857 sec5 PinFunctions,MISO_AFE,R90 0R -> SPI_MISO -> U1.17,yes,PASS,INFO,
+U6,E3,SEN,SPI chip-select in SPI mode,digital in,SBAS857 sec5 PinFunctions,CS_AFE4900,R116 10k pull-up -> +3V3_ANA; U1.22,yes,PASS,INFO,idle-high deassert at boot
+U6,E4,TX3,LED3 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX3,U16.8 LED3 cathode (R),yes,PASS,INFO,
+U6,E5,TX2,LED2 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX2,U16.12 LED2 cathode (G2),yes,PASS,INFO,
+U6,F1,CLK,ext clock in or tie GND = internal osc,digital in,SBAS857 sec5 PinFunctions,AFE_CLK,R10 1k -> GND,yes,PASS,INFO,internal-osc mode; 1k allows rework
+U6,F2,I2C_DAT,SPI-mode: SDI,digital in,SBAS857 sec5 PinFunctions,SPI_MOSI,U1.15,yes,PASS,INFO,
+U6,F3,I2C_CLK,SPI-mode: SCLK,digital in,SBAS857 sec5 PinFunctions,SPI_SCK,U1.16,yes,PASS,INFO,
+U6,F4,ADC_RDY,programmable interrupt out (0..IO_SUP),digital out,SBAS857 sec5 PinFunctions,AFE4900_ADC_RDY,U1.25 + TP25,yes,PASS,INFO,
+U6,F5,TX_SUP,transmitter supply 3.0-5.25V,supply,SBAS857 sec5 PinFunctions,TX_5V,U15 boost 5.0V; C89 10u @5.1mm + C14 1u,yes,PASS,MEDIUM,TX_5V gated by TX5_EN(U19); DS requires RX_SUP<=TX_SUP -> FW must hold RESETZ low (PWDN) when boost off else RX_SUP(3.3)>TX_SUP(0) violates recommended operating window (abs-max safe; FW-managed)
+U6,*grid*,BGA30N40P5X6_260X210X50,footprint vs YZ0030 pkg drawing,n/a,SBAS861B p4-5 pkg+land,n/a,30 pads 5x6 @0.4mm; body 2.06x2.60 vs DS 2.06x2.565; DS ball 0.25typ/0.21min,yes,PASS,MEDIUM,"Ball-map orientation VERIFIED: B.Cu part, pcbnew A1 top-right = physical bottom-view top-left = DS top view (single mirror ok). 21x0.23mm pads (TI land=0.23 NSMD-preferred) + 9x0.25mm (B2,B3,B4,C4,D2,D4,E2,E3,E4) oversize vs TI land; +0.025 mask margin -> 0.30mm openings, 0.10mm mask web = fab min-width limit"
+U7,A1,AFE4,uncommitted AFE pin 4,analog,AD5940/41 RevE T7 p19-21,SWEAT_CE,J11.3/J12.13 via R122 51k; D28 TVS at IC node,yes,PASS,INFO,sweat CE via switch matrix
+U7,A2,AFE3,uncommitted AFE pin 3,analog,AD5940/41 RevE T7 p19-21,SWEAT_RE,J11.2/J12.12 via R121 51k; D27,yes,PASS,INFO,
+U7,A3,AIN2,analog input 2 -> switch matrix,analog,AD5940/41 RevE T7 p19-21,BIOZ_SN,J7.4 via R83 51k->R87 1k->SN_ISO(D24)->C70 470n series,yes,PASS,INFO,"BioZ sense N, AC-coupled"
+U7,A4,AVDD,analog supply 2.8-3.6V (short to F2),supply,AD5940/41 RevE T7 p19-21,+3V3_ANA,rail + C43 1u @2.6mm,yes,PASS,INFO,A4/F2 both on +3V3_ANA = DS short requirement
+U7,A5,VREF_1V82,1.82V ref decap; DS rec 4.7uF,analog,AD5940/41 RevE T7 p19-21,VREF_1V82,C20 4.7u @2.7mm,yes,PASS,INFO,exact DS value
+U7,A6,SE0,sense electrode in,analog,AD5940/41 RevE T7 p19-21,SE0,J6.3 via R77 51k->R40 1k->SE_ISO(D7)->C55 470n series,yes,PASS,INFO,AC-coupled sense
+U7,A7,CE0,counter electrode in,analog,AD5940/41 RevE T7 p19-21,CE0,J6.1 via R76 51k->C54 15n series->CE_ISO(D6)->R39 1k,yes,PASS,INFO,AC-coupled excitation; 15n excitation-class cap
+U7,A8,RE0,reference electrode in (+node of matrix),analog,AD5940/41 RevE T7 p19-21,RE0,J6.2 via R78 51k->RE_SURGE(D8)->R41 1k DC path,yes,PASS,INFO,DC-coupled RE0 - correct for potentiostat bias
+U7,B1,RCAL1,cal resistor terminal B,analog,AD5940/41 RevE T7 p19-21,RCAL1,R13 1k across RCAL0/RCAL1,yes,PASS,INFO,precision RCAL fitted
+U7,B2,AFE1,uncommitted AFE pin 1,analog,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,B3,AIN1,analog input 1 -> switch matrix,analog,AD5940/41 RevE T7 p19-21,BIOZ_FP,J7.1 via R80 51k->C67 15n->FP_ISO(D21)->R84 1k,yes,PASS,INFO,BioZ force P
+U7,B4,AIN4/LPF0,AIN4 / LP-TIA LPF cap pin,analog,AD5940/41 RevE T7 p19-21,AIN4_LPF0,C26 1u to GND,yes,PASS,INFO,
+U7,B5,AIN3/BUF_VREF1V8,AIN3 / buffered 1.82V ref out,analog,AD5940/41 RevE T7 p19-21,BIOZ_SP,J7.3 via R82 51k->R86 1k->SP_ISO(D23)->C69 470n,yes,PASS,INFO,BioZ sense P
+U7,B6,DE0,analog in -> HS-TIA in/out,analog,AD5940/41 RevE T7 p19-21,DE0,J6.4 via R79 51k->DE_SURGE(D9)->R42 1k DC,yes,PASS,INFO,
+U7,B7,VZERO0,LP DAC zero out; DS: 100nF,analog,AD5940/41 RevE T7 p19-21,VZERO0,C24 100n,yes,PASS,INFO,
+U7,B8,RC0_1,LP-TIA recon filter fbk pin 1,analog,AD5940/41 RevE T7 p19-21,RC0_1,C27 100n across RC0_0/RC0_1,yes,PASS,INFO,
+U7,C1,RCAL0,cal resistor terminal A,analog,AD5940/41 RevE T7 p19-21,RCAL0,R13 1k,yes,PASS,INFO,
+U7,C2,AFE2,uncommitted AFE pin 2,analog,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,C3,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,C4,AGND,analog gnd (short to E3),gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,C5,AIN6,analog input 6,analog,AD5940/41 RevE T7 p19-21,SWEAT_WE,J11.1/J12.11 via R120 51k; D26,yes,PASS,INFO,sweat WE -> TIA via matrix
+U7,C6,RC0_2,LP-TIA recon filter pin 2 (optional),analog,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,DS: can be left open
+U7,C7,VBIAS0,LP DAC bias out; DS: 100nF,analog,AD5940/41 RevE T7 p19-21,VBIAS0,C25 100n,yes,PASS,INFO,
+U7,C8,RC0_0,LP-TIA feedback pin,analog,AD5940/41 RevE T7 p19-21,RC0_0,C27 100n,yes,PASS,INFO,
+U7,D1,VBIAS_CAP,ADC 1.11V input-bias decap; DS: 470nF,analog,AD5940/41 RevE T7 p19-21,VBIAS_CAP,C22 470n,yes,PASS,INFO,
+U7,D2,AIN0,analog input 0,analog,AD5940/41 RevE T7 p19-21,BIOZ_FN,J7.2 via R81 51k->R85 1k->FN_ISO(D22)->C68 470n,yes,PASS,INFO,BioZ force N
+U7,D3,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,D4,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,D5,AGND_REF,analog reference gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,D6,GPIO1,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,D7,VREF_2V5,2.5V ref decap; DS: 470nF,analog,AD5940/41 RevE T7 p19-21,VREF_2V5,C21 470n,yes,PASS,INFO,
+U7,D8,AVDD_REG,analog regulator decap,supply,AD5940/41 RevE T7 p19-21,AVDD_REG,C42 1u,yes,PASS,INFO,
+U7,E1,GPIO2,digital IO,dio,AD5940/41 RevE T7 p19-21,NIR730_GATE,Q4 gate (N-FET -> D12 NIR LED); R110 100k pull-down,yes,PASS,INFO,IOVDD=3.3V domain gate drive
+U7,E2,GPIO3,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,E3,AGND,analog gnd (short to C4),gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E4,DGND,digital gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E5,DGND,digital gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E6,DGND,digital gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E7,MOSI,SPI data in,digital in,AD5940/41 RevE T7 p19-21,SPI_MOSI,U1.15,yes,PASS,INFO,3.3V IOVDD domain
+U7,E8,MISO,SPI data out,digital out,AD5940/41 RevE T7 p19-21,MISO_AD,R91 0R -> SPI_MISO -> U1.17,yes,PASS,INFO,
+U7,F1,RESET,reset active low,digital in,AD5940/41 RevE T7 p19-21,AD5940_RESET,R11 10k pull-down + U19 drive,yes,PASS,INFO,held in reset until expander drives
+U7,F2,AVDD,analog 3.3V supply (short to A4),supply,AD5940/41 RevE T7 p19-21,+3V3_ANA,rail + C13 100n,yes,PASS,INFO,
+U7,F3,DVDD,digital supply 2.8-3.6V,supply,AD5940/41 RevE T7 p19-21,+3V3_ANA,rail + C16 1u,yes,PASS,INFO,DVDD before IOVDD via R12/C19 - satisfies DS G2 sequencing note
+U7,F4,GPIO6,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,F5,GPIO0,digital IO,dio,AD5940/41 RevE T7 p19-21,AD5940_GPIO0,U1.18,yes,PASS,INFO,
+U7,F6,GPIO5,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,F7,CS,SPI chip select,digital in,AD5940/41 RevE T7 p19-21,CS_AD5940,R7 10k pull-up -> +3V3; U1.19,yes,PASS,INFO,
+U7,F8,SCLK,SPI clock,digital in,AD5940/41 RevE T7 p19-21,SPI_SCK,U1.16,yes,PASS,INFO,
+U7,G1,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G2,IOVDD,digital IO supply 1.62-1.98 or 2.8-3.6V; DVDD must precede,supply,AD5940/41 RevE T7 p19-21,IOVDD,R12 10R <- +3V3_ANA; C19 1u,yes,PASS,INFO,3.3V option; RC delay gives DVDD-first sequencing
+U7,G3,DVDD_REG_1V8,digital regulator decap; DS: 470nF,supply,AD5940/41 RevE T7 p19-21,DVDD_REG,C23 470n,yes,PASS,INFO,
+U7,G4,GPIO7,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G5,XTALI,16MHz xtal in,digital in,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,internal osc used
+U7,G6,XTALO,16MHz xtal out,digital out,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G7,GPIO4,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G8,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,*grid*,BGA56C40P8X7_416X356X55,footprint vs CB-56-3 WLCSP,n/a,AD5940/41 RevE T7 p19-21 + ordering guide,n/a,56 pads 8x7 @0.4mm; body 4.16x3.56mm,yes,PASS,MEDIUM,"Ball-map VERIFIED vs DS Fig4 TOP VIEW(BALL SIDE DOWN): F.Cu local map identical (A1 top-left, rows A-G, cols1-8); all 56 mnemonics match T7. Pad dia: 36x0.214mm + 20x0.25mm(+0.025 mask) - inside AN-1891 200-260um for 0.4mm pitch but mixed sizes on one footprint"
+U8,1,PGA1N,PGA1 inverting out,analog out,SBAS502C pin func p4-5,PGA1N,C34 47n diff cap to PGA1P,yes,PASS,INFO,
+U8,2,PGA1P,PGA1 noninverting out,analog out,SBAS502C pin func p4-5,PGA1P,C34 47n,yes,PASS,INFO,
+U8,3,IN1N,diff analog neg in ch1,analog in,SBAS502C pin func p4-5,IN1N,R28/R29 10M midrail bias; R68 10k<-C51 100n<-ECG_N; C49 2.2n,yes,PASS,INFO,"respiration ch: AC-coupled from ECG electrodes, midrail-biased"
+U8,4,IN1P,diff analog pos in ch1,analog in,SBAS502C pin func p4-5,IN1P,R26/R27 10M bias; R67 10k<-C50 100n<-ECG_P; C48 2.2n,yes,PASS,INFO,
+U8,5,IN2N,diff analog neg in ch2 (ECG),analog in,SBAS502C pin func p4-5,ECG_N,J5.2 via R33 51k(2512); D2 TVS; C53 2.2n; R31 40.2k<-RESP_MODN,yes,PASS,INFO,ECG electrode w/ 51k series + TVS + resp-mod injection
+U8,6,IN2P,diff analog pos in ch2 (ECG),analog in,SBAS502C pin func p4-5,ECG_P,J5.1 via R32 51k(2512); D1 TVS; C52 2.2n; R30 40.2k<-RESP_MODP,yes,PASS,INFO,
+U8,7,PGA2N,PGA2 inverting out,analog out,SBAS502C pin func p4-5,PGA2N,C35 4.7n to PGA2P,yes,PASS,INFO,
+U8,8,PGA2P,PGA2 noninverting out,analog out,SBAS502C pin func p4-5,PGA2P,C35 4.7n,yes,PASS,INFO,
+U8,9,VREFP,positive ref in/out; >=1uF decap,analog io,SBAS502C pin func p4-5,VREFP,C30 10u @1.7mm,yes,PASS,INFO,exceeds DS min
+U8,10,VREFN,negative ref; must connect to AVSS,analog in,SBAS502C pin func p4-5,GND,plane (same node as AVSS pin13),yes,PASS,INFO,unified ground = AVSS
+U8,11,VCAP1,analog bypass >=1uF,analog,SBAS502C pin func p4-5,VCAP1,C32 1u @1.6mm,yes,PASS,INFO,
+U8,12,AVDD,analog supply 2.7-5.25V,supply,SBAS502C pin func p4-5,+3V3_ANA,rail; local C28 100n; 1u bulk C80 @11.5mm,yes,DEVIATION,MEDIUM,"only 100n local; nearest 1u @11.5mm (R7 accepted: plane-fed, VCAP handles LDOs)"
+U8,13,AVSS,analog ground,gnd,SBAS502C pin func p4-5,GND,plane,yes,PASS,INFO,
+U8,14,CLKSEL,master clock select: 1=internal osc,digital in,SBAS502C pin func p4-5,+3V3_ANA,tied high,yes,PASS,INFO,internal 512kHz osc
+U8,15,PWDN/RESET,power-down/reset active low,digital in,SBAS502C pin func p4-5,ADS1292_PWDN,R14 10k pull-down + U19 drive,yes,PASS,INFO,held in PWDN until expander drives
+U8,16,START,start conversion,digital in,SBAS502C pin func p4-5,GND,tied low,yes,PASS,INFO,DS: hold START low when using START opcode - FW must use opcode
+U8,17,CLK,master clock input,digital in,SBAS502C pin func p4-5,GND,tied low,yes,DEVIATION,MEDIUM,"legal only while CONFIG2.CLK_EN=0 (default, pin 3-state). If FW sets CLK_EN=1 the pin outputs osc into GND short. Prefer NC. FW-constraint"
+U8,18,CS,chip select,digital in,SBAS502C pin func p4-5,CS_ADS1292,R98 10k pull-up -> +3V3; U1.14,yes,PASS,INFO,
+U8,19,DIN,SPI data in,digital in,SBAS502C pin func p4-5,SPI_MOSI,U1.15,yes,PASS,INFO,
+U8,20,SCLK,SPI clock in,digital in,SBAS502C pin func p4-5,SPI_SCK,U1.16,yes,PASS,INFO,
+U8,21,DOUT,SPI data out,digital out,SBAS502C pin func p4-5,MISO_ADS,R89 0R -> SPI_MISO -> U1.17,yes,PASS,INFO,
+U8,22,DRDY,data ready out,digital out,SBAS502C pin func p4-5,ADS1292_DRDY,R99 100k pull-up -> +3V3; U1.6; TP24,yes,PASS,INFO,
+U8,23,DVDD,digital supply 1.65-3.6V,supply,SBAS502C pin func p4-5,+3V3_ANA,rail; local C28 100n shared,yes,DEVIATION,MEDIUM,same decap-gap class as pin12
+U8,24,DGND,digital ground,gnd,SBAS502C pin func p4-5,GND,plane,yes,PASS,INFO,
+U8,25,GPIO2/RCLK2,GPIO/resp clock,dio,SBAS502C pin func p4-5,ADS_GPIO2,R101 10k pull-down,yes,PASS,INFO,
+U8,26,GPIO1/RCLK1,GPIO/resp clock,dio,SBAS502C pin func p4-5,ADS_GPIO1,R100 10k pull-down,yes,PASS,INFO,
+U8,27,VCAP2,analog bypass >=1uF,analog,SBAS502C pin func p4-5,VCAP2,C33 1u @1.7mm,yes,PASS,INFO,
+U8,28,RLDINV,RLD inverting input,analog in,SBAS502C pin func p4-5,RLDINV,R17 1M fbk from RLDOUT + C65 1.5n (integrator ~106Hz),yes,PASS,INFO,
+U8,29,RLDIN/RLDREF,RLD input or ref select,analog in,SBAS502C pin func p4-5,RLDREF,R15/R16 1M divider + C66 1u -> ~1.65V,yes,PASS,INFO,
+U8,30,RLDOUT,RLD amplifier output,analog out,SBAS502C pin func p4-5,RLDOUT,R69 10k -> RLD_CLAMP(D3) -> R34 51k -> J5.3; R43/R45 5.11M bias feed to U6 ECG inputs,yes,PASS,INFO,drives RLD electrode AND biases AFE4900 ECG inputs (shared RLD)
+U8,31,RESP_MODP/IN3P,resp mod out / ch3 pos in,analog,SBAS502C pin func p4-5,RESP_MODP,R30 40.2k -> ECG_P node,yes,PASS,INFO,modulation injection into ECG electrodes
+U8,32,RESP_MODN/IN3N,resp mod out / ch3 neg in,analog,SBAS502C pin func p4-5,RESP_MODN,R31 40.2k -> ECG_N,yes,PASS,INFO,
+U8,33,EP,thermal pad -> AVSS,gnd,SBAS502C pin func p4-5,GND,2.85x2.85mm EP,yes,PASS,INFO,
+U8,*pkg*,QFN40P400X400X100-33N-D,footprint vs RSM-32,n/a,SBAS502C pin func p4-5,n/a,32 pads @0.4mm + EP,yes,PASS,INFO,4x4mm VQFN matches RSM; EP 2.85mm F.Cu+paste
+U9,1,GND,ground,gnd,SCPS113O sec5/9.2,GND,plane,yes,PASS,INFO,
+U9,2,VREF1,low-side ref 1.2-3.3V,supply,SCPS113O sec5/9.2,+1V8,1.8V LDO rail; NO dedicated local cap (nearest C90 100n @18.4mm per R7),yes,PASS,COSMETIC,uA-bias node - accepted; weakest decap on board
+U9,3,SCL1,low-voltage-side SCL,bidir,SCPS113O sec5/9.2,I2C_SCL_1V8,"U10.2,U12.4; R22 2.2k pull-up -> +1V8",yes,PASS,INFO,
+U9,4,SDA1,low-voltage-side SDA,bidir,SCPS113O sec5/9.2,I2C_SDA_1V8,"U10.8,U12.1; R21 2.2k pull-up -> +1V8",yes,PASS,INFO,
+U9,5,SDA2,high-voltage-side SDA,bidir,SCPS113O sec5/9.2,I2C_SDA,U1.12 + J9.2 + J12.2 + 3V3 peripherals; R19 2.2k pull-up -> +3V3,yes,PASS,INFO,pull-ups both sides per DS Fig9-1
+U9,6,SCL2,high-voltage-side SCL,bidir,SCPS113O sec5/9.2,I2C_SCL,U1.13 + J9.3 + J12.3; R20 2.2k pull-up -> +3V3,yes,PASS,INFO,
+U9,7,VREF2,high-side ref 1.8-5.5V >=VREF1,supply,SCPS113O sec5/9.2,VREF2,node w/ EN; pulled to +3V3 via R18 200k,yes,PASS,COSMETIC,textbook; DS 9.2.2.1 recommends 100pF filter cap on VREF2 - not fitted
+U9,8,EN,"enable, tie to VREF2",digital in,SCPS113O sec5/9.2,VREF2,same node as pin7 via R18 200k to +3V3,yes,PASS,INFO,EN=VREF2 via shared 200k = DS always-enabled Fig9-1
+U9,*topo*,bridge domains,I2C level-shift topology,n/a,SCPS113O sec5/9.2,n/a,"side1: I2C_*_1V8 (U10,U12); side2: I2C_* (U1,J9,J12,U11,U13,U14,U17,U19,U20,U23,U24)",yes,PASS,INFO,correct: VREF1=1V8<VREF2=3.3V; 200k EN/VREF2 pull; 2.2k pull-ups both sides; low-voltage ports face 1.8V devices
+U22,A1,VLED,LED supply 3.1-5.5V (absmax 6V); 10uF to PGND,supply,MAX86140/41 DS p11-12,TX_5V,U15 boost 5.0V; C89 10u + C14 1u,yes,PASS,INFO,
+U22,A2,SCLK,SPI clock (absmax 6V),digital in,MAX86140/41 DS p11-12,SPI_SCK,U1.16 direct 3.3V drive,yes,PASS,INFO,6V-tolerant - legal even unpowered
+U22,A3,SDO,"SPI data out, swings 0..VDD_DIG(1.8V)",digital out,MAX86140/41 DS p11-12,MX_SDO_1V8,U26 SN74AXC2T245 A->B shift -> SPI_MISO -> U1.17,yes,PASS,INFO,1.8V output correctly level-shifted
+U22,A4,SDI,SPI data in (absmax 6V),digital in,MAX86140/41 DS p11-12,SPI_MOSI,U1.15 direct,yes,PASS,INFO,
+U22,A5,CSB,SPI chip select (absmax 6V),digital in,MAX86140/41 DS p11-12,CS_MAX86178,R117 10k pull-up -> +3V3 (also U26.OE); U1.34,yes,PASS,INFO,net name stale (MAX86178) - cosmetic
+U22,B1,LED3_DRV,LED3 cathode sink (to VLED+0.3),analog out,MAX86140/41 DS p11-12,LED3_K,J10.3 / J12.7 -> ext LED3 cathode,yes,PASS,INFO,
+U22,B2,INT,open-drain interrupt act-low; absmax 6V,digital out,MAX86140/41 DS p11-12,MAX86178_INT,R113 10k pull-up -> +3V3; U1.35,yes,PASS,INFO,
+U22,B3,GPIO1,GPIO; NC allowed,dio,MAX86140/41 DS p11-12,NC,unconnected,yes,PASS,INFO,
+U22,B4,GPIO2,GPIO; NC allowed,dio,MAX86140/41 DS p11-12,NC,unconnected,yes,PASS,INFO,
+U22,B5,VREF,internal ref decap; DS: 1uF to GND_ANA,analog,MAX86140/41 DS p11-12,MX_VREF,C83 1u @8.9mm,yes,PASS,COSMETIC,"DS wants it close; accepted (dense cluster, R7 documented)"
+U22,C1,LED2_DRV,LED2 cathode sink,analog out,MAX86140/41 DS p11-12,LED2_K,J10.2 / J12.6,yes,PASS,INFO,
+U22,C2,VDD_DIG,digital supply 1.7-2.0V,supply,MAX86140/41 DS p11-12,+1V8,1.8V LDO; C87 10u@8.1 + C88/C86 100n@8.7,yes,PASS,INFO,
+U22,C3,GND_DIG,digital return,gnd,MAX86140/41 DS p11-12,GND,plane,yes,PASS,INFO,
+U22,C4,GND_ANA,analog return,gnd,MAX86140/41 DS p11-12,GND,plane,yes,PASS,INFO,
+U22,C5,PD_GND,photodiode anode,analog,MAX86140/41 DS p11-12,PD_A,J10.6 / J12.10 -> ext PD anode,yes,PASS,INFO,PD_GND pin = PD anode return per DS
+U22,D1,LED1_DRV,LED1 cathode sink,analog out,MAX86140/41 DS p11-12,LED1_K,J10.1 / J12.5,yes,PASS,INFO,
+U22,D2,VDD_ANA,analog supply 1.7-2.0V; 0.1u close + 10u,supply,MAX86140/41 DS p11-12,+1V8,same rail as C2,yes,PASS,INFO,
+U22,D3,PGND,LED power return,gnd,MAX86140/41 DS p11-12,GND,plane,yes,PASS,INFO,
+U22,D4,PD2_IN,PD2 cathode input; DS: tie to PD_GND when unused,analog in,MAX86140/41 DS p11-12,NC,unconnected,no,DEVIATION,MEDIUM,explicit DS directive ignored - unused PD2_IN should tie to PD_GND(PD_A); benign (ch2 unused) but non-compliant
+U22,D5,PD1_IN,PD1 cathode input,analog in,MAX86140/41 DS p11-12,PD_K,J10.5 / J12.9 -> ext PD cathode,yes,PASS,INFO,
+U22,*grid*,MAX86141_WLP20,footprint vs 20-WLP N201A2+1,n/a,MAX86140/41 DS p11-12 + AN-1891,n/a,20 pads 5x4 @0.4mm; DS body 2.05x1.85mm,yes,PASS,INFO,"Ball-map VERIFIED: B.Cu -> pcbnew top-right A1 = physical top-left = DS TOP VIEW VLED. Pad dia uniform 0.24mm (AN-1891 acceptable 200-260um, rec 250um NSMD). Fab outline 2.3x2.1mm generous vs 2.05x1.85 pkg - cosmetic"
+J5,1,electrode/tail pad,connector pad,contact,design intent + netlist,ECG1_PAD,R32 51k(2512) -> ECG_P -> U8.6 IN2P; D1 TVS + C52 2.2n at IC node,yes,PASS,INFO,ECG+ electrode to ADS1292R ch2
+J5,2,electrode/tail pad,connector pad,contact,design intent + netlist,ECG2_PAD,R33 51k(2512) -> ECG_N -> U8.5 IN2N; D2 TVS + C53,yes,PASS,INFO,ECG- electrode
+J5,3,electrode/tail pad,connector pad,contact,design intent + netlist,RLD_PAD,R34 51k(2512) -> RLD_CLAMP(D3) -> R69 10k -> U8.30 RLDOUT,yes,PASS,INFO,RLD electrode driven by ADS1292R RLD amp
+J5,4,electrode/tail pad,connector pad,contact,design intent + netlist,AFE_P_PAD,R35 51k(2512) -> AFE_P_AC(D4) -> R44 100k -> C56 -> U6.B1 INP_ECG,yes,PASS,INFO,"2nd ECG pair for AFE4900 (AC-coupled, RLD-biased)"
+J5,5,electrode/tail pad,connector pad,contact,design intent + netlist,AFE_N_PAD,R36 51k(2512) -> AFE_N_AC(D5) -> R46 100k -> C57 -> U6.A1 INM_ECG,yes,PASS,INFO,
+J6,1,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_CE_PAD,R76 51k -> C54 15n -> CE_ISO(D6) -> R39 1k -> U7.A7 CE0,yes,PASS,INFO,"EDA counter electrode, AC-coupled"
+J6,2,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_RE_PAD,R78 51k -> RE_SURGE(D8) -> R41 1k -> U7.A8 RE0,yes,PASS,INFO,"EDA reference electrode, DC"
+J6,3,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_SE_PAD,R77 51k -> R40 1k -> SE_ISO(D7) -> C55 470n -> U7.A6 SE0,yes,PASS,INFO,"EDA sense electrode, AC-coupled"
+J6,4,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_DE_PAD,R79 51k -> DE_SURGE(D9) -> R42 1k -> U7.B6 DE0,yes,PASS,INFO,"EDA DE electrode, DC"
+J7,1,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_FP_PAD,R80 51k -> C67 15n -> FP_ISO(D21) -> R84 1k -> U7.B3 AIN1,yes,PASS,INFO,BioZ force+ (15n excitation-class cap)
+J7,2,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_FN_PAD,R81 51k -> R85 1k -> FN_ISO(D22) -> C68 470n -> U7.D2 AIN0,yes,PASS,INFO,BioZ force-
+J7,3,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_SP_PAD,R82 51k -> R86 1k -> SP_ISO(D23) -> C69 470n -> U7.B5 AIN3,yes,PASS,INFO,BioZ sense+
+J7,4,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_SN_PAD,R83 51k -> R87 1k -> SN_ISO(D24) -> C70 470n -> U7.A3 AIN2,yes,PASS,INFO,BioZ sense-
+J9,1,electrode/tail pad,connector pad,contact,design intent + netlist,+3V3,3.3V rail to tail,yes,PASS,INFO,power
+J9,2,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SDA,3.3V-domain I2C SDA (U9 side2),yes,PASS,INFO,SDA 3.3V domain - a 1V8 peripheral on this tail is mis-domained
+J9,3,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SCL,3.3V-domain I2C SCL,yes,PASS,INFO,SCL 3.3V domain
+J9,4,electrode/tail pad,connector pad,contact,design intent + netlist,GND,ground,yes,PASS,INFO,ground
+J10,1,electrode/tail pad,connector pad,contact,design intent + netlist,LED1_K,U22.D1 LED1_DRV -> ext LED1 cathode,yes,PASS,INFO,optical tail LED1
+J10,2,electrode/tail pad,connector pad,contact,design intent + netlist,LED2_K,U22.C1 LED2_DRV,yes,PASS,INFO,LED2
+J10,3,electrode/tail pad,connector pad,contact,design intent + netlist,LED3_K,U22.B1 LED3_DRV,yes,PASS,INFO,LED3
+J10,4,electrode/tail pad,connector pad,contact,design intent + netlist,LED_AN,R114 0R -> TX_5V,yes,PASS,INFO,common anode to 5V boost = DS anode-to-VLED
+J10,5,electrode/tail pad,connector pad,contact,design intent + netlist,PD_K,U22.D5 PD1_IN,yes,PASS,INFO,photodiode cathode
+J10,6,electrode/tail pad,connector pad,contact,design intent + netlist,PD_A,U22.C5 PD_GND,yes,PASS,INFO,photodiode anode
+J11,1,electrode/tail pad,connector pad,contact,design intent + netlist,J11_WE,"R120 51k -> SWEAT_WE -> U7.C5 AIN6 (+D26, J12.11)",yes,PASS,INFO,sweat working electrode
+J11,2,electrode/tail pad,connector pad,contact,design intent + netlist,J11_RE,"R121 51k -> SWEAT_RE -> U7.A2 AFE3 (+D27, J12.12)",yes,PASS,INFO,sweat reference
+J11,3,electrode/tail pad,connector pad,contact,design intent + netlist,J11_CE,"R122 51k -> SWEAT_CE -> U7.A1 AFE4 (+D28, J12.13)",yes,PASS,INFO,sweat counter
+J12,1,electrode/tail pad,connector pad,contact,design intent + netlist,+3V3,FH12-14S FPC pin 1,yes,PASS,INFO,power to remote tail
+J12,2,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SDA,FH12-14S FPC pin 2,yes,PASS,INFO,3V3 I2C
+J12,3,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SCL,FH12-14S FPC pin 3,yes,PASS,INFO,3V3 I2C
+J12,4,electrode/tail pad,connector pad,contact,design intent + netlist,GND,FH12-14S FPC pin 4,yes,PASS,INFO,ground
+J12,5,electrode/tail pad,connector pad,contact,design intent + netlist,LED1_K,FH12-14S FPC pin 5,yes,PASS,INFO,U22.D1
+J12,6,electrode/tail pad,connector pad,contact,design intent + netlist,LED2_K,FH12-14S FPC pin 6,yes,PASS,INFO,U22.C1
+J12,7,electrode/tail pad,connector pad,contact,design intent + netlist,LED3_K,FH12-14S FPC pin 7,yes,PASS,INFO,U22.B1
+J12,8,electrode/tail pad,connector pad,contact,design intent + netlist,LED_AN,FH12-14S FPC pin 8,yes,PASS,INFO,R114->TX_5V
+J12,9,electrode/tail pad,connector pad,contact,design intent + netlist,PD_K,FH12-14S FPC pin 9,yes,PASS,INFO,U22.D5 PD1_IN
+J12,10,electrode/tail pad,connector pad,contact,design intent + netlist,PD_A,FH12-14S FPC pin 10,yes,PASS,INFO,U22.C5 PD_GND
+J12,11,electrode/tail pad,connector pad,contact,design intent + netlist,SWEAT_WE,FH12-14S FPC pin 11,yes,DEVIATION,MEDIUM,"U7.C5 AIN6 direct (taps IC side of J11 R120 - no 51k on this branch) -- J12 taps IC-side of the 51k series resistors: sweat electrodes via J12 reach U7 with only TVS protection, no series R (fine if J11/J12 are mutually exclusive)"
+J12,12,electrode/tail pad,connector pad,contact,design intent + netlist,SWEAT_RE,FH12-14S FPC pin 12,yes,DEVIATION,MEDIUM,"U7.A2 AFE3 direct -- J12 taps IC-side of the 51k series resistors: sweat electrodes via J12 reach U7 with only TVS protection, no series R (fine if J11/J12 are mutually exclusive)"
+J12,13,electrode/tail pad,connector pad,contact,design intent + netlist,SWEAT_CE,FH12-14S FPC pin 13,yes,DEVIATION,MEDIUM,"U7.A1 AFE4 direct -- J12 taps IC-side of the 51k series resistors: sweat electrodes via J12 reach U7 with only TVS protection, no series R (fine if J11/J12 are mutually exclusive)"
+J12,14,electrode/tail pad,connector pad,contact,design intent + netlist,unconnected-(J12-Pin_14-Pad14),FH12-14S FPC pin 14,yes,PASS,INFO,NC
+J12,MP,electrode/tail pad,connector pad,contact,design intent + netlist,unconnected-(J12-PadMP),FH12-14S FPC pin MP,yes,PASS,INFO,mounting pad NC
+J13,1,Pads_1x02 pad,MX ECG electrode pad,contact,design intent/commit 31e72e61,J13_INP,R118 51k -> MX_ECG_INP -> D29 TVS -> DEAD END (no IC),no,FAIL,HIGH,pad lands on a net reaching only a TVS - leftover from MAX86178 (commit 31e72e61: ECG/BioZ dropped; D29/D30/R118/R119 left unused) -- fitted connector but zero signal path to any AFE: remove from docs or respin
+J13,2,Pads_1x02 pad,MX ECG electrode pad,contact,design intent/commit 31e72e61,J13_INM,R119 51k -> MX_ECG_INM -> D30 TVS -> DEAD END,no,FAIL,HIGH,same - dead pair -- fitted connector but zero signal path to any AFE: remove from docs or respin
