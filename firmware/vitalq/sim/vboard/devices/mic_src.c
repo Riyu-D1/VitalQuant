@@ -1,7 +1,7 @@
 /* mic_src.c — vboard device model for the IM69D130 PDM MEMS mic (U25).
  *
  * Sits off-bus: no I2C address, no SPI CS — the part hangs on the I2S0
- * PDM RX line (CLK=IO40 out, DAT=IO41 in, SELECT=GND -> left slot).
+ * PDM RX line (CLK=IO40 out, DAT=IO41 in, SELECT=GND -> right slot).
  * The registered vboard_dev exists so reset() restores power-on state
  * and the model shows up in the board population; the actual data path
  * is vbdev_mic_next_sample(), consumed by esp_shim's i2s_sim.c.

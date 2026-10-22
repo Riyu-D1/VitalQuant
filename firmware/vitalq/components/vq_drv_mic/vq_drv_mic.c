@@ -2,7 +2,7 @@
  * ESP-IDF 5.4 driver/i2s_pdm.h API only (NOT the legacy i2s driver).
  *
  * Wiring (board_pins.h): CLK = IO40 out, DAT = IO41 in, SELECT = GND
- * (SELECT low → the mic is the LEFT-slot device → I2S_PDM_SLOT_LEFT).
+ * (SELECT low → the mic is the RIGHT-slot device → I2S_PDM_SLOT_RIGHT).
  *
  * Clock / decimation chain (verified against esp_driver_i2s i2s_pdm.c):
  *   PDM CLK on IO40 = I2S BCLK
@@ -19,7 +19,7 @@
  *   HW PDM→PCM conversion: selectable sinc decimation ÷16
  *   (rx_pdm_sinc_dsr_16_en = I2S_PDM_DSR_16S) in series with the fixed
  *   ÷8 PDM-RX back-end → net decimation 128 → 1-bit PDM @2.048 MHz
- *   becomes 16-bit PCM @16 kHz, mono, left slot.
+ *   becomes 16-bit PCM @16 kHz, mono, right slot.
  *   bclk_div = 8 → MCLK 16.384 MHz internal (not pinned out).
  *   NOTE: ESP32-S3 has NO HW high-pass in the PDM RX path
  *   (SOC_I2S_SUPPORTS_PDM_RX_HP_FILTER is P4-only), so the mic's DC
@@ -146,6 +146,20 @@ static esp_err_t mic_ensure_channel(void)
         }
     }
     if (!s_st.chan_ready) {
+        /* Hardware strap: U25's SELECT pin is tied to GND.  Per the
+         * IM69D130 datasheet (Fig. 9 timing / Fig. 10 stereo circuit)
+         * and Infineon's L/R convention, SELECT = GND is the RIGHT
+         * channel device — it drives DATA during the clock-low
+         * half-cycle (HiZ while the clock is high).  With this
+         * driver's DSR_16S decimation the right-slot mask is what
+         * samples that phase; the default-macro mono slot
+         * (I2S_PDM_SLOT_LEFT) would instead sample the high-Z
+         * half-cycle, i.e. off-strap.  Fab audit F-03
+         * (reports/findings_sensb.md); bench-verify on hardware.     */
+        i2s_pdm_rx_slot_config_t mic_slot =
+            I2S_PDM_RX_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT,
+                                           I2S_SLOT_MODE_MONO);
+        mic_slot.slot_mask = I2S_PDM_SLOT_RIGHT;   /* SELECT=GND → right */
         i2s_pdm_rx_config_t pdm = {
             .clk_cfg = {
                 .sample_rate_hz  = VQ_MIC_PCM_RATE_HZ,     /* 16 kHz PCM */
@@ -156,11 +170,9 @@ static esp_err_t mic_ensure_channel(void)
                                                       * = 2.048 MHz      */
                 .bclk_div        = 8,
             },
-            /* MONO 16-bit, slot_mask = LEFT (SELECT pin = GND → the
-             * left-slot device). On S3 the macro carries no HP-filter
-             * fields — PDM RX has no high-pass on this chip.            */
-            .slot_cfg = I2S_PDM_RX_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT,
-                                                       I2S_SLOT_MODE_MONO),
+            /* MONO 16-bit. On S3 the macro carries no HP-filter fields
+             * — PDM RX has no high-pass on this chip.                 */
+            .slot_cfg = mic_slot,
             .gpio_cfg = mic_gpio_cfg(),
         };
         esp_err_t ret = i2s_channel_init_pdm_rx_mode(s_st.rx, &pdm);
@@ -374,7 +386,7 @@ esp_err_t vq_mic_selftest(char *report, size_t len)
      * Tap the mic port to verify acoustic coupling if in doubt.        */
     snprintf(report, len,
              "mic_pdm: %s n=%u rms=%.1f LSB (%.1f dBFS) pp=%ld dc=%.1f | "
-             "clk=2.048MHz pcm=16k mono/L | silent room may legitimately "
+             "clk=2.048MHz pcm=16k mono/R | silent room may legitimately "
              "read low — flat stream (pp~0) = absent; tap mic to verify",
              alive ? "PASS" : "WARN-LOW",
              (unsigned)n, rms, dbfs, (long)pp, dc);

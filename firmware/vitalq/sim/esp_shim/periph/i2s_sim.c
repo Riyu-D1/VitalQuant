@@ -15,8 +15,8 @@
  *    capped at the configured DMA depth (older data is overrun-dropped,
  *    matching DMA ring behaviour).
  *  - Samples come from the board-side "im69d130" model
- *    (devices/mic_src.c): left slot = mic PCM, right slot = 0
- *    (SELECT pin is strapped low — mono left device only).
+ *    (devices/mic_src.c): right slot = mic PCM, left slot = 0
+ *    (SELECT pin is strapped low — right-slot device only).
  */
 #include <stdlib.h>
 #include <string.h>
@@ -271,11 +271,17 @@ static void i2s_sim_pull_frame(i2s_chan_handle_t h, int16_t *dst)
     bool clk_low = ((int)h->gpio.clk >= 0) &&
                    (vboard_gpio_get((int)h->gpio.clk) == 0);
     int16_t s = clk_low ? 0 : vbdev_mic_next_sample();
+    /* U25 is the only mic on the bus and sits on the RIGHT slot
+     * (SELECT=GND -> drives DATA during the clock-low half-cycle).
+     * On the S3 the right slot lands first in a stereo frame; the left
+     * slot reads the high-Z half of the shared line -> silence.       */
     if (h->slot.slot_mode == I2S_SLOT_MODE_STEREO) {
-        dst[0] = (h->slot.slot_mask & I2S_PDM_SLOT_LEFT) ? s : 0;
-        dst[1] = (h->slot.slot_mask & I2S_PDM_SLOT_RIGHT) ? s : 0;
+        dst[0] = (h->slot.slot_mask & I2S_PDM_SLOT_RIGHT) ? s : 0;
+        dst[1] = 0;                     /* left slot: no mic -> high-Z */
     } else {
-        dst[0] = s;                     /* mono: the masked slot only  */
+        /* mono: the masked slot only.  A left-slot mask samples the
+         * high-Z half-cycle -> digital silence (models off-strap).    */
+        dst[0] = (h->slot.slot_mask & I2S_PDM_SLOT_RIGHT) ? s : 0;
     }
 }
 

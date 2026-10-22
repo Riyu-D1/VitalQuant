@@ -3,7 +3,7 @@
  * Hardware (board_pins.h truth):
  *   CLK    = IO40 out  — PDM clock, 2.048 MHz (IM69D130 legal 1.0–3.25 MHz)
  *   DAT    = IO41 in   — 1-bit PDM data
- *   SELECT = GND       — mic answers the LEFT slot
+ *   SELECT = GND       — mic answers the RIGHT slot
  *   VDD    = +3V3 always-on domain; 100 nF decap at the part
  *
  * The part is FITTED per BOM but probe-optional: a PDM mic has no bus
