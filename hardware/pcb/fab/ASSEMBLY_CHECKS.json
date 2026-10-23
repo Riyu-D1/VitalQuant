@@ -28,5 +28,6 @@
   "D12": "XL0603NRC730 consigned (Sealand 0603 730 nm; no LCSC 700-770 nm emitter in <=0603)",
   "bom_corrections": "22 BOM_JLC LCSC-code defects fixed: invalid codes (C23677/C15115/C23692/C23691/C22299/C22314/C17275), codes resolving to wrong values (C23124->88.7ohm, C18009->4.3k/1206, C25840->0201/1.8k, C1528->160pF, C23230->681ohm, C1525-row->100nF, C23733-row->4.7uF, C22879->147ohm, C25513->68ohm array, C25797->681k, C26015->1.5k, C17413->107ohm, C25084->18ohm, C25779->33k), connector code on cap row (C49240->WJ2EDGRM), low-stock unify (C146900->C6669155). All replacements verified by JLCPCB partdetail meta + wmsc detail API: value/package/tolerance/voltage match.",
   "U12": "MLX90632SLD-DCB-100-SP = JLC extended part C5349491 (was wrongly listed as consigned)"
- }
+ },
+ "fix_v19b_changes": "BOM_JLC: 100nF 0402 line (32 refs C8..C91) LCSC C1525 Samsung CL05B104KO5NNNC -> C71629 muRata GRM155R71C104KA88D (100n/16V/X7R/0402). Stock-driven substitution; C1525 OOS. Fallback C105883. Copper/gerbers/drills/CPL byte-identical to fixv19a."
 }

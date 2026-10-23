@@ -1,5 +1,14 @@
 # VitalQ v2 fabrication and assembly notes
 
+**ORDER `VitalQ_v2_fixv19b_fabrication.zip` — it supersedes `fixv19a` (which itself superseded `fixv19`).**
+
+## fixv19b (2025-07-03) — BOM-only stock fix; copper untouched
+
+- **C1525 (Samsung CL05B104KO5NNNC, 100 nF 0402 X7R 16 V, 32 pcs — the board's primary decoupling cap) is Out of Stock at LCSC** (min order 100, "Notify Me") → substituted **C71629 = muRata GRM155R71C104KA88D** (100 nF, 16 V, X7R, 0402, identical electrical/footprint spec, ~954k in stock at check time). One line changed in `BOM_JLC.csv`; all 32 designators unchanged.
+- **Fallback if C71629 is out at order time: C105883 = YAGEO CC0402KRX7R8BB104** (100 nF, 25 V, X7R, 0402 — higher V rating, harmless).
+- Gerber and drill members are **byte-identical to fixv19a** (sha256-verified member-by-member); the earlier connectivity sweep (970 pads, OPEN=0, SHORT=0) therefore still stands — no re-run needed.
+- Remaining stock caveat carried from fixv19a: **TPS61241YFFR (C544431) stock was ~67 pcs** — confirm at order time; full-board stock sweep in `../reports/11_stock_sweep.*`.
+
 ## Release basis
 
 - **fix_v19 deltas vs fix_v18: R61 fitted — no copper, placement or property changes beyond R61.** The BQ25170 `TS` pin had a DNP resistor site even though the planned LiPo has no pack NTC; R61 is now Murata **NCP15XH103F03RC** (LCSC **C77131**), a 10 kΩ ±1 % B25/50 = 3380 K NTC in the existing 0402 footprint. With no pack NTC on J2, R61 senses board temperature near the cell and gives the charger its required cold/hot inhibit window (~0 °C / ~45 °C, I_TS ≈ 38 µA). Copper freeze vs fix_v18 proven by `sims/fullsim_v19/copper_freeze/freeze_check.py`: 8016 segments, 871 vias, 107 zones, 1027 pads, 302 placements — all identical; the only file delta is the R61 value/LCSC property text. Fab zip: `VitalQ_v2_fixv19_fabrication.zip`. **Note: if a 3-wire pack with its own NTC is ever fitted, R61 must revert to DNP** (parallel NTCs force a permanent HOT fault).
