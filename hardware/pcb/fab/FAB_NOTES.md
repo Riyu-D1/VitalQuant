@@ -1,10 +1,22 @@
 # VitalQ v2 fabrication and assembly notes
 
-**ORDER `VitalQ_v2_fixv19b_fabrication.zip` — it supersedes `fixv19a` (which itself superseded `fixv19`).**
+**ORDER `VitalQ_v2_fixv19c_fabrication.zip` — it supersedes `fixv19b` and `fixv19a`.**
+
+## fixv19c (2025-07-03) — final BOM pass, stock-verified via wmsc API; copper untouched
+
+Stock re-verified against the **wmsc detail API** (`wmsc.lcsc.com/ftps/wm/product/detail`, field `stockNumber`) — the authoritative live figure; the HTML product page "Out of Stock / Notify Me" block is **not** live state and had falsely flagged C1525 in fixv19b.
+
+- **REVERTED: 100 nF line back to C1525** (Samsung CL05B104KO5NNNC). wmsc API: **7,144,700 pcs** — it was never out of stock; fixv19b's C71629 swap fixed nothing. muRata C71629 remains a valid in-spec alternative but is no longer used.
+- **10 kΩ 0402 ×28 (R5..R117): C25744 (UNI-ROYAL 0402WGF1002TCE) stock 0 → substituted C407753 = UNI-ROYAL 0402WGD1002TCE** — 10 kΩ **±0.5 %** (better than required ±1 %), 62.5 mW, 0402, wmsc stock **1,382,700**.
+- **22 µF 0603 ×2 (C7 ESP32 VDD33 bulk, C45 U3 VOUT bulk): C86295 (Samsung CL10A226MP8NUNE 10 V) stock 0 → substituted C2762594 = Samsung CL10A226MO7JZNC, 22 µF, 16 V, X5R, 0603**, wmsc stock **86,665**. Same Samsung CL10 platform as the original; the 16 V rating means 3.3 V sits at 21 % of rated vs 33 %. Per Samsung's published DC-bias characteristic for CL10A226 (0603/22 µF/16 V), typical retention at 3.3 VDC is ≈65–70 % → **effective ≈14–15 µF** (vs ~12–14 µF for the original 10 V part) — a marginal *improvement* on the rail that was already the board's weakest decoupling. Curve figure is manufacturer-typical, not a JLC-measured value. Runners-up rejected: YAGEO C109447 (10 V, weaker derating), muRata C126630/C162690 (10 V, 1.3 k/13.6 k stock), Chinocera C22367828 (no published curves).
+- **J12 FH12-14S-0.5SH(55): C5378715 stock 0 → consigned** (deliberately NOT substituted — it is a mating connector; footprint and mate are the product). Blank LCSC cell + ` (consigned)` MPN suffix per D10/D12 pattern; added to ASSEMBLY_CHECKS consigned list. **Source Mouser or DigiKey (Hirose FH12-14S-0.5SH(55)); J12 will not be fitted by the assembler** — hand-fit at bench.
+- Confirmed adequate, left unchanged: C5349491 MLX90632 = 3 pcs (need 1), C544431 TPS61241YFFR = 67 pcs (need 1).
+- Gerber and drill members **byte-identical to fixv19a** (sha256 member-by-member); connectivity sweep (970 pads, OPEN=0, SHORT=0) stands — copper is unchanged.
+- Remaining items needing a human at order time: thin-stock qty-1 ICs (MLX90632 3, TCA6408 13, AD5940 15, ADS1292R 16, SFH7072 39, MAX86141 84); extended-code lcsc.com zeros to verify inside the JLC BOM tool (ESP32-S3 module, LSM6DSV80X, W25Q512, RV-3028, SHT45, IM69D130); J12 hand-fit; still-unresolved OOS jellybeans C283954 5.11 M / C853138 22.1 k / C25896 47.5 k / C6097400 301 k (CP2102N divider + presale row — flagged, not substituted).
 
 ## fixv19b (2025-07-03) — BOM-only stock fix; copper untouched
 
-- **C1525 (Samsung CL05B104KO5NNNC, 100 nF 0402 X7R 16 V, 32 pcs — the board's primary decoupling cap) is Out of Stock at LCSC** (min order 100, "Notify Me") → substituted **C71629 = muRata GRM155R71C104KA88D** (100 nF, 16 V, X7R, 0402, identical electrical/footprint spec, ~954k in stock at check time). One line changed in `BOM_JLC.csv`; all 32 designators unchanged.
+- **C1525 (Samsung CL05B104KO5NNNC, 100 nF 0402 X7R 16 V) reported Out of Stock — LATER DISPROVEN, reverted in fixv19c** (the HTML page "Notify Me" block was not live state; wmsc API shows 7.1 M in stock) → substituted **C71629 = muRata GRM155R71C104KA88D** (100 nF, 16 V, X7R, 0402, identical electrical/footprint spec, ~954k in stock at check time). One line changed in `BOM_JLC.csv`; all 32 designators unchanged.
 - **Fallback if C71629 is out at order time: C105883 = YAGEO CC0402KRX7R8BB104** (100 nF, 25 V, X7R, 0402 — higher V rating, harmless).
 - Gerber and drill members are **byte-identical to fixv19a** (sha256-verified member-by-member); the earlier connectivity sweep (970 pads, OPEN=0, SHORT=0) therefore still stands — no re-run needed.
 - Remaining stock caveat carried from fixv19a: **TPS61241YFFR (C544431) stock was ~67 pcs** — confirm at order time; full-board stock sweep in `../reports/11_stock_sweep.*`.
