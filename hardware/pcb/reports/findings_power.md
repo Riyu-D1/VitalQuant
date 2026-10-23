@@ -26,14 +26,14 @@ Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit
 
 ## MEDIUM
 
-### F-PWR-03 — U3 VOUT has only 0.1 µF within 5 mm; the recommended 22 µF bulk is 15.9 mm away
-- **Where:** U3 (TPS63802DLAR) pin 6 `+3V3` → nearest same-net cap C38 (100 nF) @ 4.96 mm; C45 (22 µF 0603) @ 15.9 mm.
+### F-PWR-03 — U3 VOUT: C38 100 nF local at 1.58 mm; the recommended 22 µF bulk is 13.50 mm away
+- **Where:** U3 (TPS63802DLAR) pin 6 `+3V3` → nearest same-net cap C38 (100 nF) @ 1.58 mm; C45 (22 µF 0603) @ 13.50 mm. (Distances corrected post-rotation-fix; the bulk-cap violation stands.)
 - **Datasheet:** §10.2.2.3 p.19 — "recommended nominal output capacitor value is a single 22 µF … placed as close as possible to the VOUT and PGND pins"; §8.3 p.5 — effective CO ≥ 7 µF (VO>2.3 V).
 - **Assessment:** rail-level effective capacitance is probably still ≥7 µF (C45 ~22 µF derated + sprinkles), so the converter will likely *function*; the violation is placement — loop inductance between VOUT and its bulk degrades load-transient response and EMI on a 1.4–2 MHz converter.
 - **Smallest fix:** rework/bottom-side 22 µF (or ≥10 µF) 0603 near pin 6–8; better: re-spin placement.
 
 ### F-PWR-04 — U4 IN lacks a local ≥1 µF capacitor
-- **Where:** U4 (TPS7A2018PDBVR) pin 1 IN on `+3V3` → nearest same-net cap C60 (100 nF) @ 5.28 mm; C91 @ 5.65 mm.
+- **Where:** U4 (TPS7A2018PDBVR) pin 1 IN on `+3V3` → nearest same-net cap C60 (100 nF) @ 4.34 mm; C91 @ 5.65 mm. (≥1 µF nearest: C45 @ 9.42 mm.)
 - **Datasheet:** pin table p.4 — "use the nominal value or larger capacitor from IN to ground… place the input capacitor as close to the IN and GND pins as possible"; §5.3 p.5 — CIN nominal 1 µF.
 - **Assessment:** input is an already-regulated 3.3 V rail with bulk elsewhere → low functional risk, but the datasheet's value *and* placement guidance are both unmet locally.
 - **Smallest fix:** rework — add 1 µF 0402 adjacent to pins 1/2; fold into next BOM/re-spin.
@@ -66,10 +66,10 @@ Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit
 - **Inductors:** L1 DFE201612E-R47M (0.47 µH) — the exact series in TPS63802 Table 10-2 (Isat 5.5 A); L2 DFE201612E-1R0M (1.0 µH) inside TPS61240's 0.4–1.5 µH window (§7.3 p.4). Saturation margins large vs 0.5–0.6 A TPS61240 valley limit.
 - **No "must not float" violations:** U3 EN/MODE terminated, PG legally open; U4 EN tied, N/C floated correctly; U15 EN driven + 100 kΩ pulldown; all U2 pins terminated.
 - **Voltage domains:** CHG_STAT/CHG_PG pulled to +3V3 (matches TCA6408A/ESP32 3.3 V domain); EN pins see ≤3.3 V (≤6 V rated); VBAT_SYS ≤ ~4.7 V within U3/U15 VIN ratings.
-- **Decoupling distances (measured pad-to-pad):** U2.IN→C63 1 µF @ **2.87 mm**; U2.OUT→C82 1 µF @ 4.59 mm; U3.VIN→C46 2.2 µF @ 3.29 mm / C44 10 µF @ 3.99 mm; U3.VOUT→C38 0.1 µF @ 4.96 mm (22 µF @ 15.9 mm); U4.IN→C60 0.1 µF @ 5.28 mm; U4.OUT→C6 1 µF @ **2.84 mm**; U15.VIN→C44 10 µF @ **2.26 mm**; U15.VOUT→C47 4.7 µF @ **2.09 mm**.
+- **Decoupling distances (measured pad-to-pad, post-rotation-fix pinmap):** U2.IN→C63 1 µF @ **1.18 mm**; U2.OUT→C82 1 µF @ 1.51 mm; U3.VIN→C46 2.2 µF @ 1.61 mm / C44 10 µF @ 1.89 mm; U3.VOUT→C38 0.1 µF @ 1.58 mm (22 µF @ 13.50 mm); U4.IN→C60 0.1 µF @ 4.34 mm; U4.OUT→C6 1 µF @ **1.88 mm**; U15.VIN→C44 10 µF @ **3.08 mm**; U15.VOUT→C47 4.7 µF @ **2.09 mm**.
 
 ## Audit-trail note
 
-`01_netlist_pinmap.csv` has an **empty net column on all 1,027 pads** — `extract_pads.py` reads `net[2]` (numeric net-id format) but this KiCad file stores `(net "NAME")`. All net assignments here were re-extracted from the `.kicad_pcb` s-expressions directly (positions unchanged — coordinates match the CSV). Flag for whoever owns `extract_pads.py`; a fixed CSV was generated to `/tmp/pinmap_full.csv` for this audit.
+`01_netlist_pinmap.csv` originally had an **empty net column** (KiCad 10 `(net "NAME")` vs numeric-id format) and a **rotation-sign error** (world = fp + R(−θ)·local, not R(+θ)) — both now fixed in `tools/extract_pads.py`; this file's distances were re-measured against the corrected pinmap. Historical note: the first pass of this report used intermediate corrected coordinates.
 
-Datasheet-corpus integrity: `reports/datasheets/1N5819WS.txt` actually contains a **Diodes Inc. DDTC-series NPN pre-biased-transistor datasheet (SOT-323)**, not the Hottech 1N5819WS Schottky — the PDF/txt pair is mislabeled. D33/Q6 pin polarities were therefore verified from the project symbol descriptions in `vitalq.kicad_sym` ("Schottky 40V 1A SOD-323. Pin1=K pin2=A"; "P-ch MOSFET … Pins: 1=G 2=S 3=D (rev-polarity/load-share)") instead of the corpus text.
+Datasheet-corpus integrity (historical — now resolved): `reports/datasheets/1N5819WS.*` initially contained a Diodes DDTC-series NPN datasheet by mistake; it has since been replaced with the correct Hottech 1N5819WS Schottky sheet (sha 609a5bc2…). D33/Q6 polarities were independently confirmed against both the project symbols and the corrected datasheet.

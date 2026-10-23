@@ -21,7 +21,7 @@ Pin matrix: 1,027 rows, 0 blank verdicts. Connectivity sweep: **970 pads, OPEN=0
 2. **0.15mm POFV vs JLC published 0.2mm min (45/48 in-pad vias)** — open external question; FAB_NOTES now carries the full 48-via list + 5 unflagged vias. Attach to order; if fab can't do 0.15 POFV, expect surcharge/re-spin decision.
 3. **TS suspend risk** → **RESOLVED** (R61 DNP) — verify the assembly note reached the order (it's baked into the CSVs now).
 4. **Stackup gap 0.122mm + nonstandard prepregs** — fab must confirm ply availability; documented in FAB_NOTES.
-5. **Decap margin findings (U3 VOUT 15.95mm, U4 IN)** — accepted residual risk; board may work but margins are thin. Next-rev items, not stoppers for this rev.
+5. **Decap margin findings (U3 VOUT ≥1µF bulk 13.50mm, U4 IN ≥1µF 9.42mm, U9 VREF1 18.40mm)** — accepted residual risk; board may work but margins are thin. Post-rotation-fix pinmap also retracted two MEDIUMs (W25Q512 9.47→2.14mm, ADS1292R bypass 5.7–6.5→1.55–1.68mm). Next-rev items, not stoppers for this rev.
 
 ## Source-side residual (does NOT affect fixv19a order)
 

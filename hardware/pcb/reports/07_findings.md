@@ -34,11 +34,12 @@ Guaranteed IOUT=200mA (EC p.5) vs ~300mA optical worst case.
 FIXED: U15→TPS61241YFFR (same DSBGA-6 YFF pin map verified vs SLVS806D §6; 600mA valley
 limit, 300mA @3.2V) in all BOM files; LCSC C544431. ⚠ stock ~67pcs — confirm before ordering.
 
-**H3 — U3 (TPS63802) VOUT bulk cap 15.95mm away; only 100nF local.**
-Datasheet requires CO,eff ≥7µF "as close as possible"; C45 22µF at 15.95mm (decap_distances.csv).
-Smallest fix: layout change → **re-spin scope**, or accept documented instability margin risk.
+**H3 — U3 (TPS63802) VOUT bulk cap 13.50mm away; C38 100nF at 1.58mm local.**
+Datasheet requires CO,eff ≥7µF "as close as possible"; nearest ≥1µF = C45 22µF at 13.50mm
+(decap_distances.csv, post-rotation-fix). Smallest fix: layout change → **re-spin scope**,
+or accept documented margin risk.
 
-**H4 — U4 (TPS7A2018) IN has no ≥1µF within 9.42mm** (100nF at 5.28mm only). Same class as H3.
+**H4 — U4 (TPS7A2018) IN has no ≥1µF within 9.42mm** (nearest 100nF C60 at 4.34mm). Same class as H3.
 
 **H5 — J13 "MX ECG" connector is dead hardware** (found independently by two audit groups).
 Pads → D29/D30 TVS + R118/R119 51k → no IC pin; J13 itself DNP (MAX86178-swap leftover).
@@ -62,7 +63,8 @@ order-execution risk requiring **written fab confirmation before payment**.
 
 ## MEDIUM (grouped)
 
-- **Decoupling/margins** (elec+power): PCA9306 VREF1→cap 14.61mm & no 100pF on VREF2; U22 VDD/VLED 8.4–9.9mm; W25Q512 VCC 9.47mm; +3V3_ANA is a plain 0Ω link (unfiltered AFE feed); TX_5V→AFE4900 TX_SUP margin 0.15V; +1V8 margin 0.173V; U3↔L1 switch loop 14–16mm; no thermal vias under U2/U3 EPs.
+- **Decoupling/margins** (elec+power, post-rotation-fix numbers): PCA9306 VREF1→cap **18.40mm** & no 100pF on VREF2; U22 VDD 8.11/7.89mm (C87), 100n 8.69mm, VLED 7.26mm (C89); U6.F5 TX_SUP 5.09mm; +3V3_ANA is a plain 0Ω link (unfiltered AFE feed); TX_5V→AFE4900 TX_SUP margin 0.15V; +1V8 margin 0.173V; U3↔L1 switch loop 14–16mm; no thermal vias under U2/U3 EPs.
+- **Retracted (rotation-mirror false positives)**: W25Q512 VCC 9.47mm→**2.14mm PASS**; ADS1292R VCAP/VREFP 5.7–6.5mm→**1.55–1.68mm PASS** (C30 derating note kept as advisory).
 - **Datasheet deviations**: U22.D4 PD2_IN floating (DS: "tie to PD_GND"); U8 ADS1292R pads +36%/EP −26%; U19 TCA6408 pads +33–50% + centre pads omitted; U26/U9/U11/U20/U4/U21/Q6 pads +20–50% over recommended land; WLP mask margins: U6/U7 mixed Ø0.23/0.25 pads, mask webs at the 0.1mm limit, U22 none (NSMD expected at 0.4mm); MLX90632 EP full-area paste vs Fig26 windowpane+vias.
 - **Sensor placement**: SHT45 — GND via (0.4/0.2) + trace under package violates Sensirion §5.3 keepout (heater degradation).
 - **Optical/LED chain**: D10 NF2W757G Vf up to 3.3V through AS7341 LDR sink → ~0.3V headroom → white-LED self-test margin (sensa M2/disc B5); D25 KT-0603G Vf-to-3.4V on +3V3 via 150Ω → dim/dark risk; LED_AK footprints put pin1=anode vs conventional pin1=cathode — assembly-rotation risk on D12/D25 (D10 safe: explicit K silk).

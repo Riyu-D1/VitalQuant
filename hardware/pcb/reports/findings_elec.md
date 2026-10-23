@@ -34,12 +34,12 @@
 
 ## 2. Decoupling distances (`06_tool_output/decap_distances.csv`, 76 pins)
 
->10 mm hard flags: **1** — `U9.2` VREF1 → nearest +1V8 cap C90 at **14.61 mm**.
+>10 mm hard flags: **1** — `U9.2` VREF1 → nearest +1V8 cap C90 at **18.40 mm**.
 Missing-cap flags: `U9.7` VREF2 — **no capacitor on net at all** (PCA9306 app note recommends 100 pF at VREF2); `U24.6` VBACKUP and `U5.8` VBUS-sense correctly have none (sense/pulled nodes, not decoupling targets).
 
-Notable 5–10 mm supply-pin distances: U18.8 VCC 9.47 mm (C91); U22 C2/D2 VDD 8.69/8.44 mm (C87), A1 VLED 8.53 mm (C89); U8.9 VREFP 6.49 mm (C30); U8.11/27 VCAP1/2 5.66/5.82 mm; U1.3 VDD33→bulk C7 5.93 mm (at-pin C8 100 nF = 7.31 mm); U6.F5 TX_SUP 5.56 mm; U4.1 IN→C60 100 nF 5.28 mm (nearest ≥1 µF: C45 at **9.42 mm**); U3.6 VOUT→nearest ≥1 µF C45 at **15.95 mm** (only C38 100 nF within 4.96 mm).
+Notable 5–10 mm supply-pin distances (post-rotation-fix pinmap): U22 C2/D2 VDD 8.11/7.89 mm (C87, nearest 100 nF C88 8.69 mm), A1 VLED 7.26 mm (C89); U1.3 VDD33→at-pin 100 nF C8 7.31 mm (bulk C7 22 µF 5.93 mm); U6.F5 TX_SUP 5.09 mm (C89); U4.1 IN→C60 100 nF 4.34 mm (nearest ≥1 µF: C45 at **9.42 mm**); U8.23 DVDD 4.66 mm; U3.6 VOUT→nearest ≥1 µF C45 at **13.50 mm** (C38 100 nF at 1.58 mm).
 
-Good (<3 mm): U12 0.39, U23 1.21, U10 1.44, U13 1.62, U17 2.21, U19 2.25, U15 2.09–2.26, U2.IN→C63 2.87, U25 2.89, U14 2.81 mm.
+Good (<3 mm): U18.8 VCC→C78 **2.14 mm** (earlier 9.47 mm was a rotation-mirror false positive); U8 VCAP1/VREFP/VCAP2 1.55/1.65/1.68 mm (earlier 5.66/6.49/5.82 — same cause); U12 0.39, U23 0.25, U10 1.44, U13 1.62–2.81, U17 1.64–1.72, U19 4.18–4.50, U15 2.09–3.08, U2.IN→C63 1.18, U25 1.93, U14 1.60–2.01, U6 SUP pins→C79 3.13–4.46 mm.
 
 ---
 
@@ -90,13 +90,13 @@ Path is continuous; the only DNP-dependent path is R93 (VBAT↔VBAT_SYS redundan
 
 | Sev | ID | Finding |
 |---|---|---|
-| HIGH | E1 | **U3 TPS63802 output bulk cap far**: VOUT(6)→nearest ≥1 µF (C45 22 µF) = **15.95 mm**; only C38 100 nF within 4.96 mm. Datasheet: COUT "as close as possible", CO,eff ≥7 µF. Adds loop inductance/ripple on the main 3V3 rail that feeds every sensor + ESP32. |
-| HIGH | E2 | **U4 TPS7A2018 has no ≥1 µF input cap nearby**: IN(1)→nearest 100 nF 5.28 mm; nearest ≥1 µF (C45) = **9.42 mm**. Datasheet wants input cap ≥OUT cap nominal, close to IN/GND. The +1V8 rail (AS7341/MAX86141 VDD, 0.173 V margin) sits behind this. |
-| MEDIUM | E3 | **PCA9306 VREF2 has no 100 pF cap at all** (net `VREF2` = R18+U9 pins 7/8 only); VREF1(2)→nearest +1V8 cap **14.61 mm** (>10 mm flag). Datasheet recommends 100 pF on VREF2. |
-| MEDIUM | E4 | **U22 MAX86141 decoupling borderline**: VDD pins C2/D2 → C87 at 8.69/8.44 mm, nearest 100 nF C88/C86 ≈ 9.7–9.9 mm; VLED A1 → C89 10 µF at 8.53 mm. Pulsed-LED AFE, high di/dt. |
-| MEDIUM | E5 | **U18 W25Q512 VCC(8)→C91 = 9.47 mm**; QSPI flash at high clock; borderline. |
-| MEDIUM | E6 | **ESP32 decoupling layout inverted**: at-pin 100 nF (C8) is at **7.31 mm** while bulk C7 22 µF is closer at 5.93 mm; guideline wants 100 nF at the pin. Effective bulk ~12 µF (derated) still ≥10 µF. |
-| MEDIUM | E7 | **ADS1292R internal-rail bypasses 5.7–6.5 mm away**: VCAP1 C32 5.66, VCAP2 C33 5.82, VREFP C30 10 µF 6.49 mm (C30 derates to ~6 µF at 2.42 V vs datasheet 10 µF settling condition). |
+| HIGH | E1 | **U3 TPS63802 output bulk cap far**: VOUT(6)→nearest ≥1 µF (C45 22 µF) = **13.50 mm**; C38 100 nF at 1.58 mm local. Datasheet: COUT "as close as possible", CO,eff ≥7 µF. Adds loop inductance/ripple on the main 3V3 rail that feeds every sensor + ESP32. (Was 15.95 mm pre-rotation-fix; still violates the intent.) |
+| HIGH | E2 | **U4 TPS7A2018 has no ≥1 µF input cap nearby**: IN(1)→nearest 100 nF (C60) 4.34 mm; nearest ≥1 µF (C45) = **9.42 mm**. Datasheet wants input cap ≥OUT cap nominal, close to IN/GND. The +1V8 rail (AS7341/MAX86141 VDD, 0.173 V margin) sits behind this. |
+| MEDIUM | E3 | **PCA9306 VREF2 has no 100 pF cap at all** (net `VREF2` = R18+U9 pins 7/8 only); VREF1(2)→nearest +1V8 cap **18.40 mm** (>10 mm flag — worse than first computed). Datasheet recommends 100 pF on VREF2. |
+| MEDIUM | E4 | **U22 MAX86141 decoupling borderline**: VDD pins C2/D2 → C87 at 8.11/7.89 mm, nearest 100 nF C88 8.69 mm; VLED A1 → C89 10 µF at 7.26 mm. Pulsed-LED AFE, high di/dt. |
+| ~~MEDIUM~~ | ~~E5~~ | **RETRACTED (false positive)**: U18 W25Q512 VCC(8)→nearest cap was reported 9.47 mm — that distance was computed on a rotation-mirrored pad position; true nearest is **C78 at 2.14 mm** (X7R 100 nF). Meets the datasheet "close to VCC" guidance. |
+| MEDIUM | E6 | **ESP32 decoupling layout inverted**: at-pin 100 nF (C8) is at **7.31 mm** while bulk C7 22 µF is closer at 5.93 mm; guideline wants 100 nF at the pin. Effective bulk ~12 µF (derated) still ≥10 µF. (Numbers confirmed post-rotation-fix.) |
+| ~~MEDIUM~~ | ~~E7~~ | **RETRACTED (false positive)**: ADS1292R internal-rail bypass distances were rotation-mirror artifacts — true values VCAP1 C32 **1.55 mm**, VCAP2 C33 **1.68 mm**, VREFP C30 **1.65 mm**, DVDD C28 4.66 mm. All now in the good band. Residual note: C30 still derates to ~6 µF at 2.42 V vs the 10 µF settling condition — keep as an advisory, not a defect. |
 | MEDIUM | E8 | **`+3V3_ANA` is a 0R link to the buck-boost rail** (R95), no ferrite/RC filtering for ADS1292R AVDD, AFE4900, AD5940 analog domains; only IOVDD gets R12=10R. Functional, but analog PSNR relies entirely on local 100 nF caps. |
 | MEDIUM | E9 | **U6 AFE4900 TX_SUP margin thin**: TX_5V hi 5.10 V vs op max 5.25 V → **0.15 V**; TPS61240 ±2% + tolerance stackup leaves no headroom beyond spec. |
 | MEDIUM | E10 | **+1V8 loads at 0.173 V margin** (1.827 V hi vs 2.0 V op max on AS7341 + MAX86141 VDD); pass, but thin for a lithium-powered product seeing cable/reg tolerances. |

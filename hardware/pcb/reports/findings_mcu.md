@@ -112,7 +112,7 @@ No unprotected 3.3 V→1.8 V crossing exists.
 
 1. **U21 placement ~15-18 mm from J1.** ESD clamp topology is correct (connector
    side of R102/103) but the part sits mid-route rather than at the connector
-   mouth (J1 y≈-3.8 vs U21 y≈11-13). IEC 61000-4-2 energy traverses ~15 mm of
+   mouth (J1 y≈-3.8 vs U21 y≈11-13). IEC 61000-4-2 energy traverses ~16.6 mm of
    data-line trace before clamping. Layout-frozen copper in fix_v19 — accept or
    note for next spin.
 
