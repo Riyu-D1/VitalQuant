@@ -1,10 +1,4 @@
 (version 1)
-
 (rule "Q1 Q2 Q4 internal pad clearance"
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Parent == B.Parent && (A.Parent == 'Q1' || A.Parent == 'Q2' || A.Parent == 'Q4')")
   (constraint clearance (min 0.09mm)))
-
-(rule "J8 U6 verified NPTH courtyard exception"
-  (condition "(A.Reference == 'J8' && B.Reference == 'U6') || (A.Reference == 'U6' && B.Reference == 'J8')")
-  (constraint courtyard_clearance)
-  (severity ignore))
