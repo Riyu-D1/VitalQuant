@@ -1,30 +1,30 @@
 # Hardware
 
-## `pcb/` — VitalQ V22 board (order-ready)
+## `pcb/` — VitalQ fix_v23 board (8-layer)
 
-V22 board built around the **ESP32-S3-WROOM-1-N16R8** with J1 (USB-C)
-moved east to x29.5 so a real cable clears the module. DRC/ERC clean,
-gerber-verified, pushed as fab package.
+fix_v23 board built around the **ESP32-S3-WROOM-1-N16R8**. Design complete;
+KiCad 10.0.4 measured: DRC 0 errors / 0 unconnected / 0 shorts / 0 parity,
+ERC 0 errors. Not yet fabricated — pending fab/bench review.
 
-- `pcb/kicad/` — the KiCad project (`vitalq_v2.kicad_pro` +
-  `vitalq.pretty`, `snap.pretty`, `wroom_official`, `vitalq.kicad_sym`;
-  `fp-lib-table`/`sym-lib-table` resolve them via `${KIPRJMOD}`).
-- `pcb/fab/` — fabrication package: `VitalQ_v2_fixv22_fabrication.zip`
-  is what gets sent to the fab; `gerbers/` KiCad-named set, `jlc/`
-  JLC-named set, `drill/` PTH/NPTH + report, `assembly/` BOM/CPL/pos +
-  checks.
-- `pcb/docs/` — design/verification/prompt docs (`V22_PROGRESS.md`,
-  `VERIFY_REPORT.md`, `CONNECTION_AUDIT_V22.md`, `CASE_CHANGES_FOR_V22.md`
-  and earlier revision reports).
-- `pcb/reports/` — `drc_erc/` (DRC/ERC run outputs), `audits/`
+- `pcb/kicad/` — the KiCad project (`vitalq_v2.kicad_pro`, `.kicad_pcb`,
+  `.kicad_sch`, `.kicad_dru` scoped rule + `vitalq.pretty`, `snap.pretty`,
+  `wroom_official`, `vitalq.kicad_sym`; `fp-lib-table`/`sym-lib-table` resolve
+  them via `${KIPRJMOD}`).
+- `pcb/fab/` — fabrication package: `VitalQ_v2_fixv23_fabrication.zip`;
+  `gerbers/` KiCad-named set, `jlc/` JLC-named set, `drill/` PTH/NPTH +
+  report, `assembly/` BOM/CPL/pos + checks (corrected BOM — U1 = C2913202).
+- `pcb/docs/` — design/verification/prompt docs (`VERIFY_REPORT.md` now
+  describes fix_v23, plus earlier revision reports kept for history).
+- `pcb/reports/` — `VERIFY_REPORT.md`, `DRC_STATEMENT.md`,
+  `BOM_CROSSCHECK.md` (fix_v23), `drc_erc/` run outputs, `audits/`
   (pin audits, net/component CSVs, `pinmap.json`).
-- `pcb/_work/` — fix/check scripts used during the V22 rework.
-- `pcb/_prompt_pics/` — board renders incl. `final/` post-move shots.
+- `pcb/_prompt_pics/` — board renders.
 
-## `case/` — VitalQ V10 enclosure (print-ready)
+## `case/` — VitalQ V10 enclosure
 
-Fits the V22 board. 141/141 fit checks, watertight STLs, USB-C
-corridor for the relocated J1, 20-pogo electrode scheme.
+Designed for the current board outline. 141/141 CAD fit checks, watertight
+STLs, USB-C corridor for J1 at x29.5, 20-pogo electrode scheme.
+**Nothing printed; no physical fit validation.**
 
 - `case/outputs/stl/` — 13 print parts (base, lid, bay cup, pin plate,
   pogos, gasket, door, flap, plug, cap, light pipe, slug, assy).
@@ -38,5 +38,5 @@ corridor for the relocated J1, 20-pogo electrode scheme.
   `DELTA_V22.md`, `CONTACTS_BOM.md`, `PROGRESS.md`, prompt doc.
 - `case/_prompt_pics/` — reference images.
 
-Ordering caveat carried from the V22 audit: U12 MLX90632 sits on the
+Ordering caveat carried from the audit: U12 MLX90632 sits on the
 1.8 V I2C bus while powered at 3.3 V — order the 1.8 V variant.
