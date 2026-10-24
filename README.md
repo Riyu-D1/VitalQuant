@@ -17,11 +17,14 @@ earlier than conventional approaches.
 This is the VitalQuant monorepo — all VitalQ work in one place:
 
 ```
-hardware/pcb/        order-ready V22 board (ESP32-S3-WROOM-1-N16R8, USB-C
-                     moved to x29.5); fab zip in hardware/pcb/fab/
-hardware/case/       print-ready V10 enclosure (141/141 fit checks)
+hardware/pcb/        fix_v23 board (8-layer, ESP32-S3-WROOM-1-N16R8);
+                     fab zip in hardware/pcb/fab/
+hardware/case/       V10 enclosure design (passes CAD checks; nothing
+                     printed, no physical fit validation)
                      — layout detail in hardware/README.md
-firmware/esp32/      sensor driver contract + hw_v0/hw_v1 profiles
+firmware/esp32/      sensor driver contract + hw_v0/hw_v1/hw_v2 profiles;
+                     hw_v3 (WROOM) and firmware v2 are in open PR #16,
+                     pending bench bring-up
 web/                 VitalQ website (Vite + React 19 + Tailwind + three.js)
 software/            Python platform + services:
                      src/vitalq/    core: ingest, processing, ml, quantum, synth, datasets
@@ -32,10 +35,34 @@ software/            Python platform + services:
                      simulations/   standalone research simulations
                      pyproject.toml, docker-compose.yml, .env.example
 docs/                design rationale: spec audit → research → architecture → schema
-                     → API → pipeline → ML plan → quantum-sim design → roadmap
+                     → API → pipeline → ML plan → quantum-sim design → roadmap;
+                     docs/FUNDER_SUMMARY.md — one-page status for reviewers
 JOURNAL.md           hardware/sensor research log
 .github/workflows/   CI
 ```
+
+## Hardware status
+
+- **Board:** fix_v23, 8 layers, 55.65 × 81.05 mm outline, ESP32-S3-WROOM-1-N16R8.
+  Design complete; KiCad **10.0.4** measured results: DRC 0 errors /
+  0 unconnected / 0 shorts / 0 schematic-parity issues, ERC 0 errors
+  (`hardware/pcb/reports/DRC_STATEMENT.md`, `VERIFY_REPORT.md`). Not yet
+  fabricated — fab/bench review still required before ordering.
+- **Case:** V10 enclosure in `hardware/case/` — CAD checks pass
+  (`case/docs/CHECKS.md`); **no parts printed and no physical fit test done**.
+
+## Status and open items
+
+- 900 mA worst-case LED pulse current needs firmware interleaving — the 5 V
+  boost can sustain only ~400 mA continuous.
+- USB can exceed 500 mA while charging on current-limited hosts.
+- No physical prototype exists yet; RF/antenna performance and case fit are
+  untested on hardware.
+- J12 (FPC), U24 (RTC) and U25 (microphone) are DNP for the current build
+  (absent from the JLC assembly files).
+- D12 (730 nm emitter) is a consigned part; U12 (MLX90632) uses LCSC C5349491
+  with consignment fallback.
+- Not a medical device; no safety, sterility or regulatory compliance claimed.
 
 ## Platform quickstart (local, no hardware)
 
