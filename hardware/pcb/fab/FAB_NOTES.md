@@ -1,6 +1,21 @@
 # VitalQ v2 fabrication and assembly notes
 
-**ORDER `VitalQ_v2_fixv19c_fabrication.zip` — it supersedes `fixv19b` and `fixv19a`.**
+**ORDER `VitalQ_v2_fixv19d_fabrication.zip` — it supersedes `fixv19c`, `fixv19b`, and `fixv19a`.**
+
+## fixv19d (2025-07-03) — last BOM revision: four resistor substitutions; copper untouched
+
+All wmsc-API stock-verified; same value/package, same-or-better tolerance. Sourcing only — no design change.
+
+| Refs | Old (stock 0) | New | Stock | Note |
+|---|---|---|---|---|
+| R43, R45 | C283954 CRCW04025M11FKED | **C166448** RALEC RTT025114FTH, 5.11M ±1% 62.5mW 0402 | 7,400 | ADS1292R input-bias pair (RLDOUT→AFE_INP/INM) — kept on one code so both legs match. Backup: C368375 (4,600) |
+| R63 | C853138 RT0402BRE0722K1L | **C163478** YAGEO RC0402FR-0722K1L, 22.1k ±1% 62.5mW 0402 | 1,724,900 | **Deliberate ±0.1%→±1% tolerance downgrade — accepted, not oversight**: R63+R64 form the CP2102N VBUS divider; ratio is already bounded by R64's ±1%, so 0.1% on R63 buys nothing. At 5 V VBUS divider = 3.41 V; ±1% on R63 moves it ~34 mV — inside the CP2102N VBUS-sense tolerance. Backup: C43473 (17,100) |
+| R64 | C25896 0402WGF4752TCE | **C100449** LIZ CR0402FF4752G, 47.5k ±1% 62.5mW 0402 | 17,700 | Other divider leg; tolerance unchanged. Backup: C137974 (6,800) |
+| R66 | C6097400 MR04X3013FTL | **C102962** RALEC RTT023013FTH, 301k ±1% 62.5mW 0402 | 10,000 | ~6 µA bleeder +1V8→GND; tolerance not load-bearing, kept ±1% anyway. Backup: C172047 (9,800) |
+
+- **Assembly note — order bring-up spares**: the thin-stock AFE parts are the ones that die during bring-up. Source **two extra of each** of U7 AD5940 (15 in stock), U8 ADS1292R (16), U22 MAX86141 (84), U16 SFH7072 (39) and U12 MLX90632 (3) when placing the LCSC order — one dead AFE should not cost three weeks waiting for a reel.
+- Extended-code wmsc-0 parts (ESP32-S3, LSM6DSV80X, W25Q512, RV-3028, SHT45, IM69D130) intentionally untouched — JLC-sourced, confirmed at BOM upload.
+- Gerber/drill members byte-identical to fixv19a (sha256 member-by-member); connectivity stands — copper unchanged.
 
 ## fixv19c (2025-07-03) — final BOM pass, stock-verified via wmsc API; copper untouched
 
