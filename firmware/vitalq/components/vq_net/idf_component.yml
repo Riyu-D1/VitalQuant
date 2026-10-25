@@ -1,0 +1,5 @@
+## vq_net managed dependencies.
+## mDNS responder ("vitalq" + _http._tcp:80 announce for the status httpd).
+## In ESP-IDF 5.x mdns lives in the IDF Component Registry, not the IDF tree.
+dependencies:
+  espressif/mdns: "^1.4.0"
