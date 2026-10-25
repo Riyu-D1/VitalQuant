@@ -1,11 +1,11 @@
 # VERIFY_REPORT — fix_v23
 
-Board: `fix_v23/vitalq_v2.kicad_pcb`. Tool: `kicad-cli` **10.0.4**
+Board: `fix_v23/vitalquant_v2.kicad_pcb`. Tool: `kicad-cli` **10.0.4**
 (`/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`). Baseline: fix_v22.
 
 ## §1 — DRC / ERC / parity — PASS
 
-- Reviewer-equivalent run (fix_v19 project rules + `vitalq_v2.kicad_dru`):
+- Reviewer-equivalent run (fix_v19 project rules + `vitalquant_v2.kicad_dru`):
   `kicad-cli pcb drc --severity-error --schematic-parity` →
   **0 violations, 0 unconnected, 0 shorts, 0 parity** (`verify/drc_v23b.json`,
   re-run after the schematic LCSC updates — identical result).
@@ -13,7 +13,7 @@ Board: `fix_v23/vitalq_v2.kicad_pcb`. Tool: `kicad-cli` **10.0.4**
 - `--severity-all`: 154 warnings (all pre-existing classes; fix_v22 measured 164
   including the 10 errors now fixed). No error-severity findings.
 - Differences vs fix_v22: nine Q1/Q2/Q4 intra-footprint clearances resolved via
-  the scoped 0.09 mm rule in `vitalq_v2.kicad_dru` (TI PicoStar land pattern,
+  the scoped 0.09 mm rule in `vitalquant_v2.kicad_dru` (TI PicoStar land pattern,
   JLCPCB multilayer minimum 0.09 mm); the J8 NPTH / U6 courtyard clash resolved
   by narrowing U6's courtyard edge −1.30 → −1.15 mm (hole remains 0.265 mm
   clear of the package body). No copper moved. See `DRC_STATEMENT.md`.
@@ -48,7 +48,7 @@ Board: `fix_v23/vitalq_v2.kicad_pcb`. Tool: `kicad-cli` **10.0.4**
   (`.gbr` in `fab/gerbers/`, JLC extensions in `fab/jlc/`), PTH/NPTH drills
   (917 plated / 8 non-plated holes), merged drill, BOM.csv, BOM_JLC.csv,
   CPL.csv (251), CPL_JLC.csv (248), positions, ASSEMBLY_CHECKS.json,
-  SHA256SUMS.txt, `VitalQ_v2_fixv23_fabrication.zip`.
+  SHA256SUMS.txt, `VitalQuant_v2_fixv23_fabrication.zip`.
 - Consistency (checked): `BOM.csv`, `CPL.csv`, `CPL_JLC.csv` are
   **byte-identical** to repository main's corrected assembly files;
   `BOM_JLC.csv` equals main's corrected file (U1 = ESP32-S3-WROOM-1-N16R8 /

@@ -1,9 +1,9 @@
-# VitalQ case_v10: regenerate the case to fit board fix_v22 (ESP32-S3-WROOM-1 + moved J1)
+# VitalQuant case_v10: regenerate the case to fit board fix_v22 (ESP32-S3-WROOM-1 + moved J1)
 
-You have full authority inside `/Users/deepakdiwan/Downloads/VitalQ_Hand/case_v10/` only. No time limit, no limit on passes. Keep iterating until EVERY check in CHECKS.md says PASS. Do not stop to ask; if a choice is unclear, pick the safer one and log it in `case_v10/PROGRESS.md`.
+You have full authority inside `/Users/deepakdiwan/Downloads/VitalQuant_Hand/case_v10/` only. No time limit, no limit on passes. Keep iterating until EVERY check in CHECKS.md says PASS. Do not stop to ask; if a choice is unclear, pick the safer one and log it in `case_v10/PROGRESS.md`.
 
 ## 0. Hard rules
-- Board source (READ-ONLY): `fix_v22/vitalq_v2.kicad_pcb` (+ `fix_v22/*.kicad_sch`). Never edit, save or re-export anything in any `fix_*` folder. Never touch `fix_v19`. Copy the PCB to `/tmp` if a tool wants to write.
+- Board source (READ-ONLY): `fix_v22/vitalquant_v2.kicad_pcb` (+ `fix_v22/*.kicad_sch`). Never edit, save or re-export anything in any `fix_*` folder. Never touch `fix_v19`. Copy the PCB to `/tmp` if a tool wants to write.
 - Never delete files. Superseded files go to `case_v10/_stale/`.
 - Keep installs light (CadQuery is already used by case_v9; reuse that environment).
 - No ordering, pricing, contacting anyone, firmware work. Do not claim patient safety or compliance.
@@ -90,4 +90,4 @@ Tolerance: every aperture centre within 0.15 mm of its part (optical/IR/slug) or
 5. Open questions you can't resolve go at the bottom of CHECKS.md (do not stop for them).
 
 When every row in CHECKS.md is PASS and all files are exported, print exactly:
-VITALQ CASE V10 COMPLETE
+VITALQUANT CASE V10 COMPLETE

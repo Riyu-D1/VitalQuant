@@ -1,0 +1,1028 @@
+ref,pin_number,pin_name,ds_function,ds_io_type,ds_cite,board_net,connected_to,net_intent_ok,verdict,severity,note
+D23,1,IO,,,same,SP_ISO,,,PASS,INFO,pad1->SP_ISO (J7.3 via R82->SP_SURGE->R86->; ->C69->BIOZ_SP U7.B5) | 
+D23,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+C20,1,,,,,VREF_1V82,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C20,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R17,1,,,,,RLDOUT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R17,2,,,,,RLDINV,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R116,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R116,2,,,,,CS_AFE4900,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C76,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C76,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C64,1,,,,,ESP_EN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C64,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D2,1,IO,,,same,ECG_N,,,PASS,INFO,pad1->ECG_N (J5.2 via R33; U8.5 IN2N) | 
+D2,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+C38,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C38,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R8,1,,,,,FSR_ADC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R8,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C90,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C90,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP23,1,,,,,CS_FLASH,,,PASS,INFO,test point; no-place per parity check
+R79,1,,,,,EDA_DE_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R79,2,,,,,DE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R61,1,,,,,TS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R61,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R7,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R7,2,,,,,CS_AD5940,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C43,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C43,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R103,1,,,,,USB_DM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R103,2,,,,,USB_DM_S3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U14,1,SDO/TA0,SPI SDO out / I2C addr LSB,SPI SDO out / I2C addr LSB,DS14764 Rev1 Table2 p11; sec I2C addr p45,GND,,,PASS,INFO,strap: TA0=GND -> I2C addr 0x6A (1101010b); firmware uses 0x6A | pad 0.254x0.7874(pinmap;see F-01)
+U14,2,SDx,I2C controller data (Mode2),I2C controller data (Mode2),DS14764 Rev1 Table2 p11,GND,,,PASS,INFO,Mode1 strap: DS says Connect to VDDIO or GND -> GND ok | pad 0.254x0.7874
+U14,3,SCx,I2C controller clock (Mode2),I2C controller clock (Mode2),DS14764 Rev1 Table2 p11,GND,,,PASS,INFO,Mode1 strap: Connect to VDDIO or GND -> GND ok | pad 0.254x0.7874
+U14,4,INT1,programmable interrupt out,programmable interrupt out,DS14764 Rev1 Table2 p11; pinmap row 45,LSM6_INT1,,,PASS,INFO,routed to U1 pin8 (GPIO4 per firmware) | pad 0.254x0.7874
+U14,5,VDDIO,IO supply,IO supply,DS14764 Rev1 Table2 note1 p11 + Table VDDIO p13,+3V3,,,PASS,INFO,1.62-3.6V (I2C mode) -> 3.3V ok; 100nF decoupling: nearest C4/C84 1uF ~3mm; C59 100nF ~5mm | pad 0.254x0.7874
+U14,6,GND,ground,ground,DS14764 Rev1 Table2 p11,GND,,,PASS,INFO,gnd | pad 0.254x0.7874
+U14,7,GND,ground,ground,DS14764 Rev1 Table2 p11,GND,,,PASS,INFO,gnd | pad 0.254x0.7874
+U14,8,VDD,supply,supply,DS14764 Rev1 Table2 p11 + VDD spec p13,+3V3,,,PASS,INFO,1.71-3.6V -> 3.3V ok; same decoupling as pad5 | pad 0.254x0.7874
+U14,9,INT2,programmable interrupt out,programmable interrupt out,DS14764 Rev1 Table2 p11,unconnected-(U14-Pad9),,,PASS,INFO,output left NC - acceptable (firmware polls INT1 only) | pad 0.254x0.7874
+U14,10,NC,no connect,no connect,DS14764 Rev1 Table2 note2 p11,unconnected-(U14-Pad10),,,PASS,INFO,DS: leave electrically unconnected + soldered to PCB -> NC ok | pad 0.254x0.7874
+U14,11,NC,no connect,no connect,DS14764 Rev1 Table2 note2 p11,unconnected-(U14-Pad11),,,PASS,INFO,same as pad10 | pad 0.254x0.7874
+U14,12,CS,mode select,mode select,DS14764 Rev1 Table2 p11,+3V3,,,PASS,INFO,CS=1 -> I2C/I3C enabled; not floating; hard tie to VDDIO ok | pad 0.254x0.7874
+U14,13,SCL,I2C clock,I2C clock,DS14764 Rev1 Table2 p11; BOM R20,I2C_SCL,,,PASS,INFO,bus pulled to +3V3 via R20 2.2k | pad 0.254x0.7874
+U14,14,SDA,I2C data,I2C data,DS14764 Rev1 Table2 p11; BOM R19,I2C_SDA,,,PASS,INFO,bus pulled to +3V3 via R19 2.2k | pad 0.254x0.7874
+C8,1,,,,,+3V3_ESP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C8,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U26,1,DIR2,"Direction ch2, referenced to VCCA; tie GND or VCCA",I,SN74AXC2T245 DS SCES879A §4 Table 4-1 + §5.1,GND,,YES,PASS,none,"DIR2=0 -> B2->A2; ch2 unused, B2 grounded"
+U26,2,OE,"Output enable, referenced to VCCA; high=tri-state",I,§4 Table 4-1 + §5.1 (control inputs 4.2V max),CS_MAX86178,U1.34 U22.A5 R117.2,YES,PASS,none,3.3V CS legal (4.2V-rated input); OE gates MISO onto shared bus only while CS asserted - clever and correct
+U26,3,GND,Ground,G,§4 Table 4-1,GND,,YES,PASS,none,
+U26,4,B2,I/O port B ch2,I/O,§4 Table 4-1,GND,,YES,PASS,none,unused B-port input tied to GND (defined state) - correct practice
+U26,5,B1,I/O port B ch1 (VCCB=3.3V side),I/O,§4 Table 4-1,MISO_MX,R106.1(0R)->SPI_MISO,YES,PASS,none,3V3-side MISO output onto shared bus
+U26,6,VCCB,Supply B,P,§4 Table 4-1 + §5.4,+3V3,,YES,PASS,none,B port = 3.3V domain - correct
+U26,7,VCCA,Supply A,P,§4 Table 4-1 + §5.4,+1V8,,YES,PASS,none,A port = 1.8V domain - correct
+U26,8,A1,I/O port A ch1 (VCCA=1.8V side),I/O,§4 Table 4-1,MX_SDO_1V8,U22.A3,YES,PASS,none,1V8 SDO in; DIR1=1 -> A->B up-translation
+U26,9,A2,I/O port A ch2,I/O,§4 Table 4-1,unconnected-(U26-A2-Pad9),none,YES,PASS,none,A2 is output (DIR2=B->A) - NC allowed
+U26,10,DIR1,"Direction ch1, referenced to VCCA",I,§4 Table 4-1,+1V8,,YES,PASS,none,tied to VCCA=high -> A->B (1V8->3V3) correct
+TP22,1,,,,,CS_AD5940,,,PASS,INFO,test point; no-place per parity check
+C28,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C28,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C30,1,,,,,VREFP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C30,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R21,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R21,2,,,,,I2C_SDA_1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C42,1,,,,,AVDD_REG,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C42,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R110,1,,,,,NIR730_GATE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R110,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R90,1,,,,,MISO_AFE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R90,2,,,,,SPI_MISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U2,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U2,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U2,1,IN,"Input power, external DC supply; bypass >=1uF to GND close to IC",P,BQ25170DSGR Table 5-1 p.3; EC VIN_OP 3.0-6.6V p.6,VBUS,"J1 USB-C VBUS pins A4/A9/B4/B9; C63(1uF)@2.87mm; feeds D33-2, Q6-1(gate)",yes,PASS,INFO,VBUS=5V USB within 3.0-6.6V operating; 1uF local bypass present at 2.87mm
+U2,2,ISET,"Fast-charge current program; pulldown R to GND, ICHG=KISET/RISET, range 375R-30k",I,BQ25170DSGR Table 5-1 p.3; SS7.3.1.1 p.14; EC KISET=300A-ohm p.6,CHG_ISET,"R3(1.5k,1%) -> GND",yes,PASS,INFO,ICHG=300/1500=200mA typ (180-220mA w/ KISET 270-330); within 10-800mA range; >50mA so no extra RC needed (p.14)
+U2,3,TS,NTC temp-qualification input; 10k NTC (103AT-2) TS->GND; VTS<VTS_ENZ disables,I,"BQ25170DSGR Table 5-1 p.3; SS7.3.2.4 p.16; EC ITS_BIAS=38uA, VHOT=188mV p.7; SS8.2.1.2.1 p.21",TS,R61(NCP15XH103F03RC 10k B=3380)->GND; J2-3 (pack NTC); Q2-3 drain (CHG_DIS pulldown),conditional,FAIL,HIGH,"Two NTC paths in parallel: if pack contains 10k NTC, R_TS=5k -> V_TS=38uA*5k=190mV ~= VHOT 188mV typ -> charger sits at hot-suspend threshold at 25C. Only safe if pack has no NTC. See F-PWR-01"
+U2,4,GND,Ground pin,-,BQ25170DSGR Table 5-1 p.3,GND,GND plane/pour,yes,PASS,INFO,
+U2,5,STAT,Open-drain charge-status output; pull up via 10k,O,BQ25170DSGR Table 5-1 p.3; Table 7-3 p.17,CHG_STAT,"R49(10k)->+3V3; U19-8 (TCA6408A input, 3.3V domain)",yes,PASS,INFO,10k pullup matches datasheet exactly; 3.3V rail within open-drain rating
+U2,6,PG,Open-drain power-good output; pull up via 10k,O,BQ25170DSGR Table 5-1 p.3; SS7.3.3.1 p.17,CHG_PG,"R60(10k)->+3V3; U1-11 (ESP32-S3 GPIO, 3.3V domain)",yes,PASS,INFO,10k pullup per datasheet; 3.3V logic compatible
+U2,7,VSET,Regulation-voltage program; pulldown R 18k-100k,I,BQ25170DSGR Table 5-1 p.3; Table 7-1 p.14,CHG_VSET,"R75(27.0k,1%) -> GND",yes,PASS,INFO,27k -> 1-cell Li-Ion 4.20V per Table 7-1 (exact table value); inside 18-100k valid range; +/-1% resistor recommended and BOM part is F-tolerance
+U2,8,OUT,Battery connection; system load may parallel; bypass >=1uF close to IC,P,BQ25170DSGR Table 5-1 p.3,VBAT,"J2-1 battery +; Q6-3 drain; U17 MAX17048; C82(1uF)@4.59mm, C85(47uF)@24mm",yes,PASS,LOW,OUT bypass present (1uF) but 4.59mm away; 'placed close to the IC' loosely met
+U2,9,ThermalPad,Exposed pad; solder to board with vias to solid GND plane,-,"BQ25170DSGR Table 5-1 p.3; DSG0008A land pattern, pkg dwg 4218900",GND,F.Cu GND pour (zone_connect solid); 2x F.Paste pads 0.73x0.64mm (87% coverage style),yes,PASS,MEDIUM,"EP net=GND correct, size 0.9x1.6 matches package EP (0.9/1.6 +/-0.1); NO via under pad - nearest GND via 2.0mm east. See F-PWR-05"
+TP13,1,,,,,I2C_SDA,,,PASS,INFO,test point; no-place per parity check
+C25,1,,,,,VBIAS0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C25,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C2,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C2,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C78,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C78,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R89,1,,,,,MISO_ADS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R89,2,,,,,SPI_MISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R43,1,,,,,RLDOUT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R43,2,,,,,AFE_INP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R113,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R113,2,,,,,MAX86178_INT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R104,1,,,,,USB_DP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R104,2,,,,,USB_DP_CP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J8,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+J8,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+J8,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+J8,1,,,,,+3V3,,,PASS,INFO,test point; no-place per parity check
+J8,2,,,,,GND,,,PASS,INFO,test point; no-place per parity check
+J8,3,,,,,ESP_TX,,,PASS,INFO,test point; no-place per parity check
+J8,4,,,,,ESP_RX,,,PASS,INFO,test point; no-place per parity check
+J8,5,,,,,ESP_EN,,,PASS,INFO,test point; no-place per parity check
+J8,6,,,,,ESP_IO0,,,PASS,INFO,test point; no-place per parity check
+R30,1,,,,,RESP_MODP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R30,2,,,,,ECG_P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP20,1,,,,,CS_ADS1292,,,PASS,INFO,test point; no-place per parity check
+C29,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C29,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R76,1,,,,,EDA_CE_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R76,2,,,,,CE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R59,1,,,,,CHG_DIS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R59,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R22,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R22,2,,,,,I2C_SCL_1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D1,1,IO (ESD-protected pin),,,TPD1E10B06DPYR ds (bidirectional); pinmap chains,ECG_P,,,PASS,INFO,pad1->ECG_P (J5.1 ECG1_PAD via R32 51k; U8.6 ADS1292 IN2P direct) | clamp sits on IC-side of 51k series R (defib-protection topology); pad-side sees full strike - verify R32-R36 2512 pulse rating
+D1,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+U7,A1,AFE4,uncommitted AFE pin 4,analog,AD5940/41 RevE T7 p19-21,SWEAT_CE,J11.3/J12.13 via R122 51k; D28 TVS at IC node,yes,PASS,INFO,sweat CE via switch matrix
+U7,A2,AFE3,uncommitted AFE pin 3,analog,AD5940/41 RevE T7 p19-21,SWEAT_RE,J11.2/J12.12 via R121 51k; D27,yes,PASS,INFO,
+U7,A3,AIN2,analog input 2 -> switch matrix,analog,AD5940/41 RevE T7 p19-21,BIOZ_SN,J7.4 via R83 51k->R87 1k->SN_ISO(D24)->C70 470n series,yes,PASS,INFO,"BioZ sense N, AC-coupled"
+U7,A4,AVDD,analog supply 2.8-3.6V (short to F2),supply,AD5940/41 RevE T7 p19-21,+3V3_ANA,rail + C43 1u @2.6mm,yes,PASS,INFO,A4/F2 both on +3V3_ANA = DS short requirement
+U7,A5,VREF_1V82,1.82V ref decap; DS rec 4.7uF,analog,AD5940/41 RevE T7 p19-21,VREF_1V82,C20 4.7u @2.7mm,yes,PASS,INFO,exact DS value
+U7,A6,SE0,sense electrode in,analog,AD5940/41 RevE T7 p19-21,SE0,J6.3 via R77 51k->R40 1k->SE_ISO(D7)->C55 470n series,yes,PASS,INFO,AC-coupled sense
+U7,A7,CE0,counter electrode in,analog,AD5940/41 RevE T7 p19-21,CE0,J6.1 via R76 51k->C54 15n series->CE_ISO(D6)->R39 1k,yes,PASS,INFO,AC-coupled excitation; 15n excitation-class cap
+U7,A8,RE0,reference electrode in (+node of matrix),analog,AD5940/41 RevE T7 p19-21,RE0,J6.2 via R78 51k->RE_SURGE(D8)->R41 1k DC path,yes,PASS,INFO,DC-coupled RE0 - correct for potentiostat bias
+U7,B1,RCAL1,cal resistor terminal B,analog,AD5940/41 RevE T7 p19-21,RCAL1,R13 1k across RCAL0/RCAL1,yes,PASS,INFO,precision RCAL fitted
+U7,B2,AFE1,uncommitted AFE pin 1,analog,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,B3,AIN1,analog input 1 -> switch matrix,analog,AD5940/41 RevE T7 p19-21,BIOZ_FP,J7.1 via R80 51k->C67 15n->FP_ISO(D21)->R84 1k,yes,PASS,INFO,BioZ force P
+U7,B4,AIN4/LPF0,AIN4 / LP-TIA LPF cap pin,analog,AD5940/41 RevE T7 p19-21,AIN4_LPF0,C26 1u to GND,yes,PASS,INFO,
+U7,B5,AIN3/BUF_VREF1V8,AIN3 / buffered 1.82V ref out,analog,AD5940/41 RevE T7 p19-21,BIOZ_SP,J7.3 via R82 51k->R86 1k->SP_ISO(D23)->C69 470n,yes,PASS,INFO,BioZ sense P
+U7,B6,DE0,analog in -> HS-TIA in/out,analog,AD5940/41 RevE T7 p19-21,DE0,J6.4 via R79 51k->DE_SURGE(D9)->R42 1k DC,yes,PASS,INFO,
+U7,B7,VZERO0,LP DAC zero out; DS: 100nF,analog,AD5940/41 RevE T7 p19-21,VZERO0,C24 100n,yes,PASS,INFO,
+U7,B8,RC0_1,LP-TIA recon filter fbk pin 1,analog,AD5940/41 RevE T7 p19-21,RC0_1,C27 100n across RC0_0/RC0_1,yes,PASS,INFO,
+U7,C1,RCAL0,cal resistor terminal A,analog,AD5940/41 RevE T7 p19-21,RCAL0,R13 1k,yes,PASS,INFO,
+U7,C2,AFE2,uncommitted AFE pin 2,analog,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,C3,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,C4,AGND,analog gnd (short to E3),gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,C5,AIN6,analog input 6,analog,AD5940/41 RevE T7 p19-21,SWEAT_WE,J11.1/J12.11 via R120 51k; D26,yes,PASS,INFO,sweat WE -> TIA via matrix
+U7,C6,RC0_2,LP-TIA recon filter pin 2 (optional),analog,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,DS: can be left open
+U7,C7,VBIAS0,LP DAC bias out; DS: 100nF,analog,AD5940/41 RevE T7 p19-21,VBIAS0,C25 100n,yes,PASS,INFO,
+U7,C8,RC0_0,LP-TIA feedback pin,analog,AD5940/41 RevE T7 p19-21,RC0_0,C27 100n,yes,PASS,INFO,
+U7,D1,VBIAS_CAP,ADC 1.11V input-bias decap; DS: 470nF,analog,AD5940/41 RevE T7 p19-21,VBIAS_CAP,C22 470n,yes,PASS,INFO,
+U7,D2,AIN0,analog input 0,analog,AD5940/41 RevE T7 p19-21,BIOZ_FN,J7.2 via R81 51k->R85 1k->FN_ISO(D22)->C68 470n,yes,PASS,INFO,BioZ force N
+U7,D3,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,D4,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,D5,AGND_REF,analog reference gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,D6,GPIO1,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,D7,VREF_2V5,2.5V ref decap; DS: 470nF,analog,AD5940/41 RevE T7 p19-21,VREF_2V5,C21 470n,yes,PASS,INFO,
+U7,D8,AVDD_REG,analog regulator decap,supply,AD5940/41 RevE T7 p19-21,AVDD_REG,C42 1u,yes,PASS,INFO,
+U7,E1,GPIO2,digital IO,dio,AD5940/41 RevE T7 p19-21,NIR730_GATE,Q4 gate (N-FET -> D12 NIR LED); R110 100k pull-down,yes,PASS,INFO,IOVDD=3.3V domain gate drive
+U7,E2,GPIO3,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,E3,AGND,analog gnd (short to C4),gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E4,DGND,digital gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E5,DGND,digital gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E6,DGND,digital gnd,gnd,AD5940/41 RevE T7 p19-21,GND,plane,yes,PASS,INFO,
+U7,E7,MOSI,SPI data in,digital in,AD5940/41 RevE T7 p19-21,SPI_MOSI,U1.15,yes,PASS,INFO,3.3V IOVDD domain
+U7,E8,MISO,SPI data out,digital out,AD5940/41 RevE T7 p19-21,MISO_AD,R91 0R -> SPI_MISO -> U1.17,yes,PASS,INFO,
+U7,F1,RESET,reset active low,digital in,AD5940/41 RevE T7 p19-21,AD5940_RESET,R11 10k pull-down + U19 drive,yes,PASS,INFO,held in reset until expander drives
+U7,F2,AVDD,analog 3.3V supply (short to A4),supply,AD5940/41 RevE T7 p19-21,+3V3_ANA,rail + C13 100n,yes,PASS,INFO,
+U7,F3,DVDD,digital supply 2.8-3.6V,supply,AD5940/41 RevE T7 p19-21,+3V3_ANA,rail + C16 1u,yes,PASS,INFO,DVDD before IOVDD via R12/C19 - satisfies DS G2 sequencing note
+U7,F4,GPIO6,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,F5,GPIO0,digital IO,dio,AD5940/41 RevE T7 p19-21,AD5940_GPIO0,U1.18,yes,PASS,INFO,
+U7,F6,GPIO5,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,F7,CS,SPI chip select,digital in,AD5940/41 RevE T7 p19-21,CS_AD5940,R7 10k pull-up -> +3V3; U1.19,yes,PASS,INFO,
+U7,F8,SCLK,SPI clock,digital in,AD5940/41 RevE T7 p19-21,SPI_SCK,U1.16,yes,PASS,INFO,
+U7,G1,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G2,IOVDD,digital IO supply 1.62-1.98 or 2.8-3.6V; DVDD must precede,supply,AD5940/41 RevE T7 p19-21,IOVDD,R12 10R <- +3V3_ANA; C19 1u,yes,PASS,INFO,3.3V option; RC delay gives DVDD-first sequencing
+U7,G3,DVDD_REG_1V8,digital regulator decap; DS: 470nF,supply,AD5940/41 RevE T7 p19-21,DVDD_REG,C23 470n,yes,PASS,INFO,
+U7,G4,GPIO7,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G5,XTALI,16MHz xtal in,digital in,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,internal osc used
+U7,G6,XTALO,16MHz xtal out,digital out,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G7,GPIO4,digital IO,dio,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+U7,G8,DNC,do-not-connect,n/a,AD5940/41 RevE T7 p19-21,NC,unconnected,yes,PASS,INFO,
+C66,1,,,,,RLDREF,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C66,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C39,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C39,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C91,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C91,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R24,1,,,,,FB_3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R24,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP1,1,,,,,VBUS,,,PASS,INFO,test point; no-place per parity check
+C7,1,,,,,+3V3_ESP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C7,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R2,1,,,,,USB_CC2,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R2,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+J1,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+J1,A1,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,A4,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,A5,CC1,Configuration Channel 1,I/O,USB-C spec: UFP needs 5.1k Rd,USB_CC1,R1.1(5.1k)->GND,YES,PASS,none,5.1k Rd to GND - correct UFP/device termination
+J1,A6,,,,,USB_DP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,A7,,,,,USB_DM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,A8,SBU1,Sideband use,-,USB-C spec (SBU open allowed for 2.0 device),unconnected-(J1-SBU1-PadA8),none,YES,PASS,none,SBU open - correct for USB 2.0 UFP
+J1,A9,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,A12,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,B1,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,B4,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,B5,CC2,Configuration Channel 2,I/O,USB-C spec: UFP needs 5.1k Rd,USB_CC2,R2.1(5.1k)->GND,YES,PASS,none,independent 5.1k Rd - correct; no Rp(2.2k) anywhere on CC nets
+J1,B6,,,,,USB_DP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,B7,,,,,USB_DM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,B8,SBU2,Sideband use,-,USB-C spec,unconnected-(J1-SBU2-PadB8),none,YES,PASS,none,
+J1,B9,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,B12,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,SH,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,SH,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,SH,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J1,SH,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R18,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R18,2,,,,,VREF2,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP15,1,,,,,I2C_SDA_1V8,,,PASS,INFO,test point; no-place per parity check
+C58,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C58,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R74,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R74,2,,,,,GAUGE_ALRT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R9,1,,,,,AFE4900_RESETZ,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R9,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R1,1,,,,,USB_CC1,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R1,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C9,1,,,,,VDD_CP2102,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C9,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP27,1,,,,,CHG_STAT,,,PASS,INFO,test point; no-place per parity check
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U5,1,DCD,Data Carrier Detect input (active low),DI,CP2102N DS Rev1.3 §5.1 Table 5.1 p.27,VDD_CP2102,U5.1/2/6/23/27 C9 C62 R62 TP6,YES,PASS,INFO,unused modem input tied high (deasserted) - legal
+U5,2,RI/CLK,Ring Indicator input / Clock output,DI/O,§5.1 Table 5.1 p.27,VDD_CP2102,same net,YES,PASS,INFO,tied high; if ever configured as CLK output would contend w/ VDD - cannot happen while R104/105 DNP
+U5,3,GND,Ground,G,§5.1 Table 5.1,GND,,YES,PASS,none,
+U5,4,D+,USB Data Positive,USB,§5.1 Table 5.1 + Fig 5.1,USB_DP_CP,R104.2 (R104 DNP)->USB_DP,YES,PASS,none,isolated from J1 by DNP R104 - intended disconnect topology
+U5,5,D-,USB Data Negative,USB,§5.1 Table 5.1 + Fig 5.1,USB_DM_CP,R105.2 (R105 DNP)->USB_DM,YES,PASS,none,
+U5,6,VDD,Supply/regulator output 3.0-3.6V,P,§5.1 Table 5.1 + §2.1 (4.7u+0.1u bypass),VDD_CP2102,C9(10u) C62(100n),YES,PASS,none,"regulator output, decoupled >= datasheet requirement"
+U5,7,VREGIN,5V Regulator Input,P,§5.1 Table 5.1 + §2.1 Fig 2.1 (bus-powered),VBUS,J1 VBUS rail,YES,PASS,none,canonical bus-powered hookup
+U5,8,VBUS,VBUS sense input (needs divider when VIO absent),DI,§5.1 Table 5.1 + §2.3 note (22.1k/47.5k divider),CP_VBUS,R63(22.1k)->VBUS; R64(47.5k)->GND,YES,PASS,none,divider = exact datasheet-recommended values -> 3.41V sense
+U5,9,RSTb,"Active-low reset, needs 1k pull-up to VDD",I,§5.1 Table 5.1 + §2.1 (1k pull-up required),CP_RST,R62(1k)->VDD_CP2102,YES,PASS,none,exact datasheet-recommended pull-up
+U5,10,NC,No Connect - leave floating,NC,§5.1 Table 5.1,unconnected-(U5-NC-Pad10),none,YES,PASS,none,
+U5,11,SUSPENDb,Suspend output (active low),DO,§5.1 Table 5.1,unconnected-(U5-~{SUSPEND}-Pad11),none,YES,PASS,none,
+U5,12,SUSPEND,Suspend output,DO,§5.1 Table 5.1,unconnected-(U5-SUSPEND-Pad12),none,YES,PASS,none,
+U5,13,CHREN,Charge enable 100mA,DO,§5.1 Table 5.1,unconnected-(U5-CHREN-Pad13),none,YES,PASS,none,
+U5,14,CHR1,Charge enable 1.5A,DO,§5.1 Table 5.1,unconnected-(U5-CHR1-Pad14),none,YES,PASS,none,
+U5,15,CHR0,Charge enable 500mA,DO,§5.1 Table 5.1,unconnected-(U5-CHR0-Pad15),none,YES,PASS,none,
+U5,16,GPIO.3/WAKEUP,GPIO / remote wakeup input,DIO,§5.1 Table 5.1,unconnected-(U5-~{WAKEUP}{slash}GPIO.3-Pad16),none,YES,PASS,none,
+U5,17,GPIO.2/RS485,GPIO / RS485 control,DIO,§5.1 Table 5.1,unconnected-(U5-RS485{slash}GPIO.2-Pad17),none,YES,PASS,none,
+U5,18,GPIO.1/RXT,GPIO / RX LED toggle,DIO,§5.1 Table 5.1,unconnected-(U5-~{RXT}{slash}GPIO.1-Pad18),none,YES,PASS,none,
+U5,19,GPIO.0/TXT,GPIO / TX LED toggle,DIO,§5.1 Table 5.1,unconnected-(U5-~{TXT}{slash}GPIO.0-Pad19),none,YES,PASS,none,
+U5,20,GPIO.6,GPIO,DIO,§5.1 Table 5.1,unconnected-(U5-GPIO.6-Pad20),none,YES,PASS,none,
+U5,21,GPIO.5,GPIO,DIO,§5.1 Table 5.1,unconnected-(U5-GPIO.5-Pad21),none,YES,PASS,none,
+U5,22,GPIO.4,GPIO,DIO,§5.1 Table 5.1,unconnected-(U5-GPIO.4-Pad22),none,YES,PASS,none,
+U5,23,CTS,Clear To Send input (active low),DI,§5.1 Table 5.1,VDD_CP2102,same net,YES,PASS,INFO,unused input tied high (deasserted) - legal
+U5,24,RTS,Ready To Send output (active low),DO,§5.1 Table 5.1,CP_RTS,R71.1(10k)->Q3.5 B2; also feeds Q3.1 E1,YES,PASS,none,auto-reset: RTS drives TR2 base via R71 and TR1 emitter
+U5,25,RXD,UART receive input,DI,§5.1 Table 5.1,CP_RX,R72.2(10k)<-ESP_TX U1.39,YES,PASS,none,"bridge RX <- MCU TX, direction correct"
+U5,26,TXD,UART transmit output,DO,§5.1 Table 5.1,CP_TX,R73.1(10k)->ESP_RX U1.40,YES,PASS,none,"bridge TX -> MCU RX, direction correct"
+U5,27,DSR,Data Set Ready input (active low),DI,§5.1 Table 5.1,VDD_CP2102,same net,YES,PASS,INFO,unused input tied high (deasserted) - legal
+U5,28,DTR,Data Terminal Ready output (active low),DO,§5.1 Table 5.1,CP_DTR,R70.1(10k)->Q3.2 B1; also feeds Q3.4 E2,YES,PASS,none,auto-reset: DTR drives TR1 base via R70 and TR2 emitter
+U5,29,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C14,1,,,,,TX_5V,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C14,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+Q2,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+Q2,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+Q2,1,gate,,,TCA6408A ds; R59 net GND,CHG_DIS,,,PASS,INFO,pad1<-U19.10(TCA6408A push-pull)+R59 100k pulldown | 
+Q2,2,source,,,CSD13380F3T ds,GND,,,PASS,INFO,pad2->GND | 
+Q2,3,drain,,,BQ25170DSGR ds TS pin fn + ITS_BIAS 38uA; CSD13380F3T ds,TS,,,PASS,INFO,pad3->BQ25170 TS(U2.3)+NTC net | 
+R88,1,,,,,STATUS_LED,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R88,2,,,,,LED_A,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP8,1,,,,,GND,,,PASS,INFO,test point; no-place per parity check
+TP28,1,,,,,RTC_INT,,,PASS,INFO,test point; no-place per parity check
+U8,1,PGA1N,PGA1 inverting out,analog out,SBAS502C pin func p4-5,PGA1N,C34 47n diff cap to PGA1P,yes,PASS,INFO,
+U8,2,PGA1P,PGA1 noninverting out,analog out,SBAS502C pin func p4-5,PGA1P,C34 47n,yes,PASS,INFO,
+U8,3,IN1N,diff analog neg in ch1,analog in,SBAS502C pin func p4-5,IN1N,R28/R29 10M midrail bias; R68 10k<-C51 100n<-ECG_N; C49 2.2n,yes,PASS,INFO,"respiration ch: AC-coupled from ECG electrodes, midrail-biased"
+U8,4,IN1P,diff analog pos in ch1,analog in,SBAS502C pin func p4-5,IN1P,R26/R27 10M bias; R67 10k<-C50 100n<-ECG_P; C48 2.2n,yes,PASS,INFO,
+U8,5,IN2N,diff analog neg in ch2 (ECG),analog in,SBAS502C pin func p4-5,ECG_N,J5.2 via R33 51k(2512); D2 TVS; C53 2.2n; R31 40.2k<-RESP_MODN,yes,PASS,INFO,ECG electrode w/ 51k series + TVS + resp-mod injection
+U8,6,IN2P,diff analog pos in ch2 (ECG),analog in,SBAS502C pin func p4-5,ECG_P,J5.1 via R32 51k(2512); D1 TVS; C52 2.2n; R30 40.2k<-RESP_MODP,yes,PASS,INFO,
+U8,7,PGA2N,PGA2 inverting out,analog out,SBAS502C pin func p4-5,PGA2N,C35 4.7n to PGA2P,yes,PASS,INFO,
+U8,8,PGA2P,PGA2 noninverting out,analog out,SBAS502C pin func p4-5,PGA2P,C35 4.7n,yes,PASS,INFO,
+U8,9,VREFP,positive ref in/out; >=1uF decap,analog io,SBAS502C pin func p4-5,VREFP,C30 10u @1.7mm,yes,PASS,INFO,exceeds DS min
+U8,10,VREFN,negative ref; must connect to AVSS,analog in,SBAS502C pin func p4-5,GND,plane (same node as AVSS pin13),yes,PASS,INFO,unified ground = AVSS
+U8,11,VCAP1,analog bypass >=1uF,analog,SBAS502C pin func p4-5,VCAP1,C32 1u @1.6mm,yes,PASS,INFO,
+U8,12,AVDD,analog supply 2.7-5.25V,supply,SBAS502C pin func p4-5,+3V3_ANA,rail; local C28 100n; 1u bulk C80 @11.5mm,yes,FAIL,MEDIUM,"only 100n local; nearest 1u @11.5mm (R7 accepted: plane-fed, VCAP handles LDOs)"
+U8,13,AVSS,analog ground,gnd,SBAS502C pin func p4-5,GND,plane,yes,PASS,INFO,
+U8,14,CLKSEL,master clock select: 1=internal osc,digital in,SBAS502C pin func p4-5,+3V3_ANA,tied high,yes,PASS,INFO,internal 512kHz osc
+U8,15,PWDN/RESET,power-down/reset active low,digital in,SBAS502C pin func p4-5,ADS1292_PWDN,R14 10k pull-down + U19 drive,yes,PASS,INFO,held in PWDN until expander drives
+U8,16,START,start conversion,digital in,SBAS502C pin func p4-5,GND,tied low,yes,PASS,INFO,DS: hold START low when using START opcode - FW must use opcode
+U8,17,CLK,master clock input,digital in,SBAS502C pin func p4-5,GND,tied low,yes,FAIL,MEDIUM,"legal only while CONFIG2.CLK_EN=0 (default, pin 3-state). If FW sets CLK_EN=1 the pin outputs osc into GND short. Prefer NC. FW-constraint"
+U8,18,CS,chip select,digital in,SBAS502C pin func p4-5,CS_ADS1292,R98 10k pull-up -> +3V3; U1.14,yes,PASS,INFO,
+U8,19,DIN,SPI data in,digital in,SBAS502C pin func p4-5,SPI_MOSI,U1.15,yes,PASS,INFO,
+U8,20,SCLK,SPI clock in,digital in,SBAS502C pin func p4-5,SPI_SCK,U1.16,yes,PASS,INFO,
+U8,21,DOUT,SPI data out,digital out,SBAS502C pin func p4-5,MISO_ADS,R89 0R -> SPI_MISO -> U1.17,yes,PASS,INFO,
+U8,22,DRDY,data ready out,digital out,SBAS502C pin func p4-5,ADS1292_DRDY,R99 100k pull-up -> +3V3; U1.6; TP24,yes,PASS,INFO,
+U8,23,DVDD,digital supply 1.65-3.6V,supply,SBAS502C pin func p4-5,+3V3_ANA,rail; local C28 100n shared,yes,FAIL,MEDIUM,same decap-gap class as pin12
+U8,24,DGND,digital ground,gnd,SBAS502C pin func p4-5,GND,plane,yes,PASS,INFO,
+U8,25,GPIO2/RCLK2,GPIO/resp clock,dio,SBAS502C pin func p4-5,ADS_GPIO2,R101 10k pull-down,yes,PASS,INFO,
+U8,26,GPIO1/RCLK1,GPIO/resp clock,dio,SBAS502C pin func p4-5,ADS_GPIO1,R100 10k pull-down,yes,PASS,INFO,
+U8,27,VCAP2,analog bypass >=1uF,analog,SBAS502C pin func p4-5,VCAP2,C33 1u @1.7mm,yes,PASS,INFO,
+U8,28,RLDINV,RLD inverting input,analog in,SBAS502C pin func p4-5,RLDINV,R17 1M fbk from RLDOUT + C65 1.5n (integrator ~106Hz),yes,PASS,INFO,
+U8,29,RLDIN/RLDREF,RLD input or ref select,analog in,SBAS502C pin func p4-5,RLDREF,R15/R16 1M divider + C66 1u -> ~1.65V,yes,PASS,INFO,
+U8,30,RLDOUT,RLD amplifier output,analog out,SBAS502C pin func p4-5,RLDOUT,R69 10k -> RLD_CLAMP(D3) -> R34 51k -> J5.3; R43/R45 5.11M bias feed to U6 ECG inputs,yes,PASS,INFO,drives RLD electrode AND biases AFE4900 ECG inputs (shared RLD)
+U8,31,RESP_MODP/IN3P,resp mod out / ch3 pos in,analog,SBAS502C pin func p4-5,RESP_MODP,R30 40.2k -> ECG_P node,yes,PASS,INFO,modulation injection into ECG electrodes
+U8,32,RESP_MODN/IN3N,resp mod out / ch3 neg in,analog,SBAS502C pin func p4-5,RESP_MODN,R31 40.2k -> ECG_N,yes,PASS,INFO,
+U8,33,EP,thermal pad -> AVSS,gnd,SBAS502C pin func p4-5,GND,2.85x2.85mm EP,yes,PASS,INFO,
+TP5,1,,,,,TX_5V,,,PASS,INFO,test point; no-place per parity check
+C63,1,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C63,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+L2,1,inductor terminal,,,DFE201612E-1R0M Murata spec (web-unfetched); TPS61240 ds L range 0.4-1.5uH,VBAT_SYS,,,PASS,INFO,pad1->VBAT_SYS (boost input side) | 
+L2,2,inductor terminal,,,TPS61240 ds pin L=B1,TX_SW,,,PASS,INFO,pad2->U15.B1 (TPS61240 L/SW pin) | 
+C24,1,,,,,VZERO0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C24,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R29,1,,,,,IN1N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R29,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C88,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C88,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D8,1,IO,,,same,RE_SURGE,,,PASS,INFO,pad1->RE_SURGE (J6.2 via R78; ->R41->RE0 U7.A8) | diode between 51k and 1k series R
+D8,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+TP21,1,,,,,CS_AFE4900,,,PASS,INFO,test point; no-place per parity check
+C67,1,,,,,FP_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C67,2,,,,,FP_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C45,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C45,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R100,1,,,,,ADS_GPIO1,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R100,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C21,1,,,,,VREF_2V5,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C21,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R70,1,,,,,CP_DTR,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R70,2,,,,,Q3_B1,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C27,1,,,,,RC0_0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C27,2,,,,,RC0_1,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R75,1,,,,,CHG_VSET,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R75,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+SW2,1,,,,,ESP_IO0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+SW2,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C34,1,,,,,PGA1N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C34,2,,,,,PGA1P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C22,1,,,,,VBIAS_CAP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C22,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C11,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C11,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D4,1,IO,,,same,AFE_P_AC,,,PASS,INFO,pad1->AFE_P_AC (J5.4 via R35; ->R44->C56->AFE_INP U6.B1) | AC-coupled path to AFE4900 ECG input
+D4,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+TP25,1,,,,,AFE4900_ADC_RDY,,,PASS,INFO,test point; no-place per parity check
+U3,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U3,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U3,1,EN,"Device enable; HIGH=enable, must not float",I,TPS63802DLAR Table 7-1 p.4; SS8.1 abs max 6V p.5,VBAT_SYS,"tied to VIN node (pads 1,10)",yes,PASS,INFO,"EN tied to VIN = always enabled, terminated (not floating); VBAT_SYS max ~4.7V < 6V abs max"
+U3,2,MODE,"PFM/PWM select; LOW=power save, must not float",I,TPS63802DLAR Table 7-1 p.4,GND,hardwired to GND,yes,PASS,INFO,LOW = PFM power-save mode; legal terminated state
+U3,3,AGND,Analog ground,-,TPS63802DLAR Table 7-1 p.4; SS12.1 p.28,GND,common GND node,yes,PASS,INFO,Rev D removed AGND/PGND separation requirement; common ground node per layout guidance
+U3,4,FB,Voltage feedback sense,I,TPS63802DLAR Table 7-1 p.4; EC VFB=500mV p.6; SS10.2.2.5 p.19,FB_3V3,R23(560k) -> +3V3; R24(100k) -> GND,yes,PASS,LOW,VFB=3.3*100/660=0.500V exact -> VOUT=3.3V; R2=100k equals the 'must not exceed 100k' limit (SS10.2.2.5) - nominal compliant
+U3,5,PG,Power-good open-drain output,O,TPS63802DLAR Table 7-1 p.4; SS9.3.x p.12,unconnected-(U3-PG-Pad5),nothing,yes,PASS,INFO,Datasheet: 'Leave the PG pin unconnected when not used' - explicit permission
+U3,6,VOUT,Power stage output,P,TPS63802DLAR Table 7-1 p.4; SS10.2.2.3 p.19,+3V3,whole 3.3V rail; nearest cap C38(0.1uF)@4.96mm; bulk C45(22uF)@15.9mm,yes,PASS,MEDIUM,Recommended single 22uF 'as close as possible to VOUT and PGND' (SS10.2.2.3) is 15.9mm away; local cap only 0.1uF. See F-PWR-03
+U3,7,L2,Inductor connection (output-side switch node),P,TPS63802DLAR Table 7-1 p.4,SW_L2,L1 pad2 (DFE201612E-R47M 0.47uH) ~14.2mm,yes,PASS,LOW,"Inductor value correct (0.37-0.57uH eff. range, SS8.3 p.5) but SW loop ~14-16mm; see F-PWR-06"
+U3,8,GND,Power ground,-,TPS63802DLAR Table 7-1 p.4,GND,GND pour,yes,PASS,INFO,
+U3,9,L1,Inductor connection (input-side switch node),P,TPS63802DLAR Table 7-1 p.4,SW_L1,L1 pad1 (DFE201612E-R47M 0.47uH) ~16.0mm,yes,PASS,LOW,Same inductor; DFE201612E is the exact series recommended in Table 10-2 p.19 (Isat 5.5A)
+U3,10,VIN,Supply voltage input,P,TPS63802DLAR Table 7-1 p.4; SS10.2.2.4 p.19,VBAT_SYS,"Q6-2 source / D33-1 cathode / L2-1; C46(2.2uF)@3.29mm, C44(10uF)@3.99mm",yes,PASS,INFO,Effective CI >=4uF requirement (SS8.3 p.5) met by 2.2+10uF; 10uF recommended part present ~4mm
+U3,11,ThermalPad,Exposed pad (VSON-HR); solder to ground plane,-,TPS63802DLAR pkg dwg DLA0010A 4223750; SS12.1 p.28,GND,F.Cu GND pour,yes,PASS,LOW,EP net=GND correct (0.84x2.4 matches pkg EP); no via directly under pad - nearest GND via 1.1mm outside pad edge
+R20,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R20,2,,,,,I2C_SCL,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+Q1,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+Q1,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+Q1,1,gate,,,TCA6408A ds (push-pull P-port); CSD13380F3T ds; R48 net GND,IR_GATE,,,PASS,INFO,pad1<-U19.7(TCA6408A push-pull)+R48 100k pulldown | 
+Q1,2,source,,,CSD13380F3T ds pin tbl 1=G 2=S 3=D,GND,,,PASS,INFO,pad2->GND | 
+Q1,3,drain,,,CSD13380F3T ds,IR_K,,,PASS,INFO,"pad3->D11.2 LED cathode | fp has 2 unnumbered F.Paste-only pads (stencil apertures 0.25x0.2 matching TI stencil rec) - not copper, not a defect"
+R63,1,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R63,2,,,,,CP_VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R68,1,,,,,IN1N_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R68,2,,,,,IN1N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D9,1,IO,,,same,DE_SURGE,,,PASS,INFO,pad1->DE_SURGE (J6.4 via R79; ->R42->DE0 U7.B6) | 
+D9,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+C41,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C41,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C65,1,,,,,RLDOUT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C65,2,,,,,RLDINV,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R51,1,,,,,VBUS_DET,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R51,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D3,1,IO,,,same,RLD_CLAMP,,,PASS,INFO,pad1->RLD_CLAMP (J5.3 via R34; ->R69->RLDOUT U8.30) | diode sits between two series R (R34 pad-side + R69 IC-side)
+D3,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+U1,1,GND,Ground,P,ESP32-S3-MINI-1 DS v1.7 §3.2 Table 3-1 p.11,GND,U1-gnd-pads+all GND,YES,PASS,none,
+U1,2,GND,Ground,P,ESP32-S3-MINI-1 DS v1.7 §3.2 Table 3-1 p.11,GND,,YES,PASS,none,
+U1,3,3V3,Power supply 3.0-3.6V,P,ESP32-S3-MINI-1 DS v1.7 §3.2 Table 3-1 p.11,+3V3_ESP,R94.2(0R->+3V3) C7(22u) C8(100n),YES,PASS,none,"module 3V3 tapped off +3V3 via 0R R94, decoupled"
+U1,4,IO0,"RTC_GPIO0, GPIO0; strapping pin (boot mode)",I/O/T,§3.2 Table 3-1 + §4 Table 4-1 (weak pull-up=1),ESP_IO0,R6.2(10k->+3V3) SW2(boot btn->GND) Q3.3(C2 oc) J8.6 TP10,YES,PASS,none,strapping OK: external 10k pull-up to +3V3 + auto-reset collector + button; default 1 = SPI boot
+U1,5,IO1,"RTC_GPIO1, GPIO1, TOUCH1, ADC1_CH0",I/O/T,§3.2 Table 3-1 p.11,FSR_ADC,R8.1 J3.2,YES,PASS,none,ADC input use appropriate for ADC1 pin
+U1,6,IO2,"RTC_GPIO2, GPIO2, TOUCH2, ADC1_CH1",I/O/T,§3.2 Table 3-1,ADS1292_DRDY,U8.22 R99.2(10k->+3V3) TP24,YES,PASS,none,
+U1,7,IO3,"RTC_GPIO3, GPIO3, TOUCH3, ADC1_CH2; strapping pin (JTAG source)",I/O/T,§3.2 Table 3-1 + §4 (JTAG signal source strapping),EXP_INT,U19.11(TCA6408A INT od) R53.2(10k->+3V3) TP26,YES,PASS,INFO,strapping GPIO3 held high at reset -> selects USB-JTAG source; consistent w/ native-USB debug intent; no boot-mode impact
+U1,8,IO4,"RTC_GPIO4, GPIO4, TOUCH4, ADC1_CH3",I/O/T,§3.2 Table 3-1,LSM6_INT1,U14.4,YES,PASS,none,
+U1,9,IO5,"RTC_GPIO5, GPIO5, TOUCH5, ADC1_CH4",I/O/T,§3.2 Table 3-1,TMP117_ALERT,U11.3 R65.2(10k->+3V3),YES,PASS,none,"open-drain alert, pull-up correct"
+U1,10,IO6,"RTC_GPIO6, GPIO6, TOUCH6, ADC1_CH5",I/O/T,§3.2 Table 3-1,GAUGE_ALRT,U17.5(MAX17048 ALRT od) R74.2(10k->+3V3),YES,PASS,none,
+U1,11,IO7,"RTC_GPIO7, GPIO7, TOUCH7, ADC1_CH6",I/O/T,§3.2 Table 3-1,CHG_PG,U2.6 R60.2(10k->+3V3),YES,PASS,none,
+U1,12,IO8,"RTC_GPIO8, GPIO8, TOUCH8, ADC1_CH7",I/O/T,§3.2 Table 3-1,I2C_SDA,3V3 I2C bus + U9.5(PCA9306),YES,PASS,none,3V3 I2C side; level-shifted to 1V8 devices via U9
+U1,13,IO9,"RTC_GPIO9, GPIO9, TOUCH9, ADC1_CH8",I/O/T,§3.2 Table 3-1,I2C_SCL,3V3 I2C bus + U9.6(PCA9306),YES,PASS,none,
+U1,14,IO10,"RTC_GPIO10, GPIO10, FSPICS0",I/O/T,§3.2 Table 3-1,CS_ADS1292,U8.18 R98.2(10k->+3V3) TP20,YES,PASS,none,
+U1,15,IO11,"RTC_GPIO11, GPIO11, FSPID",I/O/T,§3.2 Table 3-1,SPI_MOSI,U7.E7 U8.19 U18.5 U22.A4 U6.F2 TP18,YES,PASS,none,shared 3V3 SPI; U22 inputs 6V-tolerant
+U1,16,IO12,"RTC_GPIO12, GPIO12, FSPICLK",I/O/T,§3.2 Table 3-1,SPI_SCK,U7.F8 U8.20 U18.6 U22.A2 U6.F3 TP17,YES,PASS,none,
+U1,17,IO13,"RTC_GPIO13, GPIO13, FSPIQ",I/O/T,§3.2 Table 3-1,SPI_MISO,U26.B1-via-R106 + U7/U8/U18 MISO TP19,YES,PASS,none,1V8 MISO branch returns via U26 translator
+U1,18,IO14,"RTC_GPIO14, GPIO14, FSPIWP/FSPIDQS",I/O/T,§3.2 Table 3-1,AD5940_GPIO0,U7.F5,YES,PASS,none,
+U1,19,IO15,"RTC_GPIO15, GPIO15, U0RTS, XTAL_32K_P",I/O/T,§3.2 Table 3-1,CS_AD5940,U7.F7 R7.2(10k->+3V3) TP22,YES,PASS,none,32k xtal pin used as GPIO - acceptable if no 32k xtal fitted (none on BOM)
+U1,20,IO16,"RTC_GPIO16, GPIO16, U0CTS, XTAL_32K_N",I/O/T,§3.2 Table 3-1,CS_FLASH,U18.1(W25Q512) R52.2(10k->+3V3) TP23,YES,PASS,none,
+U1,21,IO17,"RTC_GPIO17, GPIO17, U1TXD, ADC2_CH6",I/O/T,§3.2 Table 3-1,STATUS_LED,R88(150R)->D25 LED->GND,YES,PASS,none,"~9mA LED drive, within GPIO limits"
+U1,22,IO18,"RTC_GPIO18, GPIO18, U1RXD, ADC2_CH7",I/O/T,§3.2 Table 3-1,CS_AFE4900,U6.E3 R116.2(10k->+3V3) TP21,YES,PASS,none,
+U1,23,IO19,"RTC_GPIO19, GPIO19, USB_D-",I/O/T,§3.2 Table 3-1 (USB_D- in bold=default),USB_DM_S3,R103.2(0R)->USB_DM->J1.A7/B7,YES,PASS,none,native USB D- correct pin (GPIO19=USB D-)
+U1,24,IO20,"RTC_GPIO20, GPIO20, USB_D+",I/O/T,§3.2 Table 3-1 (USB_D+ default),USB_DP_S3,R102.2(0R)->USB_DP->J1.A6/B6,YES,PASS,none,native USB D+ correct pin (GPIO20=USB D+)
+U1,25,IO21,"RTC_GPIO21, GPIO21",I/O/T,§3.2 Table 3-1,AFE4900_ADC_RDY,U6.F4 TP25,YES,PASS,none,
+U1,26,IO26,"SPICS1, GPIO26 - on -N4R2 connects embedded PSRAM CS, NOT available",I/O/T,§3.2 Table 3-1 footnote b p.12,unconnected-(U1-IO26-Pad26),none,YES,PASS,none,RESERVED PSRAM pin correctly unconnected per footnote b
+U1,27,IO47,"SPICLK_P_DIFF, GPIO47 (octal-PSRAM diff clk)",I/O/T,§3.2 Table 3-1 + note a (eFuse default fn),unconnected-(U1-IO47-Pad27),none,YES,PASS,none,"octal-only pin, correctly NC on quad-PSRAM N4R2"
+U1,28,IO33,"SPIIO4, GPIO33 (in-package flash/PSRAM bus)",I/O/T,§3.2 Table 3-1 note a,unconnected-(U1-IO33-Pad28),none,YES,PASS,none,internal SPI bus pin correctly NC
+U1,29,IO34,"SPIIO5, GPIO34 (in-package flash/PSRAM bus)",I/O/T,§3.2 Table 3-1 note a,unconnected-(U1-IO34-Pad29),none,YES,PASS,none,
+U1,30,IO48,"SPICLK_N_DIFF, GPIO48 (octal-PSRAM diff clk)",I/O/T,§3.2 Table 3-1 note a,unconnected-(U1-IO48-Pad30),none,YES,PASS,none,
+U1,31,IO35,"SPIIO6, GPIO35 (in-package flash/PSRAM bus)",I/O/T,§3.2 Table 3-1 note a,unconnected-(U1-IO35-Pad31),none,YES,PASS,none,
+U1,32,IO36,"SPIIO7, GPIO36 (in-package flash/PSRAM bus)",I/O/T,§3.2 Table 3-1 note a,unconnected-(U1-IO36-Pad32),none,YES,PASS,none,
+U1,33,IO37,"SPIDQS, GPIO37 (in-package flash/PSRAM bus)",I/O/T,§3.2 Table 3-1 note a,unconnected-(U1-IO37-Pad33),none,YES,PASS,none,all 8 reserved/PSRAM pins verified NC
+U1,34,IO38,"GPIO38, FSPIWP",I/O/T,§3.2 Table 3-1,CS_MAX86178,U22.A5 U26.2(OE) R117.2(10k->+3V3),YES,PASS,none,CS also gates translator OE - intentional
+U1,35,IO39,"MTCK, GPIO39, CLK_OUT3",I/O/T,§3.2 Table 3-1,MAX86178_INT,U22.B2(od) R113.2(10k->+3V3),YES,PASS,none,JTAG pin reused as GPIO OK; 1V8-dev INT pulled to 3V3 (pin 6V-tolerant)
+U1,36,IO40,"MTDO, GPIO40, CLK_OUT2",I/O/T,§3.2 Table 3-1,MIC_CLK,U25.3(IM69D130),YES,PASS,none,
+U1,37,IO41,"MTDI, GPIO41, CLK_OUT1",I/O/T,§3.2 Table 3-1,MIC_DAT,U25.1(IM69D130),YES,PASS,none,
+U1,38,IO42,"MTMS, GPIO42",I/O/T,§3.2 Table 3-1,SPARE_IN,R107/R108 100k both DNP,YES,PASS,COSMETIC,input floating (both bias resistors DNP) - recommend fw internal pull or fit
+U1,39,TXD0,"U0TXD, GPIO43, CLK_OUT1",I/O/T,§3.2 Table 3-1 p.12,ESP_TX,R72.1(10k)->U5.25 CP_RX; J8.3 TP11,YES,PASS,none,"UART0 TX -> bridge RX, direction correct"
+U1,40,RXD0,"U0RXD, GPIO44, CLK_OUT2",I/O/T,§3.2 Table 3-1 p.12,ESP_RX,R73.2(10k)<-U5.26 CP_TX; J8.4 TP12,YES,PASS,INFO,"no pull on ESP_RX; floats when CP2102N unpowered (battery op) - noise only, non-bricking"
+U1,41,IO45,GPIO45; strapping pin (VDD_SPI voltage),I/O/T,§3.2 Table 3-1 + §4 Table 4-1 (weak pull-down=0),unconnected-(U1-IO45-Pad41),none,YES,PASS,none,"floating -> internal pull-down -> VDD_SPI=3.3V, correct for N4R2 3.3V flash"
+U1,42,GND,Ground,P,§3.2 Table 3-1,GND,,YES,PASS,none,
+U1,43,GND,Ground,P,§3.2 Table 3-1,GND,,YES,PASS,none,
+U1,44,IO46,GPIO46; strapping pin (boot mode/ROM print),I/O/T,§3.2 Table 3-1 + §4 Table 4-1 (weak pull-down=0),unconnected-(U1-IO46-Pad44),none,YES,PASS,none,floating -> 0; with GPIO0=1 gives normal SPI boot
+U1,45,EN,"Chip enable, high=on. Do not leave floating",I,§3.2 Table 3-1 p.12 + HW design guidelines (EN RC),ESP_EN,R5.2(10k->+3V3) C64(1uF->GND) SW1(rst btn) Q3.6(C1 oc) U19.1(TCA6408A RESET-in) J8.5 TP9,YES,PASS,none,RC 10k*1uF=10ms delay; auto-reset collector; supervisor/expander reset input - all compatible
+U1,46,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,47,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,48,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,49,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,50,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,51,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,52,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,53,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,54,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,55,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,56,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,57,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,58,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,59,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,60,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,61,GND,"Ground (exposed pad, 3x3 grid)",P,§3.2 Table 3-1 + Fig 10-1 bottom view,GND,,YES,PASS,none,9x 1.2x1.2mm EP pads all GND
+U1,62,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,63,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,64,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U1,65,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C10,1,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C10,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R69,1,,,,,RLD_CLAMP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R69,2,,,,,RLDOUT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C47,1,,,,,TX_5V_RAW,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C47,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R105,1,,,,,USB_DM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R105,2,,,,,USB_DM_CP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U18,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U18,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U18,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U18,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U18,1,/CS,chip select in,chip select in,W25Q512JV RevB sec3.1 Fig1a p6; BOM R52,CS_FLASH,,,PASS,INFO,CS pullup R52 10k -> +3V3 (no spurious select during reset) | pad 0.65x0.5
+U18,2,DO(IO1),data out,data out,W25Q512JV RevB sec3.2 p6,MISO_FL,,,PASS,INFO,-> R92 0ohm series -> SPI_MISO -> U1-17 | pad 0.65x0.5
+U18,3,/WP(IO2),write protect in,write protect in,W25Q512JV RevB sec3.2 p6; fw w25q512.c p1,+3V3,,,PASS,INFO,/WP tied high = protection deasserted; firmware confirms std SPI use | pad 0.65x0.5
+U18,4,GND,ground,ground,W25Q512JV RevB sec3.2 p6,GND,,,PASS,INFO,gnd | pad 0.65x0.5
+U18,5,DI(IO0),data in,data in,W25Q512JV RevB sec3.2 p6,SPI_MOSI,,,PASS,INFO,-> U1-15 | pad 0.65x0.5
+U18,6,CLK,serial clock,serial clock,W25Q512JV RevB sec3.2 p6,SPI_SCK,,,PASS,INFO,-> U1-16 | pad 0.65x0.5
+U18,7,/HOLD or /RESET(IO3),hold in,hold in,W25Q512JV RevB sec3.2 p6 + sec4.4,+3V3,,,PASS,INFO,/HOLD tied high - REQUIRED (floating /HOLD corrupts transfers) | pad 0.65x0.5
+U18,8,VCC,supply,supply,W25Q512JV RevB p5 supply; pinmap caps,+3V3,,,UNVERIFIABLE,INFO,2.7-3.6V ok; nearest 100nF C78 ~9.7mm / C91 ~8.6mm - weak local bypass | pad 0.65x0.5
+U18,9,EP (bottom metal pad),not internally connected,not internally connected,W25Q512JV RevB sec9.1 p86 note,GND,,,PASS,INFO,DS: may be left floating or tied to GND -> GND ok; no vias under EP (nearest GND via 0.018mm outside EP edge); 4 unnumbered F.Paste pads = stencil splitting | pad 3.4x4.3
+R118,1,,,,,J13_INP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R118,2,,,,,MX_ECG_INP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R14,1,,,,,ADS1292_PWDN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R14,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R31,1,,,,,RESP_MODN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R31,2,,,,,ECG_N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R102,1,,,,,USB_DP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R102,2,,,,,USB_DP_S3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R12,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R12,2,,,,,IOVDD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C23,1,,,,,DVDD_REG,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C23,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R84,1,,,,,FP_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R84,2,,,,,BIOZ_FP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP14,1,,,,,I2C_SCL,,,PASS,INFO,test point; no-place per parity check
+R67,1,,,,,IN1P_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R67,2,,,,,IN1P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C26,1,,,,,AIN4_LPF0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C26,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U24,1,CLKOUT,push-pull clock out,push-pull clock out,RV-3028-C7 AppMan sec2.2 p9 + EEPROM 35h,unconnected-(U24-CLKOUT-Pad1),,,PASS,INFO,NC ok electrically; default CLKOE=1 drives 32.768kHz (waste nA); fw parks LOW via EEPROM FD=111 | pad 0.5x0.8
+U24,2,INT,open-drain int out,open-drain int out,AppMan sec2.2 p9; pinmap TP28,RTC_INT,,,PASS,INFO,requires pullup -> R112 10k +3V3; net goes to TP28 only (no MCU route - by design) | pad 0.5x0.8
+U24,3,SCL,I2C clock in,I2C clock in,AppMan sec2.2 p9,I2C_SCL,,,PASS,INFO,requires pullup -> shared R20 2.2k | pad 0.5x0.8
+U24,4,SDA,I2C data,I2C data,AppMan sec2.2 p9,I2C_SDA,,,PASS,INFO,requires pullup -> shared R19 2.2k | pad 0.5x0.8
+U24,5,VSS,ground,ground,RV-3028-C7 DS pin table p1,GND,,,PASS,INFO,gnd; metal lid internally tied to VSS | pad 0.5x0.8
+U24,6,VBACKUP,backup supply,backup supply,AppMan sec2.2 p9,RTC_VBK,,,PASS,INFO,AppMan: when backup not needed VBACKUP MUST be tied to VSS with 10k -> R115 10k to GND exactly per spec | pad 0.5x0.8
+U24,7,VDD,supply,supply,RV-3028-C7 DS elec char p1,+3V3,,,PASS,INFO,1.2-5.5V (I2C active) ok; C37 100nF ~1.8mm | pad 0.5x0.8
+U24,8,EVI,event input,event input,AppMan sec2.2 p9,GND,,,PASS,INFO,DS: must not float -> tied GND ok (no timestamp events by design) | pad 0.5x0.8
+C46,1,,,,,VBAT_SYS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C46,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R23,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R23,2,,,,,FB_3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R85,1,,,,,FN_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R85,2,,,,,FN_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C56,1,,,,,AFE_P_SER,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C56,2,,,,,AFE_INP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R64,1,,,,,CP_VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R64,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D24,1,IO,,,same,SN_ISO,,,PASS,INFO,pad1->SN_ISO (J7.4 via R83->SN_SURGE->R87->; ->C70->BIOZ_SN U7.A3) | 
+D24,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+R28,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R28,2,,,,,IN1N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R98,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R98,2,,,,,CS_ADS1292,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP4,1,,,,,+1V8,,,PASS,INFO,test point; no-place per parity check
+D33,1,cathode (symbol D_SCH_5819: pin1=K),,,sch symbol desc; generic 1N5819WS ds (unfetched - corpus doc WRONG see findings),VBAT_SYS,,,PASS,INFO,pad1->VBAT_SYS | 
+D33,2,anode (pin2=A),,,generic 1N5819WS ds (unfetched),VBUS,,,PASS,INFO,pad2->VBUS | marginal at burst loads ~1A; consider 2A part or ideal-diode if TX_5V+3V3 bursts stack
+TP12,1,,,,,ESP_RX,,,PASS,INFO,test point; no-place per parity check
+TP16,1,,,,,I2C_SCL_1V8,,,PASS,INFO,test point; no-place per parity check
+R115,1,,,,,RTC_VBK,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R115,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C69,1,,,,,SP_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C69,2,,,,,BIOZ_SP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D22,1,IO,,,same,FN_ISO,,,PASS,INFO,pad1->FN_ISO (J7.2 via R81->FN_SURGE->R85->; ->C68->BIOZ_FN U7.D2) | 
+D22,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+TP24,1,,,,,ADS1292_DRDY,,,PASS,INFO,test point; no-place per parity check
+TP10,1,,,,,ESP_IO0,,,PASS,INFO,test point; no-place per parity check
+D30,1,IO,,,"MX_ECG_INM={D30.1,R119.2} only",MX_ECG_INM,,,PASS,MEDIUM,pad1->MX_ECG_INM (J13.2 via R119; DEAD-END stub) | same as D29
+D30,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+C44,1,,,,,VBAT_SYS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C44,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U25,1,DATA,PDM data out,PDM data out,IM69D130 DS Table7 p12,MIC_DAT,,,PASS,INFO,-> U1-37 (GPIO41); single mic on line - no contention | pad 0.45x0.7
+U25,2,VDD,supply,supply,IM69D130 DS Table4 p7,+3V3,,,PASS,INFO,1.62-3.6V ok; C39 100nF ~2.9mm (DS wants close to VDD) | pad 0.45x0.7
+U25,3,CLOCK,PDM clock in,PDM clock in,IM69D130 DS Table4 p7; fw board_pins.h:106,MIC_CLK,,,PASS,MEDIUM,<- U1-36 (GPIO40); fw clock 2.048MHz sits in DS operating-mode band GAP (bands 0.4-0.95/1.05-1.9/2.1-2.65/2.9-3.3MHz); PDM iface accepts 0.4-3.3MHz but acoustic specs unguaranteed | pad 0.45x0.7
+U25,4,SELECT,L/R select in,L/R select in,IM69D130 DS Fig10 p10 + Infineon support note; fw vq_drv_mic.c:5,GND,,,PASS,MEDIUM,Infineon convention: SELECT=GND -> RIGHT slot; fw decodes LEFT slot - mismatch (mono capture still plausible via bus hold but off-strap) | pad 0.45x0.7
+U25,5,GND,ground,ground,IM69D130 DS Table7 p12,GND,,,PASS,INFO,gnd ring around acoustic port | pad custom 0.4x0.4 ring seg
+R87,1,,,,,SN_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R87,2,,,,,SN_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+FID1,1,,,,,unconnected-(FID1-FID-Pad1),,,PASS,INFO,mechanical/no-net pad; excluded from assembly per BOM parity (fab_mech.md)
+R97,1,,,,,+1V8_LDO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R97,2,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C79,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C79,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R109,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R109,2,,,,,NIR_AN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R44,1,,,,,AFE_P_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R44,2,,,,,AFE_P_SER,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R50,1,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R50,2,,,,,VBUS_DET,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C82,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C82,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C35,1,,,,,PGA2N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C35,2,,,,,PGA2P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C52,1,,,,,ECG_P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C52,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C48,1,,,,,IN1P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C48,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U15,A1,VIN,Supply voltage (battery),I,TPS61240 pin table p.3; SS7.3 VIN 2.3-5.5V p.4,VBAT_SYS,via power-path Q6/D33; C44(10uF)@2.26mm,yes,PASS,INFO,VIN 2.3-5.5V vs VBAT_SYS 3.0-4.7V OK; CIN >=2.2uF nominal met at 2.26mm
+U15,A2,GND,Power and IC ground,-,TPS61240 pin table p.3,GND,GND pour,yes,PASS,INFO,
+U15,B1,L,Boost/rectifying switch input - inductor to VIN,I,TPS61240 pin table p.3; SS10.2.2.2 p.13,TX_SW,L2 pad2 (DFE201612E-1R0M 1.0uH) ~7.9mm; L2 pad1 -> VBAT_SYS,yes,PASS,LOW,L=1.0uH nominal (0.4-1.5uH range SS7.3 p.4); inductor ~8mm from IC vs 'as close as possible' SS12.1 p.18
+U15,B2,VOUT,Output to load,O,TPS61240 pin table p.3; SS7.3 CO 1-20uF p.4,TX_5V_RAW,C47(4.7uF)@2.09mm; R96(0ohm)->TX_5V -> U16 SFH7072 LED anodes,yes,PASS,HIGH,4.7uF matches EC test condition; BUT guaranteed IOUT spec=200mA (EC p.5) / 'up to 250mA @3.2V input' (device table p.3) vs ~300mA LED chain. See F-PWR-02
+U15,C1,EN,"Enable, positive polarity; low=shutdown",I,"TPS61240 pin table p.3; EC VIH>=1.0V, VIL<=0.4V p.5",TX5_EN,U19-5 (TCA6408A output @3.3V); R25(100k)->GND pulldown,yes,PASS,INFO,3.3V drive >> VIH 1.0V; 100k pulldown holds defined off-state during expander boot
+U15,C2,FB,Feedback input - internal divider sense,I,TPS61240 pin table p.3; SS10.2.2.1 p.13,TX_5V_RAW,tied to VOUT node (B2),yes,PASS,INFO,Fixed 5.0V device: 'FB pin needs to be connected directly to the output' (SS10.2.2.1) - done
+R101,1,,,,,ADS_GPIO2,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R101,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C68,1,,,,,FN_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C68,2,,,,,BIOZ_FN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C60,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C60,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D26,1,IO,,,same,SWEAT_WE,,,PASS,INFO,pad1->SWEAT_WE (J11.1 via R120; J12.11 direct; U7.C5 direct) | diode directly on the J12-FPC-exposed net (good); J11 path via 51k
+D26,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+Q4,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+Q4,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+Q4,1,gate,,,AD5940 ds (E1=GPIO2; VOH spec; IOVDD via R12 from +3V3_ANA); R110 net GND,NIR730_GATE,,,PASS,INFO,pad1<-U7.E1(AD5940 GPIO2 push-pull IOVDD~3.3V)+R110 100k pulldown | 
+Q4,2,source,,,CSD13380F3T ds,GND,,,PASS,INFO,pad2->GND | 
+Q4,3,drain,,,CSD13380F3T ds,NIR_K,,,PASS,INFO,pad3->D12.2 LED cathode | 
+R19,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R19,2,,,,,I2C_SDA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C19,1,,,,,IOVDD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C19,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+Q3,1,E1,TR1 emitter (BC847BS),E,Diodes/Nexperia BC847BS DS pinning: 1=E1 2=B1 3=C2 4=E2 5=B2 6=C1,CP_RTS,U5.24 R71.1,YES,PASS,INFO,auto-reset: emitter referenced to RTS (cross-wired mutual-exclusion topology)
+Q3,2,B1,TR1 base,B,BC847BS pinning,Q3_B1,R70.2<-CP_DTR(10k),YES,PASS,none,DTR-driven base via 10k
+Q3,3,C2,TR2 collector,C,BC847BS pinning,ESP_IO0,U1.4 pull-up R6,YES,PASS,none,"pulls IO0 low when RTS=1,DTR=0"
+Q3,4,E2,TR2 emitter,E,BC847BS pinning,CP_DTR,U5.28 R70.1,YES,PASS,INFO,emitter referenced to DTR
+Q3,5,B2,TR2 base,B,BC847BS pinning,Q3_B2,R71.2<-CP_RTS(10k),YES,PASS,none,RTS-driven base via 10k
+Q3,6,C1,TR1 collector,C,BC847BS pinning,ESP_EN,U1.45 pull-up R5,YES,PASS,none,"pulls EN low when DTR=1,RTS=0 - esptool-compatible"
+TP18,1,,,,,SPI_MOSI,,,PASS,INFO,test point; no-place per parity check
+R45,1,,,,,RLDOUT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R45,2,,,,,AFE_INM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C59,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C59,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C18,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C18,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D6,1,IO,,,same,CE_ISO,,,PASS,INFO,pad1->CE_ISO (J6.1 EDA_CE_PAD via R76->CE_SURGE->C54 coupling) | behind 51k + AC cap C54
+D6,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+R94,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R94,2,,,,,+3V3_ESP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C89,1,,,,,TX_5V,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C89,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+FID2,1,,,,,unconnected-(FID2-FID-Pad1),,,PASS,INFO,mechanical/no-net pad; excluded from assembly per BOM parity (fab_mech.md)
+C15,1,,,,,AFE_BG,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C15,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R108,1,,,,,SPARE_IN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R108,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C16,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C16,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R73,1,,,,,CP_TX,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R73,2,,,,,ESP_RX,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R52,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R52,2,,,,,CS_FLASH,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C57,1,,,,,AFE_N_SER,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C57,2,,,,,AFE_INM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C87,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C87,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R3,1,,,,,CHG_ISET,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R3,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R86,1,,,,,SP_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R86,2,,,,,SP_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U20,1,SCL,,,,I2C_SCL,,,PASS,INFO,3V3 bus; pull-up R20 2.2k to +3V3 | SNOSD82D §5
+U20,2,GND,,,,GND,,,PASS,INFO,ground | SNOSD82D Table5-1
+U20,3,ALERT,,,,NC(unconnected-(U20-ALERT-Pad3)),,,PASS,INFO,ALERT unused - DS: 'can be left floating or connected to ground when not in use' - legal | SNOSD82D §8.2.1
+U20,4,ADD0,,,,+3V3,,,PASS,INFO,strap ADD0=V+ -> 7-bit 1001001x = 0x49 | SNOSD82D Table7-2
+U20,5,V+,,,,+3V3,,,PASS,INFO,supply 3.3V within 1.7-5.5V; decap C41 100nF @4.2mm | SNOSD82D §6.3
+U20,6,SDA,,,,I2C_SDA,,,PASS,INFO,3V3 bus; pull-up R19 2.2k to +3V3 | SNOSD82D §5
+U20,7,GND_2(EP),,,,GND,,,PASS,INFO,thermal pad no-paste (same footprint as U11) -> unsoldered per TI §10.1; GND net satisfies fallback | SNOSD82D §10.1
+TP2,1,,,,,VBAT,,,PASS,INFO,test point; no-place per parity check
+C70,1,,,,,SN_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C70,2,,,,,BIOZ_SN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP11,1,,,,,ESP_TX,,,PASS,INFO,test point; no-place per parity check
+TP17,1,,,,,SPI_SCK,,,PASS,INFO,test point; no-place per parity check
+C80,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C80,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C50,1,,,,,ECG_P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C50,2,,,,,IN1P_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R71,1,,,,,CP_RTS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R71,2,,,,,Q3_B2,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R27,1,,,,,IN1P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R27,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C40,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C40,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP19,1,,,,,SPI_MISO,,,PASS,INFO,test point; no-place per parity check
+D25,1,anode,,,KT-0603G ds (Vf 2.7-3.2@5mA; norm 2.9-3.4V),LED_A,,,PASS,MEDIUM,pad1->R88(150R)->STATUS_LED(U1.21) | status LED marginal: Vf max 3.4V exceeds rail; recommend R<=100R or different LED/rail
+D25,2,cathode,,,KT-0603G ds,GND,,,PASS,INFO,pad2->GND | 
+R96,1,,,,,TX_5V_RAW,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R96,2,,,,,TX_5V,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R93,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R93,2,,,,,VBAT_SYS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+FID3,1,,,,,unconnected-(FID3-FID-Pad1),,,PASS,INFO,mechanical/no-net pad; excluded from assembly per BOM parity (fab_mech.md)
+R5,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R5,2,,,,,ESP_EN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C83,1,,,,,MX_VREF,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C83,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C51,1,,,,,ECG_N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C51,2,,,,,IN1N_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R41,1,,,,,RE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R41,2,,,,,RE0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R62,1,,,,,VDD_CP2102,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R62,2,,,,,CP_RST,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R48,1,,,,,IR_GATE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R48,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C36,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C36,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R16,1,,,,,RLDREF,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R16,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R47,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R47,2,,,,,IR_AN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C77,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C77,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U4,1,IN,Input supply; use nominal >=1uF cap to GND as close as possible,I,TPS7A20 pin table p.4; SS5.3 CIN 1uF p.5,+3V3,U3-6 output rail; nearest cap C60(0.1uF)@5.28mm,yes,PASS,MEDIUM,No dedicated >=1uF within 5.3mm of IN - relies on upstream 3.3V bulk; placement guidance unmet. See F-PWR-04
+U4,2,GND,Common ground,-,TPS7A20 pin table p.4,GND,GND pour,yes,PASS,INFO,
+U4,3,EN,Enable; >VEN(HI) enables; internal 500k pulldown; VEN max 6V,I,TPS7A20 pin table p.4; SS5.3 VEN 0-6V p.5,+3V3,tied to IN rail (always-on),yes,PASS,INFO,EN=3.3V > VEN(HI); within 0-6V; internal pulldown makes tie-off optional but tying to IN is standard
+U4,4,N/C,No internal electrical connection,-,TPS7A20 pin table p.4,unconnected-(U4-NC-Pad4),nothing,yes,PASS,INFO,Explicit N/C pin - floating is correct handling
+U4,5,OUT,"Regulated output 1.8V; low-ESR cap to GND, >=1uF, close to pins",O,TPS7A20 pin table p.4; SS5.3 COUT 1-200uF p.5; nomenclature Table 8-1 p.33,+1V8_LDO,C6(1uF)@2.84mm; R97(0ohm)->+1V8 domain; C90(0.1uF)@2.7mm on +1V8,yes,PASS,INFO,TPS7A20'18'=1.8V fixed; 1uF output cap within 1-200uF window at 2.84mm - good
+TP7,1,,,,,GND,,,PASS,INFO,test point; no-place per parity check
+C37,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C37,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R114,1,,,,,TX_5V,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R114,2,,,,,LED_AN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D29,1,IO,,,"netlist: MX_ECG_INP={D29.1,R118.2} only; J13 DNP per BOM",MX_ECG_INP,,,PASS,MEDIUM,pad1->MX_ECG_INP (J13.1 via R118; DEAD-END stub - no IC pad on net) | wasted placement: clamps a vestigial stub; if mux-ECG feature intended the downstream net is missing entirely
+D29,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+R60,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R60,2,,,,,CHG_PG,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+SW1,1,,,,,ESP_EN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+SW1,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C54,1,,,,,CE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C54,2,,,,,CE_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U17,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U17,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U17,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+U17,1,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,2,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,3,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,4,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,5,,,,,GAUGE_ALRT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,6,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,7,,,,,I2C_SCL,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,8,,,,,I2C_SDA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U17,9,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C55,1,,,,,SE_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C55,2,,,,,SE0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,1,,,,,ESP_EN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,2,,,,,AFE4900_RESETZ,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,3,,,,,ADS1292_PWDN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,4,,,,,AD5940_RESET,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,5,,,,,TX5_EN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,6,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,7,,,,,IR_GATE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,8,,,,,CHG_STAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,9,,,,,VBUS_DET,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,10,,,,,CHG_DIS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,11,,,,,EXP_INT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,12,,,,,I2C_SCL,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,13,,,,,I2C_SDA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,14,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,15,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U19,16,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R72,1,,,,,ESP_TX,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R72,2,,,,,CP_RX,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C61,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C61,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R106,1,,,,,MISO_MX,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R106,2,,,,,SPI_MISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+FID5,1,,,,,unconnected-(FID5-FID-Pad1),,,PASS,INFO,mechanical/no-net pad; excluded from assembly per BOM parity (fab_mech.md)
+C84,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C84,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+L1,1,inductor terminal,,,DFE201612E ds; TPS63802 ds Table10-2 lists DFE201612E 0.47uH 5.5A as recommended,SW_L1,,,PASS,INFO,pad1->U3.9 (TPS63802 SW1/L1) | L=0.47uH+/-20% = 0.376-0.564uH within required 0.37-0.57uH; Isat 5.5A marginally below worst-case boost peak limit 5.75A (TI-recommended part)
+L1,2,inductor terminal,,,same,SW_L2,,,PASS,INFO,pad2->U3.7 (SW2/L2) | pads 0.55x1.6 @+-0.725 pitch 1.45mm on 2.0x1.6mm body - plausible
+R26,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R26,2,,,,,IN1P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D27,1,IO,,,same,SWEAT_RE,,,PASS,INFO,pad1->SWEAT_RE (J11.2 via R121; J12.12; U7.A2) | 
+D27,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+U21,1,IO1,ESD data line 1,I/O,ST USBLC6-2 DS (CD00050750) Fig.1 functional diagram,USB_DP,J1.A6/B6 R102.1 R104.1,YES,PASS,none,clamps connector-side D+; symmetric I/O channels
+U21,2,GND,Ground,G,Fig.1,GND,,YES,PASS,none,
+U21,3,IO2,ESD data line 2,I/O,Fig.1,USB_DM,J1.A7/B7 R103.1 R105.1,YES,PASS,none,
+U21,4,IO2,ESD data line 2,I/O,Fig.1,USB_DM,same net,YES,PASS,none,pins 3&4 both I/O2 - same net correct
+U21,5,VBUS,VBUS ESD clamp (VBR 6V typ),I/O,Fig.1 + Table 2 (VBR 6V@1mA),VBUS,J1 VBUS rail,YES,PASS,none,VBUS clamp present
+U21,6,IO1,ESD data line 1,I/O,Fig.1,USB_DP,same net,YES,PASS,none,pins 1&6 both I/O1 - same net correct
+R11,1,,,,,AD5940_RESET,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R11,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C81,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C81,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R117,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R117,2,,,,,CS_MAX86178,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R91,1,,,,,MISO_AD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R91,2,,,,,SPI_MISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C49,1,,,,,IN1N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C49,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R119,1,,,,,J13_INM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R119,2,,,,,MX_ECG_INM,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C86,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C86,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C4,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C4,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D5,1,IO,,,same,AFE_N_AC,,,PASS,INFO,pad1->AFE_N_AC (J5.5 via R36; ->R46->C57->AFE_INM U6.A1) | 
+D5,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+C13,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C13,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C53,1,,,,,ECG_N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C53,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C32,1,,,,,VCAP1,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C32,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R39,1,,,,,CE_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R39,2,,,,,CE0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R15,1,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R15,2,,,,,RLDREF,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R92,1,,,,,MISO_FL,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R92,2,,,,,SPI_MISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U13,1,GND,,,,GND,,,PASS,INFO,ground | BST-BME280-DS001-23 Table35 pin1 GND
+U13,2,CSB,,,,+3V3,,,PASS,INFO,CSB tied to VDDIO(+3V3) -> I2C mode (DS: 'direct connection between CSB and VDDIO is required'); NOT floating | BST-BME280-DS001-23 §6.1/Fig17
+U13,3,SDI,,,,I2C_SDA,,,PASS,INFO,3V3 bus SDA; pull-up R19 2.2k +3V3 | BST-BME280-DS001-23 Table35 SDI=SDA in I2C
+U13,4,SCK,,,,I2C_SCL,,,PASS,INFO,3V3 bus SCL; pull-up R20 2.2k +3V3 | BST-BME280-DS001-23 Table35 SCK=SCL
+U13,5,SDO,,,,GND,,,PASS,INFO,SDO=GND -> addr 1110110 = 0x76; NOT floating (DS: 'SDO pin cannot be left floating') | BST-BME280-DS001-23 §6.1 p.33
+U13,6,VDDIO,,,,+3V3,,,PASS,INFO,interface supply 1.2-3.6V; decap C40 @2.85mm | BST-BME280-DS001-23 §1 VDDIO range
+U13,7,GND,,,,GND,,,PASS,INFO,ground | BST-BME280-DS001-23 Table35
+U13,8,VDD,,,,+3V3,,,PASS,INFO,main supply 1.71-3.6V | BST-BME280-DS001-23 §1 VDD range
+D28,1,IO,,,same,SWEAT_CE,,,PASS,INFO,pad1->SWEAT_CE (J11.3 via R122; J12.13; U7.A1) | 
+D28,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+R65,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R65,2,,,,,TMP117_ALERT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R46,1,,,,,AFE_N_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R46,2,,,,,AFE_N_SER,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R49,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R49,2,,,,,CHG_STAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D21,1,IO,,,same,FP_ISO,,,PASS,INFO,pad1->FP_ISO (J7.1 BIOZ_FP_PAD via R80->FP_SURGE->C67 coupling; ->R84->BIOZ_FP U7.B3) | 
+D21,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+C33,1,,,,,VCAP2,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C33,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R10,1,,,,,AFE_CLK,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R10,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C3,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C3,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C1,1,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C1,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R78,1,,,,,EDA_RE_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R78,2,,,,,RE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C62,1,,,,,VDD_CP2102,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C62,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R25,1,,,,,TX5_EN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R25,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP6,1,,,,,VDD_CP2102,,,PASS,INFO,test point; no-place per parity check
+R99,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R99,2,,,,,ADS1292_DRDY,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R123,1,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R123,2,,,,,VBUS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D7,1,IO,,,same,SE_ISO,,,PASS,INFO,pad1->SE_ISO (J6.3 via R77->SE_SURGE->R40->; ->C55->SE0 U7.A6) | 
+D7,2,GND,,,same,GND,,,PASS,INFO,pad2->GND | 
+R6,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R6,2,,,,,ESP_IO0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R95,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R95,2,,,,,+3V3_ANA,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U9,1,GND,ground,gnd,SCPS113O sec5/9.2,GND,plane,yes,PASS,INFO,
+U9,2,VREF1,low-side ref 1.2-3.3V,supply,SCPS113O sec5/9.2,+1V8,1.8V LDO rail; NO dedicated local cap (nearest C90 100n @18.4mm per R7),yes,PASS,COSMETIC,uA-bias node - accepted; weakest decap on board
+U9,3,SCL1,low-voltage-side SCL,bidir,SCPS113O sec5/9.2,I2C_SCL_1V8,"U10.2,U12.4; R22 2.2k pull-up -> +1V8",yes,PASS,INFO,
+U9,4,SDA1,low-voltage-side SDA,bidir,SCPS113O sec5/9.2,I2C_SDA_1V8,"U10.8,U12.1; R21 2.2k pull-up -> +1V8",yes,PASS,INFO,
+U9,5,SDA2,high-voltage-side SDA,bidir,SCPS113O sec5/9.2,I2C_SDA,U1.12 + J9.2 + J12.2 + 3V3 peripherals; R19 2.2k pull-up -> +3V3,yes,PASS,INFO,pull-ups both sides per DS Fig9-1
+U9,6,SCL2,high-voltage-side SCL,bidir,SCPS113O sec5/9.2,I2C_SCL,U1.13 + J9.3 + J12.3; R20 2.2k pull-up -> +3V3,yes,PASS,INFO,
+U9,7,VREF2,high-side ref 1.8-5.5V >=VREF1,supply,SCPS113O sec5/9.2,VREF2,node w/ EN; pulled to +3V3 via R18 200k,yes,PASS,COSMETIC,textbook; DS 9.2.2.1 recommends 100pF filter cap on VREF2 - not fitted
+U9,8,EN,"enable, tie to VREF2",digital in,SCPS113O sec5/9.2,VREF2,same node as pin7 via R18 200k to +3V3,yes,PASS,INFO,EN=VREF2 via shared 200k = DS always-enabled Fig9-1
+Q6,1,gate,,,AO3401A ds (SOT-23: 1=G 2=S 3=D single-pad side=D); VBUS net members,VBUS,,,PASS,INFO,pad1->VBUS | 
+Q6,2,source,,,AO3401A ds,VBAT_SYS,,,PASS,INFO,pad2->VBAT_SYS | reversed-S variant of load-share: body diode blocks SYS->BAT backfeed when VBUS present; conducts BAT->SYS only
+Q6,3,drain,,,AO3401A ds,VBAT,,,PASS,INFO,pad3->VBAT | 
+R66,1,,,,,+1V8,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R66,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C6,1,,,,,+1V8_LDO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C6,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R107,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R107,2,,,,,SPARE_IN,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R42,1,,,,,DE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R42,2,,,,,DE0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R13,1,,,,,RCAL0,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R13,2,,,,,RCAL1,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP9,1,,,,,ESP_EN,,,PASS,INFO,test point; no-place per parity check
+R112,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R112,2,,,,,RTC_INT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R53,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R53,2,,,,,EXP_INT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+TP26,1,,,,,EXP_INT,,,PASS,INFO,test point; no-place per parity check
+TP3,1,,,,,+3V3,,,PASS,INFO,test point; no-place per parity check
+R40,1,,,,,SE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R40,2,,,,,SE_ISO,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R77,1,,,,,EDA_SE_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R77,2,,,,,SE_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C85,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+C85,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+H2,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+R33,1,,,,,ECG2_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R33,2,,,,,ECG_N,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R81,1,,,,,BIOZ_FN_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R81,2,,,,,FN_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J7,1,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_FP_PAD,R80 51k -> C67 15n -> FP_ISO(D21) -> R84 1k -> U7.B3 AIN1,yes,PASS,INFO,BioZ force+ (15n excitation-class cap)
+J7,2,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_FN_PAD,R81 51k -> R85 1k -> FN_ISO(D22) -> C68 470n -> U7.D2 AIN0,yes,PASS,INFO,BioZ force-
+J7,3,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_SP_PAD,R82 51k -> R86 1k -> SP_ISO(D23) -> C69 470n -> U7.B5 AIN3,yes,PASS,INFO,BioZ sense+
+J7,4,electrode/tail pad,connector pad,contact,design intent + netlist,BIOZ_SN_PAD,R83 51k -> R87 1k -> SN_ISO(D24) -> C70 470n -> U7.A3 AIN2,yes,PASS,INFO,BioZ sense-
+FID6,1,,,,,unconnected-(FID6-FID-Pad1),,,PASS,INFO,mechanical/no-net pad; excluded from assembly per BOM parity (fab_mech.md)
+R83,1,,,,,BIOZ_SN_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R83,2,,,,,SN_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J11,1,electrode/tail pad,connector pad,contact,design intent + netlist,J11_WE,"R120 51k -> SWEAT_WE -> U7.C5 AIN6 (+D26, J12.11)",yes,PASS,INFO,sweat working electrode
+J11,2,electrode/tail pad,connector pad,contact,design intent + netlist,J11_RE,"R121 51k -> SWEAT_RE -> U7.A2 AFE3 (+D27, J12.12)",yes,PASS,INFO,sweat reference
+J11,3,electrode/tail pad,connector pad,contact,design intent + netlist,J11_CE,"R122 51k -> SWEAT_CE -> U7.A1 AFE4 (+D28, J12.13)",yes,PASS,INFO,sweat counter
+J2,1,,,,,VBAT,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J2,2,,,,,GND,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J2,3,,,,,TS,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U16,1,PD1 (BB) cathode,,,SFH7072 ds pin table; AFE4900 ds pin fns,PD_INP,,,PASS,INFO,pad1->AFE4900 INP (U6.A2) | 
+U16,2,PD1 (BB) anode,,,SFH7072 ds; AFE4900 ds,PD_INM,,,PASS,INFO,pad2->AFE4900 INM (U6.A3) | 
+U16,3,PD2 (IR-cut) cathode,,,SFH7072 ds; AFE4900 ds,PD2_INP,,,PASS,INFO,pad3->AFE4900 INP2 (U6.B2) | 
+U16,4,IR LED anode,,,SFH7072 ds p.6; netlist U15.B2/C2 TX_5V_RAW,TX_5V,,,PASS,INFO,pad4->TX_5V rail | 
+U16,5,Green1 LED anode,,,SFH7072 ds p.5,TX_5V,,,PASS,INFO,pad5->TX_5V rail | 
+U16,6,Green1 LED cathode,,,SFH7072 ds p.4; AFE4900 ds,TX1,,,PASS,INFO,pad6->AFE4900 TX1 (U6.D4) | 
+U16,7,Red LED anode,,,SFH7072 ds p.6,TX_5V,,,PASS,INFO,pad7->TX_5V rail | 
+U16,8,Red LED cathode,,,SFH7072 ds; AFE4900 ds,TX3,,,PASS,INFO,pad8->AFE4900 TX3 (U6.E4) | 
+U16,9,IR LED cathode,,,SFH7072 ds; AFE4900 ds,TX4,,,PASS,INFO,pad9->AFE4900 TX4 (U6.C5) | 
+U16,10,PD2 (IR-cut) anode,,,SFH7072 ds; AFE4900 ds,PD2_INM,,,PASS,INFO,pad10->AFE4900 INM2 (U6.B3) | 
+U16,11,Green2 LED anode,,,SFH7072 ds,TX_5V,,,PASS,INFO,pad11->TX_5V rail | 
+U16,12,Green2 LED cathode,,,SFH7072 ds; AFE4900 ds,TX2,,,PASS,INFO,"pad12->AFE4900 TX2 (U6.E5) | 12 pads 0.9x1.0mm @1.2mm pitch 2 rows +-1.25mm; pin1 (PD1_C) corner marked by B.SilkS dot at (3.85,-1.95); exact datasheet pad-figure dims not text-extractable - geometrically consistent with 7.5x3.9mm pkg"
+U23,1,SDA,serial data,serial data,SHT4x DS V3 sec5.4 p14,I2C_SDA,,,PASS,INFO,pinout match (DS Table 5.4: 1=SDA) | pad 0.5x0.3
+U23,2,SCL,serial clock in,serial clock in,SHT4x DS V3 sec5.4 p14,I2C_SCL,,,PASS,INFO,pinout match (2=SCL) | pad 0.5x0.3
+U23,3,VDD,supply,supply,SHT4x DS V3 sec3 p7 + Table,+3V3,,,PASS,INFO,1.08-3.6V ok; C77 100nF ~1.6mm | pad 0.5x0.3
+U23,4,VSS,ground,ground,SHT4x DS V3 sec5.4 p14,GND,,,PASS,INFO,pinout match (4=VSS) | pad 0.5x0.3
+J13,1,Pads_1x02 pad,MX ECG electrode pad,contact,design intent/commit 31e72e61,J13_INP,R118 51k -> MX_ECG_INP -> D29 TVS -> DEAD END (no IC),no,FAIL,HIGH,pad lands on a net reaching only a TVS - leftover from MAX86178 (commit 31e72e61: ECG/BioZ dropped; D29/D30/R118/R119 left unused) -- fitted connector but zero signal path to any AFE: remove from docs or respin
+J13,2,Pads_1x02 pad,MX ECG electrode pad,contact,design intent/commit 31e72e61,J13_INM,R119 51k -> MX_ECG_INM -> D30 TVS -> DEAD END,no,FAIL,HIGH,same - dead pair -- fitted connector but zero signal path to any AFE: remove from docs or respin
+D11,1,anode,,,SFH4053 ds pin table/marking,IR_AN,,,PASS,INFO,pad1->R47(100R)->+3V3 | 
+D11,2,cathode,,,SFH4053 ds; CSD13380F3T ds,IR_K,,,PASS,INFO,pad2->Q1.3 drain (low-side switch) | 
+R35,1,,,,,AFE_P_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R35,2,,,,,AFE_P_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+D10,1,anode,,,NF2W757G ds; sch symbol desc,+3V3,,,PASS,INFO,pad1->+3V3 | Vf max bin 3.3V == rail: zero headroom at high LED_DRIVE; typ 2.9V@65mA OK for <=~20-40mA
+D10,2,cathode,,,AS7341-DLGM ds reg 0x74; footprint silk text,LDR,,,PASS,INFO,pad2->AS7341 LDR (U10.4) | no series R: AS7341 constant-current sink regulates; larger pad = cathode side per Nichia pkg
+U10,1,VDD,,,,+1V8,,,PASS,INFO,VDD rail +1V8 (via R97 0R from +1V8_LDO / U4 TPS7A2018 1.8V); DS range 1.7-2.0V | DS000504 §5 Fig6 VDD 1.7/1.8/2.0V
+U10,2,SCL,,,,I2C_SCL_1V8,,,PASS,INFO,1V8 I2C bus via U9 PCA9306; pull-up R22 2.2k to +1V8 (same rail as VDD - correct side); VIH min 1.26V < 1.8V | DS000504 §3.2 + §5 VIH=1.26V; netlist R22->+1V8
+U10,3,GND,,,,GND,,,PASS,INFO,ground | DS000504 §3.2 pin3 GND
+U10,4,LDR,,,,LDR,,,PASS,MEDIUM,LED current sink to D10 cathode (NF2W757G-F1 anode=+3V3); abs-max 3.6V OK; but at fw LED_DRIVE=44 (~92mA) Vf~3.0-3.5V -> V_LDR~=0-0.3V -> sink saturation risk / dim flash | DS000504 §4 + §10 reg0x74; NF2W757G Vf 2.9typ/3.3max rank; as7341.c LED_CODE=44
+U10,5,PGND,,,,GND,,,PASS,INFO,ground | DS000504 §3.2 pin5 PGND
+U10,6,GPIO,,,,NC(unconnected-(U10-GPIO-Pad6)),,,PASS,COSMETIC,GPIO is DI; left floating - safe only because GPIO_IN_EN default=0 disables input; recommend GND tie for hygiene | DS000504 §10 reg 0xBE GPIO_IN_EN default 0 ('accepts non-floating input' only when set)
+U10,7,INT,,,,NC(unconnected-(U10-INT-Pad7)),,,PASS,INFO,open-drain output unused - floating OK (needs 1V8 pull-up only if used) | DS000504 §3.2 'Open drain output. Connect pull up resistor to 1.8V'
+U10,8,SDA,,,,I2C_SDA_1V8,,,PASS,INFO,1V8 bus; pull-up R21 2.2k to +1V8 (correct side); VIH min 1.26V < 1.8V; VIL max 0.54V | DS000504 §5 VIH=1.26V/VIL=0.54V; netlist R21->+1V8
+R82,1,,,,,BIOZ_SP_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R82,2,,,,,SP_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J10,1,electrode/tail pad,connector pad,contact,design intent + netlist,LED1_K,U22.D1 LED1_DRV -> ext LED1 cathode,yes,PASS,INFO,optical tail LED1
+J10,2,electrode/tail pad,connector pad,contact,design intent + netlist,LED2_K,U22.C1 LED2_DRV,yes,PASS,INFO,LED2
+J10,3,electrode/tail pad,connector pad,contact,design intent + netlist,LED3_K,U22.B1 LED3_DRV,yes,PASS,INFO,LED3
+J10,4,electrode/tail pad,connector pad,contact,design intent + netlist,LED_AN,R114 0R -> TX_5V,yes,PASS,INFO,common anode to 5V boost = DS anode-to-VLED
+J10,5,electrode/tail pad,connector pad,contact,design intent + netlist,PD_K,U22.D5 PD1_IN,yes,PASS,INFO,photodiode cathode
+J10,6,electrode/tail pad,connector pad,contact,design intent + netlist,PD_A,U22.C5 PD_GND,yes,PASS,INFO,photodiode anode
+J6,1,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_CE_PAD,R76 51k -> C54 15n -> CE_ISO(D6) -> R39 1k -> U7.A7 CE0,yes,PASS,INFO,"EDA counter electrode, AC-coupled"
+J6,2,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_RE_PAD,R78 51k -> RE_SURGE(D8) -> R41 1k -> U7.A8 RE0,yes,PASS,INFO,"EDA reference electrode, DC"
+J6,3,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_SE_PAD,R77 51k -> R40 1k -> SE_ISO(D7) -> C55 470n -> U7.A6 SE0,yes,PASS,INFO,"EDA sense electrode, AC-coupled"
+J6,4,electrode/tail pad,connector pad,contact,design intent + netlist,EDA_DE_PAD,R79 51k -> DE_SURGE(D9) -> R42 1k -> U7.B6 DE0,yes,PASS,INFO,"EDA DE electrode, DC"
+R122,1,,,,,J11_CE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R122,2,,,,,SWEAT_CE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J9,1,electrode/tail pad,connector pad,contact,design intent + netlist,+3V3,3.3V rail to tail,yes,PASS,INFO,power
+J9,2,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SDA,3.3V-domain I2C SDA (U9 side2),yes,PASS,INFO,SDA 3.3V domain - a 1V8 peripheral on this tail is mis-domained
+J9,3,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SCL,3.3V-domain I2C SCL,yes,PASS,INFO,SCL 3.3V domain
+J9,4,electrode/tail pad,connector pad,contact,design intent + netlist,GND,ground,yes,PASS,INFO,ground
+U12,1,SDA,,,,I2C_SDA_1V8,,,UNVERIFIABLE,INFO,1V8 bus; pull-up R21 2.2k to +1V8; -DCB-100 = 1V8-I2C variant: VI2C 1.65-1.95V |  VIH=0.7*VI2C=1.26V<1.8V OK
+U12,2,VDD,,,,+3V3,,,PASS,INFO,VDD 3.0-3.6V; decap C61 100nF @0.54mm <10mm required | DOC3901090632 Table6 VDD 3-3.6V; Fig27a 'C1 <10mm'
+U12,3,GND,,,,GND,,,PASS,INFO,ground | DOC3901090632 Table5 pin3 GND
+U12,4,SCL,,,,I2C_SCL_1V8,,,PASS,INFO,1V8 bus; pull-up R22 2.2k to +1V8 (correct side) | DOC3901090632 Table5/6
+U12,5,ADDR,,,,GND,,,PASS,INFO,ADDR=GND -> slave 0x3A (0x3B if ADDR=VDD); VADDR_LO<=0.5V satisfied | DOC3901090632 Fig11 + Table6 SA=3A
+U12,6,EP,,,,GND,,,UNVERIFIABLE,INFO,die pad 2.5x2.1mm Cu tied GND (EP dims D2=2.5/E2=2.1) BUT DS Fig26 recommends 8x0.2mm tented/plugged PTH vias + 0.25x0.25 windowpane stencil - footprint has FULL-area paste |  NO vias
+R121,1,,,,,J11_RE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R121,2,,,,,SWEAT_RE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+H1,,EP/MECH,exposed/mechanical pad,,,,,,PASS,INFO,mechanical/no-net pad (unnumbered); excluded per BOM parity
+R36,1,,,,,AFE_N_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R36,2,,,,,AFE_N_AC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J3,1,,,,,+3V3,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J3,2,,,,,FSR_ADC,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R120,1,,,,,J11_WE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R120,2,,,,,SWEAT_WE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U22,A1,VLED,LED supply 3.1-5.5V (absmax 6V); 10uF to PGND,supply,MAX86140/41 DS p11-12,TX_5V,U15 boost 5.0V; C89 10u + C14 1u,yes,PASS,INFO,
+U22,A2,SCLK,SPI clock (absmax 6V),digital in,MAX86140/41 DS p11-12,SPI_SCK,U1.16 direct 3.3V drive,yes,PASS,INFO,6V-tolerant - legal even unpowered
+U22,A3,SDO,"SPI data out, swings 0..VDD_DIG(1.8V)",digital out,MAX86140/41 DS p11-12,MX_SDO_1V8,U26 SN74AXC2T245 A->B shift -> SPI_MISO -> U1.17,yes,PASS,INFO,1.8V output correctly level-shifted
+U22,A4,SDI,SPI data in (absmax 6V),digital in,MAX86140/41 DS p11-12,SPI_MOSI,U1.15 direct,yes,PASS,INFO,
+U22,A5,CSB,SPI chip select (absmax 6V),digital in,MAX86140/41 DS p11-12,CS_MAX86178,R117 10k pull-up -> +3V3 (also U26.OE); U1.34,yes,PASS,INFO,net name stale (MAX86178) - cosmetic
+U22,B1,LED3_DRV,LED3 cathode sink (to VLED+0.3),analog out,MAX86140/41 DS p11-12,LED3_K,J10.3 / J12.7 -> ext LED3 cathode,yes,PASS,INFO,
+U22,B2,INT,open-drain interrupt act-low; absmax 6V,digital out,MAX86140/41 DS p11-12,MAX86178_INT,R113 10k pull-up -> +3V3; U1.35,yes,PASS,INFO,
+U22,B3,GPIO1,GPIO; NC allowed,dio,MAX86140/41 DS p11-12,NC,unconnected,yes,PASS,INFO,
+U22,B4,GPIO2,GPIO; NC allowed,dio,MAX86140/41 DS p11-12,NC,unconnected,yes,PASS,INFO,
+U22,B5,VREF,internal ref decap; DS: 1uF to GND_ANA,analog,MAX86140/41 DS p11-12,MX_VREF,C83 1u @8.9mm,yes,PASS,COSMETIC,"DS wants it close; accepted (dense cluster, R7 documented)"
+U22,C1,LED2_DRV,LED2 cathode sink,analog out,MAX86140/41 DS p11-12,LED2_K,J10.2 / J12.6,yes,PASS,INFO,
+U22,C2,VDD_DIG,digital supply 1.7-2.0V,supply,MAX86140/41 DS p11-12,+1V8,1.8V LDO; C87 10u@8.1 + C88/C86 100n@8.7,yes,PASS,INFO,
+U22,C3,GND_DIG,digital return,gnd,MAX86140/41 DS p11-12,GND,plane,yes,PASS,INFO,
+U22,C4,GND_ANA,analog return,gnd,MAX86140/41 DS p11-12,GND,plane,yes,PASS,INFO,
+U22,C5,PD_GND,photodiode anode,analog,MAX86140/41 DS p11-12,PD_A,J10.6 / J12.10 -> ext PD anode,yes,PASS,INFO,PD_GND pin = PD anode return per DS
+U22,D1,LED1_DRV,LED1 cathode sink,analog out,MAX86140/41 DS p11-12,LED1_K,J10.1 / J12.5,yes,PASS,INFO,
+U22,D2,VDD_ANA,analog supply 1.7-2.0V; 0.1u close + 10u,supply,MAX86140/41 DS p11-12,+1V8,same rail as C2,yes,PASS,INFO,
+U22,D3,PGND,LED power return,gnd,MAX86140/41 DS p11-12,GND,plane,yes,PASS,INFO,
+U22,D4,PD2_IN,PD2 cathode input; DS: tie to PD_GND when unused,analog in,MAX86140/41 DS p11-12,NC,unconnected,no,FAIL,MEDIUM,explicit DS directive ignored - unused PD2_IN should tie to PD_GND(PD_A); benign (ch2 unused) but non-compliant
+U22,D5,PD1_IN,PD1 cathode input,analog in,MAX86140/41 DS p11-12,PD_K,J10.5 / J12.9 -> ext PD cathode,yes,PASS,INFO,
+R34,1,,,,,RLD_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R34,2,,,,,RLD_CLAMP,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+J12,1,electrode/tail pad,connector pad,contact,design intent + netlist,+3V3,FH12-14S FPC pin 1,yes,PASS,INFO,power to remote tail
+J12,2,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SDA,FH12-14S FPC pin 2,yes,PASS,INFO,3V3 I2C
+J12,3,electrode/tail pad,connector pad,contact,design intent + netlist,I2C_SCL,FH12-14S FPC pin 3,yes,PASS,INFO,3V3 I2C
+J12,4,electrode/tail pad,connector pad,contact,design intent + netlist,GND,FH12-14S FPC pin 4,yes,PASS,INFO,ground
+J12,5,electrode/tail pad,connector pad,contact,design intent + netlist,LED1_K,FH12-14S FPC pin 5,yes,PASS,INFO,U22.D1
+J12,6,electrode/tail pad,connector pad,contact,design intent + netlist,LED2_K,FH12-14S FPC pin 6,yes,PASS,INFO,U22.C1
+J12,7,electrode/tail pad,connector pad,contact,design intent + netlist,LED3_K,FH12-14S FPC pin 7,yes,PASS,INFO,U22.B1
+J12,8,electrode/tail pad,connector pad,contact,design intent + netlist,LED_AN,FH12-14S FPC pin 8,yes,PASS,INFO,R114->TX_5V
+J12,9,electrode/tail pad,connector pad,contact,design intent + netlist,PD_K,FH12-14S FPC pin 9,yes,PASS,INFO,U22.D5 PD1_IN
+J12,10,electrode/tail pad,connector pad,contact,design intent + netlist,PD_A,FH12-14S FPC pin 10,yes,PASS,INFO,U22.C5 PD_GND
+J12,11,electrode/tail pad,connector pad,contact,design intent + netlist,SWEAT_WE,FH12-14S FPC pin 11,yes,FAIL,MEDIUM,"U7.C5 AIN6 direct (taps IC side of J11 R120 - no 51k on this branch) -- J12 taps IC-side of the 51k series resistors: sweat electrodes via J12 reach U7 with only TVS protection, no series R (fine if J11/J12 are mutually exclusive)"
+J12,12,electrode/tail pad,connector pad,contact,design intent + netlist,SWEAT_RE,FH12-14S FPC pin 12,yes,FAIL,MEDIUM,"U7.A2 AFE3 direct -- J12 taps IC-side of the 51k series resistors: sweat electrodes via J12 reach U7 with only TVS protection, no series R (fine if J11/J12 are mutually exclusive)"
+J12,13,electrode/tail pad,connector pad,contact,design intent + netlist,SWEAT_CE,FH12-14S FPC pin 13,yes,FAIL,MEDIUM,"U7.A1 AFE4 direct -- J12 taps IC-side of the 51k series resistors: sweat electrodes via J12 reach U7 with only TVS protection, no series R (fine if J11/J12 are mutually exclusive)"
+J12,14,electrode/tail pad,connector pad,contact,design intent + netlist,unconnected-(J12-Pin_14-Pad14),FH12-14S FPC pin 14,yes,PASS,INFO,NC
+J12,MP,electrode/tail pad,connector pad,contact,design intent + netlist,unconnected-(J12-PadMP),FH12-14S FPC pin MP,yes,PASS,INFO,mounting pad NC
+J12,MP,electrode/tail pad,connector pad,contact,design intent + netlist,unconnected-(J12-PadMP),FH12-14S FPC pin MP,yes,PASS,INFO,mounting pad NC
+FID4,1,,,,,unconnected-(FID4-FID-Pad1),,,PASS,INFO,mechanical/no-net pad; excluded from assembly per BOM parity (fab_mech.md)
+J5,1,electrode/tail pad,connector pad,contact,design intent + netlist,ECG1_PAD,R32 51k(2512) -> ECG_P -> U8.6 IN2P; D1 TVS + C52 2.2n at IC node,yes,PASS,INFO,ECG+ electrode to ADS1292R ch2
+J5,2,electrode/tail pad,connector pad,contact,design intent + netlist,ECG2_PAD,R33 51k(2512) -> ECG_N -> U8.5 IN2N; D2 TVS + C53,yes,PASS,INFO,ECG- electrode
+J5,3,electrode/tail pad,connector pad,contact,design intent + netlist,RLD_PAD,R34 51k(2512) -> RLD_CLAMP(D3) -> R69 10k -> U8.30 RLDOUT,yes,PASS,INFO,RLD electrode driven by ADS1292R RLD amp
+J5,4,electrode/tail pad,connector pad,contact,design intent + netlist,AFE_P_PAD,R35 51k(2512) -> AFE_P_AC(D4) -> R44 100k -> C56 -> U6.B1 INP_ECG,yes,PASS,INFO,"2nd ECG pair for AFE4900 (AC-coupled, RLD-biased)"
+J5,5,electrode/tail pad,connector pad,contact,design intent + netlist,AFE_N_PAD,R36 51k(2512) -> AFE_N_AC(D5) -> R46 100k -> C57 -> U6.A1 INM_ECG,yes,PASS,INFO,
+R32,1,,,,,ECG1_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R32,2,,,,,ECG_P,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R80,1,,,,,BIOZ_FP_PAD,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+R80,2,,,,,FP_SURGE,,,UNVERIFIABLE,INFO,"passive pad; value verified at BOM level, circuit role per findings_*.md — no per-pad datasheet"
+U11,1,SCL,,,,I2C_SCL,,,PASS,INFO,3V3 bus; pull-up R20 2.2k to +3V3 (correct side); VIH=0.7*V+=2.31V < 3.3V | SNOSD82D §5 + §6 VIH 0.7*(V+)
+U11,2,GND,,,,GND,,,PASS,INFO,ground | SNOSD82D Table5-1
+U11,3,ALERT,,,,TMP117_ALERT,,,PASS,INFO,open-drain alert to U1(GPIO via pin9) w/ R65 10k pull-up +3V3; DS recommends 5k 'can be lower or higher' - OK | SNOSD82D §8.2.1 pullup req; netlist R65
+U11,4,ADD0,,,,GND,,,PASS,INFO,strap ADD0=GND -> 7-bit 1001000x = 0x48 | SNOSD82D Table7-2
+U11,5,V+,,,,+3V3,,,PASS,INFO,supply 3.3V within 1.7-5.5V; decap C41 100nF @4.2mm | SNOSD82D §6.3 V+ 1.7-5.5V
+U11,6,SDA,,,,I2C_SDA,,,PASS,INFO,3V3 bus; pull-up R19 2.2k to +3V3 | SNOSD82D §5
+U11,7,GND_2(EP),,,,GND,,,UNVERIFIABLE,INFO,thermal pad: net=GND |  footprint Cu+Mask NO paste -> unsoldered per TI §10.1 'do not solder for best accuracy'; if it wets
+D12,1,anode (assumed),,,XL0603NRC730 web datasheet (unfetched),NIR_AN,,,PASS,MEDIUM,pad1->R109(100R)->+3V3 | consigned part; verify vendor cathode mark vs pad2; footprint B.SilkS dot sits on pad1(anode) - opposite of common 0603 cathode-mark convention
+D12,2,cathode (assumed),,,same,NIR_K,,,PASS,MEDIUM,pad2->Q4.3 drain | same polarity-risk note
+U6,A1,INM_ECG,ECG channel input (negative),analog in,SBAS857 sec5 PinFunctions,AFE_INM,J5.5 via R36 51k->AFE_N_AC(D5 TVS)->R46 100k->AFE_N_SER->C57 100n; R45 5.11M bias to RLDOUT(U8.30),yes,PASS,INFO,AC-coupled electrode input; DC bias via 5.11M to ADS1292R RLDOUT (shared-RLD design)
+U6,A2,INP,PD1 cathode input,analog in,SBAS857 sec5 PinFunctions,PD_INP,U16.1 (SFH7072 PD1 cathode),yes,PASS,INFO,cathode->INP per DS and SFH7072 pin1
+U6,A3,INM,PD1 anode input,analog in,SBAS857 sec5 PinFunctions,PD_INM,U16.2 (PD1 anode),yes,PASS,INFO,
+U6,A4,I2C_SPI_SEL,interface select 0=I2C 1=SPI; levels 0..RX_SUP,digital in,SBAS857 sec5 PinFunctions,+3V3_ANA,tied high = SPI mode,yes,PASS,INFO,Levels referenced to RX_SUP=3.3V; tie to RX_SUP legal
+U6,A5,INM3,PD3 anode (unused),analog in,SBAS857 sec5 PinFunctions,NC,unconnected,n/a,PASS,INFO,3rd PD channel unused; NC allowed
+U6,B1,INP_ECG,ECG channel input (positive),analog in,SBAS857 sec5 PinFunctions,AFE_INP,J5.4 via R35 51k->AFE_P_AC(D4)->R44 100k->C56 100n; R43 5.11M to RLDOUT,yes,PASS,INFO,same topology as A1
+U6,B2,INP2,PD2 cathode input,analog in,SBAS857 sec5 PinFunctions,PD2_INP,U16.3,yes,PASS,INFO,
+U6,B3,INM2,PD2 anode input,analog in,SBAS857 sec5 PinFunctions,PD2_INM,U16.10,yes,PASS,INFO,
+U6,B4,CONTROL1,LDO ctrl: 0=LDO on (RX>=2.0V) 1=bypass (RX 1.8-1.9V),digital in,SBAS857 sec5 PinFunctions,GND,tied low,yes,PASS,INFO,RX_SUP=3.3V requires CONTROL1=0 - correct
+U6,B5,INP3,PD3 cathode (unused),analog in,SBAS857 sec5 PinFunctions,NC,unconnected,n/a,PASS,INFO,
+U6,C1,RX_SUP,receiver supply 2.0-3.6V (LDO on) <=TX_SUP; 1uF decap,supply,SBAS857 sec5 PinFunctions,+3V3_ANA,rail; local C79 100n @3.1mm; nearest 1uF C43 @37mm,yes,FAIL,MEDIUM,DS asks 1uF local decap; board has 100n local + 4x1u elsewhere on rail (R6 documented/accepted)
+U6,C2,RLD_OUT,RLD common-mode bias out; 100pF to GND if used (typ 0.9V),analog out,SBAS857 sec5 PinFunctions,NC,unconnected,yes,FAIL,INFO,AFE RLD unused - ECG inputs biased from U8 RLDOUT instead; intentional
+U6,C3,DNC,do-not-connect (leave floating),n/a,SBAS857 sec5 PinFunctions,NC,unconnected,yes,PASS,INFO,DS DNC honored
+U6,C4,IO_SUP,digital I/O supply 1.7V..RX_SUP,supply,SBAS857 sec5 PinFunctions,+3V3_ANA,rail (same as RX_SUP - DS max allowed),yes,PASS,INFO,IO_SUP=RX_SUP at boundary - legal
+U6,C5,TX4,LED4 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX4,U16.9 LED4 cathode (IR),yes,PASS,INFO,common-anode topology
+U6,D1,RX_GND,receiver ground,gnd,SBAS857 sec5 PinFunctions,GND,plane,yes,PASS,INFO,
+U6,D2,BG,bandgap out; optional 0.1uF decap,analog out,SBAS857 sec5 PinFunctions,AFE_BG,C15 100n @1.5mm,yes,PASS,INFO,optional cap fitted
+U6,D3,PROG_OUT1,programmable interrupt out (0..IO_SUP),digital out,SBAS857 sec5 PinFunctions,NC,unconnected,yes,PASS,INFO,output NC acceptable
+U6,D4,TX1,LED1 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX1,U16.6 LED1 cathode (G1),yes,PASS,INFO,
+U6,D5,TX_GND,transmitter ground,gnd,SBAS857 sec5 PinFunctions,GND,plane,yes,PASS,INFO,
+U6,E1,RESETZ,reset/PWDN: 25-50us low=reset >200us=PWDN; 0..IO_SUP; do not float,digital in,SBAS857 sec5 PinFunctions,AFE4900_RESETZ,R9 10k pull-down + U19(TCA6408) drive,yes,PASS,INFO,held in PWDN until expander drives - satisfies no-float
+U6,E2,SDOUT,SPI-mode serial data out,digital out,SBAS857 sec5 PinFunctions,MISO_AFE,R90 0R -> SPI_MISO -> U1.17,yes,PASS,INFO,
+U6,E3,SEN,SPI chip-select in SPI mode,digital in,SBAS857 sec5 PinFunctions,CS_AFE4900,R116 10k pull-up -> +3V3_ANA; U1.22,yes,PASS,INFO,idle-high deassert at boot
+U6,E4,TX3,LED3 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX3,U16.8 LED3 cathode (R),yes,PASS,INFO,
+U6,E5,TX2,LED2 current-sink output,analog out,SBAS857 sec5 PinFunctions,TX2,U16.12 LED2 cathode (G2),yes,PASS,INFO,
+U6,F1,CLK,ext clock in or tie GND = internal osc,digital in,SBAS857 sec5 PinFunctions,AFE_CLK,R10 1k -> GND,yes,PASS,INFO,internal-osc mode; 1k allows rework
+U6,F2,I2C_DAT,SPI-mode: SDI,digital in,SBAS857 sec5 PinFunctions,SPI_MOSI,U1.15,yes,PASS,INFO,
+U6,F3,I2C_CLK,SPI-mode: SCLK,digital in,SBAS857 sec5 PinFunctions,SPI_SCK,U1.16,yes,PASS,INFO,
+U6,F4,ADC_RDY,programmable interrupt out (0..IO_SUP),digital out,SBAS857 sec5 PinFunctions,AFE4900_ADC_RDY,U1.25 + TP25,yes,PASS,INFO,
+U6,F5,TX_SUP,transmitter supply 3.0-5.25V,supply,SBAS857 sec5 PinFunctions,TX_5V,U15 boost 5.0V; C89 10u @5.1mm + C14 1u,yes,PASS,MEDIUM,TX_5V gated by TX5_EN(U19); DS requires RX_SUP<=TX_SUP -> FW must hold RESETZ low (PWDN) when boost off else RX_SUP(3.3)>TX_SUP(0) violates recommended operating window (abs-max safe; FW-managed)

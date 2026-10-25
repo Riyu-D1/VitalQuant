@@ -4,7 +4,7 @@
 
 ## V22 revision (2026-10-21) — supersedes module/placement detail below
 
-The shipped board (`hardware/pcb/kicad/vitalq_v2.kicad_pcb`, fab package
+The shipped board (`hardware/pcb/kicad/vitalquant_v2.kicad_pcb`, fab package
 `hardware/pcb/fab/`) is **V22**, which carries these changes on top of the
 hw_v2 spec below. Where this section and the body disagree, **V22 wins**.
 
@@ -21,7 +21,7 @@ hw_v2 spec below. Where this section and the body disagree, **V22 wins**.
    J1 area (east column documented single-via-constrained).
 5. Verification: `docs/VERIFY_REPORT.md` + `docs/V22_PROGRESS.md` —
    DRC/ERC 0, gerber continuity clean, BOM/CPL exported
-   (`fab/assembly/`, `fab/VitalQ_v2_fixv22_fabrication.zip`).
+   (`fab/assembly/`, `fab/VitalQuant_v2_fixv22_fabrication.zip`).
 6. Ordering caveat: U12 MLX90632 is powered at 3.3 V on the 1.8 V I²C
    bus — the ordered suffix must be the **1.8 V I²C variant** (see
    `docs/CONNECTION_AUDIT_V22.md`).
@@ -213,8 +213,8 @@ needed. 291 parts. One rigid 4-layer board
   the FIFO timestamp contract + per-device clock anchors in
   `firmware/esp32/core/sensor_driver.h`, registered new channels
   (`ppg.satellite`, `skin.rh`, `skin.temp`, `skin.temp_distal`, `core.temp_est`,
-  `tissue.sto2`, `sweat.lactate` RESEARCH-GRADE) in `src/vitalq/core/channels.py`,
-  and extended `src/vitalq/core/config.py` (new sensor kinds/models + `cs`,
+  `tissue.sto2`, `sweat.lactate` RESEARCH-GRADE) in `src/vitalquant/core/channels.py`,
+  and extended `src/vitalquant/core/config.py` (new sensor kinds/models + `cs`,
   `int_pin`, `dnp`, `research_grade` fields) so the profile validates.
 - 2026-09-29 (schematic agent): `design.py` — U1 swapped to
   ESP32-S3-MINI-1U-N4R2 (all nets remapped per the interface table),

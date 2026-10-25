@@ -1,0 +1,1973 @@
+                                                                                                                                   PCA9306
+                                                                                       SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+         PCA9306 Dual Bidirectional I2C Bus and SMBus Voltage-Level Translator
+
+1 Features                                                               2 Applications
+•   2-Bit bidirectional translator for SDA and SCL lines                 •      I2C, SMBus, PMBus, MDIO, UART, low-speed
+    in mixed-mode I2C Applications                                              SDIO, GPIO, and other two-signal interfaces
+•   I2C and SMBus compatible                                             •      Servers
+•   Less than 1.5-ns maximum propagation delay to                        •      Routers (telecom switching equipment)
+    accommodate standard-mode and fast-mode I2C                          •      Personal Computers
+    devices and multiple controllers                                     •      Industrial Automation
+•   Allows voltage-level translation between
+                                                                         3 Description
+    – 1.2-V VREF1 and 1.8-V, 2.5-V, 3.3-V,
+        or 5-V VREF2                                                     The PCA9306 device is a dual bidirectional I2C and
+    – 1.8-V VREF1 and 2.5-V, 3.3-V, or 5-V VREF2                         SMBus voltage-level translator with an enable (EN)
+    – 2.5-V VREF1 and 3.3-V or 5-V VREF2                                 input, and is operational from 1.2-V to 3.3-V VREF1
+    – 3.3-V VREF1 and 5-V VREF2                                          and 1.8-V to 5.5-V VREF2.
+•   Provides bidirectional voltage translation with no                   The PCA9306 device allows bidirectional voltage
+    direction pin                                                        translations between 1.2 V and 5 V, without the use
+•   Low 3.5-Ω ON-state resistance between input and                      of a direction pin. The low ON-state resistance (RON)
+    output ports provides less signal distortion                         of the switch allows connections to be made with
+•   Open-drain I2C I/O ports (SCL1, SDA1, SCL2, and                      minimal propagation delay. When EN is high, the
+    SDA2)                                                                translator switch is ON, and the SCL1 and SDA1
+•   5-V Tolerant I2C I/O ports to support mixed-mode                     I/O are connected to the SCL2 and SDA2 I/O,
+    signal operation                                                     respectively, allowing bidirectional data flow between
+•   High-impedance SCL1, SDA1, SCL2, and SDA2                            ports. When EN is low, the translator switch is off, and
+    pins for EN = low                                                    a high-impedance state exists between ports.
+•   Lockup-free operation for isolation when EN = low
+•   Flow-through pinout for ease of printed-circuit-                     In addition to voltage translation, the PCA9306 device
+    board trace routing                                                  can be used to isolate a 400-kHz bus from a 100-kHz
+•   Latch-up performance exceeds 100 mA Per JESD                         bus by controlling the EN pin to disconnect the slower
+    78, class II                                                         bus during fast-mode communication.
+•   ESD protection exceeds JESD 22                                                            Package Information
+    – 2000-V Human-body model (A114-A)                                         PART NUMBER          PACKAGE(1)         PACKAGE SIZE(2)
+    – 1000-V Charged-device model (C101)
+                                                                                                    SSOP (8)           2.95 mm x 4 mm
+                                                                                                    VSSOP (8)          2.3 mm x 3.1 mm
+                                                                         PCA9306
+                                                                                                    X2SON (8)          1.4 mm x 1 mm
+                                                                                                    DSBGA (8)          1.98 mm x 0.98 mm
+
+                                                                         (1)     For all available packages, see the orderable addendum at
+                                                                                 the end of the datasheet.
+                                                                         (2)     The package size (length × width) is a nominal value and
+                                                                                 includes pins, where applicable.
+
+                                                                                         200 NŸ
+
+
+
+
+                                                      VREF1                    VREF2
+                                                                                  EN
+
+                                                               PCA9306
+                               I2C or SMBus          SCL1                       SCL2
+                                  controller                                                      I2C target devices
+                                 (processor)         SDA1                       SDA2
+                                                                GND
+
+
+
+
+                                               Simplified Application Diagram
+
+     An IMPORTANT NOTICE at the end of this data sheet addresses availability, warranty, changes, use in safety-critical applications,
+     intellectual property matters and other important disclaimers. PRODUCTION DATA.
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                                                 www.ti.com
+
+
+                                                                        Table of Contents
+1 Features............................................................................1   7 Parameter Measurement Information............................ 9
+2 Applications..................................................................... 1     8 Detailed Description......................................................10
+3 Description.......................................................................1       8.1 Overview................................................................... 10
+4 Revision History.............................................................. 2          8.2 Functional Block Diagram......................................... 16
+5 Pin Configuration and Functions...................................4                       8.3 Feature Description...................................................16
+6 Specifications.................................................................. 5        8.4 Device Functional Modes..........................................16
+  6.1 Absolute Maximum Ratings........................................ 5                  9 Application and Implementation.................................. 17
+  6.2 ESD Ratings............................................................... 5          9.1 Application Information............................................. 17
+  6.3 Recommended Operating Conditions.........................5                            9.2 Typical Application.................................................... 17
+  6.4 Thermal Information....................................................6            10 Power Supply Recommendations..............................21
+  6.5 Electrical Characteristics.............................................6            11 Layout........................................................................... 22
+  6.6 Switching Characteristics AC Performance                                              11.1 Layout Guidelines................................................... 22
+    (Translating Down) (EN = 3.3 V)................................... 7                    11.2 Layout Example...................................................... 22
+  6.7 Switching Characteristics AC Performance                                            12 Device and Documentation Support..........................23
+    (Translating Down) (EN = 2.5 V)................................... 7                    12.1 Receiving Notification of Documentation Updates..23
+  6.8 Switching Characteristics AC Performance                                              12.2 Support Resources................................................. 23
+    (Translating Up) (EN = 3.3 V)........................................7                  12.3 Trademarks............................................................. 23
+  6.9 Switching Characteristics AC Performance                                              12.4 Electrostatic Discharge Caution..............................23
+    (Translating Up) (EN = 2.5 V)........................................7                  12.5 Glossary..................................................................23
+  6.10 Typical Characteristics.............................................. 8
+
+
+
+4 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+Changes from Revision N (October 2021) to Revision O (September 2023)                                                        Page
+• Changed Device Information table to the Package Information table ............................................................... 1
+• Changed the Thermal Information table values for the DQE package............................................................... 6
+
+Changes from Revision M (April 2019) to Revision N (October 2021)                                                                                            Page
+• Globally changed instances of legacy terminology to controller and target where I2C is mentioned.................1
+• Changed the Thermal Information table values for the DCT and DCU packages.............................................. 6
+• Changed the MIN and MAX values of VIK in the Electrical Characteristics table............................................... 6
+• Changed tPHL to show the package values in the Switching Characteristics AC Performance (Translating
+  Down) (EN = 3.3 V) table....................................................................................................................................7
+• Changed tPHL to show the package values in the Switching Characteristics AC Performance (Translating
+  Down) (EN = 2.5 V) table....................................................................................................................................7
+• Changed tPHL to show the package values in the Switching Characteristics AC Performance (Translating Up)
+  (EN = 3.3 V) table............................................................................................................................................... 7
+• Changed tPHL to show the package values in the Switching Characteristics AC Performance (Translating Up)
+  (EN = 2.5 V) table............................................................................................................................................... 7
+
+Changes from Revision L (April 2016) to Revision M (April 2019)                                                                                   Page
+• Changed the DQE package family From: VSSON to X2SON............................................................................ 4
+• Added new section to Overview ...................................................................................................................... 10
+• Changed the labels in Figure 9-4. The red curve is > 2 V, the black curve is ≤ 2 V. ........................................20
+
+Changes from Revision K (October 2014) to Revision L (April 2016)                                                                                     Page
+• Changed "ON-State Connection " to "ON-state Resistance"..............................................................................1
+• Deleted machine model ESD rating .................................................................................................................. 1
+• Added "bus" following "100-kHz" in the last sentence of the Description section.............................................. 1
+• Changed body-size dimensions in the Device Information table .......................................................................1
+• Replaced pinout diagrams.................................................................................................................................. 4
+• Added I/O column to the Pin Functions table .................................................................................................... 4
+
+2       Submit Document Feedback                                                                                          Copyright © 2023 Texas Instruments Incorporated
+
+                                                                     Product Folder Links: PCA9306
+                                                                                                                                                              PCA9306
+www.ti.com                                                                                              SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+•    Deleted RVH package from Pin Configuration and Functions section .............................................................. 4
+•    Moved Tstg from Handling Ratings to Absolute Maximum Ratings ....................................................................5
+•    Added a note following the Electrical Characteristics table................................................................................ 6
+•    Added Figure 7-1 to the Parameter Measurement Information section..............................................................9
+•    Changed Figure 7-2 ...........................................................................................................................................9
+•    Changed "repeater" to "level shifter" in second paragraph of the Overview section ....................................... 10
+•    Deleted the last row of the Design Requirements table. ..................................................................................18
+•    Corrected equation from fknee= 0.5 / RT (10%–80%) to fknee= 0.5 / RT (10%–90%)........................................ 19
+
+Changes from Revision J (October 2010) to Revision K (December 2012)                                                                                               Page
+• Added Pin Configuration and Functions section, Handling Rating table, Feature Description section, Device
+  Functional Modes, Application and Implementation section, Power Supply Recommendations section, Layout
+  section, Device and Documentation Support section, and Mechanical, Packaging, and Orderable Information
+  section ............................................................................................................................................................... 1
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                                 Submit Document Feedback                  3
+
+                                                                  Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                           www.ti.com
+
+
+5 Pin Configuration and Functions
+
+
+                                                                                      GND      1                                       8     EN
+             GND              1                     8               EN
+                                                                                  V            2                                       7     V
+                                                                                      REF1                                                       REF2
+         V                    2                     7               V
+             REF1                                                       REF2          SCL1     3                                       6     SCL2
+
+             SCL1             3                     6               SCL2           SDA1        4                                       5     SDA2
+
+
+           SDA1               4                     5               SDA2
+                                                                                 Figure 5-2. DCU Package 8-Pin VSSOP (Top View)
+
+      Figure 5-1. DCT Package 8-Pin SSOP (Top View)
+                                                                                                             1              2
+
+
+
+
+                                                                                                   A     GND                EN
+                    GND             1          8              EN
+
+
+               V                    2          7              V
+                   REF1                                           REF2
+                                                                                                   B     V          !   V          !
+                                                                                                             REF1           REF2
+                   SCL1             3          6              SCL2
+
+
+                SDA1                4          5              SDA2
+                                                                                                   C     SCL1           SCL2
+
+
+
+
+     Figure 5-3. DQE Package 8-Pin X2SON (Top View)                                                D     SDA1           SDA2
+
+
+
+
+                                                                                 Figure 5-4. YZT Package 8-Pin DSBGA (Top View)
+
+                                                              Table 5-1. Pin Functions
+                      PIN
+                              NO.
+                                              I/O                                             DESCRIPTION
+     NAME             DCT,
+                      DCU,              YZT
+                      DQE
+    EN                    8             A2     I        Switch enable input
+    GND                   1             A1    —         Ground, 0 V
+    SCL1                  3             C1    I/O       Serial clock, low-voltage side
+    SCL2                  6             C2    I/O       Serial clock, high-voltage side
+    SDA1                  4             D1    I/O       Serial data, low-voltage side
+    SDA2                  5             D2    I/O       Serial data, high-voltage side
+    VREF1                 2             B1     I        Low-voltage-side reference supply voltage for SCL1 and SDA1
+    VREF2                 7             B2     I        High-voltage-side reference supply voltage for SCL2 and SDA2
+
+
+
+
+4          Submit Document Feedback                                                                    Copyright © 2023 Texas Instruments Incorporated
+
+                                                              Product Folder Links: PCA9306
+                                                                                                                                             PCA9306
+www.ti.com                                                                                SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+6 Specifications
+6.1 Absolute Maximum Ratings
+over operating ambient temperature range (unless otherwise noted) see (1)
+                                                                                                                          MIN      MAX        UNIT
+ VREF1 DC reference voltage range                                                                                         –0.5           7     V
+ VREF2 DC reference bias voltage range                                                                                    –0.5           7     V
+ VI         Input voltage range(2)                                                                                        –0.5           7     V
+ VI/O       Input/output voltage range(2)                                                                                 –0.5           7     V
+            Continuous channel current                                                                                              128        mA
+ IIK        Input clamp current                              VI < 0                                                                 –50        mA
+ Tj(max) Maximum junction temperature                                                                                              125         °C
+ Tstg       Storage temperature range                                                                                    –65       150         °C
+
+(1)      Operation outside the Absolute Maximum Ratings may cause permanent device damage. Absolute maximum ratings do not imply
+         functional operation of the device at these or any other conditions beyond those listed under Recommended Operating Conditions.
+         If briefly operating outside the Recommended Operating Conditions but within the Absolute Maximum Ratings, the device may not
+         sustain damage, but it may not be fully functional. Operating the device in this manner may affect device reliability, functionality,
+         performance, and shorten the device lifetime.
+(2)      The input and input/output negative voltage ratings may be exceeded if the input and output current ratings are observed.
+
+
+6.2 ESD Ratings
+                                                                                                                          VALUE              UNIT
+                                            Human body model (HBM), per ANSI/ESDA/JEDEC JS-001, all pins(1)               ±2000
+ V(ESD)         Electrostatic discharge     Charged device model (CDM), per ANSI/ESDA/JEDEC JS-0011, all                                      V
+                                                                                                                          ±1000
+                                            pins(2)
+
+(1)      JEDEC document JEP155 states that 500-V HBM allows safe manufacturing with a standard ESD control process.
+(2)      JEDEC document JEP157 states that 250-V CDM allows safe manufacturing with a standard ESD control process.
+
+
+6.3 Recommended Operating Conditions
+                                                                                                                           MIN     MAX        UNIT
+ VI/O              Input/output voltage                                                SCL1, SDA1, SCL2, SDA2                  0     5.5          V
+ VREF1 (1)         Reference voltage                                                                                           0     5.5          V
+ VREF2    (1)      Reference voltage                                                                                           0     5.5          V
+ EN                Enable input voltage                                                                                        0     5.5          V
+ IPASS             Pass switch current                                                                                               64        mA
+ TA                Operating ambient temperature                                                                           –40       85        °C
+
+(1)      To support translation, VREF1 supports 1.2 V to VREF2 - 0.6 V. VREF2 must be between VREF1 + 0.6 V to 5.5 V. See Section 9.2 for more
+         information.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                Submit Document Feedback               5
+
+                                                          Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                      www.ti.com
+
+
+6.4 Thermal Information
+                                                                                               PCA9306
+                          THERMAL METRIC(1)                                DCT         DCU           DQE              YZT             UNIT
+                                                                          8 PINS       8 PINS        8 PINS          8 PINS
+    RθJA       Junction-to-ambient thermal resistance                     254.1        275.5         299.3           125.5            °C/W
+    RθJC(top) Junction-to-case (top) thermal resistance                   148.6        127.1         166.9             1              °C/W
+    RθJB       Junction-to-board thermal resistance                       168.8        186.9         188.30           62.7            °C/W
+    ψJT        Junction-to-top characterization parameter                  70.1         65.7          18.0            3.4             °C/W
+    ψJB        Junction-to-board characterization parameter               167.4        185.9         187.4            62.7            °C/W
+
+(1)        For more information about traditional and new thermal metrics, see the Semiconductor and IC Package Thermal Metrics application
+           report.
+
+
+6.5 Electrical Characteristics
+over recommended operating ambient temperature range (unless otherwise noted)
+                     PARAMETER                                         TEST CONDITIONS                        MIN      TYP(1)      MAX     UNIT
+    VIK        Input clamp voltage                    II = –18 mA,        EN = 0 V                            -1.2                    0      V
+    IIH        Input leakage current                  VI = 5 V,           EN = 0 V                                                    5      μA
+    Ci (EN)    Input capacitance                      VI = 3 V or 0                                                          11              pF
+    Cio(off)   Off capacitance         SCLn, SDAn     VO = 3 V or 0,      EN = 0 V                                            4       6      pF
+    Cio(on)    On capacitance          SCLn, SDAn     VO = 3 V or 0,      EN = 3 V                                         10.5    12.5      pF
+                                                                                        EN = 4.5 V                           3.5    5.5
+                                                      VI = 0              IO = 64 mA    EN = 3 V                             4.7      7
+                                                                                        EN = 2.3 V                           6.3    9.5
+    RON (2)    On-state resistance     SCLn, SDAn     VI = 0              IO = 15 mA    EN = 1.5 V                         25.5      32      Ω
+                                                                                        EN = 4.5 V               1            6      15
+                                                      VI = 2.4 V(3)       IO = 15 mA
+                                                                                        EN = 3 V                20           60     140
+                                                      VI = 1.7 V(3)       IO = 15 mA    EN = 2.3 V              20           60     140
+
+(1)        All typical values are at TA = 25°C.
+(2)        Measured by the voltage drop between the SCL1 and SCL2, or SDA1 and SDA2 terminals, at the indicated current through the switch.
+           Minimum ON-state resistance is determined by the lowest voltage of the two terminals.
+(3)        Measured in current sink configuration only (See Figure 7-1)
+
+
+
+
+6          Submit Document Feedback                                                                  Copyright © 2023 Texas Instruments Incorporated
+
+                                                            Product Folder Links: PCA9306
+                                                                                                                               PCA9306
+www.ti.com                                                                             SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+
+6.6 Switching Characteristics AC Performance (Translating Down) (EN = 3.3 V)
+over recommended operating ambient temperature range, EN = 3.3 V, VIH = 3.3 V, VIL = 0, VM = 1.15 V (unless otherwise
+noted) (see Figure 7-1).
+                                 FROM                   TO                                 CL = 50 pF    CL = 30 pF   CL = 15 pF
+      PARAMETER(1)                                                           Package                                                UNIT
+                                (INPUT)              (OUTPUT)                               MIN MAX      MIN MAX      MIN MAX
+           tPLH                                                                               0    0.8      0   0.6      0    0.3
+                             SCL2 or SDA2          SCL1 or SDA1             YZT, DQE                                          0.5    ns
+           tPHL                                                                               0    1.2      0     1      0
+                                                                            DCU, DCT                                         0.75
+
+(1)     Translating down: the high-voltage side driving toward the low-voltage side
+
+
+6.7 Switching Characteristics AC Performance (Translating Down) (EN = 2.5 V)
+over recommended operating ambient temperature range, EN = 2.5 V, VIH = 3.3 V, VIL = 0, VM = 0.75 V (unless otherwise
+noted) (see Figure 7-1).
+                                 FROM                   TO                                 CL = 50 pF    CL = 30 pF   CL = 15 pF
+      PARAMETER(1)                                                           Package                                                UNIT
+                                (INPUT)              (OUTPUT)                               MIN MAX      MIN MAX      MIN MAX
+           tPLH                                                                               0      1      0   0.7      0    0.4
+                             SCL2 or SDA2          SCL1 or SDA1             YZT, DQE                                          0.6    ns
+           tPHL                                                                               0    1.3      0     1      0
+                                                                            DCT, DCU                                         0.75
+
+(1)     Translating down: the high-voltage side driving toward the low-voltage side
+
+
+6.8 Switching Characteristics AC Performance (Translating Up) (EN = 3.3 V)
+over recommended operating ambient temperature range, EN = 3.3 V, VIH = 2.3 V, VIL = 0, VT = 3.3 V, VM = 1.15 V, RL = 300
+Ω (unless otherwise noted) (see Figure 7-1).
+                                 FROM                   TO                                 CL = 50 pF    CL = 30 pF   CL = 15 pF
+      PARAMETER(1)                                                          Packages                                                UNIT
+                                (INPUT)              (OUTPUT)                               MIN MAX      MIN MAX      MIN MAX
+           tPLH                                                                               0    0.9      0   0.6      0    0.4
+                             SCL1 or SDA1          SCL2 or SDA2             YZT, DQE               1.4          1.1           0.7    ns
+           tPHL                                                                               0             0            0
+                                                                            DCU, DCT               1.7          1.4           1.0
+
+(1)     Translating up: the low-voltage side driving toward the high-voltage side
+
+
+6.9 Switching Characteristics AC Performance (Translating Up) (EN = 2.5 V)
+over recommended operating ambient temperature range, EN = 2.5 V, VIH = 2.3 V, VIL = 0, VT = 3.3 V, VM = 0.75 V, RL = 300
+Ω (unless otherwise noted) (see Figure 7-1).
+                                 FROM                   TO                                 CL = 50 pF    CL = 30 pF   CL = 15 pF
+      PARAMETER(1)                                                          Packages                                                UNIT
+                                (INPUT)              (OUTPUT)                               MIN MAX      MIN MAX      MIN MAX
+           tPLH                                                                               0      1      0   0.6      0    0.4
+                             SCL1 or SDA1          SCL2 or SDA2             YZT, DQE               1.3          1.3           0.8    ns
+           tPHL                                                                               0             0            0
+                                                                            DCT, DCU               2.1          1.7           1.3
+
+(1)     Translating up: the low-voltage side driving toward the high-voltage side
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                          Submit Document Feedback          7
+
+                                                         Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                                                                 www.ti.com
+
+6.10 Typical Characteristics
+              300                                                                                                     100
+                                                                                                                                    25qC (Room Temp.)
+                                                                                                                       90           85qC
+              250                                                                                                                   -40qC
+                                                                                                                       80
+                                                                                                                       70
+              200
+                                                                                                                       60
+    RON (:)
+
+
+
+
+                                                                                                            RON (:)
+              150                                                                                                      50
+                                                                                                                       40
+              100
+                                                                                                                       30
+
+                                                                          25qC (Room Temp.)                            20
+               50
+                                                                          85qC                                         10
+                                                                          -40qC
+                0                                                                                                       0
+                    0   0.5    1      1.5    2     2.5      3                  3.5      4     4.5                           0      0.5    1     1.5    2     2.5      3   3.5   4     4.5
+                                         VSDA1 or VSCL1 (V)                                    D001
+                                                                                                                                                   VSDA1 or VSCL1 (V)                  D001
+
+                        VEN = 1.5 V              II = 15 mA                                                                       VEN = 4.5 V              II = 15 mA
+     Figure 6-1. On-Resistance (RON) vs Input Voltage (VSDA1 or                                              Figure 6-2. On-Resistance (RON) vs Input Voltage (VSDA1 or
+                              VSCL1)                                                                                                  VSCL1)
+                                                                     0
+
+
+                                                                     -2
+                                                   Bandwidth (dB)
+
+
+
+
+                                                                     -4
+
+
+                                                                     -6
+
+
+                                                                     -8
+
+
+                                                                    -10
+                                                                    100x103           1x106             10x106                  100x106         1x109
+                                                                                                    Frequency (Hz)                                D001
+
+                                                                                            VEN = 2.5 V                                   VBIAS = GND
+                                                                           Figure 6-3. Typical Bandwidth of PCA9306
+
+
+
+
+8             Submit Document Feedback                                                                                                          Copyright © 2023 Texas Instruments Incorporated
+
+                                                                                     Product Folder Links: PCA9306
+                                                                                                                                             PCA9306
+www.ti.com                                                                                   SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+7 Parameter Measurement Information
+
+                                   VEN                                                                               VEN
+
+
+                                                         IO
+                                                         Source
+                                                         Current
+                               VI + IO*RON                                                                      VI - IO*RON                    Sink
+      VI                                                                                VI                                              IO    Current
+
+
+
+      a) Current Source Configuration                                                        b) Current Sink Configuration
+                  Figure 7-1. Current Source and Current Sink Configurations for RON Measurements
+
+                                                                               USAGE        SWITCH
+                                       VT                                  Translating up     S1
+                                                                           Translating down   S2
+                                             RL
+
+                                  S1
+                                                                                                                                      VIH
+From Output                                       Open
+ under Test                                  S2                                       VM                        VM
+                                                                          Input
+                                                                                                                                      VIL
+                                 CL                                                               tPLH                        tPHL
+                                 (see Note A)                                                                                        VOH
+                                                                                                 VM                         VM
+                     Load Circuit                                         Output
+                                                                                                                                     VOL
+
+           NOTES: A. CL includes probe and jig capacitance
+                  B. All input pulses are supplied by generators having the following characteristics: WZZ G 10 MHz, ZO = 50 Q , tr G 2 ns, tf G 2 ns.
+                  C. The outputs are measured one at a time, with one transition per measurement.
+
+                                                    Figure 7-2. Load Circuit for Outputs
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                  Submit Document Feedback            9
+
+                                                              Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                  www.ti.com
+
+
+8 Detailed Description
+8.1 Overview
+The PCA9306 device is a dual bidirectional I2C and SMBus voltage-level translator with an enable (EN) input
+and operates without use of a direction pin. The voltage supply range for VREF1 is 1.2 V to 3.3 V and the supply
+range for VREF2 is 1.8 V to 5.5 V.
+The PCA9306 device can also be used to run two buses, one at 400-kHz operating frequency and the other at
+100-kHz operating frequency. If the two buses are operating at different frequencies, the 100-kHz bus must be
+disconnected by using the EN pin when the 400-kHz operation of the main bus is required. If the controller is
+running at 400 kHz, the maximum system operating frequency may be less than 400 kHz because of the delays
+added by the level shifter.
+In I2C applications, the bus capacitance limit of 400 pF restricts the number of devices and bus length. The
+capacitive load on both sides of the PCA9306 device must be taken into account when approximating the total
+load of the system, ensuring the sum of both sides is under 400 pF.
+Both the SDA and SCL channels of the PCA9306 device have the same electrical characteristics, and there
+is minimal deviation from one output to another in voltage or propagation delay. This is a benefit over discrete-
+transistor voltage-translation solutions, because the fabrication of the switch is symmetrical. The translator
+provides excellent ESD protection to lower-voltage devices and at the same time protects less-ESD-resistant
+devices.
+8.1.1 Definition of threshold voltage
+This document references a threshold voltage denoted as Vth, which appears multiple times throughout this
+document when discussing the NFET between VREF1 and VREF2. The value of Vth is approximately 0.6 V at room
+temperature.
+8.1.2 Correct Device Set Up
+In a normal set up shown in Figure 8-1, the enable pin and VREF2 are shorted together and tied to a 200-kΩ
+resistor, and a reference voltage equal to VREF1 plus the FET threshold voltage is established. This reference
+voltage is used to help pass lows from one side to another more effectively while still separating the different pull
+up voltages on both sides.
+
+
+
+
+10    Submit Document Feedback                                                   Copyright © 2023 Texas Instruments Incorporated
+
+                                               Product Folder Links: PCA9306
+                                                                                                                                              PCA9306
+www.ti.com                                                                                           SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+
+
+                                                           Figure 8-1. Normal Setup
+
+Care should be taken to make sure VREF2 has an external resistor tied between it and VCC2. If VREF2 is tied
+directly to the VCC2 rail without a resistor, then there is no external resistance from the VCC2 to VCC1 to limit
+the current such as in Figure 8-2. This effectively looks like a low impedance path for current to travel through
+and potentially break the pass FET if the current flowing through the pass FET is larger than the absolute
+maximum continuous channel current specified in section 6.1. The continuous channel current is larger with a
+higher voltage difference between VCC1 and VCC2.
+Figure 8-2 shows an improper set up. If VCC2 is larger than VCC1 but less than Vth, the impedance between VCC1
+and VCC2 is high resulting in a low drain to source current, which does not cause damage to the device. Concern
+arises when VCC2 becomes larger than VCC1 by Vth. During this event, the NFET turns on and begin to conduct
+current. This current is dependent on the gate to source voltage and drain to source voltage.
+                                                     Abnormal Setup                           VCC2 = +3.3 V
+
+                                                                        VCC1 < VCC2
+                                                                                               200k Ÿ
+                                                   VCC1 = +1.8 V
+
+                                                                                       EN
+
+                                                                                                              RPU   RPU
+                                             RPU    RPU               +
+                                                                   Vgs
+                                                          VREF1                       VREF2
+                                                                    -
+
+
+
+                                                          SDA1                        SDA2
+
+
+
+                                                          SCL1                        SCL2
+
+
+                                                          Figure 8-2. Abnormal Setup
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                           Submit Document Feedback   11
+
+                                                           Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                       www.ti.com
+
+8.1.3 Disconnecting an I2C target from the Main I2C Bus Using the EN Pin
+PCA9306 can be used as a switch to disconnect one side of the device from the main I2C bus. This can be
+advantageous in multiple situations. One instance of this situation is if there are devices on the I2C bus which
+only supports fast mode (400 kHz) while other devices on the bus support fast mode plus (1 MHz). An example
+of this is displayed in Figure 8-3.
+
+                                       3.3 V I2C bus                                3.3 V I2C bus
+                                                                 PCA9306
+                                          (1 MHz)                                     (400 kHz)
+                                                                   EN
+                                                        GPIO
+                                                       Note: GPIO logic high must not
+                                                      exceed 3.3 V +Vth in this example
+
+                    Figure 8-3. Example of an I2C bus with multiple supported frequencies
+
+In this situation, if the controller is on the 1 MHz side then communicating at 1 MHz should not be attempted
+if PCA9306 were enabled. It needs to be disabled for PCA9306 to avoid possibly glitching state machines
+in devices which were designed to operate correctly at 400 kHz or slower. When PCA9306 is disabled, the
+controller can communicate with the 1 MHz devices without disturbing the 400 kHz bus. When the PCA9306 is
+enabled, communication across both sides at 400 kHz is acceptable.
+8.1.4 Supporting Remote Board Insertion to Backplane with PCA9306
+Another situation where PCA9306 is advantageous when using its enable feature is when a remote board with
+I2C lines needs to be attached to a main board (backplane) with an I2C bus such as in Figure 8-4. If connecting
+a remote board to a backplane is not done properly, the connection could result in data corruption during a
+transaction or the insertion could generate an unintended pulse on the SCL line. Which could glitch an I2C
+device state machine causing the I2C bus to get stuck.
+
+                                                 Main Board                           Remote Board
+
+                                      3.3 V I2C bus            PCA9306                    3.3 V I2C bus
+                                                                 EN
+
+
+                                                      GPIO
+                                        Note: GPIO logic high must not
+                                       exceed 3.3 V +Vth in this example
+
+              Figure 8-4. An example of connecting a remote board to a main board (backplane)
+
+PCA9306 can be used to support this application because it can be disabled while making the connection. Then
+it is enabled once the remote board is powered on and the buses on both sides are IDLE.
+8.1.5 Switch Configuration
+PCA9306 has the capability of being used with its VREF1 voltage equal to VREF2. This essentially turns the device
+from a translator to a device which can be used as a switch, and in some situations this can be useful. The
+switch configuration is shown in Figure 8-5 and translation mode is shown in Figure 8-6.
+
+
+
+
+12    Submit Document Feedback                                                                        Copyright © 2023 Texas Instruments Incorporated
+
+                                                  Product Folder Links: PCA9306
+                                                                                                                                             PCA9306
+www.ti.com                                                                                         SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+                                                                                            VCC2
+                                                                                                   GPIO: high logic does not
+                                                          VCC1                                       exceed Vref2 + Vth
+
+                                                                 Where Vcc2 = Vcc1              200 k
+
+
+                                  VCC1 VCC1              Vref1                     Vref2
+                                                                                                                  VCC2 VCC2
+
+                                                                                     EN
+                                      R       R
+                                                                    PCA9306                                                 R
+
+                                                         SCL1                      SCL2
+
+                                                         SDA1                      SDA2
+
+                                                      Switch Configuration: Vref1 = Vref2 and
+                                                          Enable is controlled by a GPIO
+
+
+                                                        Figure 8-5. Switch Configuration
+
+                                                                                                VCC2
+
+                                                             VCC1
+                                                                                                        200 k
+
+
+                                     VCC1 VCC1              Vref1                     Vref2
+                                                                                                                VCC2 VCC2
+
+                                                                                       EN
+                                          R       R                                                                  R
+                                                                       PCA9306
+                                                            SCL1                      SCL2
+
+                                                            SDA1                      SDA2
+
+                                                                Translation Configuration
+                                                               where Vcc2 >= Vref1 + 0.7 V
+
+
+                                                  Figure 8-6. Translation Configuration
+
+When PCA9306 is in the switch configuration (VREF1 = VREF2), the propagation delays are different compared
+to the translator configuration. Taking a look at the propagation delays, if the pull up resistance and capacitance
+on both sides of the bus are equal, then in switch mode the PCA9306 has the same propagation delay from
+side one to two and side two to one. The propagation delays become lower when VCC1/VCC2 is larger. For
+example, the propagation delay at 1.8 V is longer than at 5 V in the switching configuration. When PCA9306 is
+in translation mode, side one propagate lows to side two faster than side two can propagate lows to side 1. This
+time difference becomes larger the larger the difference between VCC2 and VCC1 becomes.
+8.1.6 Controller on Side 1 or Side 2 of Device
+I2C and SMBus are bidirectional protocol meaning devices on the bus can both transmit and receive data.
+PCA9306 was designed to allow for signals to be able to be transmitted from either side, thus allowing for the
+controller to be able to placed on either side of the device. Figure 8-7 shows the controller on side two as
+opposed to the diagram on page 1 of this data sheet.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                          Submit Document Feedback   13
+
+                                                              Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                           www.ti.com
+
+                                                                                          VCC2
+
+                                                        VCC1
+                                                                                                 200 k
+
+
+                                                        Vref1                    Vref2
+
+                                                                                  EN
+                                                                PCA9306
+                                                        SCL1                     SCL2
+                                                                                                            I2C or SMBus
+                      I2C target devices
+                                                                                                         controller (processor)
+                                                        SDA1                     SDA2
+
+
+                                           Figure 8-7. Controller on side 2 of PCA9306
+
+8.1.7 LDO and PCA9306 Concerns
+The VREF1 pin can be supplied by a low-dropout regulator (LDO), but in some cases the LDO may lose its
+regulation because of the bias current from VREF2 to VREF1. If the LDO cannot sink the bias current, then the
+current has no other paths to ground and instead charges up the capacitance on the VREF1 node (both external
+and parasitic). This results in an increase in voltage on the VREF1 node. If no other paths for current to flow are
+established (such as back biasing of body diodes or clamping diodes through other devices on the VREF1 node),
+then the VREF1 voltage ends up stabilizing when Vgs of the pass FET is equal to Vth. This means VREF1 node
+voltage is VCC2 - Vth. Note that any targets/controllers running off of the LDO now see the VCC2 - Vth voltage
+which may cause damage to those targets/controllers if they are not rated to handle the increased voltage.
+                                       Translator Setup with Vref1                       VCC2 = +3.3 V
+                                      provided by LDO and no path
+                                             for bias current                                      200 kŸ
+
+                                                                      VCC1 < VCC2
+                                                                                                    Ven = Vref1 + VTH
+                                                                                           EN
+                                                                     PCA9306
+
+                                                  +                          +
+                                                                          Vgs
+                                                 VREF1 = Vcc2 - Vth        -
+                                    LDO Vout      -                 VREF1                VREF2
+                                                                    pin                    pin
+
+
+                                                                     Ibias = (Vcc2 ± Ven) / 200 k
+
+                                                CREF1
+
+
+
+                        Figure 8-8. Example of no leakage current path when using LDO
+
+To make sure the LDO does not lose regulation due to the bias current of PCA9306, a weak pull down resistor
+can be placed on VREF1 to ground to provide a path for the bias current to travel. The recommended pull down
+resistor is calculated by Equation 4 where 0.75 gives about 25% margin for error incase bias current increases
+during operation.
+
+
+
+
+14    Submit Document Feedback                                                                            Copyright © 2023 Texas Instruments Incorporated
+
+                                                        Product Folder Links: PCA9306
+                                                                                                                                              PCA9306
+www.ti.com                                                                                       SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+                                                           Translator Setup                      VCC2 = +3.3 V
+
+                                                                                                         200 kŸ
+                                                                              VCC1 < VCC2
+                                                                                                             Ven = Vref1 + VTH
+                                                                                                   EN
+                                                                          PCA9306
+                                                                                        +
+                                                                                  Vgs
+                                                      Vout = +1.8 V                -
+                                        LDO                             VREF1                    VREF2
+
+                                                                  Rpulldown
+                                                  CREF1
+                                                                              Ibias = (Vcc2 ± Ven) / 200 k
+
+
+
+
+                            Figure 8-9. Example with Leakage current path when using an LDO
+
+      Ven = VREF1 + Vth                                                                                                                         (1)
+
+where
+•    Vth is approximately 0.6 V
+
+      Ibias = (VCC2 - Ven)/200k                                                                                                                 (2)
+
+      Rpulldown = VOUT/Ibias                                                                                                                    (3)
+
+      Recommended Rpulldown = Rpulldown x 0.75                                                                                                  (4)
+
+8.1.8 Current Limiting Resistance on VREF2
+The resistor is used to limit the current between VREF2 and VREF1 (denoted as RCC) and helps to establish the
+reference voltage on the enable pin. The 200k resistor can be changed to a lower value; however, the bias
+current proportionally increases as the resistor decreases.
+
+      Ibias = (VCC2 - Ven)/RCC : Ven = VREF1 + Vth                                                                                              (5)
+
+where
+•    Vth is approximately 0.6V
+Keep in mind RCC should not be sized low enough that ICC exceeds the absolute maximum continuous channel
+current specified in section 6.1 which is described in Equation 6.
+
+      RCC(min) ≥ (VCC2 - Ven)/0.128 : Ven = VREF1 + Vth                                                                                         (6)
+
+where
+•    Vth is approximately 0.6V
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                           Submit Document Feedback    15
+
+                                                            Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                               www.ti.com
+
+8.2 Functional Block Diagram
+
+
+
+
+                                          Figure 8-10. Block Diagram of PCA9306
+
+8.3 Feature Description
+8.3.1 Enable (EN) Pin
+The PCA9306 device is a double-pole, single-throw switch in which the gate of the transistors is controlled by the
+voltage on the EN pin. In Figure 9-1, the PCA9306 device is always enabled when power is applied to VREF2. In
+Figure 9-2, the device is enabled when a control signal from a processor is in a logic-high state.
+8.3.2 Voltage Translation
+The primary feature of the PCA9306 device is translating voltage from an I2C bus referenced to VREF1 up to
+an I2C bus referenced to VDPU, to which VREF2 is connected through a 200-kΩ pullup resistor. Translation on a
+standard, open-drain I2C bus is achieved by simply connecting pullup resistors from SCL1 and SDA1 to VREF1
+and connecting pullup resistors from SCL2 and SDA2 to VDPU. Information on sizing the pullup resistors can be
+found in the Sizing Pullup Resistors section.
+8.4 Device Functional Modes
+                   INPUT
+                                                                             TRANSLATOR FUNCTION
+                    EN(1)
+                                               Logic Lows are propagated from one side to the other, Logic Highs blocked (independent
+                      H
+                                                                   pull up resistors passively drive the line high)
+                      L                                                              Disconnect
+
+(1)   The SCL switch conducts if EN is ≥ 0.6 V higher than SCL1 or SCL2. The same is true of SDA.
+
+
+
+
+16    Submit Document Feedback                                                                Copyright © 2023 Texas Instruments Incorporated
+
+                                                    Product Folder Links: PCA9306
+                                                                                                                                              PCA9306
+www.ti.com                                                                                      SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+9 Application and Implementation
+                                                                            Note
+       Information in the following applications sections is not part of the TI component specification,
+       and TI does not warrant its accuracy or completeness. TI’s customers are responsible for
+       determining suitability of components for their purposes, as well as validating and testing their design
+       implementation to confirm system functionality.
+
+9.1 Application Information
+9.1.1 General Applications of I2C
+As with the standard I2C system, pullup resistors are required to provide the logic-high levels on the translator
+bus. The size of these pullup resistors depends on the system, but each side of the repeater must have a pullup
+resistor. The device is designed to work with standard-mode and fast-mode I2C devices in addition to SMBus
+devices. Standard-mode I2C devices only specify 3 mA in a generic I2C system where standard-mode devices
+and multiple controllers are possible. Under certain conditions, high termination currents can be used. When
+the SDA1 or SDA2 port is low, the clamp is in the ON state, and a low-resistance connection exists between
+the SDA1 and SDA2 ports. Assuming the higher voltage is on the SDA2 port when the SDA2 port is high,
+the voltage on the SDA1 port is limited to the voltage set by VREF1. When the SDA1 port is high, the SDA2
+port is pulled to the pullup supply voltage of the drain (VDPU) by the pullup resistors. This functionality allows a
+seamless translation between higher and lower voltages selected by the user, without the need for directional
+control. The SCL1-SCL2 channel also functions in the same way as the SDA1-SDA2 channel.
+9.2 Typical Application
+Figure 9-1 and Figure 9-2 show how these pullup resistors are connected in a typical application, as well as two
+options for connecting the EN pin.
+                                                                                                             VDPU = 3.3 V
+
+
+
+
+                                                                                                    200 kΩ
+
+
+                                                                         PCA9306
+                                       VREF1 = 1.8 V                                   EN 8
+                                                                                                                RPU         RPU
+                                                             2                              7
+                                                                 VREF1              VREF2
+
+
+                                          RPU          RPU
+
+                        VCC                                                                                                             VCC
+                                                         3       SCL1               SCL2        6
+                              SCL                                          SW                                                     SCL
+
+                    2
+                   I C Bus                                                                                                          2
+                                                                                                                                   I C Bus
+                  Controller                                                                                                        Device
+
+                                                         4       SDA1               SDA2        5
+                              SDA                                          SW                                                     SDA
+
+                    GND                                                   GND                                                       GND
+                                                                             1
+
+
+
+                                    Figure 9-1. Typical Application Circuit (Switch Always Enabled)
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                                        Submit Document Feedback    17
+
+                                                                 Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                                      www.ti.com
+
+                                                                                                                VDPU = 3.3 V
+                                                          3.3-V Enable Signal
+                                                                           On
+
+                                                          Off
+
+
+                                                                                                      200 k Ω
+                                                                          PCA9306
+                                    VREF1 = 1.8 V                                      EN     8
+                                                                                                                   RPU         RPU
+                                                              2                               7
+                                                                  VREF1               VREF2
+
+
+
+                                         RPU        RPU
+
+                      VCC                                                                                                                    VCC
+                                                          3       SCL1                SCL2        6
+                            SCL                                              SW                                                        SCL
+
+
+                    I2C Bus                                                                                                              I2C Bus
+                   Controller                                                                                                             Device
+
+
+                                                          4       SDA1               SDA2         5
+                            SDA                                              SW                                                        SDA
+
+
+                     GND                                                    GND                                                          GND
+                                                                                1
+
+
+
+                                  Figure 9-2. Typical Application Circuit (Switch Enable Control)
+
+9.2.1 Design Requirements
+
+                                                                                                                                MIN TYP(1)         MAX    UNIT
+ VREF2            Reference voltage                                                                                   VREF1 + 0.6            2.1     5     V
+ EN               Enable input voltage                                                                                VREF1 + 0.6            2.1     5     V
+ VREF1            Reference voltage                                                                                              1.2         1.5    4.4    V
+ IPASS            Pass switch current                                                                                                          6          mA
+ IREF             Reference-transistor current                                                                                                 5          μA
+
+(1)      All typical values are at TA = 25°C.
+
+9.2.2 Detailed Design Procedure
+9.2.2.1 Bidirectional Voltage Translation
+For the bidirectional clamping configuration (higher voltage to lower voltage or lower voltage to higher voltage),
+the EN input must be connected to VREF2 and both pins pulled to high-side VDPU through a pullup resistor
+(typically 200 kΩ). This allows VREF2 to regulate the EN input. A 100-pF filter capacitor connected to VREF2 is
+recommended. The I2C bus controller output can be push-pull or open-drain (pullup resistors may be required)
+and the I2C bus device output can be open-drain (pullup resistors are required to pull the SCL2 and SDA2
+outputs to VDPU). However, if either output is push-pull, data must be unidirectional or the outputs must be
+3-state capable and be controlled by some direction-control mechanism to prevent high-to-low contentions in
+either direction. If both outputs are open-drain, no direction control is needed.
+9.2.2.2 Sizing Pullup Resistors
+To get an estimate for the range of values that can be used for the pullup resistor, please refer to the application
+note SLVA689. Figure 9-3 and Figure 9-4 respectively show the maximum and minimum pullup resistance
+allowable by the I2C specification for standard-mode (100 kHz) and fast-mode (400 kHz) operation.
+
+
+
+
+18       Submit Document Feedback                                                                                 Copyright © 2023 Texas Instruments Incorporated
+
+                                                                  Product Folder Links: PCA9306
+                                                                                                                    PCA9306
+www.ti.com                                                                    SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+9.2.2.3 PCA9306 Bandwidth
+The maximum frequency of the PCA9306 device depends on the application. The device can operate at speeds
+of > 100 MHz given the correct conditions. The maximum frequency is dependent upon the loading of the
+application.
+Figure 6-3 shows a bandwidth measurement of the PCA9306 device using a two-port network analyzer.
+However, this is an analog type of measurement. For digital applications, the signal should not degrade up to the
+fifth harmonic of the digital signal. As a rule of thumb, the frequency bandwidth should be at least five times the
+maximum digital clock rate. This component of the signal is very important in determining the overall shape of
+the digital signal. In the case of the PCA9306 device, digital clock frequency of >100 MHz can be achieved.
+The PCA9306 device does not provide any drive capability like the PCA9515 or PCA9517 series of devices.
+Therefore, higher-frequency applications require higher drive strength from the host side. No pullup resistor is
+needed on the host side (3.3 V) if the PCA9306 device is being driven by standard CMOS push-pull output
+driver. Ideally, it is best to minimize the trace length from the PCA9306 device on the sink side (1.8 V) to
+minimize signal degradation.
+You can then use a simple formula to compute the maximum practical frequency component or the knee
+frequency (fknee). All fast edges have an infinite spectrum of frequency components. However, there is an
+inflection (or knee) in the frequency spectrum of fast edges where frequency components higher than fknee are
+insignificant in determining the shape of the signal.
+To calculate fknee:
+
+      fknee= 0.5 / RT (10%–90%)                                                                                       (7)
+
+      fknee = 0.4 / RT (20%–80%)                                                                                      (8)
+
+For signals with rise-time characteristics based on 10- to 90-percent thresholds, fknee is equal to 0.5 divided by
+the rise time of the signal. For signals with rise-time characteristics based on 20- to 80-percent thresholds, which
+is very common in many current device specifications, fknee is equal to 0.4 divided by the rise time of the signal.
+Some guidelines to follow that help maximize the performance of the device:
+• Keep trace length to a minimum by placing the PCA9306 device close to the I2C output of the processor.
+• The trace length should be less than half the time of flight to reduce ringing and line reflections or non-
+  monotonic behavior in the switching region.
+• To reduce overshoots, a pullup resistor can be added on the 1.8 V side; be aware that a slower fall time is to
+  be expected.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                Submit Document Feedback     19
+
+                                                  Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                                                www.ti.com
+
+9.2.3 Application Curve
+
+                      25
+                                                                  Standard-mode
+                                                                  Fast-mode
+                      20
+     Rp(max) (kOhm)
+
+
+
+
+                      15
+
+
+                      10
+
+
+                       5
+                                                                                                                                         VDPUX < 2 V
+                                                                                                                                         VDPUX > 2 V
+                       0
+                           0   50   100   150   200   250   300   350    400   450
+                                                 Cb (pF)                          D008
+
+                      Standard mode                   Fast mode
+                                                                                                  VOL = 0.2 x VDPUX , IOL = 2 mA when VDPUX ≤ 2 V
+                      (fSCL = 100 kHz, tr = 1 μs)     (fSCL = 400 kHz, tr = 300 ns)
+                                                                                                     VOL = 0.4 V, IOL = 3 mA when VDPUX > 2 V
+     Figure 9-3. Maximum Pullup Resistance (Rp(max))
+                                                                                         Figure 9-4. Minimum Pullup Resistance (Rp(min)) vs
+                 vs Bus Capacitance (Cb)
+                                                                                                  Pullup Reference Voltage (VDPUX)
+
+
+
+
+20                    Submit Document Feedback                                                                 Copyright © 2023 Texas Instruments Incorporated
+
+                                                                        Product Folder Links: PCA9306
+                                                                                                                    PCA9306
+www.ti.com                                                                    SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+10 Power Supply Recommendations
+For supplying power to the PCA9306 device, the VREF1 pin can be connected directly to a power supply.
+The VREF2 pin must be connected to the VDPU power supply through a 200-kΩ resistor. Failure to have a
+high-impedance resistor between VREF2 and VDPU results in excessive current draw and unreliable device
+operation. It is also worth noting, that in order to support voltage translation, the PCA9306 must have the EN and
+VREF2 pins shorted and then pulled up to VDPU through a high-impedance resistor.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                Submit Document Feedback    21
+
+                                                  Product Folder Links: PCA9306
+PCA9306
+SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023                                                                 www.ti.com
+
+
+11 Layout
+11.1 Layout Guidelines
+For printed-circuit board (PCB) layout of the PCA9306 device, common PCB layout practices should be followed,
+but additional concerns related to high-speed data transfer such as matched impedances and differential pairs
+are not a concern for I2C signal speeds.
+In all PCB layouts, it is a best practice to avoid right angles in signal traces, to fan out signal traces away from
+each other on leaving the vicinity of an integrated circuit (IC), and to use thicker trace widths to carry higher
+amounts of current that commonly pass through power and ground traces. The 100-pF filter capacitor should be
+placed as close to VREF2 as possible. A larger decoupling capacitor can also be used, but a longer time constant
+of two capacitors and the 200-kΩ resistor results in longer turnon and turnoff times for the PCA9306 device.
+These best practices are shown in Figure 11-1.
+For the layout example provided in Figure 11-1, it would be possible to fabricate a PCB with only two layers by
+using the top layer for signal routing and the bottom layer as a split plane for power (VCC) and ground (GND).
+However, a four-layer board is preferable for boards with higher-density signal routing. On a four-layer PCB,
+it is common to route signals on the top and bottom layer, dedicate one internal layer to a ground plane, and
+dedicate the other internal layer to a power plane. In a board layout using planes or split planes for power and
+ground, vias are placed directly next to the surface-mount component pad, which must attach to VCC or GND,
+and the via is connected electrically to the internal layer or the other side of the board. Vias are also used when
+a signal trace must be routed to the opposite side of the board, but this technique is not demonstrated in Figure
+11-1.
+11.2 Layout Example
+
+
+
+
+                                       Figure 11-1. PCA9306 Layout Example
+
+
+
+
+22    Submit Document Feedback                                                  Copyright © 2023 Texas Instruments Incorporated
+
+                                               Product Folder Links: PCA9306
+                                                                                                                                 PCA9306
+www.ti.com                                                                            SCPS113O – OCTOBER 2004 – REVISED SEPTEMBER 2023
+
+
+12 Device and Documentation Support
+12.1 Receiving Notification of Documentation Updates
+To receive notification of documentation updates, navigate to the device product folder on ti.com. In the upper
+right corner, click on Alert me to register and receive a weekly digest of any product information that has
+changed. For change details, review the revision history included in any revised document.
+12.2 Support Resources
+TI E2E™ support forums are an engineer's go-to source for fast, verified answers and design help — straight
+from the experts. Search existing answers or ask your own question to get the quick design help you need.
+Linked content is provided "AS IS" by the respective contributors. They do not constitute TI specifications and do
+not necessarily reflect TI's views; see TI's Terms of Use.
+12.3 Trademarks
+TI E2E™ is a trademark of Texas Instruments.
+All trademarks are the property of their respective owners.
+12.4 Electrostatic Discharge Caution
+                    This integrated circuit can be damaged by ESD. Texas Instruments recommends that all integrated circuits be handled
+                    with appropriate precautions. Failure to observe proper handling and installation procedures can cause damage.
+                    ESD damage can range from subtle performance degradation to complete device failure. Precision integrated circuits may
+                    be more susceptible to damage because very small parametric changes could cause the device not to meet its published
+                    specifications.
+
+
+12.5 Glossary
+ TI Glossary             This glossary lists and explains terms, acronyms, and definitions.
+
+Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most-
+current data available for the designated device. This data is subject to change without notice and without
+revision of this document. For browser-based versions of this data sheet, see the left-hand navigation pane.
+
+
+
+
+Copyright © 2023 Texas Instruments Incorporated                                                          Submit Document Feedback         23
+
+                                                       Product Folder Links: PCA9306
+                                                                                                                                                                    PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                    15-Jul-2026
+
+
+
+
+PACKAGING INFORMATION
+
+       Orderable part number          Status     Material type      Package | Pins     Package qty | Carrier       RoHS             Lead finish/             MSL rating/             Op temp (°C)               Part marking
+                                        (1)            (2)                                                            (3)           Ball material            Peak reflow                                              (6)
+                                                                                                                                          (4)                      (5)
+
+           PCA9306DCTR                Active      Production        SSOP (DCT) | 8      3000 | LARGE T&R             Yes               NIPDAU            Level-1-260C-UNLIM             -40 to 85                    7BD
+                                                                                                                                                                                                                   (G, S, Y)
+          PCA9306DCTR.A               Active      Production        SSOP (DCT) | 8      3000 | LARGE T&R             Yes               NIPDAU            Level-1-260C-UNLIM             -40 to 85                    7BD
+                                                                                                                                                                                                                   (G, S, Y)
+           PCA9306DCTT                Active      Production        SSOP (DCT) | 8       250 | SMALL T&R             Yes               NIPDAU            Level-1-260C-UNLIM             -40 to 85                    7BD
+                                                                                                                                                                                                                   (G, S, Y)
+          PCA9306DCTT.A               Active      Production        SSOP (DCT) | 8       250 | SMALL T&R             Yes               NIPDAU            Level-1-260C-UNLIM             -40 to 85                    7BD
+                                                                                                                                                                                                                   (G, S, Y)
+           PCA9306DCUR                Active      Production       VSSOP (DCU) | 8      3000 | LARGE T&R             Yes            NIPDAU | SN          Level-1-260C-UNLIM             -40 to 85           (29O4, 7BDP, 7BDS,
+                                                                                                                                                                                                                    7BDY)
+          PCA9306DCUR.A               Active      Production       VSSOP (DCU) | 8      3000 | LARGE T&R             Yes               NIPDAU            Level-1-260C-UNLIM             -40 to 85           (29O4, 7BDP, 7BDS,
+                                                                                                                                                                                                                    7BDY)
+           PCA9306DCUT                Active      Production       VSSOP (DCU) | 8       250 | SMALL T&R             Yes            NIPDAU | SN          Level-1-260C-UNLIM             -40 to 85           (29O4, 7BDP, 7BDS,
+                                                                                                                                                                                                                    7BDY)
+          PCA9306DCUT.A               Active      Production       VSSOP (DCU) | 8       250 | SMALL T&R             Yes               NIPDAU            Level-1-260C-UNLIM             -40 to 85           (29O4, 7BDP, 7BDS,
+                                                                                                                                                                                                                    7BDY)
+           PCA9306DQER                Active      Production       X2SON (DQE) | 8      5000 | LARGE T&R             Yes        NIPDAU | NIPDAUAG Level-1-260C-UNLIM                    -40 to 85                  (3M, 7F)
+          PCA9306DQER.A               Active      Production       X2SON (DQE) | 8      5000 | LARGE T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM             -40 to 85                  (3M, 7F)
+          PCA9306DQER.B               Active      Production       X2SON (DQE) | 8      5000 | LARGE T&R             Yes             NIPDAUAG            Level-1-260C-UNLIM             -40 to 85                  (3M, 7F)
+           PCA9306YZTR                Active      Production       DSBGA (YZT) | 8      3000 | LARGE T&R             Yes              SNAGCU             Level-1-260C-UNLIM             -40 to 85                     7F
+          PCA9306YZTR.B               Active      Production       DSBGA (YZT) | 8      3000 | LARGE T&R             Yes              SNAGCU             Level-1-260C-UNLIM             -40 to 85                     7F
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+
+
+                                                                                                         Addendum-Page 1
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                 15-Jul-2026
+
+
+
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+
+OTHER QUALIFIED VERSIONS OF PCA9306 :
+
+• Automotive : PCA9306-Q1
+
+NOTE: Qualified Version Definitions:
+
+           • Automotive - Q100 devices qualified for high-reliability automotive applications targeting zero defects
+
+
+
+
+                                                                                                            Addendum-Page 2
+                                                                              PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                                                         25-Apr-2025
+
+
+
+TAPE AND REEL INFORMATION
+
+       REEL DIMENSIONS                                                                     TAPE DIMENSIONS
+                                                                                      K0         P1
+
+
+
+                                                                                                                        B0 W
+                                        Reel
+                                      Diameter
+                                                                                   Cavity             A0
+                                                               A0   Dimension designed to accommodate the component width
+                                                               B0   Dimension designed to accommodate the component length
+                                                               K0   Dimension designed to accommodate the component thickness
+                                                               W    Overall width of the carrier tape
+                                                               P1   Pitch between successive cavity centers
+
+
+                                       Reel Width (W1)
+                              QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+
+                                                                                                       Sprocket Holes
+
+
+                                                 Q1       Q2          Q1    Q2
+
+                                                 Q3       Q4          Q3    Q4                    User Direction of Feed
+
+
+
+                                                           Pocket Quadrants
+
+
+*All dimensions are nominal
+             Device           Package Package Pins             SPQ        Reel   Reel   A0                    B0         K0     P1     W     Pin1
+                               Type Drawing                             Diameter Width (mm)                  (mm)       (mm)   (mm)   (mm) Quadrant
+                                                                          (mm) W1 (mm)
+     PCA9306DCTR               SSOP     DCT           8        3000        177.8        12.4          3.45    4.4       1.45   4.0    12.0    Q3
+      PCA9306DCTT              SSOP     DCT           8         250        177.8        12.4          3.45    4.4       1.45   4.0    12.0    Q3
+     PCA9306DCUR              VSSOP     DCU           8        3000        178.0           9.0        2.25   3.35       1.05   4.0    8.0     Q3
+     PCA9306DCUT              VSSOP     DCU           8         250        178.0           9.0        2.25   3.35       1.05   4.0    8.0     Q3
+     PCA9306DQER              X2SON     DQE           8        5000        180.0           9.5        1.15    1.6       0.5    4.0    8.0     Q1
+      PCA9306YZTR             DSBGA      YZT          8        3000        180.0           8.4        1.02   2.02       0.75   4.0    8.0     Q1
+
+
+
+
+                                                                      Pack Materials-Page 1
+                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                              25-Apr-2025
+
+
+
+ TAPE AND REEL BOX DIMENSIONS
+
+
+
+
+                                                               Width (mm)
+                                                                              H
+                      W
+
+
+
+
+                                                          L
+
+
+
+
+*All dimensions are nominal
+             Device           Package Type   Package Drawing   Pins         SPQ    Length (mm)   Width (mm)   Height (mm)
+      PCA9306DCTR                SSOP             DCT           8           3000      183.0        183.0         20.0
+      PCA9306DCTT                SSOP             DCT           8           250       183.0        183.0         20.0
+      PCA9306DCUR               VSSOP             DCU           8           3000      180.0        180.0         18.0
+      PCA9306DCUT               VSSOP             DCU           8           250       180.0        180.0         18.0
+      PCA9306DQER               X2SON             DQE           8           5000      184.0        184.0         19.0
+      PCA9306YZTR               DSBGA             YZT           8           3000      182.0        182.0         20.0
+
+
+
+
+                                                        Pack Materials-Page 2
+                                                                                                             PACKAGE OUTLINE
+DCT0008A                                                         SCALE 3.500
+                                                                                                          SSOP - 1.3 mm max height
+                                                                                                                        SMALL OUTLINE PACKAGE
+
+
+
+
+                                                                                                                              C
+                                          4.25
+                                               TYP
+                                          3.95                                                                SEATING PLANE
+              A                                  PIN 1 ID
+                                                 AREA                                                                    0.1 C
+
+                                                                                                6X 0.65
+                                                                                    8
+                     1
+
+
+
+            3.1                                                                                  2X
+            2.9                                                                                 1.95
+           NOTE 3
+
+
+
+                     4
+                                                                                5
+                                                                                                 0.30
+                                                                                           8X
+                                                                                                 0.15
+                                            3.1                                                   0.13    C A B               1.3
+                         B
+                                            2.9                                                                               1.0
+                                           NOTE 4
+
+
+
+
+                                          SEE DETAIL A                                     (0.15) TYP
+
+
+
+
+                                                                                               0.25
+                                                                                        GAGE PLANE
+
+
+
+
+                                                                                                                                           0.2
+                                                                                          0 -8                    0.6                      0.0
+                                                                                                                  0.2
+
+                                                                                                                        DETAIL A
+                                                                                                                         TYPICAL
+
+
+                                                                                                                                 4220784/D 10/2025
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. This dimension does not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not
+   exceed 0.15 mm per side.
+4. This dimension does not include interlead flash. Interlead flash shall not exceed 0.25 mm per side.
+
+
+
+
+                                                                               www.ti.com
+                                                                               EXAMPLE BOARD LAYOUT
+DCT0008A                                                                                 SSOP - 1.3 mm max height
+                                                                                                       SMALL OUTLINE PACKAGE
+
+
+
+
+                                             8X (1.1)
+                                                                 SYMM
+                                                                                                     (R0.05)
+                                         1                                                           TYP
+                                                                                                8
+
+                          8X (0.4)
+                                                                                                     SYMM
+
+
+
+                            6X (0.65)
+                                                                                                5
+                                         4
+
+                                                                  (3.8)
+
+
+                                                        LAND PATTERN EXAMPLE
+                                                          EXPOSED METAL SHOWN
+                                                               SCALE:15X
+
+
+
+
+               SOLDER MASK                                                METAL UNDER                 SOLDER MASK
+                                              METAL                                                   OPENING
+               OPENING                                                    SOLDER MASK
+
+
+                                                   EXPOSED METAL                                          EXPOSED METAL
+                                        0.07 MAX                                              0.07 MIN
+                                        ALL AROUND                                            ALL AROUND
+
+                           NON SOLDER MASK                                              SOLDER MASK
+                               DEFINED                                                    DEFINED
+
+                                                   SOLDER MASK DETAILS
+
+
+
+
+                                                                                                               4220784/D 10/2025
+
+NOTES: (continued)
+
+5. Publication IPC-7351 may have alternate designs.
+6. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+
+
+
+
+                                                                www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+DCT0008A                                                                                   SSOP - 1.3 mm max height
+                                                                                                         SMALL OUTLINE PACKAGE
+
+
+
+
+                                            8X (1.1)              SYMM
+                                        1
+                                                                                                  8
+
+                          8X (0.4)
+                                                                                                      SYMM
+
+
+
+                            6X (0.65)
+                                                                                                  5
+                                        4
+
+                                                                   (3.8)
+
+
+                                                        SOLDER PASTE EXAMPLE
+                                                       BASED ON 0.125 mm THICK STENCIL
+                                                                  SCALE:15X
+
+
+
+
+                                                                                                                  4220784/D 10/2025
+
+NOTES: (continued)
+
+7. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+   design recommendations.
+8. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                  www.ti.com
+                                                                                                             PACKAGE OUTLINE
+DCU0008A                                                      SCALE 6.000
+                                                                                                          VSSOP - 0.9 mm max height
+                                                                                                                       SMALL OUTLINE PACKAGE
+
+
+
+
+                                   3.2
+                                       TYP                                                                               C
+                                   3.0
+       A
+                                                                                                                 0.1 C
+                                   PIN 1 INDEX AREA                                                                                    SEATING
+                                                                                         6X 0.5                                        PLANE
+                                                                            8
+             1
+
+
+                                                                                          2X
+     2.1
+                                                                                          1.5
+     1.9
+    NOTE 3
+
+
+
+              4
+                                                             5
+                                                                                        0.25
+                                                                                   8X
+                                                                                        0.17
+                                    2.4
+             B                                                                          0.08     C A B
+                                    2.2
+                                   NOTE 3
+
+
+
+
+                            SEE DETAIL A
+
+
+                                                                                                      0.12                              0.9
+                                                                                               GAGE PLANE                               0.6
+
+
+
+
+                                                                                                                                       0.1
+                                                                                                   0 -6         0.35                   0.0
+                                                     (0.13) TYP
+                                                                                                                0.20
+
+                                                                                                                       DETAIL A
+                                                                                                                          A 30
+
+
+
+
+                                                                                                                        TYPICAL
+
+
+
+
+                                                                                                                                 4225266/A 09/2014
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. This dimension does not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not
+   exceed 0.15 mm per side.
+4. Reference JEDEC registration MO-187 variation CA.
+
+
+
+
+                                                                                www.ti.com
+                                                                                   EXAMPLE BOARD LAYOUT
+DCU0008A                                                                                    VSSOP - 0.9 mm max height
+                                                                                                          SMALL OUTLINE PACKAGE
+
+
+
+
+                                                                                                     SEE SOLDER MASK
+                                 8X (0.85)                            SYMM                           DETAILS
+
+                                                                                                                (R0.05) TYP
+
+                8X (0.3)   1                                                                              8
+
+
+
+
+                                                                                                              SYMM
+               6X (0.5)
+
+
+
+
+                           4                                                                              5
+
+
+
+
+                                                                      (3.1)
+
+
+
+
+                                                   LAND PATTERN EXAMPLE
+                                                      EXPOSED METAL SHOWN
+                                                           SCALE: 25X
+
+
+
+
+                     SOLDER MASK                                              METAL UNDER            SOLDER MASK
+                                                  METAL
+                         OPENING                                              SOLDER MASK            OPENING
+
+
+            EXPOSED METAL                                                                                     EXPOSED METAL
+
+                                       0.05 MAX                                                    0.05 MIN
+                                       ALL AROUND                                                  ALL AROUND
+
+                               NON-SOLDER MASK                                              SOLDER MASK
+                                   DEFINED                                                    DEFINED
+                                 (PREFERRED)
+                                                     SOLDER MASK DETAILS
+                                                             15.000
+
+
+
+
+                                                                                                                     4225266/A 09/2014
+NOTES: (continued)
+
+5. Publication IPC-7351 may have alternate designs.
+6. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+
+
+
+
+                                                                      www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+DCU0008A                                                                                VSSOP - 0.9 mm max height
+                                                                                                         SMALL OUTLINE PACKAGE
+
+
+
+
+                                 8X (0.85)
+                                                                SYMM
+                                                                                                                (R0.05) TYP
+
+                8X (0.3)    1                                                                             8
+
+
+
+
+                                                                                                              SYMM
+               6X (0.5)
+
+
+
+
+                            4                                                                             5
+
+
+
+
+                                                                 (3.1)
+
+
+
+                                                   SOLDER PASTE EXAMPLE
+                                                 BASED ON 0.125 mm THICK STENCIL
+                                                           SCALE: 25X
+
+
+
+
+                                                                                                                     4225266/A 09/2014
+NOTES: (continued)
+
+7. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+   design recommendations.
+8. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                 www.ti.com
+                                                                                                                PACKAGE OUTLINE
+ DQE0008A                                                         SCALE 9.000
+                                                                                                           X2SON - 0.4 mm max height
+                                                                                                                    PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+                                                              1.05
+                                             B                                                A
+                                                              0.95
+
+
+
+
+                          PIN 1 INDEX AREA
+
+
+
+
+                                                                                             1.45
+                                                                                             1.35
+
+
+
+
+                                                                                        0.05 C
+
+
+
+                                    0.40                                                               C
+                                    0.34
+                                                                                                            SEATING PLANE
+                                     0.05
+                                     0.00                                                                  0.05 C
+
+
+                                                             SYMM
+                                                                                                                                     (0.13) TYP
+
+
+                                                   4
+                                                                                        5
+
+
+
+
+                                                                                        SYMM
+                              2X 1.05
+
+
+
+                                     6X 0.35
+
+                                                                                        8
+                                                   1
+                                                                                                       0.20
+                                                                                                  8X
+                                                                                                       0.15
+                                            0.45                                                         0.07       C A B
+                                            0.35
+                                                                                                         0.05
+                                                       PIN 1 ID
+                                                                                                  0.35
+                                                                                             7X
+                                                                                                  0.25
+                                                                                                                                   4225204/A 08/2019
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. This package complies to JEDEC MO-287 variation X2EAF.
+
+
+
+
+                                                                                www.ti.com
+                                                                                     EXAMPLE BOARD LAYOUT
+ DQE0008A                                                                                     X2SON - 0.4 mm max height
+                                                                                                     PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                                                              SEE SOLDER MASK
+                                                                  SYMM                        DETAIL
+                                                      (0.6)
+
+
+                             8X (0.175)      1                                               8
+
+
+
+
+                                                                                                  SYMM
+                                 6X (0.35)
+
+
+
+
+                          (R0.05) TYP
+                                             4                                               5
+
+                                7X (0.5)
+                                                                   (0.9)
+
+
+                                                    LAND PATTERN EXAMPLE
+                                                       EXPOSED METAL SHOWN
+                                                            SCALE: 40X
+
+
+
+
+                                                                                       0.05 MIN
+                         0.05 MAX                                                  ALL AROUND
+                     ALL AROUND
+                                                                                                                 METAL UNDER
+                                                       METAL EDGE                                                SOLDER MASK
+
+
+                EXPOSED METAL                           SOLDER MASK            EXPOSED                          SOLDER MASK
+                                                        OPENING                  METAL                          OPENING
+
+                                 NON SOLDER MASK
+                                     DEFINED                                           SOLDER MASK DEFINED
+                                   (PREFERRED)
+
+                                                        SOLDER MASK DETAILS
+
+
+
+                                                                                                                         4225204/A 08/2019
+NOTES: (continued)
+
+4. This package is designed to be soldered to a thermal pad on the board. For more information, see Texas Instruments literature
+   number SLUA271 (www.ti.com/lit/slua271).
+
+
+
+
+                                                                     www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+ DQE0008A                                                                                X2SON - 0.4 mm max height
+                                                                                                PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                    (0.6)
+
+
+                            8X (0.175)       1                                          8
+
+
+
+
+                                                                                            SYMM
+                                 6X (0.35)
+
+
+
+
+                           (R0.05) TYP
+                                             4                                          5
+
+                                                               SYMM
+                                 7X (0.5)
+
+                                                                (0.9)
+
+
+                                                  SOLDER PASTE EXAMPLE
+                                                 BASED ON 0.075 MM THICK STENCIL
+                                                           SCALE: 40X
+
+
+
+
+                                                                                                                   4225204/A 08/2019
+
+NOTES: (continued)
+
+5. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+  design recommendations.
+
+
+
+
+                                                                  www.ti.com
+D: Max = 1.918 mm, Min =1.858 mm
+
+E: Max = 0.918 mm, Min =0.858 mm
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2026, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

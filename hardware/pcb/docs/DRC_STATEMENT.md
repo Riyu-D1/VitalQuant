@@ -5,10 +5,10 @@ Tool: `/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli` — **version 10.
 
 ## Reviewer-equivalent baseline (fix_v23 inherited from fix_v22)
 
-Command on a /tmp copy of the board with `fix_v19/vitalq_v2.kicad_pro` rules:
+Command on a /tmp copy of the board with `fix_v19/vitalquant_v2.kicad_pro` rules:
 
 ```
-kicad-cli pcb drc --severity-error --schematic-parity --format json vitalq_v2.kicad_pcb
+kicad-cli pcb drc --severity-error --schematic-parity --format json vitalquant_v2.kicad_pcb
 ```
 
 - **10 violations**, 0 unconnected, 0 schematic-parity issues:
@@ -21,7 +21,7 @@ kicad-cli pcb drc --severity-error --schematic-parity --format json vitalq_v2.ki
     (28.99, 52.184) clipping U6 (AFE4900YZR, bottom, 27.2,50.8) courtyard.
 
 Earlier "0 violations" runs used older KiCad and/or the auto-loaded
-`vitalq_v2.kicad_dru` waiver file; the v22 docs claiming 0 were stale (checked —
+`vitalquant_v2.kicad_dru` waiver file; the v22 docs claiming 0 were stale (checked —
 fix_v22 board and repo main board are byte-identical, md5 3366e11b…).
 
 ## Fixes applied (real geometry/rule fixes)
@@ -38,7 +38,7 @@ fix_v22 board and repo main board are byte-identical, md5 3366e11b…).
 - JLCPCB capabilities (jclpcb.com, checked 24 Oct 2026): multilayer minimum
   trace/space **0.09/0.09 mm**; local BGA capability 0.09 mm. The 0.100 mm gaps
   are manufacturable.
-- Resolution: narrow custom rule in `fix_v23/vitalq_v2.kicad_dru`:
+- Resolution: narrow custom rule in `fix_v23/vitalquant_v2.kicad_dru`:
 
 ```scheme
 (rule "Q1 Q2 Q4 internal pad clearance"
@@ -63,7 +63,7 @@ fix_v22 board and repo main board are byte-identical, md5 3366e11b…).
   site.
 - Resolution: U6's courtyard polygon narrowed on the single grazed edge
   (relative x −1.30 → −1.15 mm) in both the embedded footprint and
-  `vitalq.pretty/BGA30N40P5X6_260X210X50.kicad_mod`. No copper, pad, body or
+  `vitalquant.pretty/BGA30N40P5X6_260X210X50.kicad_mod`. No copper, pad, body or
   placement change; J8's electrical connections, keep-outs and the case access
   window alignment are untouched.
 

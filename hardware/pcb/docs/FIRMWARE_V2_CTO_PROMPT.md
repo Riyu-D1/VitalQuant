@@ -1,4 +1,4 @@
-# VitalQ firmware v2: hardware-interface brief for the WROOM board (fix_v22)
+# VitalQuant firmware v2: hardware-interface brief for the WROOM board (fix_v22)
 
 **For:** the CTO / firmware author. **From:** the hardware side. This is a specification and prompt, not code.
 

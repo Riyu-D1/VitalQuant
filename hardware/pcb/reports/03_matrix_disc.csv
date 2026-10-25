@@ -1,0 +1,81 @@
+ref,value_mpn,footprint,pad,pad_net,pin_function_per_datasheet,pad_to_net_check,polarity_check,rating_check,evidence_source,verdict,notes
+U16,SFH 7072 ams-osram,vitalquant:SFH7072,1,PD_INP,PD1 (BB) cathode,pad1->AFE4900 INP (U6.A2),OK - AFE4900 pin spec "INP: connect to PD cathode only",PD VRmax16V vs rail 0-5V,SFH7072 ds pin table; AFE4900 ds pin fns,PASS,
+U16,SFH 7072,vitalquant:SFH7072,2,PD_INM,PD1 (BB) anode,pad2->AFE4900 INM (U6.A3),OK - "INM: connect to PD anode only",same,SFH7072 ds; AFE4900 ds,PASS,
+U16,SFH 7072,vitalquant:SFH7072,3,PD2_INP,PD2 (IR-cut) cathode,pad3->AFE4900 INP2 (U6.B2),OK,same,SFH7072 ds; AFE4900 ds,PASS,
+U16,SFH 7072,vitalquant:SFH7072,4,TX_5V,IR LED anode,pad4->TX_5V rail,OK - anode on supply rail,IR Vf 1.3typ/1.8max @20mA vs 5.0V rail: 3.2V headroom,SFH7072 ds p.6; netlist U15.B2/C2 TX_5V_RAW,PASS,
+U16,SFH 7072,vitalquant:SFH7072,5,TX_5V,Green1 LED anode,pad5->TX_5V rail,OK,Grn Vf 2.4typ/2.8max @20mA vs 5.0V: >=2.2V headroom,SFH7072 ds p.5,PASS,
+U16,SFH 7072,vitalquant:SFH7072,6,TX1,Green1 LED cathode,pad6->AFE4900 TX1 (U6.D4),OK - cathode to AFE current sink,IF sink set by AFE4900; G1 Ifmax25mA DC,SFH7072 ds p.4; AFE4900 ds,PASS,
+U16,SFH 7072,vitalquant:SFH7072,7,TX_5V,Red LED anode,pad7->TX_5V rail,OK,Red Vf 1.9typ/2.2max @20mA vs 5.0V: >=2.8V headroom,SFH7072 ds p.6,PASS,
+U16,SFH 7072,vitalquant:SFH7072,8,TX3,Red LED cathode,pad8->AFE4900 TX3 (U6.E4),OK,Red Ifmax40mA DC,SFH7072 ds; AFE4900 ds,PASS,
+U16,SFH 7072,vitalquant:SFH7072,9,TX4,IR LED cathode,pad9->AFE4900 TX4 (U6.C5),OK,IR Ifmax60mA DC 1A pulse,SFH7072 ds; AFE4900 ds,PASS,
+U16,SFH 7072,vitalquant:SFH7072,10,PD2_INM,PD2 (IR-cut) anode,pad10->AFE4900 INM2 (U6.B3),OK,same,SFH7072 ds; AFE4900 ds,PASS,
+U16,SFH 7072,vitalquant:SFH7072,11,TX_5V,Green2 LED anode,pad11->TX_5V rail,OK,Grn Vf<=2.8V vs 5.0V: >=2.2V headroom,SFH7072 ds,PASS,
+U16,SFH 7072,vitalquant:SFH7072,12,TX2,Green2 LED cathode,pad12->AFE4900 TX2 (U6.E5),OK,G2 Ifmax25mA DC,SFH7072 ds; AFE4900 ds,PASS,"12 pads 0.9x1.0mm @1.2mm pitch 2 rows +-1.25mm; pin1 (PD1_C) corner marked by B.SilkS dot at (3.85,-1.95); exact datasheet pad-figure dims not text-extractable - geometrically consistent with 7.5x3.9mm pkg"
+D10,NF2W757G-F1 Nichia (consigned),vitalquant:NF2W757G,1,+3V3,anode,pad1->+3V3,OK - pin1 dot on pad1 side; anode to supply (matches LED_AK pin1=A convention),Vf bin 2.4-3.3V @65mA Ifmax100mA,NF2W757G ds; sch symbol desc,PASS_FLAG,"Vf max bin 3.3V == rail: zero headroom at high LED_DRIVE; typ 2.9V@65mA OK for <=~20-40mA"
+D10,NF2W757G-F1,vitalquant:NF2W757G,2,LDR,cathode,pad2->AS7341 LDR (U10.4),"OK - B.SilkS 'K' text at (1.55,-1.55) adjacent to pad2 marks cathode",LDR pin Vmax3.6V sinks 4-258mA prog (AS7341 LED_DRIVE[6:0]),AS7341-DLGM ds reg 0x74; footprint silk text,PASS,"no series R: AS7341 constant-current sink regulates; larger pad = cathode side per Nichia pkg"
+D11,SFH4053 osram IR 860nm,LED_SMD:LED_0402_1005Metric,1,IR_AN,anode,pad1->R47(100R)->+3V3,OK - SFH4053 ds pin1=anode ('Package marking: Anode'); B.SilkS dot on pad1 side,Vf 1.6typ@70mA; Ifmax70mA; (3.3-1.6)/100=~17mA OK,SFH4053 ds pin table/marking,PASS,
+D11,SFH4053,LED_0402_1005Metric,2,IR_K,cathode,pad2->Q1.3 drain (low-side switch),OK,VDS across off-state sees <=3.3V << 12V FET rating,SFH4053 ds; CSD13380F3T ds,PASS,
+D12,XL0603NRC730 Sealand 730nm (consigned),LED_SMD:LED_0603_1608Metric,1,NIR_AN,anode (assumed),pad1->R109(100R)->+3V3,OK per schematic (LED_AK pin1=A); PART marking unknown - assembly polarity risk,Vf 1.75-2.1V@20mA 2.3max@100mA pk; I=(3.3-2)/100=~13mA<20mA rated,XL0603NRC730 web datasheet (unfetched),WARN,"consigned part; verify vendor cathode mark vs pad2; footprint B.SilkS dot sits on pad1(anode) - opposite of common 0603 cathode-mark convention"
+D12,XL0603NRC730,LED_SMD:LED_0603_1608Metric,2,NIR_K,cathode (assumed),pad2->Q4.3 drain,OK,same,same,WARN,same polarity-risk note
+D25,KT-0603G Kento green,LED_SMD:LED_0603_1608Metric,1,LED_A,anode,pad1->R88(150R)->STATUS_LED(U1.21),OK schematic (pin1=A); pin-1/cathode mark convention of generic fp lands on anode pad - assembly risk,Vf 2.7-3.4V: worst-case I~0 on +3V3 rail! typ ~2-4mA only,KT-0603G ds (Vf 2.7-3.2@5mA; norm 2.9-3.4V),WARN,"status LED marginal: Vf max 3.4V exceeds rail; recommend R<=100R or different LED/rail"
+D25,KT-0603G,LED_SMD:LED_0603_1608Metric,2,GND,cathode,pad2->GND,OK,,KT-0603G ds,PASS,
+D33,1N5819WS Hottech SOD-323,Diode_SMD:D_SOD-323,1,VBAT_SYS,cathode (symbol D_SCH_5819: pin1=K),pad1->VBAT_SYS,OK - cathode to system rail; SOD-323 fp fab glyph bar on pad1 side,reverse sees VBAT_SYS<=4.35V vs 40V rating,sch symbol desc; generic 1N5819WS ds (unfetched - corpus doc WRONG see findings),PASS,
+D33,1N5819WS,Diode_SMD:D_SOD-323,2,VBUS,anode (pin2=A),pad2->VBUS,OK - conducts VBUS->VBAT_SYS when USB present; blocks backfeed,IF 1A rating vs est system draw ~0.1-0.8A; Vf<=0.6V@1A -> VBAT_SYS~4.4-4.65V,generic 1N5819WS ds (unfetched),PASS,"marginal at burst loads ~1A; consider 2A part or ideal-diode if TX_5V+3V3 bursts stack"
+Q1,CSD13380F3T N-FemtoFET 12V,Package_DFN_QFN:Texas_PicoStar_DFN-3_0.69x0.60mm,1,IR_GATE,gate,pad1<-U19.7(TCA6408A push-pull)+R48 100k pulldown,OK,VGS 3.3V vs +-8V rated; Vth 0.55-1.3V fully on,TCA6408A ds (push-pull P-port); CSD13380F3T ds; R48 net GND,PASS,
+Q1,CSD13380F3T,Texas_PicoStar_DFN-3,2,GND,source,pad2->GND,OK,,CSD13380F3T ds pin tbl 1=G 2=S 3=D,PASS,
+Q1,CSD13380F3T,Texas_PicoStar_DFN-3,3,IR_K,drain,pad3->D11.2 LED cathode,OK - low-side switch,VDS 12V rating vs <=3.3V net; ID ~17mA vs 2.1A+ cont; RDSon 73mOhm@2.5V,CSD13380F3T ds,PASS,"fp has 2 unnumbered F.Paste-only pads (stencil apertures 0.25x0.2 matching TI stencil rec) - not copper, not a defect"
+Q2,CSD13380F3T,Texas_PicoStar_DFN-3,1,CHG_DIS,gate,pad1<-U19.10(TCA6408A push-pull)+R59 100k pulldown,OK,VGS 3.3V vs +-8V; pull-down keeps Q2 off at boot = charge enabled by default,TCA6408A ds; R59 net GND,PASS,
+Q2,CSD13380F3T,Texas_PicoStar_DFN-3,2,GND,source,pad2->GND,OK,,CSD13380F3T ds,PASS,
+Q2,CSD13380F3T,Texas_PicoStar_DFN-3,3,TS,drain,pad3->BQ25170 TS(U2.3)+NTC net,OK - drain pulls TS to GND = 'Pulling TS < VTS_ENZ(40-60mV) will disable the charger',VDS sees VTS_CLAMP<=2.9V vs 12V; ID~0.4mA,BQ25170DSGR ds TS pin fn + ITS_BIAS 38uA; CSD13380F3T ds,PASS,
+Q3,BC847BS-7-F dual NPN SOT-363,Package_TO_SOT_SMD:SOT-363_SC-70-6,1,CP_RTS,E1 (emitter T1),pad1->CP_RTS(U5.24),OK - emitter on RTS = classic cross-wired ESP32 auto-reset,VEBO 6V rating vs <=3.3V logic,BC847BS symbol pinout 1=E1 2=B1 3=C2 4=E2 5=B2 6=C1; Diodes/Nexperia same SOT-363 pinning,PASS,
+Q3,BC847BS-7-F,SOT-363_SC-70-6,2,Q3_B1,B1,pad2->R70(10k)->CP_DTR,OK,IC 100mA cont vs ~0.3mA here,BC847BS ds; R70 10k BOM,PASS,
+Q3,BC847BS-7-F,SOT-363_SC-70-6,3,ESP_IO0,C2 (collector T2),pad3->ESP_IO0(+R6 10k pull-up to 3V3),OK - C2 pulls IO0 low when RTS=1 DTR=0,VCEO 45V vs 3.3V,BC847BS ds; ESP reset topology check,PASS,
+Q3,BC847BS-7-F,SOT-363_SC-70-6,4,CP_DTR,E2,pad4->CP_DTR(U5.28),OK - emitter on DTR,,BC847BS ds,PASS,
+Q3,BC847BS-7-F,SOT-363_SC-70-6,5,Q3_B2,B2,pad5->R71(10k)->CP_RTS,OK,,BC847BS ds,PASS,
+Q3,BC847BS-7-F,SOT-363_SC-70-6,6,ESP_EN,C1,pad6->ESP_EN(+R5 10k pull-up + C64 delay cap),OK - C1 pulls EN low when DTR=1 RTS=0,,BC847BS ds,PASS,"auto-boot circuit verified vs Diodes/Nexperia SOT-363 pinout; safe when CP2102 idle or unpowered"
+Q4,CSD13380F3T,Texas_PicoStar_DFN-3,1,NIR730_GATE,gate,pad1<-U7.E1(AD5940 GPIO2 push-pull IOVDD~3.3V)+R110 100k pulldown,OK,VGS~3.3V vs +-8V; Vth<=1.3V,AD5940 ds (E1=GPIO2; VOH spec; IOVDD via R12 from +3V3_ANA); R110 net GND,PASS,
+Q4,CSD13380F3T,Texas_PicoStar_DFN-3,2,GND,source,pad2->GND,OK,,CSD13380F3T ds,PASS,
+Q4,CSD13380F3T,Texas_PicoStar_DFN-3,3,NIR_K,drain,pad3->D12.2 LED cathode,OK,VDS 12V vs <=3.3V; ID~13mA,CSD13380F3T ds,PASS,
+Q6,AO3401A P-ch -30V -4A,Package_TO_SOT_SMD:SOT-23,1,VBUS,gate,pad1->VBUS,OK - gate on VBUS rail: Hi=off when USB present,|VGS|<=5.5V vs +-12V rated; pull-down path R123 100k to GND (plus R50+R51 R63+R64 dividers),AO3401A ds (SOT-23: 1=G 2=S 3=D single-pad side=D); VBUS net members,PASS,
+Q6,AO3401A,SOT-23,2,VBAT_SYS,source,pad2->VBAT_SYS,OK - source on system-rail side,VDS -30V rating vs <=5.5V,AO3401A ds,PASS,"reversed-S variant of load-share: body diode blocks SYS->BAT backfeed when VBUS present; conducts BAT->SYS only"
+Q6,AO3401A,SOT-23,3,VBAT,drain,pad3->VBAT,OK,ID -4A vs system ~<1A; Vth -0.5..-1.3V -> fully on when VBUS absent (gate ~0V via pull-downs),AO3401A ds,PASS,
+L1,DFE201612E-R47M 0.47uH Murata,vitalquant:L_DFE201612E,1,SW_L1,inductor terminal,pad1->U3.9 (TPS63802 SW1/L1),n/a non-polar,Isat 5.5A vs TPS63802 peak limit 3.8-5.75A; Itemp 4.5A; DCR 26mOhm max,DFE201612E ds; TPS63802 ds Table10-2 lists DFE201612E 0.47uH 5.5A as recommended,PASS,"L=0.47uH+/-20% = 0.376-0.564uH within required 0.37-0.57uH; Isat 5.5A marginally below worst-case boost peak limit 5.75A (TI-recommended part)"
+L1,DFE201612E-R47M,L_DFE201612E,2,SW_L2,inductor terminal,pad2->U3.7 (SW2/L2),n/a,,same,PASS,"pads 0.55x1.6 @+-0.725 pitch 1.45mm on 2.0x1.6mm body - plausible"
+L2,DFE201612E-1R0M 1.0uH Murata,vitalquant:L_DFE201612E,1,VBAT_SYS,inductor terminal,pad1->VBAT_SYS (boost input side),n/a,Isat 4.0A/Itemp 2.9A vs TPS61240 valley limit 0.5-0.7A - oversized margin; DCR 48mOhm,DFE201612E-1R0M Murata spec (web-unfetched); TPS61240 ds L range 0.4-1.5uH,PASS,
+L2,DFE201612E-1R0M,L_DFE201612E,2,TX_SW,inductor terminal,pad2->U15.B1 (TPS61240 L/SW pin),n/a,,TPS61240 ds pin L=B1,PASS,
+D1,TPD1E10B06DPYR TI ESD,vitalquant:TPD1E10B06_DPY,1,ECG_P,IO (ESD-protected pin),pad1->ECG_P (J5.1 ECG1_PAD via R32 51k; U8.6 ADS1292 IN2P direct),OK - pin1=signal per ds Table4-1; BIDIRECTIONAL part so direction non-critical,VRWM+-5.5V VBR+-6V vs electrode signal <=~1V; 12pF on ECG line,TPD1E10B06DPYR ds (bidirectional); pinmap chains,PASS,"clamp sits on IC-side of 51k series R (defib-protection topology); pad-side sees full strike - verify R32-R36 2512 pulse rating"
+D1,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D2,TPD1E10B06DPYR,TPD1E10B06_DPY,1,ECG_N,IO,pad1->ECG_N (J5.2 via R33; U8.5 IN2N),OK,same,same,PASS,
+D2,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D3,TPD1E10B06DPYR,TPD1E10B06_DPY,1,RLD_CLAMP,IO,pad1->RLD_CLAMP (J5.3 via R34; ->R69->RLDOUT U8.30),OK,same,same,PASS,"diode sits between two series R (R34 pad-side + R69 IC-side)"
+D3,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D4,TPD1E10B06DPYR,TPD1E10B06_DPY,1,AFE_P_AC,IO,pad1->AFE_P_AC (J5.4 via R35; ->R44->C56->AFE_INP U6.B1),OK,same,same,PASS,"AC-coupled path to AFE4900 ECG input"
+D4,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D5,TPD1E10B06DPYR,TPD1E10B06_DPY,1,AFE_N_AC,IO,pad1->AFE_N_AC (J5.5 via R36; ->R46->C57->AFE_INM U6.A1),OK,same,same,PASS,
+D5,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D6,TPD1E10B06DPYR,TPD1E10B06_DPY,1,CE_ISO,IO,pad1->CE_ISO (J6.1 EDA_CE_PAD via R76->CE_SURGE->C54 coupling),OK,same,same,PASS,"behind 51k + AC cap C54"
+D6,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D7,TPD1E10B06DPYR,TPD1E10B06_DPY,1,SE_ISO,IO,pad1->SE_ISO (J6.3 via R77->SE_SURGE->R40->; ->C55->SE0 U7.A6),OK,same,same,PASS,
+D7,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D8,TPD1E10B06DPYR,TPD1E10B06_DPY,1,RE_SURGE,IO,pad1->RE_SURGE (J6.2 via R78; ->R41->RE0 U7.A8),OK,same,same,PASS,"diode between 51k and 1k series R"
+D8,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D9,TPD1E10B06DPYR,TPD1E10B06_DPY,1,DE_SURGE,IO,pad1->DE_SURGE (J6.4 via R79; ->R42->DE0 U7.B6),OK,same,same,PASS,
+D9,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D21,TPD1E10B06DPYR,TPD1E10B06_DPY,1,FP_ISO,IO,pad1->FP_ISO (J7.1 BIOZ_FP_PAD via R80->FP_SURGE->C67 coupling; ->R84->BIOZ_FP U7.B3),OK,same,same,PASS,
+D21,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D22,TPD1E10B06DPYR,TPD1E10B06_DPY,1,FN_ISO,IO,pad1->FN_ISO (J7.2 via R81->FN_SURGE->R85->; ->C68->BIOZ_FN U7.D2),OK,same,same,PASS,
+D22,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D23,TPD1E10B06DPYR,TPD1E10B06_DPY,1,SP_ISO,IO,pad1->SP_ISO (J7.3 via R82->SP_SURGE->R86->; ->C69->BIOZ_SP U7.B5),OK,same,same,PASS,
+D23,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D24,TPD1E10B06DPYR,TPD1E10B06_DPY,1,SN_ISO,IO,pad1->SN_ISO (J7.4 via R83->SN_SURGE->R87->; ->C70->BIOZ_SN U7.A3),OK,same,same,PASS,
+D24,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D26,TPD1E10B06DPYR,TPD1E10B06_DPY,1,SWEAT_WE,IO,pad1->SWEAT_WE (J11.1 via R120; J12.11 direct; U7.C5 direct),OK,same,same,PASS,"diode directly on the J12-FPC-exposed net (good); J11 path via 51k"
+D26,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D27,TPD1E10B06DPYR,TPD1E10B06_DPY,1,SWEAT_RE,IO,pad1->SWEAT_RE (J11.2 via R121; J12.12; U7.A2),OK,same,same,PASS,
+D27,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D28,TPD1E10B06DPYR,TPD1E10B06_DPY,1,SWEAT_CE,IO,pad1->SWEAT_CE (J11.3 via R122; J12.13; U7.A1),OK,same,same,PASS,
+D28,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D29,TPD1E10B06DPYR,TPD1E10B06_DPY,1,MX_ECG_INP,IO,pad1->MX_ECG_INP (J13.1 via R118; DEAD-END stub - no IC pad on net),OK pin1=signal but net terminates at stub,same,"netlist: MX_ECG_INP={D29.1,R118.2} only; J13 DNP per BOM",WARN,"wasted placement: clamps a vestigial stub; if mux-ECG feature intended the downstream net is missing entirely"
+D29,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,
+D30,TPD1E10B06DPYR,TPD1E10B06_DPY,1,MX_ECG_INM,IO,pad1->MX_ECG_INM (J13.2 via R119; DEAD-END stub),OK,same,"MX_ECG_INM={D30.1,R119.2} only",WARN,same as D29
+D30,TPD1E10B06DPYR,TPD1E10B06_DPY,2,GND,GND,pad2->GND,OK,,same,PASS,

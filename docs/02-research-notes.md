@@ -128,7 +128,7 @@ sensor task, never on transmit.
 
 ## D. Public datasets (pre-hardware bootstrap)
 
-| Dataset | Contents | Match to VitalQ | Access |
+| Dataset | Contents | Match to VitalQuant | Access |
 |---|---|---|---|
 | **PPG-DaLiA** (UCI/PhysioNet) | 15 subjects, wrist Empatica E4: BVP 64 Hz, EDA, skin temp 4 Hz, ACC 32 Hz + chest RespiBAN ECG truth; daily-life activities | **Best match** — wrist PPG + motion + skin temp with ECG ground truth | Public |
 | **WESAD** | 15 subjects, E4 (BVP/EDA/TEMP/ACC) + labels (baseline/stress/amusement) | Personal-deviation + multimodal fusion exercises | Public |
@@ -138,7 +138,7 @@ sensor task, never on transmit.
 | **Capnobase / BIDMC** | ICU PPG + RR + SpO₂ reference | Respiration-rate-from-PPG methods | Public |
 | **WildPPG** | Multi-site real-world PPG incl. altitude | Artifact/realism validation | Public |
 
-Caveat recorded: none share VitalQ's exact sensors/geometry — use for method development,
+Caveat recorded: none share VitalQuant's exact sensors/geometry — use for method development,
 document the domain shift, never report cross-dataset claims as device performance.
 
 ## E. Quantum-simulation audit (spec §25)
@@ -162,7 +162,7 @@ amplitude 1000, `r = 0.8`, SNR threshold 3, noise `√signal × e⁻ʳ`.
      honest headline.
   3. **Squeezing angle/quadrature choice** — amplitude vs phase squeezing;
      intensity measurements need amplitude squeezing.
-  4. **Regime mismatch** — 1650 cm⁻¹ (amide-I Raman region) vs VitalQ's actual
+  4. **Regime mismatch** — 1650 cm⁻¹ (amide-I Raman region) vs VitalQuant's actual
      visible/NIR reflectance bands; keep the Raman sim as a separate, labelled toy model.
 - **Design consequence:** the sim is a *model hierarchy* (`NoiseModel` interface:
   `ShotNoise → SqueezedShotNoise(r) → LossySqueezed(r, η) → AmbientDominated(...)`) with an
@@ -175,5 +175,5 @@ amplitude 1000, `r = 0.8`, SNR threshold 3, noise `√signal × e⁻ʳ`.
   (Supabase docs: migrate to native partitioning / `pg_partman`). Schema therefore uses
   declarative `PARTITION BY RANGE (time)` — portable and version-proof.
 - **2018 MBP dev constraint:** no local Postgres required (Supabase-hosted); ML deps
-  modularised (`pip install vitalq[ml]`); no large pretrained models; CPU-only PyTorch if
+  modularised (`pip install vitalquant[ml]`); no large pretrained models; CPU-only PyTorch if
   ever needed.

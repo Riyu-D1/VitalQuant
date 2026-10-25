@@ -6,15 +6,15 @@ Leg B: claimed pin NAME vs schematic symbol pin name (DS-derived) at that pin nu
 import pcbnew, re, os, sys, json
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-BOARD = os.path.join(ROOT, '..', 'vitalq_v2.kicad_pcb')
-SYM = os.path.join(ROOT, '..', 'vitalq.kicad_sym')
+BOARD = os.path.join(ROOT, '..', 'vitalquant_v2.kicad_pcb')
+SYM = os.path.join(ROOT, '..', 'vitalquant.kicad_sym')
 
 b = pcbnew.LoadBoard(os.path.abspath(BOARD))
 fpmap = {}   # ref -> {padnum -> netname}
 for fp in b.GetFootprints():
     fpmap[fp.GetReference()] = {p.GetNumber(): p.GetNetname() for p in fp.Pads()}
 
-# symbol pin name map from vitalq.kicad_sym: symbol name -> {pinnum -> pinname}
+# symbol pin name map from vitalquant.kicad_sym: symbol name -> {pinnum -> pinname}
 symtxt = open(SYM).read()
 libpins = {}
 for m in re.finditer(r'\(symbol "([^"]+)"(.*?)(?=\n\t\t\(symbol|\Z)', symtxt, re.S):
@@ -28,9 +28,9 @@ for m in re.finditer(r'\(symbol "([^"]+)"(.*?)(?=\n\t\t\(symbol|\Z)', symtxt, re
         libpins[name] = pins
 
 # ref -> sch symbol name (from board footprint 'value' is part name; better: sch instance)
-sch = open(os.path.join(ROOT, '..', 'vitalq_v2.kicad_sch')).read()
+sch = open(os.path.join(ROOT, '..', 'vitalquant_v2.kicad_sch')).read()
 reflib = {}
-for m in re.finditer(r'\(symbol\s*\n\s*\(lib_id "vitalq:([^"]+)"\)(.*?)\(instances', sch, re.S):
+for m in re.finditer(r'\(symbol\s*\n\s*\(lib_id "vitalquant:([^"]+)"\)(.*?)\(instances', sch, re.S):
     lib, body = m.group(1), m.group(2)
     rm = re.search(r'\(property "Reference" "([^"]+)"', body)
     if rm:

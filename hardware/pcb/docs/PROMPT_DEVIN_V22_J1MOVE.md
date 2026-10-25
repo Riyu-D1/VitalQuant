@@ -1,6 +1,6 @@
-# VitalQ fix_v22: move J1 (USB-C) east so a real USB-C cable can plug in
+# VitalQuant fix_v22: move J1 (USB-C) east so a real USB-C cable can plug in
 
-Work ONLY in `~/Downloads/VitalQ_Hand/fix_v22/`. It is a copy of fix_v21: the old `fab/` is in `_stale/fab_v21`, and the old prompts are in `_stale/`.
+Work ONLY in `~/Downloads/VitalQuant_Hand/fix_v22/`. It is a copy of fix_v21: the old `fab/` is in `_stale/fab_v21`, and the old prompts are in `_stale/`.
 - Never touch `fix_v21`, `fix_v19` or `fix_v20*`, and never touch any `case_*` folder. **Delete nothing**: stale files go to `fix_v22/_stale/`.
 - No firmware edits. No ordering, pricing or contacting anyone. No safety or compliance claims.
 - **No time caps.** Do not stop or print the completion line until every item in section 7 is true.
@@ -30,7 +30,7 @@ Work ONLY in `~/Downloads/VitalQ_Hand/fix_v22/`. It is a copy of fix_v21: the ol
 
 Re-draw after each step, then look at the pictures again:
 ```
-$KP _work/j1pics.py vitalq_v2.kicad_pcb _work/j1area.json && python3 _work/draw_j1.py
+$KP _work/j1pics.py vitalquant_v2.kicad_pcb _work/j1area.json && python3 _work/draw_j1.py
 ```
 `$KP` = `/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3`. Once J1 has moved, edit `dx` in `draw_j1.py` to 0 so the lime box matches.
 
@@ -61,7 +61,7 @@ $KP _work/j1pics.py vitalq_v2.kicad_pcb _work/j1area.json && python3 _work/draw_
 - If x 29.5 truly cannot work, x 29.2 is the absolute minimum. **Never go below it.** If more room is needed, you may move other nearby small passives or test points, logged.
 
 ## 5. Checks (all must be run; collect everything, do not stop at the first failure)
-1. DRC on the saved board, after copying `../fix_v19/vitalq_v2.kicad_pro` and `.kicad_dru` into `fix_v22/`:
+1. DRC on the saved board, after copying `../fix_v19/vitalquant_v2.kicad_pro` and `.kicad_dru` into `fix_v22/`:
    `kicad-cli pcb drc --severity-error --schematic-parity`
    **0 errors / 0 unconnected / 0 shorts / 0 parity.** Also list the `--severity-all` warning counts compared with v21.
 2. ERC: `kicad-cli sch erc --severity-error` = 0.
@@ -82,7 +82,7 @@ $KP _work/j1pics.py vitalq_v2.kicad_pcb _work/j1area.json && python3 _work/draw_
   - Gerbers (8 copper + masks, silk, paste, Edge.Cuts) and drill;
   - **`BOM.csv` with the U1 fix from V21 finding M1.** Do this only if it is a schematic property-field fix of U1 Value/Footprint and nothing else: set Value `ESP32-S3-WROOM-1-N16R8`, Footprint `ESP32_S3_WROOM_1`, then log it and re-run ERC/parity;
   - `BOM_JLC.csv`, `CPL.csv`, `CPL_JLC.csv`;
-  - `VitalQ_v2_fixv22_fabrication.zip`, plus its SHA-256.
+  - `VitalQuant_v2_fixv22_fabrication.zip`, plus its SHA-256.
 - **Check J1's CPL rotation**: it must match the JLC convention for HRO TYPE-C-31-M-12 (C165948), with the same orientation as v21 and only XY changed. Also confirm the CPL XY of R2, TP11, TP20 and R26 match the board.
 - Renders: `_prompt_pics/final_top.png`, `final_bottom.png`, an isometric view, and a close-up of J1 with the tab and WROOM (`kicad-cli pcb render`, with zoom/rotate). Re-draw the `J1area_*` pictures into `_prompt_pics/final/`.
 - `fix_v22/V22_PROGRESS.md`: every move (ref, old xy → new xy), every re-routed net (layer, length before/after), the USB pair numbers, the DRC counts, the corridor clearances, and any WROOM-route rip-ups (ideally none).
@@ -96,9 +96,9 @@ $KP _work/j1pics.py vitalq_v2.kicad_pcb _work/j1area.json && python3 _work/draw_
   - the C64/C8/D33/Q6 grazes from V21 m7.
 
 ## 7. Done means
-- DRC 0/0/0 (+0 parity) and ERC 0 on the saved `fix_v22/vitalq_v2.kicad_pcb`.
+- DRC 0/0/0 (+0 parity) and ERC 0 on the saved `fix_v22/vitalquant_v2.kicad_pcb`.
 - The corridor script PASSes for the 12.4 mm grip with ≥0.5 mm margin per side, and for the 8.3 mm grip.
 - The antenna keep-out is empty, and the WROOM routes are unchanged (or the logged minimal rip-ups re-routed).
 - Fab zip and SHA-256 done, the CPL J1 rotation is checked, renders done, and both MD files are written.
 - Then print exactly:
-  `VITALQ V22 COMPLETE  DRC errors=<n> unconnected=<n> shorts=<n>  J1_x=<x>  grip12.4_margin_west=<mm> east=<mm>  axis_to_tab=<mm>  axis_to_U1=<mm>`
+  `VITALQUANT V22 COMPLETE  DRC errors=<n> unconnected=<n> shorts=<n>  J1_x=<x>  grip12.4_margin_west=<mm> east=<mm>  axis_to_tab=<mm>  axis_to_U1=<mm>`

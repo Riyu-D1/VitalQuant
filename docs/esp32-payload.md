@@ -46,7 +46,7 @@ X-Device-Key: <provisioned key, sent once at flash time over serial>
   (see `firmware/esp32/core/sensor_driver.h` FIFO contract).
 - `batch_id` reuse → `409` and safe re-drop — the RingBuffer replays
   buffered batches verbatim after an outage.
-- Unknown `channel` → `400`; channels come from `vitalq-core`'s registry
+- Unknown `channel` → `400`; channels come from `vitalquant-core`'s registry
   (profile `outputs:` lists), so keep the profile in sync.
 - Payload cap 2 MB — size batches by window count, not duration.
 - Response `202` carries `accepted`, `batch_id`, `server_time` and the
@@ -62,5 +62,5 @@ intended cadence.
 
 ## Transport
 
-TLS only in deployment. `VITALQ_DEVICE_KEY` is provisioned once via
+TLS only in deployment. `VITALQUANT_DEVICE_KEY` is provisioned once via
 serial at flash time — **no secrets in source or profiles**.

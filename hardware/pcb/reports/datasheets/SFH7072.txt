@@ -1,0 +1,1350 @@
+       www.osram-os.com
+    SFH 7072
+    DATASHEET
+
+
+
+
+                                        SFH 7072
+    Datasheet
+
+
+                                    ﻿
+
+
+
+
+    Published by ams-OSRAM AG
+    Tobelbader Strasse 30, 8141 Premstaetten, Austria
+﻿
+
+
+
+
+    Phone +43 3136 500-0
+    ams-osram.com
+          | Version
+      1 rights
+    © All           1.6 | 2023-08-11
+               reserved
+    SFH 7072
+    DATASHEET
+
+
+
+
+    BIOFY®
+
+    SFH 7072
+    Biomonitoring Sensor
+
+
+
+
+    Applications
+    - Digital Diagnostic Devices                            - Vital Sign Monitoring
+
+
+
+    Features
+    - ESD: 2 kV acc. to ANSI/ESDA/JEDEC JS-001 (HBM, Class 2)
+    - Multi chip package featuring two green, one red, one infrared emitter and two photodetectors
+
+                                 ﻿
+    - Light Barrier to block optical crosstalk
+    - optimized for strong PPG signal
+    - Package size: (WxDxH) 7.5 mm x 3.9 mm x 0.9 mm
+﻿
+
+
+
+
+     2 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Ordering Information
+    Type                            Ordering Code
+    SFH 7072                        Q65112A1516
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+     3 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+    Maximum Ratings
+    TA = 25 °C
+     Parameter                              Symbol            Values
+     Operating temperature range            Top        min.    -40 °C
+                                                       max.     85 °C
+     Storage temperature range              Tstg       min.    -40 °C
+                                                       max.     85 °C
+     ESD withstand voltage                  VESD       max.      2 kV
+     acc. to ANSI/ESDA/JEDEC JS-001 - HBM
+     Green Emitters
+     Reverse voltage 5)                     VR         max.      5V
+     Forward current                        IF (DC)    max.   25 mA
+     Forward current pulsed                 IF pulse   max.   300 mA
+     tp = 5 ms, D = 0.005
+     Red Emitter
+     Reverse voltage 5)                     VR         max.     12 V
+     Forward current                        IF (DC)    max.   40 mA
+     Forward current pulsed                 IF pulse   max.   300 mA
+     tp = 300 µs, D = 0.005
+     Infrared Emitters
+     Reverse voltage 5)                     VR         max.      5V
+     Forward current                        IF (DC)    max.   60 mA
+     Forward current pulsed                 IF pulse   max.      1A
+     tp = 200 µs, D = 0.005
+     Photodiode
+     Reverse voltage                        VR         max.     16 V
+
+
+
+
+                                   ﻿
+﻿
+
+
+
+
+     4 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+    Characteristics
+    TA = 25 °C
+     Parameter                               Symbol                       Values
+
+     Green Emitter (single emitter)
+     Peak wavelength                         λpeak       typ.             526 nm
+     IF = 20 mA
+     Centroid Wavelength 6)                  λcentroid   min.             520 nm
+     IF = 20 mA                                          typ.             530 nm
+                                                         max.             540 nm
+     Spectral bandwidth at 50% of Imax       Δλ          typ.              32 nm
+     IF = 20 mA
+     Half angle                              φ           typ.             ± 60 °
+     Rise time                               tr          typ.               60 ns
+     IF = 100 mA, tp = 16µs, RL = 50 Ω
+     Fall time                               tf          typ.               60 ns
+     IF = 100 mA, tp = 16µs, RL = 50 Ω
+     Forward voltage 7)                      VF          typ.               2.4 V
+     IF = 20 mA                                          max.               2.8 V
+     Reverse current                         IR                   not designed for
+     VR = 5 V                                                   reverse operation
+     Radiant intensity                       Ie          typ.          4.7 mW / sr
+     IF = 20 mA, tp = 20 ms
+     Total radiant flux                      Φe          typ.             14 mW
+     IF = 20 mA, tp = 20 ms
+     Temperature coefficient of brightness   TCI         typ.         -0.35 % / K
+     IF = 20 mA, tp = 20 ms
+     Temperature coefficient of wavelength   TCλ         typ.         0.03 nm / K
+     IF = 20 mA, -10°C ≤ T ≤ 100°C
+     Temperature coefficient of voltage      TCV         typ.         -3.6 mV / K
+     IF = 20 mA -10°C ≤ T ≤ 100°C
+
+
+
+                                     ﻿
+﻿
+
+
+
+
+     5 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+    Characteristics
+    TA = 25 °C
+     Parameter                               Symbol                       Values
+
+     Red Emitter
+     Peak wavelength                         λpeak       typ.             660 nm
+     IF = 20 mA
+     Centroid Wavelength 6)                  λcentroid   min.             652 nm
+     IF = 20 mA                                          typ.             655 nm
+                                                         max.             658 nm
+     Spectral bandwidth at 50% of Imax       Δλ          typ.              17 nm
+     IF = 20 mA
+     Half angle                              φ           typ.             ± 60 °
+     Rise time                               tr          typ.               17 ns
+     IF = 100 mA, tp = 16µs, RL = 50 Ω
+     Fall time                               tf          typ.               17 ns
+     IF = 100 mA, tp = 16µs, RL = 50 Ω
+     Forward voltage 7)                      VF          typ.               1.9 V
+     IF = 20 mA                                          max.               2.2 V
+     Reverse current                         IR                   not designed for
+     VR = 12V                                                   reverse operation
+     Radiant intensity                       Ie          typ.          5.1 mW / sr
+     IF = 20 mA, tp = 20 ms
+     Total radiant flux                      Φe          typ.             16 mW
+     IF = 20 mA, tp = 20 ms
+     Temperature coefficient of wavelength   TCλ         typ.         0.18 nm / K
+     IF = 20 mA, -10°C ≤ T ≤ 100°C
+
+
+
+
+                                     ﻿
+﻿
+
+
+
+
+     6 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+    Characteristics
+    TA = 25 °C
+     Parameter                               Symbol                       Values
+
+     Infrared Emitter
+     Peak wavelength                         λpeak       typ.             950 nm
+     IF = 20 mA, tp = 20 ms
+     Centroid Wavelength 6)                  λcentroid   min.             930 nm
+     IF = 20 mA, tp = 20 ms                              typ.             940 nm
+                                                         max.             950 nm
+     Spectral bandwidth at 50% of Imax       Δλ          typ.              42 nm
+     IF = 20 mA, tp = 20 ms
+     Half angle                              φ           typ.              ± 60 °
+     Rise time (10% and 90%)                 tr          typ.               16 ns
+     IF = 100 mA, tp = 16 µs, RL = 50 Ω
+     Fall time (10% and 90%)                 tf          typ.               16 ns
+     IF = 100 mA, tp = 16 µs, RL = 50 Ω
+     Forward voltage 7)                      VF          typ.                1.3 V
+     IF = 20 mA, tp = 20 ms                              max.                1.8 V
+     Reverse current                         IR          .        Not designed for
+     VR = 5 V                                                    reverse operation
+     Radiant intensity                       Ie          typ..         3.9 mW / sr
+     IF = 20 mA, tp = 20 ms
+     Total radiant flux                      Φe          typ.              11 mW
+     IF = 20 mA, tp = 20 ms
+     Temperature coefficient brightness      TCI         typ.           -0.3 % / K
+     IF = 20 mA, tp = 20 ms
+     Temperature coefficient of wavelength   TC λ        typ.         0.25 nm / K
+     IF = 20 mA, tp = 20 ms
+     Temperature coefficient of voltage      TCV         typ.          -0.8 mV / K
+     IF = 20 mA, tp = 20 ms
+
+
+
+
+                                     ﻿
+﻿
+
+
+
+
+     7 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+    Characteristics
+    TA = 25 °C
+     Parameter                               Symbol                 Values
+
+     Broadband Detector
+     Wavelength of max. sensitivity          λS max   typ.          960 nm
+     Spectral range of sensitivity           λ10%     typ.    410 … 1100 nm
+     Photocurrent                            IP       typ.           0.4 µA
+     Ee = 0.1 mW/cm2, λ = 530 nm, VR = 5 V
+     Photocurrent                            IP       typ.           0.6 µA
+     Ee = 0.1 mW/cm2, λ = 655 nm, VR = 5 V
+     Photocurrent                            IP       typ.           1.1 µA
+     Ee = 0.1 mW/cm2, λ = 940 nm, VR = 5 V
+     Radiation sensitive area                A        typ.         0.88 mm2
+     Dimensions of radiant sensitive area    LxW      typ.       0.89 x 0.89
+                                                                  mm x mm
+     Half angle                              φ        typ.           ± 60 °
+     Dark current                            IR       typ.          0.05 nA
+     VR = 5 V, E = 0                                  max.            10 nA
+     Open-circuit voltage                    VO       typ.          211 mV
+     Ee   = 0.1 mW/cm2, λ = 530nm
+     Open-circuit voltage                    VO       typ.          249 mV
+     Ee = 0.1 mW/cm2, λ = 655nm
+     Open-circuit voltage                    VO       typ.          266 mV
+     Ee   = 0.1 mW/cm2, λ = 940nm
+     Short-circuit current                   ISC      typ.           0.4 µA
+     Ee   = 0.1 mW/cm2, λ = 530nm
+     Short-circuit current                   ISC      typ.           0.6 µA
+     Ee = 0.1 mW/cm2, λ = 655nm
+     Short-circuit current
+     Ee   = 0.1 mW/cm2, λ = 940nm
+     Rise time
+                                      ﻿      ISC
+
+
+                                             tr
+                                                      typ.
+
+
+                                                      typ.
+                                                                     1.1 µA
+
+
+                                                                    0.75 µs
+     VR = 5 V, RL = 50 Ω, λ = 940 nm
+     Fall time                               tf       typ.          0.75 µs
+     VR = 5 V, RL = 50 Ω, λ = 940 nm
+     Forward voltage                         VF       typ..          1.16 V
+     IF = 100 mA, E = 0
+     Capacitance                             C0       typ.           4.2 pF
+     VR = 5 V, f = 1 MHz, E = 0
+﻿
+
+
+
+
+     8 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+    Characteristics
+    TA = 25 °C
+     Parameter                               Symbol                Values
+
+     IR-Cut Detector
+     Wavelength of max. sensitivity          λS max   typ.         635 nm
+     Spectral range of sensitivity           λ10%     typ.    402 … 694 nm
+     Photocurrent                            IP       typ.          1.1 µA
+     Ee = 0.1 mW/cm2, λ = 530 nm, VR = 5 V
+     Radiation sensitive area                A        typ.        3.46 mm2
+     Dimensions of radiant sensitive area    LxW      typ.      1.29 x 2.69
+                                                                 mm x mm
+     Half angle                              φ        typ.          ± 57 °
+     Dark current                            IR       typ.          0.4 nA
+     VR = 5 V, Ee = 0                                 max.            2 nA
+     Open-circuit voltage                    VO       typ.         390 mV
+     Ee   = 0.1 mW/cm2, λ = 530nm
+     Short-circuit current                   ISC      typ.          1.1 µA
+     Ee = 0.1 mW/cm2, λ = 530nm
+     Rise time                               tr       typ.           40 ns
+     VR = 5 V, RL = 50 Ω, λ = 530 nm
+     Fall time                               tf       typ.           40 ns
+     VR = 5 V, RL = 50 Ω, λ = 530 nm
+     Forward voltage                         VF       typ..         0.84 V
+     IF = 10 mA, E = 0
+     Capacitance                             C0       typ.           55 pF
+     VR = 5 V, f = 1 MHz, E = 0
+
+
+
+
+                                      ﻿
+﻿
+
+
+
+
+     9 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Relative Spectral Emission 1),                 2)
+
+    ● true green: Ie,rel = f (λ); IF = 20 mA; tp = 20 ms
+
+                                                  [ ]
+                                                         100
+
+
+
+                                                         80
+
+
+
+                                                         60
+
+
+
+                                                         40
+
+
+
+                                                         20
+
+
+
+                                                           0
+                                                           450   500   550   600        650
+                                                                                   λ[    ]
+
+
+
+
+    Relative Spectral Emission 1),                 2)
+
+    ● hyper red: Ie,rel = f (λ); IF = 20 mA; tp = 20 ms
+
+                                                   [ ]
+                                                         1.0
+
+
+
+
+                                   ﻿                     0.8
+
+
+
+                                                         0.6
+
+
+
+                                                         0.4
+
+
+
+                                                         0.2
+
+
+
+                                                         0.0
+                                                           550   600   650   700        750
+                                                                                   λ[    ]
+﻿
+
+
+
+
+    10 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Relative Spectral Emission 1),                    2)
+
+    ● infrared (940 nm): Ie,rel = f (λ); IF = 20 mA; tp = 20 ms
+
+                                                     [ ]
+                                                           100
+
+
+
+                                                           80
+
+
+
+                                                           60
+
+
+
+                                                           40
+
+
+
+                                                           20
+
+
+
+                                                            0
+                                                            800   850   900   950   1000
+                                                                                     λ[ ]
+
+
+
+
+    Radiation Characteristics 1),                2)
+
+    true green/ hyper red/ infrared: Ie,rel = f(φ)
+
+
+
+
+                                    ﻿
+﻿
+
+
+
+
+    11 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Relative Spectral Sensitivity 1),   2)
+
+    ■ photodiode BB: Srel = f(λ)
+
+
+
+
+    Relative Spectral Sensitivity 1),   2)
+
+    ■ photodiode IR-Cut: Srel = f(λ)
+
+
+
+
+                                   ﻿
+﻿
+
+
+
+
+    12 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Directional Characteristics 1),              2)
+
+    photodiode broadband/ IR-cut: Srel = f(φ); λ = 530 nm
+
+
+
+
+    Forward current 1),          2)                         Forward current 1),             2)
+
+    ● true green: IF = f (VF); single pulse; tp = 100 µs    ● hyper red: IF = f (VF); single pulse; tp = 100 µs
+
+             [   ]                                                   [   ]
+
+
+
+
+                     100          ﻿                                          100
+
+                                                                             50
+
+                     50
+
+
+                                                                             10
+
+                                                                              5
+
+                     10
+
+
+                      5                                                       1
+                           2.4   2.6     2.8    3.0                                1.8 2.0 2.2 2.4 2.6 2.8 3.0
+                                                      [ ]                                                    [ ]
+﻿
+
+
+
+
+    13 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Forward current 1),                   2)                             Relative Total Radiant Flux 1),                      2)
+
+    ● infrared (940 nm): IF = f (VF); s.p.; tp = 100 µs                  ● true green: Φe/Φe(20mA) = f (IF); single pulse; tp = 100 µs
+                                                                                  Φ
+                [   ]
+                        1000                                                  Φ
+
+                         500
+                                                                                        5
+
+
+
+                         100
+
+                         50
+
+
+                                                                                        1
+                         10
+
+                          5
+                                                                                       0.5
+
+
+
+                          1
+                                                                                             5                 50
+                                   1.5   2.0    2.5     3.0        3.5                           10                   100
+                                                                   [ ]                                                        [    ]
+
+
+
+
+    Relative Total Radiant Flux 1),                            2)        Relative Total Radiant Flux 1),                      2)
+
+    ● hyper red: Φe/Φe(20mA) = f (IF); single pulse; tp = 25 µs● infrared (940 nm): Φe/Φe(20mA) = f (IF); s. p.; tp = 25 µs
+            Φ                                                                     Φ
+        Φ                                                                    Φ
+                         10
+                                                                                       10
+                          5
+                                           ﻿                                            5
+
+
+
+
+                                                                                        1
+                          1
+                                                                                       0.5
+                         0.5
+
+
+                                                                                       0.1
+
+                         0.1                                                          0.05
+
+
+                        0.05
+                                                                                             1            10        100       1000
+                               1         5 10         50 100                                          5        50           500
+                                                               [     ]                                                        [ ]
+﻿
+
+
+
+
+    14 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Photocurrent 1),       2)                              Photocurrent 1),        2)
+
+    ■ photodiode BB: IP = f(Ee); λ = parameter; VR = 5 V   ■ photodiode IR-Cut: IP = f(Ee); λ = 530 nm; VR = 5 V
+
+
+
+
+    Dark Current 1),       2)                              Dark Current 1),        2)
+
+    ■ photodiode BB: IR = f(VR); E = 0                     ■ photodiode IR-Cut: IR = f(VR); E = 0
+
+
+
+
+                                ﻿
+﻿
+
+
+
+
+    15 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Capacitance 1),          2)                          Capacitance 1),           2)
+
+    ■ photodiode BB: C = f(VR); f = 1MHz; E = 0          ■ photodiode IR-Cut: C = f(VR); f = 1MHz; E = 0
+
+
+
+
+    Max. Permissible Forward Current                     Max. Permissible Forward Current
+    ● true green: IF = f (TS); Rthjs = 110 K / W         ● hyper red: IF = f (TS); Rthjs = 80 K / W
+
+              [   ] 25                                              [   ] 40
+
+
+
+                   20
+
+                                  ﻿                                      30
+
+
+                   15
+
+                                                                         20
+
+                   10
+
+
+                                                                         10
+                    5
+
+
+
+                    0                                                     0
+                         0   20     40     60      80                          0   20    40     60    80
+                                                   [ ]                                                [ ]
+﻿
+
+
+
+
+    16 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Max. Permissible Forward Current
+    ● infrared (940 nm): IF = f (TS); Rthjs = 340 K / W
+
+                 [       ] 60
+
+
+
+                          50
+
+
+                          40
+
+
+                          30
+
+
+                          20
+
+
+                          10
+
+
+                           0
+                                0   20     40        60       80
+                                                              [ ]
+
+
+
+
+    Permissible Pulse Handling Capability                                Permissible Pulse Handling Capability
+    ● true green: IF = f (tp); D = parameter; TA = 85 °C                 ● hyper red: IF = f (tp); D = parameter; TA = 85 °C
+
+             [       ]                                                            [   ]
+                         300                                                              300
+
+
+
+
+                         200
+                                          ﻿                                               200
+
+
+
+
+                                                     :D=1                                                            :D=1
+                         100                         : D = 0.5                            100                        : D = 0.5
+                                                     : D = 0.2                                                       : D = 0.2
+                                                     : D = 0.1                                                       : D = 0.1
+                                                     : D = 0.05                                                      : D = 0.05
+                                                     : D = 0.02                                                      : D = 0.02
+                                                     : D = 0.01                                                      : D = 0.01
+                                                     : D = 0.005                                                     : D = 0.005
+
+                           0                                                               0
+                           10-5 10-4 10-3 0.01 0.1   1    10                               10-5 10-4 10-3 0.01 0.1   1    10
+                                                                   [ ]                                                             [ ]
+﻿
+
+
+
+
+    17 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Permissible Pulse Handling Capability                           Permissible Pulse Handling Capability
+    ● infrared (940 nm): IF = f (tp); D = parameter; TA = 25 °C● infrared (940 nm): IF = f (tp); D = parameter; TA = 85 °C
+
+            [   ]                                                        [   ] 1000
+                    1000
+
+
+
+                     800                                                       800
+
+
+
+
+                     600                                                       600
+
+
+
+
+                     400                                                       400
+                                                :D=1                                                       :D=1
+                                                : D = 0.5                                                  : D = 0.5
+                                                : D = 0.2                                                  : D = 0.2
+                                                : D = 0.1                                                  : D = 0.1
+                     200                        : D = 0.05                     200                         : D = 0.05
+                                                : D = 0.02                                                 : D = 0.02
+                                                : D = 0.01                                                 : D = 0.01
+                                                : D = 0.005                                                : D = 0.005
+
+                      0                                                          0
+                      10-5 10-4 10-3 0.01 0.1   1    10                          10-5 10-4 10-3 0.01 0.1   1    10
+                                                              [ ]                                                        [ ]
+
+
+
+
+                                     ﻿
+﻿
+
+
+
+
+    18 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Dimensional Drawing 3)
+
+
+
+
+    Further Information:
+    Approximate Weight:           44.0 mg
+
+
+    Pin                                     Description
+
+    1                                       PD1 (BB) Cathode
+    2                                       PD1     (BB) Anode
+    3                                       PD2     (IR-Cut) Cathode
+    4
+    5
+                              ﻿             IR LED Anode
+                                            Green 1 LED Anode
+    6                                       Green 1 LED Cathode
+    7                                       Red LED Anode
+    8                                       Red LED Cathode
+    9                                       IR LED Cathode
+    10                                      PD2 (IR-Cut) Anode
+    11                                      Green 2 LED Anode
+    12                                      Green 2 LED Cathode
+﻿
+
+
+
+
+    19 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Recommended Solder Pad 3)
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+    20 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Reflow Soldering Profile
+    Product complies to MSL Level 4 acc. to JEDEC J-STD-020E
+                                                                                                            OHA04525
+                     300
+                      ˚C
+                  T 250
+                               240 ˚C                                                                 Tp 245 ˚C
+                               217 ˚C                                                      tP
+                     200
+                                                                                           tL
+
+                     150
+                                                          tS
+
+                     100
+
+
+                      50
+                               25 ˚C
+                       0
+                           0           50           100           150            200            250      s 300
+                                                                                                        t
+
+    Profile Feature                                Symbol              Pb-Free (SnAgCu) Assembly                       Unit
+                                                                 Minimum   Recommendation Maximum
+    Ramp-up rate to preheat*)                                                          2                    3          K/s
+    25 °C to 150 °C
+    Time tS                                        tS                 60          100                 120              s
+    TSmin to TSmax
+    Ramp-up rate to peak*)                                                             2                    3          K/s
+
+
+                                    ﻿
+    TSmax to TP
+    Liquidus temperature                           TL                             217                                  °C
+    Time above liquidus temperature                tL                               80                100              s
+    Peak temperature                               TP                             245                 260              °C
+    Time within 5 °C of the specified peak         tP                 10            20                  30             s
+    temperature TP - 5 K
+    Ramp-down rate*                                                                    3                    6          K/s
+    TP to 100 °C
+    Time                                                                                              480              s
+    25 °C to TP
+
+    All temperatures refer to the center of the package, measured on the top of the component
+    * slope calculation DT/Dt: Dt max. 5 s; fulfillment for the whole T-range
+﻿
+
+
+
+
+    21 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Taping 3)
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+    22 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Tape and Reel 4)
+
+
+
+
+    Reel Dimensions
+    A            W                         Nmin        W1                 W2 max        Pieces per PU
+
+    180 mm           16 + 0.3 / - 0.1 mm   60/100 mm        16.4 + 2 mm       22.4 mm    1500
+
+
+
+
+                              ﻿
+﻿
+
+
+
+
+    23 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Barcode-Product-Label (BPL)
+
+
+
+
+    Dry Packing Process and Materials 3)
+                                                                                                                                                                                                            Moisture-sensitive label or print
+
+                                                                   N   s   E RS
+                                                                                                               L
+
+
+
+
+                                                                                                                 re
+                                                                                                                   E
+                                                                                                                       V
+                                                                                                                        E
+
+
+
+
+                                                                                                                       tiv
+                                                                                                                           If
+
+
+
+
+                                                                                                                           e
+                                                                                                                    la ared ag
+                                                                                                                       fr
+                                                                                                                     in pa
+                                                                                                                              hu
+
+
+                                                                                                                              ck
+                                                                                                                                L
+
+
+
+                                                                                                                                  an
+
+
+
+                                                                                                                                  m
+                                                                                                                                   id
+
+                                                                                                                                     e
+                                                                                                                                      k,
+                                                                                                                                bl r co
+                                                                                                                                ba
+                                                                                                                                        de
+
+                                                                                                                                         ity
+
+
+
+
+                                                                                                                                          30
+                                                                                                                                            e be
+                                                                                                                                          sela
+
+                                                                                                                                             (R
+
+
+
+
+                                                                                                                                              ˚C
+                                                                                                                                                 l
+
+
+                                                                                                                                                 H
+                                                                                                                                                   ).
+
+
+
+
+                                                                                                                                                  /6
+                                                                                                                                                     0%
+                                                                                                                                                        R
+                                                                                                                                                         H
+                                                                                                                                                          .
+                                                                                                                                                                                                               Barcode label
+                                                           TIO
+                                                                                                                                       <
+                                                                                                                                       _
+                                                                     in IV O                                %          k
+                                                                       IT T                                                        of
+                                                                 nta
+                                                                                                       90        to                                                                              rs
+                                                                      S C                          <         d     ea           s                                            ).                     rs
+                                                                   N U                                                                                                                        ou
+                                                       U coSEND                                d         te (p               on                ,
+                                                                                                                                                  or                      de                H          rs
+                                                                                                                         iti                                                                    ou
+                                                                                              an bjec ng
+
+
+
+
+                                                                                                                                                                               ﻿
+                                                                                                                                                                                                   ou rs
+                                                    Ais bUagRMEICO                                                                          ˚C                        co               72     H
+                                                                                                      si              nd                 5                                                      H ou
+                                                                                         ˚C su es                                                                  te                     48
+                                                   CThIS                                                          co                 ±                                              e              H
+                                                                                                               y                                               da                      e     24 6
+                                                         T E                      40 be oc
+                                                                                                          or                    ˚C                                              tim       e
+                                                          S                     <     ill pr).                                                            ith               or    tim
+                                                        O                          w nt                ct                   23                         w                             tim e
+                                                     M TO
+                                                                            at                      fa                                                                   lo    or
+                                                                         s      at le ˚C at                             at              e.          al                 F    lo    or    tim
+                                                       P              th    th va          l                                                    tic                       F    lo or
+                                                    O            on       s ui        be                    if: read
+                                                                                                                                    ur                                       F lo
+                                                              m       ce eq        la        lo
+                                                                                                w                               ed
+                                                                                                                                          id
+                                                                                                                                             en               l 4 5             F
+                                                                   vi                                  g, n                  oc                           ve     l
+                                                          24          or       de       be          in                   pr           is                              5a
+                                                              de ,                  e             nt whe                                              Le     ve l       6
+                                                                                                                                  te
+                                                      g:    , w
+                                                                        r
+                                                                           co
+                                                                                 se           ou                    ke                              e    Le ve l
+                                                                                                                              da                            Le ve
+                                                  ba ed flo
+                                                                    ba        e           m %                    ba       al                  st
+                                                                                                                                                 ur    e
+                                                     en re                                                    r                                     ur e        Le
+                                             ed        e         e      tim           re> 10              fo          se                   oi    st    ur    e
+                                          al     op          se                   fo                                                    M     oi st ur
+                                       se    is    as               or .             is              33            k,                      M oi st
+                                                         k,      lo H          bed
+                                    in    g ph                               ,                    -0          an                              M oi
+                                  e         r-       an in F R ng ar                            D          bl                                    M
+                                       ba
+                              lif   is   po If bl ith         %       ki r C.             S
+                                                                                              T       (if                    r
+                           lf     th va   p.       w      10 ba to et                  J-                                ea r ks
+                        he     r w,      m              <
+                                                        _               m                                              Y ea              rs
+                     S                te      ed            iredicat          d, EC                                 1    Y      ee
+                  1.
+                          fte
+                        A flody
+                                           nt
+                                                 d
+                                                    at
+                                                         qu In no ire          D                                 >     1     W Hou
+                                        ou                                                                   e            4 8
+                     2.   re
+                             bo      M        re     reity is        qu/JE                                       e
+                                           to es id 2b            re C                        :        tim          e      16
+                                  a)     S                                                                 tim
+                                              ic              is IP                       ed loor              tim e
+                                      b) ev Humor              e                                      or
+                                                                                     en        F
+                                         D       2a king    nc         te                        F
+                                                                                                   lo     or      tim
+                                          a)                                     op                   lo or
+                                     3.     b) ba re              da           e                    F lo
+                                                If    fe
+                                                              al                    l 1 2              F
+                                                   re                    tim ve         l
+                                            4.             se         d                     l 2a
+                                                                            Le      ve          3
+                                                      ag          an      e     Le     ve l
+                                                    B          e      ur     e    Le      ve
+                                                           at      st     ur    e
+                                                         D                            Le
+                                                                oi     st    ur e
+                                                             M     oi     st ur
+                                                                M      oi st
+                                                                    M oi
+                                                                       M
+
+
+
+
+                                                                                                                                                               M
+                                                                                                                                                        RA
+                                                                                                                                       OS
+
+
+
+
+                                                                                                                                                                                                                                                                             Humidity indicator
+                                                                                                                                                                                                                                                                                       Barcode label
+                                                                                                                                                                                                                                         Do not eat.
+                                                                                                                                                                                                                                     Avoid metal contact.
+                                                                                                                                                                                                                                  Discard if circles overrun.
+                                                                                                                                                                                                                                        bag opening.
+                                                                                                                                                                                                                            Please check the HIC immidiately after
+
+
+
+                                                                                                                                                                                                                                        check dot       WET
+                                                                                                                                                                                                                                        Comparator
+
+
+
+
+                                                                                                                                                                                                                        bake units
+                                                                                                                                                                                                                        examine units, if necessary     15%
+                                                                                                                                                                                                                        If wet,
+
+
+
+                                                                                                                                                                                                                        bake units
+                                                                                                                                                                                                                        examine units, if necessary     10%
+                                                                                                                                                                                                                        If wet,
+
+
+
+                                                                                                                                                                                                                          change desiccant
+                                                                                                                                                                                                                          parts still adequately dry.      5%
+                                                                                                                                                                                                                          If wet,
+
+
+                                                                                                                                                                                                                                        MIL-I-8835
+                                                                                                                                                                                                                                      Humidity Indicator
+
+
+
+
+                 Desiccant
+                                                                                                                                                                                                                                                                        AM
+                                                                                                                                                                                                                                                                     OSR
+
+
+
+
+                                                                                                                                                                                                                                                                                            OHA00539
+    Moisture-sensitive product is packed in a dry bag containing desiccant and a humidity card according JEDEC-STD-033.
+﻿
+
+
+
+
+    24 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Disclaimer
+    Attention please!
+    The information describes the type of component and shall not be considered as assured characteristics.
+    Terms of delivery and rights to change design reserved. Due to technical requirements components may
+    contain dangerous substances.
+    For information on the types in question please contact our Sales Organization.
+    If printed or downloaded, please find the latest version on our website.
+
+    Packing
+    Please use the recycling operators known to you. We can also help you – get in touch with your nearest
+    sales office. By agreement we will take packing material back, if it is sorted. You must bear the costs of
+    transport. For packing material that is returned to us unsorted or which we are not obliged to accept, we
+    shall have to invoice you for any costs incurred.
+
+    Product and functional safety devices/applications or medical devices/applications
+    Our components are not developed, constructed or tested for the application as safety relevant component
+    or for the application in medical devices.
+    Our products are not qualified at module and system level for such application.
+
+    In case buyer – or customer supplied by buyer – considers using our components in product safety devices/
+    applications or medical devices/applications, buyer and/or customer has to inform our local sales partner
+    immediately and we and buyer and /or customer will analyze and coordinate the customer-specific request
+    between us and buyer and/or customer.
+
+
+
+
+                                 ﻿
+﻿
+
+
+
+
+    25 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+    Glossary
+      1) Typical Values: Due to the special conditions of the manufacturing processes of semiconductor devices, the
+         typical data or calculated correlations of technical parameters can only reflect statistical figures. These do not
+         necessarily correspond to the actual parameters of each single product, which could differ from the typical data
+         and calculated correlations or the typical characteristic line. If requested, e.g. because of technical improvements,
+         these typ. data will be changed without any further notice.
+      2) Testing temperature: TA = 25°C (unless otherwise specified)
+      3) Tolerance of Measure: Unless otherwise noted in drawing, tolerances are specified with ±0.1 and dimensions are
+         specified in mm.
+      4) Tape and Reel: All dimensions and tolerances are specified acc. IEC 60286-3 and specified in mm.
+      5) Reverse Operation: This product is intended to be operated applying a forward current within the specified range.
+         Applying any continuous reverse bias or forward bias below the voltage range of light emission shall be avoided
+         because it may cause migration which can change the electro-optical characteristics or damage the LED.
+      6) Wavelength: The wavelengths are measured with a tolerance of ±1 nm.
+      7) Forward Voltage: The forward voltages are measured with a tolerance of ±0.1 V.
+      8) Brightness: The brightness values are measured with a tolerance of ±11%.
+      9) Photocurrent: The photocurrent values are measured (by irradiating the devices with a homogenous light source
+         and applying a voltage to the device) with a tolerance of ±11 %.
+
+
+
+
+                                  ﻿
+﻿
+
+
+
+
+    26 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+    Revision History
+    Version       Date              Change
+
+    1.1           2019-04-24        Characteristics
+    1.2           2020-07-10        Derating (Diagrams)
+                                    Schematic Transportation Box
+                                    Dimensions of Transportation Box
+    1.3           2021-04-27        Characteristics
+                                    New Layout
+    1.4           2021-08-12        Features
+    1.5           2022-05-10        Characteristics
+                                    Electro - Optical Characteristics (Diagrams)
+                                    New Layout
+    1.6           2023-08-11        Characteristics
+                                    Derating (Diagrams)
+
+
+
+
+                               ﻿
+﻿
+
+
+
+
+    27 | Version 1.6 | 2023-08-11
+    SFH 7072
+    DATASHEET
+
+
+
+
+                                    ﻿
+
+
+
+
+    Published by ams-OSRAM AG
+    Tobelbader Strasse 30, 8141 Premstaetten, Austria
+    Phone +43 3136 500-0
+﻿
+
+
+
+
+    ams-osram.com
+    © All rights reserved
+    28 | Version 1.6 | 2023-08-11
+

@@ -1,6 +1,6 @@
 # 05 — API Specification (Step 5)
 
-FastAPI service (`vitalq-ingest`), REST + JSON, versioned under `/v1`.
+FastAPI service (`vitalquant-ingest`), REST + JSON, versioned under `/v1`.
 Two auth contexts (spec §13/§35):
 
 | Caller | Auth | Rights |
@@ -63,7 +63,7 @@ X-Device-Key: ****
 ```
 
 Server behaviour:
-- `400` schema violation (Pydantic v2 models generated from `vitalq-core` channel registry —
+- `400` schema violation (Pydantic v2 models generated from `vitalquant-core` channel registry —
   unknown `channel` rejected), `401/403` auth, `409` reused `batch_id` (idempotent replay —
   safe retransmission), `413` payload cap (default 2 MB), `429` rate limit.
 - Per-window `t_start_us` + `rate_hz` + count are validated for consistency; samples out of
@@ -77,7 +77,7 @@ Server behaviour:
 
 1. Device SNTP-syncs at session start and periodically → `wall_time` + `monotonic_us` anchor.
 2. Each batch carries that pair; the server records `received_at`.
-3. `vitalq-core`'s `ClockModel` fits `(offset_us, drift_ppm)` per session from the batch
+3. `vitalquant-core`'s `ClockModel` fits `(offset_us, drift_ppm)` per session from the batch
    series (bounded |offset| jump → logs `clock_jump` event).
 4. Processing converts `t_us → UTC` with the *batch-local* correction, storing both raw and
    corrected values. Target cross-channel agreement: <5 ms (PPG↔motion fusion needs it).

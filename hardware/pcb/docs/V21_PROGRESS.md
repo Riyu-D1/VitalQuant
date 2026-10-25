@@ -60,7 +60,7 @@ track/via. `In6.Cu` (nearly empty) used for the hardest crossings.
 ### Fab outputs (regenerated into `fab/`, old moved to `fab/_stale/`)
 - Gerbers: 8 copper + F/B mask, silk, paste, Edge.Cuts; Excellon drill;
   BOM.csv/BOM_JLC.csv, CPL.csv/CPL_JLC.csv, positions, ASSEMBLY_CHECKS.json.
-- `fab/VitalQ_v2_fixv21_fabrication.zip`
+- `fab/VitalQuant_v2_fixv21_fabrication.zip`
   SHA-256 `697629405d8658674ae8def36cbcd12dd9c114a4fab712231d4aed62d3ba2ac5`
 - Renders: `_prompt_pics/final_render_{top,bottom}.png`,
   `_prompt_pics/final/U1zoom_*.png`, `layer_<L>.svg(.png)` refreshed.

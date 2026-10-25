@@ -1,6 +1,6 @@
-# VitalQ case_v10 POGO-ELECTRODE FIT REPORT (V22 board)
+# VitalQuant case_v10 POGO-ELECTRODE FIT REPORT (V22 board)
 
-Computed against `../fix_v22/vitalq_v2.kicad_pcb` geometry (geometry.json: pcbnew extraction + VRML 3D heights).
+Computed against `../fix_v22/vitalquant_v2.kicad_pcb` geometry (geometry.json: pcbnew extraction + VRML 3D heights).
 z=0 = skin-facing bottom of base. Board: 55.7x81.1 mm at (-2.0,-16.55)-(53.65,64.55) incl N antenna tab and E power tab; B surface z=3.4, F surface z=4.94 (1.5386 mm stackup) / 5.0 (1.6 mm worst case).
 Lid prints TOP-DOWN; base prints skin-down; bay cup is a separate tray retained by the push-in pin plate (prints pins-up).
 Pogo-pin skin contacts restored (v7 scheme): 20 electrode lands (J5x5, J6x4, J7x4, J11x3, J13x2, J3x2) each get a through-slot aperture with cavity-side 45 deg funnel; spring pogos rise through the floor to the pads. Thermal slug at U11.

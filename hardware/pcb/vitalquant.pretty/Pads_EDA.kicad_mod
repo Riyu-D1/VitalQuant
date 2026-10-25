@@ -1,0 +1,208 @@
+	(footprint "vitalquant:Pads_EDA"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "10.0")
+		(locked yes)
+		(layer "B.Cu")
+		(uuid "7435f47f-0c37-4866-bd03-839dd57c7f19")
+		(at 9 62.9 180)
+		(descr "EDA electrode solder pads")
+		(property "Reference" "J6"
+			(at 0 2.85 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "c4cefad9-baca-4aba-b5ab-77e665412f27")
+			(effects
+				(font
+					(size 0.6 0.6)
+					(thickness 0.1)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "EDA pads"
+			(at 0 -2.3 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "eec71b3e-1848-4975-8367-40184bd4b1ba")
+			(effects
+				(font
+					(size 0.4 0.4)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "ae7c532c-bfa4-4d30-9948-b20395677915")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "56db2d44-469a-4f5e-92af-068dbf0b0a89")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/bd932598-492c-42b4-b63a-90910737d2a5")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start 4.25 2.2)
+			(end 4.25 -1.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "c5087be8-d93f-426c-ad93-60d9bb902ee2")
+		)
+		(fp_line
+			(start 4.25 -1.2)
+			(end -4.25 -1.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "0fc34d5f-b753-4b00-9b27-2be6e8b878ae")
+		)
+		(fp_line
+			(start -4.25 2.2)
+			(end 4.25 2.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "99820a18-f3f8-491d-8bfe-a18fab6c0f9b")
+		)
+		(fp_line
+			(start -4.25 -1.2)
+			(end -4.25 2.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "3747b21e-c9c3-48a0-9764-6e0a0a4d036a")
+		)
+		(fp_rect
+			(start -4.5 2.95)
+			(end 4.5 -1.5)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "24105831-f083-4d72-ab28-ed0b83a6ca2a")
+		)
+		(fp_text user "DE"
+			(at 3.3 1.65 0)
+			(layer "B.SilkS")
+			(uuid "cd5c6cca-a504-4e67-aead-5302187ca07a")
+			(effects
+				(font
+					(size 0.45 0.45)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(fp_text user "SE"
+			(at 1.1 1.65 0)
+			(layer "B.SilkS")
+			(uuid "c2e7b79c-ce24-40a2-9538-d1020d319e37")
+			(effects
+				(font
+					(size 0.45 0.45)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(fp_text user "RE"
+			(at -1.1 1.65 0)
+			(layer "B.SilkS")
+			(uuid "6d61b8b0-8098-4165-94df-57d9491e8b2b")
+			(effects
+				(font
+					(size 0.45 0.45)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(fp_text user "CE"
+			(at -3.3 1.65 0)
+			(layer "B.SilkS")
+			(uuid "8eed7ab2-523f-484c-b8b2-d1cb297df627")
+			(effects
+				(font
+					(size 0.45 0.45)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -3.3 0 180)
+			(size 1.15 1.7)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.15)
+			(net "EDA_CE_PAD")
+			(uuid "3d6a1824-befc-4857-b13a-c6b7930241df")
+		)
+		(pad "2" smd roundrect
+			(at -1.1 0 180)
+			(size 1.15 1.7)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.15)
+			(net "EDA_RE_PAD")
+			(uuid "59801d87-814d-4127-a7bc-b167d7ddd8bf")
+		)
+		(pad "3" smd roundrect
+			(at 1.1 0 180)
+			(size 1.15 1.7)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.15)
+			(net "EDA_SE_PAD")
+			(uuid "410afa54-a156-40b0-b1ec-9bd8679c63db")
+		)
+		(pad "4" smd roundrect
+			(at 3.3 0 180)
+			(size 1.15 1.7)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.15)
+			(net "EDA_DE_PAD")
+			(uuid "2f0c56b3-31d9-48b9-8076-d0743fc5e1fb")
+		)
+		(embedded_fonts no)
+		(model "${KIPRJMOD}/lib/vitalquant.3d/Pads_EDA.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)

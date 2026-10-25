@@ -1,0 +1,542 @@
+                                Product         Order        Technical                                                    Tools &                                            Support &
+                                Folder          Now          Documents                                                    Software                                           Community
+
+
+
+                                                                                                                                                                                                                                                                     AFE4900
+                                                                                                                                                          SBAS861B – AUGUST 2017 – REVISED JULY 2019
+
+
+                                AFE4900 Ultra-low Power, Integrated AFE for
+                              Wearable Optical, Electrical Bio-sensing with FIFO
+1 Features                                                             2 Applications
+1•   Synchronized PPG, ECG signal acquisition at                       •                          Synchronized PPG, ECG for blood pressure
+     data rates up to 1 kHz                                                                       estimation
+•    ECG signal chain:                                                 •                          HRM for wearables, hearables
+     – Standalone ECG acquisition up to 4 kHz                          •                          Heart-rate variability (HRV)
+     – Input bias: 1-lead ECG with RLD bias                            •                          Pulse oximetry (SpO2) measurements
+     – Programmable INA gain: 2.15 to 12.92
+     – Input noise (1 Hz to 150 Hz): 2.5 µVrms at
+                                                                       3 Description
+        1 kHz, 1.25 µVrms at 4-kHz data rate                           The AFE4900 device is an analog front-end (AFE) for
+                                                                       synchronized           electrocardiogram       (ECG),
+     – AC, DC lead-off detect: 12.5-nA to 100-nA                       photoplethysmogram (PPG) signal acquisition. The
+     – IEC 60601 Test report available on request                      device can also be used for optical bio-sensing
+•    PPG receiver:                                                     applications, such as heart-rate monitoring (HRM)
+                                                                       and saturation of peripheral capillary oxygen (SpO2).
+     – Supports three time-multiplexed PD inputs                       The PPG signal chain supports up to four switching
+     – 24-Bit representation of current from PD                        light-emitting diodes (LEDs) and up to three
+     – DC offset subtraction DAC (Up to ±126-µA) at                    photodiodes (PDs). The LEDs can be switched on
+        TIA input for each LED, ambient                                using a fully integrated LED driver. The current from
+                                                                       the photodiode is converted into voltage by the
+     – Digital ambient subtraction at ADC output                       transimpedance amplifier (TIA) and digitized using an
+     – Noise filtering with programmable bandwidth                     analog-to-digital converter (ADC). The ECG signal
+     – Transimpedance gain: 10 kΩ to 2 MΩ                              chain has an instrumentation amplifier (INA) with a
+                                                                       programmable gain that interfaces to the same ADC.
+     – Dynamic range up to 100 dB
+                                                                       A right-leg drive (RLD) amplifier set can be used to
+     – Receiver operates in PPG-only mode at                           the bias for the ECG input pins. AC and dc lead-off
+        approximately 1-μA/Hz sampling rate                            detect schemes are supported. The ADC codes from
+     – Power-down mode: approximately 0 μA                             the PPG and ECG phases can be stored in a 128-
+                                                                       sample first in, first out (FIFO) block and read out
+•    PPG transmitter:
+                                                                       using either an I2C or a serial programming interface
+     – Four LEDs in common anode configuration                         (SPI) interface.
+     – 8-Bit LED current up to 200 mA
+                                                                                                                                                         Device Information(1)
+     – Mode to fire two LEDs in parallel
+                                                                                    PART NUMBER                                                            PACKAGE                                                      BODY SIZE (NOM)
+     – Programmable LED on-time
+                                                                                    AFE4900                                                              DSBGA (30)                                       2.60 mm × 2.10 mm
+     – Simultaneous support of three LEDs for SpO2,
+                                                                                    (1) For all available packages, see the package option addendum
+        or multiwavelength HRM                                                          at the end of the datasheet.
+     – Average current of 30 μA adequate for a
+        typical heart-rate monitoring scenario:                        SPACE
+        – 20-mA Setting, 60-μs pulse duration,                                                                                               Simplified Block Diagram
+            25-Hz sampling rate                                                                                                                                                                                                  TX_SUP
+
+
+
+
+•    Clocking using an external or internal clock                                                                                                            RX_SUP           CONTROL1          TX_ SUP
+                                                                                                                                                                                                                LED1
+
+                                                                                                                                                                                                                        TX1
+                                                                                                                                                                                                                              LED2
+
+                                                                                                                                                                                                                                       TX2
+                                                                                                                                                                                                                                             LED3
+
+                                                                                                                                                                                                                                                        TX3
+                                                                                                                                                                                                                                                              LED4
+
+                                                                                                                                                                                                                                                                      TX4
+
+
+
+
+•    FIFO with 128-sample depth for ECG and PPG                                     PD1
+                                                                                                                   INP1         Offset DAC
+                                                                                                                                                   Cf
+                                                                                                                                                             1.8-V LDOs           ALDO_1V8, DLDO_1V8
+
+
+
+
+     I2C, SPI interfaces: selectable by pin
+                                                                                                                   INM1                                                                                                                                   ILED
+
+•                                                                                                                  INP2
+                                                                                                                                                   Rf
+
+
+
+
+                                                                                                                                                   TIA     Noise Reduction
+                                                                                                                                                              filter (x4)
+
+
+
+•    2.6-mm × 2.1-mm, 0.4-mm Pitch DSBGA package
+                                                                                    PD2                                                                                                                                                       Threshold              THR_DET_RDY
+                                                                                                                                                   Rf                                                                                         Detection
+                                                                                                                   INM2
+                                                                                                                                                                                                                                                                                     I2C_SPI_SEL
+                                                                                                                                                                                                                          Decimation
+                                                                                                                                                                                                          ADC
+                                                                                                                                                   Cf                                                                                                                    SPI/        SPI
+
+
+•    Supplies:
+                                                                                                                                                                                                                                                FIFO
+                                                                                                                                                                                                                                                                     I2C Interface
+                                                                                                                   INP3                                                                                                                                                              I2C
+
+                                                                                    PD3                                                                                                                                                                                              RESETZ
+
+                                                                                                                   INM3
+
+
+
+     – Rx: 1.8 V to 1.9 V (LDO bypass),                                                                       INP_ECG
+                                                                                                                                             INA
+                                                                                                                                                                                                            4 MHz
+                                                                                                                                                                                                           Oscillator
+                                                                                                                                                                                                                                                    Timing Engine
+                                                                                                                                                                                                                                                                                     ADC_RDY
+                                                                                                                                                                                                                                                                                     PROG_OUT1
+
+
+
+        2.0 V to 3.6 V (LDO enabled)                                                                                        AC/DC
+                                                                                                                                                                                                                                                       128 kHz
+                                                                                                                                                                                                                                                       Oscillator
+                                                                                                                                                                                                                                                                                     CLK
+                                                                                          Interface circuit
+
+
+
+
+                                                                                                                           Lead-off
+                                                                       Electrodes
+
+
+
+
+                                                                                                                            Detect
+
+
+
+     – Tx: 3 V to 5.25 V                                                                                      INM_ECG
+                                                                                                                                                                                ENABLE_PTT
+
+
+                                                                                                              RLD_OUT
+
+
+     – IO: 1.7 V to Rx_SUP
+1
+
+
+
+
+       An IMPORTANT NOTICE at the end of this data sheet addresses availability, warranty, changes, use in safety-critical applications,
+       intellectual property matters and other important disclaimers. PRODUCTION DATA.
+AFE4900
+SBAS861B – AUGUST 2017 – REVISED JULY 2019                                                                                                              www.ti.com
+
+
+4 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+
+Changes from Revision A (February 2019) to Revision B                                                                                                          Page
+
+•   Changed the values of Programmable INA Gain in Features section.................................................................................... 1
+•   Changed the Mechanical Packaging images ......................................................................................................................... 4
+
+
+Changes from Original (August 2017) to Revision A                                                                                                              Page
+
+•   Changed the values of Programmable INA Gain in Features section.................................................................................... 1
+•   Added "IEC 60601 Test Report Available on Request" in Features section .......................................................................... 1
+
+
+
+
+2        Submit Documentation Feedback                                                                     Copyright © 2017–2019, Texas Instruments Incorporated
+
+                                                                Product Folder Links: AFE4900
+                                                                                                                            AFE4900
+www.ti.com                                                                                  SBAS861B – AUGUST 2017 – REVISED JULY 2019
+
+
+5 Device and Documentation Support
+
+5.1 Receiving Notification of Documentation Updates
+To receive notification of documentation updates, navigate to the device product folder on ti.com. In the upper
+right corner, click on Alert me to register and receive a weekly digest of any product information that has
+changed. For change details, review the revision history included in any revised document.
+
+5.2 Community Resources
+The following links connect to TI community resources. Linked contents are provided "AS IS" by the respective
+contributors. They do not constitute TI specifications and do not necessarily reflect TI's views; see TI's Terms of
+Use.
+TI E2E™ Online Community TI's Engineer-to-Engineer (E2E) Community. Created to foster collaboration
+           among engineers. At e2e.ti.com, you can ask questions, share knowledge, explore ideas and help
+           solve problems with fellow engineers.
+Design Support TI's Design Support Quickly find helpful E2E forums along with design support tools and
+           contact information for technical support.
+
+5.3 Trademarks
+E2E is a trademark of Texas Instruments.
+All other trademarks are the property of their respective owners.
+5.4 Electrostatic Discharge Caution
+          This integrated circuit can be damaged by ESD. Texas Instruments recommends that all integrated circuits be handled with
+          appropriate precautions. Failure to observe proper handling and installation procedures can cause damage.
+          ESD damage can range from subtle performance degradation to complete device failure. Precision integrated circuits may be more
+          susceptible to damage because very small parametric changes could cause the device not to meet its published specifications.
+
+5.5 Glossary
+SLYZ022 — TI Glossary.
+   This glossary lists and explains terms, acronyms, and definitions.
+
+6 Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most
+current data available for the designated devices. This data is subject to change without notice and revision of
+this document. For browser-based versions of this data sheet, refer to the left-hand navigation.
+
+
+
+
+Copyright © 2017–2019, Texas Instruments Incorporated                                           Submit Documentation Feedback         3
+                                                        Product Folder Links: AFE4900
+AFE4900
+SBAS861B – AUGUST 2017 – REVISED JULY 2019                                                                                                                       www.ti.com
+
+
+
+
+                                                                                                                             PACKAGE OUTLINE
+         YZ0030-C01                                                                SCALE 5.000
+                                                                                                                        DSBGA - 0.5 mm max height
+                                                                                                                                      DIE SIZE BALL GRID ARRAY
+
+
+
+                                                                              2.095                              A
+                                                   B
+                                                                              2.035
+
+
+
+
+                                            BALL A1
+                                           CORNER
+
+
+                                                                                                                2.595
+                                                                                                                2.535
+
+
+
+
+                                    0.5 MAX
+
+                                                                                                                        C
+
+                                                                                                                             SEATING PLANE
+                                            0.19                             BALL TYP
+                                                                                                                            0.05 C
+                                            0.13
+
+
+                                                                              1.6
+                                                                              TYP
+                                                       0.85
+
+
+                                                              F
+
+
+
+                                                              E
+
+                                      2
+                                     TYP                      D
+                                                                                                              SYMM
+
+                                            0.4               C
+                                           TYP
+                                                              B
+
+
+
+                                                              A
+
+                                                                  1      2     3                  4   5
+                                             0.25
+                                     30X                                       PKG
+                                             0.21
+                                  0.015     C A B
+                                                                               0.4 TYP
+                                                                                                                                                4222550/D 07/2019
+
+        NOTES:
+
+         1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+            per ASME Y14.5M.
+         2. This drawing is subject to change without notice.
+
+
+
+
+                                                                                                 www.ti.com
+
+4      Submit Documentation Feedback                                                                                     Copyright © 2017–2019, Texas Instruments Incorporated
+
+                                                                      Product Folder Links: AFE4900
+                                                                                                                                               AFE4900
+www.ti.com                                                                                                      SBAS861B – AUGUST 2017 – REVISED JULY 2019
+
+
+
+                                                                                                EXAMPLE BOARD LAYOUT
+          YZ0030-C01                                                                                       DSBGA - 0.5 mm max height
+                                                                                                                        DIE SIZE BALL GRID ARRAY
+
+
+                                                                    (0.85)
+                                             (0.4) TYP
+
+                                 30X (     0.23)
+                                                             1      2          3          4          5
+
+                                                         A
+                                   (0.4) TYP
+
+                                                         B
+
+
+                                                         C
+                                                                                                            PKG SYMM
+
+
+                                                     D
+
+
+
+                                                         E
+
+
+
+                                                         F
+
+                                                                                PKG
+
+
+
+                                                                 LAND PATTERN EXAMPLE
+                                                                              SCALE:30X
+
+
+
+
+                                 ( 0.23)                           0.05 MAX                                            METAL UNDER
+                                  METAL                                                   0.05 MIN
+                                                                                                                       SOLDER MASK
+
+
+
+
+                      SOLDER MASK                                                                                      ( 0.23)
+                          OPENING                                                                                      SOLDER MASK
+                                                                                                                       OPENING
+                                           NON-SOLDER MASK
+                                               DEFINED                                                   SOLDER MASK
+                                             (PREFERRED)                                                   DEFINED
+
+
+                                                                  SOLDER MASK DETAILS
+                                                                             NOT TO SCALE
+
+                                                                                                                                4222550/D 07/2019
+
+         NOTES: (continued)
+
+          3. Final dimensions may vary due to manufacturing tolerance considerations and also routing constraints.
+             See Texas Instruments Literature No. SNVA009 (www.ti.com/lit/snva009).
+
+
+
+
+                                                                                   www.ti.com
+Copyright © 2017–2019, Texas Instruments Incorporated                                                              Submit Documentation Feedback        5
+                                                                 Product Folder Links: AFE4900
+AFE4900
+SBAS861B – AUGUST 2017 – REVISED JULY 2019                                                                                                  www.ti.com
+
+
+
+                                                                                           EXAMPLE STENCIL DESIGN
+         YZ0030-C01                                                                                DSBGA - 0.5 mm max height
+                                                                                                                 DIE SIZE BALL GRID ARRAY
+
+
+
+
+                                                              (0.85)
+
+                                     (0.4) TYP
+
+                              30X ( 0.25)
+
+
+                             (R0.05) TYP             1        2           3          4         5
+
+
+                                                 A
+                            (0.4) TYP
+                                                 B
+
+
+
+
+                                METAL            C
+                                  TYP                                                                PKG SYMM
+
+
+                                                 D
+
+
+
+
+                                                 E
+
+
+
+                                                 F
+
+
+
+                                                                          PKG
+
+
+
+                                                           SOLDER PASTE EXAMPLE
+                                                          BASED ON 0.1 mm THICK STENCIL
+                                                                   SCALE:35X
+
+
+
+
+                                                                                                                           4222550/D 07/2019
+
+        NOTES: (continued)
+
+         4. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release.
+
+
+
+
+                                                                              www.ti.com
+6      Submit Documentation Feedback                                                                Copyright © 2017–2019, Texas Instruments Incorporated
+
+                                                           Product Folder Links: AFE4900
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                   10-Nov-2025
+
+
+
+
+PACKAGING INFORMATION
+
+       Orderable part number          Status     Material type      Package | Pins      Package qty | Carrier        RoHS             Lead finish/              MSL rating/               Op temp (°C)          Part marking
+                                        (1)            (2)                                                             (3)            Ball material             Peak reflow                                           (6)
+                                                                                                                                            (4)                      (5)
+
+            AFE4900YZR                Active      Production       DSBGA (YZ) | 30       3000 | LARGE T&R             Yes               SNAGCU             Level-1-260C-UNLIM               -20 to 70             AFE4900
+           AFE4900YZR.A               Active      Production       DSBGA (YZ) | 30       3000 | LARGE T&R             Yes               SNAGCU             Level-1-260C-UNLIM               -20 to 70             AFE4900
+            AFE4900YZT                Active      Production       DSBGA (YZ) | 30        250 | SMALL T&R             Yes               SNAGCU             Level-1-260C-UNLIM               -20 to 70             AFE4900
+           AFE4900YZT.A               Active      Production       DSBGA (YZ) | 30        250 | SMALL T&R             Yes               SNAGCU             Level-1-260C-UNLIM               -20 to 70             AFE4900
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+
+
+
+                                                                                                          Addendum-Page 1
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2025, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

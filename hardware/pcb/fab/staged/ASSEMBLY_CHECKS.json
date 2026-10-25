@@ -1,0 +1,43 @@
+{
+ "placed_components": 250,
+ "bom_groups": 81,
+ "cpl_rows": 250,
+ "consigned": [
+  "D10",
+  "D12",
+  "J12"
+ ],
+ "missing_lcsc_groups": [
+  "D10",
+  "D12",
+  "J12"
+ ],
+ "missing_positions": [],
+ "excluded": {
+  "dnp_not_placed": [
+   "R61",
+   "R93"
+  ],
+  "no_place_items": "FID1-6, H1, H2, J8, TP1-TP28 (mechanical/test/fiducials)"
+ },
+ "new_power_path": {
+  "Q6": "C15127 AO3401A SOT-23",
+  "D33": "C191023 1N5819WS SOD-323",
+  "R123": "C25741 100k 0402"
+ },
+ "fix_v19_changes": {
+  "R61": "DNP (reverts v19 'fitted' decision): Murata NCP15XH103F03RC 10k NTC B=3380, LCSC C77131 - v19 populated it for board-side TS sensing on BQ25170 with 2-wire packs, but with any pack carrying its own 10k NTC on J2.3 the parallel NTCs give R_TS ~5k, V_TS ~190mV vs BQ25170 V_HOT 188mV typ -> charger hot-suspend at 25C. Flagged DNP in BOM.csv; removed from BOM_JLC/CPL/CPL_JLC/positions_kicad",
+  "D10": "NF2W757G-F1 consigned (Nichia Optisolis, no LCSC line; only exact land fit)",
+  "D12": "XL0603NRC730 consigned (Sealand 0603 730 nm; no LCSC 700-770 nm emitter in <=0603)",
+  "bom_corrections": "22 BOM_JLC LCSC-code defects fixed: invalid codes (C23677/C15115/C23692/C23691/C22299/C22314/C17275), codes resolving to wrong values (C23124->88.7ohm, C18009->4.3k/1206, C25840->0201/1.8k, C1528->160pF, C23230->681ohm, C1525-row->100nF, C23733-row->4.7uF, C22879->147ohm, C25513->68ohm array, C25797->681k, C26015->1.5k, C17413->107ohm, C25084->18ohm, C25779->33k), connector code on cap row (C49240->WJ2EDGRM), low-stock unify (C146900->C6669155). All replacements verified by JLCPCB partdetail meta + wmsc detail API: value/package/tolerance/voltage match.",
+  "U12": "MLX90632SLD-DCB-100-SP = JLC extended part C5349491 (was wrongly listed as consigned)"
+ },
+ "fix_v19a_repack": {
+  "U15": "TPS61241YFFR substitutes TPS61240YFFR (same DSBGA-6 footprint, 300mA out spec; LCSC C544431) - updated in BOM.csv, BOM_JLC.csv, CPL.csv, positions_kicad.csv",
+  "F_Paste": "gerbers/vitalquant_v2-F_Paste.gbr patched: +6 \u00d80.21mm flashes (new aperture D84) centred on U15 BGA pads; 792 flashes total; all other gerbers unchanged",
+  "counts_note": "placed_components/cpl_rows 251->250 and bom_groups 82->81 reflect R61 DNP removal from JLC placement set"
+ },
+ "fix_v19b_changes": "BOM_JLC: 100nF 0402 line (32 refs C8..C91) LCSC C1525 Samsung CL05B104KO5NNNC -> C71629 muRata GRM155R71C104KA88D (100n/16V/X7R/0402). Stock-driven substitution; C1525 OOS. Fallback C105883. Copper/gerbers/drills/CPL byte-identical to fixv19a.",
+ "fix_v19c_changes": "BOM_JLC stock-sweep pass (wmsc API): 100nF line reverted to C1525 Samsung CL05B104KO5NNNC (API stock 7.1M; fixv19b C71629 swap was based on stale HTML OOS banner). 10k x28 C25744(0 stock)->C407753 UNI-ROYAL 0402WGD1002TCE (10k +-0.5% 62.5mW 0402, stock 1.38M). 22uF x2 C86295(0 stock)->C2762594 Samsung CL10A226MO7JZNC (22uF 16V X5R 0603, stock 86.7k, ~14-15uF effective at 3.3V DC bias). J12 C5378715(0 stock)->consigned, no substitute by design (mating connector); source Mouser/DigiKey, J12 not fitted by assembler. Copper/gerbers/drills byte-identical to fixv19a.",
+ "fix_v19d_changes": "BOM_JLC resistor subs (wmsc stock=0 originals): R43/45 C283954->C166448 RALEC RTT025114FTH 5.11M 1% 62.5mW (matched pair on one code); R63 C853138->C163478 YAGEO RC0402FR-0722K1L 22.1k 1% (deliberate 0.1->1% downgrade, bounded by R64; ~34mV shift at 3.41V divider); R64 C25896->C100449 LIZ CR0402FF4752G 47.5k 1%; R66 C6097400->C102962 RALEC RTT023013FTH 301k 1%. Copper/gerbers/drills byte-identical to fixv19a."
+}

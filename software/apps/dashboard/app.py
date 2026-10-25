@@ -1,4 +1,4 @@
-"""VitalQ research dashboard v0.1 — Streamlit (M1 fast path; Next.js deferred).
+"""VitalQuant research dashboard v0.1 — Streamlit (M1 fast path; Next.js deferred).
 
 Reads Postgres directly (DATABASE_URL). Waveforms, per-channel SQI, trends,
 experimental model output — research terminology only: "anomaly score",
@@ -18,8 +18,8 @@ import plotly.graph_objects as go
 import streamlit as st
 from sqlalchemy import create_engine
 
-st.set_page_config(page_title="VitalQ research dashboard", layout="wide")
-st.title("VitalQ — research dashboard (prototype)")
+st.set_page_config(page_title="VitalQuant research dashboard", layout="wide")
+st.title("VitalQuant — research dashboard (prototype)")
 
 
 @st.cache_resource
@@ -43,7 +43,7 @@ def load_sessions() -> pd.DataFrame:
 
 sessions = load_sessions()
 if sessions.empty:
-    st.info("No sessions yet — run `vitalq-synth` to generate one.")
+    st.info("No sessions yet — run `vitalquant-synth` to generate one.")
     st.stop()
 
 sel = st.sidebar.selectbox(
@@ -150,7 +150,7 @@ if not qual.empty:
                        margin=dict(l=10, r=10, t=10, b=10))
     st.plotly_chart(figq, use_container_width=True)
 else:
-    st.info("No quality rows — run `vitalq-worker` on this session.")
+    st.info("No quality rows — run `vitalquant-worker` on this session.")
 
 # ── features + model output ──────────────────────────────────────────────────
 st.subheader("Features")
@@ -170,7 +170,7 @@ preds = pd.read_sql(
        from ml.predictions p where p.session_id = %(s)s order by p.window_start""",
     engine(), params={"s": str(session_id)})
 if preds.empty:
-    st.info("No model output — run `python -m vitalq.ml.baselines --sessions <id>`.")
+    st.info("No model output — run `python -m vitalquant.ml.baselines --sessions <id>`.")
 else:
     figp = go.Figure()
     detail = preds["detail"].fillna({})
@@ -208,10 +208,10 @@ sim_files = sorted(Path("experiments/quantum").glob("*.json")) \
     if Path("experiments/quantum").exists() else []
 with st.expander("Quantum readout simulation (SIMULATED)", expanded=False):
     st.warning("SIMULATED data only — `data_class='simulated'`. No quantum "
-               "hardware exists in VitalQ; this is the docs/08 noise-model "
+               "hardware exists in VitalQuant; this is the docs/08 noise-model "
                "experiment on the raman_illustrative toy signal.")
     if not sim_files:
-        st.info("No simulation results — run `vitalq-quantum`.")
+        st.info("No simulation results — run `vitalquant-quantum`.")
     else:
         sim = json.loads(sim_files[-1].read_text())
         st.caption(f"regime: {sim.get('regime')} · cells: {len(sim['cells'])}")

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extract exact geometry from vitalq_v2.kicad_pcb using pcbnew.
+"""Extract exact geometry from vitalquant_v2.kicad_pcb using pcbnew.
 Run with KiCad's bundled python:
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 extract_geometry.py
 Outputs geometry.json (mm, board coordinates).

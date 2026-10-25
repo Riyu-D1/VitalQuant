@@ -1,4 +1,4 @@
-# VitalQ case_v10 - assembly + functional simulation (V22 board)
+# VitalQuant case_v10 - assembly + functional simulation (V22 board)
 
 **[checked]** = mesh boolean/ray (same probes as verify_fit);
 **[inferred]** = analytic model, assumptions stated.

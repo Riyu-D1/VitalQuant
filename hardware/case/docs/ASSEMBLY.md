@@ -1,4 +1,4 @@
-# VitalQ case_v10 — pogo-electrode assembly
+# VitalQuant case_v10 — pogo-electrode assembly
 
 Orientation: B.Cu (skin side) faces the base; USB-C, buttons and the D25
 status LED face outward. The battery occupies the separate snap-on bay

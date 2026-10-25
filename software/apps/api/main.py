@@ -1,1 +1,1 @@
-"""Entrypoint: uvicorn vitalq.ingest.app:app --host 0.0.0.0 --port 8000"""
+"""Entrypoint: uvicorn vitalquant.ingest.app:app --host 0.0.0.0 --port 8000"""

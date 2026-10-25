@@ -1,4 +1,4 @@
-"""Build the VitalQ case_v8: case_base.stl, case_top.stl + small parts.
+"""Build the VitalQuant case_v8: case_base.stl, case_top.stl + small parts.
 Coordinates: KiCad board XY (mm), z=0 at skin side of base.
 
 case_v8 wired-electrode revision:

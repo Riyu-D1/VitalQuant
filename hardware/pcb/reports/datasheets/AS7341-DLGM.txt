@@ -1,0 +1,3460 @@
+        Product
+        Document
+
+
+
+
+Published by
+ams OSRAM Group
+Datasheet
+DS000504
+
+
+
+
+AS7341
+11-Channel Multi-Spectral Digital Sensor
+
+
+v3-00 • 2020-Jun-25
+                                                                   Document Feedback                                                    AS7341
+                                                                                                                                   Content Guide
+
+
+
+
+Content Guide
+
+1         General Description....................... 3                        9.1      I²C Address ................................................ 22
+                                                                              9.2      I²C Write Transaction ................................. 22
+1.1       Key Benefits & Features .............................. 3            9.3      I²C Read Transaction ................................. 23
+1.2       Applications .................................................. 4   9.4      Timing Characteristics ............................... 23
+1.3       Block Diagram .............................................. 4      9.5      Timing Diagrams ........................................ 24
+2         Ordering Information ..................... 5                        10       Register Description ................... 25
+3         Pin Assignment ............................. 6                      10.1     Register Overview ...................................... 25
+                                                                              10.2     Detailed Register Description .................... 27
+3.1       Pin Diagram .................................................. 6
+3.2       Pin Description ............................................. 6     11       Application Information .............. 59
+4         Absolute Maximum Ratings .......... 7                               11.1     Schematic .................................................. 59
+                                                                              11.2     PCB Pad Layout......................................... 60
+5         Electrical Characteristics .............. 8                         11.3     Application Optical Requirements .............. 61
+6         Optical Characteristics .................. 9                        12       Package Drawings & Markings... 62
+7         Typical Operating                                                   13       Tape & Reel Information ............. 63
+          Characteristics ............................. 16
+                                                                              14       Soldering & Storage Information 65
+8         Functional Description ................ 17
+                                                                              14.1     Storage Information ................................... 66
+8.1       Channel Architecture .................................. 18
+8.2       Sensor Array .............................................. 19      15       Revision Information ................... 67
+8.3       GPIO/INT .................................................... 19    16       Legal Information ........................ 68
+8.4       SMUX ......................................................... 19
+8.5       Integration Mode ........................................ 20
+9         I²C Interface .................................. 22
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                                68 │ 2
+                                                     Document Feedback                                            AS7341
+                                                                                                        General Description
+
+
+
+
+1              General Description
+               The ams AS7341 is an 11-channel spectrometer enabling new consumer, commercial and laboratory
+               applications including spectral identification, reflection and absorption for color matching, fluid or
+               reagent analysis, passive ambient light measurement and color calibration. The spectral response is
+               defined by individual channels covering approximately 350nm to 1000nm with 8 channels centered in
+               the visible spectrum (VIS), plus one near-infrared (NIR) and a clear channel. The NIR channel in
+               combination with the other VIS channels may provide information of surrounding ambient light
+               conditions, including light source detection. Light source detection can be assisted by an integrated
+               flicker channel that can automatically flag ambient light flicker at 50/60Hz as well as buffer data for
+               externally calculating other flicker frequencies up to 2kHz.
+
+               AS7341 integrates high-precision optical filters onto standard CMOS silicon via nano-optic deposited
+               interference filter technology. A built-in aperture controls the light entering the sensor array to increase
+               accuracy. A programmable digital GPIO and LED current controller enable light source and trigger
+               control, as well as enabling expandability for an added external photodiode. Device control and
+               spectral data access is implemented through a serial I²C interface. The device is available in an ultra-
+               low profile package with dimensions of 3.1mm x 2mm x 1mm.
+
+
+
+1.1            Key Benefits & Features
+               The benefits and features of AS7341, 11-Channel Multi-Spectral Digital Sensor, are listed below:
+
+               Figure 1: Added Value of Using AS7341
+
+
+                Benefits                                              Features
+
+                                                                      8 optical channels distributed over the visible
+                Precision color, spectral composition and             spectral range + clear and NIR channels
+                distribution measurments                              realized via silicon nano-optic interference filter
+                                                                      deposition technologies
+                                                                      ● 1.8VDD operation, max 300µA
+                Low power consumption and efficient I²C
+                                                                      ● Configurable sleep mode to <5µA
+                communication
+                                                                      ● Interrupt-driven device
+                                                                      ●   Dedicated channel
+                Integrated ambient light flicker detection on         ●   Independently configurable timing and gain
+                chip and light source detection through NIR
+                channel                                               ●   Automatic gain adjustment
+                                                                      ●   50Hz and 60Hz flicker detection flags
+                                                                      GPIO can be used as external trigger input or
+                Electronic shutter/trigger and synch control
+                                                                      light source synchronization output
+                                                                      GPIO can be used as input for external
+                External photodiodes to expand detection range
+                                                                      photodiodes including mid-IR range
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                        68 │ 3
+                                                   Document Feedback                                             AS7341
+                                                                                                       General Description
+
+
+
+
+1.2            Applications
+               ●      High-precision reflective color point and spectral measurements
+               ●      Fluid color, turbidity or reagent based constituent analysis
+               ●      Spectral power distribution and passive ambient CCT measurement for home and building
+                      automation
+               ●      High-end display color management
+
+
+
+1.3            Block Diagram
+               The functional blocks of this device are shown below:
+
+               Figure 2 : Functional Blocks of AS7341
+
+
+
+
+                                       1.8V                                                e.g.:
+                                                     VDD                     GPIO          Flash LED
+
+
+                                                     PGND
+                                                     GND        AS7341        LDR
+                                         1.8V                                                     light
+                                                                8CH VIS                           source
+                                                               NIR/CLE AR
+
+                                                     SCL       350-100 0nm
+                                                                                                        reflective
+                             MCU                     SDA         sensor                                  surface
+
+                                                     INT                              light in
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                       68 │ 4
+                                           Document Feedback                                   AS7341
+                                                                                  Ordering Information
+
+
+
+
+2              Ordering Information
+
+                Ordering Code    Package         Delivery Form         Delivery Quantity
+
+                AS7341-DLGT      OLGA-8          Tape & Reel 13-inch   5000 pcs/reel
+                AS7341-DLGM      OLGA-8          Tape & Reel 7-inch    500 pcs/reel
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                  68 │ 5
+                                                           Document Feedback                                                        AS7341
+                                                                                                                             Pin Assignment
+
+
+
+
+3              Pin Assignment
+
+3.1            Pin Diagram
+               Figure 3: Pin Assignment of AS7341 (TOP VIEW)
+
+
+
+
+                       VDD    1                       8   SDA
+
+
+
+                        SCL   2                       7   INT
+                                     AS7341
+                                     TOP VIEW
+
+                       GND    3                       6   GPIO
+
+
+
+                        LDR   4                       5   PGND
+
+
+
+
+3.2            Pin Description
+               Figure 4: Pin Description of AS7341
+
+
+                Pin Number             Pin Name            Pin Type(1)         Description
+                1                       VDD                P                   Positive supply terminal
+                2                       SCL                DI                  Serial interface clock signal line for I2C interface
+                3                       GND                P                   Ground. All voltages referenced to GND
+                4                       LDR                A_I/O               LED current sink input
+                5                       PGND               P                   Ground. All voltages referenced to GND
+                6                       GPIO               DI                  General purpose input/output
+                                                                               Interrupt. Open drain output. Connect pull up resistor to
+                7                       INT                DO_OD
+                                                                               1.8V.
+                8                       SDA                D_I/O               Serial interface data signal line for I2C interface
+
+
+               (1)    Explanation of abbreviations:
+                      DI          Digital Input
+                      D_I/O       Digital Input/Output
+                      DO_OD       Digital Output, open drain
+                      P           Power pin
+                      A_I/O       Analog pin
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                        68 │ 6
+                                                              Document Feedback                                                  AS7341
+                                                                                                                 Absolute Maximum Ratings
+
+
+
+
+4              Absolute Maximum Ratings
+               Stresses beyond those listed under “Absolute Maximum Ratings“ may cause permanent damage to
+               the device. These are stress ratings only. Functional operation of the device at these or any other
+               conditions beyond those indicated under “Operating Conditions” is not implied. Exposure to absolute
+               maximum rating conditions for extended periods may affect device reliability. All voltages with respect
+               to GND/PGND. Device parameters are guaranteed at VDD=1.8V and TA=25°C unless otherwise noted.
+
+               Figure 5
+               Absolute Maximum Ratings of AS7341
+
+
+                Symbol           Parameter                               Min              Max        Unit           Comments
+                Electrical Parameters
+                VDD / VGND       Supply Voltage to Ground                 -0.3            2.2        V              Applicable for pin VDD
+                VANA_MAX         Analog Pins                              -0.3            3.6        V              Applicable for pin LDR
+                                                                                                                    Applicable for pins
+                VDIG_MAX         Digital Pins                             -0.3            3.6        V
+                                                                                                                    SCL,SDA and INT
+                                 Input Current (latch-up                                                            JEDEC JESD78D Nov
+                ISCR                                                             ± 100               mA
+                                 immunity)                                                                          2011
+                IO               Output Terminal Current                   -1             20         mA
+                Electrostatic Discharge
+                ESDHBM           Electrostatic Discharge HBM                     ± 2000              V              JS-001-2014
+                ESDCDM           Electrostatic Discharge CDM                     ± 500               V              JEDEC JESD22-C101F
+                Temperature Ranges and Storage Conditions
+                TA               Operating Ambient Temperature            -30             85         °C
+                TSTRG            Storage Temperature Range                -40             85         °C
+                TBODY            Package Body Temperature                                 260        °C             IPC/JEDEC J-STD-020(1)
+                                 Relative Humidity (non-
+                RHNC                                                       5              85         %
+                                 condensing)
+                                                                                                                    Maximum floor life time of
+                MSL              Moisture Sensitivity Level                        3
+                                                                                                                    168h
+
+
+               (1)      The reflow peak soldering temperature (body temperature) is specified according to IPC/JEDEC J-STD-020
+                        “Moisture/Reflow Sensitivity Classification for Nonhermetic Solid State Surface Mount Devices.” The lead finish for Pb-
+                        free leaded packages is “Matte Tin” (100% Sn)
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                            68 │ 7
+                                                              Document Feedback                                                        AS7341
+                                                                                                                      Electrical Characteristics
+
+
+
+
+5              Electrical Characteristics
+               All limits are guaranteed. The parameters with Min and Max values are guaranteed with production
+               tests or SQC (Statistical Quality Control) methods. All voltages with respect to GND/PGND. Device
+               parameters are guaranteed at VDD=1.8V and TA=25°C unless otherwise noted.
+
+               Figure 6:
+               Electrical Characteristics of AS7341
+
+
+                Symbol               Parameter                      Conditions                   Min         Typ          Max           Unit
+
+                VDD                  Supply Voltage                                              1.7         1.8          2.0           V
+                                     Operating free-air
+                TA                                                                               -30         25           70            °C
+                                     temperature(1)
+                Power Consumption
+                                                                    VDD=1.8V; TA=25°C
+                                                                                                             210          300           µA
+                                                                    Active mode(3)
+                                                                    VDD=1.8V; TA=25°C
+                IDD                  Supply Current(2)                                                       35           60            µA
+                                                                    Idle mode(4)
+                                                                    VDD=1.8V; TA=25°C
+                                                                                                             0.7          5             µA
+                                                                    Sleep mode(5)
+                Digital pins
+                                     SCL,SDA input high
+                VIH                                                                              1.26                                   V
+                                     voltage
+                                     SCL,SDA input low
+                VIL                                                                                                       0.54          V
+                                     voltage
+                                     INT, SDA output low
+                VOL                                                 6mA sink current                                      0.4           V
+                                     voltage
+                CI                   Input pin capacitance                                                                10            pF
+                                     Leakage current into
+                Ileak                                                                            -5                       5             µA
+                                     SCL,SDA,INT pins
+                GPIO
+                                     Maximum capacitive
+                CLOAD                                                                                                     20            pF
+                                     load GPIO
+
+               (1)      While the device is operational across the temperature range, functionality will vary with temperature.
+               (2)      Supply current values are shown at the VDD pin and do not include current through pin LDR.
+               (3)      Active state occurs during active integration. (PON = “1” ; SP_EN = “1”) If wait is enabled (WEN = “1”), supply current is
+                        lower during the wait period
+               (4)      Idle state occurs when PON = “1” and all functions are disabled
+               (5)      Sleep state occurs when PON = “0” and I2C bus is idle. If I2C traffic is active device automatically enters idle mode.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                               68 │ 8
+                                                   Document Feedback                                         AS7341
+                                                                                               Optical Characteristics
+
+
+
+
+6              Optical Characteristics
+               All limits are guaranteed. The parameters with Min and Max values are guaranteed with production
+               tests or SQC (Statistical Quality Control) methods. All voltages with respect to GND/PGND. Device
+               parameters are guaranteed at VDD=1.8V and TA=25°C unless otherwise noted.
+
+               Figure 7:
+               AS7341 Optical Channel Summary
+
+
+                                            Center Wavelength                  Full Width Half Maximum
+                Channel
+                                            [nm] typical                       [nm] typical
+
+                F1                          415                                26
+                F2                          445                                30
+                F3                          480                                36
+                F4                          515                                39
+                F5                          555                                39
+                F6                          590                                40
+                F7                          630                                50
+                F8                          680                                52
+
+                NIR (Near IR)               910                                n/a
+
+                Clear                       Si response/non filtered           n/a
+                FD (Flicker Detection)      Si response/non filtered           n/a
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                 68 │ 9
+                                                            Document Feedback                                                   AS7341
+                                                                                                                  Optical Characteristics
+
+
+
+
+               Figure 8:
+               Optical Characteristics of Channel F1, AGAIN: 64x, Integration Time: 27.8ms
+
+
+                Symbol         Parameter                     Conditions                           Min      Typ      Max      Unit
+
+                                                             LED: warm white 2700K (3)
+                                                                                                           55                counts
+                                                             Ee = 107.67μW/cm2
+                               Irradiance responsivity       LED: 420nm (3)
+                Re_F1
+                               channel F1(2)                 Ee = 57 µW/cm²
+                                                                                                           3200              counts
+                                                             AGAIN = 512x
+                                                             tint = 100ms
+                λp             Center wavelength(1)                                               405      415      425      nm
+                               Full width half
+                FWHM                                                                                       26                nm
+                               maximum(1)
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+               Figure 9:
+               Optical Characteristics of Channel F2, AGAIN: 64x, Integration Time: 27.8ms
+
+
+                Symbol         Parameter                         Conditions                       Min      Typ      Max      Unit
+
+                               Irradiance responsivity           LED: warm white 2700K(3)
+                Re_F2                                                                                      110               counts
+                               channel F2(2)                     Ee = 107.67μW/cm2
+                λp             Center wavelength(1)                                               435      445      455      nm
+                FWHM           Full width half maximum(1)                                                  30                nm
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                    68 │ 10
+                                                            Document Feedback                                                  AS7341
+                                                                                                                 Optical Characteristics
+
+
+
+
+               Figure 10:
+               Optical Characteristics of Channel F3, AGAIN: 64x, Integration Time: 27.8ms
+
+
+                Symbol         Parameter                          Conditions                        Min    Typ     Max      Unit
+
+                               Irradiance responsivity            LED: warm white 2700K(3)
+                Re_F3                                                                                      210              counts
+                               channel F3(2)                      Ee = 107.67μW/cm2
+                λp             Center wavelength(1)                                                 470    480     490      nm
+                                                            (1)
+                FWHM           Full width half maximum                                                     36               nm
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+               Figure 11:
+               Optical Characteristics of Channel F4, AGAIN: 64x, Integration Time: 27.8ms
+
+
+                Symbol         Parameter                          Conditions                        Min    Typ     Max      Unit
+
+                               Irradiance responsivity            LED: warm white 2700K(3)
+                Re_F4                                                                                      390              counts
+                               channel F4(2)                      Ee = 107.67μW/cm2
+                λp             Center wavelength(1)                                                 505    515     525      nm
+                               Full width half
+                FWHM                                                                                       39               nm
+                               maximum(1)
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+               Figure 12:
+               Optical Characteristics of Channel F5, AGAIN: 64x, Integration Time: 27.8ms
+
+
+                Symbol         Parameter                          Conditions                        Min    Typ     Max      Unit
+
+                               Irradiance Responsivity            LED: warm white 2700K(3)
+                Re_F5                                                                                      590              counts
+                               channel F5(2)                      Ee = 107.67μW/cm2
+                λp             Center wavelength(1)                                                 545    555     565      nm
+                                                            (1)
+                FWHM           Full width half maximum                                                     39               nm
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                   68 │ 11
+                                                            Document Feedback                                                  AS7341
+                                                                                                                 Optical Characteristics
+
+
+
+
+               Figure 13:
+               Optical Characteristics of Channel F6, AGAIN: 64x, Integration Time: 27.8ms
+
+
+                Symbol         Parameter                          Conditions                        Min    Typ     Max      Unit
+
+                               Irradiance responsivity            LED: warm white 2700K(3)
+                Re_F6                                                                                      840              counts
+                               channel F6(2)                      Ee = 107.67μW/cm2
+                λp             Center wavelength(1)                                                 580    590     600      nm
+                                                            (1)
+                FWHM           Full width half maximum                                                     40               nm
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+               Figure 14:
+               Optical Characteristics of Channel F7, AGAIN: 64x, Integration Time: 27.8ms
+
+                Symbol         Parameter                          Conditions                      Min     Typ    Max        Unit
+
+                                                                  LED: warm white
+                               Irradiance responsivity            2700K(3)
+                Re_F7                                                                                     1350              counts
+                               channel F7(2)
+                                                                  Ee = 107.67μW/cm²
+                λp             Center wavelength(1)                                               620     630    640        nm
+                FWHM           Full width half maximum(1)                                                 50                nm
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                   68 │ 12
+                                                                          Document Feedback                                       AS7341
+                                                                                                                    Optical Characteristics
+
+
+
+
+               Figure 15:
+               Optical Characteristics of Channel F8, AGAIN: 64x, Integration Time: 27.8ms
+
+
+                Symbol                      Parameter                          Conditions              Min   Typ    Max          Unit
+
+                                                                               LED: warm white
+                                            Irradiance responsivity            2700K(3)
+                Re_F8                                                                                        1070                counts
+                                            channel F8(2)
+                                                                               Ee = 107.67μW/cm²
+                λp                          Center wavelength(1)                                       670   680    690          nm
+                                            Full width half
+                FWHM                                                                                         52                  nm
+                                            maximum(1)
+
+               (1)      Parameter measured on a production ongoing sample bases on glass using diffused light
+               (2)      The following diffuser is used in final test on top of AS7341: ED1-C50
+               (3)      Refer to Figure 16:
+                        Typical LED Spectra Used in Final Test of AS7341
+
+
+
+
+               Figure 16:
+               Typical LED Spectra Used in Final Test of AS7341
+
+                                                        1
+                                                      0,9                                                            LED 420nm
+
+                                                      0,8
+                             normalized LED spectra
+
+
+
+
+                                                      0,7                                                            LED 940nm
+
+                                                      0,6
+                                                      0,5                                                            warm white
+                                                                                                                     2700K
+                                                      0,4
+                                                      0,3
+                                                      0,2
+                                                      0,1
+                                                        0
+                                                            350   450   550     650    750      850   950    1050
+                                                                              wavelength [nm]
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                        68 │ 13
+                                                          Document Feedback                                        AS7341
+                                                                                                     Optical Characteristics
+
+
+
+
+               Figure 17:
+               Optical Characteristics of AS7341, AGAIN: 64x, Integration Time: 27.8ms (unless otherwise
+               noted)
+
+
+                Symbol            Parameter                Conditions               Min      Typ       Max        Unit
+
+                                  Irradiance               LED: warm white
+                Re_CLEAR          responsivity channel     2700K(5)                          1750                 counts
+                                  CLEAR                    Ee = 107.67μW/cm2
+                                  Irradiance               LED: warm white
+                Re_FLICKER        responsivity channel     2700K(5)                          6810                 counts
+                                  FLICKER                  Ee = 52.32μW/cm2
+                                                           LED: warm white
+                                                           2700K(5)                          112
+                                                           Ee = 107.67μW/cm2
+                                  Irradiance
+                Re_NIR            responsivity channel     LED: 940nm(5)                                          counts
+                                  NIR                      Ee = 98 µW/cm²
+                                                                                             5135
+                                                           AGAIN = 128x
+                                                           tint = 100ms
+                                                           Ee = 0μW/cm2
+                         (1)(6)   Dark ADC 0-4 count
+                Dark_1                                     AGAIN: 512x                       0         3          counts
+                                  value
+                                                           Integration time: 98ms
+                                                           Ee = 0μW/cm2
+                         (6)      Dark ADC 5 count
+                Dark_2                                     AGAIN: 512x                       0         5          counts
+                                  value
+                                                           Integration time: 98ms
+                                                           AGAIN: 0.5x              0.007    0.008     0.009
+                                                           AGAIN: 1x                0.0145   0.016     0.0175
+                                                           AGAIN: 2x                0.03     0.032     0.034
+                                                           AGAIN: 4x                0.062    0.065     0.068
+                                                           AGAIN: 8x                0.119    0.125     0.131
+                                  Optical gain ratios,
+                Gain(2)
+                                  relative to 64x gain     AGAIN: 16x               0.237    0.25      0.263
+                ratio
+                                  setting
+                                                           AGAIN: 32x               0.47     0.5       0.53
+                                                           AGAIN: 64x                        1
+                                                           AGAIN: 128x              1.8      2         2.1
+                                                           AGAIN: 256x              3.75     3.95      4.25
+                                                           AGAIN: 512x              7.25     7.75      8.25
+                ADC                                        AGAIN: 16x                                             % full
+                                                                                             0.005
+                noise(3)                                   Integration time: 10ms                                 scale
+                                  Typical integration      ASTEP = 599
+                tint                                                                         50                   ms
+                                  time(4)                  ATIME = 29
+                                  Integration time step
+                tASTEP                                     ASTEP = 999                       2.78                 ms
+                                  size
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 14
+                                                            Document Feedback                                                      AS7341
+                                                                                                                     Optical Characteristics
+
+
+
+
+                Symbol           Parameter                   Conditions                        Min         Typ         Max        Unit
+
+                hca              Half cone angle             On the sensor                                 40                     deg
+
+               (1)    The typical 3-sigma distribution is between 0 and 1 counts for AGAIN setting of 16x.
+               (2)    The gain ratios are calculated relative to the response with integration time: 27.8ms and AGAIN: 64x.
+               (3)    ADC noise is calculated as the standard deviation of 1000 data samples divided by full scale.
+               (4)    Integration time, in milliseconds, is equal to: (ATIME + 1) x (ASTEP + 1) x 2.78µs
+               (5)    Refer to Figure 16:
+                      Typical LED Spectra Used in Final Test of AS7341
+               (6)    Register 0xD6 / AZ_CONFIG is set to “1” – auto zero done before every integration cycle
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                      68 │ 15
+                                                                                             Document Feedback                                                     AS7341
+                                                                                                                                           Typical Operating Characteristics
+
+
+
+
+7              Typical Operating Characteristics
+               Figure 18:
+               Normalized Spectral Responsivity
+
+
+                                                                  F1              F2              F3                F4                     F5               F6
+                                                                  F7              F8              Clear             NIR                    Flicker
+                                                             1
+                                                           0,9
+                                                           0,8
+                                relative sensitivity
+
+
+
+
+                                                           0,7
+                                                           0,6
+                                                           0,5
+                                                           0,4
+                                                           0,3
+                                                           0,2
+                                                           0,1
+                                                             0
+                                                                 350        450           550             650        750               850           950             1050
+                                                                                                       wavelength [nm]
+
+
+
+               Figure 19:
+               Measured Spectral Responsivity Relative to F8(1)
+
+
+                                                                       F1_256x                  F2_256x                       F3_256x                      F4_256x
+                                                                       F5_256x                  F6_256x                       F7_256x                      F8_256x
+                                                                       Clear_512x               NIR_64x                       F l i c k e r_64x
+                                                           1,2
+                     spectral responsivty relative to F8
+
+
+
+
+                                                            1
+
+                                                           0,8
+
+                                                           0,6
+
+                                                           0,4
+
+                                                           0,2
+
+                                                            0
+                                                                 350 390 430 470 510 550 590 630 670 710 750 790 830 870 910 950 990 1030
+                                                                                                          wavelength [nm]
+
+
+               (1)                                         Fx_256x…AGAIN = 256x, diffuser mounted on top of package surface
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                                                         68 │ 16
+                                                    Document Feedback                                           AS7341
+                                                                                                   Functional Description
+
+
+
+
+8              Functional Description
+               Upon power-up (POR), the device initializes. During initialization (typically 200μs), the device will
+               deterministically send NAK on I²C and cannot accept I²C transactions. All communication with the
+               device must be delayed and all outputs from the device must be ignored including interrupts. After
+               initialization, the device enters the SLEEP state. In this operational state, the internal oscillator and
+               other circuitry are not active, resulting in ultra-low power consumption. If an I²C transaction occurs
+               during this state, the I²C core wakes up temporarily to service the communication. Once the Power ON
+               bit, “PON”, is enabled, the device enters the IDLE state in which the internal oscillator and attendant
+               circuitry are active, but power consumption remains low. Whenever the spectral measurement is
+               enabled (SP_EN = “1”) the device enters the ACTIVE state. If the spectral measurement is disabled
+               (SP_EN = “0”) the device returns to the IDLE state. The figure below describes a simplified state
+               diagram and the typical supply currents in each state.
+
+               If Sleep after Interrupt is enabled (SAI = “1” in register 0xAC), the state machine will enter SLEEP
+               when an interrupt occurs. Entering SLEEP does not automatically change any of the register settings
+               (e.g. PON bit is still high, but the normal operational state is over-ridden by SLEEP state). SLEEP
+               state is terminated when the SAI_ACTIVE bit is cleared (the status bit is in register 0xA7 and the clear
+               status bit is in register 0xFA).
+
+               Figure 20: Simplified State Diagram
+
+
+
+                                                                   Power On
+
+
+                                                                              VDD > VDD_POR
+
+
+                                                                      SLEEP
+                                                                   IDD = 0.7µA (typ)
+                                                     PON = „0"
+
+
+
+
+                                                                              PON = „1"
+
+
+                                                                        IDLE
+                                                                   IDD = 35µA (typ)
+                                                     SPM = „0"
+
+
+
+
+                                                                               SPM = „1"
+
+                                                                     ACTIVE
+                                                                 Spectral/Flicker
+                                                                   IDD = 115µA (typ)
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                   68 │ 17
+                                                    Document Feedback                                             AS7341
+                                                                                                     Functional Description
+
+
+
+
+8.1            Channel Architecture
+               The device features 6 independent optical channels with a dedicated 16-bit light-to-frequency
+               converter. Gain and integration time of the 6 channels can be adjusted with the I2C interface. A wait
+               time can be programed to automatically set a delay between two consecutive spectral measurements
+               and to reduce overall power consumption. The other available channels can be accessed by a
+               multiplexer (SMUX) connecting them to one of the internal ADCs.
+
+               Figure 21: Simplified Block Diagram
+
+
+                    VDD
+                   GND
+                                                                                                                   LDR
+                  PGND
+                                                                                                      LED
+                   GPIO
+                                                                         6 x 16bit LTF ADC
+
+                                                                        CH0 ADC     CH0 Data                        SCL
+                                                                 SMUX
+
+                                                                        CH1 ADC     CH1 Data       I2C
+                                                                        CH2 ADC     CH2 Data
+                                                                                                Interface           SDA
+                                                                        CH3 ADC     CH3 Data
+                                                                                                interrupt           INT
+                                                                        CH4 ADC     CH4 Data    handling
+                                                                        CH5 ADC     CH5 Data
+                                                                              CH0 data
+                                                                              CH5 data
+                                                                                                            RC-
+                                                                              register         OTP
+                                                                                                            osc
+                                 8 x VIS F1-F8   NIR/CLEAR/FLICKER
+                                 4x4 PD array
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                     68 │ 18
+                                                       Document Feedback                                          AS7341
+                                                                                                     Functional Description
+
+
+
+
+8.2            Sensor Array
+               The device features a 4x4-photodiode array. On top and below the photodiode array there are two
+               photodiodes with dedicated functions such as flicker detection (“FLICKER”) and near- infrared
+               response (“NIR”). A clear channel (“C”) – photodiode without filter – is provided at the left and right
+               bottom corner. Each of the filter pairs can be mapped to one of the six internal ADCs (CH0 – CH5).
+
+               Figure 22:
+               Sensor Array
+
+
+                                                                  520µm
+
+
+                                                                  F L IC K ER
+
+
+
+                                                          F1     F3         F5   F7
+
+
+
+                                                          F6     F8         F2   F4
+
+
+
+
+                                                                                        780µm
+                                               520µm
+
+
+
+
+                                                          F4     F2         F8   F6
+
+
+
+                                                          F7     F5         F3   F1
+
+
+
+                                                         C            NIR         C
+
+
+
+
+8.3            GPIO/INT
+               The GPIO can be either used as input for external photodiodes or as synchronization input to
+               start/stop the spectral measurement. (SYNS/SYND mode).The interrupt output pin INT can also be
+               used to indicate the status (READY/BUSY) of the spectral measurement in mode SYNS and SYND.
+
+
+
+8.4            SMUX
+               AS7341 integrates a sensor multiplexer (SMUX) that enables high-flexibility photodiode channel
+               mapping to the six available ADCs. The 6 ADC limit requires that any measurement that includes
+               more than six of the 8 VIS + 3 specialty channels will require 2 integration cycles. In all cases, after
+               power-up, the SMUX needs to be configured before any spectral measurement is started. ams
+               provides reference code and an application note on how to configure the SMUX. When flicker
+               detection (FD) is used, the flicker diode needs to be configured to ADC5.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 19
+                                                              Document Feedback                                                    AS7341
+                                                                                                                      Functional Description
+
+
+
+
+8.5            Integration Mode
+               The device features three modes to perform a spectral measurement. The integration mode
+               (INT_MODE) can be configured in register 0x70 (CONFIG). For auto zero configuration refer to
+               register 0xD6.
+
+               Figure 23:
+               Integration Mode Description
+
+
+                Mode                Description                                Synchronization      Integration Time      Registers
+
+                SPM (spectral                                                                                             SP_EN = “1”
+                measurement,        Default setting:
+                no sync)                                                                                                  INT_MODE = 0x0
+                                    Integration is started with bit SP_EN                           ATIME [7:0]
+                                                                               No                                         ATIME [7:0]
+                                    = “1”. Integration Time is set by                               ASTEP [15:0]
+                INT_MODE = 0x0      register ATIME and ASTEP.                                                             ASTEP [15:0]
+                                                                                                                          WTIME [7:0]
+
+                SYNS (spectral                                                                                            SP_EN = “1”
+                measurement,        Integration with external start:
+                start sync)         Integration is started with                                                           INT_MODE = 0x1
+                                                                                                    ATIME [7:0]
+                                    rising/falling edge on pin GPIO.           Yes (start)                                ATIME [7:0]
+                                                                                                    ASTEP [15:0]
+                INT_MODE = 0x1      Integration Time is set by register                                                   ASTEP [15:0]
+                                    ATIME and ASTEP.                                                                      WTIME [7:0]
+
+                                    Integration with external start and
+                SYND (spectral      stop:
+                measurement,        Integration is controlled via                                                         SP_EN = “1”
+                start/stop sync)    rising/falling edge on pin GPIO and                             Rising/falling edge   INT_MODE = 0x3
+                                    register EDGE. If the number of            Yes (start/stop)     on pin GPIO and
+                                                                                                    register EDGE[7:0]    EDGE[7:0]
+                                    edges on pin GPIO is reached,
+                INT_MODE = 0x3                                                                                            ITIME[23:0]
+                                    integration time is stopped. Actual
+                                    integration time can be read out in
+                                    register “ITIME”.
+
+
+
+               Figure 24 :
+               SPM Mode
+
+                             Start
+                             I2C write enable register                                              auto re-start
+                                                                      WTIME
+                                                         ATIME x ASTEP
+
+                                   AUTO                                     RES-                                                    RES-
+                   STATE IDLE                      INTEGRATION                               WAIT            INTEGRATION
+                                   ZERO                                     ULT                                                     ULT
+
+
+
+                       INT
+
+                                                            I2C read data registers                                 I2C read data registers
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                          68 │ 20
+                                                                  Document Feedback                                                             AS7341
+                                                                                                                                   Functional Description
+
+
+
+
+               Figure 25 :
+               SYNS Mode
+
+
+                                       Start                                WTIME                                    Start
+                                                             ATIME x ASTEP
+
+                                          AUTO                                    RES-                                                                 RES-
+                      STATE IDLE                           INTEGRATION                               WAIT         IDLE       INTEGRATION
+                                          ZERO                                    ULT                                                                  ULT
+
+
+                       SYNC
+                      (GPIO)
+
+
+                    READY_BUSYX
+                            (INT)
+
+                                                                I2C read data registers                                             I2C read data registers
+
+
+
+
+               Figure 26 :
+               SYND Mode
+
+                               Start
+                                                     EDGE = 0x4                                  Start
+                                                               ITIME
+                                                                                              IDLE
+
+
+
+
+                                  AUTO                                                 RES-                                                       RES-
+                  STATE   IDLE                         INTEGRATION                                                 INTEGRATION
+                                  ZERO                                                 ULT                                                        ULT
+
+
+                  SYNC
+                 (GPIO)
+                                               1st   2nd       3rd        4th        5th                    1st     2nd      3rd      4th        5th
+
+                READY_BUSYX
+                        (INT)
+
+                                                                       I2C read data registers                                     I2C read data registers
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                                          68 │ 21
+                                                     Document Feedback                                              AS7341
+                                                                                                               I²C Interface
+
+
+
+
+9              I²C Interface
+               The device uses I²C serial communication protocol for communication. The device supports 7-bit chip
+               addressing and both standard and full-speed clock frequency modes. Read and Write transactions
+               comply with the standard set by Philips (now NXP). Internal to the device, an 8-bit buffer stores the
+               register address location of the desired byte to read or write. This buffer auto-increments upon each
+               byte transfer and is retained between transaction events (i.e. valid even after the master issues a
+               STOP command and the I²C bus is released). During consecutive Read transactions, the
+               future/repeated I²C Read transaction may omit the memory address byte normally following the chip
+               address byte; the buffer retains the last register address +1. All 16-bit fields have a latching scheme
+               for reading and writing. In general, it is recommended to use I²C bursts whenever possible, especially
+               in this case when accessing two bytes of one logical entity. When reading these fields, the low byte
+               must be read first, and it triggers a 16-bit latch that stores the 16-bit field. The high byte must be read
+               immediately afterwards. When writing to these fields, the low byte must be written first, immediately
+               followed by the high byte. Reading or writing to these registers without following these requirements
+               will cause errors.
+
+
+
+9.1            I²C Address
+               Figure 27:
+               AS7341 I2C Slave Address
+
+
+                Device                       I2C Address
+
+                AS7341                       0x39
+
+
+
+
+9.2            I²C Write Transaction
+               A Write transaction consists of a START, CHIP-ADDRESSWRITE, REGISTER-ADDRESS WRITE,
+               DATA BYTE(S), and STOP (P). Following each byte (9TH clock pulse) the slave places an
+               ACKNOWLEDGE/NOT- ACKNOWLEDGE (A/N) on the bus. If the slave transmits N, the master may
+               issue a STOP.
+
+               Figure 28:
+               I2C Byte Write
+
+
+
+                 S      DW       A    WA      A      reg_data      A P
+
+                                                                  WA++
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 22
+                                                        Document Feedback                                    AS7341
+                                                                                                        I²C Interface
+
+
+
+
+9.3            I²C Read Transaction
+               A Read transaction consists of a START, CHIP-ADDRESSWRITE, REGISTER-ADDRESS,
+               RESTART, CHIP-ADDRESSREAD, DATA BYTE(S), and STOP. Following all but the final byte the
+               master places an ACK on the bus (9TH clock pulse). Termination of the Read transaction is indicated
+               by a NACK being placed on the bus by the master, followed by STOP.
+
+               Figure 29:
+               I2C Read
+
+
+
+                 S        DW     A   WA       A Sr      DR     A     data    N P
+
+                                                              RA++
+
+
+
+
+9.4            Timing Characteristics
+               Figure 30:
+               I²C Timing Characteristics
+
+
+                Symbol           Parameter                                          Min   Typ   Max   Unit
+
+                fSCL             I²C clock frequency                                            400   kHz
+                                 Bus free time between start and stop
+                tBUF                                                                1.3               µs
+                                 condition
+                                 Hold time after (repeated) start condition.
+                tHS;STA                                                             0.6               µs
+                                 After this period, the first clock is generated.
+                tSU;STA          Repeated start condition setup time                0.6               µs
+                tSU;STO          Stop condition setup time                          0.6               µs
+                tLOW             SCL clock low period                               1.3               µs
+                tHIGH            SCL clock high period                              0.6               µs
+                tHD;DAT          Data hold time                                     0                 ns
+                tSU;DAT          Data setup time                                    100               ns
+                tF               Clock/data fall time                                           300   ns
+                tR               Clock/data rise time                                           300   ns
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                               68 │ 23
+                                          Document Feedback        AS7341
+                                                              I²C Interface
+
+
+
+
+9.5            Timing Diagrams
+               Figure 31:
+               I²C Slave Timing Diagram
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                     68 │ 24
+                                                    Document Feedback                                              AS7341
+                                                                                                        Register Description
+
+
+
+
+10             Register Description
+               The device is controlled and monitored by registers accessed through the I²C serial interface. These
+               registers provide device control functions and can be read to determine device status and acquire
+               device data.
+
+               The register set is summarized below. The values of all registers and fields that are listed as reserved
+               or are not listed must not be changed at any time. Two-byte fields are always latched with the low byte
+               followed by the high byte. The “Name” column illustrates the purpose of each register by highlighting
+               the function associated to each bit. The bits are shown from MSB (D7) to LSB (D0). GRAY fields are
+               reserved and their values must not be changed at any time.
+
+               In order to access registers from 0x60 to 0x74 bit REG_BANK in register CFG0 (0xA9) needs to be
+               set to “1”.
+
+
+
+10.1           Register Overview
+               Figure 32:
+               Register Overview
+
+
+                Addr     Name          <D7>     <D6>     <D5>       <D4>         <D3>          <D2>       <D1>      <D0>
+
+                                       ASAT_
+                0x60     ASTATUS                                                               AGAIN_STATUS [3:0]
+                                       STATUS
+                0x61                                                    CH0_DATA_L [7:0]
+                         CH0_DATA
+                0x62                                                    CH0_DATA_H [7:0]
+                0x63                                                       ITIME_L [7:0]
+                0x64     ITIME                                             ITIME_M [7:0]
+                0x65                                                       ITIME_H [7:0]
+                0x66                                                    CH1_DATA_L [7:0]
+                         CH1_DATA
+                0x67                                                    CH1_DATA_H [7:0]
+                0x68                                                    CH2_DATA_L [7:0]
+                         CH2_DATA
+                0x69                                                    CH2_DATA_H [7:0]
+                0x6A                                                    CH3_DATA_L [7:0]
+                         CH3_DATA
+                0x6B                                                    CH3_DATA_H [7:0]
+                0x6C                                                    CH4_DATA_L [7:0]
+                         CH4_DATA
+                0x6D                                                    CH4_DATA_H [7:0]
+                0x6E                                                    CH5_DATA_L [7:0]
+                         CH5_DATA
+                0x6F                                                    CH5_DATA_H [7:0]
+                0x70     CONFIG                                             LED_SEL        INT_SEL        INT_MODE[1:0]
+                0x71     STAT                                                                         WAIT_SYNC     READY
+                0x72     EDGE                                           SYNC_EDGE [7:0]
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 25
+                                                    Document Feedback                                                    AS7341
+                                                                                                              Register Description
+
+
+
+
+                Addr     Name       <D7>      <D6>         <D5>      <D4>          <D3>            <D2>         <D1>      <D0>
+
+                0x73     GPIO                                                                                 PD_GPIO     PD_INT
+                0x74     LED        LED_ACT                                        LED_DRIVE [6:0]
+                0x80     ENABLE                     FDEN                SMUXEN             WEN                  SP_EN        PON
+                0x81     ATIME                                                ATIME [7:0]
+                0x83     WTIME                                                WTIME [7:0]
+                0x84                                                       SP_TH_L_LSB [7:0]
+                         SP_TH_L
+                0x85                                                       SP_TH_L_MSB [7:0]
+                0x86                                                       SP_TH_H_LSB [7:0]
+                         SP_TH_H
+                0x87                                                       SP_TH_H_MSB [7:0]
+                0x90     AUXID                                                AUXID [7:0]
+                0x91     REVID                                                REVID [7:0]
+                0x92     ID                                                     ID [7:0]
+                0x93     STATUS     ASAT                                           AINT            FINT         CINT      SINT
+                                    ASAT_
+                0x94     ASTATUS    STATU                                                         AGAIN_STATUS [3:0]
+                                    S
+                0x95                                                       CH0_DATA_L [7:0]
+                         CH0_DATA
+                0x96                                                       CH0_DATA_H [7:0]
+                0x97                                                       CH1_DATA_L [7:0]
+                         CH1_DATA
+                0x98                                                       CH1_DATA_H [7:0]
+                0x99                                                       CH2_DATA_L [7:0]
+                         CH2_DATA
+                0x9A                                                       CH2_DATA_H [7:0]
+                0x9B                                                       CH3_DATA_L [7:0]
+                         CH3_DATA
+                0x9C                                                       CH3_DATA_H [7:0]
+                0x9D                                                       CH4_DATA_L [7:0]
+                         CH4_DATA
+                0x9E                                                       CH4_DATA_H [7:0]
+                0x9F                                                       CH5_DATA_L [7:0]
+                         CH5_DATA
+                0xA0                                                       CH5_DATA_H [7:0]
+
+                                              AVALI                  ASAT_         ASAT_                        FDSAT     FDSAT_
+                0xA3     STATUS 2
+                                              D                      DIG           ANA                          _ANA      DIG
+                                                           INT_SP_
+                0xA4     STATUS 3                                    INT_SP_L
+                                                           H
+                0xA6     STATUS 5                                                  SINT_FD
+                                    FIFO_                                                                       SAI_      INT_BUS
+                0xA7     STATUS 6                          OVTEMP    FD_TRIG                       SP_TRIG
+                                    OV                                                                          ACT       Y
+
+                                                           LOW_                    REG_
+                0xA9     CFG 0                                                                     WLONG
+                                                           POWER                   BANK
+                0xAA     CFG 1                                                                   AGAIN[4:0]
+                0xAC     CFG 3                                       SAI
+                                                                           SMUX_
+                0xAF     CFG 6
+                                                                        CMD[4:3]
+                0xB1     CFG 8      FIFO_TH [7:6]                                  FD_AGC          SP_AGC
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                            68 │ 26
+                                                         Document Feedback                                               AS7341
+                                                                                                              Register Description
+
+
+
+
+                Addr     Name           <D7>      <D6>       <D5>         <D4>         <D3>        <D2>         <D1>      <D0>
+
+                                                  SIEN                    SIEN
+                0xB2     CFG 9
+                                                  _FD                     _SMUX
+                0xB3     CFG 10         AGC_H [7:6]          AGC_L[7:6]                                      FD_PERS [2:0]
+                0xB5     CFG 12                                                                              SP_TH_CH [2:0]
+                0xBD     PERS                                                                           APERS [3:0]
+                                                                                       GPIO_       GPIO_        GPIO_     GPIO_
+                0xBE     GPIO 2
+                                                                                       INV         IN           OUT       IN
+                0xCA                                                              ASTEP [7:0]
+                         ASTEP
+                0xCB                                                             ASTEP [15:8]
+                         AGC_GAIN_M
+                0xCF                            AGC_FD_GAIN_MAX [7:4]                            AGC_AGAIN_MAX [3:0]
+                         AX
+                0xD6     AZ_CONFIG                                        AT_NTH_ITERATION [7:0]
+                0xD8     FD_TIME 1                                               FD_TIME [7:0]
+                0xDA     FD_TIME 2                       FD_GAIN [7:3]                                  FD_TIME [10:8]
+                                        FD_
+                0xD7     FD_CFG0
+                                        FIFO
+                                                                                       FD_         FD_
+                                                             FD_          FD_                                   FD_       FD_
+                0xDB     FD_STATUS                                                     120HZ_      100Hz_
+                                                             VALID        SAT                                   120Hz     100Hz
+                                                                                       VALID       VALID
+                0xF9     INTENAB        ASIEN                                          SP_IEN      FIEN         CIEN      SIEN
+                                                                                                   AZ_SP_       FIFO_     CLEAR_
+                0xFA     CONTROL
+                                                                                                   MAN          CLR       SAI_ACT
+                                                                                                                          ASTATU
+                0xFC     FIFO_MAP                 FIFO_WRITE_CH5_DATA – FIFO_WRITE_CH0_DATA [6:1]
+                                                                                                                          S
+                0xFD     FIFO_LVL       FIFO_LVL [7:0]
+                0xFE                    FDATA [7:0]
+                         FDATA
+                0xFF                                                             FDATA [15:8]
+
+
+
+
+10.2           Detailed Register Description
+               For easier readability, the detailed register description is done in groups of registers related to
+               dedicated device functions. This is not necessarily related to its register address.
+
+               Explanation of register access abbreviations:
+               RW = read or write
+               R = read only
+               W = write only
+               SC = self-clearing after access
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                            68 │ 27
+                                                   Document Feedback                                                  AS7341
+                                                                                                           Register Description
+
+
+
+
+10.2.1         Enable and Configuration Register
+
+               The following registers are needed to power up and configure the device. To operate the device set bit
+               PON = “1” first (register 0x80) after that configure the device and enable interrupts before setting
+               SP_EN = “1”. Changing configuration while SP_EN = “1” may result in invalid results. Register
+               CONFIG (0x70) is used to set the INT_MODE (SYNS,SYND).
+
+
+               ENABLE Register (Address 0x80)
+
+               Figure 33:
+               ENABLE Register
+
+
+                Addr: 0x80                    ENABLE
+
+                Bit        Bit Name           Default        Access      Bit Description
+                7          reserved           0              RW          reserved
+                                                                         Flicker Detection Enable.
+                6          FDEN               0              RW          0: Flicker Detection disabled
+                                                                         1: Flicker Detection enabled
+                5          reserved           0              RW          reserved
+                                                                         SMUX Enable.
+                                                                         1: Starts SMUX command
+                4          SMUXEN             0              RW
+                                                                         Note: this bit gets cleared automatically as soon as
+                                                                         SMUX operation is finished
+                                                                         Wait Enable.
+                                                                         0: Wait time between two consecutive spectral
+                3          WEN                0              RW          measurements disabled
+                                                                         1: Wait time between two consecutive spectral
+                                                                         measurements enabled
+                2          reserved           0              RW          reserved
+                                                                         Spectral Measurement Enable.
+                1          SP_EN              0              RW          0: Spectral Measurement Disabled
+                                                                         1: Spectral Measurement Enabled
+                                                                         Power ON.
+                                                                         0: AS7341 disabled
+                0          PON                0              RW          1: AS7341 enabled
+                                                                         Note: When bit is set, internal oscillator is activated,
+                                                                         allowing timers and ADC channels to operate.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                             68 │ 28
+                                                Document Feedback                                              AS7341
+                                                                                                    Register Description
+
+
+
+
+               CONFIG Register (Address 0x70)
+
+               Figure 34:
+               CONFIG Register
+
+
+                Addr: 0x70                CONFIG
+
+                Bit        Bit Name       Default        Access     Bit Description
+                7:4        reserved       0              RW         reserved
+                                                                    LED control.
+                                                                    0: External LED not controlled by AS7341
+                3          LED_SEL        0              RW
+                                                                    1: Register LED controls LED connected to pin LDR
+                                                                    Note: register 0x74
+                2          INT_SEL        0              RW         1: Sync signal applied on output pin INT
+                                                                    Ambient light sensing mode:
+                                                                    0: SPM mode (spectral measurement, normal mode)
+                                                                    1: SYNS mode
+                1:0        INT_MODE       0              RW         2: reserved
+                                                                    3: SYND mode
+                                                                    Note: in SYND mode it is recommended to use
+                                                                    register 0x60 to 0x6F to read out spectral data.
+
+
+
+
+               GPIO Register (Address 0x73)
+
+               Figure 35:
+               GPIO Register
+
+
+                Addr: 0x73                GPIO
+
+                Bit        Bit Name       Default        Access     Bit Description
+                7:2        reserved       0              RW         reserved
+                1          PD_GPIO        0              RW         1: Photo diode connected to pin GPIO
+                0          PD_INT         0              RW         1: Photo diode connected to pin INT
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                     68 │ 29
+                                                   Document Feedback                                                AS7341
+                                                                                                         Register Description
+
+
+
+
+               GPIO 2 Register (Address 0xBE)
+
+               Figure 36:
+               GPIO2 Register
+
+
+                Addr: 0xBE                   GPIO 2
+
+                Bit        Bit Name          Default        Access     Bit Description
+                7:4        reserved          0                         reserved
+                                                                       GPIO Invert.
+                3          GPIO_INV          0              RW
+                                                                       If set, the GPIO output is inverted.
+                                                                       GPIO Input Enable.
+                2          GPIO_IN_EN        0              RW
+                                                                       If set, the GPIO pin accepts a non-floating input.
+                                                                       GPIO Output.
+                1          GPIO_OUT          1              RW
+                                                                       If set, the output state of the GPIO is active directly.
+                                                                       GPIO Input.
+                0          GPIO_IN           0              R          Indicates the status of the GPIO input if
+                                                                       GPIO_IN_EN is set.
+
+
+
+
+               LED Register (Address 0x74)
+
+               Figure 37:
+               LED Register
+
+
+                Addr: 0x74                   LED
+
+                Bit        Bit Name          Default        Access     Bit Description
+                                                                       LED control.
+                7          LED_ACT           0              RW         0: External LED connected to pin LDR off
+                                                                       1: External LED connected to pin LDR on
+                                                                       LED driving strength.
+                                                                       000 0000: 4mA
+                                                                       000 0001: 6mA
+                                                                       000 0010: 8mA
+                                                                       000 0011: 10mA
+                6:0        LED_DRIVE         000 0100       RW         000 0100: 12mA
+                                                                       ……
+                                                                       111 1110: 256mA
+                                                                       111 1111: 258mA
+                                                                       Note: Bit LED_SEL (register 0x70) needs to be set
+                                                                       to “1” to control LED connected to pin LDR.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                           68 │ 30
+                                                 Document Feedback                                              AS7341
+                                                                                                     Register Description
+
+
+
+
+               INTENAB Register (Address 0xF9)
+
+               Figure 38:
+               INTENAB Register
+
+
+                Addr: 0xF9                 INTENAB
+
+                Bit        Bit Name        Default        Access     Bit Description
+                                                                     Spectral and Flicker Detect Saturation Interrupt
+                                                                     Enable.
+                7          ASIEN           0              RW
+                                                                     When asserted permits saturation interrupts to be
+                                                                     generated.
+                6:4        reserved                                  reserved
+                                                                     Spectral Interrupt Enable.
+                3          SP_IEN          0              RW         When asserted permits interrupts to be generated,
+                                                                     subject to the spectral thresholds and persistence
+                                                                     filter. Bit is mirrored in the ENABLE register.
+                                                                     FIFO Buffer Interrupt Enable.
+                2          F_IEN           0              RW         When asserted permits interrupt to be generated
+                                                                     when FIFO_LVL exceeds the FIFO threshold
+                                                                     condition.
+                1          reserved        0                         reserved
+                                                                     System Interrupt Enable.
+                0          SIEN                           RW         When asserted permits system interrupts to be
+                                                                     generated. Indicates that flicker detection status has
+                                                                     changed or SMUX operation has finished.
+
+
+
+
+               CONTROL Register (Address 0xFA)
+
+               Figure 39:
+               CONTROL Register
+
+
+                Addr: 0xFA                 CONTROL
+
+                Bit        Bit Name        Default        Access     Bit Description
+                7:3        reserved        0                         reserved
+                                                                     Spectral Engine Manual Autozero.
+                2          SP_MAN_AZ       0              RW         Starts a manual autozero of the spectral engines.
+                                                                     Set SP_EN = 0 before starting a manual autozero for
+                                                                     it to work.
+                                                                     FIFO Buffer Clear.
+                1          FIFO_CLR        0              RW         Clears all FIFO data, FINT, FIFO_OV, and
+                                                                     FIFO_LVL.
+                                                                     Clear Sleep-After-Interrupt Active.
+                0          CLEAR_SAI_ACT   0              RW         Clears SAI_ACTIVE, ends sleep, and restarts device
+                                                                     operation.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 31
+                                                         Document Feedback                                                   AS7341
+                                                                                                                  Register Description
+
+
+
+
+10.2.2         ADC Timing Configuration / Integration Time
+
+               The integration time in INT_MODE = “00” and “01” (SPM/SYNS) is set using the ATIME (0x81) and
+               ASTEP (0xCA, 0xCB) registers. The integration time, in milliseconds, is equal to:
+
+               Equation 1: Setting the integration time
+
+               𝑡𝑖𝑛𝑡 = (𝐴𝑇𝐼𝑀𝐸 + 1) × (𝐴𝑆𝑇𝐸𝑃 + 1) × 2.78µ𝑠
+
+               The reset value for ASTEP is 999 (2.78ms) and the recommended configuration for these two
+               registers is ASTEP = 599 and ATIME = 29, which results in an integration time of 50ms. It is not
+               allowed that both settings –ATIME and ASTEP – are set to “0”.
+
+               The integration time also defines the full-scale ADC value, which is equal to:
+
+               Equation 2: ADC full scale value(1)
+
+               𝐴𝐷𝐶𝑓𝑢𝑙𝑙𝑠𝑐𝑎𝑙𝑒 = (𝐴𝑇𝐼𝑀𝐸 + 1) × (𝐴𝑆𝑇𝐸𝑃 + 1)
+
+
+               ATIME Register (Address 0x81)
+
+               Figure 40:
+               ATIME Register
+
+
+                Addr: 0x81                     ATIME
+
+                Bit        Bit Name            Default             Access         Bit Description
+                                                                                  Integration time.
+                                                                                  Sets the number of integration steps from 1 to 256.
+                                                                                  Value                  Integration Time
+                7:0        ATIME               0x00                RW
+                                                                                  0                      ASTEP
+                                                                                  n                      ASTEP x (n+1)
+                                                                                  255                    256 x ASTEP
+
+
+               (1)     The maximum ADC count is 65535. Any ATIME/ASTEP field setting resulting in higher ADCfullscale values would
+                      result in a full-scale of 65535.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                   68 │ 32
+                                                     Document Feedback                                                   AS7341
+                                                                                                              Register Description
+
+
+
+
+               ASTEP Register (Address 0xCA, 0xCB)
+
+               Figure 41:
+               ASTEP Register
+
+
+                Addr: 0xCA, 0xCB              ASTEP
+
+                Bit        Bit Name           Default         Access         Bit Description
+                                                                             Integration time step size.
+                                                                             Sets the integration time per step in increments of
+                                                                             2.78µs. The default value is 999.
+                7:0        ASTEP 0xCA                                        VALUE                         STEP SIZE
+                                                                             0                             2.78µs
+                                                                             n                             2.78µs x (n+1)
+                                              999             RW
+                                                                             599                           1.67ms
+                                                                             999                           2.78ms
+                15:8       ASTEP 0xCB                                        17999                         50ms
+                                                                             65534                         182ms
+                                                                             65535                         reserved, do not use
+
+
+
+
+               WTIME Register (Address 0x83)
+
+               If wait is enabled (WEN = “1” register 0x80), each new measurement is started based on WTIME. It is
+               necessary for WTIME to be sufficiently long for spectral integration and any other functions to be
+               completed within the period. The device will warn the user if the timing is configured incorrectly. If
+               WTIME is too short, then SP_TRIG in register STATUS6 (ADDR: 0xA7) will be set to “1”.
+
+               Figure 42:
+               WTIME Register
+
+
+                Addr: 0x83                    WTIME
+
+                Bit        Bit Name           Default         Access      Bit Description
+                                                                         Spectral Measurement Wait time.
+                                                                         8-bit value to specify the delay between two
+                                                                         consecutive spectral measurements.
+                                                                         Value                 Wait Cycles          Wait Time
+                7:0        WTIME              0x00           RW          0x00                  1                    2.78ms
+                                                                         0x01                  2                    5.56ms
+                                                                         n                     n                    2.78ms x (n+1)
+                                                                         0xff                  256                  711ms
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                               68 │ 33
+                                                  Document Feedback                                              AS7341
+                                                                                                      Register Description
+
+
+
+
+               ITIME Register (Address 0x63, 0x64, 0x65)
+
+               The register ITIME can be used to read-out the actual integration time in INT_MODE = “11” (SYND).
+               In SYND mode the integration time is defined by the register “EDGE” and the device is running
+               integration until the number of falling edges on pin GPIO is reached.
+
+               Equation 3: Calculating the integration time in SYND mode
+
+               𝑡𝑖𝑛𝑡 = 𝐼𝑇𝐼𝑀𝐸 × 2.78µ𝑠
+
+               Figure 43:
+               ITIME_L Register
+
+
+                Addr: 0x63                   ITIME_L
+
+                Bit        Bit Name          Default       Access       Bit Description
+                7:0        ITIME_L           0             R            Integration time in integration mode SYND
+
+
+
+               Figure 44:
+               ITIME_M Register
+
+
+                Addr: 0x64                   ITIME_M
+
+                Bit        Bit Name          Default       Access       Bit Description
+                15:8       ITIME_M           0             R            Integration time in integration mode SYND
+
+
+
+               Figure 45:
+               ITIME_H Register
+
+
+                Addr: 0x65                   ITIME_H
+
+                Bit        Bit Name          Default       Access       Bit Description
+                23:16      ITIME_H           0             R            Integration time in integration mode SYND
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 34
+                                                    Document Feedback                                                 AS7341
+                                                                                                           Register Description
+
+
+
+
+               EDGE Register (Address 0x72)
+
+               Figure 46:
+               EDGE Register
+
+
+                Addr: 0x72                    EDGE
+
+                Bit        Bit Name           Default        Access       Bit Description
+                                                                          Number of falling SYNC-edges between start and
+                7:0        SYNC_EDGE          0              RW           stop of integration in mode SYND
+                                                                          Number of edges = SYNC_EDGE + 1
+
+
+
+
+               FD_TIME Register (Address 0xD8, 0xDA)
+
+               The register FD Time 1 and FD Time 2 can be used to configure the integration time and gain (ADC 5)
+               of the flicker detection independently from the other ADCs. The FD_TIME register is an 11-bit register
+               with the MSB in register 0xDA (bit 10:8) and the LSB in register 0xD8 (bit 7:0). The bit FDEN (register
+               0x80) must be set to “1” in order to use the FD_TIME registers. If the bit FDEN is not set, ADC5 runs
+               automatically with the same gain and integration time as ADC0 to ADC4.
+
+               Equation 4: Calculating the flicker detection integration time
+
+               𝑡𝑖𝑛𝑡_𝐹𝐷 = 𝐹𝐷_𝑇𝐼𝑀𝐸 × 2.78µ𝑠
+
+               Figure 47:
+               FD Time Register
+
+
+                Addr: 0xD8                    FD_TIME_1
+
+                Bit        Bit Name           Default        Access       Bit Description
+                                                                          LSB of flicker detection integration time
+                7:0        FD_TIME [7:0]      0              RW           Note: must not be changed during FDEN = 1 and
+                                                                          PON = 1.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                         68 │ 35
+                                                Document Feedback                                               AS7341
+                                                                                                     Register Description
+
+
+
+
+               Figure 48:
+               FD Time Register
+
+
+                Addr: 0xDA                  FD_TIME_2
+
+                Bit        Bit Name         Default      Access     Bit Description
+
+                                                                    Flicker Detection gain setting (ADC5)
+
+                                                                    VALUE                     GAIN
+                                                                    0                         0.5x
+                                                                    1                         1x
+                                                                    2                         2x
+                                                                    3                         4x
+                7:3        FD_GAIN          9            R/W        4                         8x
+                                                                    5                         16x
+                                                                    6                         32x
+                                                                    7                         64x
+                                                                    8                         128x
+                                                                    9                         256x
+                                                                    10                        512x
+                                                                    MSB of flicker detection integration time
+                2:0        FD_TIME [10:8]   0            RW         Note: must not be changed during FDEN = 1 and
+                                                                    PON = 1.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                   68 │ 36
+                                                    Document Feedback                                                    AS7341
+                                                                                                              Register Description
+
+
+
+
+10.2.3         ADC Configuration (gain, AGC…)
+
+               The following registers provide configuration for the 6 integrated ADCs (CH0 to CH5). It is possible to
+               adjust the gain, configure and enable the automatic gain control (AGC) and setup the auto zero
+               compensation for the engines.
+
+
+               CFG1 Register (Address 0xAA)
+
+               Figure 49:
+               CFG1 Register
+
+
+                Addr: 0xAA                     CFG1
+
+                Bit        Bit Name            Default        Access       Bit Description
+                7:5        reserved            0                           reserved
+                                                                           Spectral engines gain setting.
+                                                                           Sets the spectral sensitivity.
+                                                                           VALUE                       GAIN
+                                                                           0                           0.5x
+                                                                           1                           1x
+                                                                           2                           2x
+                                                                           3                           4x
+                4:0        AGAIN               9              RW
+                                                                           4                           8x
+                                                                           5                           16x
+                                                                           6                           32x
+                                                                           7                           64x
+                                                                           8                           128x
+                                                                           9                           256x
+                                                                           10                          512x
+
+
+
+
+               CFG10 Register (Address 0xB3)
+
+               Figure 50:
+               CFG10 Register
+
+
+                Addr: 0xB3                     CFG10
+
+                Bit        Bit Name            Default        Access       Bit Description
+                                                                           AGC High Hysteresis.
+                                                                           Sets the data threshold at which AGAIN is reduced
+                7:6        AGC_H               3              RW           when spectral AGC mode is enabled. The threshold
+                                                                           is automatically calculated internally as a percentage
+                                                                           of full-scale. Note that full-scale is equal to (ATIME +
+                                                                           1) x (ASTEP + 1).
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                              68 │ 37
+                                          Document Feedback                                               AS7341
+                                                                                               Register Description
+
+
+
+
+                Addr: 0xB3            CFG10
+
+                Bit        Bit Name   Default      Access     Bit Description
+                                                              VALUE                        SIGNAL
+
+                                                              0                            50%
+
+                                                              1                            62.5%
+
+                                                              2                            75%
+
+                                                              3                            87.5%
+
+                                                              AGC Low Hysteresis.
+                                                              Sets the data threshold at which AGAIN is increased
+                                                              when spectral AGC mode is enabled. The threshold
+                                                              is automatically calculated internally as a percentage
+                                                              of full-scale. Note that full-scale is equal to (ATIME +
+                                                              1) x (ASTEP + 1).
+                5:4        AGC_L      3            RW         VALUE                        SIGNAL
+                                                              0                            12.5%
+                                                              1                            25%
+                                                              2                            37.5%
+                                                              3                            50%
+                3          reserved   0                       reserved
+                                                              Flicker Detect Persistence.
+                                                              Sets the number of consecutive flicker detect results
+                2:0        FD_PERS    2            RW         that must be different before the flicker detect status
+                                                              will be changed. Flicker detection interrupts on SINT
+                                                              are affected by this setting. Flicker detect
+                                                              persistence is equal to 2(𝐹𝐷𝑃𝐸𝑅𝑆 −1)
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                 68 │ 38
+                                                    Document Feedback                                                   AS7341
+                                                                                                             Register Description
+
+
+
+
+               AZ_CONFIG Register (Address 0xD6)
+
+               The following register configures how often the spectral engine offsets are reset (auto zero) to
+               compensate for changes of the device temperature. The typical time auto zero needs to be completed
+               is 15ms.
+
+               Figure 51:
+               AZ_CONFIG Register
+
+
+                Addr: 0xD6                    AZ_CONFIG
+
+                Bit        Bit Name           Default     Access        Bit Description
+                                                                        AUTOZERO FREQUENCY.
+                                                                        Sets the frequency at which the device performs auto
+                                                                        zero of the spectral engines.
+                                                                        Note: If FDEN = “1” auto zero is also done for ADC 5.
+                                                                        The flicker detection measurement will be interrupted
+                                                                        and restarted in this case.
+                                                                        VALUE             AUTOZERO FREQUENCY
+                7:0        AZ_NTH_ITERATION   255         RW            0                 Never (not recommended)
+                                                                        1                 Every integration cycle
+                                                                        2                 Every 2 cycles
+                                                                        …                 Every “AZ_NTH_ITERATION” cycle
+                                                                        254               Every 254 cycles
+                                                                        255               Only before first measurement cycle
+
+
+
+
+               AGC_GAIN_MAX Register (Address 0xCF)
+
+               Figure 52:
+               AGC_GAIN_MAX Register
+
+
+                Addr: 0xCF                    AGC_GAIN_MAX
+
+                Bit        Bit Name           Default          Access         Bit Description
+                                                                              Flicker Detection AGC Gain Max.
+                                                                              Sets the maximum gain for flicker detection to
+                7:4        AGC_FD_GAIN_MAX    9                RW             2𝐴𝐺𝐶_𝐹𝐷_𝐺𝐼𝐴𝑁_𝑀𝐴𝑋
+                                                                              Default value is 9 (256x). The range can be set from
+                                                                              0 (0.5x) to 10 (512x).
+                                                                              AGC Gain Max.
+                                                                              Sets the maximum gain for AGC engine to
+                3:0        AGC_AGAIN_MAX      9                RW             2𝐴𝐺𝐶_𝐹𝐷_𝐺𝐼𝐴𝑁_𝑀𝐴𝑋
+                                                                              Default value is 9 (256x). The range can be set from
+                                                                              0 (0.5x) to 10 (512x).
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                 68 │ 39
+                                                     Document Feedback                                                  AS7341
+                                                                                                             Register Description
+
+
+
+
+               CFG8 Register (Address 0xB1)
+
+               Figure 53:
+               CFG8 Register
+
+
+                Addr: 0xB1                     CFG8
+
+                Bit        Bit Name            Default        Access       Bit Description
+                                                                           FIFO Threshold.
+                                                                           Sets a threshold on the FIFO level that triggers the
+                                                                           first FIFO buffer interrupt (FINT).
+                                                                           VALUE                        FIFO_LVL
+                7:6        FIFO_TH             2              R/W          0                            1
+                                                                           1                            4
+                                                                           2                            8
+                                                                           3                            16
+                5:4        reserved            0                           reserved
+                                                                           Flicker Detect AGC Enable.
+                3          FD_AGC              1              RW           If set, device uses automatic gain control for the
+                                                                           flicker detect engine to maximize flicker signal and
+                                                                           avoid saturation.
+                                                                           Spectral AGC enable.
+                2          SP_AGC              0              RW           If asserted, device uses automatic gain control for
+                                                                           the spectral engines to maximize signal while
+                                                                           avoiding saturation.
+                1          reserved            0                           reserved
+                0          reserved            0                           reserved
+
+
+
+
+10.2.4         Device Identification
+
+               The following registers provided device identification. Device ID, revision ID and auxiliary ID are read
+               only.
+
+
+               AUXID Register (Address 0x90)
+
+               Figure 54:
+               AUXID Register
+
+
+                Addr: 0x90                     AUXID
+
+                Bit        Bit Name            Default        Access       Bit Description
+                7:4        reserved                                        reserved
+                3:0        AUXID               000            R            Auxiliary identification
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                            68 │ 40
+                                                    Document Feedback                                              AS7341
+                                                                                                        Register Description
+
+
+
+
+               REVID Register (Address 0x91)
+
+               Figure 55:
+               REVID Register
+
+
+                Addr: 0x91                   REVID
+
+                Bit        Bit Name          Default         Access     Bit Description
+                7:3        reserved                                     reserved
+                2:0        REV_ID            000             R          Revision number identification
+
+
+
+
+               ID Register (Address 0x92)
+
+               Figure 56:
+               ID Register
+
+
+                Addr: 0x92                   ID
+
+                Bit        Bit Name          Default         Access     Bit Description
+                                                                        Part number Identification
+                7:2        ID                001001          R
+                                                                        Value 001001
+                1:0        reserved                                     reserved
+
+
+
+
+10.2.5         Spectral Interrupt Configuration
+
+               The spectral interrupt threshold registers provide 16-bit values to be used as the high and low
+               thresholds for comparison to the 16-bit CH0_DATA values (ADC CH0). If SP_IEN (register 0xF9) is
+               enabled and CH0_DATA is not between the two thresholds for the number of consecutive
+               measurements specified in APERS (register 0xBD) an interrupt is set.
+
+
+               SP_TH_L_LSB Register (Address 0x84)
+
+               Figure 57:
+               SP_TH_L_LSB Register
+
+
+                Addr: 0x84                   SP_TH_L_LSB
+
+                Bit        Bit Name          Default         Access     Bit Description
+                                                                        Spectral low threshold LSB
+                7:0        SP_TH_L_LSB       0x00            RW         This register provides the low byte of the low
+                                                                        interrupt threshold (CH0).
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                           68 │ 41
+                                                Document Feedback                                              AS7341
+                                                                                                    Register Description
+
+
+
+
+               SP_TH_L_MSB Register (Address 0x85)
+
+               Figure 58:
+               SP_TH_L_MSB Register
+
+
+                Addr: 0x85               SP_TH_L_MSB
+
+                Bit        Bit Name      Default         Access     Bit Description
+                                                                    Spectral low threshold MSB
+                                                                    This register provides the high byte of the low
+                                                                    interrupt threshold (CH0).
+                                                                    Both SP_TH_L registers are combined to a 16-bit
+                                                                    threshold. If the value captured by channel 0 is
+                                                                    below the low threshold and the APERS value is
+                                                                    reached the bit SP_IEN is set and an interrupt is
+                                                                    generated.
+                7:0        SP_TH_L_MSB   0x00            RW
+                                                                    There is an 8-bit data latch implemented that stores
+                                                                    the written low byte until the high byte is written.
+                                                                    Both bytes will be applied at the same time to avoid
+                                                                    an invalid threshold.
+                                                                    Note: The LSB register cannot be changed without
+                                                                    writing to the MSB register. It is recommended to
+                                                                    write to SP_TH_L_LSB and SP_TH_L_MSB within
+                                                                    one I2C command.
+
+
+
+
+               SP_TH_H_LSB Register (Address 0x86)
+
+               Figure 59:
+               SP_TH_H_LSB Register
+
+
+                Addr: 0x86               SP_TH_H_LSB
+
+                Bit        Bit Name      Default         Access     Bit Description
+                                                                    Spectral high threshold LSB
+                7:0        SP_TH_H_LSB   0x00            RW         This register provides the low byte of the high
+                                                                    interrupt threshold (CH0).
+
+
+
+
+               SP _TH_H_MSB Register (Address 0x87)
+
+               Figure 60:
+               SP _TH_H_MSB Register
+
+
+                Addr: 0x87               SP _TH_H_MSB
+
+                Bit        Bit Name      Default         Access     Bit Description
+                                                                    Spectral high threshold MSB
+                7:0        SP_TH_H_MSB   0x00            RW         This register provides the high byte of the high
+                                                                    interrupt threshold (CH0).
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                        68 │ 42
+                                               Document Feedback                                             AS7341
+                                                                                                  Register Description
+
+
+
+
+                Addr: 0x87               SP _TH_H_MSB
+
+                Bit        Bit Name      Default        Access     Bit Description
+                                                                   Both SP_TH_H registers are combined to a 16-bit
+                                                                   threshold. If the value captured by channel 0 is
+                                                                   above the high threshold and the APERS value is
+                                                                   reached the bit SP_IEN is set and an interrupt is
+                                                                   generated.
+
+
+
+
+               CFG12 Register (Address 0xB5)
+
+               Figure 61:
+               CFG12 Register
+
+
+                Addr: 0xB5               CFG12
+
+                Bit        Bit Name      Default        Access     Bit Description
+                7:3        reserved      0                         reserved
+                                                                   Spectral Threshold Channel.
+                                                                   Sets the channel used for interrupts, persistence and
+                                                                   the AGC, if enabled, to determine device status and
+                                                                   gain settings.
+                                                                   VALUE                       CHANNEL
+
+                2:0        SP_TH_CH      0              RW         0                           CH0
+                                                                   1                           CH1
+                                                                   2                           CH2
+                                                                   3                           CH3
+                                                                   4                           CH4
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                   68 │ 43
+                                                     Document Feedback                                                AS7341
+                                                                                                           Register Description
+
+
+
+
+10.2.6         Device Status Register
+
+               The following register provide status of the device and indicate details about saturation, interrupts,
+               over temperature, device execution and ambient light flicker detection.
+
+
+               STAT Register (Address 0x71)
+
+               Figure 62:
+               STAT Register
+
+
+                Addr: 0x71                      STAT
+
+                Bit        Bit Name             Default        Access       Bit Description
+                7:2        reserved             0              RW           reserved
+                                                                            1: Device waits for sync pulse on GPIO to start
+                1          WAIT_SYNC            0              R
+                                                                            integration (SYNS / SYND INT_mode)
+                                                                            0: Spectral measurement status is busy
+                0          READY                0              R
+                                                                            1: Spectral measurement status is ready
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                            68 │ 44
+                                                    Document Feedback                                                   AS7341
+                                                                                                             Register Description
+
+
+
+
+               STATUS Register (Address 0x93)
+
+               The primary status register for AS7341 indicates if there are saturation or interrupt events that need to
+               be handled by the user. This register is self-clearing, meaning that writing a “1” to any bit in the
+               register clears that status bit. In this way, the user should read the STATUS register, handle all
+               indicated event(s) and then write the register value back to STATUS to clear the handled events.
+               Writing “0” will not clear those bits if they have a value of “1”, which means that new events that
+               occurred since the last read of the STATUS register will not be accidentally cleared.
+
+               Figure 63:
+               STATUS Register
+
+
+                Addr: 0x93                     STATUS
+
+                Bit        Bit Name            Default        Access       Bit Description
+                                                                           Spectral and Flicker Detect saturation.
+                7          ASAT                0              R, SC        If ASIEN is set, indicates Spectral saturation. Check
+                                                                           STATUS2 register to distinguish between analog or
+                                                                           digital saturation.
+                6:4        reserved            0              R            reserved
+                                                                           Spectral Channel Interrupt.
+                3          AINT                0              R, SC        If SP_IEN is set, indicates that a spectral event that
+                                                                           met the programmed thresholds and persistence
+                                                                           (APERS) occurred.
+                                                                           FIFO Buffer Interrupt.
+                                                                           If FIEN is set, indicates that the FIFO_LVL fulfills the
+                2          FINT                0              R, SC        threshold condition. If cleared by writing 1, the
+                                                                           interrupt will be asserted again as more data is
+                                                                           collected. To fully clear this interrupt, all data must
+                                                                           be read from the FIFO buffer.
+                1          C_INT               0              R, SC        Calibration Interrupt.
+                                                                           System Interrupt.
+                0          SINT                0              R, SC        If SIEN is set, indicates that system interrupt is set.
+                                                                           Refer to Status5 register.
+
+
+
+
+               STATUS 2 Register (Address 0xA3)
+
+               Figure 64:
+               STATUS 2 Register
+
+
+                Addr: 0xA3                     STATUS 2
+
+                Bit        Bit Name            Default        Access       Bit Description
+                7          reserved            0                           reserved
+                                                                           Spectral Valid.
+                6          AVALID              0              R            Indicates that the spectral measurement has been
+                                                                           completed
+                5          reserved            0                           reserved
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                               68 │ 45
+                                               Document Feedback                                              AS7341
+                                                                                                   Register Description
+
+
+
+
+                Addr: 0xA3                 STATUS 2
+
+                Bit        Bit Name        Default      Access     Bit Description
+                                                                   Digital saturation.
+                4          ASAT_DIGITAL    0            R          Indicates that the maximum counter value has been
+                                                                   reached. Maximum counter value depends on
+                                                                   integration time set in the ATIME register.
+                                                                   Analog saturation.
+                3          ASAT_ANALOG     0            R          Indicates that the intensity of ambient light has
+                                                                   exceeded the maximum integration level for the
+                                                                   spectral analog circuit.
+                2          reserved        0            R          reserved
+                                                                   Flicker detect analog saturation.
+                1          FDSAT_ANALOG    0            R          Indicates that the intensity of ambient light has
+                                                                   exceeded the maximum integration level for the
+                                                                   analog circuit for flicker detection.
+                                                                   Flicker detect digital saturation.
+                0          FDSAT_DIGITAL   0            R          Indicates that the maximum counter value has been
+                                                                   reached during flicker detection.
+
+
+
+
+               STATUS 3 Register (Address 0xA4)
+
+               Figure 65:
+               STATUS 3 Register
+
+
+                Addr: 0xA4                 STATUS 3
+
+                Bit        Bit Name        Default      Access     Bit Description
+                7:6        reserved        0                       reserved
+                                                                   Spectral interrupt high.
+                5          INT_SP_H        0            R          Indicates that a spectral interrupt occurred because
+                                                                   the data exceeded the high threshold.
+                                                                   Spectral interrupt low.
+                4          INT_SP_L        0            R          Indicates that a spectral interrupt occurred because
+                                                                   the data is below the low threshold.
+                3:0        reserved        0                       reserved
+
+
+
+
+               STATUS 5 Register (Address 0xA6)
+
+               Figure 66:
+               STATUS 5 Register
+
+
+                Addr: 0xA6                 STATUS 5
+
+                Bit        Bit Name        Default      Access     Bit Description
+                7:4        reserved        0                       reserved
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                    68 │ 46
+                                              Document Feedback                                                AS7341
+                                                                                                    Register Description
+
+
+
+
+                Addr: 0xA6               STATUS 5
+
+                Bit        Bit Name      Default       Access     Bit Description
+                                                                  Flicker Detect interrupt.
+                3          SINT_FD       0             R          If SIEN_FD is set, indicates that the FD_STATUS
+                                                                  register status has changed
+                                                                  SMUX operation interrupt.
+                2          SINT_SMUX     0             R          Indicates that SMUX command execution has
+                                                                  finished.
+                1:0        reserved      0                        reserved
+
+
+
+
+               STATUS 6 Register (Address 0xA7)
+
+               Figure 67:
+               STATUS 6 Register
+
+
+                Addr: 0xA7               STATUS 6
+
+                Bit        Bit Name      Default       Access     Bit Description
+                                                                  FIFO Buffer Overflow.
+                7          FIFO_OV       0             R          Indicates that the FIFO buffer overflowed and
+                                                                  information has been lost. Bit is automatically
+                                                                  cleared when the FIFO buffer is read
+                6          reserved      0             R          reserved
+                                                                  Over Temperature Detected.
+                5          OVTEMP        0             R          Indicates the device temperature is too high. Write 1
+                                                                  to clear this bit.
+                                                                  Flicker Detect Trigger Error.
+                4          FD_TRIG       0             R          Indicates that there is a timing error that prevents
+                                                                  flicker detect from working correctly.
+                3          reserved      0                        reserved
+                                                                  Spectral Trigger Error.
+                2          SP_TRIG       0             R          Indicates that there is a timing error. The WTIME is
+                                                                  too short for the selected ATIME.
+                                                                  Sleep after Interrupt Active.
+                1          SAI_ACTIVE    0             R          Indicates that the device is in SLEEP due to an
+                                                                  interrupt. To exit SLEEP mode, clear this bit.
+                                                                  Initialization Busy.
+                0          INT_BUSY      0             R          Indicates that the device is initializing. This bit will
+                                                                  remain 1 for about 300μs after power on. Do not
+                                                                  interact with the device until initialization is complete.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 47
+                                                   Document Feedback                                                AS7341
+                                                                                                         Register Description
+
+
+
+
+               FD_STATUS Register (Address 0xDB)
+
+               Figure 68:
+               FD STATUS Register
+
+
+                Addr: 0xDB                     FD_STATUS
+
+                Bit        Bit Name            Default      Access     Bit Description
+                7:6        reserved                                    reserved
+                                                                       Flicker Detection Measurement Valid.
+                           FD_MEASUREMENT_
+                5                              0            R          Indicates that flicker detection measurement is
+                           VALID
+                                                                       complete. Write 1 to this bit to clear this field.
+                                                                       Flicker Saturation Detected.
+                           FD_SATURATION_                              Indicates that saturation occurred during the last
+                4                              0            R
+                           DETECTED                                    flicker detection measurement, and the result may
+                                                                       not be valid. Write 1 to this bit to clear this field.
+                                                                       Flicker Detection 120Hz Flicker Valid.
+                           FD_120HZ_FLICKER_
+                3                              0            R          Indicates that the 120Hz flicker detection calculation
+                           VALID
+                                                                       is valid. Write 1 to this bit to clear this field.
+                                                                       Flicker Detection 100Hz Flicker Valid.
+                           FD_100HZ_FLICKER_
+                2                              0            R          Indicates that the 100Hz flicker detection calculation
+                           VALID
+                                                                       is valid. Write 1 to this bit to clear this field.
+                                                                       Flicker Detected at 120Hz.
+                1          FD_120HZ_FLICKER    0            R          Indicates if an ambient light source is flickering at
+                                                                       120Hz.
+                                                                       Flicker Detected at 100Hz.
+                0          FD_100HZ_FLICKER    0            R          Indicates if an ambient light source is flickering at
+                                                                       100Hz.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                          68 │ 48
+                                                    Document Feedback                                                  AS7341
+                                                                                                            Register Description
+
+
+
+
+10.2.7         Spectral Data and Status
+
+               The ASTATUS register is mapped to register address 0x60 and 0x94. It provides saturation and gain
+               status associated to each set of spectral data. Reading the ASTATUS register (0x60 or 0x94) latches
+               all 12 spectral data bytes to that status read. Reading these bytes consecutively (0x60 to 0x6F or 0x94
+               to 0xA0) ensures that the data is concurrent. All spectral data are stored as 16-bit values. If flicker
+               detection is enabled, spectral channel five (CH5 ADC) is used for the flicker detection function and
+               CH5_DATA will read “0”. The ASTATUS and spectral data registers are read only.
+
+               In SPM or SYNS mode, it is recommended to use the ASTATUS register 0x94 and spectral data
+               register 0x94 to 0xA0. In SYND mode, it is possible to use register 0x60 to 0x6F for easier
+               implementation.
+
+
+               ASTATUS Register (Address 0x60 or 0x94)
+
+               Figure 69:
+               ASTATUS Register
+
+
+                Addr: 0x60 and 0x94           ASTATUS
+
+                Bit        Bit Name           Default        Access       Bit Description
+                                                                          Saturation Status.
+                7          ASAT_STATUS        0              R, SC        Indicates if the latched data is affected by analog or
+                                                                          digital saturation.
+                6:4        reserved           0              R            reserved
+                                                                          Gain Status.
+                                                                          Indicates the gain applied for the spectral data
+                3:0        AGAIN_STATUS       0              R, SC        latched to this ASTATUS read. The gain from this
+                                                                          status read is required to calculate spectral results if
+                                                                          AGC is enabled.
+
+
+
+
+               CH0_DATA Register (Address 0x95/0x96)
+
+               Figure 70:
+               CH0_DATA_L Register
+
+
+                Addr: 0x95                    CH0_DATA_L
+
+                Bit        Bit Name           Default        Access       Bit Description
+                7:0        CH0_DATA_L         0              R            CH0 ADC data – low byte
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                             68 │ 49
+                                             Document Feedback                                         AS7341
+                                                                                            Register Description
+
+
+
+
+               Figure 71:
+               CH0_DATA_H Register
+
+
+                Addr: 0x96               CH0_DATA_H
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH0_DATA_H    0             R         CH0 ADC data – high byte
+
+
+
+
+               CH1_DATA Register (Address 0x97/0x98)
+
+               Figure 72:
+               CH1_DATA_L Register
+
+
+                Addr: 0x97               CH1_DATA_L
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH1_DATA_L    0             R         CH1 ADC data – low byte
+
+
+
+               Figure 73:
+               CH1_DATA_H Register
+
+
+                Addr: 0x98               CH1_DATA_H
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH1_DATA_H    0             R         CH1 ADC data – high byte
+
+
+
+
+               CH2_DATA Register (Address 0x99/0x9A)
+
+               Figure 74:
+               CH2_DATA_L Register
+
+
+                Addr: 0x99               CH2_DATA_L
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH2_DATA_L    0             R         CH2 ADC data – low byte
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                          68 │ 50
+                                             Document Feedback                                         AS7341
+                                                                                            Register Description
+
+
+
+
+               Figure 75:
+               CH2_DATA_H Register
+
+
+                Addr: 0x9A               CH2_DATA_H
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH2_DATA_H    0             R         CH2 ADC data – high byte
+
+
+
+
+               CH3_DATA Register (Address 0x9B/0x9C)
+
+               Figure 76:
+               CH3_DATA_L Register
+
+
+                Addr: 0x9B               CH3_DATA_L
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH3_DATA_L    0             R         CH3 ADC data – low byte
+
+
+
+               Figure 77:
+               CH3_DATA_H Register
+
+
+                Addr: 0x9C               CH3_DATA_H
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH3_DATA_H    0             R         CH3 ADC data – high byte
+
+
+
+
+               CH4_DATA Register (Address 0x9D/0x9E)
+
+               Figure 78:
+               CH4_DATA_L Register
+
+
+                Addr: 0x9D               CH4_DATA_L
+
+                Bit        Bit Name      Default       Access    Bit Description
+                7:0        CH4_DATA_L    0             R         CH4 ADC data – low byte
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                          68 │ 51
+                                              Document Feedback                                             AS7341
+                                                                                                 Register Description
+
+
+
+
+               Figure 79:
+               CH4_DATA_H Register
+
+
+                Addr: 0x9E                CH4_DATA_H
+
+                Bit        Bit Name       Default      Access     Bit Description
+                7:0        CH4_DATA_H     0            R          CH4 ADC data – high byte
+
+
+
+
+               CH5_DATA Register (Address 0x9F/0xA0)
+
+               Figure 80:
+               CH5_DATA_L Register
+
+
+                Addr: 0x9F                CH5_DATA_L
+
+                Bit        Bit Name       Default      Access     Bit Description
+                7:0        CH5_DATA_L     0            R          CH5 ADC data – low byte
+
+
+
+               Figure 81:
+               CH5_DATA_H Register
+
+
+                Addr: 0xA0                CH5_DATA_H
+
+                Bit        Bit Name       Default      Access     Bit Description
+                7:0        CH5_DATA_H     0            R          CH5 ADC data – high byte
+
+
+
+
+10.2.8         Miscellaneous Configuration
+
+
+               CFG0 Register (Address 0xA9)
+
+               Figure 82:
+               CFG 0 Register
+
+
+                Addr: 0xA9                CFG0
+
+                Bit        Bit Name       Default      Access     Bit Description
+                7:6        reserved       0                       reserved
+                                                                  Low Power Idle.
+                5          LOW_POWER      0            RW         When asserted, the device will automatically run in a
+                                                                  low power mode whenever all functions are in wait
+                                                                  states or disabled.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                  68 │ 52
+                                               Document Feedback                                               AS7341
+                                                                                                    Register Description
+
+
+
+
+                Addr: 0xA9               CFG0
+
+                Bit        Bit Name      Default        Access     Bit Description
+                                                                   Register Bank Access
+                                                                   0: Register access to register 0x80 and above
+                4          REG_BANK      0              RW         1: Register access to register 0x60 to 0x74
+                                                                   Note: Bit needs to be set to access registers 0x60 to
+                                                                   0x74. If registers 0x80 and above needs to be
+                                                                   accessed bit needs to be set to “0”.
+                3          reserved      0                         reserved
+                                                                   Trigger Long.
+                2          WLONG         0              RW
+                                                                   Increases the WTIME setting by a factor of 16.
+                1:0        reserved      0                         reserved
+
+
+
+
+               CFG3 Register (Address 0xAC)
+
+               Figure 83:
+               CFG 3 Register
+
+
+                Addr: 0xAC               CFG3
+
+                Bit        Bit Name      Default        Access     Bit Description
+                7:5        reserved      0                         reserved
+                                                                   Sleep after interrupt.
+                                                                   If set, the oscillator is turned off whenever an
+                4          SAI           0              RW         interrupt is active. SAI_ACTIVE is set in this event.
+                                                                   To activate the oscillator again, clear all interrupts
+                                                                   and clear the SAI_ACTIVE bit.
+                3:0        reserved      0xC                       reserved
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 53
+                                              Document Feedback                                             AS7341
+                                                                                                 Register Description
+
+
+
+
+               CFG6 Register (Address 0xAF)
+
+               Figure 84:
+               CFG 6 Register
+
+
+                Addr: 0xAF               CFG6
+
+                Bit        Bit Name      Default       Access     Bit Description
+                                                                  SMUX command.
+                                                                  Selects the SMUX command to execute when
+                                                                  setting SMUXEN gets set. Do not change during
+                                                                  ongoing SMUX operation.
+                                                                  VALUE            SMUX_CMD
+
+                4:3        SMUX_CMD      2             RW         0                ROM code initialization of SMUX
+                                                                                   Read SMUX configuration to RAM
+                                                                  1
+                                                                                   from SMUX chain
+                                                                                   Write SMUX configuration from
+                                                                  2
+                                                                                   RAM to SMUX chain
+                                                                  3                Reserved, do not use
+
+
+
+
+               CFG9 Register (Address 0xB2)
+
+               Figure 85:
+               CFG 9 Register
+
+
+                Addr: 0xB2               CFG9
+
+                Bit        Bit Name      Default       Access     Bit Description
+                7          reserved      0                        reserved
+                                                                  System Interrupt Flicker Detection.
+                6          SIEN_FD       0             RW         Enables system interrupt when flicker detection
+                                                                  status change has occurred.
+                5          reserved                               reserved
+                                                                  System Interrupt SMUX Operation.
+                4          SIEN_SMUX     0             RW         Enables system interrupt when SMUX command has
+                                                                  finished
+                3:0        reserved                               reserved
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                  68 │ 54
+                                              Document Feedback                                              AS7341
+                                                                                                  Register Description
+
+
+
+
+               PERS Register (Address 0xBD)
+
+               Figure 86:
+               PERS Register
+
+
+                Addr: 0xBD               PERS
+
+                Bit        Bit Name      Default       Access     Bit Description
+                7:4        reserved      0                        reserved
+                                                                  Spectral Interrupt Persistence.
+                                                                  Defines a filter for the number of consecutive
+                                                                  occurrences that spectral data must remain outside
+                                                                  the threshold range between SP_TH_L and
+                                                                  SP_TH_H before an interrupt is generated. The
+                                                                  spectral data channel used for the persistence filter
+                                                                  is set by SP_TH_CHANNEL. Any sample that is
+                                                                  inside the threshold range resets the counter to 0.
+                                                                  VALUE       CHANNEL
+                                                                              Every spectral cycle generates an
+                                                                  0
+                                                                              interrupt
+                3:0        APERS         0             RW
+                                                                  1           1
+                                                                  2           2
+                                                                  3           3
+                                                                  4           5
+                                                                  5           10
+                                                                  …           5 x (APERS – 3)
+                                                                  14          55
+                                                                  15          60
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                    68 │ 55
+                                                      Document Feedback                                                AS7341
+                                                                                                            Register Description
+
+
+
+
+10.2.9         FIFO Buffer Data and Status
+
+               The FIFO buffer is used to poll spectral data with fewer I²C read and write transactions. The FIFO
+               buffer is 256 bytes of RAM containing 128 two-byte datasets. If the FIFO overflows (i.e. 129 datasets
+               before host reads data from the FIFO buffer), an overflow flag will be set and new data will be lost.
+               The Host acquires data by reading addresses: 0xFE – 0xFF. The register address pointer
+               automatically wraps from 0xFF to 0xFE as data are read. Data can be read one byte at a time or in
+               blocks, (there is no block-read length limit). When reading single bytes, the internal FIFO read pointer
+               and the FIFO Buffer Level, FIFO_LVL, are updated each time register 0xFF is read. For block-reads,
+               the internal FIFO read pointer and the FIFO Buffer Level, FIFO_LVL update for each two-byte entry. If
+               the FIFO continues to be accessed after FIFO_LVL = 0, the device will return 0 for all data. The FINT
+               interrupt indicates when there is valid data in the FIFO buffer. The amount of unread data is indicated
+               by the FIFO_LVL.
+
+
+               FIFO_MAP Register (Address 0xFC)
+
+               Figure 87:
+               FIFO_MAP Register
+
+
+                Addr: 0xFC                        FIFO_MAP
+
+                Bit        Bit Name               Default        Access      Bit Description
+                7          reserved               0                          reserved
+                                                                             FIFO write CH5 Data.
+                                                                             If set, CH5 data is written to the FIFO Buffer. (two
+                6          FIFO_WRITE_CH5_DATA    0              RW          bytes per sample)
+                                                                             Note: If flicker detection is enabled, this bit is
+                                                                             ignored. Refer to register 0xD7 for FDEN=”1”.
+                                                                             FIFO write CH4 Data.
+                5          FIFO_WRITE_CH4_DATA    0              RW          If set, CH4 data is written to the FIFO Buffer. (two
+                                                                             bytes per sample)
+                                                                             FIFO write CH3 Data.
+                4          FIFO_WRITE_CH3_DATA    0              RW          If set, CH3 data is written to the FIFO Buffer. (two
+                                                                             bytes per sample)
+                                                                             FIFO write CH2 Data.
+                3          FIFO_WRITE_CH2_DATA    0              RW          If set, CH2 data is written to the FIFO Buffer. (two
+                                                                             bytes per sample)
+                                                                             FIFO write CH1 Data.
+                2          FIFO_WRITE_CH1_DATA    0              RW          If set, CH1 data is written to the FIFO Buffer. (two
+                                                                             bytes per sample)
+                                                                             FIFO write CH0 Data.
+                1          FIFO_WRITE_CH0_DATA    0              RW          If set, CH0 data is written to the FIFO Buffer. (two
+                                                                             bytes per sample)
+                                                                             FIFO write Status.
+                                                                             If set, ASTATUS (one byte per sample) is written
+                0          FIFO_WRITE_ASTATUS     0              RW          to the FIFO Buffer.
+                                                                             In case SP_AGC_ENABLE = 1, ASTATUS should
+                                                                             be written to FIFO buffer.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                              68 │ 56
+                                                Document Feedback                                                AS7341
+                                                                                                      Register Description
+
+
+
+
+               FIFO_CFG0 Register (Address 0xD7)
+
+               Figure 88:
+               FIFO_CFG0 Register
+
+
+                Addr: 0xD7                 FIFO_CFG0
+
+                Bit        Bit Name        Default       Access     Bit Description
+                                                                    FIFO write Flicker Detection
+                                                                    If set flicker raw data is written into FIFO (two bytes
+                7          FIFO_WRITE_FD   0             R/W        per sample)
+                                                                    Note: This bit is ignored if flicker detection is
+                                                                    disabled. Refer to register 0xFC for FDEN=”0”.
+                6:0        reserved        0100001                  Reserved, do not change
+
+
+
+
+               FIFO_LVL Register (Address 0xFD)
+
+               Figure 89:
+               FIFO_LVL Register
+
+
+                Addr: 0xFD                 FIFO_LVL
+
+                Bit        Bit Name        Default       Access     Bit Description
+                                                                    FIFO Buffer Level.
+                                                                    Indicates the number of entries (each are 2 bytes)
+                7:0        FIFO_LVL        0             R          available in the FIFO buffer waiting for readout. The
+                                                                    FIFO RAM is 256byte, the FIFO_LVL range is from 0
+                                                                    entries to 128 entries.
+
+
+
+
+               FDATA Register (Address 0xFE and 0xFF)
+
+               Figure 90:
+               FDATA Register
+
+
+                Addr: 0xFE                 FDATA
+
+                Bit        Bit Name        Default       Access     Bit Description
+                7:0        FDATA           0             R          FIFO Buffer Data
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                       68 │ 57
+                                          Document Feedback                                 AS7341
+                                                                                 Register Description
+
+
+
+
+               Figure 91:
+               FDATA Register
+
+
+                Addr: 0xFF            FDATA
+
+                Bit        Bit Name   Default      Access     Bit Description
+                15:8       FDATA      0            R          FIFO Buffer Data
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                               68 │ 58
+                                                                Document Feedback                                                                AS7341
+                                                                                                                                 Application Information
+
+
+
+
+11             Application Information
+               Figure 92 shows an example how AS7341 can be utilized to interface to an external InGaAs
+               photodiode. GPIO2 is mapped to an internal ADC.
+
+
+
+11.1           Schematic
+               Figure 92:
+               Application Example with External InGaAs Detector
+
+
+
+
+                                 2.7V–5.5V                                               25-40V
+                                                         VCC                 LX
+
+                                                                AS1340     FB
+                                                         EN              GND
+
+                                   Filter tuning
+
+
+
+                                     1.8V                                                     UP-MIR                                            LOW-MIR
+                                                VDD                                                               InGaAs sensor
+                                                                                                                 1.55–1.85µm NIR                CASE
+                                                                                          InGaAS-Anode              C13272-02
+                                                   PGND                           GPIO                                                          InGaAS-Cathode
+                                                   GND          AS7341
+
+                                         1.8V                                                          light
+
+                                                                                                                                         NTC1
+                                                                8CH VIS                               source                      NTC2
+                                                               NIR/CLE AR                                             light in
+
+                                                   SCL         350-100 0nm        LDR
+                                                   SDA           sensor
+
+                    MCU                            INT                                                         reflective
+                                                                                          ligh t in             surface
+
+
+
+                                   Temperature supervision
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                                    68 │ 59
+                                                         Document Feedback                      AS7341
+                                                                                Application Information
+
+
+
+
+11.2           PCB Pad Layout
+               Figure 93:
+               Recommended PCB Pad Layout
+
+
+
+
+               (1)    All dimensions are in millimeters.
+               (2)    Dimension tolerances are 0.05mm unless otherwise noted.
+               (3)    This drawing is subject to change without notice.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                 68 │ 60
+                                                   Document Feedback                                           AS7341
+                                                                                               Application Information
+
+
+
+
+11.3           Application Optical Requirements
+               For optimal performance, an achromatic diffuser shall be placed above the device aperture. The
+               recommended solution is a bulk diffuser that meets the minimum recommended scattering
+               characteristic shown below. For more details refer to the optical design guide or contact ams.
+
+               Figure 94:
+               Diffuser Characteristics
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                  68 │ 61
+                                                        Document Feedback                                   AS7341
+                                                                                        Package Drawings & Markings
+
+
+
+
+12             Package Drawings & Markings
+               Figure 95:
+               OLGA8 Package Outline Drawing
+
+
+
+
+                                                      RoHS                      Green
+               (1)    All dimensions are in millimeters. Angles in degrees.
+               (2)    Dimensioning and tolerance conform to ASME Y14.5M-1994.
+               (3)    This package contains no lead (Pb).
+               (4)    This drawing is subject to change without notice.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                              68 │ 62
+                                                            Document Feedback                   AS7341
+                                                                                Tape & Reel Information
+
+
+
+
+13             Tape & Reel Information
+               Figure 96:
+               AS7341 OLGA8 Tape Dimensions
+
+
+
+
+               (1)    All dimensions are in millimeters. Angles in degrees.
+               (2)    This drawing is subject to change without notice.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                  68 │ 63
+                                                            Document Feedback                   AS7341
+                                                                                Tape & Reel Information
+
+
+
+
+               Figure 97:
+               AS7341 OLGA8 Reel Dimensions
+
+
+
+
+               (1)    All dimensions are in millimeters. Angles in degrees.
+               (2)    This drawing is subject to change without notice.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                  68 │ 64
+                                                  Document Feedback                                AS7341
+                                                                           Soldering & Storage Information
+
+
+
+
+14             Soldering & Storage Information
+               Figure 98:
+               Solder Reflow Profile Graph
+
+
+
+
+               Figure 99:
+               Solder Reflow Profile
+
+
+                Parameter                                             Reference         Device
+
+                Average temperature gradient in preheating                              2.5 °C/s
+                Soak time                                             tsoak             2 to 3 minutes
+                Time above 217 °C (T1)                                t1                Max 60 s
+                Time above 230 °C (T2)                                t2                Max 50 s
+                Time above Tpeak – 10 °C (T3)                         t3                Max 10 s
+                Peak temperature in reflow                            Tpeak             260 °C
+                Temperature gradient in cooling                                         Max −5 °C/s
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                     68 │ 65
+                                                    Document Feedback                                             AS7341
+                                                                                          Soldering & Storage Information
+
+
+
+
+14.1           Storage Information
+
+14.1.1         Moisture Sensitivity
+
+               Optical characteristics of the device can be adversely affected during the soldering process by the
+               release and vaporization of moisture that has been previously absorbed into the package.
+
+               To ensure the package contains the smallest amount of absorbed moisture possible, each device is
+               baked prior to being dry packed for shipping. Devices are dry packed in a sealed aluminized envelope
+               called a moisture-barrier bag with silica gel to protect them from ambient moisture during shipping,
+               handling, and storage before use.
+
+
+14.1.2         Shelf Life
+
+               The calculated shelf life of the device in an unopened moisture barrier bag is 12 months from the date
+               code on the bag when stored under the following conditions:
+
+                      ●      Shelf Life: 12 months
+                      ●      Ambient Temperature: <40°C
+                      ●      Relative Humidity: <90%
+
+               Rebaking of the devices will be required if the devices exceed the 12 month shelf life or the Humidity
+               Indicator Card shows that the devices were exposed to conditions beyond the allowable moisture
+               region.
+
+
+14.1.3         Floor Life
+
+               The module has been assigned a moisture sensitivity level of MSL 3. As a result, the floor life of
+               devices removed from the moisture barrier bag is 168 hours from the time the bag was opened,
+               provided that the devices are stored under the following conditions:
+
+                      ●      Floor Life: 168 hours
+                      ●      Ambient Temperature: <30°C
+                      ●      Relative Humidity: <60%
+
+               If the floor life or the temperature/humidity conditions have been exceeded, the devices must be
+               rebaked prior to solder reflow or dry packing.
+
+
+14.1.4         Rebaking Instructions
+
+               When the shelf life or floor life limits have been exceeded, rebake at 50°C for 12 hours.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                      68 │ 66
+                                                              Document Feedback                                                         AS7341
+                                                                                                                           Revision Information
+
+
+
+
+15             Revision Information
+
+                   Document Status           Product Status       Definition
+
+                   Product Preview           Pre-Development      Information in this datasheet is based on product ideas in the planning phase
+                                                                  of development. All specifications are design goals without any warranty and
+                                                                  are subject to change without notice
+
+                   Preliminary Datasheet     Pre-Production       Information in this datasheet is based on products in the design, validation or
+                                                                  qualification phase of development. The performance and parameters shown
+                                                                  in this document are preliminary without any warranty and are subject to
+                                                                  change without notice
+
+                   Datasheet                 Production           Information in this datasheet is based on products in ramp-up to full production
+                                                                  or full production which conform to specifications in accordance with the terms
+                                                                  of ams AG standard warranty as given in the General Terms of Trade
+
+                   Datasheet                 Discontinued         Information in this datasheet is based on products which conform to
+                   (discontinued)                                 specifications in accordance with the terms of ams AG standard warranty as
+                                                                  given in the General Terms of Trade, but these products have been
+                                                                  superseded and should not be used for new designs
+
+
+
+
+                   Changes from previous version to current revision v3-00                                                  Page
+
+                   -added figure 7                                                                                          6
+                   -fixed typos and document maintenance                                                                    ALL
+
+               ●         Page and figure numbers for the previous version may differ from page and figure numbers in the current revision.
+               ●         Correction of typographical errors is not explicitly mentioned.
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                            68 │ 67
+                                                               Document Feedback                                                           AS7341
+                                                                                                                                 Legal Information
+
+
+
+
+16             Legal Information
+               Copyrights & Disclaimer
+               Copyright ams AG, Tobelbader Strasse 30, 8141 Premstaetten, Austria-Europe. Trademarks Registered. All rights reserved.
+               The material herein may not be reproduced, adapted, merged, translated, stored, or used without the prior written consent of the
+               copyright owner.
+               Devices sold by ams AG are covered by the warranty and patent indemnification provisions appearing in its General Terms of
+               Trade. ams AG makes no warranty, express, statutory, implied, or by description regarding the information set forth herein. ams
+               AG reserves the right to change specifications and prices at any time and without notice. Therefore, prior to designing this
+               product into a system, it is necessary to check with ams AG for current information. This product is intended for use in
+               commercial applications. Applications requiring extended temperature range, unusual environmental requirements, or high
+               reliability applications, such as military, medical life-support or life-sustaining equipment are specifically not recommended
+               without additional processing by ams AG for each application. This product is provided by ams AG “AS IS” and any express or
+               implied warranties, including, but not limited to the implied warranties of merchantability and fitness for a particular purpose are
+               disclaimed.
+               ams AG shall not be liable to recipient or any third party for any damages, including but not limited to personal injury, property
+               damage, loss of profits, loss of use, interruption of business or indirect, special, incidental or consequential damages, of any
+               kind, in connection with or arising out of the furnishing, performance or use of the technical data herein. No obligation or liability
+               to recipient or any third party shall arise or flow out of ams AG rendering of technical or other services.
+
+
+               RoHS Compliant & ams Green Statement
+               RoHS Compliant: The term RoHS compliant means that ams AG products fully comply with current RoHS directives. Our
+               semiconductor products do not contain any chemicals for all 6 substance categories plus additional 4 substance categories (per
+               amendment EU 2015/863), including the requirement that lead not exceed 0.1% by weight in homogeneous materials. Where
+               designed to be soldered at high temperatures, RoHS compliant products are suitable for use in specified lead-free processes.
+               ams Green (RoHS compliant and no Sb/Br/Cl): ams Green defines that in addition to RoHS compliance, our products are free
+               of Bromine (Br) and Antimony (Sb) based flame retardants (Br or Sb do not exceed 0.1% by weight in homogeneous material)
+               and do not contain Chlorine (Cl not exceed 0.1% by weight in homogeneous material).
+               Important Information: The information provided in this statement represents ams AG knowledge and belief as of the date that
+               it is provided. ams AG bases its knowledge and belief on information provided by third parties, and makes no representation or
+               warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. ams AG
+               has taken and continues to take reasonable steps to provide representative and accurate information but may not have
+               conducted destructive testing or chemical analysis on incoming materials and chemicals. ams AG and ams AG suppliers
+               consider certain information to be proprietary, and thus CAS numbers and other limited information may not be available for
+               release.
+
+
+
+               Headquarters                                     Please visit our website at www.ams.com
+               ams AG                                           Buy our products or get free samples online at www.ams.com/Products
+               Tobelbader Strasse 30                            Technical Support is available at www.ams.com/Technical-Support
+               8141 Premstaetten                                Provide feedback about this document at www.ams.com/Document-Feedback
+               Austria, Europe                                  For sales offices, distributors and representatives go to www.ams.com/Contact
+               Tel: +43 (0) 3136 500 0                          For further information and requests, e-mail us at ams_sales@ams.com
+
+
+
+
+Datasheet • PUBLIC
+DS000504 • v3-00 • 2020-Jun-25                                                                                                               68 │ 68
+

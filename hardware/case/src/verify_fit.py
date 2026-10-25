@@ -887,8 +887,8 @@ row('slicer CLI', 'PrusaSlicer/OrcaSlicer (optional)', f'found={_slicers or "non
 #  WRITE REPORT
 # =====================================================================
 with open('FIT_REPORT.md', 'w') as f:
-    f.write('# VitalQ case_v10 POGO-ELECTRODE FIT REPORT (V22 board)\n\n')
-    f.write('Computed against `../fix_v22/vitalq_v2.kicad_pcb` geometry '
+    f.write('# VitalQuant case_v10 POGO-ELECTRODE FIT REPORT (V22 board)\n\n')
+    f.write('Computed against `../fix_v22/vitalquant_v2.kicad_pcb` geometry '
             '(geometry.json: pcbnew extraction + VRML 3D heights).\n')
     f.write('z=0 = skin-facing bottom of base. Board: 55.7x81.1 mm at '
             '(-2.0,-16.55)-(53.65,64.55) incl N antenna tab and E power tab; '

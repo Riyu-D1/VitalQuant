@@ -1,7 +1,7 @@
-# VitalQ V22 — J1 east-move progress & report
+# VitalQuant V22 — J1 east-move progress & report
 
 Goal: move USB-C receptacle J1 east to (29.5, −7.8) rot 180 so a real 12.4 mm cable
-overmould clears the WROOM board tab and body. Board: `vitalq_v2.kicad_pcb` (8 layers,
+overmould clears the WROOM board tab and body. Board: `vitalquant_v2.kicad_pcb` (8 layers,
 same stackup/rules as fix_v21). All work inside `fix_v22/`.
 
 ## 1. Moves applied (old → new)
@@ -105,11 +105,11 @@ widened to 0.6 mm. Board VBUS total = 8 vias.
 
 - Gerbers: 8 Cu + mask/silk/paste/Edge.Cuts + job file; drill PTH 917 / NPTH 8.
 - Assembly: 251 placements, 82 BOM groups, 0 missing LCSC, 0 missing positions;
-  consigned U12, D12. U1 BOM row = ESP32-S3-WROOM-1-N16R8 / vitalq:ESP32_S3_WROOM_1.
+  consigned U12, D12. U1 BOM row = ESP32-S3-WROOM-1-N16R8 / vitalquant:ESP32_S3_WROOM_1.
   J1 = HRO TYPE-C-31-M-12, JLC C165948.
 - CPL (populated parts): J1 29.5, 7.8, Top, 180 — same rotation as V21, only XY changed.
   R2 27.55, 1.4, Top, 270; R26 32.0, 1.9, Top, 180. TP11/TP20 excluded (no-mount).
-- `fab/VitalQ_v2_fixv22_fabrication.zip` — 48 files, SHA-256
+- `fab/VitalQuant_v2_fixv22_fabrication.zip` — 48 files, SHA-256
   `43ef4a31bf3880ad4484e39c113643cfcade4fe6bba28a972c3e9c2c7fc267f`.
 
 ## 9. Renders / images

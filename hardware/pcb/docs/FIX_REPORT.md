@@ -51,7 +51,7 @@ Every track, via, pad and footprint whose net is not `+3V3`/`FSR_ADC`, object-no
 | J3 connectivity | Pad 1 `+3V3` → 66-pad +3V3 net; Pad 2 `FSR_ADC` → R8.1 + U1.5 (correct endpoints) |
 | Skin-side audit (every footprint) | All 14 skin-facing parts on B.Cu: J3, J5, J6, J7, J11, J13, D10–D12, U10, U11, U12, U16, U23 — **none left on F.Cu**. All outward-facing parts on F.Cu: J1, J8, SW1, SW2, D25, U13, U25. No other footprint flagged |
 | Gerber spot-check | New pads flashed at (42.0, 59.85)/(44.2, 59.85) on `Bottom Layer.gbl`; old pad flashes gone from `Top Layer.gtl`; new vias flash on all copper layers |
-| Drill | PTH +3 holes at 0.150 mm (89 → 92) — exactly the three new POFV vias; `vitalq_v2-drill.rpt` / `DRILL_REPORT.txt` regenerated |
+| Drill | PTH +3 holes at 0.150 mm (89 → 92) — exactly the three new POFV vias; `vitalquant_v2-drill.rpt` / `DRILL_REPORT.txt` regenerated |
 | BOM / CPL | Identical to fix_v8 (77 groups / 248 placements) — J3 is an integral `Pads_*` contact, not a placed part |
 | Fab zip | Rebuilt — 16 gerbers (JLC names) + separated PTH/NPTH drills + maps, regenerated from the v9 board |
 

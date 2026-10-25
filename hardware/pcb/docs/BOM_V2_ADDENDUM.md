@@ -7,7 +7,7 @@
 > authoritative V22 lists.
 
 
-Addendum to `vitalq_hw_v1_bom.csv` — the regenerated merged BOM is
+Addendum to `vitalquant_hw_v1_bom.csv` — the regenerated merged BOM is
 produced by the schematic step, not this file. Per `HW_V2_SPEC.md`.
 Designators are provisional where the spec did not assign one; the
 schematic agent's numbering wins. Status column: **add** = new on-board
@@ -46,8 +46,8 @@ Research prototype. Nothing here is a medical-device or sourcing claim.
 | J13 | 2 × SMD pads | Pads_SMD | TBD | MX_ECG_INP / MX_ECG_INM | dnp | Optional MAX86178 ECG input pair; bare pads as J9–J11 |
 | R118, R119 | 0 Ω (BOM: 25121WJ0000T4E / LCSC C2908946) | R_2512_6332Metric (FP_HV) | east column — R118 F (35.7, 44.3), R119 F (35.7, 56.5) | J13_INP/INM → MX_ECG_INP/INM | add | Series cut-points on the DNP J13 pair — same HV-boundary footprint pattern as R76–R83 (~4.7 mm pad span), not 0402. Removing one isolates the tail |
 | R120, R121, R122 | 0 Ω (BOM: 25121WJ0000T4E / LCSC C2908946) | R_2512_6332Metric (FP_HV) | east column B — R120 (35.0, 48.5), R121 (34.3, 39.7), R122 (34.3, 58.0) | J11_WE/RE/CE → SWEAT_WE/RE/CE | add | Series cut-points on the RESEARCH-GRADE J11 sweat site, same FP_HV land. RESEARCH-GRADE label required on schematic notes |
-| D26, D27, D28 | TPD1E10B06DPYR | vitalq:TPD1E10B06_DPY | with the J11 chain (IC side) | SWEAT_WE/RE/CE → GND | dnp | Clamp footprints on the IC side of R120–R122 — same pad → series → clamp order as the ladder |
-| D29, D30 | TPD1E10B06DPYR | vitalq:TPD1E10B06_DPY | with the J13 chain (IC side) | MX_ECG_INP/INM → GND | dnp | Clamp footprints on the IC side of R118/R119 |
+| D26, D27, D28 | TPD1E10B06DPYR | vitalquant:TPD1E10B06_DPY | with the J11 chain (IC side) | SWEAT_WE/RE/CE → GND | dnp | Clamp footprints on the IC side of R120–R122 — same pad → series → clamp order as the ladder |
+| D29, D30 | TPD1E10B06DPYR | vitalquant:TPD1E10B06_DPY | with the J13 chain (IC side) | MX_ECG_INP/INM → GND | dnp | Clamp footprints on the IC side of R118/R119 |
 | C84 | 1 µF 0402 | C_0402 | regulator decoupling row | — | add | +3V3 → GND; +3V3 is the input rail of U4 |
 | R115 | 10 kΩ 0402 | R_0402 | with U24 | — | dnp | RTC_VBK → GND — RV-3028-C7 requires unused VBACKUP to reach VSS through 10 kΩ, not a dead short |
 | TP28 | test pad, 1.0 mm | TestPoint_Pad_D1.0mm | top (5.02, 37.5) | RTC_INT | add | 28th test point; excluded from JLC BOM/CPL like TP1–TP27 |
@@ -66,7 +66,7 @@ Research prototype. Nothing here is a medical-device or sourcing claim.
 
 ## Carried over unchanged
 
-Everything in `vitalq_hw_v1_bom.csv` not listed above stays: the defib
+Everything in `vitalquant_hw_v1_bom.csv` not listed above stays: the defib
 ladder (R32–R36, R76–R83, D1–D9, D21–D24), TP1–TP28, J8, the power
 tree, W25Q512, J5/J6/J7 pads, all hw_v1 sensors, and both TMP117s.
 DNP handling, consign flagging, and the JLC BOM/CPL exclusions follow

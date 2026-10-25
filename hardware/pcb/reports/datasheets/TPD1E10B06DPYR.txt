@@ -1,0 +1,1579 @@
+                                                                                                                             TPD1E10B06
+                                                                                       SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+                          TPD1E10B06 Single-Channel ESD Protection Diode
+1 Features                                                             3 Description
+•   Provides system-level ESD protection for low-                      The TPD1E10B06 is a single-channel ESD TVS
+    voltage I/O interface                                              diode in a small 0402 package convenient for space
+•   IEC 61000-4-2 level 4 ESD protection                               constrained applications and an industry standard
+    – ±30kV contact discharge                                          SOD-523 package. This TVS protection product offers
+    – ±30kV air-gap discharge                                          ±30kV contact ESD, ±30kV IEC air-gap protection,
+•   IEC 61000-4-5 surge: 6A (8/20µs)                                   and has an ESD clamp circuit with a back-to-back
+•   I/O capacitance 12pF (typical)                                     TVS diode for bipolar or bidirectional signal support.
+•   RDYN 0.4Ω (typical)                                                The 12pF line capacitance of this ESD protection
+•   DC breakdown voltage ±6V (minimum)                                 diode is an excellent choice for a wide range of
+•   Ultralow leakage current 100nA (maximum)                           applications supporting data rates up to 400Mbps.
+•   10V clamping voltage (maximum at IPP = 1A)                         Typical applications of this ESD protection product
+•   Industrial temperature range: –40°C to 125°C                       are circuit protection for audio lines (microphone,
+•   Small 0402 footprint (1mm × 0.6mm × 0.5mm)                         earphone, and speakerphone), SD interfacing, keypad
+•   Industry standard SOD-523 package (0.8mm ×                         or other buttons, VBUS pin and ID pin of USB ports,
+    1.2mm)                                                             and general-purpose I/O ports. This ESD clamp is
+2 Applications                                                         good for the protection of end equipment like portable
+                                                                       devices, wearables, set-top boxes, electronic point-of-
+•   End equipment:                                                     sale equipment, appliances, and products for building
+    – Portable devices                                                 automation.
+    – Wearables
+                                                                                           Package Information
+    – Set-top boxes
+                                                                             PART NUMBER           PACKAGE(1)         PACKAGE SIZE(2)
+    – Electronic point of sale (EPOS)
+    – Appliances                                                                              DPY (X1SON, 2)         1mm × 0.6mm
+                                                                       TPD1E10B06
+    – Building automation                                                                     DYA (SOT-5X3, 2)       1.6mm × 0.8mm
+•   Interfaces:
+                                                                       (1)    For more information, see Section 10.
+    – Audio lines                                                      (2)    The package size (length × width) is a nominal value and
+    – Push-buttons                                                            includes pins, where applicable.
+    – General-purpose input or output (GPIO)
+                                                                                                                 IO Line 1
+
+
+
+
+                                                                                                                 IO Line 2
+                                                                      Connector                                                 ESD sensitive
+                                                                   (source of ESD)             1          1                       device
+
+
+
+
+                                                                                               2          2      GND Line
+
+
+
+
+                                                                                          Application Schematic
+
+
+
+
+     An IMPORTANT NOTICE at the end of this data sheet addresses availability, warranty, changes, use in safety-critical applications,
+     intellectual property matters and other important disclaimers. PRODUCTION DATA.
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                                                                   www.ti.com
+
+
+                                                                        Table of Contents
+1 Features............................................................................1   7 Application and Implementation.................................... 9
+2 Applications..................................................................... 1       7.1 Application Information............................................... 9
+3 Description.......................................................................1       7.2 Typical Application...................................................... 9
+4 Pin Configuration and Functions...................................3                       7.3 Power Supply Recommendations.............................10
+5 Specifications.................................................................. 4        7.4 Layout....................................................................... 11
+  5.1 Absolute Maximum Ratings........................................ 4                  8 Device and Documentation Support............................12
+  5.2 ESD Ratings - JEDEC Specification........................... 4                        8.1 Receiving Notification of Documentation Updates....12
+  5.3 ESD Ratings—IEC Specification................................ 4                       8.2 Support Resources................................................... 12
+  5.4 Recommended Operating Conditions.........................4                            8.3 Trademarks............................................................... 12
+  5.5 Thermal Information....................................................4              8.4 Electrostatic Discharge Caution................................12
+  5.6 Electrical Characteristics.............................................5              8.5 Glossary....................................................................12
+  5.7 Typical Characteristics................................................ 6           9 Revision History............................................................ 13
+6 Detailed Description........................................................8           10 Mechanical, Packaging, and Orderable
+  6.1 Overview..................................................................... 8       Information.................................................................... 13
+  6.2 Functional Block Diagram........................................... 8                 10.1 Tape and Reel Information......................................14
+  6.3 Feature Description.....................................................8             10.2 Mechanical Data..................................................... 16
+  6.4 Device Functional Modes............................................8
+
+
+
+
+2       Submit Document Feedback                                                                                         Copyright © 2024 Texas Instruments Incorporated
+
+                                                                   Product Folder Links: TPD1E10B06
+                                                                                                                          TPD1E10B06
+www.ti.com                                                                                SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+4 Pin Configuration and Functions
+
+                                                                       1
+
+
+
+
+                                                                       2
+
+                                                        Figure 4-1. DPY Package
+                                                              2-Pin X1SON
+                                                                Top View
+                                                         ID Area
+
+
+
+
+                                                            1                       2
+
+
+
+
+                                                        Figure 4-2. DYA Package
+                                                             2-Pin SOD-523
+                                                                Top View
+
+                                                        Table 4-1. Pin Functions
+            PIN                       I/O                                               DESCRIPTION
+             1
+                                      I/O         ESD Protected I/O. Connect other pin ground.
+             2
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                         Submit Document Feedback      3
+                                                      Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                                            www.ti.com
+
+5 Specifications
+5.1 Absolute Maximum Ratings
+over operating free-air temperature range (unless otherwise noted)(1)
+                                                                                                          MIN               MAX           UNIT
+                       IEC 61000-4-5 power (tp - 8/20 µs) at 25°C                                                             90           W
+    Peak pulse
+                       IEC 61000-4-5 current (tp - 8/20 µs) at 25°C                                                             6          A
+    TA                 Operating free-air temperature                                                      -40               125           °C
+    Tstg               Storage temperature                                                                –65                155           °C
+
+(1)        Stresses beyond those listed under Absolute Maximum Rating may cause permanent damage to the device. These are stress
+           ratings only, which do not imply functional operation of the device at these or any other conditions beyond those indicated
+           under Recommended Operating Condition. Exposure to absolute-maximum-rated conditions for extended periods may affect device
+           reliability.
+
+
+5.2 ESD Ratings - JEDEC Specification
+                                                                                                                            VALUE           UNIT
+                                                                      Human body model (HBM), per ANSI/ESDA/
+                                                                                                                            ±2500               V
+                                                                      JEDEC JS-001
+    V(ESD)        Electrostatic discharge - DPY
+                                                                      Charged device model (CDM), per JEDEC
+                                                                                                                            ±1000               V
+                                                                      specification JESD22-C101
+                                                                      Human body model (HBM), per ANSI/ESDA/
+                                                                                                                            ±2500               V
+                                                                      JEDEC JS-001
+    V(ESD)        Electrostatic discharge - DYA
+                                                                      Charged device model (CDM), per JEDEC
+                                                                                                                            ±1000               V
+                                                                      specification JS-002
+
+
+
+5.3 ESD Ratings—IEC Specification
+                                                                                                                            VALUE           UNIT
+                                                                      IEC 61000-4-2 Contact Discharge, all pins             ±30000
+    V(ESD)        Electrostatic discharge                                                                                                       V
+                                                                      IEC 61000-4-2 Air-gap Discharge, all pins             ±30000
+
+
+
+5.4 Recommended Operating Conditions
+over operating free-air temperature range (unless otherwise noted)
+                                                                                                       MIN         NOM           MAX        UNIT
+    Operating
+                  Pin 1 to 2 or Pin 2 to 1                                                            –5.5                          5.5         V
+    voltage
+    TA            Operating free-air temperature                                                       -40                          125        °C
+
+
+
+5.5 Thermal Information
+                                                                                   DPY (X1SON)                DYA (SOD523)
+                             THERMAL METRIC(1)                                                                                             UNIT
+                                                                                      2 PINS                       2 PINS
+    RθJA           Junction-to-ambient thermal resistance                              615.5                       730.8                   °C/W
+    RθJC(top)      Junction-to-case (top) thermal resistance                           404.8                       413.4                   °C/W
+    RθJB           Junction-to-board thermal resistance                                493.3                       497.7                   °C/W
+    ΨJT            Junction-to-top characterization parameter                          127.7                       129.7                   °C/W
+    ΨJB            Junction-to-board characterization parameter                        493.3                       491.8                   °C/W
+    RθJC(bot)      Junction-to-case (bottom) thermal resistance                         162                           -                    °C/W
+
+(1)        For more information about traditional and new thermal metrics, see the Semiconductor and IC Package Thermal Metrics application
+           report.
+
+
+4          Submit Document Feedback                                                                    Copyright © 2024 Texas Instruments Incorporated
+
+                                                          Product Folder Links: TPD1E10B06
+                                                                                                                                TPD1E10B06
+www.ti.com                                                                                   SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+5.6 Electrical Characteristics
+over operating free-air temperature range (unless otherwise noted)
+                       PARAMETER                                         TEST CONDITION                   MIN         TYP      MAX     UNIT
+ VRWM         Reverse stand-off voltage                     Pin 1 to 2 or Pin 2 to 1                                             5.5       V
+ ILEAK        Leakage current                               Pin 1 = 5 V, Pin 2 = 0 V                                            100    nA
+              Clamp voltage with surge strike on pin 1,
+ VClamp1,2                                                  IPP = 1 A, tp = 8/20 µs(2)                                           10        V
+              pin 2 grounded.
+              Clamp voltage with surge strike on pin 1,
+ VClamp1,2                                                  IPP =5 A, tp = 8/20 µs(2)                                            14        V
+              pin 2 grounded.
+
+              Clamp voltage with surge strike on pin 2,     IPP = 1 A, tp = 8/20 µs(2)                                           8.5
+ VClamp2,1                                                                                                                                 V
+              pin 1 grounded.                               IPP = 5 A, tp   = 8/20 µs(2)                                         14
+                                                            Pin 1 to Pin 2(1)                                         0.32
+ RDYN         Dynamic resistance                                                                                                           Ω
+                                                            Pin 2 to Pin 1(1)                                         0.38
+ CIO          I/O capacitance                               VIO = 2.5 V; ƒ = 1 MHz                                      12             pF
+ VBR1,2       Break-down voltage, pin 1 to pin 2            IIO = 1 mA                                          6                          V
+ VBR2,1       Break-down voltage, pin 2 to pin 1            IIO = 1 mA                                          6                          V
+
+(1)      Extraction of RDYN using least squares fit of TLP characteristics between IPP = 10 A and IPP = 20 A.
+(2)      Nonrepetitive current pulse 8 to 20 µs exponentially decaying waveform according to IEC 61000-4-5
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                 Submit Document Feedback       5
+                                                          Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                            www.ti.com
+
+5.7 Typical Characteristics
+
+
+
+
+    Figure 5-1. IEC 61000-4-2 Clamp Voltage +8 kV Contact ESD      Figure 5-2. IEC 61000-4-2 Clamp Voltage –8-kV Contact ESD
+
+
+
+
+    Figure 5-3. Transmission Line Pulse (TLP) Waveform Pin 1 to    Figure 5-4. Transmission Line Pulse (TLP) Waveform Pin 2 to
+                               Pin 2                                                          Pin 1
+
+
+
+
+                       Figure 5-5. IV Curve                               Figure 5-6. Positive Surge Waveform 8 to 20 µs
+
+
+
+
+6      Submit Document Feedback                                                          Copyright © 2024 Texas Instruments Incorporated
+
+                                                 Product Folder Links: TPD1E10B06
+                                                                                                                     TPD1E10B06
+www.ti.com                                                                           SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+5.7 Typical Characteristics (continued)
+
+
+
+
+           Figure 5-7. Negative Surge Waveform 8 to 20 µs                     Figure 5-8. Pin Capacitance Across VBIAS
+
+
+
+
+                                                     Figure 5-9. Insertion Loss
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                    Submit Document Feedback      7
+                                                  Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                       www.ti.com
+
+6 Detailed Description
+6.1 Overview
+The TPD1E108B06 is a single-channel ESD TVS diode in a small 0402 package convenient for space
+constrained applications and an industry standard SOD-523 package. This TVS protection product offers ±30 kV
+IEC air-gap, ±30 kV contact ESD protection, and has an ESD clamp circuit with a back-to-back TVS diode for
+bipolar or bidirectional signal support. The 12 pF line capacitance of this ESD protection diode is suitable for a
+wide range of applications supporting data rates up to 400 Mbps.
+Typical application of this ESD protection product is the circuit protection for audio lines (microphone, earphone,
+and speakerphone), SD interfacing, keypad or other buttons, VBUS pin and ID pin of USB ports, and general-
+purpose I/O ports. This ESD clamp is a good fit for the protection of the end equipment like ebooks, tablets,
+remote controllers, wearables, set-top boxes, and electronic point of sale equipment.
+6.2 Functional Block Diagram
+                                                                1
+
+
+
+
+                                                                2
+6.3 Feature Description
+TPD1E10B06 is a bidirectional TVS with high ESD protection level. This device protects circuit from ESD strikes
+up to ±30 kV contact and ±30 kV air-gap specified in the IEC 61000-4-2 international standard. The device can
+also handle up to 6-A surge current (IEC61000-4-5 8/20 µs). The I/O capacitance of 12 pF supports a data
+rate up to 400 Mbps. This clamping device has a small dynamic resistance of 0.4 Ω typically, which makes the
+clamping voltage low when the device is actively protecting other circuits. For example, the clamping voltage is
+only 10 V when the device is taking 1-A transient current. The breakdown is bidirectional so that this protection
+device is a good fit for GPIO and especially audio lines which carry bidirectional signals. Low leakage allows
+the diode to conserve power when working below the VRWM. The industrial temperature range of –40°C to
+125°C makes this ESD device work at extensive temperatures in most environments. The 0402 package can fit
+into small electronic devices like mobile equipment and wearables whereas the SOD-523 package is good for
+industrial applications.
+6.4 Device Functional Modes
+TPD1E10B06 is a passive clamp that has low leakage during normal operation when the voltage between pin 1
+and pin 2 is below VRWM and activates when the voltage between pin 1 and pin 2 goes above VBR. During IEC
+ESD events, transient voltages as high as ±30 kV can be clamped between the two pins. When the voltages on
+the protected lines fall below the trigger voltage, the device reverts back to the low leakage passive state.
+
+
+
+
+8     Submit Document Feedback                                                      Copyright © 2024 Texas Instruments Incorporated
+
+                                                 Product Folder Links: TPD1E10B06
+                                                                                                                              TPD1E10B06
+www.ti.com                                                                                  SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+7 Application and Implementation
+                                                                      Note
+       Information in the following applications sections is not part of the TI component specification,
+       and TI does not warrant its accuracy or completeness. TI’s customers are responsible for
+       determining suitability of components for their purposes, as well as validating and testing their design
+       implementation to confirm system functionality.
+
+7.1 Application Information
+When a system contains a human interface connector, the system becomes vulnerable to large system-level
+ESD strikes that standard ICs cannot survive. TVS ESD protection diodes are typically used to suppress ESD at
+these connectors. TPD1E10B06 is a single-channel ESD protection device containing back-to-back TVS diodes,
+which is typically used to provide a path to ground for dissipating ESD events on bidirectional signal lines
+between a human interface connector and a system. As the current from ESD passes through the device, only a
+small voltage drop is present across the diode structure. This is the voltage presented to the protected IC. The
+low RDYN of the triggered TVS holds this voltage, VCLAMP, to a tolerable level to the protected IC.
+7.2 Typical Application
+                                                                                                        L Audio
+                                                                     L Audio IN   Audio amplifier
+                                                                                     class AB                       L
+                                                                                  (ESD sensitive)
+                                                                                                        GND
+
+
+
+                                Speaker                                           Audio amplifier       R Audio
+                                                                     R Audio IN
+                               connector                                             class AB
+                            (source of ESD)                                                                         R
+                                                    1            1                (ESD sensitive)
+                                                                                                        GND
+
+
+
+                                                    2    GND     2
+
+
+
+
+                                              Figure 7-1. Typical Application Schematic
+
+7.2.1 Design Requirements
+For this design example, two TPD1E10B06s will be used to protect left and right audio channels. For this audio
+application, the following system parameters are known.
+                                                        Table 7-1. Design Parameters
+                                       DESIGN PARAMETER                                              VALUE
+                                        Audio Amplifier Class                                           AB
+                                     Audio signal voltage range                                     –3 V to 3 V
+                                       Audio frequency content                                 20 Hz to 20 kHz
+                              Required IEC 61000-4-2 ESD Protection                  ±20 kV Contact/ ±25 kV Air-Gap
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                               Submit Document Feedback   9
+                                                         Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                       www.ti.com
+
+7.2.2 Detailed Design Procedure
+To begin the design process, some parameters must be decided upon; the designer should make sure:
+•    Voltage range on the protected line must not exceed the reverse standoff voltage of one or more TVS diodes
+     (VRWM)
+•    Operating frequency is supported by the I/O capacitance CIO of the TVS diode
+•    IEC 61000-4-2 protection requirement is covered by the IEC performance of the TVS diode
+For this application, the audio signal voltage range is –3 V to 3 V. The VRWM for the TVS is –5.5 V to 5.5 V;
+therefore, the bidirectional TVS will not break down during normal operation, and therefore normal operation of
+the audio signal will not be effected due to the signal voltage range. In this application, a bidirectional TVS like
+TPD1E10B06 is required.
+Next, consider the frequency content of this audio signal. In this application with the class AB amplifier, the
+frequency content is from 20 Hz to 20 kHz; ensure that the TVS I/O capacitance will not distort this signal by
+filtering it. With TPD1E10B06 typical capacitance of 12 pF, which leads to a typical 3-dB bandwidth of 400 MHz,
+this diode has sufficient bandwidth to pass the audio signal without distorting it.
+Finally, the human interface in this application requires above standard Level 4 IEC 61000-4-2 system-level
+ESD protection (±8 kV Contact/ ±15 kV Air-Gap). A standard TVS cannot survive this level of IEC ESD stress.
+However, TPD1E10B06 can survive at least ±30 kV Contact/ ±30 kV Air-Gap. Therefore, the device can provide
+sufficient ESD protection for the interface, even though the requirements are stringent. For any TVS diode to
+provide the full range of ESD protection capabilities, as well as to minimize the noise and EMI disturbances the
+board will see during ESD events, a system designer must use proper board layout of their TVS ESD protection
+diodes. See Section 7.4 for instructions on properly laying out TPD1E10B06.
+7.2.3 Application Curves
+
+
+
+
+     Figure 7-2. IEC 61000-4-2 Clamp Voltage +8 kV                  Figure 7-3. IEC 61000-4-2 Clamp Voltage –8 kV
+                      Contact ESD                                                    Contact ESD
+
+7.3 Power Supply Recommendations
+This device is a passive TVS diode-based ESD protection device, therefore there is no requirement to power it.
+Take care to make sure that the maximum voltage specifications for each pin are not violated.
+
+
+
+
+10    Submit Document Feedback                                                      Copyright © 2024 Texas Instruments Incorporated
+
+                                                 Product Folder Links: TPD1E10B06
+                                                                                                                         TPD1E10B06
+www.ti.com                                                                               SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+7.4 Layout
+7.4.1 Layout Guidelines
+•    The optimum placement is as close to the connector as possible.
+     – EMI during an ESD event can couple from the trace being struck to other nearby unprotected traces,
+         resulting in early system failures.
+     – The PCB designer must minimize the possibility of EMI coupling by keeping any unprotected traces away
+         from the protected traces which are between the TVS and the connector.
+•    Route the protected traces as straight as possible.
+•    Eliminate any sharp corners on the protected traces between the TVS and the connector by using rounded
+     corners with the largest radii possible.
+     – Electric fields tend to build up on corners, increasing EMI coupling.
+•    If pin 1 or pin 2 is connected to ground, use a thick and short trace for this return path
+7.4.2 Layout Example
+
+
+
+    To connector                                                                                        To protected IC
+
+
+
+
+                                                                              Place pin 1 on the signal line
+        Minimum
+        distance
+        from
+        connector
+        (source of
+        ESD)                                                                  Thick and short return path to GND
+
+
+
+
+                                                  Figure 7-4. Layout Recommendation
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                        Submit Document Feedback     11
+                                                      Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                                www.ti.com
+
+8 Device and Documentation Support
+8.1 Receiving Notification of Documentation Updates
+To receive notification of documentation updates, navigate to the device product folder on ti.com. Click on
+Notifications to register and receive a weekly digest of any product information that has changed. For change
+details, review the revision history included in any revised document.
+8.2 Support Resources
+TI E2E™ support forums are an engineer's go-to source for fast, verified answers and design help — straight
+from the experts. Search existing answers or ask your own question to get the quick design help you need.
+Linked content is provided "AS IS" by the respective contributors. They do not constitute TI specifications and do
+not necessarily reflect TI's views; see TI's Terms of Use.
+8.3 Trademarks
+TI E2E™ is a trademark of Texas Instruments.
+All trademarks are the property of their respective owners.
+8.4 Electrostatic Discharge Caution
+                This integrated circuit can be damaged by ESD. Texas Instruments recommends that all integrated circuits be handled
+                with appropriate precautions. Failure to observe proper handling and installation procedures can cause damage.
+                ESD damage can range from subtle performance degradation to complete device failure. Precision integrated circuits may
+                be more susceptible to damage because very small parametric changes could cause the device not to meet its published
+                specifications.
+
+
+8.5 Glossary
+ TI Glossary        This glossary lists and explains terms, acronyms, and definitions.
+
+
+
+
+12    Submit Document Feedback                                                               Copyright © 2024 Texas Instruments Incorporated
+
+                                                 Product Folder Links: TPD1E10B06
+                                                                                                                                                       TPD1E10B06
+www.ti.com                                                                                                SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+
+9 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+Changes from Revision F (October 2021) to Revision G (August 2024)                                                                            Page
+• Updated the Package Information table............................................................................................................. 1
+
+
+
+Changes from Revision E (June 2021) to Revision F (October 2021)                                                                                                  Page
+• Updated the Application Schematic figure..........................................................................................................1
+• Updated the Description of Pin 1 and pin 2 in the Pin Configuration and Functions section............................. 3
+• Changed HBM spec to per JS-001 in ESD Ratings - JEDEC Specification ......................................................4
+• Changed CDM spec to per JESD22-C101 ........................................................................................................ 4
+• Updated the Typical Application Schematic figure............................................................................................. 9
+• Changed the system-level ESD protection from: ±20 kV Contact/± 25 kV Air-Gap to: ±8 kV Contact/± 15 kV
+  Air-Gap ............................................................................................................................................................ 10
+
+
+10 Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most
+current data available for the designated devices. This data is subject to change without notice and revision of
+this document. For browser-based versions of this data sheet, refer to the left-hand navigation.
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                                Submit Document Feedback               13
+                                                               Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                                                   www.ti.com
+
+10.1 Tape and Reel Information
+                  REEL DIMENSIONS                                                                   TAPE DIMENSIONS
+                                                                                             K0        P1
+
+
+
+                                                                                                                              B0 W
+                                                   Reel
+                                                 Diameter
+                                                                                           Cavity           A0
+                                                                        A0   Dimension designed to accommodate the component width
+                                                                        B0   Dimension designed to accommodate the component length
+                                                                        K0   Dimension designed to accommodate the component thickness
+                                                                        W    Overall width of the carrier tape
+                                                                        P1   Pitch between successive cavity centers
+
+
+                                                  Reel Width (W1)
+                                       QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+
+                                                                                                               Sprocket Holes
+
+
+                                                             Q1    Q2         Q1      Q2
+
+                                                             Q3    Q4         Q3      Q4                User Direction of Feed
+
+
+
+                                                                     Pocket Quadrants
+                                                                    Reel        Reel
+                      Package   Package                                                      A0          B0          K0          P1       W          Pin1
+         Device                           Pins      SPQ           Diameter    Width W1
+                       Type     Drawing                                                     (mm)        (mm)        (mm)        (mm)     (mm)      Quadrant
+                                                                    (mm)       (mm)
+     TPD1E10B06DPYT    X1SON     DPY       2         250           180.0        9.5          0.66       1.15        0.66        2.0       8.0         Q1
+     TPD1E10B06DPYR    X1SON     DPY       2        10,000         180.00      8.400         0.67       1.15        0.46        2.0      8.000        Q2
+     TPD1E10B06DYAR   SOT-5X3    DYA       2        3000           178.0        9.5          0.5        1.94        0.73        2.0       8.0         Q1
+
+
+
+
+14      Submit Document Feedback                                                                                Copyright © 2024 Texas Instruments Incorporated
+
+                                                        Product Folder Links: TPD1E10B06
+                                                                                                                               TPD1E10B06
+www.ti.com                                                                               SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+                               TAPE AND REEL BOX DIMENSIONS
+
+
+
+
+                                                                                                 Width (mm)
+                                                                                                                 H
+                                                  W
+
+
+
+
+                                                                                            L
+              Device                 Package Type     Package Drawing     Pins   SPQ        Length (mm)          Width (mm)    Height (mm)
+       TPD1E10B06DPYT                    X1SON              DPY            2      250            184.0                184.0       19.0
+       TPD1E10B06DPYR                    X1SON              DPY            2     10,000         210.000              185.000     35.000
+       TPD1E10B06DYAR                   SOT-5X3             DYA            2     3000            210.0                200.0       42.0
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                               Submit Document Feedback       15
+                                                      Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                                                     www.ti.com
+
+10.2 Mechanical Data
+
+                                                                                                              PACKAGE OUTLINE
+           DYA0002A                                                                   SOT (SOD-523) - 0.77 mm max height
+                                                                                                                         PLASTIC SMALL OUTLINE
+
+
+
+
+                                                             1.7
+                                                             1.5
+                                  A                                 PIN 1
+                                                                    ID AREA
+
+
+
+                               0.85
+                               0.75                                               2
+                                          1
+                              NOTE 3
+
+
+
+
+                                                             1.3                           0.3                             0.7
+                                           B                                          2X                                       TYP
+                                                             1.1                           0.1                             0.5
+
+
+
+
+                           0.77 MAX
+                                                                                                 C
+
+                                                                                                     SEATING PLANE
+
+                              0.15
+                           2X                                                                        0.05 C
+                              0.08
+
+
+                                                            SYMM
+
+
+
+
+                                  SYMM
+
+
+
+                                                                                                 0.35
+                                                                                           2X
+                                                                                                 0.25
+                                                                                                   0.1    C A B
+                                                                    0.4                            0.05
+                                                               2X
+                                                                    0.2
+
+
+
+
+                                                                                                                                 4224978/B 09/2021
+
+          NOTES:
+
+          1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+             per ASME Y14.5M.
+          2. This drawing is subject to change without notice.
+          3. This dimension does not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not
+             exceed 0.15 mm per side.
+          4. Reference JEITA SC-79 registration except for package height
+
+
+
+
+                                                                              www.ti.com
+
+
+
+16    Submit Document Feedback                                                                                    Copyright © 2024 Texas Instruments Incorporated
+
+                                                          Product Folder Links: TPD1E10B06
+                                                                                                                                         TPD1E10B06
+www.ti.com                                                                                          SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+                                                                                             EXAMPLE BOARD LAYOUT
+             DYA0002A                                                                   SOT (SOD-523) - 0.77 mm max height
+                                                                                                                     PLASTIC SMALL OUTLINE
+
+
+
+
+                                                                            SYMM
+                                                     2X (0.67)                                                         (R0.05) TYP
+
+
+
+                                              1                                                                  2   SYMM
+                                  2X (0.4)
+
+
+
+
+                                                                             (1.48)
+
+
+                                                                 LAND PATTERN EXAMPLE
+                                                                         SCALE:40X
+
+
+
+
+                              0.05 MAX                                                0.05 MIN
+                               AROUND                                                 AROUND
+
+
+
+
+                             SOLDER MASK                         METAL                METAL UNDER                    SOLDER MASK
+                             OPENING                                                  SOLDER MASK                    OPENING
+                                             NON SOLDER MASK                                        SOLDER MASK
+                                                 DEFINED                                              DEFINED
+                                               (PREFERRED)
+
+                                                                   SOLDERMASK DETAILS
+
+
+
+
+                                                                                                                            4224978/B 09/2021
+
+           NOTES: (continued)
+
+            5. Publication IPC-7351 may have alternate designs.
+            6. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+
+
+
+
+                                                                             www.ti.com
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                       Submit Document Feedback   17
+                                                          Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                                               www.ti.com
+
+                                                                                        EXAMPLE STENCIL DESIGN
+          DYA0002A                                                                 SOT (SOD-523) - 0.77 mm max height
+                                                                                                                    PLASTIC SMALL OUTLINE
+
+
+
+
+                                                2X (0.67)               SYMM
+                                                                                                                   (R0.05) TYP
+
+
+
+                                          1                                                                  2   SYMM
+                               2X (0.4)
+
+
+
+
+                                                                         (1.48)
+
+
+                                                            SOLDER PASTE EXAMPLE
+                                                            BASED ON 0.1 mm THICK STENCIL
+                                                                     SCALE:40X
+
+
+
+
+                                                                                                                            4224978/B 09/2021
+
+         NOTES: (continued)
+
+         7. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+            design recommendations.
+         8. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                           www.ti.com
+
+
+
+
+18    Submit Document Feedback                                                                              Copyright © 2024 Texas Instruments Incorporated
+
+                                                        Product Folder Links: TPD1E10B06
+                                                                                                                                                                       TPD1E10B06
+www.ti.com                                                                                                                    SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+
+
+                                                                                                                                     PACKAGE OUTLINE
+                 DPY0002A                                                        SCALE 11.000
+                                                                                                                            X1SON - 0.45 mm max height
+                                                                                                                                     PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                                     1.1                                        B
+                                               A
+                                                                     0.9
+
+
+
+
+                            PIN 1 INDEX AREA
+                                                                                                                0.7
+                                                                                                                0.5
+
+
+
+
+                                     0.45
+                                     0.30                                                                              C
+
+
+                                                                                                                             SEATING PLANE
+                                       0.05
+                                       0.00                                                                                 0.08 C
+
+
+
+                                                                     0.65
+
+
+
+
+                                                   1                                                   2
+                                                                                                       SYMM
+                                                                                                                             0.55
+                                                                                                                       2X
+                                                                                                                             0.45
+                                    PIN 1 ID                                                                          0.1       C A B
+                                  OPTIONAL
+                                  (45 X 0.1)
+
+
+                                                                    SYMM
+                                                                                                                0.3
+                                                                                                           2X
+                                                                                                                0.2
+                                                                                                                 0.05        C A B
+
+
+
+
+                                                                                                                                                    4224561/C 07/2024
+
+                NOTES:
+
+                1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+                   per ASME Y14.5M
+                2. This drawing is subject to change without notice.
+
+
+
+
+                                                                                                www.ti.com
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                                                  Submit Document Feedback      19
+                                                              Product Folder Links: TPD1E10B06
+TPD1E10B06
+SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024                                                                                                                      www.ti.com
+
+
+
+
+                                                                                                     EXAMPLE BOARD LAYOUT
+              DPY0002A                                                                                      X1SON - 0.45 mm max height
+                                                                                                                     PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                2X (0.3)                          SYMM
+
+
+
+                                                           1                                                   2
+
+                                                                                                                   SYMM
+                                               2X (0.5)
+
+
+
+
+                                       (R0.05) TYP
+                                                                                   (0.7)
+
+
+                                                                    LAND PATTERN EXAMPLE
+                                                                       EXPOSED METAL SHOWN
+                                                                             SCALE:60X
+
+
+
+
+                                      0.07 MAX                                                                             0.07 MIN
+                                  ALL AROUND                                                                               ALL AROUND
+                                                                    METAL EDGE
+                                                                                                                           METAL UNDER
+                                                                                            EXPOSED                        SOLDER MASK
+                                                                                              METAL
+                                     EXPOSED
+                                       METAL                        SOLDER MASK                                             SOLDER MASK
+                                                                    OPENING                                                 OPENING
+
+                                               NON SOLDER MASK                                           SOLDER MASK
+                                                   DEFINED                                                 DEFINED
+                                                                                                         (PREFERRED)
+
+
+
+
+                                                                     SOLDER MASK DETAILS
+                                                                                                                                          4224561/C 07/2024
+
+             NOTES: (continued)
+
+             3. For more information, see Texas Instruments literature number SLUA271 (www.ti.com/lit/slua271).
+             4. Vias are optional depending on application, refer to device data sheet. If any vias are implemented, refer to their locations shown on this view.
+                It is recommended that vias under paste be filled, plugged or tented.
+
+
+
+
+                                                                                     www.ti.com
+
+
+
+
+20    Submit Document Feedback                                                                                             Copyright © 2024 Texas Instruments Incorporated
+
+                                                               Product Folder Links: TPD1E10B06
+                                                                                                                                                    TPD1E10B06
+www.ti.com                                                                                               SLLSEB1G – FEBRUARY 2012 – REVISED AUGUST 2024
+
+
+
+
+                                                                                               EXAMPLE STENCIL DESIGN
+                 DPY0002A                                                                              X1SON - 0.45 mm max height
+                                                                                                                 PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                   2X (0.3)                                                          (0)
+                                                                                  SYMM
+
+                                                                                                                      PCB PAD METAL
+                                                                                                                      UNDER SOLDER PASTE
+
+
+                                                                                                                   SYMM
+                                                  2X (0.5)
+                                                              1                                              2
+
+
+
+
+                                           (R0.05) TYP
+                                                                                   (0.7)
+
+
+
+
+                                                                         SOLDER PASTE EXAMPLE
+                                                                        BASED ON 0.1 mm THICK STENCIL
+                                                                                  SCALE:60X
+
+
+
+
+                                                                                                                                  4224561/C 07/2024
+                NOTES: (continued)
+
+                5. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+                  design recommendations.
+
+
+
+
+                                                                                 www.ti.com
+
+
+
+
+Copyright © 2024 Texas Instruments Incorporated                                                                               Submit Document Feedback      21
+                                                                  Product Folder Links: TPD1E10B06
+                                                                                                                                                                     PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                    28-Apr-2026
+
+
+
+
+PACKAGING INFORMATION
+
+       Orderable part number          Status     Material type      Package | Pins      Package qty | Carrier       RoHS             Lead finish/               MSL rating/          Op temp (°C)               Part marking
+                                        (1)            (2)                                                            (3)            Ball material              Peak reflow                                           (6)
+                                                                                                                                          (4)                       (5)
+
+         TPD1E10B06DPYR               Active      Production       X1SON (DPY) | 2       10000 | LARGE T&R           Yes               NIPDAU            Level-1-260C-UNLIM            -40 to 125              (B1, B2, B6, BI)
+        TPD1E10B06DPYR.B              Active      Production       X1SON (DPY) | 2       10000 | LARGE T&R           Yes               NIPDAU            Level-1-260C-UNLIM            -40 to 125              (B1, B2, B6, BI)
+       TPD1E10B06DPYRG4               Active      Production       X1SON (DPY) | 2       10000 | LARGE T&R           Yes               NIPDAU            Level-1-260C-UNLIM            -40 to 125                     B1
+      TPD1E10B06DPYRG4.B              Active      Production       X1SON (DPY) | 2       10000 | LARGE T&R           Yes               NIPDAU            Level-1-260C-UNLIM            -40 to 125                     B1
+         TPD1E10B06DPYT                Last       Production       X1SON (DPY) | 2        250 | SMALL T&R            Yes               NIPDAU            Level-1-260C-UNLIM            -40 to 125              (B1, B2, B6, BI)
+                                     Time Buy
+        TPD1E10B06DPYT.B               Last       Production       X1SON (DPY) | 2        250 | SMALL T&R            Yes               NIPDAU            Level-1-260C-UNLIM            -40 to 125              (B1, B2, B6, BI)
+                                     Time Buy
+         TPD1E10B06DYAR               Active      Production      SOT-5X3 (DYA) | 2      3000 | LARGE T&R            Yes                  SN             Level-3-260C-168 HR           -40 to 125                    1KF
+        TPD1E10B06DYAR.B              Active      Production      SOT-5X3 (DYA) | 2      3000 | LARGE T&R            Yes                  SN             Level-3-260C-168 HR           -40 to 125                    1KF
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+
+
+
+                                                                                                          Addendum-Page 1
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+    www.ti.com                                                                                                                                                                                           28-Apr-2026
+
+
+
+
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+
+OTHER QUALIFIED VERSIONS OF TPD1E10B06 :
+
+• Automotive : TPD1E10B06-Q1
+
+NOTE: Qualified Version Definitions:
+
+        • Automotive - Q100 devices qualified for high-reliability automotive applications targeting zero defects
+
+
+
+
+                                                                                                          Addendum-Page 2
+                                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                                                           18-Jun-2025
+
+
+
+TAPE AND REEL INFORMATION
+
+       REEL DIMENSIONS                                                                       TAPE DIMENSIONS
+                                                                                        K0         P1
+
+
+
+                                                                                                                          B0 W
+                                          Reel
+                                        Diameter
+                                                                                     Cavity             A0
+                                                                 A0   Dimension designed to accommodate the component width
+                                                                 B0   Dimension designed to accommodate the component length
+                                                                 K0   Dimension designed to accommodate the component thickness
+                                                                 W    Overall width of the carrier tape
+                                                                 P1   Pitch between successive cavity centers
+
+
+                                         Reel Width (W1)
+                              QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+
+                                                                                                         Sprocket Holes
+
+
+                                                   Q1       Q2          Q1    Q2
+
+                                                   Q3       Q4          Q3    Q4                    User Direction of Feed
+
+
+
+                                                             Pocket Quadrants
+
+
+*All dimensions are nominal
+             Device           Package Package Pins               SPQ        Reel   Reel   A0                    B0         K0     P1     W     Pin1
+                               Type Drawing                               Diameter Width (mm)                  (mm)       (mm)   (mm)   (mm) Quadrant
+                                                                            (mm) W1 (mm)
+   TPD1E10B06DPYR             X1SON       DPY           2        10000       180.0           8.4        0.67   1.15       0.46   2.0    8.0     Q2
+  TPD1E10B06DPYRG4            X1SON       DPY           2        10000       180.0           8.4        0.67   1.15       0.46   2.0    8.0     Q2
+   TPD1E10B06DPYT             X1SON       DPY           2         250        178.0           8.4        0.7    1.15       0.47   2.0    8.0     Q1
+   TPD1E10B06DPYT             X1SON       DPY           2         250        180.0           9.5        0.66   1.15       0.66   2.0    8.0     Q1
+   TPD1E10B06DYAR             SOT-5X3     DYA           2        3000        178.0           9.5        0.5    1.94       0.73   2.0    8.0     Q1
+
+
+
+
+                                                                        Pack Materials-Page 1
+                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                               18-Jun-2025
+
+
+
+ TAPE AND REEL BOX DIMENSIONS
+
+
+
+
+                                                               Width (mm)
+                                                                               H
+                      W
+
+
+
+
+                                                          L
+
+
+
+
+*All dimensions are nominal
+             Device           Package Type   Package Drawing   Pins         SPQ     Length (mm)   Width (mm)   Height (mm)
+    TPD1E10B06DPYR              X1SON             DPY           2           10000      210.0        185.0         35.0
+  TPD1E10B06DPYRG4              X1SON             DPY           2           10000      210.0        185.0         35.0
+    TPD1E10B06DPYT              X1SON             DPY           2           250        205.0        200.0         33.0
+    TPD1E10B06DPYT              X1SON             DPY           2           250        184.0        184.0         19.0
+    TPD1E10B06DYAR              SOT-5X3           DYA           2           3000       210.0        200.0         42.0
+
+
+
+
+                                                        Pack Materials-Page 2
+                                                                GENERIC PACKAGE VIEW
+DPY 2                                                              X1SON - 0.45 mm max height
+1 x 0.6 mm                                                                PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+             This image is a representation of the package family, actual package may vary.
+                           Refer to the product data sheet for package details.
+
+
+
+
+                                                                                                 4231484/A
+
+
+
+
+                                                  www.ti.com
+                                                                                                                    PACKAGE OUTLINE
+DPY0002A                                                         SCALE 11.000
+                                                                                                            X1SON - 0.45 mm max height
+                                                                                                                    PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                                     1.1                                        B
+                               A
+                                                     0.9
+
+
+
+
+            PIN 1 INDEX AREA
+                                                                                                0.7
+                                                                                                0.5
+
+
+
+
+                     0.45
+                     0.30                                                                              C
+
+
+                                                                                                            SEATING PLANE
+                       0.05
+                       0.00                                                                                0.08 C
+
+
+
+                                                     0.65
+
+
+
+
+                                   1                                                   2
+                                                                                       SYMM
+                                                                                                          0.55
+                                                                                                       2X
+                                                                                                          0.45
+                    PIN 1 ID                                                                          0.1    C A B
+                  OPTIONAL
+                  (45 X 0.1)
+
+
+                                                    SYMM
+                                                                                                0.3
+                                                                                           2X
+                                                                                                0.2
+                                                                                                 0.05       C A B
+
+
+
+
+                                                                                                                                   4224561/C 07/2024
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M
+2. This drawing is subject to change without notice.
+
+
+
+
+                                                                                www.ti.com
+                                                                                        EXAMPLE BOARD LAYOUT
+ DPY0002A                                                                                      X1SON - 0.45 mm max height
+                                                                                                        PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                   2X (0.3)                          SYMM
+
+
+
+                                              1                                                   2
+
+                                                                                                      SYMM
+                                  2X (0.5)
+
+
+
+
+                          (R0.05) TYP
+                                                                      (0.7)
+
+
+                                                       LAND PATTERN EXAMPLE
+                                                           EXPOSED METAL SHOWN
+                                                                SCALE:60X
+
+
+
+
+                         0.07 MAX                                                                             0.07 MIN
+                     ALL AROUND                                                                               ALL AROUND
+                                                       METAL EDGE
+                                                                                                              METAL UNDER
+                                                                               EXPOSED                        SOLDER MASK
+                                                                                 METAL
+                        EXPOSED
+                          METAL                        SOLDER MASK                                            SOLDER MASK
+                                                       OPENING                                                OPENING
+
+                                  NON SOLDER MASK                                           SOLDER MASK
+                                      DEFINED                                                 DEFINED
+                                                                                            (PREFERRED)
+
+
+
+
+                                                        SOLDER MASK DETAILS
+                                                                                                                             4224561/C 07/2024
+
+NOTES: (continued)
+
+3. For more information, see Texas Instruments literature number SLUA271 (www.ti.com/lit/slua271).
+4. Vias are optional depending on application, refer to device data sheet. If any vias are implemented, refer to their locations shown on this view.
+   It is recommended that vias under paste be filled, plugged or tented.
+
+
+
+
+                                                                        www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+DPY0002A                                                                              X1SON - 0.45 mm max height
+                                                                                                 PLASTIC SMALL OUTLINE - NO LEAD
+
+
+
+
+                                   2X (0.3)                                                          (0)
+                                                                  SYMM
+
+                                                                                                      PCB PAD METAL
+                                                                                                      UNDER SOLDER PASTE
+
+
+                                                                                                   SYMM
+                                  2X (0.5)
+                                              1                                              2
+
+
+
+
+                           (R0.05) TYP
+                                                                   (0.7)
+
+
+
+
+                                                       SOLDER PASTE EXAMPLE
+                                                      BASED ON 0.1 mm THICK STENCIL
+                                                                SCALE:60X
+
+
+
+
+                                                                                                                  4224561/C 07/2024
+NOTES: (continued)
+
+5. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+  design recommendations.
+
+
+
+
+                                                                 www.ti.com
+                                                                                                     PACKAGE OUTLINE
+ DYA0002A                                                                    SOT (SOD-523) - 0.77 mm max height
+                                                                                                             PLASTIC SMALL OUTLINE
+
+
+
+
+                                                   1.7
+                                                   1.5
+                         A                                PIN 1
+                                                          ID AREA
+
+
+
+                       0.85
+                       0.75                                             2
+                                1
+                      NOTE 3
+
+
+
+
+                                                   1.3                            0.3         2X 0 -10         0.7
+                                B                                            2X                                    TYP
+                                                   1.1                            0.1                          0.5
+
+
+
+
+                                                                            2X 8 -10
+
+
+
+
+                 0.77 MAX
+                                                                                        C
+
+                                                                                            SEATING PLANE
+
+                      0.15
+                 2X                                                                         0.05 C
+                      0.08
+
+
+                                                 SYMM
+
+
+
+
+                         SYMM
+
+
+
+                                                                                        0.40
+                                                                                  2X
+                                                                                        0.25
+                                                                                          0.1    C A B
+                                                          0.4                             0.05
+                                                     2X
+                                                          0.2
+
+
+
+
+                                                                                                                     4224978/D 08/2026
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. This dimension does not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not
+   exceed 0.15 mm per side.
+4. Reference JEITA SC-79 registration except for package height
+
+
+
+
+                                                                    www.ti.com
+                                                                                 EXAMPLE BOARD LAYOUT
+DYA0002A                                                                    SOT (SOD-523) - 0.77 mm max height
+                                                                                                         PLASTIC SMALL OUTLINE
+
+
+
+
+                                                                SYMM
+                                         2X (0.67)                                                         (R0.05) TYP
+
+
+
+                                  1                                                                  2   SYMM
+                      2X (0.4)
+
+
+
+
+                                                                 (1.48)
+
+
+                                                     LAND PATTERN EXAMPLE
+                                                              SCALE:40X
+
+
+
+
+                   0.05 MAX                                               0.05 MIN
+                   AROUND                                                 AROUND
+
+
+
+
+                 SOLDER MASK                         METAL                METAL UNDER                    SOLDER MASK
+                 OPENING                                                  SOLDER MASK                    OPENING
+                                 NON SOLDER MASK                                        SOLDER MASK
+                                     DEFINED                                              DEFINED
+                                   (PREFERRED)
+
+                                                       SOLDERMASK DETAILS
+
+
+
+
+                                                                                                                4224978/D 08/2026
+
+NOTES: (continued)
+
+5. Publication IPC-7351 may have alternate designs.
+6. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+
+
+
+
+                                                                 www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+ DYA0002A                                                                 SOT (SOD-523) - 0.77 mm max height
+                                                                                                           PLASTIC SMALL OUTLINE
+
+
+
+
+                                       2X (0.67)               SYMM
+                                                                                                          (R0.05) TYP
+
+
+
+                                 1                                                                  2   SYMM
+                      2X (0.4)
+
+
+
+
+                                                                (1.48)
+
+
+                                                   SOLDER PASTE EXAMPLE
+                                                   BASED ON 0.1 mm THICK STENCIL
+                                                            SCALE:40X
+
+
+
+
+                                                                                                                   4224978/D 08/2026
+
+NOTES: (continued)
+
+7. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+   design recommendations.
+8. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                  www.ti.com
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2026, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

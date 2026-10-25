@@ -1,4 +1,4 @@
-# VitalQ hw_v2 firmware interface
+# VitalQuant hw_v2 firmware interface
 
 ---
 
@@ -342,7 +342,7 @@ part. From the pinmap side:
 
 U22 is now **MAX86141ENP+** (LCSC C5328762) — a 20-bump WLP optical PPG
 AFE (package N201A2+1, outline 21-100134, 2.048 × 1.848 mm, 5 × 4 grid,
-0.4 mm pitch, Ø0.24 mm NSMD lands, footprint `vitalq:MAX86141_WLP20`).
+0.4 mm pitch, Ø0.24 mm NSMD lands, footprint `vitalquant:MAX86141_WLP20`).
 Same refdes, same schematic/footprint UUIDs, same locked board position
 (B.Cu, 26.1/45.05, rot 180). The MAX86178 ECG/BioZ front ends are gone —
 J13's MX_ECG_INP/INM nets no longer reach U22 (D29/D30 clamps and

@@ -5,20 +5,20 @@ Sequence is strict — each stage's exit criteria gate the next.
 
 ## M0 — Foundations (this package → repo scaffold)
 
-- Create `vitalq` repo with the layout in doc 03; commit this docs package.
-- `vitalq-core`: channel registry, units, `data_class`, hardware-profile schema +
+- Create `vitalquant` repo with the layout in doc 03; commit this docs package.
+- `vitalquant-core`: channel registry, units, `data_class`, hardware-profile schema +
   `config/hardware.example.yaml` loader, ClockModel.
 - Supabase project provisioned; migrations from doc 04 applied; RLS on.
 - CI: ruff + pytest + contract tests skeleton.
-- **Exit:** migrations apply clean on a fresh Supabase project; `vitalq-core` imports and
+- **Exit:** migrations apply clean on a fresh Supabase project; `vitalquant-core` imports and
   validates the example profile.
 
 ## M1 — Vertical slice, synthetic end-to-end (spec §40)
 
-- `vitalq-ingest`: sessions + batch ingest + events; auth via device keys.
-- `vitalq-processing` v0.1: S1–S3 + PPG chain + scalar chains + features for
+- `vitalquant-ingest`: sessions + batch ingest + events; auth via device keys.
+- `vitalquant-processing` v0.1: S1–S3 + PPG chain + scalar chains + features for
   {ppg, temp, contact, motion} synthetic inputs.
-- Synthetic generator (`vitalq-core.synth` or separate pkg): PPG-ish waveform, temp trend,
+- Synthetic generator (`vitalquant-core.synth` or separate pkg): PPG-ish waveform, temp trend,
   motion bursts, contact dropouts, packet-loss/timestamp-drift injection —
   all `data_class='synthetic'`.
 - Dashboard v0.1: session list → waveform viewer → SQI overlay → feature table.
@@ -53,7 +53,7 @@ Sequence is strict — each stage's exit criteria gate the next.
 
 ## M5 — Quantum simulation environment (spec §44)
 
-- `vitalq-quantum` per doc 08; experiment matrix run; advantage-boundary figure.
+- `vitalquant-quantum` per doc 08; experiment matrix run; advantage-boundary figure.
 - **Exit:** classical (`r=0`) reproduces shot-noise limit; squeezing advantage
   quantified *and* shown to vanish under realistic noise floors; all outputs labelled
   simulated.

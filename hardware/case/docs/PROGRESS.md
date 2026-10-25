@@ -3,7 +3,7 @@
 **State: 140/140 checks PASS. FIT_REPORT.md ends with CASE V10 COMPLETE.**
 
 Baseline: `case_v9` scripts (unverified v21 adaptation). Board:
-`../fix_v22/vitalq_v2.kicad_pcb` — 55.7×81.1 mm incl. the north antenna
+`../fix_v22/vitalquant_v2.kicad_pcb` — 55.7×81.1 mm incl. the north antenna
 tab (y −16.55) and east power tab (x 53.65); J1 USB-C moved east to
 (29.5, −7.8). Contact scheme: **v7-style pogo electrodes restored**
 (20 spring pogos through floor apertures + U11 thermal slug); the v8

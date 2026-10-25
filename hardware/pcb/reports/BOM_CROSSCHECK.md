@@ -96,7 +96,7 @@ byte-identical (checked). KiCad 10.0.4.
   BOM.csv/CPL.csv, excluded from BOM_JLC.csv/CPL_JLC.csv — DNP for this build,
   matching main's 22 Oct edit (commit 5b2b6d3).
 - J8 (TC2030-IDC-NL), fiducials, testpoints TP1–TP28, mounting holes H1/H2 and
-  the integral `vitalq:Pads_*` contact pads are board-level features, not
+  the integral `vitalquant:Pads_*` contact pads are board-level features, not
   purchased items — excluded from the JLC assembly CSVs as before.
 - BOM_JLC groups by value+footprint+LCSC exactly as on main, including the two
   separate 51 kΩ R_2512 rows (both C18009) carried in main's file.

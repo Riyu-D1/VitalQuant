@@ -1,6 +1,6 @@
-# VitalQ — status summary for reviewers
+# VitalQuant — status summary for reviewers
 
-VitalQ is a chest-worn, multi-sensor **early-warning research prototype**. It
+VitalQuant is a chest-worn, multi-sensor **early-warning research prototype**. It
 combines several physiological sensing front-ends on one small board so we can
 study whether richer measurement surfaces subtle biological changes earlier
 than conventional approaches. Work on sepsis warning signs so far is a
@@ -65,5 +65,5 @@ statement.
 - Firmware v2 bring-up against real hardware.
 - Design of the first data-collection study.
 
-VitalQ is a research prototype. It is **not a medical device**, and no
+VitalQuant is a research prototype. It is **not a medical device**, and no
 safety, sterility or regulatory compliance is claimed.

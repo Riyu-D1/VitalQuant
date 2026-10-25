@@ -141,17 +141,17 @@ view3d(parts_color([(BASE,'base',1),(BOARD,'board',0.8),(CONT,'cont',1),
                     (cap1,'cap',1),(cap2,'cap',1),(pipe_a,'pipe',1),
                     (strap_L,'strap',0.9),(strap_R,'strap',0.9)]),
        'renders/render_assembled.png', elev=24, azim=-52,
-       title='VitalQ case_v10 — assembled, 30mm strap looped on lugs (pogo spring contacts)')
+       title='VitalQuant case_v10 — assembled, 30mm strap looped on lugs (pogo spring contacts)')
 
 # ---------- 2. top view -----------------------------------------------------
 view3d(parts_color(ASSY), 'renders/render_top.png', elev=90, azim=-90,
-       title='VitalQ case_v10 — top (bay cup, door, strap lugs, caps, pipe)')
+       title='VitalQuant case_v10 — top (bay cup, door, strap lugs, caps, pipe)')
 
 # ---------- 3. bottom / skin face -------------------------------------------
 view3d(parts_color([(BASE,'base',1),(TOP,'top',1),(CONT,'cont',1),
                     (GASK,'gasket',0.55),(cup_a,'cup',1)]),
        'renders/render_bottom.png', elev=-90, azim=-90,
-       title='VitalQ case_v10 — closed skin face (slug, gasket, optical apertures)')
+       title='VitalQuant case_v10 — closed skin face (slug, gasket, optical apertures)')
 
 # ---------- 4. exploded -----------------------------------------------------
 ex_top   = T(TOP, dz=14)
@@ -166,7 +166,7 @@ view3d(parts_color([(BASE,'base',1),(ex_gask,'gasket',0.8),(BOARD,'board',0.85),
                     (ex_door,'door',1),(ex_cap1,'cap',1),(ex_cap2,'cap',1),
                     (ex_pipe,'pipe',1),(ex_plug,'plug',1),(ex_flap,'flap',1)]),
        'renders/render_exploded.png', elev=16, azim=-58,
-       title='VitalQ case_v10 — exploded (base / gasket+board / lid / cup stack)',
+       title='VitalQuant case_v10 — exploded (base / gasket+board / lid / cup stack)',
        box=(62, 82, 60))
 
 # ---------- 2D sections -----------------------------------------------------
@@ -229,16 +229,16 @@ fig_y = lambda y, f, t, u, v, a=None: section(
     sec_parts, [0,1,0], [0,y,0], f, t, ulim=u, vlim=v, annot=a)
 
 fig_y(62.9, 'renders/render_section_j5.png',
-      'VitalQ case_v10 — section at y=62.9: J5/J6/J7/J13 lands + pogo apertures',
+      'VitalQuant case_v10 — section at y=62.9: J5/J6/J7/J13 lands + pogo apertures',
       u=(-8, 30), v=(-3.5, 11), a=('skin plane z=0', (12, 0.35)))
 fig_y(59.85, 'renders/render_section_j11.png',
-      'VitalQ case_v10 — section at y=59.85: J3/J11 lands + pogo apertures',
+      'VitalQuant case_v10 — section at y=59.85: J3/J11 lands + pogo apertures',
       u=(34, 48.5), v=(-3.5, 11), a=('skin plane z=0', (44, 0.35)))
 
 # optics: plane y=55.5 through U16 (PPG apertures) + J11 land row
 section(sec_parts + [(PIPE.copy(), COL['pipe'], 1.0)],
         [0,1,0], [0,55.5,0], 'renders/render_section_optics.png',
-        'VitalQ case_v10 — section at y=55.5: U16/U10 optical apertures + light pipe',
+        'VitalQuant case_v10 — section at y=55.5: U16/U10 optical apertures + light pipe',
         ulim=(-4, 34), vlim=(-1, 12))
 
 # battery bay: plane y=25 through the cup + cell + strap channel
@@ -246,13 +246,13 @@ section(parts_color([(BASE,'base',0.95),(TOP,'top',0.95),(BOARD,'board',0.7),
                      (cup_a,'cup',0.9),(door_a,'door',0.9),(cell,'cell',0.75),
                      (plate_a,'plate',1.0)]),
         [0,1,0], [0,25.0,0], 'renders/render_section_battery.png',
-        'VitalQ case_v10 — section at y=25: battery bay cup, 402535 cell, pin plate',
+        'VitalQuant case_v10 — section at y=25: battery bay cup, 402535 cell, pin plate',
         ulim=(-2, 44), vlim=(5, 19))
 
 # antenna bulge: XZ plane y=-19 through the WROOM overhang pocket
 section(sec_parts, [0,1,0], [0,-19.0,0],
         'renders/render_section_antenna.png',
-        'VitalQ case_v10 — section at y=-19: antenna bulge pocket over U1 overhang',
+        'VitalQuant case_v10 — section at y=-19: antenna bulge pocket over U1 overhang',
         ulim=(-6, 42), vlim=(-1, 13), annot=('bulge', (2, 11)))
 
 # ---------- worn view: pod seated on the chest, straps curving away -------
@@ -262,13 +262,13 @@ view3d(parts_color([(BASE,'base',1),(TOP,'top',0.92),(cup_a,'cup',0.9),
                     (high_L,'strap',1),(low_R,'strap',1),
                     (high_R,'strap',1),(chest,'chest',0.55)]),
        'renders/render_worn.png', elev=14, azim=-58,
-       title='VitalQ case_v10 — worn: 30 mm strap wraps the lugs, tails follow chest',
+       title='VitalQuant case_v10 — worn: 30 mm strap wraps the lugs, tails follow chest',
        lim=((-42, -18, -24), (88, 72, 13)), box=(130, 90, 37))
 
 # lug: plane y=27.5 through the L staple -> bar over channel, skirt, strap
 section(sec_parts + [(strap_L.copy(), COL['strap'], 0.85)],
         [0,1,0], [0,27.5,0], 'renders/render_section_lug.png',
-        'VitalQ case_v10 — section at y=27.5: lug bar, strap channel, pinch, skirt',
+        'VitalQuant case_v10 — section at y=27.5: lug bar, strap channel, pinch, skirt',
         ulim=(-14, 10), vlim=(-1, 13), annot=('30mm strap', (-12.5, 11.4)))
 
 # USB-C: plane x=29.5 through the v22 J1 + plug-grip corridor
@@ -276,7 +276,7 @@ plug_body = sbox(23.3, -18.5, 3.85, 35.7, -9.0, 10.35)   # 12.4x6.5 overmould
 section(sec_parts + [(FLAP.copy(), COL['flap'], 1.0),
                      (plug_body, hex2rgb('#c0c0c0'), 0.9)],
         [1,0,0], [29.5,0,0], 'renders/render_section_usbc.png',
-        'VitalQ case_v10 — section at x=29.5: J1, 12.4x6.5 grip corridor, dust flap',
+        'VitalQuant case_v10 — section at x=29.5: J1, 12.4x6.5 grip corridor, dust flap',
         ulim=(-24, 6), vlim=(-1, 13), annot=('J1 mouth', (-11.4, 7.4)))
 
 # ---------- openings overlay on the bottom (skin) view -------------------
@@ -301,7 +301,7 @@ ax.annotate('USB grip corridor', (29.5, -10.4), fontsize=8, ha='center')
 ax.annotate('antenna bulge (no openings)', (11.5, -20.0), fontsize=8,
             ha='center', color='#226622')
 ax.set_aspect('equal'); ax.grid(alpha=0.3)
-ax.set_title('VitalQ case_v10 — bottom openings overlay (skin face z=0)')
+ax.set_title('VitalQuant case_v10 — bottom openings overlay (skin face z=0)')
 plt.tight_layout(); plt.savefig('renders/render_openings_overlay.png', dpi=150)
 plt.close()
 print('wrote renders/render_openings_overlay.png')

@@ -22,7 +22,7 @@ Decision record + component design. Each major decision follows
 
 ```
 ┌──────────────────────────┐        ┌──────────────────────────────┐
-│  ESP32 firmware          │        │  vitalq-api (FastAPI)        │
+│  ESP32 firmware          │        │  vitalquant-api (FastAPI)        │
 │  ┌────────────────────┐  │ HTTPS  │  /v1/ingest/batch            │
 │  │ SensorRegistry     │  │───────▶│  /v1/sessions ...            │
 │  │  drivers/ (per IC) │  │ batch  │  auth: device key / JWT      │
@@ -34,7 +34,7 @@ Decision record + component design. Each major decision follows
 └──────────────────────────┘        │  Supabase Postgres           │
                                      │  raw.* (append-only)         │
 ┌──────────────────────────┐        │  clean.*, features.*, ml.*   │
-│  vitalq-worker (Python)  │───────▶│  config.* , meta.*           │
+│  vitalquant-worker (Python)  │───────▶│  config.* , meta.*           │
 │  sync → SQI → features   │        └──────────┬───────────────────┘
 │  → baselines → anomaly   │                   │ read
 └──────────┬───────────────┘        ┌──────────┴───────────────────┐
@@ -49,7 +49,7 @@ Decision record + component design. Each major decision follows
 
 ## 2. Repository layout
 
-*M1 note:* the package split below consolidated into one `src/vitalq` distribution with
+*M1 note:* the package split below consolidated into one `src/vitalquant` distribution with
 submodules (`core`, `synth`, `ingest`, `processing`, `ml`) — same separation, single
 install; extras (`[ingest]`, `[processing]`, `[ml]`, `[dashboard]`) keep dependencies
 modular. Splitting into separately versioned packages is deferred until a real second
@@ -58,19 +58,19 @@ consumer exists.
 Adapted from spec §9 — same separation, concretised:
 
 ```
-vitalq/
+vitalquant/
 ├── firmware/esp32/            # ESP-IDF/Arduino project
 │   ├── drivers/               # max30102.cpp, max86141.cpp, as7341.cpp, mlx.cpp, bme.cpp, imu.cpp, fsr.cpp
 │   ├── core/                  # clock_service, ring_buffer, batch_uploader, sensor_registry
 │   └── profiles/              # hw_v0.yaml, hw_v1.yaml → compiled-in default + runtime override
 ├── packages/
-│   ├── vitalq-core/           # shared schemas (Pydantic), units, clock math, config loader
-│   ├── vitalq-ingest/         # FastAPI app: auth, validation, DB writes
-│   ├── vitalq-processing/     # sync, SQI, per-modality chains, features (worker lib)
-│   ├── vitalq-ml/             # baselines, evaluation harness, experiment registry client
-│   └── vitalq-quantum/        # noise-model hierarchy + experiment runner
+│   ├── vitalquant-core/           # shared schemas (Pydantic), units, clock math, config loader
+│   ├── vitalquant-ingest/         # FastAPI app: auth, validation, DB writes
+│   ├── vitalquant-processing/     # sync, SQI, per-modality chains, features (worker lib)
+│   ├── vitalquant-ml/             # baselines, evaluation harness, experiment registry client
+│   └── vitalquant-quantum/        # noise-model hierarchy + experiment runner
 ├── apps/
-│   ├── api/                   # thin entrypoint wiring vitalq-ingest
+│   ├── api/                   # thin entrypoint wiring vitalquant-ingest
 │   ├── worker/                # processing daemon entrypoint
 │   └── dashboard/             # Next.js app
 ├── supabase/
@@ -82,7 +82,7 @@ vitalq/
 └── docs/                      # this package
 ```
 
-`vitalq-core` is deliberately dependency-light (pydantic, numpy) — firmware-adjacent
+`vitalquant-core` is deliberately dependency-light (pydantic, numpy) — firmware-adjacent
 constants (channel names, unit enums) and the hardware-config schema live there so every
 layer validates against the same definitions.
 
@@ -114,23 +114,23 @@ correctness enforced structurally, not by convention.
 ### 3.3 Clock discipline
 
 Device stamps samples with µs monotonic counter + wall-clock at batch creation;
-server records receipt. `vitalq-core` fits offset/drift per batch (`clock_offset_us`,
+server records receipt. `vitalquant-core` fits offset/drift per batch (`clock_offset_us`,
 `clock_drift_ppm`) stored on the batch row — pipelines reconstruct corrected UTC per sample
 without the backend "guessing" (spec §10 satisfied explicitly). NTP resync events are logged
 as `device_events`.
 
 ### 3.4 Provenance
 
-Every derived row carries `pipeline_version` (semver of `vitalq-processing`) and
+Every derived row carries `pipeline_version` (semver of `vitalquant-processing`) and
 `source_ids` (array of raw PKs or window ids) — the §46 traceability chain
 `sensor → raw → preprocessing → feature → model → output` is then a SQL join.
 
 ### 3.5 Deployment topology
 
 - Supabase hosted Postgres + Auth + (optional) Storage for cold export.
-- `vitalq-api` on any small host (Fly.io/Railway/VPS); the user already runs this pattern
+- `vitalquant-api` on any small host (Fly.io/Railway/VPS); the user already runs this pattern
   (sentalens uses FastAPI + Caddy).
-- `vitalq-worker` co-located or on the laptop — it is a batch process, not a daemon that
+- `vitalquant-worker` co-located or on the laptop — it is a batch process, not a daemon that
   must be up for ingestion to work.
 - Dashboard on Vercel/self-host.
 - Everything except Supabase runs fine offline → ESP32→API on LAN works without internet

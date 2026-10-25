@@ -1,6 +1,6 @@
-# VitalQ case_v10 — CHECKS.md
+# VitalQuant case_v10 — CHECKS.md
 
-All rows verified by `verify_fit.py` against `../fix_v22/vitalq_v2.kicad_pcb`
+All rows verified by `verify_fit.py` against `../fix_v22/vitalquant_v2.kicad_pcb`
 (geometry.json: pcbnew extraction + VRML 3D heights). Authoritative
 report: `FIT_REPORT.md` (ends CASE V10 COMPLETE).
 

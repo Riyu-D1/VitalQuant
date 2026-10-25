@@ -5,7 +5,7 @@
 > by a spring pogo through its floor aperture (see ASSEMBLY.md and
 > FIT_REPORT.md), and J3×2 brings the count to 20.
 
-# VitalQ case_v8 — wired electrode BOM
+# VitalQuant case_v8 — wired electrode BOM
 
 The current enclosure has **no conductive skin pads or electrode guide holes**. It routes 18 distinct B.Cu lands (J5/J6/J7/J11/J13) to an 8 × 2.9 mm +y edge exit. This file lists suggested external consumables; the 18-wire harness is a prototype assembly, not included in the printed case.
 

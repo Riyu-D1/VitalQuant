@@ -1,4 +1,4 @@
-"""Shared helpers + design constants for the VitalQ case_v8 wired-contact case."""
+"""Shared helpers + design constants for the VitalQuant case_v8 wired-contact case."""
 import json
 import numpy as np
 import trimesh

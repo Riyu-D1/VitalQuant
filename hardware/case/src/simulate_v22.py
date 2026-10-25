@@ -226,7 +226,7 @@ rec('OPTICS', 'channel isolation', 'zero open chords between optical '
     'bleed', 'checked', 'PASS')
 
 # ============================ REPORT =====================================
-out = ['# VitalQ case_v10 - assembly + functional simulation (V22 board)', '',
+out = ['# VitalQuant case_v10 - assembly + functional simulation (V22 board)', '',
        '**[checked]** = mesh boolean/ray (same probes as verify_fit);',
        '**[inferred]** = analytic model, assumptions stated.', '',
        '| # | check | value | basis | result |', '|---|---|---|---|---|']

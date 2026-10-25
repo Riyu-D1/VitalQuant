@@ -1,4 +1,4 @@
-// VitalQ firmware — driver contract (skeleton; M2 milestone).
+// VitalQuant firmware — driver contract (skeleton; M2 milestone).
 // See firmware/esp32/README.md. All timestamps are esp_timer monotonic µs.
 //
 // ============================================================================
@@ -63,7 +63,7 @@
 #include <stddef.h>
 
 struct Sample {
-  const char* channel_id;   // matches vitalq.core channel registry
+  const char* channel_id;   // matches vitalquant.core channel registry
   int64_t     t_us;         // device monotonic µs AT ACQUISITION (data-ready edge
                             // or per-sample device-clock anchor — see FIFO contract
                             // above; NOT FIFO-pop time, NOT transmit time)

@@ -8,7 +8,7 @@ Scope: `fix_v20/` per `case_v3/PROMPT_DEVIN_WROOM.md`, `PROMPT_DEVIN_WROOM_FIX.m
 
 ### What was done
 
-- Restored `fix_v19/vitalq_v2.kicad_pro` (stale fix_v20 pro moved to `_work/_stale/`). Note: `board.Save()` regenerates the .kicad_pro with the board's cached Default netclass (0.2/0.6/0.3) — the v19 pro was re-copied after every pcbnew save and before each DRC run.
+- Restored `fix_v19/vitalquant_v2.kicad_pro` (stale fix_v20 pro moved to `_work/_stale/`). Note: `board.Save()` regenerates the .kicad_pro with the board's cached Default netclass (0.2/0.6/0.3) — the v19 pro was re-copied after every pcbnew save and before each DRC run.
 - Ripped all fix_v20-added copper; restarted from `_work/pre_promote_backup.kicad_pcb` (clean v19 base).
 - U1 = official `ESP32_S3_WROOM_1` footprint at **(11.5, −6.5)**, rot 0°, antenna north, on the existing 6 mm north tab (outline unchanged and closed).
 - v19's most common via (0.4/0.2 mm) used; tracks 0.127 mm signals / 0.3 mm +3V3_ESP.
@@ -46,5 +46,5 @@ Step 2a WAS executed as specified (all four nets moved to inner layers). The boa
 - `sims/fullsim_v20`: 20/20 decks pass. Sepsis v11 regression: sens 1.0, spec 0.787.
 - `FIRMWARE_NOTES.md` §13 (N16R8, GPIO35/36/37 reserved, strap audit). BOM/CPL: U1 → C2913202.
 - Case changes required (listed, not edited): north tab pocket x −2.05…22.5 to y −16.55; module-bay ceiling +0.55 mm (WROOM 3.25 mm vs MINI 3.0); deeper antenna pocket.
-- Fab zip regenerated earlier at `fab/VitalQ_v2_fixv20_fabrication.zip` (SHA-256 `9c3a771f…0d18`) — **stale, do not release**; regenerate only after DRC is clean.
+- Fab zip regenerated earlier at `fab/VitalQuant_v2_fixv20_fabrication.zip` (SHA-256 `9c3a771f…0d18`) — **stale, do not release**; regenerate only after DRC is clean.
 - `_work/_stale/` holds all superseded experiments (nothing deleted).

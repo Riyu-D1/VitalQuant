@@ -1,4 +1,4 @@
-# VitalQ case_v10 — PRINT NOTES
+# VitalQuant case_v10 — PRINT NOTES
 
 ## Parts
 

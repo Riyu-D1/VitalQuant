@@ -1,4 +1,4 @@
-# VitalQ hw_v1 verification
+# VitalQuant hw_v1 verification
 
 Research prototype. This is not a medical device. Nothing here is a claim
 about safety, sterility, biocompatibility, defibrillator withstand, or
@@ -241,7 +241,7 @@ module. W25Q exposed pad has no exposed vias.
 | --- | --- |
 | A1 MAX17048 TDFN | Done. Official land, LCSC C2682616, MPN MAX17048G+T10. See pin-1. |
 | A2 ADS1292 GPIO1/GPIO2 | Done. R100 and R101, 10 kΩ to GND, LCSC C25744. |
-| A3 TMP117 paste | Done. U11 and U20 use `vitalq:TMP117_DRV_NOPASTE`. Pad 7 is F.Cu and F.Mask only. |
+| A3 TMP117 paste | Done. U11 and U20 use `vitalquant:TMP117_DRV_NOPASTE`. Pad 7 is F.Cu and F.Mask only. |
 | A4 VBUS capacitor voltage | Done. C1 is 4.7 µF 25 V 0603 CL10A475KA8NQNC (C69335). C10 is 1 µF 25 V 0603; LCSC left blank. C63 is 100 nF 16 V and was left as-is. |
 | A5 L1 vs U4 | Done. Schematic L1 at (300, 48). SW_L1 is L1.1 and U3.9. SW_L2 is L1.2 and U3.7. Neither net touches +3V3 or U4. Board L1 is at (27.55, 2.40) top; U4 is at (34.10, 13.95) top. |
 | A6 Labels inside the frame | Done. ERC has 0 errors after the move. |
@@ -260,7 +260,7 @@ module. W25Q exposed pad has no exposed vias.
 | B9 Current links | Done electrically. R93 VBAT to VBAT_SYS (0603, C21189) at (12.0, 63.0). R94 +3V3 to +3V3_ESP. R95 +3V3 to +3V3_ANA. R96 TX_5V_RAW to TX_5V. R97 +1V8_LDO to +1V8. Sense nets are not poured onto the load side. The nets themselves are not fully routed. |
 | B10 Test pads | Done. TP1–TP27, 1.0 mm, no paste, grid from (8.0, 55.0). Individual 1.0 mm silk names do not fit on every pad. |
 | B11 Tag-Connect | Done. J8 at (29.4, 67.5) top. Pin 1 +3V3, 2 GND, 3 TX, 4 RX, 5 EN, 6 IO0. Excluded from the JLC BOM and CPL. One GND stitch via that hit an alignment hole was removed. |
-| B12 Fiducials | Done. Local `vitalq:Fiducial_1mm`, 1.0 mm copper, 2.0 mm mask, no paste. FID1 (35.0, 56.4) top, FID2 (8.2, 48.6) top, FID3 (35.0, 64.8) top, FID4 (34.6, 46.8) bottom, FID5 (22.0, 64.0) bottom, FID6 (14.5, 68.5) bottom. |
+| B12 Fiducials | Done. Local `vitalquant:Fiducial_1mm`, 1.0 mm copper, 2.0 mm mask, no paste. FID1 (35.0, 56.4) top, FID2 (8.2, 48.6) top, FID3 (35.0, 64.8) top, FID4 (34.6, 46.8) bottom, FID5 (22.0, 64.0) bottom, FID6 (14.5, 68.5) bottom. |
 | B13 Mounting holes | Done. H1 NPTH 2.2 mm at (9.0, 62.5) bottom. H2 at (33.6, 61.5) bottom. Copper keep-out radius 2.1 mm. H1 is outside the antenna strip. |
 | B14 Silk | Partial. Rev text and JLCJLCJLCJLC were placed only where they cleared pads. Pin-1 dots were skipped where they would overlap. J2 already has a "+" on the BAT+ side. BAT− and NTC silk stay 0.45 mm because 1.0 mm text hits the creepage slot. Silk warnings remain (8 overlap, 3 edge, 15 height, 14 thickness, 1 non-mirrored back text). |
 | B15 Isolation slots | Partial. Creepage slots and the AS7341 barrier are 1.0 mm. The TMP117 moat was widened outward to 1.0 mm. The MLX left slot is only the short segment above R47; a full-height 1.0 mm slot does not fit between R47 and the MLX pads. Nine copper-edge errors remain. |
@@ -393,11 +393,11 @@ Python 3.9 for `build_pcb.py`, which needs `pcbnew`):
   **0 errors**. Full-severity ERC: 26 warnings — `pin_to_pin` 11,
   `lib_symbol_issues` 11, `lib_symbol_mismatch` 4 (J1, U6, U11, U20 —
   J1 joined the list when the shell fix touched its symbol).
-- `build_pcb.py` writes `vitalq_hw_v1.kicad_pcb` — **291 footprints**
+- `build_pcb.py` writes `vitalquant_hw_v1.kicad_pcb` — **291 footprints**
   on the **40.0 × 62.0 mm** outline: the `FLOORPLAN_V2.md` retarget
   landed and then grew east from 32.0 mm to host the J11/J13
   HV-boundary protection row (measured `wrote
-  vitalq_hw_v1.kicad_pcb  40.0 x 62.0 mm`; Edge.Cuts bbox
+  vitalquant_hw_v1.kicad_pcb  40.0 x 62.0 mm`; Edge.Cuts bbox
   40.1 × 62.1 mm including line width; 144 top / 147 bottom,
   1,025 pads). J10 (38.8, 43.4) and J11 (38.8, 55.0) sit on the new
   east edge; J13 (29.6, 60.4), J5 (18.6, 60.4), J6 (9.0, 60.4),
@@ -477,7 +477,7 @@ Python 3.9 for `build_pcb.py`, which needs `pcbnew`):
   pre-fab gate list below still treats the unrouted nets, a real
   review of the waiver, and the silk cleanup as open work — the
   script's posture is "regeneration passes", not "fab-ready".
-- Custom footprints added under `lib/vitalq.pretty/`
+- Custom footprints added under `lib/vitalquant.pretty/`
   (MAX86178_WLP49, SHT45_DFN4, RV3028C7, IM69D130,
   ESP32_S3_MINI_1U, Pads_1x02/03/04/06) were checked against the
   available datasheets: the MAX86178 pitch was corrected to 0.35 mm
@@ -559,7 +559,7 @@ clearance are zero: `courtyards_overlap`, `solder_mask_bridge`,
 Remaining warnings are cosmetic/parity (`via_dangling` 49, the 35
 silk warnings, `text_height` 15, `text_thickness` 14,
 `lib_footprint_mismatch` 2). The project files are still named
-`vitalq_hw_v1.*`, so no filenames needed changing.
+`vitalquant_hw_v1.*`, so no filenames needed changing.
 
 ### Recent schematic additions — placed and re-verified
 
@@ -626,7 +626,7 @@ Electrical fixes in the same round:
 - BOM: the 0 Ω value now maps to 25121WJ0000T4E / LCSC C2908946
   (2512 jumper). DNP parts (R115, D26–D30, J12, J13 and the
   TP-series pads) are excluded from jlc_bom/jlc_cpl.
-- `vitalq_hw_v1.dsn` regenerated and current.
+- `vitalquant_hw_v1.dsn` regenerated and current.
 
 ## 2026-10-03 — six-layer routing effort (final state)
 

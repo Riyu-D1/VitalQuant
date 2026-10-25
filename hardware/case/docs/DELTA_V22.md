@@ -1,6 +1,6 @@
 # DELTA_V22 — geometry changes vs case_v8/geometry.json (fix_v19 reference)
 
-Extracted from `fix_v22/vitalq_v2.kicad_pcb` (pcbnew, /tmp copy — source untouched)
+Extracted from `fix_v22/vitalquant_v2.kicad_pcb` (pcbnew, /tmp copy — source untouched)
 on the v10 pipeline: `extract_geometry.py` → `geometry.json`,
 `parse_vrml.py` (KiCad 10 root-scale patch) → `vrml_boxes.json`,
 `merge_heights.py` (board-centre remap patch) → merged heights.

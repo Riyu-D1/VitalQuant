@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from vitalq.processing import ppg
+from vitalquant.processing import ppg
 
 
 def _ppg(n=2000, fs=200.0, hr=65.0, noise=25.0, seed=1):
@@ -94,7 +94,7 @@ def test_fusion_drops_dirty_channel():
 
 
 def test_contact_hysteresis():
-    from vitalq.processing import scalars as sc
+    from vitalquant.processing import scalars as sc
     qs = [(t, q) for t, q in enumerate([1.0, 1.0, 0.1, 1.0, 0.1, 0.1, 0.9, 0.9])]
     skin = sc.contact_hysteresis(qs, enter_off=2, exit_on=2)
     # single dip (idx2) does NOT drop state; two lows (4,5) drop it; two highs restore

@@ -1,0 +1,905 @@
+SHT4x
+4th Generation, High-Accuracy, Ultra-Low-Power, 16-bit
+Relative Humidity and Temperature Sensor
+
+
+
+
+Features
+
+•    Relative humidity accuracy: up to ±1.0 %RH      •    Operating range: 0…100 %RH, -40…125 °C
+•    Temperature accuracy: up to ±0.1 °C             •    Fully functional in condensing environment
+•    Supply voltage: 1.08 V … 3.6 V                  •    Variable power heater
+•    Average current: 0.4 µA (at meas. rate 1 Hz)    •    NIST traceability
+•    Idle current: 80 nA                             •    JEDEC JESD47 qualification
+•    I2C FM+, CRC checksum, multip. I2C addr.        •    Mature technology from global market leader
+•    Patented on-package PTFE membrane [1]           •    Removable protection cap
+
+
+
+    General Description
+     SHT4x is a digital sensor platform for measuring relative humidity and temperature at different
+     accuracy classes. Its I2C interface provides several preconfigured I2C addresses and maintains
+     an ultra-low power budget. The power-trimmed internal heater can be used at three heating
+     levels thus enabling sensor operation in demanding environments. The four-pin dual-flat-no-
+     leads package is suitable for surface mount technology (SMT) processing and comprises an
+     optional on-package patented PTFE [1] membrane or a removable protection cap.
+
+Device Overview                                                     Functional Block Diagram
+
+Products                   Details
+SHT40-AD1B    base RH&T accur., 0x44 I2C addr.
+SHT40-BD1B    base RH&T accur., 0x45 I2C addr.
+               add. patented on-package PTFE
+SHT40-AD1F
+                         membrane
+SHT40-AD1P      add. removable protection cap
+SHT41-AD1B Intermed. RH&T accur., 0x44 I2C addr.
+SHT45-AD1B ±1.0 %RH, ±0.1°C accur., 0x44 I2C addr.           Full
+product list on page 16
+
+
+
+
+www.sensirion.com / D1                     Version 3 – April 2022                                      1/18
+Contents
+
+1 Quick Start – Hello World ..................................................................................................................................... 3
+2 Humidity and Temperature Sensor Specifications ....................................................................................... 4
+   2.1 Relative Humidity ............................................................................................................................................4
+   2.2 Temperature .....................................................................................................................................................6
+   2.3 Recommended Operating Conditions ......................................................................................................7
+3 Electrical Specifications ........................................................................................................................................ 8
+   3.1 Electrical Characteristics ..............................................................................................................................8
+   3.2 Timings ...............................................................................................................................................................9
+   3.3 Absolute Maximum Ratings .........................................................................................................................9
+4 Sensor Operation .................................................................................................................................................. 10
+   4.1 I2C communication.......................................................................................................................................10
+   4.2 I2C Communication Timing .......................................................................................................................10
+   4.3 Data type & length ........................................................................................................................................10
+   4.4 Checksum Calculation.................................................................................................................................10
+   4.5 Command Overview ....................................................................................................................................11
+   4.6 Conversion of Signal Output .....................................................................................................................11
+   4.7 Serial number .................................................................................................................................................12
+   4.8 Reset & Abort .................................................................................................................................................12
+   4.9 Heater Operation...........................................................................................................................................12
+5 Physical Specification .......................................................................................................................................... 13
+   5.1 Package Description ....................................................................................................................................13
+   5.2 Package Outline ............................................................................................................................................13
+   5.3 Land Pattern ...................................................................................................................................................13
+   5.4 Pin Assignment & Laser Marking.............................................................................................................14
+   5.5 Thermal Information .....................................................................................................................................15
+6 Quality and Material Contents........................................................................................................................... 15
+7 Tape and Reel Packaging .................................................................................................................................. 15
+8 Product Name Nomenclature ............................................................................................................................ 16
+9 Ordering Information ............................................................................................................................................ 16
+10 Bibliography.......................................................................................................................................................... 17
+11 Revision History .................................................................................................................................................. 17
+
+
+
+
+www.sensirion.com / D1                                                Version 3 – April 2022                                                                            2/18
+1 Quick Start – Hello World
+
+A typical application circuit for SHT4x is shown on the left-hand side of Figure 1. After reaching
+the minimal supply voltage and allowing for the maximal power-up time of 1 ms the sensor is ready
+for I2C communication. The quickest way to measure humidity and temperature is pseudo-coded
+on the right-hand side of Figure 1. Together with the conversion formulae given in equations ( 1 ),
+( 2 ), and ( 3 ), the digital signals can be translated into relative humidity and temperature readings.
+
+
+           Typical application circuit                                Pseudo code
+
+                                                      i2c_write(i2c_addr=0x44, tx_bytes=[0xFD])
+                                                      wait_seconds(0.01)
+                                                      rx_bytes = i2c_read(i2c_addr=0x44,
+                                                      number_of_bytes=6)
+                                                      t_ticks = rx_bytes[0] * 256 + rx_bytes[1]
+                                                      checksum_t = rx_bytes[2]
+                                                      rh_ticks = rx_bytes[3] * 256 + rx_bytes[4]
+                                                      checksum_rh = rx_bytes[5]
+                                                      t_degC = -45 + 175 * t_ticks/65535
+                                                      rh_pRH = -6 + 125 * rh_ticks/65535
+                                                      if (rh_pRH > 100):
+                                                            rh_pRH = 100
+                                                      if (rh_pRH < 0):
+                                                            rh_pRH = 0
+
+Figure 1: Typical application circuit (left) and pseudo code (right) for easy starting. For details on
+the signal cropping in the last four lines see section 4.6.
+
+
+Find code resources and embedded drivers on: https://github.com/Sensirion/embedded-
+sht/releases
+
+
+
+
+CAD files can be downloaded from SnapEDA: https://www.snapeda.com/search/?q=sht4%3F-
+&search-type=parts
+
+
+
+
+www.sensirion.com / D1                    Version 3 – April 2022                                    3/18
+2 Humidity and Temperature Sensor Specifications
+
+Every SHT4x is individually tested and calibrated and is identifiable by its unique serial number
+(see section 4.7 for details on the serial number). For the calibration, Sensirion uses transfer
+standards, which are subject to a scheduled calibration procedure. The calibration of the reference,
+used for the calibration of the transfer standards, is NIST traceable through an ISO/IEC 17025
+accredited laboratory.
+2.1 Relative Humidity
+                              Parameter                                           Conditions                           Value                         Units
+                                                                                     typ.                             1.8                           %RH
+                     SHT40 RH accuracy1
+                                                                                       max.                       see Figure 2                        -
+                                                                                       typ.                           1.8                           %RH
+                     SHT41 RH accuracy1
+                                                                                       max.                       see Figure 3                        -
+                                                                                       typ.                           1.0                           %RH
+                     SHT45 RH accuracy1
+                                                                                     max.                         see Figure 4                        -
+                                                                                     high                             0.08                           %RH
+                          Repeatability2, 3                                         medium                            0.15                           %RH
+                                                                                      low                             0.25                           %RH
+                             Resolution4                                                -                             0.01                           %RH
+                             Hysteresis                                             At 25°C                            0.8                          %RH
+                         Specified range5                                          extended6                         0 to 100                       %RH
+                          Response time7                                                  t63%                           4                            s
+                          Long-term drift8                                                typ.                         <0.2                         %RH/y
+Table 1: General relative humidity sensor specifications.
+
+
+
+
+1 For definition of typ. and max. accuracy, please refer to the document “Sensirion Humidity Sensor Specification Statement”.
+2 The stated repeatability is 3 times the standard deviation (3σ) of multiple consecutive measurement values at constant conditions and is a measure for the noise
+ on the physical sensor output. Different repeatability commands are listed in Table 7.
+3 Valid for 25°C and 50%RH.
+4 Resolution of A/D converter.
+5 Specified range refers to the range for which the humidity or temperature sensor specification is guaranteed.
+6 For details about recommended humidity and temperature operating range, please refer to section 0.
+7 Time for achieving 63% of a humidity step function, measured at 25°C and 1 m/s airflow. Humidity response time in the application depends on the design-in of the
+ sensor.
+8 Typical value for operation in normal RH/T operating range. Value may be higher in environments with vaporized solvents, out-gassing tapes, adhesives, packaging
+ materials, etc. For more details please refer to Handling Instructions.
+
+
+
+www.sensirion.com / D1                                             Version 3 – April 2022                                                                    4/18
+Relative Humidity Accuracy
+                           DRH (%RH)                                                                                          DRH (%RH)
+ ±8                                                                                                                      ±8
+                                                 SHT40 typ                                                                                                SHT41 typ
+ ±6                                                                                                                      ±6
+                                                 SHT40 max                                                                                                SHT41 max
+ ±4                                                                                                                      ±4
+
+ ±2                                                                                                                      ±2
+
+ ±0                                                                                                                      ±0
+                           0     10   20   30   40   50   60 70 80 90 100                                                      0    10   20    30        40     50    60 70 80 90 100
+                                                           Relative Humidity (%RH)                                                                                     Relative Humidity (%RH)
+
+Figure 2: SHT40 typical and maximal relative                                                            Figure 3: SHT41 typical and maximal relative
+humidity accuracy at 25 °C.                                                                             humidity accuracy at 25 °C.
+
+
+                                                                 DRH (%RH)
+                                                           ±8
+                                                                                      SHT45 typ
+                                                           ±6
+                                                                                      SHT45 max
+                                                           ±4
+
+                                                           ±2
+
+                                                           ±0
+                                                                 0   10   20    30   40   50             60 70 80 90 100
+                                                                                                          Relative Humidity (%RH)
+
+
+                                           Figure 4: SHT45 typical and maximal relative humidity accuracy at 25 °C
+
+
+
+Relative Humidity Accuracy at the Extended Temperature Range
+The typical RH accuracy tolerances in the range of T = 0°C … 80 °C are given in Figure 5, Figure
+6 and Figure 7.
+                                                SHT40 |typ. Delta %RH|                                                                               SHT41 |typ. Delta %RH|
+                               100                           3                                                                100
+                               90                                                                                              90                                    2
+ Relative Humidity (%RH)
+
+
+
+
+                                                                                               Relative Humidity (%RH)
+
+
+
+
+                                                             2
+                               80                                                                                              80
+                               70                                                                                              70
+                               60                                                                                              60
+                               50                          1.8                                                                 50                                    1.8
+                               40                                                                                              40
+                               30                                                                                              30
+                               20                                                                                              20
+                                                             2
+                               10                                                                                              10                                    2
+                                0                            3                                                                 0
+                                      0    10   20    30 40 50 60              70    80                                              0    10        20        30     40    50   60   70   80
+                                                     Temperature (°C)                                                                                         Temperature (°C)
+Figure 5: Typical RH accuracy tolerance over                                               Figure 6: Typical RH accuracy tolerance over
+humidity and temperature for SHT40.                                                        humidity and temperature for SHT41.
+
+
+
+
+www.sensirion.com / D1                                                         Version 3 – April 2022                                                                                       5/18
+                                                                                          SHT45 |typ. Delta %RH|
+                                                                      100                          1.75
+                                                                       90
+
+
+
+
+                                            Relative Humidity (%RH)
+                                                                                                    1.5
+                                                                       80
+                                                                       70
+                                                                       60
+                                                                       50
+                                                                                                     1
+                                                                       40
+                                                                       30
+                                                                       20
+                                                                       10                           1.5
+                                                                       0
+                                                                            0   10   20     30    40      50   60   70   80
+                                                                                           Temperature (°C)
+                 Figure 7: Typical RH accuracy tolerance over humidity and temperature for SHT45.
+
+
+2.2 Temperature
+                      Parameter                                                      Conditions                          Value      Units
+                                                                                        typ.                            0.2         °C
+               SHT40 T Accuracy1
+                                                                                          max.                      see Figure 8      -
+                                                                                          typ.                          0.2         °C
+               SHT41 T Accuracy1
+                                                                                          max.                      see Figure 9      -
+                                                                                          typ.                           0.1        °C
+               SHT45 T Accuracy1
+                                                                                       max.                         see Figure 10     -
+                                                                                       high                              0.04        °C
+                    Repeatability2                                                    medium                             0.07        °C
+                                                                                       low                                0.1        °C
+                    Resolution4                                                          -                               0.01        °C
+                  Specified range5                                                       -                           –40 to +125     °C
+                  Response time9                                                       t63%                                2          s
+                  Long-term drift10                                                    typ.                             <0.03       °C/y
+Table 2: General temperature sensor specifications.
+
+
+
+
+9 Temperature response time depends on heat conductivity of sensor substrate and design-in of sensor in application.
+10 Max. value is < 0.04°C/y.
+
+
+
+
+www.sensirion.com / D1                                                          Version 3 – April 2022                                      6/18
+Temperature Accuracy
+  DT (°C)                                                             DT (°C)
+ ±1.0                                                                ±1.0
+                             SHT40 typ                                                           SHT41 typ
+ ±0.8                                                                ±0.8
+                             SHT40 max                                                           SHT41 max
+ ±0.6                                                                ±0.6
+
+ ±0.4                                                                ±0.4
+
+ ±0.2                                                                ±0.2
+
+ ±0.0                                                                ±0.0
+        -40   -20   0   20   40   60      80 100 120                        -40   -20   0   20    40   60    80 100 120
+                                          Temperature (°C)                                                   Temperature (°C)
+
+Figure 8: SHT40 typical and maximal temperature                     Figure 9: SHT41 typical and maximal temperature
+accuracy.                                                           accuracy.
+
+
+                                   DT (°C)
+                                  ±1.0
+
+                                  ±0.8                         SHT45 typ
+                                                               SHT45 max
+                                  ±0.6
+
+                                  ±0.4
+
+                                  ±0.2
+
+                                  ±0.0
+                                         -40   -20   0   20    40    60      80 100 120
+                                                                             Temperature (°C)
+
+
+
+                         Figure 10: SHT45 typical and maximal temperature accuracy.
+
+2.3 Recommended Operating Conditions
+The sensor shows best performance when operated within the recommended normal temperature
+and humidity range of 5 °C … 60 °C and 20 %RH … 80 %RH, respectively. Long term exposure to
+conditions outside recommended normal range, especially at high relative humidity, may
+temporarily offset the RH signal (e.g. +3 %RH after 60 h at > 80 %RH). After returning into the
+recommended normal temperature and humidity range the sensor will recover to within
+specifications by itself. Prolonged exposure to extreme conditions may accelerate ageing.
+To ensure stable operation of the humidity sensor, the conditions described in the document [2]
+regarding exposure to volatile organic compounds must be met. Please note as well that this does
+apply not only to transportation and manufacturing, but also to operation of the SHT4x.
+
+
+
+
+www.sensirion.com / D1                               Version 3 – April 2022                                                7/18
+3 Electrical Specifications
+
+Valid for all electrical specifications: Typical values correspond to VDD = 3.3 V and T = 25 °C. Min.
+and max. values are valid in the full temperature range -40 °C … 125 °C and at declared VDD levels
+and are based on characterization.
+3.1 Electrical Characteristics
+  Parameter    Symbol                 Conditions             Min     Typ    Max    Unit              Comments
+    Supply
+                VDD                                          1.08    3.3    3.6     V                     -
+    voltage
+    Power-      VPOR            Static power supply
+                                                              0.6      -    1.08    V                     -
+ up/down level
+                                                                                               Voltage changes on the
+  Slew rate of
+                                                                                               supply between VDD, min
+   the supply     VDD, slew                                    -       -    20     V/ms
+                                                                                               and VDD, max. Faster slew
+     voltage
+                                                                                              rates may lead to a reset
+                                                               -     0.08   1.0    µA                  At 25°C
+                                      Idle state
+                                                               -       -    3.4                       At 125°C
+                                      Power up                 -      50     -     µA                      -
+                                                                                               Current while sensor is
+Supply current                     Measurement                 -     320    500    µA
+                    IDD                                                                              measuring
+ (no heater)                  Aver., high repeatability        -     2.2     -
+                                                                                          Aver. current consumption
+                              Aver., med. repeatability        -     1.2     -     µA     (continuous operation with
+                                                                                            one meas. per second)
+                              Aver., low repeatability         -     0.4     -
+                              Aver., high repeatability        -     2.6     -
+    Power
+                                                                                           Aver. power consumption
+ consumpt. at
+                      -       Aver., med. repeatability        -     1.4     -     µW     (continuous operation with
+  VDD=1.2V
+                                                                                            one meas. per second)
+  (no heater)
+                              Aver., low repeatability         -     0.5      -
+   Low level                                                                0.3*          -
+                    VIL                   -                    0       -            V
+ input voltage                                                              VDD
+   High level                                                0.7*                                         -
+                    VIH                   -                            -    VDD     V
+ input voltage                                               VDD
+    Pull up                        VDD < 1.62 V              820       -     -      Ω                     -
+                     Rp
+   resistors                        VDD ≥ 1.62 V             390       -     -      Ω                     -
+                                   VDD < 1.62V,                             0.2*
+                                                               -       -            V                     -
+                                  Rpullup > 820 Ω                           VDD
+  Low level                    VDD = 1.62V … 2.0V,                          0.2*
+                    VOL                                        -       -            V                     -
+output voltage                    Rpullup > 390 Ω                           VDD
+                                   VDD > 2.0V,
+                                                               -       -    0.4     V                     -
+                                  Rpullup > 390 Ω
+                                                                                          Capacitive bus load can be
+                               RP ≤ 820 Ω: fast mode           -       -    400    pF             determined from
+                                                                                              Cb < trise /(0.8473*Rp).
+  Capacitive
+                     Cb                                                                   Rise times are trise = 300 ns
+   bus load                       Rp = 390 Ω,
+                                                                                                 for fast mode and
+                                VDD > 1.62 V: fast             -       -    340    pF     trise = 120 ns for fast mode
+                                   mode plus
+                                                                                                          plus
+Table 3: Electrical specifications.
+
+
+
+
+www.sensirion.com / D1                             Version 3 – April 2022                                           8/18
+3.2 Timings
+Max. values are measured at -40°C and 1.08 V supply voltage (based on characterization).
+        Parameter                 Symbol            Conditions              Min.        Typ.        Max. Units            Comments
+                                                                                                                      Time between VDD
+                                                After hard reset,                                                     reaching VPOR and
+     Power-up time                    tPU                                     -          0.3           1        ms
+                                                   VDD ≥ VPOR                                                        sensor entering idle
+                                                                                                                              state
+                                                                                                                    Time between ACK of
+                                                                                                                   soft reset command and
+     Soft reset time                  tSR        After soft reset             -            -           1        ms   sensor entering idle
+                                                                                                                   state. Also valid for I2C
+                                                                                                                      general call reset.
+                                                       Low                                                               Including tPU:
+                                    tMEAS,l                                   -          1.3          1.6       ms
+                                                   repeatability                                                    The three repeatability
+     Measurement                                      Med.                                                            modes differ with
+                                   tMEAS,m                                    -          3.7          4.5       ms
+       duration                                    repeatability                                                   respect to measurement
+                                                      High                                                         duration, noise level and
+                                   tMEAS,h                                    -          6.9          8.3       ms   energy consumption
+                                                   repeatability
+                                                                                                                       After that time the heater
+                                                    Long pulse               0.9           1          1.1        s     is automatically switched
+                                                                                                                       off
+  Heater-on duration                tHeater
+                                                                                                                       After that time the heater
+                                                    Short pulse             0.09         0.1         0.11        s     is automatically switched
+                                                                                                                       off
+
+Table 4 System timing specifications.
+
+3.3 Absolute Maximum Ratings
+Stress levels beyond those listed in Table 5 may cause permanent damage or affect the reliability
+of the device. These are stress ratings only and functional operation of the device at these
+conditions is not guaranteed. Ratings are only tested each at a time.
+
+                         Parameter                                                                          Rating
+                   Max. voltage on any pin                                                        VSS - 0.3 V … VDD + 0.3 V
+                Operating temperature range                                                            -40 °C … 125 °C
+                Storage temperature range11                                                            -40 °C …150 °C
+                          ESD HBM                                                                            2 kV
+                         ESD CDM                                                                            500 V
+              Latch up, JESD78 Class II, 125°C                                                            +-100 mA
+Table 5: Absolute maximum ratings.
+
+
+
+
+11 The recommended storage temperature range is 10-50°C. Please consult the document “SHTxx Handling Instructions” for more information.
+
+
+
+
+www.sensirion.com / D1                                         Version 3 – April 2022                                                       9/18
+4 Sensor Operation
+
+4.1 I2C communication
+I2C communication is based on NXP’s I2C-bus specification and user manual UM10204, Rev.6, 4
+April 2014. Supported I2C modes are standard, fast mode, and fast mode plus. Data is transferred
+in multiples of 16-bit words and 8-bit checksum (cyclic redundancy check = CRC). All transfers
+must begin with a start condition (S) and terminate with a stop condition (P). To finish a read
+transfer, send not acknowledge (NACK) and stop condition (P). Addressing a specific slave device
+is done by sending its 7-bit I2C address followed by an eighth bit, denoting the communication
+direction: “zero” indicates transmission to the slave, i.e. “write”, a “one” indicates a “read” request.
+Schematics of the I2C transfer types are sketched in Error! Reference source not found.. The
+sensor does not support clock-stretching. In case the sensor receives a read header and is still
+busy with e.g. measurement or heating, it will return a NACK. Measurement data can only be
+received once and will be deleted from the sensor’s register after the first acknowledged I2C read
+header.
+
+
+
+
+Figure 11: I2C transfer types: First a write header is sent to the I2C slave, followed by a command, for
+example “measure RH&T with highest precision”. After the measurement is finished the read request directed
+to this I2C slave will be acknowledged and transmission of data will be started by the slave.
+4.2 I2C Communication Timing
+All details on the timing are following the interface specification of NXP’s user manual UM10204,
+Rev.6, 4 April 2014. Please follow mandatory capacitor and resistor requirements given in Table
+3.
+4.3 Data type & length
+I2C bus operates with 8-bit data packages. Information from the sensor to the master has a
+checksum after every second 8-bit data package.
+Humidity and temperature data will always be transmitted in the following way: The first value is
+the temperature signal (2 * 8-bit data + 8-bit CRC), the second is the humidity signal (2 * 8-bit data
++ 8-bit CRC).
+4.4 Checksum Calculation
+For read transfers each 16-bit data is followed by a checksum with the following properties
+
+                     Property                                              Value
+                       Name                                                CRC-8
+                  Message Length                                           16-bit
+                    Polynomial                                      0x31 (x8 + x5 + x4 +1)
+                   Initialization                                           0xFF
+                Reflect Input/Output                                    false/false
+                     Final XOR                                             0x00
+                     Examples                                       CRC(0xBEEF) = 0x92
+Table 6 Data checksum properties.
+
+The master may abort a read transfer after the 16-bit data if it does not require a checksum.
+
+
+
+www.sensirion.com / D1                     Version 3 – April 2022                                   10/18
+4.5 Command Overview
+
+  Command      Response length                                    Description
+    (hex)      incl. CRC (bytes)                                [return values]
+
+    0xFD                 6                measure T & RH with high precision (high repeatability)
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+    0xF6                 6            measure T & RH with medium precision (medium repeatability)
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+    0xE0                 6               measure T & RH with lowest precision (low repeatability)
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+    0x89                 6                                     read serial number
+                                             [2 * 8-bit data; 8-bit CRC; 2 * 8-bit data; 8-bit CRC]
+                                                                     soft reset
+    0x94                 -
+                                                                      [ACK]
+                                       activate heater with 200mW for 1s, including a high precision
+    0x39                 6                          measurement just before deactivation
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+                                      activate heater with 200mW for 0.1s including a high precision
+    0x32                 6                          measurement just before deactivation
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+                                       activate heater with 110mW for 1s including a high precision
+    0x2F                 6                          measurement just before deactivation
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+                                      activate heater with 110mW for 0.1s including a high precision
+    0x24                 6                          measurement just before deactivation
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+                                        activate heater with 20mW for 1s including a high precision
+    0x1E                 6                          measurement just before deactivation
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+                                       activate heater with 20mW for 0.1s including a high precision
+    0x15                 6                          measurement just before deactivation
+                                         [2 * 8-bit T-data; 8-bit CRC; 2 * 8-bit RH-data; 8-bit CRC]
+Table 7 Overview of I2C commands. If the sensor is not ready to process a command, e.g. because it is still
+measuring, it will response with NACK to the I2C read header. Given heater power values are typical and
+valid for VDD=3.3V.
+
+4.6 Conversion of Signal Output
+The digital sensor signals correspond to following humidity and temperature values:
+                                                     𝑆𝑅𝐻
+                                 𝑅𝐻 = (−6 + 125 ∙ 16       ) %RH                                       (1)
+                                                    2 −1
+                                                       𝑆𝑇
+                                   𝑇 = (−45 + 175 ∙ 16      ) °C                                       (2)
+                                                     2 −1
+                                                       𝑆𝑇
+                                   𝑇 = (−49 + 315 ∙ 16      ) °F                                       (3)
+                                                     2 −1
+N.B.: The RH conversion formula (1) allows values to be reported which are outside of the range
+of 0 %RH … 100 %RH. Relative humidity values which are smaller than 0 %RH and larger than
+100 %RH are non-physical, however these “uncropped” values might be found beneficial in some
+cases (e.g. when the distribution of the sensors at the measurement boundaries are of interest).
+For all users who do not want to engage in evaluation of these non-physical values, cropping of
+the RH signal to the range of 0 %RH … 100 %RH is advised.
+
+
+
+
+www.sensirion.com / D1                     Version 3 – April 2022                                      11/18
+4.7 Serial number
+Each sensor has a unique serial number, that is assigned by Sensirion during production. It is
+stored in the one-time-programmable memory and cannot be manipulated after production. The
+serial number is accessible via I2C command 0x89 and is transmitted as two 16-bit words, each
+followed by an 8-bit CRC.
+
+4.8 Reset & Abort
+A reset of the sensor can be achieved in three ways:
+    •   Soft reset: send the reset command described in Table 7.
+    •   I2C general call reset: all devices on I2C bus are reset by sending the command 0x06 to
+        the I2C address 0x00.
+    •   Power down (incl. pulling SCL and SDA low)
+Any command that triggers an action at the sensor can be aborted via I2C general call reset or soft
+reset.
+
+4.9 Heater Operation
+The sensor incorporates an integrated on-package heater which can be switched on by the set of
+commands given in Table 7. Three heating powers and two heating durations are selectable. After
+reception of a heater-on command, the sensor executes the following procedure:
+    1. The heater is enabled, and the timer starts its count-down.
+    2. On timer expiration a temperature and humidity measurement with the highest repeatability
+       is started, the heater remains enabled.
+    3. After the measurement is finished the heater is turned off.
+    4. Temperature and humidity values are now available for readout.
+The maximum on-time of the heater commands is 1 second in order to prevent overheating of the
+sensor by unintended usage of the heater. Thus, there is no dedicated command to turn off the
+heater. For extended heating periods it is required to send periodic heater-on commands, keeping
+in mind that the heater is designed for a maximal duty cycle of less than 10%. To obtain a fast
+increase in temperature the idle time between consecutive heating pulses shall be kept minimal.
+Possible Heater Use Cases
+There will be dedicated Sensirion application notes elaborating on various use cases of the
+heater. In general, the applications of the on-package heater range around:
+   1. Removal of condensed / spray water on the sensor surface. Although condensed water is
+        not a reliability / quality problem to the sensor, it will however make the sensor non-
+        responsive to RH changes in the air as long as there is liquid water on the surface.
+   2. Creep-free operation in high humid environments. Periodic heating pulses allow for creep-
+       free high-humidity measurements for extended times.
+Important notes for operating the heater:
+    1. The heater is designed for a maximum duty cycle of 10%, meaning the total heater-on-time
+       should not be longer than 10% of the sensor’s lifetime.
+    2. During operation of the heater, sensor specifications are not valid.
+    3. The temperature sensor can additionally be affected by the thermally induced mechanical
+       stress, offsetting the temperature reading from the actual temperature.
+    4. The sensor’s temperature (base temperature + temperature increase from heater) must not
+       exceed Tmax = 125 °C in order to have proper electrical functionality of the chip.
+    5. The heater draws a large amount of current once enabled (up to ~75mA in the highest
+       power setting). Although a dedicated circuitry draws this current smoothly, the power supply
+       must be strong enough to avoid large voltage drops that could provoke a sensor reset.
+
+
+
+www.sensirion.com / D1                  Version 3 – April 2022                                12/18
+    6. If higher heating temperatures are desired, consecutive heating commands have to be sent
+       to the sensor. The heater shall only be operated in ambient temperatures below 65°C else
+       it could drive the sensor outside of its maximal operating temperature.
+
+5 Physical Specification
+
+5.1 Package Description
+SHT4x is provided in an open-cavity dual flat no lead (DFN) package. The humidity sensor opening
+is centered on the top side of the package. The sensor chip is made of silicon, hosted on a copper
+lead frame and overmolded by an epoxy-based mold compound. Exposed bottom side of the
+leadframe with the metallic contacts is Ni/Pd/Au coated, side walls are bare copper.
+Moisture sensitivity level (MSL) of 1 according to IPC/JEDEC J-STD-020 is achieved. It is
+recommended to process the sensors within one year after date of delivery.
+
+5.2 Package Outline
+
+
+
+
+Figure 12 Dimensional drawing of SHT4x including package tolerances (units mm).
+
+5.3 Land Pattern
+The land pattern is recommended to be designed according to the used PCB and soldering process
+together with the physical outer dimensions of the sensor. For reference, the land pattern used with
+Sensirion’s PCBs and soldering processes is given in Figure 13.
+Soldering of the central die pad is optional. Sensirion recommends to not solder the central die pad
+because the sensor can reach higher temperatures upon heater activation.
+
+
+
+
+www.sensirion.com / D1                   Version 3 – April 2022                                13/18
+                                Figure 13: Recommended land pattern
+                               (in mm). Details can vary and depend on
+                               used PCBs and solder processes. There
+                                  shall be no copper under the sensor
+                                       other than at the pin pads.
+
+5.4 Pin Assignment & Laser Marking
+
+
+    Pin          Name                      Comments
+     1           SDA                Serial data, bidirectional
+     2            SCL           Serial clock, unidirectional input
+     3           VDD                     Supply voltage
+     4           VSS                         Ground
+
+
+Figure 14 Pin assignment (transparent top view). Dashed lines are only visible if sensor is viewed from
+below. The die pad is not directly connected to any pin.
+The laser marking consists of two lines, indicated in Figure 14. In the first line a filled circle serves
+as pin-1 indicator and is followed by “SH4”. The last character will indicate the accuracy class of
+this product (here “x” serves as place holder). In the second line, the first three characters specify
+the product characteristics according to positions 7, 8 and 9 of Table 9. The second three
+characters serve as internal batch tracking code.
+
+
+
+
+www.sensirion.com / D1                     Version 3 – April 2022                                   14/18
+5.5 Thermal Information
+                                                                         Heater off, die    Heater on, die
+                                    Heater off, die    Heater on, die
+                                                                             pad                 pad
+ Symbol         Description         pad soldered       pad soldered
+                                                                         not soldered       not soldered
+                                       (K/W)              (K/W)
+                                                                            (K/W)               (K/W)
+            Junction-to-ambient
+   𝑅𝜃𝐽𝐴                                  246                 308               297                357
+             thermal resistance
+              Junction-to-case
+   𝑅𝜃𝐽𝐶                                  189                 255               191                257
+             thermal resistance
+              Junction-to-board
+   𝑅𝜃𝐽𝐵                                  159                 225               193                258
+             thermal resistance
+              Junction-to-board
+   Ψ𝐽𝐵         characterization          159                 223               191                254
+                   param.
+               Junction-to-top
+   Ψ𝐽𝑇         characterization           38                 105               44                 112
+                   param.
+Table 8 Typical values for thermal metrics. In the “heater on” columns a heater power of 200 mW was
+assumed. Soldering of the die pad is not recommended, therefore the two right hand side columns are bold.
+Values are based on simulation.
+
+6 Quality and Material Contents
+
+Qualification of SHT4x is performed based on the JEDEC JESD47 qualification test method,
+qualification report available on request. The device is fully RoHS and WEEE compliant, e.g. free
+of Pb, Cd, and Hg.
+For general remarks of best practice in processing humidity sensor please refer to the handling
+instructions [2].
+7 Tape and Reel Packaging
+
+All specifications for the tape and reel packaging can be found on Figure 15. Reel diameters are
+13 inch and 8 inch for the 10k and the 2.5k packaging sizes, respectively.
+
+
+
+
+Figure 15: Tape and reel specifications including sensor orientation in pocket (see indication of two sensors
+on the right side of the tape).
+
+
+
+
+www.sensirion.com / D1                      Version 3 – April 2022                                      15/18
+8 Product Name Nomenclature
+
+   position       value(s)                                     explanation
+      1              S                                          Sensirion
+      2              H                                       Humidity Signal
+      3              T                                    Temperature Signal
+      4              4                                 Fourth product generation
+                     0                                       Base accuracy
+       5             1                                   Intermediate accuracy
+                     5                                       Best accuracy
+       6              -                                         delimiter
+                     A                             I2C interface with 0x44 address
+       7
+                     B                             I2C interface with 0x45 address
+       8             D                                        DFN package
+       9             1                                          reserved
+                     B                                package without membrane
+      10             F                     Package with integrated, patented PTFE membrane
+                     P                     Package with integrated, removable protection cap
+      11              -                                         delimiter
+      12             R                                  Tape on reel packaging
+                     2                          Packaging article contains 2’500 pieces
+      13
+                     3                         Packaging article contains 10’000 pieces
+
+Table 9 SHT4x product name nomenclature.
+
+9 Ordering Information
+
+ Material Description    Material Number                      Details                  Quantity (pcs)
+  SHT40-AD1B-R2            3.000.465             base RH&T acc., 0x44 I2C addr.           2’500
+  SHT40-AD1B-R3            3.000.353             base RH&T acc., 0x44 I2C addr.           10’000
+                                                 base RH&T acc., 0x44 I2C addr.,
+  SHT40-AD1F-R3                 tbd            including patented PTFE membrane           10’000
+                                                         available Q3/22
+                                                 base RH&T acc., 0x44 I2C addr.,
+  SHT40-AD1P-R3                 tbd                  removable protection cap             10’000
+                                                         available Q3/22
+  SHT40-BD1B-R2              3.000.492           base RH&T acc., 0x45 I2C addr.           2’500
+  SHT40-BD1B-R3              3.000.610           base RH&T acc., 0x45 I2C addr.           10’000
+  SHT41-AD1B-R2              3.000.466        intermed. RH&T acc., 0x44 I2C addr.         2’500
+  SHT41-AD1B-R3              3.000.611        intermed. RH&T acc., 0x44 I2C addr.         10’000
+  SHT45-AD1B-R2              3.000.645       ±1.0 %RH, ±0.1°C acc., 0x44 I2C addr.        2’500
+  SHT45-AD1B-R3              3.000.750       ±1.0 %RH, ±0.1°C acc., 0x44 I2C addr.        10’000
+
+Table 10 SHT4x ordering options.
+
+
+
+
+www.sensirion.com / D1                     Version 3 – April 2022                                  16/18
+10 Bibliography
+
+
+[1] K. Ehrhorn, "A Humidity Sensor and a Methode for Manufacturing the Same.". UK, DE, FR, NL, DM, BE, US, CN
+    Patent EP1810013, US7741950, CN101040181, 2005.
+[2] Sensirion, "Handling Instructions for Humidity Sensors," 2020.
+
+
+11 Revision History
+
+       Date              Version    Page(s)                                   Changes
+   October 2020             1         all                                  Initial release
+    July 2021               2       multiple                              Typo correction
+                                       3                          Included checksum in Figure 1
+                                       4             Included description of NIST traceability in section 2
+                                       4                  Included repeatability clarification in Table 1
+                                      10                   Clarified I2C communication in section 4.1
+                                       9                 Removed waiting time specification in Table 4
+                                      12                           Specified serial number in 4.7
+                                      15                     Updated qualification status in section 6
+                                      11           Deleted binary com. & included return values in Table 7
+                                      12              Updated note on duty cycle of heater in section 4.9
+                                      12          Added note on large current drawn by heater in section 4.9
+                                      16                    Updated ordering information in Table 10
+     April 2022            3        multiple          Included SHT45 RH- and T-accuracy specifications
+                                    multiple                Extended max. heater duty cycle to 10%
+                                       4                  Reduced RH response time to 4s in Table 1
+                                       4               Reduced long-term drift to <0.2 %RH/y in Table 1
+                                       4             Reduced hysteresis to ±0.8%RH at 25°C in Table 1
+                                       9                 Updated max. measurement times in Table 4
+                                      10               Included I2C communication timing in section 4.2
+                                      16                   Introduced new product version in Table 9
+                                      16                    Updated ordering information in Table 10
+
+
+
+
+www.sensirion.com / D1                         Version 3 – April 2022                                     17/18
+Important Notices
+Warning, Personal Injury
+
+Do not use this product as safety or emergency stop devices or in any other application where failure of the product could result
+in personal injury. Do not use this product for applications other than its intended and authorized use. Before installing, handling,
+using or servicing this product, please consult the data sheet and application notes. Failure to comply with these instructions
+could result in death or serious injury.
+
+If the Buyer shall purchase or use SENSIRION products for any unintended or unauthorized application, Buyer shall defend, indemnify and
+hold harmless SENSIRION and its officers, employees, subsidiaries, affiliates and distributors against all claims, costs, damages and
+expenses, and reasonable attorney fees arising out of, directly or indirectly, any claim of personal injury or death associated with such
+unintended or unauthorized use, even if SENSIRION shall be allegedly negligent with respect to the design or the manufacture of the product.
+ESD Precautions
+The inherent design of this component causes it to be sensitive to electrostatic discharge (ESD). To prevent ESD-induced damage and/or
+degradation, take customary and statutory ESD precautions when handling this product. See application note “ESD, Latchup and EMC” for
+more information.
+Warranty
+SENSIRION warrants solely to the original purchaser of this product for a period of 12 months (one year) from the date of delivery that this
+product shall be of the quality, material and workmanship defined in SENSIRION’s published specifications of the product. Within such
+period, if proven to be defective, SENSIRION shall repair and/or replace this product, in SENSIRION’s discretion, free of charge to the Buyer,
+provided that:
+•       notice in writing describing the defects shall be given to SENSIRION within fourteen (14) days after their appearance;
+•       such defects shall be found, to SENSIRION’s reasonable satisfaction, to have arisen from SENSIRION’s faulty design, material, or
+        workmanship;
+•       the defective product shall be returned to SENSIRION’s factory at the Buyer’s expense; and
+•       the warranty period for any repaired or replaced product shall be limited to the unexpired portion of the original period.
+This warranty does not apply to any equipment which has not been installed and used within the specifications recommended by SENSIRION
+for the intended and proper use of the equipment. EXCEPT FOR THE WARRANTIES EXPRESSLY SET FORTH HEREIN, SENSIRION
+MAKES NO WARRANTIES, EITHER EXPRESS OR IMPLIED, WITH RESPECT TO THE PRODUCT. ANY AND ALL WARRANTIES,
+INCLUDING WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, ARE
+EXPRESSLY EXCLUDED AND DECLINED.
+SENSIRION is only liable for defects of this product arising under the conditions of operation provided for in the data sheet and proper use
+of the goods. SENSIRION explicitly disclaims all warranties, express or implied, for any period during which the goods are operated or stored
+not in accordance with the technical specifications.
+SENSIRION does not assume any liability arising out of any application or use of any product or circuit and specifically disclaims any and all
+liability, including without limitation consequential or incidental damages. All operating parameters, including without limitation recommended
+parameters, must be validated for each customer’s applications by customer’s technical experts. Recommended parameters can and do
+vary in different applications.
+SENSIRION reserves the right, without further notice, (i) to change the product specifications and/or the information in this document and (ii)
+to improve reliability, functions and design of this product.
+Copyright © 2022, by SENSIRION. CMOSens® is a trademark of Sensirion. All rights reserved
+
+Headquarters and Subsidiaries
+ Sensirion AG                                      Sensirion Inc., USA                              Sensirion Korea Co. Ltd.
+ Laubisruetistr. 50                                phone: +1 312 690 5858                           phone: +82 31 337 7700~3
+ CH-8712 Staefa ZH                                 info-us@sensirion.com                            info-kr@sensirion.com
+ Switzerland                                       www.sensirion.com                                www.sensirion.com/kr
+
+ phone: +41 44 306 40 00                           Sensirion Japan Co. Ltd.                         Sensirion China Co. Ltd.
+ fax:    +41 44 306 40 30                          phone: +81 3 3444 4940                           phone: +86 755 8252 1501
+ info@sensirion.com                                info-jp@sensirion.com                            info-cn@sensirion.com
+ www.sensirion.com                                 www.sensirion.com/jp                             www.sensirion.com/cn
+
+ Sensirion Taiwan Co. Ltd
+ phone: +886 3 5506701
+ info@sensirion.com
+ www.sensirion.com
+                                                   To find your local representative, please visit www.sensirion.com/distributors
+
+
+
+
+www.sensirion.com / D1                                      Version 3 – April 2022                                                            18/18
+
