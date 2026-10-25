@@ -1,4 +1,4 @@
-# Devin prompt — VitalQ fixv19c: last BOM pass, then freeze
+# Devin prompt — VitalQuant fixv19c: last BOM pass, then freeze
 
 Copy everything below the line into Devin.
 
@@ -34,11 +34,11 @@ Also confirm and leave alone unless they fail: C5349491 MLX90632 = 3 pieces (nee
 
 ## Package
 
-Produce `fab/VitalQ_v2_fixv19c_fabrication.zip`. It supersedes fixv19a and fixv19b; say so in one line at the top of `FAB_NOTES.md`. Preserve both earlier zips untouched.
+Produce `fab/VitalQuant_v2_fixv19c_fabrication.zip`. It supersedes fixv19a and fixv19b; say so in one line at the top of `FAB_NOTES.md`. Preserve both earlier zips untouched.
 
 Hard constraints, same as before:
 
-- Do not modify `vitalq_v2.kicad_pcb`, the schematic, any gerber, any drill file, any CPL, or `positions_kicad.csv`. This is BOM-only.
+- Do not modify `vitalquant_v2.kicad_pcb`, the schematic, any gerber, any drill file, any CPL, or `positions_kicad.csv`. This is BOM-only.
 - Prove it: every gerber and drill member in the new zip must be **byte-identical** to fixv19a's. Put the sha256 comparison in the commit message. If anything differs, stop and tell me first.
 - Connectivity is unchanged because copper is unchanged. Say so explicitly.
 

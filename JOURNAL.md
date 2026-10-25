@@ -195,6 +195,14 @@ Exploded render veiw in a graph style interface for size perception:
 - the only issue now would be the freerouting loops devin gets stuck in. 
 <img width="1568" height="872" alt="image" src="https://github.com/user-attachments/assets/21c73956-c673-432c-955a-bbd1780736c6" />
 
+## Riyansh - 21 OCT
+1 hr
+- School ended today so now i have much more time to focus on this project and get it ready for funding.
+- Today i wanted to not spend to much time but also wanted to focus on getting the case ready for the final iteration
+- The only changes that were required to be made were the extension of the case so the newer esp32 module could fit and the holes in the case for the wiring for the ecg electrodes and the lipo
+- I also researched how heat disipation could be accuonted for because the new esp32 would be running the 2 million parameter locally so this would generate more heat
+- as a result I added some vents around the case to allow for it to cool down and I would not have to worry about the battery anyways because that had its own external compartment anyways
+- 
 
 
 

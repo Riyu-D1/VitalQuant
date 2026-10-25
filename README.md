@@ -17,9 +17,14 @@ earlier than conventional approaches.
 This is the VitalQuant monorepo — all VitalQuant work in one place:
 
 ```
-hardware/pcb/        order-ready fix_v19 board (ESP32-S3-MINI-1-N4R2);
+hardware/pcb/        order-ready fixv19d board (ESP32-S3-MINI-1-N4R2);
                      fab zip in hardware/pcb/fab/ — see hardware/README.md
-firmware/esp32/      sensor driver contract + hw_v0/hw_v1 profiles
+hardware/case/       V10 enclosure design (passes CAD checks; nothing
+                     printed, no physical fit validation)
+                     — layout detail in hardware/README.md
+firmware/esp32/      sensor driver contract + hw_v0/hw_v1/hw_v2 profiles
+firmware/vitalquant/ firmware v2 for ESP32-S3 (sensors, model, cloud, power)
+                     + POSIX host board simulator
 web/                 VitalQuant website (Vite + React 19 + Tailwind + three.js)
 software/            Python platform + services:
                      src/vitalquant/    core: ingest, processing, ml, quantum, synth, datasets
@@ -30,7 +35,8 @@ software/            Python platform + services:
                      simulations/   standalone research simulations
                      pyproject.toml, docker-compose.yml, .env.example
 docs/                design rationale: spec audit → research → architecture → schema
-                     → API → pipeline → ML plan → quantum-sim design → roadmap
+                     → API → pipeline → ML plan → quantum-sim design → roadmap;
+                     docs/FUNDER_SUMMARY.md — one-page status for reviewers
 JOURNAL.md           hardware/sensor research log
 .github/workflows/   CI
 ```

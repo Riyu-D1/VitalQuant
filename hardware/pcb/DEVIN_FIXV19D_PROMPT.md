@@ -1,4 +1,4 @@
-# Devin prompt — VitalQ fixv19d: four precision resistor substitutions
+# Devin prompt — VitalQuant fixv19d: four precision resistor substitutions
 
 Copy everything below the line into Devin.
 
@@ -34,7 +34,7 @@ Backup: C172047 (WR04X3013FTL, 9,800).
 - Change only these four lines in `fab/BOM_JLC.csv`. Values, designators, quantities and packages do not move.
 - Note each substitution in `FAB_NOTES.md` with the old code, new code, MPN, stock figure, and the reason (original out of stock at wmsc). Note the R63 tolerance reasoning specifically.
 - Add the four spare recommendations below to `FAB_NOTES.md` as an assembly note.
-- Produce `fab/VitalQ_v2_fixv19d_fabrication.zip`. It supersedes fixv19c and is the file I order. Preserve fixv19c untouched.
+- Produce `fab/VitalQuant_v2_fixv19d_fabrication.zip`. It supersedes fixv19c and is the file I order. Preserve fixv19c untouched.
 - Do not modify the pcb, schematic, gerbers, drills, CPLs or positions file. Prove it: every gerber and drill member byte-identical to fixv19a, sha256 in the commit message.
 - Do not touch the six extended parts that show wmsc-0 (ESP32-S3, LSM6DSV80X, W25Q512, RV-3028, SHT45, IM69D130). Those are JLC-sourced, not LCSC-catalogue, and are confirmed at BOM upload. Leave them exactly as they are.
 - Do not change J12, D10, D12 consignment.

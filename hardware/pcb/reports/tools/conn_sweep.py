@@ -535,8 +535,8 @@ def main():
         path = os.path.join(GERBER_DIR, fname)
         if not os.path.exists(path):
             # fall back to zip — frozen artifact: internal member names keep the
-            # legacy vitalq_v2- prefix even though the zip file is renamed
-            member = "gerbers/" + fname.replace("vitalquant_v2-", "vitalq_v2-", 1)
+            # legacy vitalquant_v2- prefix even though the zip file is renamed
+            member = "gerbers/" + fname.replace("vitalquant_v2-", "vitalquant_v2-", 1)
             with zipfile.ZipFile(FABZIP) as z:
                 data = z.read(member).decode("utf-8", "replace")
             tmp = "/tmp/_conn_" + fname.replace(" ", "_")
