@@ -1,8 +1,8 @@
 # Findings — SENSOR group A (U10 AS7341, U11/U20 TMP117, U12 MLX90632, U13 BME280)
 
 Revision: **fix_v19** @ `b9002188`. Sources: `reports/01_netlist_pinmap.csv`,
-`audit_netlist.xml` (Eeschema export of `vitalq_v2.kicad_sch`), `vitalq_v2.kicad_pcb`,
-`vitalq.pretty/*.kicad_mod`, `fab/BOM_JLC.csv`, datasheets in `reports/datasheets/`.
+`audit_netlist.xml` (Eeschema export of `vitalquant_v2.kicad_sch`), `vitalquant_v2.kicad_pcb`,
+`vitalquant.pretty/*.kicad_mod`, `fab/BOM_JLC.csv`, datasheets in `reports/datasheets/`.
 
 ## I2C bus architecture (as built)
 
@@ -55,7 +55,7 @@ float/skew and voiding on a 0.5 mm-pitch part; missing vias reduce thermal
 anchor for a sensor whose die temperature is the measured quantity (Ta).
 Recommend: windowpane the EP stencil and add the 8-via array in next rev; flag
 to JLC for stencil review of the current rev.
-Refs: `vitalq.pretty/MLX90632SLDDCB100SP.kicad_mod` pad 6; DOC3901090632
+Refs: `vitalquant.pretty/MLX90632SLDDCB100SP.kicad_mod` pad 6; DOC3901090632
 Fig 26 + Table 17 (D2=2.5, E2=2.1).
 
 ### M2 — U10 AS7341: LDR flash-LED headroom is Vf-marginal at the 92 mA setpoint

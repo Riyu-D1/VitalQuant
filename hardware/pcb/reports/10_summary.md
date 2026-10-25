@@ -1,7 +1,7 @@
-# 10 — Summary: VitalQ v2 fix_v19 fab-gate audit → fixv19a verdict
+# 10 — Summary: VitalQuant v2 fix_v19 fab-gate audit → fixv19a verdict
 
-Target audited: `feature/vitalq-firmware-v2` @ b9002188 · `vitalq_v2.kicad_pcb` sha 78441506…
-Artifact now evaluated: **`fab/VitalQ_v2_fixv19a_fabrication.zip`** (sha cf3336f0…10a8,
+Target audited: `feature/vitalquant-firmware-v2` @ b9002188 · `vitalquant_v2.kicad_pcb` sha 78441506…
+Artifact now evaluated: **`fab/VitalQuant_v2_fixv19a_fabrication.zip`** (sha cf3336f0…10a8,
 37 members, 26 byte-identical to v19 + 11 intentional updates; original v19 preserved untouched).
 
 ## Severity counts (as-found → as-fixed)
@@ -32,7 +32,7 @@ connectivity (rerun tools/conn_sweep.py on new gerbers).
 
 ## Recommendation
 
-Order `VitalQ_v2_fixv19a_fabrication.zip` — NOT the original v19 file — with the FAB_NOTES
+Order `VitalQuant_v2_fixv19a_fabrication.zip` — NOT the original v19 file — with the FAB_NOTES
 assembly instructions (R61 DNP is already in the CPLs; U15 is already TPS61241) and the
 POFV-48 list attached. Two external confirmations before payment: (a) fab can do 0.15mm
 POFV (or accept surcharge), (b) TPS61241YFFR stock at C544431. Both are quote-time

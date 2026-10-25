@@ -20,8 +20,8 @@ requires_db = pytest.mark.skipif(not DATABASE_URL, reason="DATABASE_URL not set"
 @pytest.fixture(scope="session")
 def seeded():
     """Migrate schema + register one device; returns (device_id, api_key)."""
-    from vitalq.ingest.auth import hash_key
-    from vitalq.ingest.migrate import _run
+    from vitalquant.ingest.auth import hash_key
+    from vitalquant.ingest.migrate import _run
 
     asyncio.run(_run(DATABASE_URL, PROFILE.parents[1] / "supabase" / "migrations"))
 
@@ -46,8 +46,8 @@ def seeded():
 
 @pytest.fixture()
 async def client():
-    from vitalq.ingest import db
-    from vitalq.ingest.app import app
+    from vitalquant.ingest import db
+    from vitalquant.ingest.app import app
     async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),
                                  base_url="http://test") as c:
         yield c

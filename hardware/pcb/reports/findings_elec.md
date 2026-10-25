@@ -1,7 +1,7 @@
-# VitalQ v2 — Electrical Adequacy Audit (fab-gate)
+# VitalQuant v2 — Electrical Adequacy Audit (fab-gate)
 
-**Target**: `VitalQ_v2_fixv19_fabrication.zip` (fix_v19) @ commit `b9002188`, branch `feature/vitalq-firmware-v2`.
-**Method**: pure S-expression extraction of `vitalq_v2.kicad_pcb` (302 footprints, 1,027 pads, 8 NPTH, 45 unconnected pads) → `06_tool_output/01_netlist_pinmap_fixed.csv`; Euclidean pad-to-pad distances; BOM values from `BOM.csv`, MPNs/dielectrics from `BOM_JLC.csv`; datasheet limits from `reports/datasheets/`. Computations in `tools/elec_audit.py`.
+**Target**: `VitalQuant_v2_fixv19_fabrication.zip` (fix_v19) @ commit `b9002188`, branch `feature/vitalquant-firmware-v2`.
+**Method**: pure S-expression extraction of `vitalquant_v2.kicad_pcb` (302 footprints, 1,027 pads, 8 NPTH, 45 unconnected pads) → `06_tool_output/01_netlist_pinmap_fixed.csv`; Euclidean pad-to-pad distances; BOM values from `BOM.csv`, MPNs/dielectrics from `BOM_JLC.csv`; datasheet limits from `reports/datasheets/`. Computations in `tools/elec_audit.py`.
 **Limitation**: the board source cannot be cryptographically proven to be the exact source of the fab ZIP; netlist taken from board at b9002188. No `PMID`-named net exists on this design — the system rail is `VBAT_SYS`.
 
 ---

@@ -1,7 +1,7 @@
-# Footprint / Land-Pattern Audit — fix_v19 (vitalq_v2)
+# Footprint / Land-Pattern Audit — fix_v19 (vitalquant_v2)
 
 **Scope:** every IC footprint + J1 USB-C + J12 FFC + J8 Tag-Connect + all WLP/QFN/BGA parts + representative discretes (SOD-323, SOT-23/363, FemtoFET PicoStar, 0402/0603).
-**Method:** direct S-expression parse of `vitalq_v2.kicad_pcb` (302 footprints / 1027 pads), then every pad size/orientation was **verified against the released fab Gerbers** (`fab/gerbers/`, KiCad PCBNEW 10.0.4) by decoding aperture macros (`RoundRect` = radius + 4 corner XY + rotation) and flash coordinates. All geometry quoted is as-rendered copper. Datasheet values from `reports/datasheets/*.txt`.
+**Method:** direct S-expression parse of `vitalquant_v2.kicad_pcb` (302 footprints / 1027 pads), then every pad size/orientation was **verified against the released fab Gerbers** (`fab/gerbers/`, KiCad PCBNEW 10.0.4) by decoding aperture macros (`RoundRect` = radius + 4 corner XY + rotation) and flash coordinates. All geometry quoted is as-rendered copper. Datasheet values from `reports/datasheets/*.txt`.
 **Verdict rule:** PASS = within ~±15 % of manufacturer value / inside tolerance; FAIL = outside, missing fab data, or materially inconsistent; UNVERIFIABLE = no manufacturer land pattern available.
 
 Detail rows: `05_footprints.csv` (one row per measured dimension).
@@ -14,10 +14,10 @@ Detail rows: `05_footprints.csv` (one row per measured dimension).
 Six Ø0.23 mm pads at 0.4 mm pitch match TI's YFF land exactly, but all six are `F.Cu,F.Mask` **with no `F.Paste`**. The `F_Paste` gerber contains zero flashes at U15's site (x≈40.6–41.0, y≈−38.4..−39.2) while adjacent U7 has a full set. The part receives no solder paste → cannot reflow-attach. Confirmed in the fabricated output, not just source.
 
 ### 1.2 U8 — ADS1292R (RSM0032B, QFN-32 4×4): pads +36 %, EP −26 %
-Signal pads render 0.2 × 0.75 mm vs TI land 0.2 × 0.55 (+36 %); EP 2.85 × 2.85 mm vs 3.85 × 3.85 (−26 %). Pads are correctly oriented radially — **no pad-to-pad overlap** (earlier working hypothesis of a 0.2 mm overlap was a rotation-parse artifact and is retracted). Over-length lands increase solder wicking toward the package edge while the undersized EP shrinks the thermal/mechanical joint. Fix `vitalq:QFN40P400X400X100-33N-D` → 0.2 × 0.55 pads, EP 3.85.
+Signal pads render 0.2 × 0.75 mm vs TI land 0.2 × 0.55 (+36 %); EP 2.85 × 2.85 mm vs 3.85 × 3.85 (−26 %). Pads are correctly oriented radially — **no pad-to-pad overlap** (earlier working hypothesis of a 0.2 mm overlap was a rotation-parse artifact and is retracted). Over-length lands increase solder wicking toward the package edge while the undersized EP shrinks the thermal/mechanical joint. Fix `vitalquant:QFN40P400X400X100-33N-D` → 0.2 × 0.55 pads, EP 3.85.
 
 ### 1.3 U19 — TCA6408A (RSV0016A, UQFN-16): pads +33…50 %, centre pads missing
-Pads render 0.2 mm along pitch × 0.8–0.9 mm radial vs TI RSV0016A example ≈0.2 × 0.6 (+33–50 %). Orientation is correct — no overlap (verified in gerber: rows gap 0.2 mm). The RSV package outline shows two ~1.2 mm centre metal areas that the footprint omits — confirm whether the package exposes them. Fix `vitalq:TCA6408A_RSV` length to ~0.6–0.7 and review EP.
+Pads render 0.2 mm along pitch × 0.8–0.9 mm radial vs TI RSV0016A example ≈0.2 × 0.6 (+33–50 %). Orientation is correct — no overlap (verified in gerber: rows gap 0.2 mm). The RSV package outline shows two ~1.2 mm centre metal areas that the footprint omits — confirm whether the package exposes them. Fix `vitalquant:TCA6408A_RSV` length to ~0.6–0.7 and review EP.
 
 ### 1.4 U26 — SN74AXC2T245 (RSW0010A, UQFN-10): pads +33–50 %
 Pads render 0.2 × 0.8–0.9 vs TI RSW0010A example 0.2 × 0.6. Correct orientation, no overlap — dimensional excess only.
@@ -98,15 +98,15 @@ Reproduced where it had coverage (pad counts/min dims for AS7341, BGA30/56, ESP3
 
 ## 7. Fix list (library/source changes — NOT applied; design files untouched)
 
-1. `vitalq:TPS61240_YFF` — add `F.Paste` to all six pads (TI example: ~Ø0.25 apertures). **[release blocker]**
-2. `vitalq:QFN40P400X400X100-33N-D` — pads 0.2×0.55, EP 3.85×3.85 per RSM0032B.
-3. `vitalq:TCA6408A_RSV` — pads ~0.2×0.6–0.7; review the two ~1.2 mm centre pads.
+1. `vitalquant:TPS61240_YFF` — add `F.Paste` to all six pads (TI example: ~Ø0.25 apertures). **[release blocker]**
+2. `vitalquant:QFN40P400X400X100-33N-D` — pads 0.2×0.55, EP 3.85×3.85 per RSM0032B.
+3. `vitalquant:TCA6408A_RSV` — pads ~0.2×0.6–0.7; review the two ~1.2 mm centre pads.
 4. `Package_DFN_QFN:Texas_RSW0010A_UQFN-10` — pads ~0.2×0.6.
 5. `Package_SO:VSSOP-8_2.3x2mm_P0.5mm` — pads 0.3×0.85 per DCU0008A.
-6. `vitalq:TMP117_DRV_NOPASTE` — signal pads 0.3×0.45 (keep no-paste EP).
+6. `vitalquant:TMP117_DRV_NOPASTE` — signal pads 0.3×0.45 (keep no-paste EP).
 7. SOT-23-5/6, SOT-363 — trim toward ~1.1 mm heel (marginal).
 8. U6/U7/U22 footprints — unify ball-pad Ø and add explicit `solder_mask_margin` ≈0.04–0.05 for true NSMD.
-9. `vitalq:MLX90632SLDDCB100SP` — reduce stencil apertures toward 0.25 mm squares.
+9. `vitalquant:MLX90632SLDDCB100SP` — reduce stencil apertures toward 0.25 mm squares.
 10. `Package_SON` U2/U3 pads — fine geometrically; confirm TI asymmetric DLA/DSG detail if exact-match is wanted.
 
 *Tools:* `reports/tools/extract_fp_geometry.py` (S-expr pad geometry) + gerber aperture/flash analysis. kicad-cli/pcbnew unavailable. Design files unmodified; outputs confined to `hardware/pcb/reports/`.

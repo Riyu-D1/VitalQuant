@@ -1,8 +1,8 @@
 """ML detectors + evaluation tests."""
 import numpy as np
 
-from vitalq.ml.detectors import AnomalyEnsemble, LagForecaster, PCARecon
-from vitalq.ml.experiments import auprc, auroc
+from vitalquant.ml.detectors import AnomalyEnsemble, LagForecaster, PCARecon
+from vitalquant.ml.experiments import auprc, auroc
 
 
 def _features(n=200, seed=0):

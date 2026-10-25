@@ -1,0 +1,109 @@
+	(footprint "vitalquant:Fiducial_1mm"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "10.0")
+		(layer "B.Cu")
+		(uuid "bddaaf56-c6ab-4638-8863-41e9b9ff84cf")
+		(at 3.06 -9.19 180)
+		(descr "Fiducial, circular marking, 1mm bare copper, 2mm soldermask opening (Level A)")
+		(tags "fiducial")
+		(property "Reference" "FID4"
+			(at 0 1.95 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "66cb9764-92ab-4067-91a5-c9dab5df5481")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "FID"
+			(at 0 -1.95 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "514c9fa9-b856-41c8-aac1-96edb7f1f3ab")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "c1f7bb5b-68ef-4e27-8be7-e2312c7392a7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "81af00ad-5a0f-4056-aa9d-7979cf6f6a49")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/2c9ec6c4-ae46-40c7-b58f-c2da4f8dc43e")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr smd exclude_from_bom)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 1.25 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "cf4dd26b-828a-4562-86a5-992621430dff")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.Fab")
+			(uuid "51dd975e-dfa4-4053-b369-5e7a0a352920")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 0)
+			(layer "B.Fab")
+			(uuid "7eb759a8-5b14-4b5f-9ca2-70c9ca149e2f")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "B.Cu" "B.Mask")
+			(net "unconnected-(FID4-FID-Pad1)")
+			(solder_mask_margin 0.5)
+			(clearance 0.6)
+			(uuid "0dbadc46-8773-4c54-807d-853dadfd3f3c")
+		)
+		(embedded_fonts no)
+	)

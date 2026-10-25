@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extract per-footprint pad GEOMETRY from vitalq_v2.kicad_pcb.
+"""Extract per-footprint pad GEOMETRY from vitalquant_v2.kicad_pcb.
 
 For each requested reference designator (or all), dump every pad:
   number, type, shape, local x/y, size W x H, mask/paste overrides, layers.
@@ -7,7 +7,7 @@ Pure s-expression parse. Read-only wrt design files.
 """
 import re, sys, math, json
 
-PATH = sys.argv[1] if len(sys.argv) > 1 else "hardware/pcb/vitalq_v2.kicad_pcb"
+PATH = sys.argv[1] if len(sys.argv) > 1 else "hardware/pcb/vitalquant_v2.kicad_pcb"
 
 src = open(PATH, encoding="utf-8").read()
 TOK = re.compile(r'\s*([()]|"(?:[^"\\]|\\.)*"|[^\s()]+)')

@@ -1,4 +1,4 @@
--- VitalQ initial schema — docs/04-database-schema.md
+-- VitalQuant initial schema — docs/04-database-schema.md
 -- Plain Postgres (15+/17): declarative partitioning, no TimescaleDB.
 
 create schema if not exists config;
@@ -264,5 +264,5 @@ create table if not exists ml.predictions (
 
 -- ── access hardening (prototype RLS) ─────────────────────────────────────────
 -- Ingest role writes raw only; raw is append-only for it (spec: never overwrite raw).
--- Supabase deployments: create role `vitalq_ingest` and grant INSERT/SELECT on raw.*.
+-- Supabase deployments: create role `vitalquant_ingest` and grant INSERT/SELECT on raw.*.
 -- RLS on meta.sessions for dashboard readers is configured at deploy time.

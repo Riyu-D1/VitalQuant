@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 PARENT = ROOT.parent
-SCH, PCB = ROOT / 'vitalq_v2.kicad_sch', ROOT / 'vitalq_v2.kicad_pcb'
+SCH, PCB = ROOT / 'vitalquant_v2.kicad_sch', ROOT / 'vitalquant_v2.kicad_pcb'
 
 # comment(BOM row) -> resolved LCSC / marker
 ROW = {

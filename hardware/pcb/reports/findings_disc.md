@@ -1,14 +1,14 @@
 # Findings — Discretes + Optical LED group (fab-gate audit)
 
-**Target:** fix_v19 @ `b9002188` (`vitalq_v2.kicad_pcb` sha `78441506…`, fab zip `VitalQ_v2_fixv19_fabrication.zip` sha `5f976845…`)
+**Target:** fix_v19 @ `b9002188` (`vitalquant_v2.kicad_pcb` sha `78441506…`, fab zip `VitalQuant_v2_fixv19_fabrication.zip` sha `5f976845…`)
 **Scope:** U16 (SFH 7072), D10/D11/D12/D25 LEDs, D1–D9/D21–D24/D26–D30 ESD (18× TPD1E10B06DPYR), D33 1N5819WS, Q1/Q2/Q4 CSD13380F3T, Q3 BC847BS-7-F, Q6 AO3401A, L1/L2 DFE201612E.
-**Method:** pure s-expression re-extraction of `vitalq_v2.kicad_pcb` (pad→net map; the shipped `01_netlist_pinmap.csv` has an empty `net` column — its parser read `net[2]` but pads store `(net "NAME")` single-arg; corrected parse used throughout), cross-checked vs `vitalq_v2.kicad_sch` embedded symbol pin-maps, `fab/BOM_JLC.csv`, `fab/BOM.csv` (DNP column), `fab/CPL_JLC.csv`, and `reports/datasheets/*.txt`.
+**Method:** pure s-expression re-extraction of `vitalquant_v2.kicad_pcb` (pad→net map; the shipped `01_netlist_pinmap.csv` has an empty `net` column — its parser read `net[2]` but pads store `(net "NAME")` single-arg; corrected parse used throughout), cross-checked vs `vitalquant_v2.kicad_sch` embedded symbol pin-maps, `fab/BOM_JLC.csv`, `fab/BOM.csv` (DNP column), `fab/CPL_JLC.csv`, and `reports/datasheets/*.txt`.
 
 ---
 
 ## A. Corrected premise
 
-**TPD1E10B06DPYR is BIDIRECTIONAL, not unidirectional.** The brief said "unidirectional part!"; the datasheet in corpus says the opposite: *"TPD1E10B06 is a bidirectional TVS"*, symmetric breakdown `VBR1,2 = VBR2,1 = 6 V`, recommended range "Pin 1 to 2 or Pin 2 to 1: ±5.5 V" (`TPD1E10B06DPYR.txt` lines ~310, ~229, ~182). Consequence: mounting orientation is electrically irrelevant, though the design still follows the datasheet convention pin1=IO / pin2=GND on all 18 placements. **No polarity defect here.** The `vitalq:D_TVS_2` schematic symbol is even documented "Bidirectional TVS" — consistent.
+**TPD1E10B06DPYR is BIDIRECTIONAL, not unidirectional.** The brief said "unidirectional part!"; the datasheet in corpus says the opposite: *"TPD1E10B06 is a bidirectional TVS"*, symmetric breakdown `VBR1,2 = VBR2,1 = 6 V`, recommended range "Pin 1 to 2 or Pin 2 to 1: ±5.5 V" (`TPD1E10B06DPYR.txt` lines ~310, ~229, ~182). Consequence: mounting orientation is electrically irrelevant, though the design still follows the datasheet convention pin1=IO / pin2=GND on all 18 placements. **No polarity defect here.** The `vitalquant:D_TVS_2` schematic symbol is even documented "Bidirectional TVS" — consistent.
 
 ## B. Real findings (ordered by severity)
 
@@ -29,7 +29,7 @@
 J10/J12 are the material gap if the optical flex or sensor pads are user/skin-accessible — a strike on PD_K/PD_A lands directly on MAX86141 analog pins with no series element. Recommend TVS or at minimum series-R on those lines at the flex interface, and a note on CC/FSR.
 
 ### B3 — WARN: LED pin-1 = ANODE convention on generic cathode-marked footprints (assembly risk)
-All four discrete LEDs use the custom `vitalq:LED_AK` symbol, documented "pin 1 anode, pin 2 cathode", wired pad1=anode:
+All four discrete LEDs use the custom `vitalquant:LED_AK` symbol, documented "pin 1 anode, pin 2 cathode", wired pad1=anode:
 - D11 pad1=IR_AN, D12 pad1=NIR_AN, D25 pad1=LED_A, D10 pad1=+3V3 (anode side).
 The generic KiCad `LED_0402/0603` footprints place the pin-1/cathode indicator on pad 1 — i.e., the footprint mark sits on the **anode** pad in this design (verified: silk dot at (−1.09,0) adjacent to pad1 for D11/D12; chamfered fab corner + extended silk on pad1 side for D25). For D11 this is actually *correct* by its own datasheet ("Package marking: Anode", SFH4053 pin 1 = anode). For D12 (XL0603NRC730, consigned — cathode marking unknown) and D25 (KT-0603G), a vendor/JLC technician following the common "mark = cathode" convention would mount them backwards; a backwards LED simply doesn't light, but it's a real fab-gate risk. **Action:** add explicit A/K orientation callouts to the fab notes/assembly drawing and confirm rotation in the JLC preview; verify the consigned XL0603NRC730's actual marking before build. CPL rotations themselves are consistent (all CPL entries equal the board footprint rotations — see D).
 
@@ -46,7 +46,7 @@ BQ25170 TS spec (corpus): `ITS_BIAS ≈ 38 µA`, charge window ≈ 188 mV (hot) 
 Every electrode-facing TPD is on the IC-side node, not the connector pad node, e.g. J5.1 ECG1_PAD →R32(51k)→ `ECG_P` {D1, C50, C52, R30, **U8.6 direct**} — and the BIOZ/EDA chains additionally route through second resistors/coupling caps (e.g. J7.1→R80→FP_SURGE→C67→FP_ISO→R84→U7.B3 with D21 on the mid node). This is consistent with a defibrillation-protection convention (the 51k 2512s take the energy, TVS clamps residual at the IC pin) — but then the 51k resistors see near-full strike voltage; **verify the 2512s are pulse/defib rated** (they are generic YAGEO RV2512 in the BOM, not documented pulse-rated). For IEC 61000-4-2 (30 kV-rated TVS), the clamp still limits the IC node correctly. D26–D28 are the exception — they sit directly on the J12-exposed net (pad-side placement, the stronger arrangement).
 
 ### B8 — PASS: SFH 7072 (U16) internal wiring verified end-to-end
-Datasheet pinout (corpus txt p.9): 1=PD1_C, 2=PD1_A, 3=PD2_C, 4=IR_A, 5=G1_A, 6=G1_C, 7=R_A, 8=R_C, 9=IR_C, 10=PD2_A, 11=G2_A, 12=G2_C — matches the `vitalq:SFH7072` symbol pin-for-pin. Board: anodes (4,5,7,11)→TX_5V; cathodes G1_C→TX1(U6.D4), G2_C→TX2(U6.E5), R_C→TX3(U6.E4), IR_C→TX4(U6.C5); PD cathodes→AFE4900 INP/INP2, anodes→INM/INM2 — AFE4900 datasheet explicitly wants "INP: PD cathode / INM: PD anode" ✓. Vf vs TX_5V=5.0 V: worst-case green 2.8 V → ≥2.2 V headroom for the AFE's current sinks; TX_SUP(5 V) ≥ RX_SUP(3.3 V) satisfies the AFE4900 supply ordering. **Caveat (firmware, not board):** SFH7072 pulse ratings (300 mA green/red, 1 A IR) exceed the TPS61240's ~450 mA output ceiling feeding all four emitters — TX currents must be kept within rail capability.
+Datasheet pinout (corpus txt p.9): 1=PD1_C, 2=PD1_A, 3=PD2_C, 4=IR_A, 5=G1_A, 6=G1_C, 7=R_A, 8=R_C, 9=IR_C, 10=PD2_A, 11=G2_A, 12=G2_C — matches the `vitalquant:SFH7072` symbol pin-for-pin. Board: anodes (4,5,7,11)→TX_5V; cathodes G1_C→TX1(U6.D4), G2_C→TX2(U6.E5), R_C→TX3(U6.E4), IR_C→TX4(U6.C5); PD cathodes→AFE4900 INP/INP2, anodes→INM/INM2 — AFE4900 datasheet explicitly wants "INP: PD cathode / INM: PD anode" ✓. Vf vs TX_5V=5.0 V: worst-case green 2.8 V → ≥2.2 V headroom for the AFE's current sinks; TX_SUP(5 V) ≥ RX_SUP(3.3 V) satisfies the AFE4900 supply ordering. **Caveat (firmware, not board):** SFH7072 pulse ratings (300 mA green/red, 1 A IR) exceed the TPS61240's ~450 mA output ceiling feeding all four emitters — TX currents must be kept within rail capability.
 
 ### B9 — PASS: MOSFET gates all driven, none floating
 - Q1 gate `IR_GATE` ← TCA6408A P-port (push-pull per datasheet) + R48 100k→GND. Drives IR LED low-side; VDS on drain ≤3.3 V ≪ 12 V; ~17 mA ≪ 2.1 A.

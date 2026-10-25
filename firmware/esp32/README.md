@@ -1,4 +1,4 @@
-# vitalq-firmware (ESP32)
+# vitalquant-firmware (ESP32)
 
 Skeleton for the M2 milestone (docs/09-roadmap.md). Not built yet — the contract
 below is what drivers implement when hardware lands.
@@ -15,7 +15,7 @@ below is what drivers implement when hardware lands.
     virtual bool init(const SensorConfig& cfg) = 0;          // bus, addr, rate
     virtual size_t read(SampleFrame& out) = 0;               // fills timestamped samples
     virtual bool healthy() = 0;                              // sensor_fault detection
-    virtual const char* channel_id() = 0;                    // vitalq.core channel id
+    virtual const char* channel_id() = 0;                    // vitalquant.core channel id
   };
   ```
 

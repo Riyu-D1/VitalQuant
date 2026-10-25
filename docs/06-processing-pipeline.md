@@ -1,6 +1,6 @@
 # 06 — Data-Processing Pipeline (Step 6)
 
-Runs in `vitalq-processing` (batch worker). Every stage is a pure-ish function over
+Runs in `vitalquant-processing` (batch worker). Every stage is a pure-ish function over
 raw records → clean/quality/features rows, versioned by `pipeline_version` so
 reprocessing never mutates history.
 
@@ -98,7 +98,7 @@ model training and flagged on the dashboard.
 ## 4. Provenance & determinism
 
 - Every stage reads from the previous layer's tables and writes with
-  `pipeline_version = vitalq_processing.__version__` + `source_window_ids`.
+  `pipeline_version = vitalquant_processing.__version__` + `source_window_ids`.
 - Reprocessing = insert rows under a new version → side-by-side comparisons are free.
 - Worker is deterministic given inputs (seeded RNG in quality/feature code); a
   `pipeline run` is itself recorded (`meta.pipeline_runs` — optional polish, not in DDL yet).

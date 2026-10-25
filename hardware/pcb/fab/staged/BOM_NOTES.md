@@ -2,7 +2,7 @@
 
 Source files edited in place: `fab/BOM.csv`, `fab/BOM_JLC.csv`, `fab/CPL.csv`,
 `fab/CPL_JLC.csv` (byte-identical copies exist inside
-`VitalQ_v2_fixv19_fabrication.zip`; repack must refresh the zip + SHA256SUMS).
+`VitalQuant_v2_fixv19_fabrication.zip`; repack must refresh the zip + SHA256SUMS).
 
 No comment rows were added to any CSV. Nothing else changed.
 
@@ -109,9 +109,9 @@ ONE shared §6 pin map — identical pinout by construction:
 #### BOM.csv (Value field = the part description)
 ```
 255c255
-< "U15","TPS61240YFFR","vitalq:TPS61240_YFF","1",""
+< "U15","TPS61240YFFR","vitalquant:TPS61240_YFF","1",""
 ---
-> "U15","TPS61241YFFR","vitalq:TPS61240_YFF","1",""
+> "U15","TPS61241YFFR","vitalquant:TPS61240_YFF","1",""
 ```
 
 #### CPL.csv (Val column names the part — kept consistent with BOM.csv)
@@ -125,8 +125,8 @@ ONE shared §6 pin map — identical pinout by construction:
 `CPL_JLC.csv` U15 row needs NO change (no Val column — designator/coords only).
 
 Intentionally unchanged: the Footprint fields still read `TPS61240_YFF` /
-`vitalq:TPS61240_YFF` — that is the physical land pattern name in the board's
-`vitalq.pretty` library and is the correct footprint for both MPNs (same YFF
+`vitalquant:TPS61240_YFF` — that is the physical land pattern name in the board's
+`vitalquant.pretty` library and is the correct footprint for both MPNs (same YFF
 package); renaming it would break the library link.
 
 ---

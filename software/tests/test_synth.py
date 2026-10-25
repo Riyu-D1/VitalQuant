@@ -6,8 +6,8 @@ from uuid import UUID
 import numpy as np
 from conftest import PROFILE
 
-from vitalq.core.config import load_profile
-from vitalq.synth.generator import CorruptionSpec, SynthConfig, SyntheticDevice
+from vitalquant.core.config import load_profile
+from vitalquant.synth.generator import CorruptionSpec, SynthConfig, SyntheticDevice
 
 
 def _dev(seed=7, **kw):

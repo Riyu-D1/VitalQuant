@@ -1,4 +1,4 @@
-# Devin prompt — VitalQ v2 fix_v19 pre-fab datasheet verification
+# Devin prompt — VitalQuant v2 fix_v19 pre-fab datasheet verification
 
 Copy everything below the line into Devin as the first message of a new session.
 
@@ -12,15 +12,15 @@ Your job: independently verify the board against the manufacturer datasheet of e
 
 ## Repo and review target
 
-Repo: `github.com/Riyu-D1/VitalQuant`, branch `feature/vitalq-firmware-v2`.
-Root of interest: `hardware/pcb/` (KiCad project `vitalq_v2`, KiCad 10.0.4).
+Repo: `github.com/Riyu-D1/VitalQuant`, branch `feature/vitalquant-firmware-v2`.
+Root of interest: `hardware/pcb/` (KiCad project `vitalquant_v2`, KiCad 10.0.4).
 
-Board under review: **VitalQ v2, revision fix_v19** — 8 copper layers (F.Cu, In1–In6, B.Cu), 55.6 × 75.0 mm, FR4/ENIG, nominal 1.6 mm, 871 vias, 8,016 track segments, 107 zones, 302 footprints, 1,027 pads, 300 component rows, 26 ICs + 13 connectors.
+Board under review: **VitalQuant v2, revision fix_v19** — 8 copper layers (F.Cu, In1–In6, B.Cu), 55.6 × 75.0 mm, FR4/ENIG, nominal 1.6 mm, 871 vias, 8,016 track segments, 107 zones, 302 footprints, 1,027 pads, 300 component rows, 26 ICs + 13 connectors.
 
 Before doing anything else, pin the review target in a file `reports/00_target.md`:
 
 1. `git rev-parse HEAD` and `git status --porcelain`. If the working tree is dirty, stop and say so.
-2. `sha256sum` of `hardware/pcb/vitalq_v2.kicad_pcb`, `vitalq_v2.kicad_sch`, and `fab/VitalQ_v2_fixv19_fabrication.zip`.
+2. `sha256sum` of `hardware/pcb/vitalquant_v2.kicad_pcb`, `vitalquant_v2.kicad_sch`, and `fab/VitalQuant_v2_fixv19_fabrication.zip`.
 3. Confirm the `.kicad_pcb` you are auditing is the one the shipped zip was produced from. If you cannot prove that, say so explicitly and treat the zip as the authority for anything fab-facing (gerbers, drill, BOM, CPL).
 
 Do not review "the latest board". Review one pinned revision and name it in every finding.
@@ -34,7 +34,7 @@ Use these only as a *hypothesis list*, never as evidence. Every claim you inheri
 Known internal inconsistencies you must resolve rather than assume away:
 
 - `fab/FAB_VERIFICATION.json` inside the fix_v19 zip still names the **fix_v18** zip in its `"zip"` field, and its DRC numbers (61 violations) do not match `pin_audit_r9/ROUND9_REVIEWS.md` (48 warnings).
-- `FAB_NOTES.md` says "Source board: `fix_v9/vitalq_v2.kicad_pcb`" while `README.md` calls fix_v19 order-ready.
+- `FAB_NOTES.md` says "Source board: `fix_v9/vitalquant_v2.kicad_pcb`" while `README.md` calls fix_v19 order-ready.
 - 29 BOM-exclusion warnings are described as "owner accepted". Do not accept them; verify they are genuinely limited to J8 and TP1–TP28 and have no electrical consequence.
 
 ## Scope — every pin, not a sample
@@ -50,7 +50,7 @@ ESP32-S3-MINI-1-N4R2 (U1), BQ25170DSGR (U2), TPS63802DLAR (U3), TPS7A2018PDBVR (
 Build the ground truth from files, not from reading schematics with your eyes:
 
 - `kicad-cli sch export netlist` for the logical connection set.
-- Parse `vitalq_v2.kicad_pcb` (s-expression or `pcbnew` python) for pad-number → net → position, per footprint.
+- Parse `vitalquant_v2.kicad_pcb` (s-expression or `pcbnew` python) for pad-number → net → position, per footprint.
 - Produce `reports/01_netlist_pinmap.csv` with one row per **pad** (not per net): `ref, footprint, pad_number, pad_type, net, position_mm, side`.
 
 Completeness gate: the row count must equal the sum of pads across all footprints in the board file (expected ≈1,027, including mechanical pads — state your count and your derivation). If your CSV has fewer rows than the board has pads, you sampled. Regenerate.
@@ -150,7 +150,7 @@ Commit incrementally — one commit per report — so a timeout never loses the 
 
 ## Rules of engagement
 
-1. **Read-only.** Do not edit `vitalq_v2.kicad_pcb`, the schematic, the fab zip, or any BOM/CPL. This board is being ordered. Report; do not "helpfully" fix.
+1. **Read-only.** Do not edit `vitalquant_v2.kicad_pcb`, the schematic, the fab zip, or any BOM/CPL. This board is being ordered. Report; do not "helpfully" fix.
 2. **No uncited claims.** Every technical statement carries a datasheet citation or a computed number from a repo file. If you cannot cite it, it goes in `09_unverifiable.md`. Do not write from memory of what a part "typically" does, and do not paraphrase a pin table you did not open.
 3. **Numeric over qualitative.** "Decoupling is adequate" is not acceptable. "C63 is 1.2 mm from U2.1; datasheet requires ≥1 µF within 2 mm (§6.3 p.11)" is.
 4. **Absence of evidence is a finding.** If a net has no other end, a pin has no driver, or a datasheet requirement has no corresponding part on the BOM, that is a FAIL, not a pass by default.

@@ -2,7 +2,7 @@
 """conn_sweep.py -- full-copper connectivity sweep of the SHIPPED fix_v19 gerbers.
 
 Parses the 8 copper-layer gerbers inside
-    hardware/pcb/fab/VitalQ_v2_fixv19_fabrication.zip  (== fab/gerbers/*.gbr)
+    hardware/pcb/fab/VitalQuant_v2_fixv19_fabrication.zip  (== fab/gerbers/*.gbr)
 using the embedded Gerber-X2 object attributes:
     %TO.P,<ref>,<pad>   -> pad flashes (outer layers)
     %TO.C,<ref>         -> through-hole annular flashes (inner layers)
@@ -30,21 +30,21 @@ import os, re, sys, csv, math, zipfile, io
 from collections import defaultdict
 
 BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-FABZIP = os.path.join(BASE, "..", "fab", "VitalQ_v2_fixv19_fabrication.zip")
+FABZIP = os.path.join(BASE, "..", "fab", "VitalQuant_v2_fixv19_fabrication.zip")
 GERBER_DIR = os.path.join(BASE, "..", "fab", "gerbers")          # == zip contents (verified)
 PINMAP = os.path.join(BASE, "01_netlist_pinmap.csv")
 OUT_TXT = os.path.join(BASE, "06_tool_output", "connectivity_sweep.txt")
 OUT_MD  = os.path.join(BASE, "findings_conn.md")
 
 COPPER = [
-    ("F.Cu", "vitalq_v2-Top Layer.gbr"),
-    ("L2",   "vitalq_v2-Ground Layer 2.gbr"),
-    ("L3",   "vitalq_v2-Layer 3.gbr"),
-    ("L4",   "vitalq_v2-Signal Layer 4.gbr"),
-    ("L5",   "vitalq_v2-Power Layer 5.gbr"),
-    ("L6",   "vitalq_v2-Signal Layer 6.gbr"),
-    ("L7",   "vitalq_v2-Ground Layer 7.gbr"),
-    ("B.Cu", "vitalq_v2-Bottom Layer.gbr"),
+    ("F.Cu", "vitalquant_v2-Top Layer.gbr"),
+    ("L2",   "vitalquant_v2-Ground Layer 2.gbr"),
+    ("L3",   "vitalquant_v2-Layer 3.gbr"),
+    ("L4",   "vitalquant_v2-Signal Layer 4.gbr"),
+    ("L5",   "vitalquant_v2-Power Layer 5.gbr"),
+    ("L6",   "vitalquant_v2-Signal Layer 6.gbr"),
+    ("L7",   "vitalquant_v2-Ground Layer 7.gbr"),
+    ("B.Cu", "vitalquant_v2-Bottom Layer.gbr"),
 ]
 
 EPS   = 0.002      # mm -- geometric "touch" tolerance (smallest reported gap is ~60 um)
@@ -534,9 +534,11 @@ def main():
     for lname, fname in COPPER:
         path = os.path.join(GERBER_DIR, fname)
         if not os.path.exists(path):
-            # fall back to zip
+            # fall back to zip — frozen artifact: internal member names keep the
+            # legacy vitalq_v2- prefix even though the zip file is renamed
+            member = "gerbers/" + fname.replace("vitalquant_v2-", "vitalq_v2-", 1)
             with zipfile.ZipFile(FABZIP) as z:
-                data = z.read("gerbers/" + fname).decode("utf-8", "replace")
+                data = z.read(member).decode("utf-8", "replace")
             tmp = "/tmp/_conn_" + fname.replace(" ", "_")
             open(tmp, "w").write(data)
             path = tmp

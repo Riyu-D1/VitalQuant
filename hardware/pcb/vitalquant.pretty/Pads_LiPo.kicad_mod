@@ -1,0 +1,188 @@
+	(footprint "vitalquant:Pads_LiPo"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "10.0")
+		(locked yes)
+		(layer "B.Cu")
+		(uuid "3329844a-f5e5-4f5e-a244-4660478b1099")
+		(at 12.4 5.0031 180)
+		(descr "LiPo solder pads, 3 pins, 2.2 mm pitch, no header. BAT+ BAT- NTC")
+		(property "Reference" "J2"
+			(at 0 2.85 0)
+			(layer "B.SilkS")
+			(hide yes)
+			(uuid "485209c4-287c-4572-a37e-4ec972de942d")
+			(effects
+				(font
+					(size 0.6 0.6)
+					(thickness 0.1)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "LiPo pads"
+			(at 0 -2.3 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "2e416e34-adfa-4325-9393-602d56cc01d6")
+			(effects
+				(font
+					(size 0.4 0.4)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "6c4d0b4a-d02d-4c22-a2ff-89655c4eec8d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "af45c24c-ec80-4f32-9ca4-cf1adc8a55b4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/0856f416-8d47-44e0-b64e-c83f76e859d3")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start 3.15 2.2)
+			(end 3.15 -1.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "d31627e3-546f-42a5-a3de-9e6059cec863")
+		)
+		(fp_line
+			(start 3.15 -1.2)
+			(end -3.15 -1.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "6a3050f5-6202-407e-a950-2a35c1db5991")
+		)
+		(fp_line
+			(start -3.15 2.2)
+			(end 3.15 2.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "27636e67-c02e-4260-a563-2d20857b8899")
+		)
+		(fp_line
+			(start -3.15 -1.2)
+			(end -3.15 2.2)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "e8930c1f-863a-44e2-9adb-b3e1a7cd13cc")
+		)
+		(fp_rect
+			(start -3.4 2.95)
+			(end 3.4 -1.5)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "1c398516-0a90-40b4-a445-b76aaa60c2ea")
+		)
+		(fp_text user "NTC"
+			(at 2.2 1.65 0)
+			(layer "B.SilkS")
+			(uuid "2e1a724d-2689-42ef-aff8-bc40f2ef95d9")
+			(effects
+				(font
+					(size 0.45 0.45)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(fp_text user "BAT-"
+			(at 0 1.65 0)
+			(layer "B.SilkS")
+			(uuid "73954b00-e21c-41df-aad0-7adef3b29567")
+			(effects
+				(font
+					(size 0.45 0.45)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(fp_text user "+"
+			(at -2.2 1.65 0)
+			(layer "B.SilkS")
+			(uuid "149d6fd5-3f4a-4028-bd65-c77f1051a35a")
+			(effects
+				(font
+					(size 0.7 0.7)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -2.2 0 180)
+			(size 1.6 2.2)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.15)
+			(net "VBAT")
+			(uuid "7b79d3c4-e369-43f0-b2d6-4926697dc0b0")
+		)
+		(pad "2" smd roundrect
+			(at 0 0 180)
+			(size 1.15 1.7)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.15)
+			(net "GND")
+			(uuid "69be1ea5-41e4-4b98-b085-4924e5e1fc19")
+		)
+		(pad "3" smd roundrect
+			(at 2.2 0 180)
+			(size 1.15 1.7)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.15)
+			(net "TS")
+			(uuid "5fc36c0d-ebcc-4c19-9775-06e97bef544f")
+		)
+		(embedded_fonts no)
+		(model "${KIPRJMOD}/lib/vitalquant.3d/Pads_LiPo.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)

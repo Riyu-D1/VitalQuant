@@ -70,7 +70,7 @@ export default function Model() {
           </h1>
           <FadeContent delay={500} duration={1000}>
             <p className="mt-8 text-xl text-gray-300 leading-relaxed font-light">
-              VitalQ doesn't send everything to the cloud. A small model on the
+              VitalQuant doesn't send everything to the cloud. A small model on the
               device itself watches continuously — and escalates to a larger
               verifier only when it sees something worth a second opinion.
             </p>

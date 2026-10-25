@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vitalq"
+name = "vitalquant"
 version = "0.1.0"
-description = "VitalQ — wearable multimodal physiological sensing research platform"
+description = "VitalQuant — wearable multimodal physiological sensing research platform"
 requires-python = ">=3.10"
 dependencies = [
     "pydantic>=2.5",
@@ -47,17 +47,17 @@ dev = [
 ]
 
 [project.scripts]
-vitalq-worker = "vitalq.processing.worker:main"
-vitalq-synth  = "vitalq.synth.device:main"
-vitalq-migrate = "vitalq.ingest.migrate:main"
-vitalq-device = "vitalq.ingest.devices:main"
-vitalq-quantum = "vitalq.quantum.experiment:main"
-vitalq-experiment = "vitalq.ml.experiments:main"
-vitalq-import = "vitalq.datasets.importer:main"
+vitalquant-worker = "vitalquant.processing.worker:main"
+vitalquant-synth  = "vitalquant.synth.device:main"
+vitalquant-migrate = "vitalquant.ingest.migrate:main"
+vitalquant-device = "vitalquant.ingest.devices:main"
+vitalquant-quantum = "vitalquant.quantum.experiment:main"
+vitalquant-experiment = "vitalquant.ml.experiments:main"
+vitalquant-import = "vitalquant.datasets.importer:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["vitalq*"]
+include = ["vitalquant*"]
 
 [tool.ruff]
 target-version = "py310"

@@ -6,11 +6,11 @@ Run with KiCad bundled python:
 import pcbnew, json, csv, math
 from pathlib import Path
 
-ROOT = Path('/Users/deepakdiwan/Downloads/VitalQ_Hand/fix_v14')
+ROOT = Path('/Users/deepakdiwan/Downloads/VitalQuant_Hand/fix_v14')
 ICS = ["U5","U6","U10","U11","U12","U13","U14","U16","U17","U18",
        "U19","U20","U21","U23","U24","U25","U26"]
 
-board = pcbnew.LoadBoard(str(ROOT/'vitalq_v2.kicad_pcb'))
+board = pcbnew.LoadBoard(str(ROOT/'vitalquant_v2.kicad_pcb'))
 nm = pcbnew.FromMM
 
 # BOM values

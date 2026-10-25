@@ -11,12 +11,12 @@ jobs:
       postgres:
         image: postgres:17-alpine
         env:
-          POSTGRES_USER: vitalq
-          POSTGRES_PASSWORD: vitalq
-          POSTGRES_DB: vitalq
+          POSTGRES_USER: vitalquant
+          POSTGRES_PASSWORD: vitalquant
+          POSTGRES_DB: vitalquant
         ports: ["5432:5432"]
         options: >-
-          --health-cmd "pg_isready -U vitalq" --health-interval 3s
+          --health-cmd "pg_isready -U vitalquant" --health-interval 3s
           --health-timeout 3s --health-retries 20
     steps:
       - uses: actions/checkout@v4
@@ -28,12 +28,12 @@ jobs:
         run: ruff check src tests
       - name: migrate
         env:
-          DATABASE_URL: postgresql://vitalq:vitalq@localhost:5432/vitalq
-        run: vitalq-migrate
+          DATABASE_URL: postgresql://vitalquant:vitalquant@localhost:5432/vitalquant
+        run: vitalquant-migrate
       - name: pytest
         env:
-          DATABASE_URL: postgresql://vitalq:vitalq@localhost:5432/vitalq
-          VITALQ_AUTH_MODE: local
+          DATABASE_URL: postgresql://vitalquant:vitalquant@localhost:5432/vitalquant
+          VITALQUANT_AUTH_MODE: local
         run: pytest -q
 
   hardware:
@@ -41,4 +41,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: fab zip present
-        run: test -s hardware/pcb/fab/VitalQ_v2_fixv19_fabrication.zip
+        run: test -s hardware/pcb/fab/VitalQuant_v2_fixv19_fabrication.zip

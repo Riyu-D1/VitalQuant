@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Extract every pad from vitalq_v2.kicad_pcb -> pinmap CSV.
+"""Extract every pad from vitalquant_v2.kicad_pcb -> pinmap CSV.
 v2 fix: this board stores pad nets as (net "NAME") -- name-only, no numeric id --
 and has no top-level (net id "name") table. v1 read net[2] and emitted ''.
 Pure s-expression parse (no pcbnew). One CSV row per PAD."""
 import re, sys, csv, math
 
-PATH = sys.argv[1] if len(sys.argv) > 1 else "hardware/pcb/vitalq_v2.kicad_pcb"
+PATH = sys.argv[1] if len(sys.argv) > 1 else "hardware/pcb/vitalquant_v2.kicad_pcb"
 OUT  = sys.argv[2] if len(sys.argv) > 2 else "hardware/pcb/reports/06_tool_output/01_netlist_pinmap_fixed.csv"
 
 src = open(PATH, encoding="utf-8").read()

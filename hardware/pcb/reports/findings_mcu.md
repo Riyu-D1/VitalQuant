@@ -4,7 +4,7 @@ Scope: **U1** ESP32-S3-MINI-1-N4R2 · **U5** CP2102N-A02-GQFN28R · **U21** USBL
 **U26** SN74AXC2T245RSWR · **J1** USB-C (HRO TYPE-C-31-M-12) · plus domain-crossing
 inventory incl. **U9** PCA9306 and auto-reset pair **Q3** (BC847BS).
 
-Method: pad↔net extracted directly from `vitalq_v2.kicad_pcb` (custom `(net "name")`
+Method: pad↔net extracted directly from `vitalquant_v2.kicad_pcb` (custom `(net "name")`
 pad syntax — repo `01_netlist_pinmap.csv` net column is empty, nets re-parsed here).
 Cross-checked vs `fab/BOM_JLC.csv` (fit/values) and `fab/BOM.csv` (DNP flags).
 
@@ -143,6 +143,6 @@ No unprotected 3.3 V→1.8 V crossing exists.
 - **HRO TYPE-C-31-M-12** connector drawing not independently obtained; pad count
   (16 SMT + 4 shell + 2 NPTH) and contact names match the standard mid-mount
   M-12 and KiCad stock footprint. Mech geometry judged consistent, not proven.
-- `vitalq_v2.kicad_pcb` vs fix_v19 zip provenance cannot be cryptographically
+- `vitalquant_v2.kicad_pcb` vs fix_v19 zip provenance cannot be cryptographically
   proven (per `00_target.md`) — BOM/CPL inside the zip were used as fab authority
   for fitted/DNP status and values.

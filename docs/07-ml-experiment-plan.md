@@ -15,10 +15,10 @@ Staged so the level of method always matches the level of available data and lab
 | A1 SQI | BUT-PPG (binary quality labels) | Can a small feature-based classifier (skew/kurt/PI/template/spectral-purity → logistic/GBM) match published SQI quality? Metric: AUPRC vs prevalence |
 | A2 HR from wrist PPG | PPG-DaLiA (ECG truth) | Peak-based HR + ACC-reference artifact rejection; metric: MAE vs ECG HR under activity |
 | A3 deviation detection | WESAD (baseline vs stress) | Within-subject robust-z deviation detects state change without subject-specific training — closest honest proxy for "personal baseline" anomaly detection |
-| A4 (optional) SpO₂ regression | Capnobase/BIDMC | R-ratio→SpO₂ calibration transfer across devices — quantifies why VitalQ cannot claim SpO₂ uncalibrated |
+| A4 (optional) SpO₂ regression | Capnobase/BIDMC | R-ratio→SpO₂ calibration transfer across devices — quantifies why VitalQuant cannot claim SpO₂ uncalibrated |
 
 Deliverable per study: `experiments/A*/` = config + data manifest + metrics + figures +
-`ml.experiments` rows. Any method that fails on public data is not ported to VitalQ.
+`ml.experiments` rows. Any method that fails on public data is not ported to VitalQuant.
 
 ## Phase B — synthetic↔real alignment check (audit A3)
 
@@ -27,7 +27,7 @@ IBI stats, spectral shape, PI). Goal: synthetic data is fit for *pipeline testin
 corruption injection*, and its limits are measured and documented — never silently used
 as a stand-in for physiology.
 
-## Phase C — personal-baseline anomaly detection (first real VitalQ data)
+## Phase C — personal-baseline anomaly detection (first real VitalQuant data)
 
 - `features.baselines`: rolling median/MAD per channel per subject (14-day window default).
 - Anomaly score = robust multivariate deviation (MCD or isolation forest on feature

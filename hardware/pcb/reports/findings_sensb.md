@@ -1,8 +1,8 @@
 # 03 — SENSOR group B findings (pin-by-pin fab-gate audit)
 
-Revision: **fix_v19** @ commit `b9002188` — `hardware/pcb/vitalq_v2.kicad_pcb`
+Revision: **fix_v19** @ commit `b9002188` — `hardware/pcb/vitalquant_v2.kicad_pcb`
 (sha256 `78441506…a69d0`, verified unchanged at HEAD), fab authority
-`fab/VitalQ_v2_fixv19_fabrication.zip` (sha256 `5f976845…befd52`).
+`fab/VitalQuant_v2_fixv19_fabrication.zip` (sha256 `5f976845…befd52`).
 Pinmap source: `reports/06_tool_output/01_netlist_pinmap_fixed.csv`
 (`reports/01_netlist_pinmap.csv` has an **empty net column** — use the fixed
 copy for any further work).
@@ -15,10 +15,10 @@ Docs: `datasheets/manifest_sensb.csv`.
 
 ## F-01 — CRITICAL (source artifact only): U14 LGA-14 pad W/H transposed in pcb source; all 14 pads overlap neighbours
 
-`vitalq_v2.kicad_pcb` embeds `QFN_LSM6DSV80XTR_STM` with every pad
+`vitalquant_v2.kicad_pcb` embeds `QFN_LSM6DSV80XTR_STM` with every pad
 `(size 0.254 0.7874)` — pads 1–4/8–11 (rot 0) land the **0.7874 mm side along
 the 0.5 mm pitch axis**, pads 5–7/12–14 (rot 270) the same. Every adjacent
-pair overlaps **0.287 mm** (computed from `vitalq_v2.kicad_pcb` lines
+pair overlaps **0.287 mm** (computed from `vitalquant_v2.kicad_pcb` lines
 3824–3926). Consequences if gerbers were regenerated from this source:
 
 | Overlap | Nets | Effect |
@@ -31,10 +31,10 @@ pair overlaps **0.287 mm** (computed from `vitalq_v2.kicad_pcb` lines
 | pad1×2, 2×3, 6×7, 9×10, 10×11 | same-net pairs | benign |
 
 The same transposed geometry exists in the footprint library copies
-`vitalq.pretty/QFN_LSM6DSV80XTR_STM.kicad_mod` and
+`vitalquant.pretty/QFN_LSM6DSV80XTR_STM.kicad_mod` and
 `snap.pretty/QFN_LSM6DSV80XTR_STM.kicad_mod` (lines ~1023–1096).
 
-**Fab zip is clean:** `vitalq_v2-Top Layer.gbr` flashes aperture
+**Fab zip is clean:** `vitalquant_v2-Top Layer.gbr` flashes aperture
 `R 0.254000X0.787400` for the pad-1–4 row at y=−38.1744 mm (pitch dir = board
 x, so 0.254 is the pitch-direction width — correct) and `R 0.787400X0.254000`
 for the pad-12–14 column at x=19.0517 — i.e. the manufactured copper is the

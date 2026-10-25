@@ -129,7 +129,7 @@ export default function Product() {
           </h1>
           <FadeContent delay={500} duration={1000}>
             <p className="mt-8 text-xl text-gray-300 leading-relaxed font-light">
-              VitalQ is a wearable early-warning platform: continuous optical sensing,
+              VitalQuant is a wearable early-warning platform: continuous optical sensing,
               a quality-gated signal pipeline, and a clinical decision model — built to
               catch physiological deterioration hours before conventional monitoring.
             </p>

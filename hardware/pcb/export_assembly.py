@@ -38,8 +38,8 @@ CONSIGNED = {
     'D12': 'XL0603NRC730',
 }
 
-b = parse(ROOT / 'vitalq_v2.kicad_pcb')
-s = parse(ROOT / 'vitalq_v2.kicad_sch')
+b = parse(ROOT / 'vitalquant_v2.kicad_pcb')
+s = parse(ROOT / 'vitalquant_v2.kicad_sch')
 lib = {x[1]: props(x) for x in children(children(s, 'lib_symbols')[0], 'symbol')}
 symbols = {}
 for sym in children(s, 'symbol'):
@@ -57,7 +57,7 @@ for f in children(b, 'footprint'):
         excluded['board_exclude_from_bom'].append(r); continue
     if 'dnp' in attrs:
         excluded['do_not_populate'].append(r); continue
-    if f[1].startswith('vitalq:Pads_'):
+    if f[1].startswith('vitalquant:Pads_'):
         excluded['integral_pcb_contact_pads'].append(r); continue
     if 'smd' not in attrs:
         excluded['not_smd'].append(r); continue

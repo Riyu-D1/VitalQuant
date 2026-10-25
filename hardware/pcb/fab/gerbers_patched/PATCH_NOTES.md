@@ -1,8 +1,8 @@
 # F_Paste Hand-Patch — U15 (TPS61240YFFR, DSBGA-6) Paste Apertures
 
-**File patched:** `gerbers_patched/vitalq_v2-F_Paste.gbr`
-(extracted from `VitalQ_v2_fixv19_fabrication.zip`; original archive untouched)
-**Companion file:** `gerbers_patched/vitalq_v2-B_Paste.gbr` — extracted UNCHANGED
+**File patched:** `gerbers_patched/vitalquant_v2-F_Paste.gbr`
+(extracted from `VitalQuant_v2_fixv19_fabrication.zip`; original archive untouched)
+**Companion file:** `gerbers_patched/vitalquant_v2-B_Paste.gbr` — extracted UNCHANGED
 (md5 `744185e28e9df646e81aaf3875f5bd95`, identical to archive member)
 
 ## Defect
@@ -20,9 +20,9 @@ pads. The existing 0.15 mm squares union into the flashes harmlessly
 
 ## Source data (verified twice)
 
-From `hardware/pcb/vitalq_v2.kicad_pcb` (lines 28489–28829):
+From `hardware/pcb/vitalquant_v2.kicad_pcb` (lines 28489–28829):
 
-- Footprint `vitalq:TPS61240_YFF`, layer F.Cu
+- Footprint `vitalquant:TPS61240_YFF`, layer F.Cu
 - `(at 40.797369 38.824994)` — **no rotation token → rot = 0°**
   (cross-check: `positions_kicad.csv` lists U15 at 40.797369 / −38.824994 / rot 0.000000, top)
 - Pads (smd circle, size 0.23 × 0.23, `pad_prop_bga`):
@@ -50,7 +50,7 @@ board = fp_origin + R(0°)·offset;  gerber = (board_x, −board_y);  FS 4.6 mm
 | C1  | 40.597369, 39.224994 | 40.597369, −39.224994  | `X40597369Y-39224994D03*`     |
 | C2  | 40.997369, 39.224994 | 40.997369, −39.224994  | `X40997369Y-39224994D03*`     |
 
-**Independent cross-check vs. copper layer:** `gerbers/vitalq_v2-Top Layer.gbr`
+**Independent cross-check vs. copper layer:** `gerbers/vitalquant_v2-Top Layer.gbr`
 flashes U15's copper pads (`%TO.P,U15,<pad>*%` + `%TO.N,<net>*%`) at **byte-identical
 X/Y coordinates** for all six pads (`D65*` select, `%ADD65C,0.230000*%`), with net
 names matching the pcb pads above. Paste flashes now land exactly on the copper pads.

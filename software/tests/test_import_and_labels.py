@@ -27,7 +27,7 @@ class TestImport:
             w.writerow(["pleth"])
             w.writerows([[v] for v in ppg])
 
-        from vitalq.datasets import importer
+        from vitalquant.datasets import importer
         data = importer.read_csv_columns(str(path), ["pleth"])
         sid = uuid4()
         await importer.open_session(client, key, sid,
@@ -81,7 +81,7 @@ class TestImport:
 
     async def test_rate_limit(self, client, seeded):
         device_id, key = seeded
-        import vitalq.ingest.app as app_mod
+        import vitalquant.ingest.app as app_mod
         old = (app_mod._RATE_RPS, app_mod._RATE_BURST)
         app_mod._RATE_RPS, app_mod._RATE_BURST = 0.5, 0.6
         app_mod._buckets.clear()
@@ -108,7 +108,7 @@ class TestImport:
 def test_template_match_recovers_beats():
     """A window with a corrupted segment: template match should still count ~all
     beats where the peak finder drops some."""
-    from vitalq.processing import ppg
+    from vitalquant.processing import ppg
     fs, dur = 200.0, 10
     t = np.arange(int(fs * dur)) / fs
     ibi = 60.0 / 65.0

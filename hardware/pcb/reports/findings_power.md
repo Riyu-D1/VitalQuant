@@ -1,5 +1,5 @@
 # POWER group — fab-gate findings
-Board: `hardware/pcb/vitalq_v2.kicad_pcb`, fab bundle `VitalQ_v2_fixv19_fabrication.zip`, rev **fix_v19 @ b9002188**.
+Board: `hardware/pcb/vitalquant_v2.kicad_pcb`, fab bundle `VitalQuant_v2_fixv19_fabrication.zip`, rev **fix_v19 @ b9002188**.
 Truth sources: pad nets re-extracted from the `.kicad_pcb` (see note at bottom — `01_netlist_pinmap.csv` net column is empty for all 1,027 pads, extractor artifact), `BOM_JLC.csv` / `CPL.csv` from the zip, datasheet texts in `reports/datasheets/`.
 
 Package check first: **BQ25170DSGR is WSON-8 (DSG0008A, 2×2 mm)** — the audit brief's "WSON-10" is wrong; the board's `Texas_DSG0008A_WSON-8-1EP` footprint and the datasheet orderable addendum (WSON DSG | 8) agree. U3 is the WSON-10 (DLA0010A, VSON-HR 3×2 mm). All four pin↔name maps verified against the exact ordered package's pin table.

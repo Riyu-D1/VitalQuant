@@ -1,7 +1,7 @@
-# FULLSIM V19 — VitalQ fix_v19 verification report
+# FULLSIM V19 — VitalQuant fix_v19 verification report
 
-Research prototype (non-medical). Board under test: `fix_v19/vitalq_v2.kicad_pcb`
-(KiCad 10.0.4). Baseline: `fix_v18/vitalq_v2.kicad_pcb`.
+Research prototype (non-medical). Board under test: `fix_v19/vitalquant_v2.kicad_pcb`
+(KiCad 10.0.4). Baseline: `fix_v18/vitalquant_v2.kicad_pcb`.
 Simulator: ngspice-47 (`/usr/local/bin/ngspice`, batch `-b`). Runner:
 `sims/fullsim_v19/run_all.py` → `results/<block>.{log,json,csv}` +
 `results/_summary.json`.
@@ -102,11 +102,11 @@ converges in ngspice.
   (7 cases × 34 subjects, seed 7) + 23 trajectory records; detector
   `ews_v11_4` = **sensitivity 0.98 / specificity 0.853**
   (`sepsis_v11/cohort_scored_v11.json`).
-- **Fabrication archive**: `fix_v19/fab/VitalQ_v2_fixv19_fabrication.zip`
+- **Fabrication archive**: `fix_v19/fab/VitalQuant_v2_fixv19_fabrication.zip`
   (37 files: gerbers, drills + maps, BOM/BOM_JLC, CPL/CPL_JLC, positions,
   renders, SHA256SUMS, notes); SHA-256 of archive
   `5f976845f422c6288c8b449167d16541d53471016cee02109fcbd1cccfbefd52`.
-  Stale `VitalQ_v2_fixv18_fabrication.zip` moved to `fix_v19/fab/_stale/`.
+  Stale `VitalQuant_v2_fixv18_fabrication.zip` moved to `fix_v19/fab/_stale/`.
 - **BOM/CPL**: `BOM_JLC.csv` line R61 → `NCP15XH103F03RC`/`C77131`;
   `CPL_JLC.csv`/`CPL.csv` list R61 at its existing site.
 - **Renders**: `render_top.png`, `render_bottom.png`, `render_powerpath.png`

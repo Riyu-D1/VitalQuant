@@ -1,6 +1,6 @@
 # 10 — hw_v2 Hardware Upgrade (design doc)
 
-Scope: design record for the second VitalQ board revision, `hw_v2`, carried on
+Scope: design record for the second VitalQuant board revision, `hw_v2`, carried on
 branch `hw_v2`. The authoritative coordination spec is
 `hardware/pcb/HW_V2_SPEC.md`; where this doc and that file disagree, the spec
 wins. Research prototype. This is not a medical device; nothing here is a

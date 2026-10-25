@@ -4,17 +4,17 @@ Guidance for agentic work in this monorepo. Research prototype throughout —
 engineering signals only, no clinical claims; model outputs are experimental
 anomaly scores, never diagnostic.
 
-## Firmware v2 (`firmware/vitalq/`)
+## Firmware v2 (`firmware/vitalquant/`)
 
 ESP-IDF app for the fix_v22 board, ESP32-S3-WROOM-1-N16R8 (16 MB QIO flash,
-8 MB octal PSRAM), target `esp32s3`. See `firmware/vitalq/README.md` for the
+8 MB octal PSRAM), target `esp32s3`. See `firmware/vitalquant/README.md` for the
 full build/flash/selftest doc.
 
 ### Verified commands
 
 ```sh
 . ~/esp/esp-idf/export.sh        # ESP-IDF v5.4.2 lives at ~/esp/esp-idf
-cd firmware/vitalq && idf.py build        # clean-tree verify
+cd firmware/vitalquant && idf.py build        # clean-tree verify
 python3 tools/export_model.py info <blob> # VQMB blob check (stdlib only)
 python3 tools/export_model.py stub --out /tmp/stub.bin && \
 python3 tools/export_model.py info /tmp/stub.bin   # tool smoke test

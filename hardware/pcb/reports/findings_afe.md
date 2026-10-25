@@ -1,7 +1,7 @@
 # AFE-group PCB audit — findings (fix_v19 @ b9002188)
 
 Scope: U6 AFE4900YZR · U7 AD5940BCBZ-RL7 · U8 ADS1292RIRSMT · U9 PCA9306DCUR · U22 MAX86141ENP+ · connectors J5/J6/J7/J9/J10/J11/J12/J13.
-Sources: `reports/01_netlist_pinmap.csv`, `pinmap.json`, `audit_netlist.xml`, `audit_components.csv`, `vitalq_v2.kicad_pcb` + `vitalq.pretty/*`, fetched datasheets (see `datasheets/manifest_afe.csv`).
+Sources: `reports/01_netlist_pinmap.csv`, `pinmap.json`, `audit_netlist.xml`, `audit_components.csv`, `vitalquant_v2.kicad_pcb` + `vitalquant.pretty/*`, fetched datasheets (see `datasheets/manifest_afe.csv`).
 
 ## Ball-map verification (highest-risk item — done first)
 
@@ -13,9 +13,9 @@ dead-board defect).
 
 | Part | Footprint | Grid | Orientation check | Result |
 |------|-----------|------|-------------------|--------|
-| U6 AFE4900 | `vitalq:BGA30N40P5X6_260X210X50` (B.Cu) | 5×6 @0.4 mm, body 2.06×2.60 mm vs DS 2.065×2.565 (YZ0030) | pcbnew A1 at top-right → physical bottom view A1 top-left = SBAS857/SBAS861B top view | **VERIFIED** |
-| U7 AD5940 | `vitalq:BGA56C40P8X7_416X356X55` (F.Cu) | 8 cols×7 rows @0.4 mm, body 4.16×3.56 mm = CB-56-3 | local map identical to DS Fig.4 (A1 top-left, A–G, 1–8); all 56 mnemonics match Table 7 | **VERIFIED** |
-| U22 MAX86141 | `vitalq:MAX86141_WLP20` (B.Cu) | 5×4 @0.4 mm, DS body 2.05×1.85 mm (N201A2+1) | pcbnew A1 top-right → physical top-left = DS TOP VIEW (A1=VLED) | **VERIFIED** |
+| U6 AFE4900 | `vitalquant:BGA30N40P5X6_260X210X50` (B.Cu) | 5×6 @0.4 mm, body 2.06×2.60 mm vs DS 2.065×2.565 (YZ0030) | pcbnew A1 at top-right → physical bottom view A1 top-left = SBAS857/SBAS861B top view | **VERIFIED** |
+| U7 AD5940 | `vitalquant:BGA56C40P8X7_416X356X55` (F.Cu) | 8 cols×7 rows @0.4 mm, body 4.16×3.56 mm = CB-56-3 | local map identical to DS Fig.4 (A1 top-left, A–G, 1–8); all 56 mnemonics match Table 7 | **VERIFIED** |
+| U22 MAX86141 | `vitalquant:MAX86141_WLP20` (B.Cu) | 5×4 @0.4 mm, DS body 2.05×1.85 mm (N201A2+1) | pcbnew A1 top-right → physical top-left = DS TOP VIEW (A1=VLED) | **VERIFIED** |
 
 Name-level cross-check: every ball mnemonic on U6 (via SBAS857 pin-functions text recovered from
 web mirrors — selective-disclosure part), all 56 on U7 (Table 7 verbatim), all 20 on U22 (pin

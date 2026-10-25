@@ -6,11 +6,11 @@ proof (zero track/via/zone/pad-geometry changes).
 
 ## Change 1 — D10 BOM/footprint reconciliation (carried from first v19 pass)
 
-Footprint `vitalq:NF2W757G` was drawn per **Nichia STS-DA7-7098** land.
+Footprint `vitalquant:NF2W757G` was drawn per **Nichia STS-DA7-7098** land.
 BOM/schematic ordered Cree JB3030UWT-B (C17610390), whose recommended land
 differs. Fix: ordered part = **Nichia NF2W757G-F1 (Optisolis)** — the part
 the land was designed for. Value/LCSC updated in sch + BOM + CPL +
-`vitalq.pretty/NF2W757G.kicad_mod` properties; pads untouched.
+`vitalquant.pretty/NF2W757G.kicad_mod` properties; pads untouched.
 
 ## Change 2 — R61 fitted as battery/board NTC (this run)
 
@@ -39,8 +39,8 @@ TS impedance. Verified TS window vs datasheet SLUSDJ8A §6.5
 Q2 (CHG_DIS) still overrides by pulling TS < 50 mV. Board-side sensing
 adequacy reported in FULLSIM_V19_REPORT.md (senses board, not cell core).
 
-**Files:** `vitalq_v2.kicad_sch` (dnp no, Value `NTC 10k B3380`, LCSC
-`C77131`), `vitalq_v2.kicad_pcb` (R61 attr `dnp` removed, Value/LCSC
+**Files:** `vitalquant_v2.kicad_sch` (dnp no, Value `NTC 10k B3380`, LCSC
+`C77131`), `vitalquant_v2.kicad_pcb` (R61 attr `dnp` removed, Value/LCSC
 properties — no copper), `fab/BOM.csv`, `fab/BOM_JLC.csv` (+1 row),
 `fab/CPL_JLC.csv` (+1 row, 251 placements), `fab/ASSEMBLY_CHECKS.json`,
 `audit_components.csv`, `FIRMWARE_NOTES.md` §12.

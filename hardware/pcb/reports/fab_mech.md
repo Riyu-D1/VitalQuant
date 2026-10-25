@@ -1,7 +1,7 @@
-# Fab-gate mechanical/process audit — fix_v19 (`VitalQ_v2_fixv19_fabrication.zip`)
+# Fab-gate mechanical/process audit — fix_v19 (`VitalQuant_v2_fixv19_fabrication.zip`)
 
-Basis: `hardware/pcb/vitalq_v2.kicad_pcb` @ HEAD (25e12c26, md5-verified identical to
-worktree) + `hardware/pcb/fab/VitalQ_v2_fixv19_fabrication.zip` (read-only).
+Basis: `hardware/pcb/vitalquant_v2.kicad_pcb` @ HEAD (25e12c26, md5-verified identical to
+worktree) + `hardware/pcb/fab/VitalQuant_v2_fixv19_fabrication.zip` (read-only).
 Method: every claim below is computed from the board s-expression, the Excellon
 files, or the gerbers inside the zip — nothing eyeballed. Gerbers were used as the
 authoritative geometry for via-in-pad because the shipped artwork is what the fab
@@ -22,7 +22,7 @@ Verdicts at a glance:
 ## 1. POFV / via-in-pad enumeration
 
 ### Method
-- Parsed all `(via …)` blocks in `vitalq_v2.kicad_pcb`: **871 vias** (matches
+- Parsed all `(via …)` blocks in `vitalquant_v2.kicad_pcb`: **871 vias** (matches
   `FAB_VERIFICATION.json` `"board_vias": 871`).
 - For each copper-layer gerber in the zip, parsed every flashed component pad
   (objects carrying `%TO.P,…` / `%TO.N,…` attributes) with its real aperture
@@ -105,15 +105,15 @@ Verdicts at a glance:
   (35.75,32.4)/(36.75,29.45) SWEAT_WE, (11.4,12.45)/(22.85,9.2)/(13.45,9.35)
   CP_RX, (18.65,8.8)/(11.7,10.4)/(14.95,8.25) CP_TX) — harmless over-marking.
 - Both FAB_NOTES named vias verified at gerber level: `U6,E2` pad net `MISO_AFE` =
-  via net (gerber `gerbers/vitalq_v2-Bottom Layer.gbr`), `J11,3` pad net `J11_CE` =
+  via net (gerber `gerbers/vitalquant_v2-Bottom Layer.gbr`), `J11,3` pad net `J11_CE` =
   via net at (46.8, -55.3).
 - Via drill distribution inside pads: 45 of 48 are 0.15 mm holes (0.25 or 0.30
   land); 3 are 0.20 mm (R19.1, U20.5/U11.5, C89.2).
 
 ## 2. Drill set
 
-Parsed directly from `drill/vitalq_v2-PTH.drl` / `vitalq_v2-NPTH.drl` (hole counts
-counted in-file, cross-checked against `DRILL_REPORT.txt`/`vitalq_v2-drill.rpt`):
+Parsed directly from `drill/vitalquant_v2-PTH.drl` / `vitalquant_v2-NPTH.drl` (hole counts
+counted in-file, cross-checked against `DRILL_REPORT.txt`/`vitalquant_v2-drill.rpt`):
 
 ### PTH — 875 holes total (4 of them G85 slots)
 | Tool | drill (mm) | holes | assignment |
@@ -233,11 +233,11 @@ Counts: BOM.csv 265 · BOM_JLC.csv 251 (82 groups) · CPL.csv 270 · CPL_JLC.csv
   1. **D10 value-field mismatch**: board `Value` = `JB3030UWT-B-H50EA0000-1Z000001`
      (a different MPN), and `positions_kicad.csv` faithfully carries it, while
      BOM.csv/CPL.csv/BOM_JLC say `NF2W757G-F1` (the intended consigned Nichia
-     part; footprint `vitalq:NF2W757G` is correct). Assembly uses the BOM value,
+     part; footprint `vitalquant:NF2W757G` is correct). Assembly uses the BOM value,
      so this is cosmetic — but it is a board-vs-document inconsistency not
      disclosed in the docs.
-  2. **FAB_VERIFICATION.json stale field**: `"zip": "fab/VitalQ_v2_fixv18_fabrication.zip"`
-     inside a file named `VitalQ_v2_fixv19_fabrication.zip` — copy-paste remnant;
+  2. **FAB_VERIFICATION.json stale field**: `"zip": "fab/VitalQuant_v2_fixv18_fabrication.zip"`
+     inside a file named `VitalQuant_v2_fixv19_fabrication.zip` — copy-paste remnant;
      the counts inside are nonetheless correct for v19.
   3. Row bookkeeping: FAB_VERIFICATION `bom_rows: 266` counts the header line;
      `cpl_rows: 270` counts data rows — inconsistent but harmless.

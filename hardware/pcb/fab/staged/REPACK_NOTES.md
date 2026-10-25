@@ -1,8 +1,8 @@
-# Repack Notes — VitalQ_v2_fixv19a_fabrication.zip
+# Repack Notes — VitalQuant_v2_fixv19a_fabrication.zip
 
 **Date:** 2026-10-22
-**Built from:** `VitalQ_v2_fixv19_fabrication.zip` (original kept untouched — provenance record)
-**New archive:** `fab/VitalQ_v2_fixv19a_fabrication.zip` (1,913,742 bytes, 37 members)
+**Built from:** `VitalQuant_v2_fixv19_fabrication.zip` (original kept untouched — provenance record)
+**New archive:** `fab/VitalQuant_v2_fixv19a_fabrication.zip` (1,913,742 bytes, 37 members)
 
 Method: member list taken from the original zip in original order; unchanged
 members copied byte-identical (payload + zip metadata incl. UT/ux extra fields
@@ -15,18 +15,18 @@ the original payload and obtaining byte-identical files before repack.
 
 | Member | Status | Source / change |
 |---|---|---|
-| `gerbers/vitalq_v2-F_Paste.gbr` | **REPLACED** | `gerbers_patched/vitalq_v2-F_Paste.gbr` — +6 Ø0.21 mm flashes (new aperture D84) on U15 BGA pads; 786→792 flashes; see `gerbers_patched/PATCH_NOTES.md` |
+| `gerbers/vitalquant_v2-F_Paste.gbr` | **REPLACED** | `gerbers_patched/vitalquant_v2-F_Paste.gbr` — +6 Ø0.21 mm flashes (new aperture D84) on U15 BGA pads; 786→792 flashes; see `gerbers_patched/PATCH_NOTES.md` |
 | `BOM.csv` | **REPLACED** | edited standalone — R61 DNP flag set; U15 → TPS61241YFFR |
 | `BOM_JLC.csv` | **REPLACED** | edited standalone — R61 row removed; U15 → TPS61241YFFR, LCSC C544431 |
 | `CPL.csv` | **REPLACED** | edited standalone — R61 row removed; U15 val → TPS61241YFFR |
 | `CPL_JLC.csv` | **REPLACED** | edited standalone — R61 row removed |
 | `FAB_NOTES.md` | **REPLACED** | edited standalone — POFV list, assembly notes, provenance fix |
-| `FAB_VERIFICATION.json` | **REPLACED** | edited standalone — audit block added. Note: `"zip"` field still names `VitalQ_v2_fixv19_fabrication.zip` — it identifies the verified baseline archive, kept verbatim per fix-round commit 0efddf3e. Its `cpl_rows:270`/`bom_rows:266` describe the pre-repack counts; shipped CPL.csv now has 269 data rows |
+| `FAB_VERIFICATION.json` | **REPLACED** | edited standalone — audit block added. Note: `"zip"` field still names `VitalQuant_v2_fixv19_fabrication.zip` — it identifies the verified baseline archive, kept verbatim per fix-round commit 0efddf3e. Its `cpl_rows:270`/`bom_rows:266` describe the pre-repack counts; shipped CPL.csv now has 269 data rows |
 | `ASSEMBLY_CHECKS.json` | **REPLACED** | `staged/ASSEMBLY_CHECKS.json` — see below |
 | `positions_kicad.csv` | **REPLACED** | `staged/positions_kicad.csv` — see below |
 | `SHA256SUMS.txt` | **REGENERATED** | 33 entries `<sha256>␣␣fab/<member>` (sums files never self-list) |
 | `SHA256SUMS.json` | **REGENERATED** | same 33-entry map, `json.dumps(indent=1)`, no trailing newline |
-| other 26 members (2 dir entries + 24 files: 15 gerbers, 4 drill files, 3 renders, DRILL_REPORT.txt, vitalq_v2-drill.rpt) | **byte-identical** | copied from original zip |
+| other 26 members (2 dir entries + 24 files: 15 gerbers, 4 drill files, 3 renders, DRILL_REPORT.txt, vitalquant_v2-drill.rpt) | **byte-identical** | copied from original zip |
 
 ## Staged edits detail
 
@@ -83,5 +83,5 @@ JSON validity:   ASSEMBLY_CHECKS.json parses (placed=250, groups=81, cpl=250,
 SHA256SUMS:      sha256sum -c → 33/33 OK; JSON map 33/33 match extracted bytes
 ```
 
-Original zip `VitalQ_v2_fixv19_fabrication.zip` was opened read-only throughout;
-board file `hardware/pcb/vitalq_v2.kicad_pcb` not touched.
+Original zip `VitalQuant_v2_fixv19_fabrication.zip` was opened read-only throughout;
+board file `hardware/pcb/vitalquant_v2.kicad_pcb` not touched.

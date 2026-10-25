@@ -1,31 +1,31 @@
 ref,part,footprint,side,pad,pin_name,net,check,evidence,status
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,1,VDD,+1V8,VDD rail +1V8 (via R97 0R from +1V8_LDO / U4 TPS7A2018 1.8V); DS range 1.7-2.0V,DS000504 §5 Fig6 VDD 1.7/1.8/2.0V,OK
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,2,SCL,I2C_SCL_1V8,1V8 I2C bus via U9 PCA9306; pull-up R22 2.2k to +1V8 (same rail as VDD - correct side); VIH min 1.26V < 1.8V,DS000504 §3.2 + §5 VIH=1.26V; netlist R22->+1V8,OK
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,3,GND,GND,ground,DS000504 §3.2 pin3 GND,OK
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,4,LDR,LDR,LED current sink to D10 cathode (NF2W757G-F1 anode=+3V3); abs-max 3.6V OK; but at fw LED_DRIVE=44 (~92mA) Vf~3.0-3.5V -> V_LDR~=0-0.3V -> sink saturation risk / dim flash,DS000504 §4 + §10 reg0x74; NF2W757G Vf 2.9typ/3.3max rank; as7341.c LED_CODE=44,MEDIUM
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,5,PGND,GND,ground,DS000504 §3.2 pin5 PGND,OK
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,6,GPIO,NC(unconnected-(U10-GPIO-Pad6)),GPIO is DI; left floating - safe only because GPIO_IN_EN default=0 disables input; recommend GND tie for hygiene,DS000504 §10 reg 0xBE GPIO_IN_EN default 0 ('accepts non-floating input' only when set),COSMETIC
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,7,INT,NC(unconnected-(U10-INT-Pad7)),open-drain output unused - floating OK (needs 1V8 pull-up only if used),DS000504 §3.2 'Open drain output. Connect pull up resistor to 1.8V',OK
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,8,SDA,I2C_SDA_1V8,1V8 bus; pull-up R21 2.2k to +1V8 (correct side); VIH min 1.26V < 1.8V; VIL max 0.54V,DS000504 §5 VIH=1.26V/VIL=0.54V; netlist R21->+1V8,OK
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,addr,-,-,I2C addr FIXED 0x39 (0111001x); no strap pins; on 1V8 segment joined to 3V3 segment by U9 PCA9306 - logically one bus; no collision (map below),DS000504 §9.1 'AS7341 0x39',OK
-U10,AS7341-DLGM,vitalq:AS7341DLGT,B,fppads,-,-,8 pads 0.575x0.488mm cols +/-0.638mm pitch 0.8mm == DS Fig93 'Recommended PCB Pad Layout' EXACT (8X 0.575/0.488 +/-0.05, 8X [0.638, 4X [0.400/[1.200); no EP,DS000504 §11.2 Fig93 (OCR of DS000504 v3-00 p.60),OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,1,SCL,I2C_SCL,3V3 bus; pull-up R20 2.2k to +3V3 (correct side); VIH=0.7*V+=2.31V < 3.3V,SNOSD82D §5 + §6 VIH 0.7*(V+),OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,2,GND,GND,ground,SNOSD82D Table5-1,OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,3,ALERT,TMP117_ALERT,open-drain alert to U1(GPIO via pin9) w/ R65 10k pull-up +3V3; DS recommends 5k 'can be lower or higher' - OK,SNOSD82D §8.2.1 pullup req; netlist R65,OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,4,ADD0,GND,strap ADD0=GND -> 7-bit 1001000x = 0x48,SNOSD82D Table7-2,OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,5,V+,+3V3,supply 3.3V within 1.7-5.5V; decap C41 100nF @4.2mm,SNOSD82D §6.3 V+ 1.7-5.5V,OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,6,SDA,I2C_SDA,3V3 bus; pull-up R19 2.2k to +3V3,SNOSD82D §5,OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,7,GND_2(EP),GND,thermal pad: net=GND, footprint Cu+Mask NO paste -> unsoldered per TI §10.1 'do not solder for best accuracy'; if it wets, GND satisfies 'floating or grounded',SNOSD82D §10.1 + fp descr 'SNOSD82 section 10.1',OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,addr,-,-,7-bit addr = 0x48 (ADD0=GND); shares 3V3 bus with U20@0x49 - distinct,SNOSD82D Table7-2,OK
-U11,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,B,fppads,-,-,6 pads 0.6x0.35mm cols +/-1.05 pitch 0.65 + EP 1.1x1.7; TI DRV0006B example: pads 0.45x0.3 cols 1.95 pitch 0.65 EP 1.3x1.6 - inner edge 0.75 preserved, +0.15 toe/+0.05 wider/EP slightly smaller,SNOSD82D §12 DRV0006B land pattern example p.40-41,COSMETIC
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,1,SDA,I2C_SDA_1V8,1V8 bus; pull-up R21 2.2k to +1V8; -DCB-100 = 1V8-I2C variant: VI2C 1.65-1.95V, VIH=0.7*VI2C=1.26V<1.8V OK,DOC3901090632 Table2 (option digit1: 0=3V3/1=1V8) + Table6,OK
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,2,VDD,+3V3,VDD 3.0-3.6V; decap C61 100nF @0.54mm <10mm required,DOC3901090632 Table6 VDD 3-3.6V; Fig27a 'C1 <10mm',OK
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,3,GND,GND,ground,DOC3901090632 Table5 pin3 GND,OK
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,4,SCL,I2C_SCL_1V8,1V8 bus; pull-up R22 2.2k to +1V8 (correct side),DOC3901090632 Table5/6,OK
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,5,ADDR,GND,ADDR=GND -> slave 0x3A (0x3B if ADDR=VDD); VADDR_LO<=0.5V satisfied,DOC3901090632 Fig11 + Table6 SA=3A,OK
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,6,EP,GND,die pad 2.5x2.1mm Cu tied GND (EP dims D2=2.5/E2=2.1) BUT DS Fig26 recommends 8x0.2mm tented/plugged PTH vias + 0.25x0.25 windowpane stencil - footprint has FULL-area paste, NO vias,DOC3901090632 Fig26 p.47,MEDIUM
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,addr,-,-,7-bit addr = 0x3A; on 1V8 segment; no collision,DOC3901090632 §9.1 Fig11,OK
-U12,MLX90632SLD-DCB-100-SP,vitalq:MLX90632SLDDCB100SP,B,fppads,-,-,5 pads 0.3x0.8mm @0.5mm pitch + EP 2.1x2.5mm ~= DS Fig26 (0.5 pitch, EP D2/E2 2.5x2.1); fine-pitch 0.2mm pad gap,DOC3901090632 Fig25/26 Table17,MEDIUM
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,1,VDD,+1V8,VDD rail +1V8 (via R97 0R from +1V8_LDO / U4 TPS7A2018 1.8V); DS range 1.7-2.0V,DS000504 §5 Fig6 VDD 1.7/1.8/2.0V,OK
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,2,SCL,I2C_SCL_1V8,1V8 I2C bus via U9 PCA9306; pull-up R22 2.2k to +1V8 (same rail as VDD - correct side); VIH min 1.26V < 1.8V,DS000504 §3.2 + §5 VIH=1.26V; netlist R22->+1V8,OK
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,3,GND,GND,ground,DS000504 §3.2 pin3 GND,OK
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,4,LDR,LDR,LED current sink to D10 cathode (NF2W757G-F1 anode=+3V3); abs-max 3.6V OK; but at fw LED_DRIVE=44 (~92mA) Vf~3.0-3.5V -> V_LDR~=0-0.3V -> sink saturation risk / dim flash,DS000504 §4 + §10 reg0x74; NF2W757G Vf 2.9typ/3.3max rank; as7341.c LED_CODE=44,MEDIUM
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,5,PGND,GND,ground,DS000504 §3.2 pin5 PGND,OK
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,6,GPIO,NC(unconnected-(U10-GPIO-Pad6)),GPIO is DI; left floating - safe only because GPIO_IN_EN default=0 disables input; recommend GND tie for hygiene,DS000504 §10 reg 0xBE GPIO_IN_EN default 0 ('accepts non-floating input' only when set),COSMETIC
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,7,INT,NC(unconnected-(U10-INT-Pad7)),open-drain output unused - floating OK (needs 1V8 pull-up only if used),DS000504 §3.2 'Open drain output. Connect pull up resistor to 1.8V',OK
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,8,SDA,I2C_SDA_1V8,1V8 bus; pull-up R21 2.2k to +1V8 (correct side); VIH min 1.26V < 1.8V; VIL max 0.54V,DS000504 §5 VIH=1.26V/VIL=0.54V; netlist R21->+1V8,OK
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,addr,-,-,I2C addr FIXED 0x39 (0111001x); no strap pins; on 1V8 segment joined to 3V3 segment by U9 PCA9306 - logically one bus; no collision (map below),DS000504 §9.1 'AS7341 0x39',OK
+U10,AS7341-DLGM,vitalquant:AS7341DLGT,B,fppads,-,-,8 pads 0.575x0.488mm cols +/-0.638mm pitch 0.8mm == DS Fig93 'Recommended PCB Pad Layout' EXACT (8X 0.575/0.488 +/-0.05, 8X [0.638, 4X [0.400/[1.200); no EP,DS000504 §11.2 Fig93 (OCR of DS000504 v3-00 p.60),OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,1,SCL,I2C_SCL,3V3 bus; pull-up R20 2.2k to +3V3 (correct side); VIH=0.7*V+=2.31V < 3.3V,SNOSD82D §5 + §6 VIH 0.7*(V+),OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,2,GND,GND,ground,SNOSD82D Table5-1,OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,3,ALERT,TMP117_ALERT,open-drain alert to U1(GPIO via pin9) w/ R65 10k pull-up +3V3; DS recommends 5k 'can be lower or higher' - OK,SNOSD82D §8.2.1 pullup req; netlist R65,OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,4,ADD0,GND,strap ADD0=GND -> 7-bit 1001000x = 0x48,SNOSD82D Table7-2,OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,5,V+,+3V3,supply 3.3V within 1.7-5.5V; decap C41 100nF @4.2mm,SNOSD82D §6.3 V+ 1.7-5.5V,OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,6,SDA,I2C_SDA,3V3 bus; pull-up R19 2.2k to +3V3,SNOSD82D §5,OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,7,GND_2(EP),GND,thermal pad: net=GND, footprint Cu+Mask NO paste -> unsoldered per TI §10.1 'do not solder for best accuracy'; if it wets, GND satisfies 'floating or grounded',SNOSD82D §10.1 + fp descr 'SNOSD82 section 10.1',OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,addr,-,-,7-bit addr = 0x48 (ADD0=GND); shares 3V3 bus with U20@0x49 - distinct,SNOSD82D Table7-2,OK
+U11,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,B,fppads,-,-,6 pads 0.6x0.35mm cols +/-1.05 pitch 0.65 + EP 1.1x1.7; TI DRV0006B example: pads 0.45x0.3 cols 1.95 pitch 0.65 EP 1.3x1.6 - inner edge 0.75 preserved, +0.15 toe/+0.05 wider/EP slightly smaller,SNOSD82D §12 DRV0006B land pattern example p.40-41,COSMETIC
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,1,SDA,I2C_SDA_1V8,1V8 bus; pull-up R21 2.2k to +1V8; -DCB-100 = 1V8-I2C variant: VI2C 1.65-1.95V, VIH=0.7*VI2C=1.26V<1.8V OK,DOC3901090632 Table2 (option digit1: 0=3V3/1=1V8) + Table6,OK
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,2,VDD,+3V3,VDD 3.0-3.6V; decap C61 100nF @0.54mm <10mm required,DOC3901090632 Table6 VDD 3-3.6V; Fig27a 'C1 <10mm',OK
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,3,GND,GND,ground,DOC3901090632 Table5 pin3 GND,OK
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,4,SCL,I2C_SCL_1V8,1V8 bus; pull-up R22 2.2k to +1V8 (correct side),DOC3901090632 Table5/6,OK
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,5,ADDR,GND,ADDR=GND -> slave 0x3A (0x3B if ADDR=VDD); VADDR_LO<=0.5V satisfied,DOC3901090632 Fig11 + Table6 SA=3A,OK
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,6,EP,GND,die pad 2.5x2.1mm Cu tied GND (EP dims D2=2.5/E2=2.1) BUT DS Fig26 recommends 8x0.2mm tented/plugged PTH vias + 0.25x0.25 windowpane stencil - footprint has FULL-area paste, NO vias,DOC3901090632 Fig26 p.47,MEDIUM
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,addr,-,-,7-bit addr = 0x3A; on 1V8 segment; no collision,DOC3901090632 §9.1 Fig11,OK
+U12,MLX90632SLD-DCB-100-SP,vitalquant:MLX90632SLDDCB100SP,B,fppads,-,-,5 pads 0.3x0.8mm @0.5mm pitch + EP 2.1x2.5mm ~= DS Fig26 (0.5 pitch, EP D2/E2 2.5x2.1); fine-pitch 0.2mm pad gap,DOC3901090632 Fig25/26 Table17,MEDIUM
 U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,F,1,GND,GND,ground,BST-BME280-DS001-23 Table35 pin1 GND,OK
 U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,F,2,CSB,+3V3,CSB tied to VDDIO(+3V3) -> I2C mode (DS: 'direct connection between CSB and VDDIO is required'); NOT floating,BST-BME280-DS001-23 §6.1/Fig17,OK
 U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,F,3,SDI,I2C_SDA,3V3 bus SDA; pull-up R19 2.2k +3V3,BST-BME280-DS001-23 Table35 SDI=SDA in I2C,OK
@@ -36,12 +36,12 @@ U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,F,7,G
 U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,F,8,VDD,+3V3,main supply 1.71-3.6V,BST-BME280-DS001-23 §1 VDD range,OK
 U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,F,addr,-,-,7-bit addr = 0x76 (SDO=GND); no collision,BST-BME280-DS001-23 §6.1,OK
 U13,BME280,Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering,F,fppads,-,-,8 pads 0.5x0.35 @0.65 pitch rows +/-1.025 (inner edge 0.775, span ~2.5) == DS Fig21 landing pattern; no EP,BST-BME280-DS001-23 §7.6 Fig21,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,1,SCL,I2C_SCL,3V3 bus; pull-up R20 2.2k to +3V3,SNOSD82D §5,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,2,GND,GND,ground,SNOSD82D Table5-1,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,3,ALERT,NC(unconnected-(U20-ALERT-Pad3)),ALERT unused - DS: 'can be left floating or connected to ground when not in use' - legal,SNOSD82D §8.2.1,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,4,ADD0,+3V3,strap ADD0=V+ -> 7-bit 1001001x = 0x49,SNOSD82D Table7-2,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,5,V+,+3V3,supply 3.3V within 1.7-5.5V; decap C41 100nF @4.2mm,SNOSD82D §6.3,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,6,SDA,I2C_SDA,3V3 bus; pull-up R19 2.2k to +3V3,SNOSD82D §5,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,7,GND_2(EP),GND,thermal pad no-paste (same footprint as U11) -> unsoldered per TI §10.1; GND net satisfies fallback,SNOSD82D §10.1,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,addr,-,-,7-bit addr = 0x49 (ADD0=V+); distinct from U11 0x48,SNOSD82D Table7-2,OK
-U20,TMP117AIDRVR,vitalq:TMP117_DRV_NOPASTE,F,fppads,-,-,same as U11 - pads 0.6x0.35 cols 2.1 pitch 0.65 EP 1.1x1.7 vs TI 0.45x0.3/1.95/0.65/1.3x1.6,SNOSD82D §12 DRV0006B,COSMETIC
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,1,SCL,I2C_SCL,3V3 bus; pull-up R20 2.2k to +3V3,SNOSD82D §5,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,2,GND,GND,ground,SNOSD82D Table5-1,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,3,ALERT,NC(unconnected-(U20-ALERT-Pad3)),ALERT unused - DS: 'can be left floating or connected to ground when not in use' - legal,SNOSD82D §8.2.1,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,4,ADD0,+3V3,strap ADD0=V+ -> 7-bit 1001001x = 0x49,SNOSD82D Table7-2,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,5,V+,+3V3,supply 3.3V within 1.7-5.5V; decap C41 100nF @4.2mm,SNOSD82D §6.3,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,6,SDA,I2C_SDA,3V3 bus; pull-up R19 2.2k to +3V3,SNOSD82D §5,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,7,GND_2(EP),GND,thermal pad no-paste (same footprint as U11) -> unsoldered per TI §10.1; GND net satisfies fallback,SNOSD82D §10.1,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,addr,-,-,7-bit addr = 0x49 (ADD0=V+); distinct from U11 0x48,SNOSD82D Table7-2,OK
+U20,TMP117AIDRVR,vitalquant:TMP117_DRV_NOPASTE,F,fppads,-,-,same as U11 - pads 0.6x0.35 cols 2.1 pitch 0.65 EP 1.1x1.7 vs TI 0.45x0.3/1.95/0.65/1.3x1.6,SNOSD82D §12 DRV0006B,COSMETIC
