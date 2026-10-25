@@ -6652,11 +6652,7 @@
 			)
 			(embedded_fonts no)
 		)
-<<<<<<<< HEAD:hardware/pcb/vitalquant_v2.kicad_sch
-		(symbol "vitalquant:ESP32-S3-MINI-1-N4R2"
-========
 		(symbol "vitalquant:ESP32-S3-WROOM-1-N16R8"
->>>>>>>> origin/main:hardware/pcb/kicad/vitalquant_v2.kicad_sch
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -6682,11 +6678,7 @@
 					)
 				)
 			)
-<<<<<<<< HEAD:hardware/pcb/vitalquant_v2.kicad_sch
-			(property "Footprint" "vitalquant:ESP32_S3_MINI_1"
-========
 			(property "Footprint" "vitalquant:ESP32_S3_WROOM_1"
->>>>>>>> origin/main:hardware/pcb/kicad/vitalquant_v2.kicad_sch
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -6708,11 +6700,7 @@
 					)
 				)
 			)
-<<<<<<<< HEAD:hardware/pcb/vitalquant_v2.kicad_sch
-			(property "Description" "ESP32-S3-MINI-1-N4R2, datasheet v1.3 Table 3-1. On-board PCB antenna. EP = pad 61 on the vitalquant land; VERIFY pad order vs S3 pinout."
-========
 			(property "Description" "ESP32-S3-WROOM-1-N16R8, datasheet v1.8 Table 3-1. 16MB flash + 8MB octal PSRAM; IO35/36/37 (pins 28-30) reserved NC. EP = pad 41. Antenna end overhangs board edge."
->>>>>>>> origin/main:hardware/pcb/kicad/vitalquant_v2.kicad_sch
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -41037,7 +41025,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "035e5ca2-c87a-4b9a-b1be-7f45dae076d1")
 		(property "Reference" "R118"
 			(at 1208.05 1045.95 0)
@@ -41059,7 +41047,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1210.31 1049.02 0)
 			(hide yes)
 			(show_name no)
@@ -41735,7 +41723,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1528"
+		(property "LCSC" "C23967"
 			(at 1264.92 615.95 0)
 			(hide yes)
 			(show_name no)
@@ -41875,9 +41863,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "0856f416-8d47-44e0-b64e-c83f76e859d3")
 		(property "Reference" "J2"
@@ -42807,7 +42795,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C17413"
+		(property "LCSC" "C26082"
 			(at 1285.24 601.98 0)
 			(hide yes)
 			(show_name no)
@@ -44424,7 +44412,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1270 674.37 0)
 			(hide yes)
 			(show_name no)
@@ -44664,7 +44652,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22879"
+		(property "LCSC" "C25867"
 			(at 118.11 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -44753,7 +44741,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25797"
+		(property "LCSC" "C26083"
 			(at 1210.31 656.59 0)
 			(hide yes)
 			(show_name no)
@@ -45950,7 +45938,7 @@
 				)
 			)
 		)
-		(property "Value" "LSM6DSV80XTR"
+		(property "Value" "LSM6DSV320XTR"
 			(at 1894.84 637.19 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -45960,7 +45948,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C46898862"
+		(property "LCSC" "C26633007"
 			(at 1874.52 615.95 0)
 			(hide yes)
 			(show_name no)
@@ -45972,6 +45960,28 @@
 			)
 		)
 		(property "Footprint" "vitalquant:QFN_LSM6DSV80XTR_STM"
+			(at 1874.52 615.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Name" "STMicroelectronics"
+			(at 1874.52 615.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "LSM6DSV320XTR"
 			(at 1874.52 615.95 0)
 			(hide yes)
 			(show_name no)
@@ -46139,7 +46149,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "1f9c9a1d-4760-49c3-b7e9-19f312f2fe70")
 		(property "Reference" "D29"
 			(at 1249.55 1048.15 0)
@@ -47204,7 +47214,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C3017614"
+		(property "LCSC" "C407678"
 			(at 1884.68 233.68 0)
 			(hide yes)
 			(show_name no)
@@ -48422,7 +48432,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 674.37 648.97 0)
 			(hide yes)
 			(show_name no)
@@ -48511,7 +48521,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25797"
+		(property "LCSC" "C26083"
 			(at 1150.62 656.59 0)
 			(hide yes)
 			(show_name no)
@@ -48675,7 +48685,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 674.37 626.11 0)
 			(hide yes)
 			(show_name no)
@@ -48764,7 +48774,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C26015"
+		(property "LCSC" "C25764"
 			(at 1724.66 494.03 0)
 			(hide yes)
 			(show_name no)
@@ -49258,7 +49268,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C17413"
+		(property "LCSC" "C26082"
 			(at 1328.42 601.98 0)
 			(hide yes)
 			(show_name no)
@@ -49725,7 +49735,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1334.77 1087.12 0)
 			(hide yes)
 			(show_name no)
@@ -49814,7 +49824,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 704.85 552.45 0)
 			(hide yes)
 			(show_name no)
@@ -49903,7 +49913,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25797"
+		(property "LCSC" "C26083"
 			(at 1104.9 656.59 0)
 			(hide yes)
 			(show_name no)
@@ -52109,7 +52119,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22299"
+		(property "LCSC" "C84703"
 			(at 1375.41 601.98 0)
 			(hide yes)
 			(show_name no)
@@ -53177,7 +53187,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22314"
+		(property "LCSC" "C114405"
 			(at 759.46 530.86 0)
 			(hide yes)
 			(show_name no)
@@ -53266,7 +53276,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C17413"
+		(property "LCSC" "C26082"
 			(at 1306.83 601.98 0)
 			(hide yes)
 			(show_name no)
@@ -53325,11 +53335,7 @@
 		)
 	)
 	(symbol
-<<<<<<<< HEAD:hardware/pcb/vitalquant_v2.kicad_sch
-		(lib_id "vitalquant:ESP32-S3-MINI-1-N4R2")
-========
 		(lib_id "vitalquant:ESP32-S3-WROOM-1-N16R8")
->>>>>>>> origin/main:hardware/pcb/kicad/vitalquant_v2.kicad_sch
 		(at 1184.91 123.19 0)
 		(unit 1)
 		(body_style 1)
@@ -53370,11 +53376,7 @@
 				)
 			)
 		)
-<<<<<<<< HEAD:hardware/pcb/vitalquant_v2.kicad_sch
-		(property "Footprint" "vitalquant:ESP32_S3_MINI_1"
-========
 		(property "Footprint" "vitalquant:ESP32_S3_WROOM_1"
->>>>>>>> origin/main:hardware/pcb/kicad/vitalquant_v2.kicad_sch
 			(at 1184.91 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -54060,7 +54062,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22299"
+		(property "LCSC" "C84703"
 			(at 1394.46 636.27 0)
 			(hide yes)
 			(show_name no)
@@ -55117,9 +55119,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "5299fb87-d2e1-4748-8bec-9f01385829ea")
 		(property "Reference" "J7"
@@ -55540,9 +55542,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "553138de-5df8-458d-9729-baea72b8b49a")
 		(property "Reference" "J3"
@@ -55808,7 +55810,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C188347"
+		(property "LCSC" "C47339"
 			(at 815.34 574.04 0)
 			(hide yes)
 			(show_name no)
@@ -56890,7 +56892,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1334.77 1098.55 0)
 			(hide yes)
 			(show_name no)
@@ -57334,6 +57336,28 @@
 			)
 		)
 		(property "Footprint" "vitalquant:SHT45_DFN4"
+			(at 1959.61 591.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Name" "Sensirion"
+			(at 1959.61 591.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SHT45-AD1B-R2"
 			(at 1959.61 591.82 0)
 			(hide yes)
 			(show_name no)
@@ -58444,9 +58468,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "6669a5b6-a59b-4367-9711-20dfad96d8b6")
 		(property "Reference" "J9"
@@ -58553,7 +58577,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25084"
+		(property "LCSC" "C25076"
 			(at 1685.29 661.67 0)
 			(hide yes)
 			(show_name no)
@@ -58909,7 +58933,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C188347"
+		(property "LCSC" "C47339"
 			(at 815.34 552.45 0)
 			(hide yes)
 			(show_name no)
@@ -59590,7 +59614,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1210.31 694.69 0)
 			(hide yes)
 			(show_name no)
@@ -59730,9 +59754,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "70ce6dcc-f8c2-4d42-aaab-2c14afb20b36")
 		(property "Reference" "J5"
@@ -59820,7 +59844,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "7156347d-aa67-4d65-baea-d2e4d03fc0bd")
 		(property "Reference" "R119"
 			(at 1208.05 1055.95 0)
@@ -59842,7 +59866,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1210.31 1059.18 0)
 			(hide yes)
 			(show_name no)
@@ -61022,7 +61046,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 704.85 530.86 0)
 			(hide yes)
 			(show_name no)
@@ -61517,7 +61541,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C188347"
+		(property "LCSC" "C47339"
 			(at 779.78 648.97 0)
 			(hide yes)
 			(show_name no)
@@ -62185,7 +62209,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22314"
+		(property "LCSC" "C114405"
 			(at 730.25 626.11 0)
 			(hide yes)
 			(show_name no)
@@ -64201,7 +64225,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22299"
+		(property "LCSC" "C84703"
 			(at 1417.32 636.27 0)
 			(hide yes)
 			(show_name no)
@@ -64544,7 +64568,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C188347"
+		(property "LCSC" "C47339"
 			(at 514.35 579.12 0)
 			(hide yes)
 			(show_name no)
@@ -65779,7 +65803,7 @@
 				)
 			)
 		)
-		(property "Value" "ADS1292RIRSMT"
+		(property "Value" "ADS1292RIRSMR"
 			(at 1252.22 576.23 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -65789,7 +65813,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C882777"
+		(property "LCSC" "C456281"
 			(at 1234.44 527.05 0)
 			(hide yes)
 			(show_name no)
@@ -65801,6 +65825,17 @@
 			)
 		)
 		(property "Footprint" "vitalquant:QFN40P400X400X100-33N-D"
+			(at 1234.44 527.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "ADS1292RIRSMR"
 			(at 1234.44 527.05 0)
 			(hide yes)
 			(show_name no)
@@ -66363,7 +66398,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25513"
+		(property "LCSC" "C25077"
 			(at 514.35 615.95 0)
 			(hide yes)
 			(show_name no)
@@ -67766,6 +67801,28 @@
 				)
 			)
 		)
+		(property "Manufacturer_Name" "Diodes Incorporated"
+			(at 544.83 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "BC847BS-7-F"
+			(at 544.83 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "Datasheet" ""
 			(at 544.83 198.12 0)
 			(hide yes)
@@ -68251,7 +68308,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C188347"
+		(property "LCSC" "C47339"
 			(at 537.21 579.12 0)
 			(hide yes)
 			(show_name no)
@@ -68851,7 +68908,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1334.77 1074.42 0)
 			(hide yes)
 			(show_name no)
@@ -69105,7 +69162,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C188347"
+		(property "LCSC" "C47339"
 			(at 815.34 596.9 0)
 			(hide yes)
 			(show_name no)
@@ -69194,7 +69251,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1150.62 674.37 0)
 			(hide yes)
 			(show_name no)
@@ -69359,7 +69416,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25779"
+		(property "LCSC" "C25771"
 			(at 139.7 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -69523,7 +69580,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25840"
+		(property "LCSC" "C132339"
 			(at 359.41 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -70386,7 +70443,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C17413"
+		(property "LCSC" "C26082"
 			(at 1351.28 601.98 0)
 			(hide yes)
 			(show_name no)
@@ -71519,7 +71576,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C6097400"
+		(property "LCSC" "C102962"
 			(at 1750.06 527.05 0)
 			(hide yes)
 			(show_name no)
@@ -71672,9 +71729,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "b45f95c1-8fc7-461b-b5be-15a77045777d")
 		(property "Reference" "J10"
@@ -72180,7 +72237,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 704.85 574.04 0)
 			(hide yes)
 			(show_name no)
@@ -72713,9 +72770,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "bd932598-492c-42b4-b63a-90910737d2a5")
 		(property "Reference" "J6"
@@ -73898,9 +73955,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "c8cbae92-1dbf-4481-8361-a92384759c3b")
 		(property "Reference" "J11"
@@ -75061,7 +75118,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 784.86 670.56 0)
 			(hide yes)
 			(show_name no)
@@ -75150,7 +75207,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1089.66 674.37 0)
 			(hide yes)
 			(show_name no)
@@ -76719,7 +76776,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C3017614"
+		(property "LCSC" "C407678"
 			(at 1845.31 233.68 0)
 			(hide yes)
 			(show_name no)
@@ -80025,7 +80082,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22299"
+		(property "LCSC" "C84703"
 			(at 1397 601.98 0)
 			(hide yes)
 			(show_name no)
@@ -80114,7 +80171,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C188347"
+		(property "LCSC" "C47339"
 			(at 624.84 541.02 0)
 			(hide yes)
 			(show_name no)
@@ -80889,7 +80946,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C853138"
+		(property "LCSC" "C43473"
 			(at 529.59 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -81524,7 +81581,7 @@
 				)
 			)
 		)
-		(property "Value" "MLX90632SLD-DCB-100-SP"
+		(property "Value" "MLX90632SLD-DCB-100-RE"
 			(at 1907.54 562.26 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -81535,7 +81592,7 @@
 			)
 		)
 	
-		(property "LCSC" "C5349491"
+		(property "LCSC" "C17235844"
 			(at 0 0 0)
 			(hide yes)
 			(show_name no)
@@ -81546,6 +81603,17 @@
 				)
 			)
 		)	(property "Footprint" "vitalquant:MLX90632SLDDCB100SP"
+			(at 1894.84 546.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "MLX90632SLD-DCB-100-RE"
 			(at 1894.84 546.1 0)
 			(hide yes)
 			(show_name no)
@@ -81787,7 +81855,8 @@
 				)
 			)
 		)
-		(property "LCSC" "C17610390"
+		
+		(property "Footprint" "vitalquant:NF2W757G"
 			(at 1649.73 681.99 0)
 			(hide yes)
 			(show_name no)
@@ -81798,7 +81867,18 @@
 				)
 			)
 		)
-		(property "Footprint" "vitalquant:NF2W757G"
+		(property "Manufacturer_Name" "Nichia"
+			(at 1649.73 681.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" "NF2W757G-F1"
 			(at 1649.73 681.99 0)
 			(hide yes)
 			(show_name no)
@@ -81876,7 +81956,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 704.85 596.9 0)
 			(hide yes)
 			(show_name no)
@@ -82093,7 +82173,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "f960fe56-e9a1-463a-a4ed-14bb53735654")
 		(property "Reference" "D30"
 			(at 1249.55 1058.15 0)
@@ -82458,7 +82538,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25084"
+		(property "LCSC" "C25076"
 			(at 1625.6 661.67 0)
 			(hide yes)
 			(show_name no)
@@ -82866,7 +82946,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 1329.69 674.37 0)
 			(hide yes)
 			(show_name no)
@@ -83183,7 +83263,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C18009"
+		(property "LCSC" "C30412"
 			(at 674.37 670.56 0)
 			(hide yes)
 			(show_name no)
@@ -83272,7 +83352,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C23691"
+		(property "LCSC" "C84705"
 			(at 1164.59 626.11 0)
 			(hide yes)
 			(show_name no)

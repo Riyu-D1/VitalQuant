@@ -34,12 +34,12 @@ def props(n): return {p[1]: p[2] for p in children(n, 'property')}
 def natural(r): return [int(t) if t.isdigit() else t for t in re.split(r'(\d+)', r)]
 
 CONSIGNED = {
-    'U12': 'MLX90632SLD-DCB-100-RE',
+    'D10': 'NF2W757G-F1',
     'D12': 'XL0603NRC730',
 }
 
-b = parse(ROOT / 'vitalquant_v2.kicad_pcb')
-s = parse(ROOT / 'vitalquant_v2.kicad_sch')
+b = parse(ROOT / 'vitalq_v2.kicad_pcb')
+s = parse(ROOT / 'vitalq_v2.kicad_sch')
 lib = {x[1]: props(x) for x in children(children(s, 'lib_symbols')[0], 'symbol')}
 symbols = {}
 for sym in children(s, 'symbol'):
@@ -57,7 +57,7 @@ for f in children(b, 'footprint'):
         excluded['board_exclude_from_bom'].append(r); continue
     if 'dnp' in attrs:
         excluded['do_not_populate'].append(r); continue
-    if f[1].startswith('vitalquant:Pads_'):
+    if f[1].startswith('vitalq:Pads_'):
         excluded['integral_pcb_contact_pads'].append(r); continue
     if 'smd' not in attrs:
         excluded['not_smd'].append(r); continue
@@ -73,21 +73,23 @@ groups = defaultdict(list)
 for r, v in eligible.items():
     groups[tuple(v[k] for k in ['comment', 'footprint', 'lcsc', 'manufacturer', 'mpn'])].append(r)
 
-with (ROOT / 'fab/BOM_JLC.csv').open('w', newline='') as st:
+with (ROOT / 'fab/assembly/BOM_JLC.csv').open('w', newline='') as st:
     w = csv.writer(st)
     w.writerow(['Comment', 'Designator', 'Footprint', 'LCSC Part #', 'Quantity',
                 'Manufacturer', 'Manufacturer Part Number'])
     for key, refs in sorted(groups.items(), key=lambda kv: natural(min(kv[1], key=natural))):
         comment, fp, lcsc, mfr, mpn = key
         cons = [c for c in (CONSIGNED.get(r) for r in refs) if c]
+        if not lcsc and not cons:
+            continue
         mpn_out = cons[0] if cons else mpn
         w.writerow([comment, ', '.join(sorted(refs, key=natural)), fp, lcsc,
                     len(refs), mfr, mpn_out])
 
-positions = list(csv.DictReader((ROOT / 'fab/positions_kicad.csv').open()))
+positions = list(csv.DictReader((ROOT / 'fab/assembly/positions_kicad.csv').open()))
 selected = [p for p in positions if p['Ref'] in eligible]
 missing_pos = sorted(set(eligible) - {p['Ref'] for p in selected}, key=natural)
-with (ROOT / 'fab/CPL_JLC.csv').open('w', newline='') as st:
+with (ROOT / 'fab/assembly/CPL_JLC.csv').open('w', newline='') as st:
     w = csv.writer(st)
     w.writerow(['Designator', 'Mid X', 'Mid Y', 'Layer', 'Rotation'])
     for p in sorted(selected, key=lambda p: natural(p['Ref'])):
@@ -105,6 +107,6 @@ summary = {'placed_components': len(eligible), 'bom_groups': len(groups),
                                               if not v['lcsc'] and r not in CONSIGNED], key=natural),
            'missing_positions': missing_pos,
            'excluded': {k: sorted(v, key=natural) for k, v in excluded.items()}}
-(ROOT / 'fab/ASSEMBLY_CHECKS.json').write_text(json.dumps(summary, indent=2))
+(ROOT / 'fab/assembly/ASSEMBLY_CHECKS.json').write_text(json.dumps(summary, indent=2))
 print(json.dumps({k: (len(v) if isinstance(v, list) else v) for k, v in summary.items()}, indent=1))
 print('excluded:', {k: len(v) for k, v in excluded.items()})
