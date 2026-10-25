@@ -1,72 +1,82 @@
-# VERIFY_REPORT — fix_v23
+# VERIFY_REPORT — fix_v24
 
-Board: `fix_v23/vitalquant_v2.kicad_pcb`. Tool: `kicad-cli` **10.0.4**
-(`/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`). Baseline: fix_v22.
+Date: 2026-10-25. **KiCad CLI 10.0.4**
+(`/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`).
 
-## §1 — DRC / ERC / parity — PASS
+Reviewer-equivalent setup (same as fix_v23): fix_v19 project rules copied
+into a temporary work copy + fix_v23's narrow `vitalq_v2.kicad_dru`
+(Q1/Q2/Q4 internal-pad clearance 0.09 mm). All numbers **checked** (measured
+today).
 
-- Reviewer-equivalent run (fix_v19 project rules + `vitalquant_v2.kicad_dru`):
-  `kicad-cli pcb drc --severity-error --schematic-parity` →
-  **0 violations, 0 unconnected, 0 shorts, 0 parity** (`verify/drc_v23b.json`,
-  re-run after the schematic LCSC updates — identical result).
-- ERC `--severity-error`: **0 violations** (`verify/erc_v23b.json`).
-- `--severity-all`: 154 warnings (all pre-existing classes; fix_v22 measured 164
-  including the 10 errors now fixed). No error-severity findings.
-- Differences vs fix_v22: nine Q1/Q2/Q4 intra-footprint clearances resolved via
-  the scoped 0.09 mm rule in `vitalquant_v2.kicad_dru` (TI PicoStar land pattern,
-  JLCPCB multilayer minimum 0.09 mm); the J8 NPTH / U6 courtyard clash resolved
-  by narrowing U6's courtyard edge −1.30 → −1.15 mm (hole remains 0.265 mm
-  clear of the package body). No copper moved. See `DRC_STATEMENT.md`.
+## DRC — `kicad-cli pcb drc --severity-error --schematic-parity`
 
-## §2 — Antenna keep-outs — PASS (checked)
+| Metric | Baseline (v24 pre-edit) | fix_v24 |
+|---|---|---|
+| violations (errors) | 0 | **0** |
+| unconnected items | 0 | **0** |
+| shorts | 0 | **0** |
+| schematic parity issues | 0 | **0** |
 
-- `antenna keepout` rule areas present: x −2.5…25.5 / y −16.55…−15.25 and
-  x 2.5…20.5 / y −22.25…−16.3.
-- Zero filled-zone polygons and zero tracks overlap either region on any layer
-  (checked against the v23 board file geometry, not just bounding boxes).
+Severity-all: 154 warnings, **identical class breakdown** to baseline
+(lib_footprint_issues 52, lib_footprint_mismatch 5, silk_edge_clearance 15,
+silk_over_copper 8, silk_overlap 3, text_height 9, text_thickness 1,
+track_dangling 59, via_dangling 2). No new warning classes.
+Reports: `verify/drc_v24.json|.txt`, baseline in `verify/baseline/`.
 
-## §3 — USB-C 12.4 mm plug-grip corridor — PASS
+## ERC — `kicad-cli sch erc --severity-error`
 
-- `_work/check_corridor.py` (pcbnew, KiCad 10.0.4) on v23:
-  J1 at (29.500, −7.800) rot 180 — unchanged.
-  - 12.4 mm corridor x 23.3…35.7 / y −26.5…−11.5: **clear**.
-  - 8.3 mm corridor: **clear**. Margins west 0.80 mm / east 1.66 mm.
-  - `CORRIDOR OVERALL: PASS`.
+| Metric | Baseline | fix_v24 |
+|---|---|---|
+| violations (errors) | 0 | **0** |
 
-## §4 — Gerber continuity — PASS
+Severity-all: 564 warnings, identical class breakdown to baseline
+(lib_symbol_issues 506, footprint_link_issues 53, pin_to_pin 5). No new
+warning classes. Reports: `verify/erc_v24.json|.txt`.
 
-- `verify/gerber_continuity.py` on the regenerated v23 gerbers + PTH drill:
-  primitives 16 117, components 255, nets 249, tagged pins 946.
-  - **0 shorts; 0 opens on real nets.**
-  - Reported "OPEN N/C" and the 11 pin-name mismatches are unconnected-pin
-    pseudo-net artefacts (`unconnected-(…)` net names, `{slash}` escaping,
-    U1 N/C pads) — the same tool artefacts documented in v21/v22.
+## Copper / geometry equivalence vs fix_v23
 
-## §5 — Fabrication package — PASS
+- All **16 gerber layers** (8 Cu + mask + silk + paste + Edge.Cuts)
+  byte-identical modulo creation-date headers.
+- Drill files (merged, PTH, NPTH) identical modulo creation-date lines.
+- **302 footprints**: 0 geometry diffs (pads/position/rotation; property
+  and attr tokens excluded by design).
+- **8,898** board primitives (segments, vias, zones, drawings):
+  identical.
+- Detail: `verify/COPPER_EQUIV.md`.
 
-- Regenerated from fix_v23: 8 copper layers + mask/silk/paste/Edge.Cuts gerbers
-  (`.gbr` in `fab/gerbers/`, JLC extensions in `fab/jlc/`), PTH/NPTH drills
-  (917 plated / 8 non-plated holes), merged drill, BOM.csv, BOM_JLC.csv,
-  CPL.csv (251), CPL_JLC.csv (248), positions, ASSEMBLY_CHECKS.json,
-  SHA256SUMS.txt, `VitalQuant_v2_fixv23_fabrication.zip`.
-- Consistency (checked): `BOM.csv`, `CPL.csv`, `CPL_JLC.csv` are
-  **byte-identical** to repository main's corrected assembly files;
-  `BOM_JLC.csv` equals main's corrected file (U1 = ESP32-S3-WROOM-1-N16R8 /
-  **C2913202**); every CPL_JLC ref appears in BOM_JLC; J12/U24/U25 excluded as
-  DNP per main's BOM.
-- Schematic LCSC fields updated to the corrected values (37 refs + D10);
-  a fresh `kicad-cli sch export bom` reproduces main's BOM.csv exactly.
-  See `BOM_CROSSCHECK.md`.
+## Edit accounting
 
-## Open items (honest)
+- 67 schematic designators changed (fields + flags), all listed in
+  `CHANGES_V24.md`.
+- PCB footprint sync: only `property "Value"/"LCSC"` and `attr` tokens;
+  86 real line diffs; no attr flag ever removed (J8's existing exclusions
+  preserved).
+- Cross-check vs `_inputs/BOM_rebuilt_JLC.csv`: every applicable row
+  applied; the only differences are the owner-mandated deviations (D10
+  consigned/blank, U8/U12/U14 swap targets, DNP'd D29/D30/R118/R119) and
+  the D3-fitted J12/U24/U25.
 
-- No physical prototype; board has not been fabricated or bench-tested.
-- RF/antenna performance, case fit and assembly yield unverified on hardware.
-- `--severity-all` warnings remain (silk/text/dangling-end classes and
-  library-footprint mismatches) — cosmetic/audit items, documented.
-- U6 courtyard margin on the J8 side is reduced locally; assembly placement
-  clearance toward the J8 NPTH is unchanged physically (hole edge is 0.265 mm
-  from the U6 body outline), but the fab/assembly reviewer should be aware.
+## Export consistency (regenerated fab/)
 
-This board is a research prototype; nothing here is a medical, safety or
-regulatory statement.
+- `BOM.csv` == fresh `kicad-cli sch export bom` output (257 rows).
+- `BOM_JLC.csv` (79 rows) and `CPL_JLC.csv` (247 rows): designator sets
+  identical, both directions.
+- No DNP ref (D29, D30, R118, R119, J13, R93, R104, R105, R107, R108) in
+  BOM_JLC or CPL_JLC.
+- No J2–J11 pad refs anywhere in BOM/position outputs.
+- J12, U24, U25 present in BOM_JLC and CPL_JLC (fitted, D3).
+- D10: consigned row, blank LCSC, MPN NF2W757G-F1 — same convention as
+  D12 (XL0603NRC730).
+- `ASSEMBLY_CHECKS.json`: 247 placed, 79 groups, 0 missing-LCSC
+  references, 0 missing positions, consigned = {D10, D12}.
+- `SHA256SUMS.txt` covers the gerber + drill set; `VitalQ_v2_fixv24_
+  gerbers.zip` inside `fab/gerbers/`; fabrication zip at `fab/` root.
+
+## LCSC/JLC verification
+
+105 LCSC product pages + 89 JLC partdetail pages fetched and parsed
+2026-10-25. Every changed part's MPN, value, package, tolerance and
+rating cross-checked against the page; stock and price recorded in
+`BUY_NOTES.md` and `BOM_FULL.csv` (USD→GBP 0.748, ECB 2026-10-23).
+Delisted/404 LCSC codes noted: C5221601 (U23), C536262 (U25) — both still
+stocked at JLC; flagged.

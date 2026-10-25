@@ -1,5 +1,11 @@
 # hw_v2 BOM addendum
 
+> **Status note (fix_v24, 2026-10-25):** this document describes an earlier
+> revision. Current board state: D10 = Nichia NF2W757G-F1 (consigned, no
+> LCSC), U14 = LSM6DSV320XTR (LCSC C26633007, same LGA-14 land), J12 /
+> U24 / U25 are **fitted** (in the v24 JLC BOM/CPL), and the dead MX-ECG
+> chain D29 / D30 / R118 / R119 is DNP. See `../reports/CHANGES_V24.md`.
+
 > **Historical design record (hw_v2 era).** This addendum documents which
 > parts were added/changed and why. It predates the MAX86178→MAX86141 swap
 > (spec item 2) and the V22 module move — **for ordering use
