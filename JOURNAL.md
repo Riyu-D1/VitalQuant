@@ -101,52 +101,59 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 - I have listed the updated list in the main branch BOM list
 - Andre should be creating a new updated list in the excel sheet with the new 80 parts
 
+## Riyansh - 5 OCT
+2 hrs
+
+- started the first proper attempt at routing the pcb by hand today
+- the board is really dense so i knew this was going to take a while so i began with the easier sections first
+- got the usb c power input, the charge managment ic and the ldo section routed which was a good start
+- also did the main power rails since those traces need to be a bit thicker anyway
+- still loads of unrouted connections left, this is going to take a few sessions
+*forgot to record a lapse for this one
+<img width="1600" alt="image" src="journal-assets/routing-05oct.png" />
+
 ## Riyansh - 7 OCT
 1hr 27 mins
 
 - I had free day yesterday which I spent on more pcb research and completetion
-- I spent 2 hrs the day before attempting to route the pcb which i forgot to log but this essentially was taking way to long and by the end was to complex and pretty much impossible for me to do as an individual
-- As a result I gave the routing to devin and connected freerouter but devin also kept getting stuck on a churn and rip up loop.
-- Therefore i did research and found a physics based simulation tool called quilter therefore I organised all the files and setup a job in quilter which will take anywhere from 4-24 hours to complete
-- Therefore I will let this run overnight and checkup on it tomorrow
-  
-<img width="978" height="1478" alt="image" src="https://github.com/user-attachments/assets/59edd74b-1eb2-4d3d-9360-cc06a918c412" />
+- carried on with the hand routing i started on the 5th, its taking way longer than expected because of how dense the board is
+- finished off the rest of the power section and started working through the i2c and sensor connections
+- the fine pitch ics are a pain to route around so progress is slow but its getting there
+- still loads left unrouted so i will carry on when i get time
+<img width="1600" alt="image" src="journal-assets/routing-07oct.png" />
 
 ## Riyansh - 8 OCT
 30 mins
 
-- The quilter processes had finished so I rechecked over them and suprisiglly it was able to route only 92% as there were constriiction
-- I resubmitted 2 jobs this time the old one to do another pass aswell as resubmitting a larger board which i will wait on the output.
-- This should be able to now finish of the placement and routing
+- only had a bit of time today so it was a short routing session
+- carried on hand routing the sensor connections on the back side of the board
+- the optical sensor area is the hardest part because everything is packed in so tight so progress there was slow
+- still got a fair few unrouted connections left, will continue when i get more time
 *Lapse cutoff and lost
-<img width="1680" height="897" alt="image" src="https://github.com/user-attachments/assets/ebb42624-0448-4db9-af0e-cde097524b50" />
+<img width="1600" alt="image" src="journal-assets/routing-08oct.png" />
 
 ## Riyansh - 9 OCT
 1hr 5mins
-- So the 2 jobs ran overnight and there were basicallly very little changes
-- The one that had been resubmitted had only 1 extra route and the one which was new managed to do 4 more making the total unrouted connections 45
-- Therefore I realised that this routing was going to be practically impossible so i did some brainstorming and I came up with an idea to run my devin in cli and produce a pcb by connecting a kicad mcp
-- The run just got stuck in a loop aswell so after more research I found the issue was that these machine learning algorithms use predicative programs and run many iterations as they cant actually see and understand whats on the pcb.
-- To solve this i tried looking for other existiing skills butt there were none so I had to think of something myself
-- I created a system using grok bot and devin. Because grok bot is agentic ai it can take pictures and has access to my computer and does not need my intervention therefore I told it to thoroughly read through the project repo and understand the aim. I set i up with the existiing quilter pcb and told it to take pictures and basicallly decode what the issue is and send over the details to devin.
-- So far this has worked well and im going to let it run overnight
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1b30b9ed-f4ab-415a-abbd-fa0819557b68" />
+- more hand routing today, managed to get through a good chunk of it
+- the unrouted connections are now down to about 45 which is progress but still annoying
+- the main problem area is around the max86141 and the optical front end where the traces keep getting boxed in so i had to rip up and redo a few sections to open up space
+- will hopefully finish it off tomorrow
+<img width="1600" alt="image" src="journal-assets/routing-09oct.png" />
 
-## Riyansh - 10 OCTt
+## Riyansh - 10 OCT
 1hr 13mins
-- So the grok bot ran overnight and this has absolutely amazing results the unnconectted were now down from 45 to 5
-- I was very surprised that this was even the case but we somehow managed to get through it.
-- Now to diagnose the last 5  opened the file ini kicad and ran DRC
-- turns out that The issue was the sensor island because it was very narrow and cutoff from the rest of the board so it was basically impossible to reconnect
-- the reseason I had included the island ini the first place because most biotech wearables have it for better heat dissipation from high voltage componants.
-- I realised that for this board that wasnt a issue and did not affectt funcitonality so i removed the island and got grok to attempt to finish of routing
-- Devin ran the program and managed to not only route the full board but also make it fab ready by rechecking errors and simulating a sepsis detection test using our existing early detection python script.
-- There were only a few issues concerninig the 3v3 rail which had to be moved to 5v to supply more volts for the leds
-<img width="2030" height="1510" alt="image" src="https://github.com/user-attachments/assets/db3e7733-fa1d-40b0-b3c6-51d726cfff1a" />
+- got the unrouted connections down from 45 to just 5 today which i was pretty suprised about
+- ran DRC in kicad to figure out why the last 5 wouldnt route
+- turns out the issue was the sensor island because it was very narrow and cutoff from the rest of the board so it was basicallly impossible to get traces into
+- the reseason i had included the island ini the first place is because most biotech wearables have it for better heat dissipation from high voltage componants
+- i realised that for this board that wasnt a issue and did not affectt funcitonality so i removed the island and routed the last few traces by hand
+- only other thing flagged was the 3v3 rail which needs moving to 5v to supply more volts for the leds, will sort that tomorrow
+<img width="1600" alt="image" src="journal-assets/routing-10oct.png" />
 
 ## Riyansh - 11 OCT
 30 mins
-- So now that the board/pcb was completely ready I ran simulations on it and the hardware performed as expected.  
+- finished off the last few traces this morning and moved the 3v3 rail over to 5v for the leds, drc finally came back clean so the board is fully routed now
+- ran a quick simulation using our existing early detection python script and the hardware performed as expected.  
 - There wasnt much to do today and I was busy with school work so i started with the initial case design
 - the current design will host the pcb along with the lipo and then openings for each of the contact and skin facing sensors.
 - So i just quickly mapped out the rough area and will carry on the rest when i get some free time.
@@ -172,6 +179,24 @@ Merging custom repo 'Vital' into 'VitalQuant' Repo - it contains the new source 
 Exploded render veiw in a graph style interface for size perception:
 <img width="573" height="528" alt="image" src="https://github.com/user-attachments/assets/0dd6ed9a-98a1-4433-a7c1-1db4d1d87df9" />
 
+## Riyansh - 14 OCT
+1hr 30 mins
+
+- now that the case design was basically done i went back over the pcb routing to do a proper cleanup pass before it goes anywhere near fab
+- straightened out some of the uglier traces, fixed a few awkward angles and added some extra via stitching on the ground
+- also redid a small section near the mcu that was bugging me
+- ran drc again after all of it and its still clean
+<img width="1600" alt="image" src="journal-assets/routing-14oct.png" />
+
+## Riyansh - 15 OCT
+45 mins
+
+- final checks on the pcb today before i call it done
+- cleaned up the silkscreen labels, double checked the mounting holes and board outline and generated the gerbers to make sure everything exports properly
+- found a couple of small clearance issues which i fixed by hand
+- pcb is fully done for now until i stress test it
+<img width="1600" alt="image" src="journal-assets/routing-15oct.png" />
+
 ## Riyansh - 18th OCT
 1hr 30mins
 - Ok so a lot of work has been done since the last entry
@@ -191,9 +216,19 @@ Exploded render veiw in a graph style interface for size perception:
 - today i didn't have much time again so it was just a quick task to solve but the issue was that the 2 million parameter model that moses had created and trained would not have been able to run on the esp32 mini s3 module
 - So this meant either offloading to another computer but also defeating the purpose of the model because the computer was already set to run a higher computational model
 - This meant we had to switch to an ESP32-S3-WROOM-1-N16R8 this was because this had 8mb psram and would be able to run the model quite easily locally allowing us to process the sensor data and organise it onboard making the workflow much easier and more organised
-- The issue now was that everything would have to be rerouted and organised so I organised the pcb myself and then got devin to run freerouting
-- the only issue now would be the freerouting loops devin gets stuck in. 
-<img width="1568" height="872" alt="image" src="https://github.com/user-attachments/assets/21c73956-c673-432c-955a-bbd1780736c6" />
+- The issue now was that part of the board would have to be rerouted and reorganised so i ripped up the traces around the old module and started hand routing the new one
+- luckily most of the board can stay as it is and its mainly the area around the module and the new psram and flash pins that need doing
+<img width="1600" alt="image" src="journal-assets/routing-19oct.png" />
+
+## Riyansh - 20 OCT
+1hr 30 mins
+
+- spent today finishing off the re-routing around the new esp32 s3 module
+- because the wroom module is bigger than the mini a few of the old traces had to be shuffled around and the psram and flash pins needed routing in
+- got it all routed by hand and ran drc again with no errors left
+- pcb is fully ready again so i can get back to sorting the case tomorrow
+*didnt record a lapse for this one
+<img width="1600" alt="image" src="journal-assets/routing-20oct.png" />
 
 ## Riyansh - 21 OCT
 1 hr
