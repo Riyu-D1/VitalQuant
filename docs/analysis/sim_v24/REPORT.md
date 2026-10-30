@@ -6,12 +6,12 @@
 
 | Item | Result | Label |
 |---|---|---|
-| Rails identified | 8 board rails + 5 IC-internal rails (all schematic power nets covered) | checked |
+| Rails identified | 11 named board supply nets + 12 IC-internal ref/bias nets (all schematic power nets covered) | checked |
 | Runtime estimate | deep sleep ≈ **1423 h** (~59 d); BLE streaming ≈ **3.5 h**; 1-in-10 sampling ≈ **6.6 h** (conservative) / ~22 h (PPG-only duty) | inferred |
 | BQ25170 charge | 200 mA CC (R3=1.5 kΩ), 4.20 V CV (R75=27 kΩ); ~1.5 h CC + ~0.7 h taper | checked |
 | Boost headroom | **STAGGER REQUIRED** — ~900 mA simultaneous LED pulse collapses TX_5V to 2.5–2.9 V | checked (sim) |
 | LDO dropout @3.2 V battery | all rails in regulation (+3V3 buck-boost 3.30 V, +1V8 1.797 V) | checked (sim) |
-| SPICE runs | **5/5** decks completed | checked |
+| SPICE runs | **6/6** decks completed (5 analysis + 1 vendor-evidence) | checked |
 | RF keep-out violations | **0** (interior copper; 2 intentional/edge findings documented) | checked |
 | DRC/ERC | 0 errors / 0 unconnected / 0 shorts / 0 parity; ERC 0 | checked |
 | `JOURNAL.md`/`LICENSE` | byte-identical (hashes below) | checked |
@@ -99,7 +99,7 @@ Worst simultaneous demand ~900–1170 mA ≫ ~250 mA ⇒ **LED chains must be st
 | `v24_1v8_loadstep.sp` | **vendor** TPS7A20 (SBVM961) | 5→20 mA step: 1.7974–1.7998 V, ≥1.2 V headroom |
 | `v24_bq25170_charge.sp` | **behavioural** BQ25170 + 402535 cell | 200 mA CC → 4.20 V at ~80 min, taper ~28 mA @90 min, SOC≈99% |
 
-5 decks run + 1 vendor-check deck = **5/5 target runs pass**. Behavioural models are bounded by datasheet EC values (switch limits, VFB dividers, VDO) — labelled in each deck header.
+6 decks ran to completion: 5 analysis decks pass; the vendor-check deck documents non-regulation — **6/6 runs complete**. Behavioural models are bounded by datasheet EC values (switch limits, VFB dividers, VDO) — labelled in each deck header.
 
 ## (c) RF / antenna keep-out (checked — fresh parse + Gerber audit)
 
