@@ -1,5 +1,11 @@
 # VitalQuant firmware v2: hardware-interface brief for the WROOM board (fix_v22)
 
+> **Status note (fix_v24, 2026-10-25):** this document describes an earlier
+> revision. Current board state: D10 = Nichia NF2W757G-F1 (consigned, no
+> LCSC), U14 = LSM6DSV320XTR (LCSC C26633007, same LGA-14 land), J12 /
+> U24 / U25 are **fitted** (in the v24 JLC BOM/CPL), and the dead MX-ECG
+> chain D29 / D30 / R118 / R119 is DNP. See `../reports/CHANGES_V24.md`.
+
 **For:** the CTO / firmware author. **From:** the hardware side. This is a specification and prompt, not code.
 
 **Board:** `fix_v22` (8-layer, ESP32-S3-WROOM-1-N16R8). Facts come from the fix_v22 schematic netlist (`kicad-cli sch export netlist`), `fab/BOM.csv`, `FIRMWARE_NOTES.md` and the earlier verification reports.

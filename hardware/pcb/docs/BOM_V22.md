@@ -1,5 +1,11 @@
 # V22 — Full Board BOM (orderable)
 
+> **Status note (fix_v24, 2026-10-25):** this document describes an earlier
+> revision. Current board state: D10 = Nichia NF2W757G-F1 (consigned, no
+> LCSC), U14 = LSM6DSV320XTR (LCSC C26633007, same LGA-14 land), J12 /
+> U24 / U25 are **fitted** (in the v24 JLC BOM/CPL), and the dead MX-ECG
+> chain D29 / D30 / R118 / R119 is DNP. See `../reports/CHANGES_V24.md`.
+
 Supersedes `BOM_V2_ADDENDUM.md` (design-intent record) and the archived
 `FULL_BOM_V2.md`. The authoritative machine-readable list is
 `hardware/pcb/fab/assembly/BOM_JLC.csv` (83 grouped lines, 251 placements
