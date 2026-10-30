@@ -1,11 +1,29 @@
 #!/usr/bin/env python3
-"""Parse v24.net (KiCad s-expr netlist): emit rail->pin map + part values."""
-import sys, os, json, re
+"""Parse the KiCad s-expr netlist of the board under analysis.
+
+Default input: ../inputs/v24.net — the committed kicad-cli export of the
+fix_v24 schematic snapshot (inputs/vitalq_v2.kicad_sch). Regenerate with:
+    kicad-cli sch export netlist ../inputs/vitalq_v2.kicad_sch \
+        --output ../inputs/v24.net
+(or pass --net PATH to parse a different export).
+
+Writes ../results/netlist.json + ../results/all_nets.txt.
+"""
+import sys, os, json, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sexpr import parse, find_all, child, children, num
 
-NET = '/Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24/_work/v24.net'
-tree = parse(open(NET).read())
+HERE = os.path.dirname(os.path.abspath(__file__))
+D = lambda *p: os.path.join(HERE, "..", *p)
+
+ap = argparse.ArgumentParser()
+ap.add_argument("--net", default=D("inputs", "v24.net"),
+                help="kicad-cli netlist export (default: committed inputs/v24.net)")
+ap.add_argument("--out", default=D("results"),
+                help="output directory (default: ../results)")
+args = ap.parse_args()
+
+tree = parse(open(args.net).read())
 
 # components: (comp (ref ..) (value ..) (footprint ..) (fields (field (name x) v)*))
 comps = {}
@@ -34,11 +52,12 @@ for n in find_all(tree, 'net'):
         nodes.append((r, pin, ptype[1] if ptype else ''))
     nets[name] = nodes
 
-out = open('/Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24/data/all_nets.txt', 'w')
-for name in sorted(nets):
-    out.write(f"{name} | {len(nets[name])} | {' '.join(f'{r}.{p}' for r,p,pt in nets[name])}\n")
-out.close()
+os.makedirs(args.out, exist_ok=True)
+with open(os.path.join(args.out, 'all_nets.txt'), 'w') as out:
+    for name in sorted(nets):
+        out.write(f"{name} | {len(nets[name])} | {' '.join(f'{r}.{p}' for r,p,pt in nets[name])}\n")
 
-json.dump(dict(comps=comps, nets={k: [(r,p,pt) for r,p,pt in v] for k,v in nets.items()}),
-          open('/Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24/data/netlist.json','w'), indent=0)
+with open(os.path.join(args.out, 'netlist.json'), 'w') as f:
+    json.dump(dict(comps=comps, nets={k: [(r, p, pt) for r, p, pt in v] for k, v in nets.items()}),
+              f, indent=0)
 print(len(comps), 'comps,', len(nets), 'nets')

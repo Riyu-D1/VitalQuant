@@ -1,13 +1,44 @@
 #!/usr/bin/env python3
 """Check exported gerbers for copper inside the antenna keepout rect.
-Keepout (board mm): x 2.5..20.5, y -22.25..-16.3 (KiCad exports keep board coords,
-%TF.SameCoordinates,Original).
-Counts D01 draws / D03 flashes / G36 region fill inside the rect.
-For draws/flashes also expands the test point by half the aperture size.
-"""
-import re, os, json, math
 
-GD = '/Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24/_work/gerbers/'
+Keepout (board mm): x 2.5..20.5, y -22.25..-16.3 (KiCad exports keep board
+coords, %TF.SameCoordinates,Original — Y is negated vs .kicad_pcb).
+
+Counts D01 draws / D03 flashes / G36 region fill inside the rect, plus drill
+hits if a drill file is present. For draws/flashes also expands the test
+point by half the aperture size.
+
+Gerbers come from --gerbers DIR, else the script exports a fresh set with
+kicad-cli from ../inputs/vitalq_v2.kicad_pcb into ./_work/gerbers (created
+on demand, never committed). kicad-cli is located via toolfind.py.
+"""
+import re, os, json, math, argparse, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from toolfind import require_tool
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+D = lambda *p: os.path.join(HERE, "..", *p)
+
+ap = argparse.ArgumentParser()
+ap.add_argument("--gerbers", default=None,
+                help="dir of gerbers (default: export fresh via kicad-cli)")
+ap.add_argument("--pcb", default=D("inputs", "vitalq_v2.kicad_pcb"),
+                help="board to export if --gerbers not given")
+ap.add_argument("--out", default=D("results", "gerber_keepout_hits.json"))
+args = ap.parse_args()
+
+if args.gerbers:
+    GD = args.gerbers
+else:
+    GD = D("_work", "gerbers")
+    os.makedirs(GD, exist_ok=True)
+    kicad = require_tool("kicad-cli")
+    subprocess.run([kicad, "pcb", "export", "gerbers", "-o", GD, args.pcb],
+                   check=True, capture_output=True, text=True)
+    subprocess.run([kicad, "pcb", "export", "drill", "-o", GD, args.pcb],
+                   check=True, capture_output=True, text=True)
+    print(f"exported gerbers+drill via kicad-cli -> {GD}")
+
 # NOTE: KiCad gerber export negates Y vs .kicad_pcb coords.
 # Keepout in pcb coords: x 2.5..20.5, y -22.25..-16.3 -> gerber Y 16.3..22.25
 KO = dict(xmin=2.5, xmax=20.5, ymin=16.3, ymax=22.25)
@@ -34,7 +65,7 @@ def parse_gerber(path):
     def conv(s, dec):
         return float(s) / (10 ** dec)
     # aperture definitions %ADDnnShape,size...
-    ap = {}
+    ap_ = {}
     for m in re.finditer(r'%ADD(\d+)([A-Za-z0-9_$+.]+?)(?:,(.*?))?\*%', txt, re.S):
         num_ = int(m.group(1)); shape = m.group(2); params = m.group(3) or ''
         size = 0.0
@@ -43,7 +74,7 @@ def parse_gerber(path):
         if shape == 'R':  # rect apertures "wXh"
             pm2 = re.match(r'([0-9.]+)[Xx]([0-9.]+)', params)
             if pm2: size = max(float(pm2.group(1)), float(pm2.group(2)))
-        ap[num_] = (shape, size)
+        ap_[num_] = (shape, size)
     ops = []
     cur_ap = None
     x = y = 0.0
@@ -85,9 +116,9 @@ def parse_gerber(path):
             if region is not None:
                 region.append((X, Y))
             elif dc == 1:
-                ops.append(('draw', x, y, X, Y, ap.get(cur_ap, ('?', 0))[1]))
+                ops.append(('draw', x, y, X, Y, ap_.get(cur_ap, ('?', 0))[1]))
             elif dc == 3:
-                ops.append(('flash', X, Y, ap.get(cur_ap, ('?', 0))[1]))
+                ops.append(('flash', X, Y, ap_.get(cur_ap, ('?', 0))[1]))
             x, y = X, Y
             continue
     return ops
@@ -126,7 +157,23 @@ for f in sorted(os.listdir(GD)):
     report[f] = dict(ops=len(ops), keepout=n_ko, band=n_band)
     print(f'{f}: {len(ops)} ops | in-keepout {n_ko} | in-board-sliver {n_band}')
 
+# drill holes inside the keepout (Excellon decimal-mm, same negated-Y
+# convention as the gerbers — verified: pcb via (18.808, +21.91) exports
+# as X18.808Y-21.91)
+n_drill = 0
+for f in sorted(os.listdir(GD)):
+    if not f.endswith('.drl'):
+        continue
+    txt = open(os.path.join(GD, f)).read()
+    for m in re.finditer(r'X(-?\d+\.?\d*)Y(-?\d+\.?\d*)', txt):
+        X, Y = float(m.group(1)), float(m.group(2))
+        if in_r(X, Y, KO):
+            hits.append(dict(layer=f, type='drill', at=[X, Y])); n_drill += 1
+    print(f'{f}: drill holes in keepout {n_drill}')
+
 print('\nTOTAL keepout hits:', len(hits))
 for h in hits[:40]:
     print(' ', h)
-json.dump(dict(report=report, hits=hits), open('/Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24/data/gerber_keepout_hits.json', 'w'), indent=1)
+os.makedirs(os.path.dirname(args.out), exist_ok=True)
+json.dump(dict(report=report, hits=hits, drill_in_keepout=n_drill), open(args.out, 'w'), indent=1)
+print('wrote', args.out)

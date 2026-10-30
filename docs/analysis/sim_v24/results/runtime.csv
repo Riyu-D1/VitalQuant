@@ -1,0 +1,5 @@
+scenario,i_3v3_mA,i_1v8_mA,i_tx5v_mA,i_bat_mA,runtime_h,note
+deep sleep (RTC),0.19,0.02,0.0,0.21081081081081082,1280.7692307692307,ESP32 8uA+140uA PSRAM; IMU/RTC/sensors sleep; boost+LDO EN off (guess)
+BLE streaming cont.,81.7,1.5,0.0,86.58505564387917,3.118321031177702,ESP32 modem-sleep+BLE ~80mA; IMU 0.8mA; mic off; sensors idle
+1-min-in-10 sampling,12.0,1.5,20.0,45.24642289348172,5.9673225579761064,60s/600s active: ESP32+all sensors ~110mA duty 10%; LEDs 200mA pk duty-capped
+"1-min-in-10, PPG-only LED",12.0,1.5,1.2,15.357710651828297,17.580745341614907,"same duty, LED avg 1.2mA on TX_5V (200mA x 60us x 25Hz x 4ch)"

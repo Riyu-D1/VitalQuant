@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
-"""Parse fix_v24 kicad_pcb: board outline, antenna keepout, U1 geometry,
-all copper inside keepout region, footprints inside keepout, nearest-copper distance.
-Outputs JSON to sim_v24/data/rf_analysis.json"""
-import sys, json, math, os
+"""Parse the board under analysis (.kicad_pcb): board outline, antenna keepout,
+U1 geometry, all copper inside keepout region, footprints inside keepout,
+nearest-copper distance. Outputs JSON to ../results/rf_analysis.json.
+
+Default input: ../inputs/vitalq_v2.kicad_pcb — the committed fix_v24 snapshot.
+After PR #19 merges, the same file lives at the repo path
+hardware/pcb/vitalquant_v2.kicad_pcb (pass --pcb REPO/hardware/pcb/vitalquant_v2.kicad_pcb).
+"""
+import sys, json, math, os, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sexpr import parse, find_all, child, children, num
 
-PCB = '/Users/deepakdiwan/Downloads/VitalQ_Hand/fix_v24/vitalq_v2.kicad_pcb'
-OUT = '/Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24/data/rf_analysis.json'
+HERE = os.path.dirname(os.path.abspath(__file__))
+ap = argparse.ArgumentParser()
+ap.add_argument("--pcb", default=os.path.join(HERE, "..", "inputs", "vitalq_v2.kicad_pcb"))
+ap.add_argument("--out", default=os.path.join(HERE, "..", "results", "rf_analysis.json"))
+args = ap.parse_args()
+PCB = args.pcb
+OUT = args.out
 
 tree = parse(open(PCB).read())
 

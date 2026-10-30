@@ -1,84 +1,100 @@
 # SIM_README — how to reproduce sim_v24
 
-Everything here is **reports only**; `fix_v24/` board files are never modified (all work happens on copies or in `sim_v24/`).
+Everything here is **reports only**; the board under analysis is never
+modified — all work happens on the committed snapshot in `inputs/` (see
+`inputs/README.md` for provenance/hashes) or in the git-ignored `_work/`
+scratch dir that scripts create on demand.
 
-## Tool versions used
+The repo path `hardware/pcb/vitalquant_v2.kicad_pcb` holds fix_v24 once
+PR #19 merges; until then it is an earlier revision, which is why the
+snapshot is committed.
 
-| tool | version |
-|---|---|
-| kicad-cli | `/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli` → **10.0.4** |
-| ngspice | `/usr/local/bin/ngspice` → **ngspice-47** (KLU) |
-| python | `/Library/Frameworks/Python.framework/Versions/3.12/bin/python3` → 3.12 |
-| numpy / scipy / matplotlib | 2.4.2 / 1.17.1 / 3.10.8 |
+## Tools
+
+Scripts find tools on `PATH` first, then standard install dirs
+(`scripts/toolfind.py`) — nothing is machine-specific.
+
+| tool | used for | version (original run) |
+|---|---|---|
+| kicad-cli | netlist/gerber export, DRC/ERC | 10.0.4 |
+| ngspice | decks in `decks/` | ngspice-47 (KLU) |
+| python3 + numpy + matplotlib | parsers, budget, plots | 3.12 / 2.4.2 / 3.10.8 (any 3.9+ works) |
 
 ## Directory map
 
 ```
-sim_v24/
+docs/analysis/sim_v24/
 ├── REPORT.md            main report (labels: checked/inferred/guess)
+├── SIM_README.md        this file
 ├── PROGRESS.md          step log
+├── check_refs.py        verifies every doc-referenced path exists in git
 ├── decks/               ngspice decks (*.sp) + shared includes (*.inc)
 ├── models/              SPICE models copied from sims/fullsim_v20 (read-only source)
-├── scripts/             python parsers + budget + plotting
-├── data/                netlist.json, power_budget.csv, runtime.csv, rf_analysis.json…
-├── results/             ngspice CSVs + logs
+├── inputs/              committed snapshots: fix_v24 pcb/sch/pro/dru + v24.net
+├── results/             all data: ngspice CSVs+logs, netlist.json, budget CSVs,
+│                        rf_analysis.json, gerber_keepout_hits.json, drc/erc JSONs
 ├── plots/               PNGs (antenna_keepout, tx5v_pulse, v33/v18, bq25170_charge)
-└── _work/               scratch: drc/ board copies, gerbers, datasheets, repo clone
+├── scripts/             python parsers + budget + plotting + drc runner
+└── _work/               scratch created on demand (gerber exports) — git-ignored
 ```
 
 ## Re-run everything
 
 ```sh
-cd /Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24
+cd docs/analysis/sim_v24      # repo-relative
 
-# 1) schematic → netlist → rail map (fresh from fix_v24, read-only)
-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli sch export netlist \
-    ../fix_v24/vitalq_v2.kicad_sch -o _work/v24.net
-python3 scripts/parse_netlist.py        # writes data/netlist.json, data/all_nets.txt
+# 1) schematic netlist → rail map
+python3 scripts/parse_netlist.py        # reads inputs/v24.net → results/netlist.json, all_nets.txt
+#    (to re-export the netlist first:
+#     kicad-cli sch export netlist inputs/vitalq_v2.kicad_sch --output inputs/v24.net)
 
-# 2) power budget + runtime
-python3 scripts/power_budget.py         # writes data/power_budget.csv, data/runtime.csv
+# 2) power budget + runtime (90 % usable of the assumed 300 mAh cell)
+python3 scripts/power_budget.py         # → results/power_budget.csv, results/runtime.csv
 
 # 3) SPICE (from decks/ so relative paths resolve)
 cd decks
-/usr/local/bin/ngspice -b -o ../results/v24_tx5v_vendor.log     v24_tx5v_vendor.sp
-/usr/local/bin/ngspice -b -o ../results/v24_tx5v_A_200mA.log    v24_tx5v_A_200mA.sp
-/usr/local/bin/ngspice -b -o ../results/v24_tx5v_B_900mA.log    v24_tx5v_B_900mA.sp
-/usr/local/bin/ngspice -b -o ../results/v24_3v3_loadstep.log    v24_3v3_loadstep.sp
-/usr/local/bin/ngspice -b -o ../results/v24_1v8_loadstep.log    v24_1v8_loadstep.sp
-/usr/local/bin/ngspice -b -o ../results/v24_bq25170_charge.log  v24_bq25170_charge.sp
+ngspice -b -o ../results/v24_tx5v_vendor.log     v24_tx5v_vendor.sp
+ngspice -b -o ../results/v24_tx5v_A_200mA.log    v24_tx5v_A_200mA.sp
+ngspice -b -o ../results/v24_tx5v_B_900mA.log    v24_tx5v_B_900mA.sp
+ngspice -b -o ../results/v24_3v3_loadstep.log    v24_3v3_loadstep.sp
+ngspice -b -o ../results/v24_1v8_loadstep.log    v24_1v8_loadstep.sp
+ngspice -b -o ../results/v24_bq25170_charge.log  v24_bq25170_charge.sp
 cd ..
 
 # 4) plots
-python3 scripts/plot_sims.py            # writes plots/*.png
+python3 scripts/plot_sims.py            # → plots/*.png
 
 # 5) RF keep-out
-python3 scripts/parse_board.py          # data/rf_analysis.json
-python3 scripts/gerber_keepout.py       # data/gerber_keepout_hits.json  (needs _work/gerbers)
-python3 scripts/plot_antenna.py         # plots/antenna_keepout.png
+python3 scripts/parse_board.py          # → results/rf_analysis.json
+python3 scripts/gerber_keepout.py       # exports gerbers via kicad-cli → results/gerber_keepout_hits.json
+python3 scripts/plot_antenna.py         # → plots/antenna_keepout.png
 
-# 6) DRC / ERC on board copies (fix_v19 rules + fix_v23 .kicad_dru)
-cd _work/drc
-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli pcb drc \
-    --severity-error --schematic-parity --format json vitalq_v2.kicad_pcb -o drc_v24.json
-/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli sch erc \
-    --severity-error --format json vitalq_v2.kicad_sch -o erc_v24.json
+# 6) DRC / ERC on the committed snapshot (fix_v19 rules project + fix_v23 .kicad_dru)
+python3 scripts/run_drc_erc.py          # → results/drc_v24.json, results/erc_v24.json
+
+# 7) doc reference check
+python3 check_refs.py                   # must report 0 missing
 ```
 
 ## Model provenance
 
 | file | source | type |
 |---|---|---|
-| `models/TPS61240_TRANS.LIB` | TI SLVMAT6 | vendor — **does not regulate in ngspice-47** (see `v24_tx5v_vendor.sp` log) |
+| `models/TPS61240_TRANS.LIB` | TI SLVMAT6 | vendor — **does not regulate in ngspice-47** (see `results/v24_tx5v_vendor.log`) |
 | `models/TPS63802_TRANS.LIB` | TI | vendor — non-convergent in ngspice-47 (inherited finding, re-verified) |
 | `models/tps7a20-adj_trans.lib` | TI SBVM961 | vendor — works (used for +1V8) |
 | `models/bq25170_v47.inc`, `common.inc`, `v18_pp.inc` | fullsim_v20 | **behavioural**, datasheet-bounded |
-| `models/pca9306_process.lib`, `sn74axc2t245.ibs`, `TPD1E10B06.lib` | fullsim_v20 | vendor/IBIS (not exercised by v24 decks) |
+| `models/pca9306_process.lib`, `TPD1E10B06.lib` | fullsim_v20 | vendor/IBIS (not exercised by v24 decks) |
 | `decks/v24_tx5v_ledpulse.inc` | this task | **behavioural averaged boost** (datasheet-bounded) |
 
-Where a model is behavioural it is bounded by datasheet EC values — see comments at the top of each deck.
+Where a model is behavioural it is bounded by datasheet EC values — see
+comments at the top of each deck, and the label legend in `REPORT.md`
+(behavioural-model results are **inferred**, not checked).
 
 ## Data provenance for the power budget
 
-Per-load currents come from the local datasheet-text library `verify/datasheets_v18_txt/*.txt`
-(+ TI PDFs in `_work/datasheets/`). Each CSV row carries `label` ∈ {checked, inferred, guess} and a `source` citation.
+Per-load currents are embedded in `scripts/power_budget.py`, each with a
+datasheet citation string (part + table/section). The original run pulled
+them from a local datasheet-text library; the citations are kept inline so
+the script is self-contained. Each CSV row carries
+`label` ∈ {checked, inferred, guess} and a `source` citation.

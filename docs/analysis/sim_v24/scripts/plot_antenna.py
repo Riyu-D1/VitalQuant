@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-"""Plot the antenna region of fix_v24: board edge, U1 outline, keepout,
-copper pours and violations."""
-import sys, os, math, json
+"""Plot the antenna region of the board under analysis: board edge, U1 outline,
+keepout, copper pours and violations.
+
+Default input: ../inputs/vitalq_v2.kicad_pcb — committed fix_v24 snapshot
+(same file reaches hardware/pcb/vitalquant_v2.kicad_pcb when PR #19 merges).
+"""
+import sys, os, math, json, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sexpr import parse, find_all, child, children, num
 import matplotlib
@@ -10,8 +14,13 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Polygon as MplPoly
 import matplotlib.patheffects as pe
 
-PCB = '/Users/deepakdiwan/Downloads/VitalQ_Hand/fix_v24/vitalq_v2.kicad_pcb'
-OUT = '/Users/deepakdiwan/Downloads/VitalQ_Hand/sim_v24/plots/antenna_keepout.png'
+HERE = os.path.dirname(os.path.abspath(__file__))
+ap = argparse.ArgumentParser()
+ap.add_argument("--pcb", default=os.path.join(HERE, "..", "inputs", "vitalq_v2.kicad_pcb"))
+ap.add_argument("--out", default=os.path.join(HERE, "..", "plots", "antenna_keepout.png"))
+args = ap.parse_args()
+PCB = args.pcb
+OUT = args.out
 
 tree = parse(open(PCB).read())
 

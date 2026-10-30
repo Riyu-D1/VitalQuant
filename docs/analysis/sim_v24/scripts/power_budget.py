@@ -2,19 +2,20 @@
 """power_budget.py - per-rail current budget for fix_v24 (analysis only, no board changes).
 
 Every current figure carries a label:
-  checked  - read from the fix_v24 netlist/schematic or a datasheet text in this workspace
-  inferred - derived from checked facts (Ohm's law, regulator math)
+  checked  - computed directly from design files or a datasheet value
+  inferred - derived from checked facts or simplified models (Ohm's law,
+             regulator math, datasheet-bounded behavioural estimates)
   guess    - assumption, no direct measurement
 
-Output: ../data/power_budget.csv + ../data/runtime.csv + printed markdown table.
+Output: ../results/power_budget.csv + ../results/runtime.csv + printed markdown table.
 """
 import csv, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(HERE, "..", "data")
+DATA = os.path.join(HERE, "..", "results")
 os.makedirs(DATA, exist_ok=True)
 
-# ---- Rail topology (checked: sim_v24/data/netlist.json from fresh v24 export) ----
+# ---- Rail topology (checked: results/netlist.json parsed from inputs/v24.net) ----
 # VBUS --|--> U2 BQ25170 (IN) -> OUT = VBAT ; R3=1.5k ISET, R75=27k VSET
 # VBUS --D33--> VBAT_SYS ; VBAT --Q6(AO3401A)--> VBAT_SYS (power-path OR)
 # VBAT_SYS --> U3 TPS63802 -> +3V3 ; U3 -> +3V3_ESP (R94), +3V3_ANA (R95), +1V8_LDO (U4)
@@ -166,7 +167,9 @@ for rail in ["+3V3", "+1V8", "TX_5V", "VDD_CP2102", "VBUS", "VBAT", "VBAT_SYS"]:
     print(f"| {rail} | {reg} | {rating} | {t:.2f} | {p:.1f} | see REPORT |")
 
 # ---------- Runtime estimates (402535 cell) ----------
-CAP_MAH = 300.0   # assumed 402535 capacity, labelled assumption
+CAP_MAH = 300.0        # assumed 402535 cell capacity - guess (J2 LiPo footprint class)
+USABLE_FRAC = 0.90     # conservative usable fraction (90%); matches REPORT text
+CAP_USABLE_MAH = CAP_MAH * USABLE_FRAC   # 270 mAh
 ETA_VBAT = 0.85   # TPS63802+TPS61240 chain efficiency guess
 VBAT_NOM = 3.7
 
@@ -175,7 +178,7 @@ def scen(name, i33, i18, itx5, note):
     # battery-side current = (P3V3+P1V8+PTX5)/(VBAT*eta)
     p = 3.3*i33 + 1.8*i18 + 5.0*itx5
     ibat = p/(VBAT_NOM*ETA_VBAT)
-    hrs = CAP_MAH/ibat if ibat > 0 else float('inf')
+    hrs = CAP_USABLE_MAH/ibat if ibat > 0 else float('inf')
     return (name, i33, i18, itx5, ibat, hrs, note)
 
 sc = []
@@ -188,6 +191,9 @@ sc.append(scen("BLE streaming cont.", 81.7, 1.5, 0.0,
 # periodic: 60s in 600s active window with PPG+LEDs staggered 200mA*10% duty avg on TX
 sc.append(scen("1-min-in-10 sampling", 12.0, 1.5, 20.0,
                "60s/600s active: ESP32+all sensors ~110mA duty 10%; LEDs 200mA pk duty-capped"))
+# same duty but PPG-only LED use: 200mA*60us*25Hz*4ch = 1.2mA avg on TX_5V (checked pulse math)
+sc.append(scen("1-min-in-10, PPG-only LED", 12.0, 1.5, 1.2,
+               "same duty, LED avg 1.2mA on TX_5V (200mA x 60us x 25Hz x 4ch)"))
 rt = []
 for s in sc:
     rt.append(s)
@@ -204,7 +210,7 @@ ichg = KISET/RISET*1000  # mA  (KISET in V-ish units: ICHG=KISET/RISET)
 print(f"\nBQ25170: ICHG = {KISET:.0f}/{RISET:.0f}ohm = {ichg:.0f} mA  (DS: ICHG=KISET/RISET, KISET=270-330)")
 print(f"VSET: R75=27k -> 4.20 V (DS Table 7-1)")
 tc = CAP_MAH/ichg
-print(f"Charge time: {CAP_MAH:.0f}mAh/{ichg:.0f}mA = {tc:.1f} h CC-only; +CV taper ~30-60min -> ~{tc+0.7:.1f} h")
+print(f"Charge time (full 300mAh cell): {CAP_MAH:.0f}mAh/{ichg:.0f}mA = {tc:.1f} h CC-only; +CV taper ~0.7h -> ~{tc+0.7:.1f} h total")
 
 # ---------- Boost headroom ----------
 print("\n--- TX_5V boost headroom ---")
