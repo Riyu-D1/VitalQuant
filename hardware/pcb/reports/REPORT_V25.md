@@ -154,4 +154,8 @@ Top/lid side (F) exclusively — see Placement rationale. No pads on B.
 ## Push decision
 
 All pass criteria true → branch `hw/v25-testpoints` (based on
-`fix/bom-v24`, PR #19 head) pushed and PR opened into `main`.
+`fix/bom-v24`, PR #19 head, commit `842de500`) pushed and PR opened into
+`main`: https://github.com/Riyu-D1/VitalQuant/pull/21 (checked — PR #21,
+commit `0a17db5e`). Repo files carry the `vitalquant` rebrand rename; the
+transform was verified byte-exact against the fix/bom-v24 tree before
+staging. `JOURNAL.md`/`LICENSE` unchanged in the commit.
