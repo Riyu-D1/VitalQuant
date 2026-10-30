@@ -85,3 +85,10 @@ No existing file modified. New work only inside `sim_v24/` (scratch in `sim_v24/
 
 ## Next
 - Thermal guess-note, REPORT.md, SIM_README.md, git branch + PR, final line.
+
+## Step 7 — deliverables + repo (done)
+- REPORT.md (summary-first, every claim labelled), SIM_README.md, data/ CSVs, plots/, decks/, models/, results/ — all inside sim_v24/ only; no fix_* folders touched.
+- Repo: `docs/sim-v24` branched from `main`; only `docs/analysis/sim_v24/` added (41+1 files).
+- JOURNAL.md / LICENSE SHA-1 verified identical before AND after commit+push.
+- Pushed; PR opened: https://github.com/Riyu-D1/VitalQuant/pull/20 — never merged.
+- Final numbers for status line: rails=11 named supply nets, runtime 3.5h (BLE) / 1423h (deep sleep), STAGGER REQUIRED, 6/6 spice runs, 0 RF violations.
