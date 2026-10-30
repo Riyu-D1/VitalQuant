@@ -1,5 +1,8 @@
 # case_v8 — strap design decision
 
+> Frame note (v11): v8-era design document — any coordinates are the
+> KiCad frame; physical `phys = (x, −y, z)`.
+
 ## Research summary (~20 min)
 
 - **Polar H10 / Garmin HRM-Dual / Wahoo TICKR:** the pod attaches to the

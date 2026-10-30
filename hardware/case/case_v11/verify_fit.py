@@ -362,18 +362,21 @@ def gap_report(pts, mesh, name, req, gap_min, extra=''):
 
 # perimeter side faces of the real slab (within 0.6 of the outline ->
 # excludes interior hole/slot walls, which are checked vs pins), above the
-# seat contact plane, inside the board pocket z-band -> gap to the wall
+# seat contact plane, inside the board pocket z-band -> gap to the wall.
+# v11b: the F-clamp ledge intentionally overhangs the board's top edge
+# (its underside sits at ZT_MAX), so the upper 0.3 band of the side face
+# is excluded - under-ledge clearance is the clamp interface, not the wall.
 sv, sf = trimesh.sample.sample_surface(slab, 80000)
 sn = slab.face_normals[sf]
 side = np.abs(sn[:, 1]) < 0.5                     # glb y = board z -> side walls
 edge_pts = to_phys(sv[side]) + np.array([0.0, 0.0, ZB - BCU])
 edge_pts = edge_pts[(edge_pts[:, 2] > ZB + 0.1) &
-                    (edge_pts[:, 2] < ZT_MAX + 0.02)]
+                    (edge_pts[:, 2] < ZT_MAX - 0.3)]
 bnd = BPOLY_P.boundary
 keep = np.array([bnd.distance(Point(p[0], p[1])) < 0.6 for p in edge_pts])
 edge_pts = edge_pts[keep]
 gap_report(edge_pts, case, 'board edge <-> wall clearance',
-           'min gap >=0.05 (pocket CL 0.3, probed)', 0.05,
+           'min gap >=0.20 (pocket CL 0.3, probed)', 0.20,
            f' over {len(edge_pts)} perimeter pts')
 # F-side component tops -> ceiling gap: ray +z from each F courtyard centre
 # region at its model height -> first case hit is the ceiling/fin bottom
@@ -398,8 +401,8 @@ row('component tops <-> lid ceiling', 'min gap >=0.30',
 # lateral pinch: unsigned min distance, any direction (hard no-contact)
 fmask = P_case[:, 2] > ZT + 0.05
 gap_report(P_case[fmask], top, 'components <-> lid (any direction)',
-           'min gap >=0.05 (pinch at strap fin, design)',
-           0.05, f' over {int(fmask.sum())} F-side pts')
+           'min gap >=0.20 (strap-fin ledge relieved)',
+           0.20, f' over {int(fmask.sum())} F-side pts')
 # B-side component bottoms -> floor gap (points below B.Cu plane)
 bmask = P_case[:, 2] < ZB - 0.05
 gap_report(P_case[bmask], base, 'components <-> floor clearance',
@@ -408,12 +411,29 @@ gap_report(P_case[bmask], base, 'components <-> floor clearance',
 # ----------------------------------------------------------------------
 # 12. battery bay vs 402535 cell envelope (24.3 x 35.0 x 4.0 on the plate)
 # ----------------------------------------------------------------------
-cup_at = cup.copy(); cup_at.apply_translation([0, 0, 9.6])
+cup_at = cup.copy(); cup_at.apply_translation([0, 0, 9.85])
 bat = trimesh.creation.box([24.3, 35.0, 4.0])
-bat.apply_translation([17.3, -22.5, 9.6 + 0.85 + 2.0])
+bat.apply_translation([17.3, -22.5, 9.85 + 1.4 + 2.0])
 v = inter(bat, cup_at)
 row('battery 402535 in cup', 'cell fits (press ribs 0.35)',
     f'inter {v:.3f} mm3', abs(v) < 0.5)
+
+# fix_v25 F-side test pads (hw/v25-testpoints, read-only): TP29 RLDREF
+# KiCad (46.88, 7.60) -> phys (46.88,-7.60); TP36 IOVDD (45.04,-9.44) ->
+# phys (45.04, 9.44).  Ø1.0 SMD pads on F.Cu; the lid ledge is relieved
+# over each pad (build_case.py).  Probe the pad rim band at pad-top height.
+tp_min, tp_at = 99.0, None
+for tpref, tpx, tpy in [('TP29', 46.88, -7.60), ('TP36', 45.04, 9.44)]:
+    ang = np.linspace(0, 2 * np.pi, 40, endpoint=False)
+    tpp = np.vstack([np.c_[tpx + 0.48 * np.cos(ang),
+                           tpy + 0.48 * np.sin(ang),
+                           np.full(40, ZT + 0.02)],
+                     [[tpx, tpy, ZT + 0.02]]])
+    _, td, _ = trimesh.proximity.closest_point(top, tpp)
+    if float(td.min()) < tp_min:
+        tp_min, tp_at = float(td.min()), tpref
+row('TP29/TP36 <-> lid ledge', 'min gap >=0.03 (ledge relieved)',
+    f'min gap {tp_min:.3f} at {tp_at}', tp_min >= 0.03)
 
 # ----------------------------------------------------------------------
 # 13. print overhang audit (unchanged voxel algorithm from case_v10)

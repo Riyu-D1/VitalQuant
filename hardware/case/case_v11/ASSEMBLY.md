@@ -50,8 +50,8 @@ gone; there are no loose signal wires.
    before skin use.
 7. Hold the PCB horizontally, B.Cu facing down. Align H1 (0.6, −2.19)
    and H2 (−0.15, −7.18) with the base locating pins and seat the board
-   on its peripheral support. The north antenna tab and east power tab
-   drop into their shaped pockets — do not force it.
+   on its peripheral support. The antenna tab (physical +y end) and the
+   east (+x) power tab drop into their shaped pockets — do not force it.
 8. With the board unpowered, verify each pogo's continuity to its
    intended land and pairwise isolation between adjacent lands. Record
    results; repeat after a gentle press-cycle.
@@ -65,8 +65,9 @@ gone; there are no loose signal wires.
 
 10. Press the two TPU button caps into the top-shell guide bores from
     the cavity side and seat the light pipe over D25. Align the lid's
-    USB-C opening toward −y (the wear chevron/ECG mark points −y) and
-    press the perimeter until all eight snap beads engage.
+    USB-C opening toward +y (the wear chevron/ECG mark sits on the same
+    +y side, chevron apex pointing −y) and press the perimeter until all
+    eight snap beads engage.
 11. Set the bay cup on the lid; flip the pin plate pins-down and press
     until its prong barbs engage. Install the protected battery and
     slide the battery door into its tracks.

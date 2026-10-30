@@ -1,5 +1,8 @@
 # VitalQ case_v10 - assembly + functional simulation (V22 board)
 
+> Frame note (v11): v10-era document — coordinates are the KiCad frame;
+> physical `phys = (x, −y, z)`.
+
 **[checked]** = mesh boolean/ray (same probes as verify_fit);
 **[inferred]** = analytic model, assumptions stated.
 

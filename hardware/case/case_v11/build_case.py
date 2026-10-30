@@ -74,6 +74,10 @@ def build_base():
                prism(outer, 2.8, ZSEAM)])
     shell = D(shell, prism(inner, ZFLOOR, ZSEAM+0.1))       # interior cavity
     shell = U([shell, wedge_ring(inner, ZB-1.0, ZB, 1.2)])  # 45 deg board seat
+    # v11b: drop the seat's wall-adjacent 0.7 band one step (to ~ZB-0.2) so
+    # the board's perimeter side faces keep >=0.2 mm to the nearest solid;
+    # the inner band still tops at ZB and carries the board edge (0.5+ in).
+    sub_seat = [prism(inner.difference(inner.buffer(-0.7)), ZB-0.2, ZB+0.05)]
 
     sub, add = [], []
     # corner reliefs for the sharp board corners
@@ -161,7 +165,7 @@ def build_base():
         sub.append(prism(outer.difference(outer.buffer(-max(w, 0.02))),
                          2.85+i*0.033, 2.85+(i+1)*0.033))
     shell = U([shell]+add)
-    shell = D(shell, U([m for m in sub if m.is_volume]))
+    shell = D(shell, U([m for m in sub+sub_seat if m.is_volume]))
     return shell
 
 # =====================================================================
@@ -216,8 +220,18 @@ def build_top():
                              (43.0, 31.0, 47.6, 38.2),    # SW1
                              (-0.4, 54.6, 4.3, 59.7),     # SW2
                              (10.5, 61.4, 18.7, 64.8),    # +y edge parts
-                             (24.2, 61.4, 28.8, 64.8)]:   # +y edge parts
+                             (24.2, 61.4, 28.8, 64.8),    # +y edge parts
+                             # v11b: fix_v25 F-side test pads (probe access);
+                             # pad +0.4 margin, kept inboard of the wall
+                             (46.0, 6.7, 47.8, 8.5),      # TP29 (46.88,7.60)
+                             (44.1, -10.2, 45.8, -8.7)]:  # TP36 (45.04,-9.44)
         sub.append(rbox(xa, ya, ZT_MAX-0.1, xb, yb, ZT_MAX+0.8))
+    # v11b: two faces grazed the E-tab's south edge: the F-clamp ledge's
+    # inner edge (0.086 mm at z5.0+) and the R lug fin's south face at
+    # y30.0 (0.1 mm at z4.55+). Relieve the band over the tab's south
+    # edge strip so the tab sees ~0.7 like its other edges see 0.3;
+    # the tab keeps its x-edge clamp.
+    sub.append(rbox(48.5, 28.8, 4.45, 54.6, 30.6, 5.75))
     # --- SW cap guide bores + cap-seat counterbores in the lid top ---
     for nm, x, y in [('SW1', 45.30024, 34.61124),
                       ('SW2', 2.02538, 57.16984)]:
@@ -250,10 +264,20 @@ def build_top():
     # (a raised ring/plinth would leave the lid face floating in the flipped
     # print). Pins press through these Ø3.2 holes; barbs catch the cavity-side
     # face. Mouths get a 45 deg lead chamfer.
+    # v11b: the cup seats 0.30 into a shallow lid-top pocket so the cup's
+    # thickened 0.8 mm floor keeps the interior floor at the same absolute
+    # height (only the pin_plate's own +0.25 reaches the cell stack).
+    # The D25 pipe seat corner is excluded from the pocket.
+    cup_seat = rrect(2.50, 2.70, 32.10, 42.30, 2.15).difference(
+        sbox(1.5, 40.5, 6.5, 44.6))
+    sub.append(prism(cup_seat, ZLID-0.30, ZLID+0.1))
     for px, py in PIN_XY_CUP:
         sub.append(cyl(px, py, ZFCAV-0.2, ZLID+0.2, 1.6))
-        sub.append(cyl(px, py, ZLID-0.15, ZLID+0.2, 1.75))   # 45 deg mouth chamfer
-        sub.append(cyl(px, py, ZLID-0.30, ZLID-0.15, 1.675)) # (2 steps)
+        # mouth chamfer straddles the 0.30 seat pocket floor (the hole mouth
+        # is now the pocket floor, not the lid top); the steps deliberately
+        # cross the floor plane so no face is coplanar with it
+        sub.append(cyl(px, py, ZLID-0.45, ZLID-0.25, 1.75))   # 45 deg lead-in
+        sub.append(cyl(px, py, ZLID-0.60, ZLID-0.45, 1.675))  # (2 steps)
     FEATS['snap_pins'] = PIN_XY_CUP
     rcx0, rcy0, rcx1, rcy1 = 2.9, 3.1, 31.7, 41.9
     FEATS['battery_bay'] = ((rcx0+rcx1)/2, (rcy0+rcy1)/2,
@@ -392,7 +416,8 @@ def build_top():
         # v22: only ONE -y bead remains, east of the USB grip corridor
         # (x23..36 must stay open) and outside the antenna keep-out
         # (x<=25.5 no thickened solids). West half has no bead — the
-        # bulge/corridor leave no legal x for it (logged in PROGRESS.md).
+        # bulge/corridor leave no legal x for it (logged in
+        # _stale_inputs/PROGRESS.md).
         ('-y', OY0+0.35, OY0-0.75, OY0-0.25, 37.0, 44.5)]:
         bb = trimesh.creation.extrude_polygon(bead_poly(t, b, f), a1-a0)
         # extrusion axis -> along the wall (y for x-side beads, x for +/-y)
@@ -420,63 +445,69 @@ def build_top():
 #  BATTERY CUP (separate snap-on part; prints bottom-down)
 # =====================================================================
 def bay_cup():
-    """Battery bay cup: open tray pressing flat onto the lid top; retained by
-    the separate pin plate (pins pass through the floor holes + lid, barb on
-    the cavity face). Prints bottom-down. Local z=0 = the lid top face."""
+    """Battery bay cup: open tray seating 0.30 into the lid-top pocket;
+    retained by the separate pin plate (pins pass through the floor holes +
+    lid, barb on the cavity face). Prints bottom-down.
+    v11b: floor thickened 0.5 -> 0.8 (PRINT_NOTES min-feature). Local z=0 =
+    the pocket floor (0.30 below the lid top), so the interior floor lands
+    at the same absolute height as v11. Rim/grooves raised +0.55: the
+    pin_plate's 0.6 mm plate lifts the cell +0.25."""
     cx0, cy0, cx1, cy1 = 2.65, 2.85, 31.95, 42.15     # outer bounds
     ix0, iy0, ix1, iy1 = cx0+1.3, cy0+1.3, cx1-1.3, cy1-1.3   # inner 26.2x36.0
-    ring = D(rbox(cx0, cy0, 0.0, cx1, cy1, 6.2, r=2.0),
-             rbox(ix0, iy0, 0.5, ix1, iy1, 6.3))
+    ring = D(rbox(cx0, cy0, 0.0, cx1, cy1, 6.75, r=2.0),
+             rbox(ix0, iy0, 0.8, ix1, iy1, 6.9))
     sub = []
     # six Ø3.2 pin holes through the floor (plate pins pass through + lid)
     for px, py in PIN_XY_CUP:
-        sub.append(cyl(px, py, -0.1, 0.6, 1.6))
-    # door grooves on the x-side walls, above the cell-on-plate top (4.85)
-    sub.append(gabled_slot_cutter(cx0+0.15, cy0-0.2, 5.15, cx0+1.15,
-                                  cy1+0.2, 6.05, apex=0.45, axis='y'))
-    sub.append(gabled_slot_cutter(cx1-1.15, cy0-0.2, 5.15, cx1-0.15,
-                                  cy1+0.2, 6.05, apex=0.45, axis='y'))
+        sub.append(cyl(px, py, -0.1, 0.9, 1.6))
+    # door grooves on the x-side walls, above the cell-on-plate top (5.4)
+    sub.append(gabled_slot_cutter(cx0+0.15, cy0-0.2, 5.7, cx0+1.15,
+                                  cy1+0.2, 6.6, apex=0.45, axis='y'))
+    sub.append(gabled_slot_cutter(cx1-1.15, cy0-0.2, 5.7, cx1-0.15,
+                                  cy1+0.2, 6.6, apex=0.45, axis='y'))
     # door entry slot through the -y cup wall
-    sub.append(gabled_slot_cutter(cx0-0.1, cy0-0.2, 5.15, cx1+0.1,
-                                  cy0+1.0, 6.05, apex=0.45, axis='y'))
+    sub.append(gabled_slot_cutter(cx0-0.1, cy0-0.2, 5.7, cx1+0.1,
+                                  cy0+1.0, 6.6, apex=0.45, axis='y'))
     # door detent notch in the +y interior wall (at groove level)
-    sub.append(rbox(15.6, cy1-0.4, 5.35, 19.0, cy1+0.1, 5.95))
+    sub.append(rbox(15.6, cy1-0.4, 5.9, 19.0, cy1+0.1, 6.5))
     # wire notch through the floor, covering the Ø3.2 lid hole at (6.6,8.2)
-    sub.append(rbox(5.0, 6.6, -0.1, 8.2, 9.8, 0.62))
+    sub.append(rbox(5.0, 6.6, -0.1, 8.2, 9.8, 0.95))
     # interior retention ribs x0.35 (below the cell, beside the pin plate)
-    ribs = [rbox(ix0+0.05, iy0+6.0, 0.5, ix0+0.4, iy0+14.0, 4.0),
-            rbox(ix1-0.4, iy0+6.0, 0.5, ix1-0.05, iy0+14.0, 4.0),
-            rbox(ix0+0.05, iy1-14.0, 0.5, ix0+0.4, iy1-6.0, 4.0),
-            rbox(ix1-0.4, iy1-14.0, 0.5, ix1-0.05, iy1-6.0, 4.0)]
+    ribs = [rbox(ix0+0.05, iy0+6.0, 0.8, ix0+0.4, iy0+14.0, 4.5),
+            rbox(ix1-0.4, iy0+6.0, 0.8, ix1-0.05, iy0+14.0, 4.5),
+            rbox(ix0+0.05, iy1-14.0, 0.8, ix0+0.4, iy1-6.0, 4.5),
+            rbox(ix1-0.4, iy1-14.0, 0.8, ix1-0.05, iy1-6.0, 4.5)]
     return D(U([ring]+ribs), U(sub))
 
 def pin_plate():
-    """Push-in snap pin plate: 0.35 plate + six hollow Ø3.2 pins (two prongs
+    """Push-in snap pin plate: 0.6 plate + six hollow Ø3.2 pins (two prongs
     each, outward wedge barb). Prints pins-UP; flipped at assembly so the pins
     pass through the cup floor holes + lid holes, barb catch face landing at
-    cup-z -1.65 (just under the lid's cavity face). In STL coords pins +z.
-    Assembled: plate 0.5..0.85, pin tip at cup-z -2.5."""
+    cup-z -1.35 (just under the lid's cavity face). In STL coords pins +z.
+    v11b: plate thickened 0.35 -> 0.6 (PRINT_NOTES min-feature); pins grown
+    +0.25 below the plate so the barb still lands 0.05 under the lid cavity
+    face. Assembled: plate local 0.8..1.4, pin tip at cup-local -2.4."""
     # plate sits between the cell ribs (ribs occupy x4.25..4.6 / 30.05..30.35)
-    plate = rbox(4.7, 4.5, 0.0, 29.95, 40.5, 0.35, r=1.0)
+    plate = rbox(4.7, 4.5, 0.0, 29.95, 40.5, 0.6, r=1.0)
     pins = []
     for px, py in PIN_XY_CUP:
-        tube = D(cyl(px, py, 0.35, 3.55, 1.6), cyl(px, py, 0.45, 2.9, 1.15))
-        # catch band: plate-facing annulus at STL 2.50 -> cup-z -1.65
-        barb = [cyl(px, py, 2.50, 3.15, 1.9)]
+        tube = D(cyl(px, py, 0.6, 3.8, 1.6), cyl(px, py, 0.7, 3.15, 1.15))
+        # catch band: plate-facing annulus at STL 2.75 -> cup-z -1.35
+        barb = [cyl(px, py, 2.75, 3.40, 1.9)]
         for i in range(3):                                   # 45 deg lead tip
-            barb.append(cyl(px, py, 3.15+i*0.133, 3.15+(i+1)*0.133,
+            barb.append(cyl(px, py, 3.40+i*0.133, 3.40+(i+1)*0.133,
                             1.9-0.10*(i+1)))
         pin = U([tube]+barb)
         for sx in (-1, 1):                                   # slots -> 2 prongs
             ya, yb = py+sx*1.00, py+sx*2.05
-            pin = D(pin, rbox(px-0.35, min(ya, yb), 0.9,
-                              px+0.35, max(ya, yb), 3.6))
+            pin = D(pin, rbox(px-0.35, min(ya, yb), 1.15,
+                              px+0.35, max(ya, yb), 3.85))
         pins.append(pin)
     # finger pull tab at the -y edge
     tab = rbox(15.0, 4.3, 0.0, 19.6, 5.6, 1.0, r=0.4)
     p = U([plate, tab]+pins)
     # edge notch over the floor's wire notch (wire rises through both)
-    return D(p, rbox(4.5, 6.4, -0.1, 8.4, 10.0, 0.6))
+    return D(p, rbox(4.5, 6.4, -0.1, 8.4, 10.0, 0.7))
 
 # =====================================================================
 #  SMALL PARTS
@@ -600,12 +631,12 @@ def battery_door():
     v7: three grip ribs on the tab top for a sure finger pull."""
     cx0, cy0, cx1, cy1 = 2.65, 2.85, 31.95, 42.15
     cx = (cx0+cx1)/2
-    # panel: engages the side grooves (z 5.15..6.05 in cup-local coords)
-    panel = rbox(cx0+0.25, cy0-0.6, 5.25, cx1-0.25, cy1+0.4, 6.00, r=0.5)
-    tab = rbox(cx-4.0, cy0-2.4, 5.35, cx+4.0, cy0-0.2, 6.00, r=0.5)
-    ribs = [rbox(cx-3.0+i*3.0, cy0-2.2, 6.00, cx-2.2+i*3.0, cy0-0.4, 6.35)
+    # panel: engages the side grooves (z 5.7..6.6 in cup-local coords)
+    panel = rbox(cx0+0.25, cy0-0.6, 5.8, cx1-0.25, cy1+0.4, 6.55, r=0.5)
+    tab = rbox(cx-4.0, cy0-2.4, 5.9, cx+4.0, cy0-0.2, 6.55, r=0.5)
+    ribs = [rbox(cx-3.0+i*3.0, cy0-2.2, 6.55, cx-2.2+i*3.0, cy0-0.4, 6.90)
             for i in range(3)]
-    nub = cyl(cx+0.0, cy1+0.15, 5.4, 5.9, 0.6)   # leading-edge detent nub
+    nub = cyl(cx+0.0, cy1+0.15, 5.95, 6.45, 0.6)   # leading-edge detent nub
     return U([panel, tab, nub]+ribs)
 
 if __name__ == '__main__':

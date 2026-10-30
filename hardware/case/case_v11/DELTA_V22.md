@@ -1,5 +1,10 @@
 # DELTA_V22 — geometry changes vs case_v8/geometry.json (fix_v19 reference)
 
+> Frame note (v11): every coordinate below is the **KiCad editor frame**
+> (x right, y down seen from F.Cu). In the physical STL frame
+> `phys = (x, −y, z)` — e.g. "north antenna tab y −16.55…−10.5" is the
+> physical **+y** end of the case.
+
 Extracted from `fix_v22/vitalq_v2.kicad_pcb` (pcbnew, /tmp copy — source untouched)
 on the v10 pipeline: `extract_geometry.py` → `geometry.json`,
 `parse_vrml.py` (KiCad 10 root-scale patch) → `vrml_boxes.json`,

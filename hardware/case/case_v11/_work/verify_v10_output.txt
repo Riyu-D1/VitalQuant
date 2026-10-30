@@ -1,0 +1,42 @@
+PASS case parts present                     | all STLs load                        | missing=[]
+# supplemental courtyard points added: 6000 for U2/U17 (models absent from GLB export)
+FAIL board seat plane                       | 3.40 +/-0.05 (design ZB)             | measured ledge top z=1.600 from 145 probes
+FAIL real board pts inside case_base        | 0 deeper than 0.1 mm                 | inside=540 deep=333 max_depth=0.796
+FAIL real board pts inside case_top         | 0 deeper than 0.1 mm                 | inside=1471 deep=1176 max_depth=0.979
+# inside-point regions:
+   antenna_zone y>+8: n=216 y[8.0,10.1] x[6.5,11.9]
+   east_tab x>46: n=75 y[-13.2,-11.0] x[46.0,48.0]
+   other: n=2011 y[-24.9,10.1] x[-2.0,48.0]
+FAIL mounting-hole pin alignment            | each real board hole vs case pin: axis off <=0.10 | bad=[('H1', 'no pin found'), ('H2', 'no pin found')]
+FAIL USB-C window vs J1                     | centre off <=0.2; opening >=9.6 wide | no through-opening found at J1 mouth z=6.6
+FAIL USB-C overmould corridor               | 0 inter face->mouth-0.5              | 150.863 mm3
+FAIL electrode lands open through floor     | all 20 lands over open through-apertures | 0/20 open bad=[('J5', '1', 'land outside case footprint'), ('J5', '2', 'land outside case footprint'), ('J5', '3', 'land outside case footprint'), ('J5', '4', 'land outside case footprint')]
+FAIL electrode land vs pogo pin XY          | each land: pogo within 0.20          | pogos=20 worst=[('J5', '1', 120.77), ('J5', '2', 121.13), ('J5', '3', 121.52), ('J5', '4', 121.92)]
+FAIL thermal slug                           | exactly one slug at U11, face 0.45-0.75 proud | bad=['slug at [ 40.4 100.8] not (20.2, -50.4)']
+/Users/deepakdiwan/Library/Python/3.12/lib/python/site-packages/trimesh/triangles.py:302: RuntimeWarning: invalid value encountered in divide
+  center_mass = integrated[1:4] / volume
+PASS antenna tab in pocket                  | 0 inter at board z-band              | 0.000 mm3
+PASS east tab in pocket                     | 0 inter at board z-band              | 0.000 mm3
+FAIL antenna pocket depth                   | inner face >= module end +22.31 +0.3 | face y=64.80 gap=42.49
+FAIL east tab pocket depth                  | pocket face >= tab edge 53.6 +0.3    | face x=-99.00 gap=-152.60
+FAIL board edge <-> wall clearance          | min gap >=0.20 (pocket CL 0.3, probed); 0 inside | inside=7 min gap 0.056 at [ 48.   -13.13   3.69] over 3098 perimeter pts
+FAIL component tops <-> lid ceiling         | min gap >=0.30                       | min gap 0.001 at ('R70', np.float64(22.330209999999997), np.float64(-16.540309999999998))
+FAIL components <-> lid (any direction)     | min gap >=0.20 (strap-fin ledge relieved); 0 inside | inside=504 min gap 0.000 at [38.59 -9.95  5.14] over 35577 F-side pts
+PASS components <-> floor clearance         | min gap >=0.15; 0 inside             | inside=0 min gap 1.565 at [14.02 -5.49  3.16] over 12809 B-side pts
+PASS battery 402535 in cup                  | cell fits (press ribs 0.35)          | inter 0.000 mm3
+PASS TP29/TP36 <-> lid ledge                | min gap >=0.03 (ledge relieved)      | min gap 0.041 at TP29
+PASS overhang audit base                    | 0 bad deep canopies @0.2mm           | 0 cells 
+PASS overhang audit top                     | 0 bad deep canopies @0.2mm           | 0 cells 
+PASS overhang audit bay_cup                 | 0 bad deep canopies @0.2mm           | 0 cells 
+PASS overhang audit pin_plate               | 0 bad deep canopies @0.2mm           | 0 cells 
+PASS STL watertight                         | all parts closed                     | bad=[]
+| overhang audit top | 0 bad deep canopies @0.2mm | 0 cells  | PASS |
+| overhang audit bay_cup | 0 bad deep canopies @0.2mm | 0 cells  | PASS |
+| overhang audit pin_plate | 0 bad deep canopies @0.2mm | 0 cells  | PASS |
+| STL watertight | all parts closed | bad=[] | PASS |
+
+**11 checks PASS, 14 FAIL, 0 FLAGGED (25 total)**
+
+VERDICT: **FAIL** — mirror-frame fault signature present
+
+EXIT=1

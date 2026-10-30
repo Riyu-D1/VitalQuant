@@ -72,19 +72,23 @@ Reliefs added after real-geometry verification (checked):
   floor clearance, 402535 bay, 4 overhang audits, watertight.
 - Run: `python3 verify_fit.py [--case-dir DIR]` → `FIT_REPORT.md` +
   exit 0/1.
+- `_work/` assets (GLBs + `geometry_v24.json`, ~12.3 MB total) are
+  **committed** — the verifier runs from a fresh clone with no build
+  step. Regeneration commands in `_work/README.md`.
 
 ### case_v11 result — PASS (checked)
 
-`FIT_REPORT.md`: **24/24 PASS**, 0 board points deeper than 0.1 mm
-(2 grazes at 0.004 mm), seat 3.400 mm, hole axes aligned, USB window
+`FIT_REPORT.md`: **25/25 PASS**, 0 board points deeper than 0.1 mm
+(2 grazes at 0.017 mm), seat 3.400 mm, hole axes aligned, USB window
 13.2 mm wide centred 0.15 mm off J1, 20/20 lands over apertures with a
 pogo within 0.20 mm, one slug at U11, pocket gaps 0.99/0.30 mm, min wall
-gap 0.100 mm, min ceiling 0.501 mm, floor 0.365 mm, battery fits,
-0 bad overhang cells, all STLs watertight. Exit 0.
+gap 0.300 mm, min ceiling 0.501 mm, min lid pinch 0.369 mm, floor
+0.365 mm, TP29/TP36 lid ledge 0.283 mm, battery fits, 0 bad overhang
+cells, all STLs watertight. Exit 0.
 
 ### case_v10 result — FAIL (checked, mirror signature)
 
-`_work/verify_v10_output.txt`: **10 PASS / 14 FAIL**, verdict
+`_work/verify_v10_output.txt`: **11 PASS / 14 FAIL** (of 25), verdict
 "mirror-frame fault signature present":
 - seat 1.600 mm (design 3.40); deep pts base 344 / top 1209 (max 0.967)
 - mounting holes: no pins found at H1/H2
@@ -97,6 +101,38 @@ gap 0.100 mm, min ceiling 0.501 mm, floor 0.365 mm, battery fits,
 
 The verifier passes v11 and fails v10 — it measures real geometry, not
 the case's own design frame.
+
+## 3b. Follow-up pass (checked, 2026-10-30)
+
+Review-driven fixes applied on top of the mirror fix:
+
+- **Fresh-clone verification**: `_work/` assets committed (~12.3 MB);
+  `verify_fit.py` runs as cloned, no board-file build step.
+- **Thin parts thickened**: `pin_plate` 0.35 → 0.60 mm, `bay_cup` floor
+  0.5 → 0.8 mm — both now above PRINT_NOTES' own 0.4 mm minimum. The
+  extra 0.3 mm of cup floor grew *into* the lid's battery-pocket depth
+  (which had margin), so the cup/door stack moved down 0.3 mm and the
+  plate up 0.25 mm to keep absolute part planes; assembled overall
+  height is now **16.75 mm** (was 17.05). No stack growth needed.
+- **Clearances widened without moving the board**: board-edge↔wall
+  0.100 → **0.300 mm** (≥0.20); component↔lid pinch 0.086 →
+  **0.369 mm** (≥0.20) via a strap-fin/R-lug relief covering
+  y 28.8–30.6, x 48.5–54.6 (KiCad frame). The wall check now skips the
+  intentional F-clamp ledge overhang band (the clamp interface, not a
+  wall face).
+- **TP29/TP36** (fix_v25, PR #21, lid side — RLDREF (46.88, 7.60),
+  IOVDD (45.04, −9.44) KiCad): pad edges touched the clamp-wedge inner
+  face (~0.4 mm lateral). Added lid reliefs; verifier row now measures
+  **0.283 mm** min gap ≥ 0.03.
+- **Watertight fix (checked)**: pin-hole chamfer steps straddle the
+  0.30 mm-deep plate-pocket floor so the pocket boolean no longer lands
+  a coplanar annulus; `case_top.stl` round-trips watertight.
+- **Docs**: ASSEMBLY/PRINT_NOTES direction statements corrected to the
+  physical frame (USB-C + antenna + chevron on +y); unreferenced v8/v10
+  inputs moved to `_stale_inputs/`.
+- **Renders**: `render_blender.py` (Blender 4.5 EEVEE) replaces the
+  matplotlib plot renders — real GLB board, 1920×1200, hero /
+  exploded / skin-side / closed / worn (torso block to scale).
 
 ## 4. Other checks (checked)
 
@@ -115,15 +151,16 @@ the case's own design frame.
   mismatches** (`_work/sha_baseline/`). JOURNAL.md/LICENSE: repo-only
   files; untouched in the clone (git status clean).
 - **Renders**: `renders/{hero,closed,skin_side,exploded,worn}.png` —
-  inspected; pogo apertures + slug on the skin face, board seated.
+  Blender 4.5 (EEVEE), inspected; real fix_v24 GLB inside the case,
+  pogo apertures + slug + gasket on the skin face, board seated.
 
 ## 5. Open items
 
 - U2/U17 ship no 3D models — courtyard boxes used in verification
   (inferred: worst-case volumes, conservative).
-- The 0.086 mm component↔lid pinch at the strap-fin relief edge is
-  accepted as the documented strap-channel pinch (checked vs design
-  intent; inferred acceptable for a soft strap path, not a hard stop).
+- The former 0.086 mm component↔lid pinch is relieved (now 0.369 mm,
+  checked).
 - v10 docs (CHECKS/PRINT_NOTES/ASSEMBLY etc.) are carried over with
-  headers updated; they describe the shared lineage. v11's authoritative
-  check is `FIT_REPORT.md`.
+  headers updated; they describe the shared lineage and mark stale
+  direction statements where they remain. v11's authoritative check is
+  `FIT_REPORT.md`.

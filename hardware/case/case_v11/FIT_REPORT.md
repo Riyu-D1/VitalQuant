@@ -9,7 +9,7 @@ kicad-cli 10.0.4 exports. tolerance: deep >0.1 mm counts a point.
 |---|---|---|---|
 | case parts present | all STLs load | missing=[] | PASS |
 | board seat plane | 3.40 +/-0.05 (design ZB) | measured ledge top z=3.400 from 295 probes | PASS |
-| real board pts inside case_base | 0 deeper than 0.1 mm | inside=2 deep=0 max_depth=0.004 | PASS |
+| real board pts inside case_base | 0 deeper than 0.1 mm | inside=2 deep=0 max_depth=0.017 | PASS |
 | real board pts inside case_top | 0 deeper than 0.1 mm | inside=0 deep=0 max_depth=0.000 | PASS |
 | mounting-hole pin alignment | each real board hole vs case pin: axis off <=0.10 | bad=[] | PASS |
 | USB-C window vs J1 | centre off <=0.2; opening >=9.6 wide | open span x 22.8..35.9 w=13.2 centre off=0.15 wall probes=41 | PASS |
@@ -21,17 +21,18 @@ kicad-cli 10.0.4 exports. tolerance: deep >0.1 mm counts a point.
 | east tab in pocket | 0 inter at board z-band | 0.000 mm3 | PASS |
 | antenna pocket depth | inner face >= module end +22.31 +0.3 | face y=23.30 gap=0.99 | PASS |
 | east tab pocket depth | pocket face >= tab edge 53.6 +0.3 | face x=53.90 gap=0.30 | PASS |
-| board edge <-> wall clearance | min gap >=0.05 (pocket CL 0.3, probed); 0 inside | inside=0 min gap 0.100 at [ 51.82 -29.9    4.58] over 3389 perimeter pts | PASS |
+| board edge <-> wall clearance | min gap >=0.20 (pocket CL 0.3, probed); 0 inside | inside=0 min gap 0.300 at [ 51.65 -20.     3.98] over 3093 perimeter pts | PASS |
 | component tops <-> lid ceiling | min gap >=0.30 | min gap 0.501 at ('U1', np.float64(2.15), np.float64(9.25)) | PASS |
-| components <-> lid (any direction) | min gap >=0.05 (pinch at strap fin, design); 0 inside | inside=0 min gap 0.086 at [ 50.54 -29.15   5.01] over 35223 F-side pts | PASS |
-| components <-> floor clearance | min gap >=0.15; 0 inside | inside=0 min gap 0.365 at [ -2.22 -52.76   1.31] over 12770 B-side pts | PASS |
+| components <-> lid (any direction) | min gap >=0.20 (strap-fin ledge relieved); 0 inside | inside=0 min gap 0.369 at [ -0.97 -56.66   5.12] over 35426 F-side pts | PASS |
+| components <-> floor clearance | min gap >=0.15; 0 inside | inside=0 min gap 0.365 at [ -1.6  -56.93   1.31] over 12963 B-side pts | PASS |
 | battery 402535 in cup | cell fits (press ribs 0.35) | inter 0.000 mm3 | PASS |
+| TP29/TP36 <-> lid ledge | min gap >=0.03 (ledge relieved) | min gap 0.283 at TP36 | PASS |
 | overhang audit base | 0 bad deep canopies @0.2mm | 0 cells  | PASS |
 | overhang audit top | 0 bad deep canopies @0.2mm | 0 cells  | PASS |
 | overhang audit bay_cup | 0 bad deep canopies @0.2mm | 0 cells  | PASS |
 | overhang audit pin_plate | 0 bad deep canopies @0.2mm | 0 cells  | PASS |
 | STL watertight | all parts closed | bad=[] | PASS |
 
-**24 checks PASS, 0 FAIL, 0 FLAGGED (24 total)**
+**25 checks PASS, 0 FAIL, 0 FLAGGED (25 total)**
 
 VERDICT: PASS

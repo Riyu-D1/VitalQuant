@@ -36,9 +36,10 @@ def load_parts():
     parts = [('case_base', trimesh.load('case_base.stl')),
              ('case_top', trimesh.load('case_top.stl')),
              ('board_pcb', real_board()),
-             ('bay_cup', T(trimesh.load('bay_cup.stl'), dz=ZLID)),
+             ('bay_cup', T(trimesh.load('bay_cup.stl'), dz=ZLID - 0.3)),
              ('pin_plate', trimesh.load('pin_plate.stl')),
-             ('battery_door', T(trimesh.load('battery_door.stl'), dz=ZLID)),
+             ('battery_door', T(trimesh.load('battery_door.stl'),
+                                dz=ZLID - 0.3)),
              ('gasket_tpu', trimesh.load('gasket.stl')),
              ('usb_dust_flap', trimesh.load('usb_flap.stl')),
              ('button_cap_SW1', T(trimesh.load('button_cap.stl'),
@@ -54,7 +55,7 @@ def load_parts():
     plate = dict(parts)['pin_plate']
     plate.apply_transform(
         trimesh.transformations.reflection_matrix([0, 0, 0], [0, 0, 1]))
-    plate.apply_translation([0, 0, ZLID+0.85])
+    plate.apply_translation([0, 0, ZLID+1.1])
     return parts
 
 HDR = """ISO-10303-21;

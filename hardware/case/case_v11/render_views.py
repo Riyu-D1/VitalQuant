@@ -84,17 +84,17 @@ def T(m, dx=0, dy=0, dz=0):
     out = m.copy(); out.apply_translation([dx, dy, dz]); return out
 
 # ---------- assembled placements (physical frame) ---------------------------
-cup_a   = T(CUP, dz=ZLID)
-door_a  = T(DOOR, dz=ZLID)
+cup_a   = T(CUP, dz=ZLID-0.3)
+door_a  = T(DOOR, dz=ZLID-0.3)
 plate_a = PLATE.copy()
 plate_a.apply_transform(trimesh.transformations.reflection_matrix([0,0,0],[0,0,1]))
-plate_a.apply_translation([0, 0, ZLID+0.85])
+plate_a.apply_translation([0, 0, ZLID+1.1])
 cap1 = T(CAP, 45.30024, -34.61124, 7.05)                     # SW1
 cap2 = T(CAP, 2.02538, -57.16984, 7.05)                      # SW2
 pipe_a = T(PIPE, 4.0, -42.9, 6.1)                            # tip over D25
 plug_a = T(PLUG, 26.45, -53.4, ZLID-0.55)                    # J8 plug
 cell = trimesh.creation.box([24.3, 35.0, 4.0])               # 402535 cell
-cell.apply_translation([17.3, -22.5, ZLID+0.85+2.0])
+cell.apply_translation([17.3, -22.5, ZLID+1.1+2.0])
 
 def sbox(x0, y0, z0, x1, y1, z1):
     b = trimesh.creation.box([abs(x1-x0), abs(y1-y0), abs(z1-z0)])

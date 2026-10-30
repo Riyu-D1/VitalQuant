@@ -10,7 +10,7 @@ left-handed frame, so every v10 solid is the mirror image of the real
 board and the physical case could not fit. v11 keeps the design pipeline
 and mirrors every case solid in Y at export (`phys()` in `case_lib.py`).
 The real fix_v24 board now drops in with 0 collisions >0.1 mm
-(`FIT_REPORT.md`, 24/24 PASS). The same verifier fails case_v10 with 14
+(`FIT_REPORT.md`, 25/25 PASS). The same verifier fails case_v10 with 14
 checks — the mirror signature (`_work/verify_v10_output.txt`). Details:
 `REPORT.md`.
 
@@ -44,7 +44,7 @@ extract_geometry.py            ->  pcbnew -> geometry_v24.json
 parse_vrml.py + merge_heights  ->  geometry.json (component heights)
 build_case.py                  ->  all STLs (Y-mirrored at export)
 export_step.py                 ->  case_v11.step (assembled, phys frame)
-verify_fit.py                  ->  FIT_REPORT.md (24 checks)
+verify_fit.py                  ->  FIT_REPORT.md (25 checks)
 render_views.py                ->  renders/
 ```
 
