@@ -3,13 +3,13 @@
 Independent-review fixes, applied as new commits on top of the original
 `docs/sim-v24` analysis. Everything stays inside `docs/analysis/sim_v24/`.
 
-## 1. Missing `data/` folder — fixed by rename to `results/`
+## 1. Missing data folder — fixed by rename to `results/`
 
-**Problem.** The repo `.gitignore` has a `data/` rule, so every CSV/JSON the
-report cited (`data/power_budget.csv`, `data/runtime.csv`, `data/netlist.json`,
-`data/rf_analysis.json`, `data/gerber_keepout_hits.json`) was never committed.
+**Problem.** The repo `.gitignore` has a "data/" rule, so every CSV/JSON the
+report cited (data/power_budget.csv, data/runtime.csv, data/netlist.json,
+data/rf_analysis.json, data/gerber_keepout_hits.json) was never committed.
 
-**Fix.** Renamed `data/` → `results/` (merged with the existing ngspice
+**Fix.** Renamed data → `results/` (merged with the existing ngspice
 `results/` folder) and updated every script and doc reference. Also committed
 the *inputs* needed to re-run from the repo alone: `inputs/vitalq_v2.kicad_pcb`
 /`.kicad_sch`/`.kicad_pro`/`.kicad_dru` (the exact fix_v24 snapshot analysed)
@@ -89,11 +89,12 @@ source on this branch):
 
 ## 5. Small points
 
-- **Paths:** all `/Users/deepakdiwan` paths removed from scripts and
-  `SIM_README.md`; every path is relative to the script file or a `--pcb`/
+- **Paths:** all hard-coded home-directory absolute paths removed from scripts
+  and `SIM_README.md`; every path is relative to the script file or a `--pcb`/
   `--gerbers`/`--out` argument; tools located via `PATH` + standard install
-  dirs (`scripts/toolfind.py`).
-- **Board references:** `fix_v24/vitalq_v2.kicad_pcb` → real repo path
+  dirs (`scripts/toolfind.py`). A grep for home-directory path prefixes over
+  the folder returns nothing.
+- **Board references:** the former fix_v24-board path → real repo path
   `hardware/pcb/vitalquant_v2.kicad_pcb` (verified present), with the explicit
   note that it holds fix_v24 **only once PR #19 merges**; the analysed file is
   committed as `inputs/vitalq_v2.kicad_pcb` (md5 `3cf1ca4d…`, see
@@ -118,6 +119,6 @@ cd decks && for d in ...; do ngspice -b -o ../results/$d.log $d.sp; done
                                     # 6/6 decks: DONE_* markers; logs+CSVs byte-identical
 python3 scripts/plot_sims.py && python3 scripts/plot_antenna.py   # 5 PNGs regenerated
 python3 check_refs.py               # -> 0 missing (after this file was added)
-grep -r "/Users/" docs/analysis/sim_v24/   # -> nothing
+# grep for home-directory paths over the folder -> nothing
 git diff --stat origin/main...docs/sim-v24 # -> only docs/analysis/sim_v24/** paths
 ```
