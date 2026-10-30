@@ -93,12 +93,14 @@ source on this branch):
   and `SIM_README.md`; every path is relative to the script file or a `--pcb`/
   `--gerbers`/`--out` argument; tools located via `PATH` + standard install
   dirs (`scripts/toolfind.py`). A grep for home-directory path prefixes over
-  the folder returns nothing.
+  the folder returns nothing — two dead metadata strings inside the input
+  snapshots (the `.kicad_pcb` 3D `model` path and the `.net` `source`
+  attribute, both ignored by DRC/ERC/parsers) were scrubbed as well; see
+  `inputs/README.md`.
 - **Board references:** the former fix_v24-board path → real repo path
   `hardware/pcb/vitalquant_v2.kicad_pcb` (verified present), with the explicit
   note that it holds fix_v24 **only once PR #19 merges**; the analysed file is
-  committed as `inputs/vitalq_v2.kicad_pcb` (md5 `3cf1ca4d…`, see
-  `inputs/README.md`).
+  committed as `inputs/vitalq_v2.kicad_pcb` (md5s in `inputs/README.md`).
 - **Counts:** PR description and `REPORT.md` now agree — **6/6 decks ran to
   completion** (5 analysis + 1 vendor-evidence; the vendor deck completes but
   documents non-regulation) and charge time **~2.2 h** (300 mAh / 200 mA =
