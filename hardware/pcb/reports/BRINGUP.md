@@ -30,7 +30,7 @@ files; **inferred** = reasoned from checked facts/datasheet behaviour;
 |---|---|---|---|
 | TP1 | VBUS | >50 kΩ (input caps only) | guess |
 | TP2 | VBAT | >50 kΩ (charger OUT + caps) | guess |
-| TP31 | VBAT_SYS | >50 kΩ (Q6 off when VBUS=0? see note) | guess |
+| TP31 | VBAT_SYS | >50 kΩ (VBUS=0 → R123 pulls Q6 gate low → Q6 on, but VBAT floats too) | guess |
 | TP3 | +3V3 | >10 kΩ | inferred (v4 bring-up measured similar) |
 | TP32 | +3V3_ANA | ≈TP3 (0 Ω link R95) | checked |
 | TP35 | +3V3_ESP | ≈TP3 (0 Ω link R94) | checked |
@@ -39,10 +39,17 @@ files; **inferred** = reasoned from checked facts/datasheet behaviour;
 | TP36 | IOVDD | ≈TP3 via R12 10 Ω | checked |
 | TP34 | RTC_VBK | ≈10 kΩ (R115 to GND) | checked |
 
-- [ ] Confirm the battery has a **working 10 kΩ NTC on J2 pin 3** (TS), and
-  note R61 (on-board 10 kΩ NTC, B3380) is **fitted** in this build
-  (**checked** — BOM_JLC C77131). Two 10 kΩ NTCs in parallel give ≈5 kΩ —
-  see Step 3/6 notes on the TS window.
+- [ ] **TS must see exactly ONE pull-down to GND — never two.** The TS net
+  carries BQ25170 pin 3, J2 pin 3 (pack NTC), R61 (on-board 10 kΩ NTC
+  B3380, C77131), the Q2 CHG_DIS pull-down drain and TP40 (**checked** —
+  schematic). R61 is **fitted** per the v25 BOM/CPL (**checked** — listed
+  in BOM_JLC.csv and CPL.csv, no DNP flag) even though the schematic note
+  says "R61 stays DNP" — **whether R61 should be fitted is an OPEN
+  DECISION for Riyansh** (board/BOM question; do not resolve it by
+  editing the board/BOM here). If the fitted pack also has a 10 kΩ NTC on
+  J2 pin 3, the two sit in parallel → ≈5 kΩ → TS ≈0.19 V ≈ the hot
+  threshold → charge suspends (see Step 3 TS note). Valid configs: pack
+  NTC with R61 depopulated, **or** R61 alone with a 2-wire (no-NTC) pack.
 
 ## Step 2 — current-limited bench supply: VBAT first, then USB VBUS
 
@@ -55,8 +62,10 @@ files; **inferred** = reasoned from checked facts/datasheet behaviour;
 - [ ] Then apply **USB VBUS: 5.0 V, current limit 300 mA** (USB-C breakout or
   host port) at TP1 / TP8. VBUS feeds the BQ25170 (ICHG=200 mA by R3 1.5 kΩ —
   **checked**) so 300 mA covers charge + system idle.
-- [ ] TP39 VBUS_DET should read ≈+3V3 when VBUS is present, ≈0 V without it
-  (**inferred** — U19 expander input).
+- [ ] TP39 VBUS_DET should read ≈3.0 V when VBUS is present (R50 100 kΩ /
+  R51 150 kΩ divider → 0.6 × VBUS; 2.85–3.15 V across the 4.75–5.25 V
+  USB range — **checked** against schematic), ≈0 V without it; sensed by
+  the U19 expander input (**inferred** pin read).
 
 ## Step 3 — expected rail voltages and where to measure
 
@@ -64,7 +73,7 @@ files; **inferred** = reasoned from checked facts/datasheet behaviour;
 |---|---|---|---|---|
 | TP1 | VBUS | 4.75–5.25 V | USB-C source spec | inferred |
 | TP2 | VBAT | 3.0–4.2 V cell; ≈4.20 V while charging | BQ25170 VSET R75=27 kΩ → 4.20 V exact (Table 7-1) | checked |
-| TP31 | VBAT_SYS | ≈VBAT on battery only; ≈4.2 V with USB | Q6 P-FET gate=VBUS selects charger-OUT vs battery | inferred |
+| TP31 | VBAT_SYS | ≈VBAT on battery only; ≈4.5–4.7 V with USB | USB present: Q6 off (G=VBUS, R123 pulls G low otherwise) and D33 1N5819WS feeds VBAT_SYS = VBUS − Vf | topology checked; Vf ≈0.3–0.5 V at bring-up currents inferred |
 | TP3 | +3V3 | 3.30 V, accept 3.23–3.37 V | TPS63802, FB 560 kΩ/100 kΩ × 0.5 V ref | checked ratio; ±2 % inferred |
 | TP32 | +3V3_ANA | ≈TP3 − 0 Ω drop | R95 0 Ω link | checked |
 | TP35 | +3V3_ESP | ≈TP3 − 0 Ω drop | R94 0 Ω link | checked |
@@ -78,12 +87,28 @@ files; **inferred** = reasoned from checked facts/datasheet behaviour;
 | TP30 | RLDOUT | ≈1.65 V when RLD enabled | RLD amplifier output | inferred |
 | TP37 | CHG_ISET | ≈0.5–1 V | BQ25170 ISET pin (200 mA set by 1.5 kΩ) | guess |
 | TP38 | CHG_VSET | ≈0.5–1.5 V, sampled at charger start | BQ25170 VSET config pin | guess |
-| TP40 | TS | ≈0.38 V (10 kΩ) / ≈0.19 V (two NTCs ‖) | TS bias ≈38 µA × R | inferred |
+| TP40 | TS | ≈0.38 V with ONE 10 kΩ NTC at 25 °C (≈0.26 V at ~35 °C skin); ≈0.19 V = two NTCs in parallel → suspended | ITS_BIAS = 38 µA × R_TS; charge window VHOT 188 mV < V_TS < VCOLD 1.04 V | thresholds checked (datasheet); voltages inferred |
 
 - [ ] +3V3 missing or ≈VBAT → suspect U3 direction or a shorted rail link
   (R93/R94/R95 area). +1V8 missing with +3V3 present → U4 EN/OUT.
-- [ ] TS far outside the ~0.19–0.38 V band → NTC open/missing → the charger
-  will suspend (expected behaviour — **inferred**).
+- [ ] **TS charge window (checked — BQ25170 datasheet):** ITS_BIAS = 38 µA
+  (36.5–39.5); charge is allowed only while VHOT (188 mV typ, 176–200,
+  falling ≈45 °C) < V_TS < VCOLD (1.04 V typ, ≈0 °C); hot-exit ≈220 mV
+  (208–232); below VTS_ENZ ≈50 mV the charger is disabled (what Q2
+  CHG_DIS does). Datasheet wants **one** 10 kΩ β=3435 NTC (103AT-2) or a
+  fixed 10 kΩ resistor to disable TS.
+- [ ] **Expected V_TS for a single 10 kΩ β≈3435 NTC (inferred — V_TS =
+  ITS_BIAS × R_TS, R(T) = 10 kΩ · exp(β·(1/T − 1/298.15 K))):** 25 °C → 10.00 kΩ →
+  **≈380 mV** (mid-window); ~35 °C skin → ≈6.88 kΩ → **≈260 mV**.
+  **Two 10 kΩ NTCs in parallel (R61 + pack):** 25 °C → 5.00 kΩ →
+  **≈190 mV**, sitting on the 176–200 mV VHOT spread — may or may not
+  start; ~35 °C → ≈3.44 kΩ → **≈131 mV**, below VHOT even at its minimum
+  → suspended; and recovery needs >≈208 mV, which 5 kΩ never reaches at
+  ≥25 °C → stays suspended. A 0.19 V reading is therefore the two-NTC
+  fault signature, not a healthy rail.
+- [ ] TS far outside the window → NTC open/missing (V_TS → VTS_CLAMP
+  ≈2.6 V) or Q2/CHG_DIS held low (V_TS <50 mV) → the charger suspends
+  (expected behaviour — **inferred**).
 
 ## Step 4 — USB enumeration, flashing, boot mode
 
@@ -131,10 +156,28 @@ files; **inferred** = reasoned from checked facts/datasheet behaviour;
   inrush <150 mA (**inferred**).
 - [ ] Scope TX_5V and one LED channel at a time, **low current first**
   (smallest drive code). A single ~150 mA pulse should keep TX_5V >4.8 V
-  (**inferred** — TPS61240 delivers ≈400–450 mA worst case).
-- [ ] **Never overlap AFE4900 TX and MAX86141 LED pulses** — worst-case
-  coincident demand ≈900 mA exceeds the boost and sags the rail; firmware
-  interleaves channels (**checked** — audit I02).
+  (**inferred** — sim_v24 measured an 11 mV droop for a 200 mA × 60 µs
+  pulse). Boost figures, stated per source: datasheet EC table guarantees
+  only **200 mA** output across VIN (**checked**); "up to **450 mA**" is
+  the feature headline at favourable VIN and the **500 mA** spec is the
+  *input* valley current limit, not output (**checked**); usable output at
+  a **3.2 V battery is ≈250–270 mA** (**inferred** — datasheet Figure 1
+  max-output curve and the sim_v24 behavioural boost, PR #20).
+- [ ] **Avoid overlapping AFE4900 TX and MAX86141 LED pulses** — the
+  ~900 mA coincident bound far exceeds the ≈250–270 mA boost capability
+  and collapses TX_5V (sim_v24: dips to 2.5–2.9 V, below the AFE4900
+  TX_SUP minimum — **inferred**). Firmware gives a hard non-overlap
+  guarantee only for the LED chains `led_sched` pulses directly via
+  cb_on/cb_off while owning TX_5V (**checked** — led_sched.h/vq_led.c).
+  The AFE4900 and MAX86141 time their own LEDs internally — AFE4900's
+  engine only runs while a scheduler grant is active, and MAX86141 is
+  fully autonomous (its on/off callbacks are empty no-ops,
+  `mx_led_cb_on/off`, and its GPIO1 sync input is unconnected —
+  **checked** in firmware source) — so per-pulse non-overlap between the
+  two AFE chains is **NOT enforced** (**inferred**). Safe today only
+  because programmed currents are low: ≈5 mA AFE4900
+  (`AFE_LED_CODE_RUN`) + ≈15–23 mA MAX86141 (`MX_LED*_PA`) versus
+  ≈250–270 mA usable TX_5V at a 3.2 V battery (**inferred**).
 - [ ] AS7341 illuminator D10: start at LED_DRIVE code 4, verify <20 mA,
   cap at code 8 (**checked** — audit limit).
 - [ ] IR gate / D12 730 nm via AD5940 GPIO2: expect 12–16 mA (**inferred** —
@@ -160,9 +203,43 @@ files; **inferred** = reasoned from checked facts/datasheet behaviour;
 | I²C dead / missing ACKs | 100 kHz speed; pull-ups; U9 VREF2≈3.3 V; TP26 EXP_INT |
 | AFE silent on SPI | Device still in reset via U19 — recheck expander writes (R9/R11/R14 pulls) |
 | TX_5V won't rise | TX5_EN (U19 P3) low; R25 pull-down; U15 soldering; enable before pulsing LEDs |
-| Won't charge | J2.3 NTC + R61 parallel value on TP40; CHG_DIS (U19 P7); CHG_STAT on TP27 |
-| TS out of window | Two fitted NTCs (R61 + pack) ≈5 kΩ → ≈0.19 V expected — don't "fix" a correct 0.19 V |
+| Won't charge | TP40 ≈0.19 V → R61 + pack NTC in parallel → at/below VHOT → suspended (see Step 3 TS note); CHG_DIS (U19 P7 → Q2) pulling TS <50 mV also disables; CHG_STAT on TP27 |
+| TS out of window | ONE 10 kΩ NTC → ≈0.38 V at 25 °C is healthy; ≈0.19 V means two NTCs in parallel — resolve the R61-vs-pack question (OPEN DECISION above); don't "fix" a correctly suspended charger |
 | Rail OK, board hot | Isolate: power down, resistance-check that rail, reflow suspects |
 
 Power off between probe moves on BGA/regulator areas; never poke +3V3 nodes
 with the board energised by a non-current-limited source.
+
+## Corrections (30 Oct 2026)
+
+- **TS / NTC (Steps 1, 3, 8) — most important.** Re-derived the TS node
+  from the schematic: BQ25170 pin 3 + J2 pin 3 (pack NTC) + R61 (10 kΩ
+  B3380, **fitted** per v25 BOM_JLC/CPL, no DNP flag — despite the
+  "R61 stays DNP" schematic text note) + Q2 CHG_DIS pull-down + TP40.
+  The earlier text told the operator to confirm a pack NTC *in addition
+  to* R61 and not to "fix" a correct 0.19 V. In fact two 10 kΩ NTCs in
+  parallel give ≈190 mV at 25 °C — on top of the 188 mV VHOT threshold —
+  and ≈131 mV at ~35 °C, so the charger suspends. Rule now stated:
+  **exactly ONE pull-down on TS** (datasheet: one 10 kΩ NTC, or a fixed
+  10 kΩ resistor if TS is unused). Whether R61 should be fitted is an
+  **OPEN DECISION for Riyansh** — board/BOM question, not resolved here.
+- **TP31 VBAT_SYS with USB (Step 3).** Was "≈4.2 V"; corrected to
+  ≈4.5–4.7 V — with VBUS present Q6 is off and D33 (1N5819WS) feeds
+  VBAT_SYS from VBUS minus its ≈0.3–0.5 V drop at bring-up currents.
+- **TP39 VBUS_DET (Step 2).** Was "≈+3V3"; corrected to ≈3.0 V —
+  R50 100 kΩ / R51 150 kΩ divide VBUS by 0.6 (2.85–3.15 V over the USB
+  4.75–5.25 V range).
+- **Step 6 LED overlap claim.** The "firmware interleaves channels
+  (checked — audit I02)" claim was wrong for the AFE chains: `led_sched`
+  serialises only the chains it pulses directly; the AFE4900 and
+  MAX86141 time their own LEDs internally (MAX86141 callbacks are empty
+  no-ops, sync input unconnected), so per-pulse non-overlap between them
+  is **not** enforced — relabelled **inferred**. Still safe today at the
+  programmed ≈5 mA (AFE4900) and ≈15–23 mA (MAX86141) currents.
+- **Step 6 boost figure.** "≈400–450 mA worst case" corrected: 450 mA is
+  the datasheet's headline at favourable VIN and 500 mA is the *input*
+  valley limit; the EC table guarantees 200 mA output and the usable
+  figure at a 3.2 V battery is ≈250–270 mA (datasheet Figure 1 /
+  sim_v24, PR #20).
+- **Step 1 resistance table.** TP31 note corrected: with VBUS=0, R123
+  pulls Q6's gate low so Q6 is **on** (was "Q6 off when VBUS=0?").
