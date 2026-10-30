@@ -1,0 +1,60 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * v24 +1v8 rail: tps7a2018 ldo fed from +3v3 (u4). vendor model
+
+Warning: Model issue on line 1 :
+  .model _s1 sw roff=1e6 ron=230 voff=0.0v von=1m ...
+unrecognized parameter (voff) - ignored
+unrecognized parameter (von) - ignored
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+
+No. of Data Rows : 3635
+vout_ss             =  1.79760e+00 from=  1.60000e-03 to=  1.90010e-03
+vout_dip            =  1.79740e+00 at=  1.92000e-03
+vout_pk             =  1.79980e+00 at=  2.62010e-03
+vdo                 =  1.19999e+00 at=  2.62010e-03
+V18 VIN=3.0 v1v8=1.7976 dip=1.79739 pk=1.7998 headroom=1.19999
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+
+No. of Data Rows : 3618
+vout_ss             =  1.79765e+00 from=  1.60000e-03 to=  1.90076e-03
+vout_dip            =  1.79746e+00 at=  1.91976e-03
+vout_pk             =  1.79968e+00 at=  2.61976e-03
+vdo                 =  1.50011e+00 at=  2.61976e-03
+V18 VIN=3.3 v1v8=1.79765 dip=1.79746 pk=1.79968 headroom=1.50011
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+
+No. of Data Rows : 3619
+vout_ss             =  1.79767e+00 from=  1.60000e-03 to=  1.90092e-03
+vout_dip            =  1.79748e+00 at=  1.91992e-03
+vout_pk             =  1.79972e+00 at=  2.61992e-03
+vdo                 =  1.63008e+00 at=  2.61992e-03
+V18 VIN=3.43 v1v8=1.79767 dip=1.79747 pk=1.79971 headroom=1.63008
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+
+No. of Data Rows : 3618
+DONE_V18
+Note: Simulation executed from .control section 

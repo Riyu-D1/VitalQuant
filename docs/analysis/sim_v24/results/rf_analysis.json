@@ -1,0 +1,1742 @@
+{
+ "board_bbox": [
+  -2.049999,
+  -16.55,
+  53.6,
+  64.5
+ ],
+ "edge_seg_count": 62,
+ "u1": {
+  "at": [
+   11.5,
+   -6.5
+  ],
+  "rot": 0,
+  "bbox": [
+   2.5,
+   -22.55,
+   20.5,
+   4.050000000000001
+  ],
+  "pads": 51
+ },
+ "antenna_keepout": {
+  "name": "antenna keepout",
+  "pts": [
+   [
+    20.5,
+    -16.3
+   ],
+   [
+    2.5,
+    -16.3
+   ],
+   [
+    2.5,
+    -22.25
+   ],
+   [
+    20.5,
+    -22.25
+   ]
+  ],
+  "layers": [
+   "F.Cu",
+   "B.Cu",
+   "In1.Cu",
+   "In2.Cu",
+   "In3.Cu",
+   "In4.Cu",
+   "In5.Cu",
+   "In6.Cu"
+  ],
+  "rules": {
+   "tracks": "not_allowed",
+   "vias": "not_allowed",
+   "pads": "not_allowed",
+   "copperpour": "not_allowed",
+   "footprints": "not_allowed"
+  },
+  "xmin": 2.5,
+  "xmax": 20.5,
+  "ymin": -22.25,
+  "ymax": -16.3,
+  "area": 107.1
+ },
+ "u1_antenna_end_y": -22.25,
+ "board_north_y": -16.55,
+ "overhang": true,
+ "antenna_inside_mm": 5.699999999999999,
+ "nearest_copper_mm": 5.850000999999999,
+ "nearest_copper_what": "('pour:GND', (np.float64(2.5), -22.25), (-1.9, -16.399999), (22.3, -16.399999))",
+ "violations": [
+  {
+   "type": "footprint",
+   "ref": "U1",
+   "bbox": [
+    2.5,
+    -22.55,
+    20.5,
+    4.050000000000001
+   ]
+  },
+  {
+   "type": "pour_edge",
+   "net": "GND",
+   "a": [
+    -1.9,
+    -16.399999
+   ],
+   "b": [
+    22.3,
+    -16.399999
+   ]
+  },
+  {
+   "type": "pour_edge",
+   "net": "GND",
+   "a": [
+    -1.9,
+    -16.399999
+   ],
+   "b": [
+    22.3,
+    -16.399999
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "name": "",
+   "bbox": [
+    25.18,
+    50.065,
+    27.72,
+    51.335
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "not_allowed"
+   }
+  },
+  {
+   "name": "antenna keepout",
+   "bbox": [
+    2.5,
+    -22.25,
+    20.5,
+    -16.3
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "not_allowed",
+    "copperpour": "not_allowed",
+    "footprints": "not_allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    14.025,
+    61.0,
+    17.175,
+    64.7
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    14.325,
+    25.537499,
+    19.675,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    1.424999,
+    25.537499,
+    6.774999,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    37.05,
+    44.125,
+    40.275,
+    49.475
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    16.225,
+    61.0,
+    19.375,
+    64.7
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    9.625,
+    61.0,
+    12.775,
+    64.7
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    20.775,
+    25.537499,
+    26.125,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    7.875,
+    24.318749,
+    13.225,
+    27.543749
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    37.05,
+    56.325,
+    40.275,
+    61.675
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    11.825,
+    61.0,
+    14.975,
+    64.7
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "bga_fanout",
+   "bbox": [
+    23.975,
+    48.815,
+    27.424999,
+    52.785
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "bga_fanout",
+   "bbox": [
+    24.225,
+    45.575,
+    27.974999,
+    49.525
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hole_keepout",
+   "bbox": [
+    -2.25,
+    -9.284375,
+    1.95,
+    -5.084375
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hole_keepout",
+   "bbox": [
+    -1.5,
+    -4.2875,
+    2.7,
+    -0.0875
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "bga_fanout",
+   "bbox": [
+    6.274999,
+    15.374998,
+    12.725,
+    22.424999
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "antenna_keepout",
+   "bbox": [
+    -2.5,
+    -16.55,
+    25.5,
+    -15.25
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "not_allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    17.025,
+    61.05,
+    20.175,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    31.625,
+    52.35,
+    36.975,
+    55.575
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    26.925,
+    61.05,
+    30.075,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    44.95,
+    53.725,
+    48.65,
+    56.875
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    14.325,
+    25.537499,
+    19.675,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    20.775,
+    25.537499,
+    26.125,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    8.525,
+    61.05,
+    11.675,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    14.325,
+    40.15,
+    19.675,
+    43.375
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    2.4,
+    61.05,
+    4.875,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    29.125,
+    61.05,
+    32.275,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    10.725,
+    61.05,
+    13.875,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    31.625,
+    43.55,
+    36.975,
+    46.775
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    6.325,
+    61.05,
+    9.475,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    1.424999,
+    40.15,
+    6.774999,
+    43.375
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    31.975,
+    61.85,
+    37.325,
+    65.075
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    27.225,
+    25.537499,
+    32.575,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    44.95,
+    55.925,
+    48.65,
+    59.075
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    20.775,
+    40.15,
+    26.125,
+    43.375
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    44.95,
+    58.125,
+    48.65,
+    61.275
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    15.325,
+    61.05,
+    18.475,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    4.125,
+    61.05,
+    7.275,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    -0.475,
+    61.05,
+    1.9,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    7.875,
+    38.95,
+    13.225,
+    42.175
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    7.875,
+    24.318749,
+    13.225,
+    27.543749
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    18.725,
+    61.05,
+    21.875,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    13.625,
+    61.05,
+    16.774999,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    1.424999,
+    25.537499,
+    6.774999,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    2.45,
+    59.7,
+    4.55,
+    62.55
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    20.425,
+    61.05,
+    23.575,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_ownlayer",
+   "bbox": [
+    -0.175,
+    58.85,
+    2.975,
+    62.55
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "sensor_nopower",
+   "bbox": [
+    7.2,
+    47.4,
+    13.0,
+    52.8
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "sensor_nopower",
+   "bbox": [
+    18.1,
+    46.8,
+    22.2,
+    52.8
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    31.625,
+    52.35,
+    36.975,
+    55.575
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    9.625,
+    61.0,
+    12.775,
+    64.7
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    7.875,
+    24.318749,
+    13.225,
+    27.543749
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_321ae5e1",
+   "bbox": [
+    14.325,
+    25.537499,
+    19.675,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_73dd0c0f",
+   "bbox": [
+    44.95,
+    53.725,
+    48.65,
+    56.875
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    20.425,
+    61.05,
+    23.575,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_ce75627e",
+   "bbox": [
+    16.225,
+    61.0,
+    19.375,
+    64.7
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    1.424999,
+    25.537499,
+    6.774999,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    31.625,
+    43.55,
+    36.975,
+    46.775
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    1.424999,
+    25.537499,
+    6.774999,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    31.975,
+    61.85,
+    37.325,
+    65.075
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    14.325,
+    25.537499,
+    19.675,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    44.95,
+    55.925,
+    48.65,
+    59.075
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    18.725,
+    61.05,
+    21.875,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    2.4,
+    61.05,
+    4.875,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    37.05,
+    56.325,
+    40.275,
+    61.675
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_d83f0ab9",
+   "bbox": [
+    37.05,
+    44.125,
+    40.275,
+    49.475
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    20.775,
+    25.537499,
+    26.125,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    14.325,
+    25.537499,
+    19.675,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    11.825,
+    61.0,
+    14.975,
+    64.7
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    27.225,
+    25.537499,
+    32.575,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    7.875,
+    38.95,
+    13.225,
+    42.175
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    44.95,
+    53.725,
+    48.65,
+    56.875
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    29.125,
+    61.05,
+    32.275,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_ee890997",
+   "bbox": [
+    17.025,
+    61.05,
+    20.175,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    14.025,
+    61.0,
+    17.175,
+    64.7
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    -0.175,
+    58.85,
+    2.975,
+    62.55
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    15.325,
+    61.05,
+    18.475,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    20.775,
+    25.537499,
+    26.125,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_2f4af400",
+   "bbox": [
+    1.424999,
+    25.537499,
+    6.774999,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    20.775,
+    40.15,
+    26.125,
+    43.375
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    26.925,
+    61.05,
+    30.075,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    7.875,
+    24.318749,
+    13.225,
+    27.543749
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    10.725,
+    61.05,
+    13.875,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_5a37a52c",
+   "bbox": [
+    14.325,
+    25.537499,
+    19.675,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_23a09c29",
+   "bbox": [
+    1.424999,
+    25.537499,
+    6.774999,
+    28.762499
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    44.95,
+    58.125,
+    48.65,
+    61.275
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_ae51bf3d",
+   "bbox": [
+    7.875,
+    24.318749,
+    13.225,
+    27.543749
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    16.225,
+    61.0,
+    19.375,
+    64.7
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    37.05,
+    44.125,
+    40.275,
+    49.475
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    4.125,
+    61.05,
+    7.275,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    8.525,
+    61.05,
+    11.675,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_0db04c96",
+   "bbox": [
+    7.875,
+    24.318749,
+    13.225,
+    27.543749
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    1.424999,
+    40.15,
+    6.774999,
+    43.375
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    14.325,
+    40.15,
+    19.675,
+    43.375
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_8b0bbe2a",
+   "bbox": [
+    15.325,
+    61.05,
+    18.475,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    6.325,
+    61.05,
+    9.475,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    17.025,
+    61.05,
+    20.175,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    2.45,
+    59.7,
+    4.55,
+    62.55
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner_own_net_fill_guard_a5243e22",
+   "bbox": [
+    26.925,
+    61.05,
+    30.075,
+    64.75
+   ],
+   "rules": {
+    "tracks": "allowed",
+    "vias": "allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    13.625,
+    61.05,
+    16.774999,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  },
+  {
+   "name": "hv_inner",
+   "bbox": [
+    -0.475,
+    61.05,
+    1.9,
+    64.75
+   ],
+   "rules": {
+    "tracks": "not_allowed",
+    "vias": "not_allowed",
+    "pads": "allowed",
+    "copperpour": "not_allowed",
+    "footprints": "allowed"
+   }
+  }
+ ]
+}

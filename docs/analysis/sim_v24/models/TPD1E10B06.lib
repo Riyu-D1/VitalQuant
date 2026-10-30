@@ -1,0 +1,61 @@
+* CIP: NDA is required as of 08/29/2019
+*****************************************************************************
+* TPD1E10B06
+*****************************************************************************
+* (C) Copyright 2023 Texas Instruments Incorporated. All rights reserved.                                            
+*****************************************************************************
+** This model is designed as an aid for customers of Texas Instruments.
+** TI and its licensors and suppliers make no warranties, either expressed
+** or implied, with respect to this model, including the warranties of 
+** merchantability or fitness for a particular purpose.  The model is
+** provided solely on an "as is" basis.  The entire risk as to its quality
+** and performance is with the customer.
+*****************************************************************************
+*
+** Released by: Texas Instruments Inc.
+* Part: TPD1E10B06
+* Date: 11/25/2024
+* Model Type: Transient
+* Simulator: Pspice
+* Simulator Version: Capture CIS 17.4
+* EVM Order Number: N/A 
+* EVM Users Guide: N/A
+* Datasheet: SLLSEB1G
+*
+* Model Version: 1.0
+*
+*****************************************************************************
+*
+* Updates:
+*
+* Version 1.0 : New model
+*
+*****************************************************************************
+*Notes: TPD1E10B06 (DPY)
+*.
+*****************************************************************************
+*$
+.SUBCKT TPD1E10B06 IO1 GND
+
+Lpar1 IO1   IO1_L 0.9433n
+Rpar1 IO1_L IO1_R 0.121
+Cpar1 IO1   IO1_R 0.399p
+
+DZ1 A IO1_R DbreakZ
+DZ2 A GND_R DbreakZ
+
+Lpar_GND GND_R GND_L 0.9433n
+Rpar_GND GND_L GND   0.121
+Cpar_GND GND_R GND   0.399p
+
+.MODEL DbreakZ D
++ IS = 1n
++ BV = 6
++ VJ = 0.8
++ RS = 0.32
++ IBV = 1m
++ CJO = 24p
++ TT = 10p
++ M = 4
+.ENDS TPD1E10B06
+*$
