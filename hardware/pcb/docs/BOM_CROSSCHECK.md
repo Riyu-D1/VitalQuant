@@ -1,5 +1,11 @@
 # BOM cross-check — fix_v23 schematic vs repository main BOM_JLC
 
+> **Status note (fix_v24, 2026-10-25):** this document describes an earlier
+> revision. Current board state: D10 = Nichia NF2W757G-F1 (consigned, no
+> LCSC), U14 = LSM6DSV320XTR (LCSC C26633007, same LGA-14 land), J12 /
+> U24 / U25 are **fitted** (in the v24 JLC BOM/CPL), and the dead MX-ECG
+> chain D29 / D30 / R118 / R119 is DNP. See `../reports/CHANGES_V24.md`.
+
 Source of truth: `hardware/pcb/fab/assembly/BOM_JLC.csv` on `Riyu-D1/VitalQuant`
 main (corrected 22 Oct, commits 9082f8b–ce500af). Schematic LCSC fields updated
 to match; fresh `kicad-cli sch export bom` reproduces main's BOM.csv
