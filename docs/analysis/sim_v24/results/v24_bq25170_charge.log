@@ -1,0 +1,27 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * v24 bq25170 charge profile: ichg from r3=1.5k, vreg from r75=27k=4.20v
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+
+No. of Data Rows : 5416
+ichg_cc             =  2.00000e-01
+vbat_60             =  3.39222e+00
+soc_1500            =  3.27778e-01
+soc_5000            =  9.69680e-01
+
+Error: measure  t_done  when(WHEN) : out of interval
+ meas tran t_done when v(done)=0.5 cross=1 failed!
+
+Error: &t_done: no such variable.
+ICHG_cc=0.2 A vbat@60s=3.39222 soc@150s=0.327778 soc@280s=0.96968 t_done=
+NOTE: sim time is compressed - BHV model uses real 300s; SOC in V=frac
+DONE_BQ
+Note: Simulation executed from .control section 
