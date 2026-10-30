@@ -1,11 +1,11 @@
 # Hardware
 
-`pcb/` contains the VitalQuant board, **fix_v24**, built around the
+`pcb/` contains the VitalQuant board, **fix_v25**, built around the
 ESP32-S3-WROOM-1-N16R8 (KiCad 10.0.4; DRC 0 errors / 0 unconnected /
 0 shorts / 0 schematic-parity issues, ERC 0 errors).
 
 - `pcb/fab/` holds the fabrication package — the gerber/BOM/CPL zip
-  (`VitalQ_v2_fixv24_fabrication.zip`) is what gets sent to the fab.
+  (`VitalQ_v2_fixv25_fabrication.zip`) is what gets sent to the fab.
 - Project-local KiCad libraries (`vitalquant.pretty`, `snap.pretty`,
   `vitalquant.kicad_sym`) live alongside the project; `fp-lib-table` and
   `sym-lib-table` resolve them via `${KIPRJMOD}`.
@@ -14,3 +14,7 @@ ESP32-S3-WROOM-1-N16R8 (KiCad 10.0.4; DRC 0 errors / 0 unconnected /
   dead MX-ECG chain marked DNP. Copper, geometry, positions and drills are
   unchanged from fix_v23 — see `pcb/reports/CHANGES_V24.md` and
   `pcb/reports/COPPER_EQUIV.md`.
+- fix_v25 adds twelve DNP 1.0 mm probe pads (TP29-TP40, all top side) for
+  bring-up access to AFE reference, power-path and charger nodes. No
+  existing copper moved — see `pcb/reports/REPORT_V25.md`,
+  `pcb/reports/BRINGUP.md` and `pcb/reports/COPPER_DIFF_V25.txt`.

@@ -2804,6 +2804,109 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "0e67b94f-ba3f-42d5-b41c-d0f8f2be9641")
+		(at 26.8 10.8)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP37"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "95912aa5-54c6-40e4-bd37-701da9497876")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "CHG_ISET"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b4462003-775a-4f64-83fa-78cfc3e36f79")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ccaffef5-12e2-41bc-ae3e-d2526fb05131")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "bf704fbc-1f60-43a5-88ba-b83a4ff7f3fe")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/de7ada30-69b2-40dd-82f3-4263cc219db5")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "0fffb30f-5fe2-4ebb-9d1e-290bd9a9cf59")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "a72127f3-a017-4f09-8614-4a6aa9e3e174")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "9614d381-a5ce-4cac-bf10-0f8cf076fd70")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "CHG_ISET")
+			(uuid "777e17cd-6ec4-432f-8ef1-1c160543b8ba")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "vitalquant:QFN_LSM6DSV80XTR_STM"
 		(layer "F.Cu")
 		(uuid "0f557ccc-207d-459a-b05f-45e027bbaac5")
@@ -4814,6 +4917,109 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "13e78cf8-7fbe-406f-97f2-51b5be1317b8")
+		(at 4.8 57.04)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP39"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "349d5a79-075a-4e68-ada7-e63ad6822b73")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "VBUS_DET"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "838d7dd9-3755-40c8-a002-a181422098a9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b8aa768d-66e5-426c-8ecf-ebabe77251e2")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "88a8cfb5-f67a-448b-9b02-bef3d08c8320")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/806ca603-80ca-4d34-a163-bf3e3fabb8a5")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "8ef2c297-a879-44e4-b2bb-25aba7790095")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "8e71f92c-7238-440d-aed5-0dfd1b39c44c")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "1a4486a0-bad2-41b7-ad85-a601d9d07770")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "VBUS_DET")
+			(uuid "d1de78e8-286d-4ddb-b6b8-e1be1862939b")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "F.Cu")
@@ -16634,6 +16840,109 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "498693c7-2289-4263-bc9a-a88c12c711c4")
+		(at 46.64 26.32)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP31"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "d1abb661-b953-4e7c-a081-26696865f0db")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "VBAT_SYS"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0f87d884-0175-42c2-82b0-de5aa9b8c4f9")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7550cc49-e5da-4f9d-9ea5-2ac4324625e9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "441e0e15-2cc9-4a80-87ad-062df05266f9")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/56155d10-3a40-4d22-8ae0-ed34807e1761")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "491042fe-a8da-4676-a93c-ec90cdc256e7")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "53a3addb-95cd-4f06-ad3c-468c2821a211")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "89f10077-909e-40c4-aa76-91a489601bf9")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "VBAT_SYS")
+			(uuid "f4fa6a58-d798-4278-9439-36658312c755")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "4a4c35bb-aaf5-4dd9-871b-c8ac099e6103")
@@ -23872,6 +24181,109 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "769ab66e-39b8-4f44-88c1-d83a55aa11c4")
+		(at 29.92 10.56)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP38"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "f295ee14-f7ef-4948-a944-565350c4dbbf")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "CHG_VSET"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3c7f88db-a064-4420-b501-e6937e3f855d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "954172af-9382-4da7-bcc0-ed5f73b86c7e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "823805e9-703e-4466-8399-028df0b47f8a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/1aa2af1d-0eeb-474f-b25c-980153cf915c")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "6e4efbf4-6465-4dcf-8ff5-5b7a8b8873b7")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "ea28a3e8-b104-4bb6-bf31-d1c191d4abce")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "30140fa2-6b67-4f9a-968f-08f436be7ea1")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "CHG_VSET")
+			(uuid "bc3112b3-bc0e-41ad-953c-eb0ab9997a47")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "vitalquant:TPD1E10B06_DPY"
 		(locked yes)
 		(layer "F.Cu")
@@ -24051,6 +24463,109 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "7d2f9e5e-5976-4f88-a943-18a5aabe0b26")
+		(at 29.68 22.32)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP34"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "1212a3b5-a80c-4227-b0ed-dfdba6c67215")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "RTC_VBK"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "23e7e38d-9303-4edb-8761-c9346e5a3beb")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ade89ee3-c488-4d39-98cd-8a957305e527")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "67588c65-0331-42d5-8be6-fa2bae169e7b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/b4861aab-536f-49d4-a276-fba64ec1fa8c")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "c4f4e1f3-bb26-430b-9b0b-79d9746571f6")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "b34bc80d-6f25-4347-bba8-0828cbdbd448")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "544ead74-b052-401a-bf0e-c05f7ffcd94f")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "RTC_VBK")
+			(uuid "67f9927e-1019-4043-a806-e87d1d7d13d2")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -26530,6 +27045,109 @@
 		)
 		(embedded_fonts no)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "8ae1d79f-1019-43f4-84b3-74005ce0c8c4")
+		(at 40.24 41.36)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP33"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "e20b415f-a0a8-4074-9729-ffabef8e927f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "TX_5V_RAW"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "cfbe67d8-4a9c-40b4-a4c7-41ed072e2943")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8e5ec230-783f-4dae-9404-bf73b90ff75a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7c782b4b-24e8-4bb8-8f65-4973f160b32a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/e773f94d-929e-44e2-862d-b3a7aa5903e4")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "7b467a57-1d41-4f71-a544-ec65a3754dad")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "bf7e8716-9ac6-41f2-b316-07c04837a124")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "df62a2c7-cbfc-4c05-9681-3ab004ef559b")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "TX_5V_RAW")
+			(uuid "cc7750d0-50ee-48ab-af98-0890d91742f7")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "8c415f42-bdb5-4c1f-b748-ca52df3ec82e")
@@ -26693,6 +27311,109 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "8c905c8e-b2f2-453c-aacc-3d8a16adf33f")
+		(at 48.16 28.56)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP30"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "eaef0517-6c19-4500-af73-dcd34993b525")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "RLDOUT"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f0d279e2-265a-403c-b136-219191152d0d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b3744321-30bc-4bd0-a7e7-aeb194541c91")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d2db0ae6-d107-4a71-9289-ae18580c18f1")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/56e890d3-82fe-430c-8317-6f4b5cefbfdf")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "0853c63b-cdfc-49ab-886c-ad6c92281dd2")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "598393f2-cbc8-45dc-8410-d09420c97a57")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "6a97f3fd-8b46-4dc2-a248-a4bdcf916273")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "RLDOUT")
+			(uuid "4c1dd02e-3136-4d6a-bb66-ad9b93fdc5dd")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "vitalquant:Fiducial_1mm"
 		(layer "F.Cu")
@@ -27450,6 +28171,109 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "90c37907-1768-4091-94bf-9f9b56a92906")
+		(at 46.88 7.6)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP29"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "959010d1-d8d8-4308-8834-563a7b79a012")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "RLDREF"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ce6f113a-d4ad-4983-bfb3-2b75a2287d2f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e3e10892-2db5-4d8c-9771-bb99fc2a6131")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "de3423cf-ebe4-47dd-a854-7dcbc2ba61ac")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/42666f7e-6b34-4bc0-9547-21a7babde05c")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "477cef88-2943-4dc3-87af-1e2ba7b456c0")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "c5521d7a-88c2-4cdb-a0a7-a0d078c8462e")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "2e4371f1-6b90-44b6-ad6d-cb339e937ffc")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "RLDREF")
+			(uuid "60b29c84-609c-48da-a7fa-a6d84f26b9f4")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -32726,6 +33550,109 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "ae95282d-d5cb-4dd0-ba6b-7bc2d35f703e")
+		(at 45.04 -9.44)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP36"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "8a99cd5a-f7da-44cb-b4c1-eb2764eca9f4")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "IOVDD"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5bfb66ff-b8ea-4dd9-89ae-e640e097ceac")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e49fb991-94f5-4a72-a1cc-2d145489b69e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7520600f-d42b-45b8-a77a-0c8eef966796")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/3b8698fd-7eba-4557-bf50-6777f8bb9c8a")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "eec44a6a-3083-48d7-8809-d18aad3953f0")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "ff779796-4f44-4976-94df-1a3c98b51637")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "b1b8243e-c841-41d1-ad7a-51dbf4b2a317")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "IOVDD")
+			(uuid "72e130e5-e62a-45b8-8e76-2f7d89d41c29")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "af01e5c6-2678-4a14-98af-dd08247d908e")
@@ -36650,6 +37577,109 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "c6ed83e2-4eff-4e78-9616-2e1b0834fcef")
+		(at 28.88 8)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP40"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "87acd94a-a1b3-4d10-a634-6129bf9e5759")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "TS"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b6dfee89-cc5a-4032-a16d-f017150d28e8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "923494d4-9870-47f0-acd9-08d09e2d8dec")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "62b9e662-322c-4305-9be7-ee9df44d6ecc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/78c6b847-348a-4787-82fd-3698abd2944d")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "71b46123-94d2-44d4-b324-9ee7a14d7988")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "4538fd46-018a-4996-9f24-c0e06b734d92")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "7b3f0cf8-5075-4291-816a-2005a6905276")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "TS")
+			(uuid "3ae6f11c-f73b-4e31-84c5-498e9314f7f5")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "F.Cu")
 		(uuid "c6ff5eed-e2e9-446b-81ae-f81af1f14e7a")
@@ -37213,6 +38243,109 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "c76df5cd-ec10-4ff7-ab95-526aad20b031")
+		(at 42.56 7.12)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP32"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "a054e378-9b3d-4db2-8a90-6f70cd46ac5d")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "+3V3_ANA"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "66122c10-4049-4c61-91c8-9430be810bdb")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "337ddc51-1d1e-45d6-a57a-29343f3beecc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e870a817-50c6-4fe6-81dc-34b8ca3df249")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/24037b0c-ae58-4751-aa4c-ce1e09ebe58f")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "d49bc05a-65c1-455e-83e3-a77778ca7a4f")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "247c969e-6bd4-462e-9e0e-c8c0b5f02fc0")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "e0472c96-ac2c-4bd7-9bcb-c472f0d3f05b")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "+3V3_ANA")
+			(uuid "0a0a839c-86da-4803-9bd5-2e0bef03a4e9")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
 		(layer "F.Cu")
@@ -41417,6 +42550,109 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint "TestPoint:TestPoint_Pad_D1.0mm"
+		(layer "F.Cu")
+		(uuid "d375a6cb-9d92-4245-a57e-69e9f6e3c6af")
+		(at 1.52 10.8)
+		(descr "SMD pad as test Point, diameter 1.0mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP35"
+			(at 0 -1.448 180)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0c0573f8-47f1-4860-be63-06c71e2fe162")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "+3V3_ESP"
+			(at 0 1.55 180)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a1433459-5d1d-49e5-a183-ffc4f3cea7a8")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "017afb98-462c-4094-a38e-83c234bb7bbf")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "24d52725-fc1b-4b76-90f5-5fc5e4dcce5a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/7942705d-ef82-4127-bf81-091b394d3825")
+		(sheetname "/")
+		(sheetfile "vitalquant_v2.kicad_sch")
+		(attr exclude_from_pos_files exclude_from_bom dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.7)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "ea7e6435-5319-400d-8a39-4320c04f0db5")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "4e26fbda-8d61-471a-8bdd-cc27ae72c387")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.45 180)
+			(layer "F.Fab")
+			(uuid "cca44d21-ea50-4a39-b6d1-1b28b642fce7")
+			(effects
+				(font
+					(size 0.35 0.35)
+					(thickness 0.07)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0 180)
+			(size 1 1)
+			(layers "F.Cu" "F.Mask")
+			(net "+3V3_ESP")
+			(uuid "d938e21f-9ef8-43ba-b1eb-66f6efa9f277")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -49990,7 +51226,7 @@
 		(path "/5299fb87-d2e1-4748-8bec-9f01385829ea")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_rect
 			(start -2.1 -2.5)
@@ -50384,7 +51620,7 @@
 		(path "/c8cbae92-1dbf-4481-8361-a92384759c3b")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 2.975 -1.7)
@@ -50591,7 +51827,7 @@
 		(path "/0856f416-8d47-44e0-b64e-c83f76e859d3")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 3.15 2.2)
@@ -51768,7 +53004,6 @@
 				(justify mirror)
 			)
 		)
-		
 		(path "/f89f6d65-ba89-439e-aa56-9631c21a7a08")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
@@ -52396,7 +53631,7 @@
 		(path "/b45f95c1-8fc7-461b-b5be-15a77045777d")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 6.275 -1.7)
@@ -52627,7 +53862,7 @@
 		(path "/bd932598-492c-42b4-b63a-90910737d2a5")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 4.25 2.2)
@@ -53003,7 +54238,7 @@
 		(path "/6669a5b6-a59b-4367-9711-20dfad96d8b6")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
 			(start 4.075 -1.7)
@@ -53963,7 +55198,7 @@
 		(path "/553138de-5df8-458d-9729-baea72b8b49a")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_rect
 			(start -1.85 -0.95)
@@ -55318,7 +56553,7 @@
 		(path "/70ce6dcc-f8c2-4d42-aaab-2c14afb20b36")
 		(sheetname "/")
 		(sheetfile "vitalquant_v2.kicad_sch")
-		(attr smd exclude_from_bom exclude_from_pos_files)
+		(attr smd exclude_from_pos_files exclude_from_bom)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_rect
 			(start -4.55 1.55)
@@ -64651,6 +65886,14 @@
 		(uuid "0b56d593-7da2-45fd-8c2e-877cf7ee57d1")
 	)
 	(segment
+		(start 48.16 28.56)
+		(end 47.0964 29.1608)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "RLDOUT")
+		(uuid "1162d786-254c-4af5-a92c-e7c7078ed79c")
+	)
+	(segment
 		(start 46.295447 10.580833)
 		(end 47.169936 11.455323)
 		(width 0.101702)
@@ -65769,6 +67012,14 @@
 		(layer "F.Cu")
 		(net "+3V3_ANA")
 		(uuid "1cb6bf59-fa72-4098-9eb0-654fc15c22bd")
+	)
+	(segment
+		(start 42.56 7.12)
+		(end 41.6015 9.1324)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "+3V3_ANA")
+		(uuid "1dbcea6d-3c71-4d93-a8c5-02de7ddff1a7")
 	)
 	(segment
 		(start 29.136416 16.542338)
@@ -75405,6 +76656,14 @@
 		(uuid "9cd68379-3144-4525-8c72-10a100d4f14f")
 	)
 	(segment
+		(start 28.88 8)
+		(end 30.0711 7.5701)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "TS")
+		(uuid "a691c67a-0d58-49a4-a746-d58a62e6b216")
+	)
+	(segment
 		(start 26.601108 2.862564)
 		(end 26.421582 3.04209)
 		(width 0.101702)
@@ -82023,6 +83282,14 @@
 		(uuid "9b7f0b66-4d48-489d-978a-a1ec8ecf463f")
 	)
 	(segment
+		(start 1.52 10.8)
+		(end 2.848 10.8)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "+3V3_ESP")
+		(uuid "a0e27051-b757-4383-8950-f74dc8154e24")
+	)
+	(segment
 		(start 1.4 -13.49)
 		(end 2.75 -13.49)
 		(width 0.3)
@@ -85679,6 +86946,14 @@
 		(uuid "96f5ac8d-0ffa-4954-baef-48fce8c3b3b1")
 	)
 	(segment
+		(start 26.8 10.8)
+		(end 26.216 10.8)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "CHG_ISET")
+		(uuid "99e12efa-87c2-428d-8119-52acca9da468")
+	)
+	(segment
 		(start 25.386502 6.344334)
 		(end 25.386502 7.341102)
 		(width 0.101702)
@@ -86949,6 +88224,14 @@
 		(layer "F.Cu")
 		(net "CHG_VSET")
 		(uuid "c20c7641-0a81-4588-8b55-11821afb6e57")
+	)
+	(segment
+		(start 29.92 10.56)
+		(end 29.0400 9.4463)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "CHG_VSET")
+		(uuid "c5a0cac1-7722-4996-985d-6c7e9b68b692")
 	)
 	(segment
 		(start 25.857397 7.141509)
@@ -101021,6 +102304,14 @@
 		(uuid "06f48f4c-07b2-4d13-b9f4-f3ed8b6c685a")
 	)
 	(segment
+		(start 45.04 -9.44)
+		(end 45.04 -8.796)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "IOVDD")
+		(uuid "0d581d86-6a97-4414-bad2-d06619a4dde0")
+	)
+	(segment
 		(start 39.624273 7.872093)
 		(end 39.624273 7.57932)
 		(width 0.101702)
@@ -101443,6 +102734,14 @@
 		(layer "F.Cu")
 		(net "RLDREF")
 		(uuid "825cdf50-f7f5-4234-9a77-f224fc35b9e5")
+	)
+	(segment
+		(start 46.88 7.6)
+		(end 45.13 7.6)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "RLDREF")
+		(uuid "98fe09c6-c895-4ab7-bf48-d84e8bc6dbd8")
 	)
 	(segment
 		(start 44.272635 -2.985475)
@@ -111565,6 +112864,14 @@
 		(uuid "2c1e424d-fc3d-4574-a752-350ad8c9c589")
 	)
 	(segment
+		(start 46.64 26.32)
+		(end 46.4536 26.8926)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "VBAT_SYS")
+		(uuid "420ff611-e4ea-4485-986f-56f8d5ce19e0")
+	)
+	(segment
 		(start 38.432284 36.23515)
 		(end 38.908713 36.23515)
 		(width 0.145123)
@@ -114335,6 +115642,14 @@
 		(uuid "c3f0ccee-eeea-49d6-860f-818c3702b9ff")
 	)
 	(segment
+		(start 4.8 57.04)
+		(end 3.6108 58.6763)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "VBUS_DET")
+		(uuid "d092be9b-3ef8-4703-b18f-fa100ab51dca")
+	)
+	(segment
 		(start 9.647405 55.256377)
 		(end 10.011637 55.256377)
 		(width 0.106787)
@@ -114717,6 +116032,14 @@
 		(layer "F.Cu")
 		(net "TX_5V_RAW")
 		(uuid "31b2602f-e7e9-4729-85e5-845e9ac3ff89")
+	)
+	(segment
+		(start 40.24 41.36)
+		(end 41.0377 39.5558)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "TX_5V_RAW")
+		(uuid "36e6f109-58b8-46fe-b05e-50874c617c01")
 	)
 	(segment
 		(start 40.997369 38.832752)
@@ -115405,6 +116728,14 @@
 		(layer "F.Cu")
 		(net "RTC_VBK")
 		(uuid "bbd88bb3-0a58-4508-b65a-a295a5ba104a")
+	)
+	(segment
+		(start 29.68 22.32)
+		(end 29.4592 21.9078)
+		(width 0.15)
+		(layer "F.Cu")
+		(net "RTC_VBK")
+		(uuid "bf5809a5-99d0-4d06-a85d-1f7640b000a8")
 	)
 	(segment
 		(start 46.067021 29.818259)

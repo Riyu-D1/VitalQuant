@@ -17,8 +17,9 @@ earlier than conventional approaches.
 This is the VitalQuant monorepo — all VitalQuant work in one place:
 
 ```
-hardware/pcb/        fix_v24 board (ESP32-S3-WROOM-1-N16R8) — DRC 0 errors /
-                     0 unconnected / 0 shorts / 0 parity, ERC 0 errors,
+hardware/pcb/        fix_v25 board (ESP32-S3-WROOM-1-N16R8) — fix_v24 plus
+                     12 probe test points (TP29-TP40, top side, DNP); DRC
+                     0 errors / 0 unconnected / 0 shorts / 0 parity, ERC 0,
                      KiCad 10.0.4; fab zip in hardware/pcb/fab/ —
                      see hardware/README.md
 hardware/case/       V10 enclosure design (passes CAD checks; nothing

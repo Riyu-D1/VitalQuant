@@ -1,35 +1,28 @@
-# VitalQ v2 — fix_v24 fabrication package
+# VitalQ v2 — fix_v25 fabrication package
 
-Generated from `fix_v24/vitalq_v2.kicad_pcb` and `fix_v24/vitalq_v2.kicad_sch`
+Generated from `fix_v25/vitalq_v2.kicad_pcb` and `fix_v25/vitalq_v2.kicad_sch`
 with KiCad **10.0.4** (`/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`).
 
-## What changed vs fix_v23
+## What changed vs fix_v24
 
-- **BOM/flag revision only — no copper, track, via, zone, footprint-position
-  or footprint-geometry changes.** Verified identical: all 16 gerber layers,
-  all drill files, 302 footprints' geometry and 8,898 board primitives
-  (`../verify/COPPER_EQUIV.md`).
-- **U14 IMU**: LSM6DSV80XTR (0 stock) -> **LSM6DSV320XTR** (C26633007), same
-  LGA-14L footprint, same WHO_AM_I 0x73. Footprint unchanged.
-- **D10 illuminator**: reverted to **Nichia NF2W757G-F1, consigned** — blank
-  LCSC cell, same convention as D12. The `vitalq:NF2W757G` land is drawn for
-  this part; the Cree/Jufei alternatives did not match it.
-- **J12 (FFC), U24 (RTC), U25 (mic) are FITTED from v24** and back in
-  BOM_JLC/CPL_JLC (v23 removed them by hand for that run only).
-- **MX-ECG chain DNP**: D29, D30, R118, R119 now do-not-populate (dead
-  chain to already-DNP J13; U22 MAX86141 has no ECG inputs).
-- **J2–J11 pad lands** excluded from BOM and position files (matches J8).
-- **~30 LCSC field corrections** from the audit (wrong-value/wrong-package/
-  delisted codes); all parts re-verified against LCSC pages 25 Oct 2026.
-- Full detail in `../CHANGES_V24.md`; stock/buy guidance in
-  `../BUY_NOTES.md`; consignment list in `../CONSIGNED_PARTS.md`.
-- **All fabrication outputs regenerated** from fix_v24 (gerbers X2, drill,
-  positions, BOM/CPL, checksums, zip).
+- **Test-point revision only** — 12 new DNP test-point footprints (TP29-TP40,
+  `TestPoint_Pad_D1.0mm`) on F.Cu plus one short stub each to existing
+  same-net copper. **No existing track, via, zone outline, footprint or
+  board-outline change** (verified by UUID-keyed diff vs fix_v24,
+  `../_work/copper_diff.txt` — 0 changed items).
+- New TPs cover: RLDREF, RLDOUT, VBAT_SYS, +3V3_ANA, TX_5V_RAW, RTC_VBK,
+  +3V3_ESP, IOVDD, CHG_ISET, CHG_VSET, VBUS_DET, TS.
+- All new TPs are DNP, `in_bom no`, excluded from BOM and position files —
+  they appear nowhere in BOM.csv, BOM_JLC.csv, vitalq_v2-pos.csv, CPL.csv or
+  CPL_JLC.csv (grep-verified).
+- Zones refilled; connectivity unchanged (DRC 0 unconnected). Drill files
+  identical to fix_v24 (no new holes): 917 PTH + 8 NPTH.
+- Bring-up plan added: `../BRINGUP.md`. Full change log: `../REPORT.md`.
 
 ## DRC / ERC status (honest statement)
 
 - Command: `kicad-cli pcb drc --severity-error --schematic-parity` on a copy of
-  fix_v24 with `fix_v19/vitalq_v2.kicad_pro` rules plus `vitalq_v2.kicad_dru`,
+  fix_v25 with `fix_v19/vitalq_v2.kicad_pro` rules plus `vitalq_v2.kicad_dru`,
   KiCad 10.0.4.
 - Result: **0 violations, 0 unconnected items, 0 shorts, 0 schematic-parity
   issues.** ERC (`kicad-cli sch erc --severity-error`): **0 violations.**
